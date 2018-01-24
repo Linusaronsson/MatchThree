@@ -10,8 +10,8 @@ Programming assignment for course DAT055, Chalmers University of Technology.
 
 ## Authors ##
 
-See `AUTHORS`.
+See [`AUTHORS`](AUTHORS).
 
 ## License ##
 
-See `LICENSE`.
+See [`LICENSE`](LICENSE).
