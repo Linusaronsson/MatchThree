@@ -5,5 +5,5 @@ Thumbs.db
 # eclipse support
 .classpath
 .project
-bin/
 .settings/
+bin/
