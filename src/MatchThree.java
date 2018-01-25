@@ -50,12 +50,12 @@ public class MatchThree
 		// Create menus //
 		JMenu fileMenu = new JMenu("File");
 		
-		// Create â€œOpenâ€� menu item //
+		// Create Open menu item //
 		JMenuItem openItem = new JMenuItem("Open");
 		openItem.addActionListener(this);
 		fileMenu.add(openItem);
 		
-		// Create â€œQuitâ€� menu item //
+		// Create Quit menu item //
 		JMenuItem quitItem = new JMenuItem("Quit");
 		quitItem.addActionListener(this);
 		fileMenu.add(quitItem);
