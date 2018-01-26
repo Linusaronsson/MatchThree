@@ -23,6 +23,9 @@ class BoardView
 	private JMenuItem quitItem;
 	
 	// TODO: Break into multiple methods?
+	/**
+	 * ...
+	 */
 	public BoardView(BoardModel model)
 	{
 		this.model = model;
@@ -102,21 +105,33 @@ class BoardView
 		catch (UnsupportedLookAndFeelException e) {}
 	}
 	
+	/**
+	 * ...
+	 */
 	public void addOpenListener(ActionListener listener)
 	{
 		openItem.addActionListener(listener);
 	}
 	
+	/**
+	 * ...
+	 */
 	public void addQuitListener(ActionListener listener)
 	{
 		quitItem.addActionListener(listener);
 	}
 	
+	/**
+	 * ...
+	 */
 	public void addButtonListener(ActionListener listener)
 	{
 		button.addActionListener(listener);
 	}
 	
+	/**
+	 * ...
+	 */
 	public void showMessage(String message)
 	{
 		JOptionPane.showMessageDialog(this,
@@ -125,6 +140,9 @@ class BoardView
 		                              JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/**
+	 * ...
+	 */
 	public void showError(String message)
 	{
 		JOptionPane.showMessageDialog(this,

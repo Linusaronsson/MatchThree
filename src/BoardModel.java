@@ -7,11 +7,17 @@ import javax.swing.*;
  */
 class BoardModel
 {
+	/**
+	 * ...
+	 */
 	public BoardModel()
 	{
 		
 	}
 	
+	/**
+	 * ...
+	 */
 	public String getValue()
 	{
 		return "Hello, World!";

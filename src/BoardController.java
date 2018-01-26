@@ -10,6 +10,9 @@ class BoardController
 	private BoardModel model;
 	private BoardView  view;
 	
+	/**
+	 * ...
+	 */
 	public BoardController(BoardModel model, BoardView view)
 	{
 		this.model = model;
@@ -20,6 +23,9 @@ class BoardController
 		view.addButtonListener(new ButtonListener());
 	}
 	
+	/**
+	 * ...
+	 */
 	class OpenListener
 		implements ActionListener
 	{
@@ -29,6 +35,9 @@ class BoardController
 		}
 	}
 	
+	/**
+	 * ...
+	 */
 	class QuitListener
 		implements ActionListener
 	{
@@ -40,6 +49,9 @@ class BoardController
 		}
 	}
 	
+	/**
+	 * ...
+	 */
 	class ButtonListener
 		implements ActionListener
 	{
