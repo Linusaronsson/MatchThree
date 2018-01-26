@@ -81,4 +81,22 @@ class BoardModel
 	{
 		return board.size();
 	}
+	
+	/**
+	 * Swap two cells.
+	 */
+	public boolean swap(int x1, int y1, int x2, int y2)
+	{
+		// TODO: Validate arguments.
+		
+		// TODO: Validate move.
+		
+		// Swap cells //
+		Jewel first  = board.get(x1).get(y1);
+		Jewel second = board.get(x2).get(y2);
+		board.get(x1).set(y1, second);
+		board.get(x2).set(y2, first);
+		
+		return true;
+	}
 }

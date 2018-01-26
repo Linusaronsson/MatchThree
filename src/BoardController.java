@@ -91,6 +91,25 @@ class BoardController
 		public void actionPerformed(ActionEvent event)
 		{
 			view.showMessage("You pressed: " + event.getActionCommand());
+			
+			// Swap two cells //
+			if (!swapCells(0, 0, 0, 2)) {
+				view.showError("Could not swap cells");
+			}
 		}
+	}
+	
+	/**
+	 * Swap two cells.
+	 */
+	private boolean swapCells(int x1, int y1, int x2, int y2)
+	{
+		if (!model.swap(x1, y1, x2, y2)) {
+			return false;
+		}
+		
+		view.updateCell(x1, y1);
+		view.updateCell(x2, y2);
+		return true;
 	}
 }

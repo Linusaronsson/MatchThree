@@ -96,7 +96,7 @@ class BoardView
 			}
 			
 			// Get jewel from model //
-			BoardModel.Jewel jewel = model.get(i / width, i % width);
+			BoardModel.Jewel jewel = model.get(i % width, i / width);
 			
 			// Update text to match jewel //
 			String value = null;
@@ -233,5 +233,43 @@ class BoardView
 		                              message,
 		                              message,
 		                              JOptionPane.ERROR_MESSAGE);
+	}
+	
+	/**
+	 * Update a cell.
+	 */
+	public void updateCell(int x, int y)
+	{
+		// TODO: Validate arguments.
+		
+		// Get jewel from model //
+		BoardModel.Jewel jewel = model.get(x, y);
+		
+		// Get button from view //
+		// TODO: Add assert or rely less on model consistency.
+		int width = model.getWidth();
+		JButton cell = board.get(x % width + y * width);
+		
+		// Update text to match jewel //
+		String value = null;
+		switch (jewel) {
+			case DIAMOND:  value = "Diamond";  break;
+			case EMERALD:  value = "Emerald";  break;
+			case RUBY:     value = "Ruby";     break;
+			case SAPPHIRE: value = "Sapphire"; break;
+			default: // TODO: Throw runtime error.
+		}
+		cell.setText(value);
+		
+		// Update color to match jewel //
+		Color color = null;
+		switch (jewel) {
+			case DIAMOND:  color = new Color(0xB9, 0xF2, 0xFF); break;
+			case EMERALD:  color = new Color(0x50, 0xC8, 0x78); break;
+			case RUBY:     color = new Color(0xE0, 0x11, 0x5F); break;
+			case SAPPHIRE: color = new Color(0x0F, 0x52, 0xBA); break;
+			default: // TODO: Throw runtime error.
+		}
+		cell.setForeground(color);
 	}
 }
