@@ -36,7 +36,7 @@ class BoardModel
 		}
 	}
 	
-	private List<List<Jewel>> board;
+	private List<List<Jewel>> board = null;
 	
 	/**
 	 * ...

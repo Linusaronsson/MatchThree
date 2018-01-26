@@ -24,7 +24,7 @@ class BoardView
 	// Reference fields //
 	private JMenuItem     openItem = null;
 	private JMenuItem     quitItem = null;
-	private List<JButton> board    = new ArrayList<JButton>();
+	private List<JButton> board    = null;
 	
 	// TODO: Break into multiple methods?
 	/**
@@ -70,6 +70,7 @@ class BoardView
 		
 		// Fill grid //
 		int width = model.getWidth();
+		board = new ArrayList<JButton>(width * width);
 		for (int i = 0; i < width * width; i++) {
 			// Create button //
 			JButton button = new JButton();
