@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.awt.event.*;
-import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.*;
 
 /**
