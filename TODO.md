@@ -4,6 +4,10 @@
 + Write code style.
 + Sort methods.
 
+## Correctness ##
++ Validate that board model rows and columns properly correlate to x and y
+  values.
+
 ## Documentation ##
 + Improve documentation.
 

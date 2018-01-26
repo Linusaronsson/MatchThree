@@ -64,7 +64,10 @@ class BoardView
 		// Construct grid //
 		JPanel grid = new JPanel(new GridLayout(4, 4));
 		grid.setBackground(new Color(0x11, 0x11, 0x11));
-		for (int i = 0; i < 4 * 4; i++) {
+		
+		// Fill grid //
+		int width = model.getWidth();
+		for (int i = 0; i < width * width; i++) {
 			// Create button //
 			JButton button = new JButton();
 			
@@ -79,20 +82,45 @@ class BoardView
 			button.setForeground(new Color(0xEE, 0xEE, 0xEE));
 			button.setBackground(Color.BLACK);
 			button.setPreferredSize(new Dimension(80, 80));
-			button.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+			button.setFont(new Font("Helvetica Neue", Font.PLAIN, 14));
 			
-			// Generate a random value //
+			// Select button //
 			if (i == 6) {
 				button.setBackground(new Color(0xEE, 0xEE, 0xEE));
 				button.setForeground(new Color(0x11, 0x11, 0x11));
 				button.setContentAreaFilled(true);
 			}
-			int value = ThreadLocalRandom.current().nextInt(4);
-			button.setText("" + value);
+			
+			// Get jewel from model //
+			BoardModel.Jewel jewel = model.get(i / width, i % width);
+			
+			// Update text to match jewel //
+			String value = null;
+			switch (jewel) {
+				case DIAMOND:  value = "Diamond";  break;
+				case EMERALD:  value = "Emerald";  break;
+				case RUBY:     value = "Ruby";     break;
+				case SAPPHIRE: value = "Sapphire"; break;
+				default: // TODO: Throw runtime error.
+			}
+			button.setText(value);
+			
+			// Update color to match jewel //
+			Color color = null;
+			switch (jewel) {
+				case DIAMOND:  color = new Color(0xB9, 0xF2, 0xFF); break;
+				case EMERALD:  color = new Color(0x50, 0xC8, 0x78); break;
+				case RUBY:     color = new Color(0xE0, 0x11, 0x5F); break;
+				case SAPPHIRE: color = new Color(0x0F, 0x52, 0xBA); break;
+				default: // TODO: Throw runtime error.
+			}
+			button.setForeground(color);
 			
 			// Add button to grid //
 			grid.add(button);
 		}
+		
+		// Add grid to pane //
 		content.add(grid);
 		
 		// Update window with content //

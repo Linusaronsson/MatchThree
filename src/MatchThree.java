@@ -13,7 +13,7 @@ public class MatchThree
 	public static void main(String[] args)
 	{
 		// Create MVC context //
-		BoardModel      model      = new BoardModel();
+		BoardModel      model      = new BoardModel(4);
 		BoardView       view       = new BoardView(model);
 		BoardController controller = new BoardController(model, view);
 		
