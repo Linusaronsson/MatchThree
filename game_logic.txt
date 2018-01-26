@@ -15,10 +15,10 @@ Needed algorithms:
 
 2. Analyzing the generated grid to find allowed swaps and store them in some list. 
 
-   Each time a swap is made, make sure the swap exists in this list. If it doesn't,
+   Each time a swap is made, make sure the swap exists in this list. If it isn't,
    the swap isn't allowed.
 
-3. When a swap was successful, find in which direction the chain is and remove the entire
+3. When a swap is successful, find in which direction the chain is and remove the entire
    chain of cells. There could be a horizontal AND vertical chain at the same time, so
    make sure to check both.
 
@@ -35,7 +35,7 @@ Needed algorithms:
 5. When new cells have been added, the columns the were affected must be analyzed again, 
    possibly adding more possible swaps to the list (this algorithm is of course based 
    on or even the same as algorithm 2). In the same process we could also check for potential
-   new chains that occured after the new cells were added.
+   new chains that occurred after the new cells were added.
 
 
 Extra features: (not game related)
