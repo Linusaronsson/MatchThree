@@ -36,6 +36,7 @@ class BoardView
 		this.setTitle(WINDOW_TITLE);
 		// TODO: Pass close event to controller instead.
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationByPlatform(true);
 		
 		// Set menu bar //
 		JMenuBar menuBar = createMenuBar(this);
