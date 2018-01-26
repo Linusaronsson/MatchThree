@@ -47,9 +47,9 @@ class BoardModel
 		
 		// Construct board //
 		// TODO: Add assertions?
-		board = new ArrayList(width);
+		board = new ArrayList<List<Jewel>>(width);
 		for (int x = 0; x < width; x++) {
-			board.add(new ArrayList(width));
+			board.add(new ArrayList<Jewel>(width));
 			for (int y = 0; y < width; y++) {
 				Jewel jewel = Jewel.random();
 				board.get(x).add(jewel);
