@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.*;
 
 /**
@@ -51,10 +52,48 @@ class BoardView
 		
 		// Create content pane //
 		JPanel content = new JPanel();
-		content.setLayout(new FlowLayout());
-		content.add(new JLabel("Label"));
-		content.add(textField);
-		content.add(button);
+		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+		
+		// Construct header //
+		JPanel header = new JPanel(new FlowLayout());
+		header.add(new JLabel("Label"));
+		header.add(textField);
+		header.add(button);
+		content.add(header);
+		
+		// Construct grid //
+		JPanel grid = new JPanel(new GridLayout(4, 4));
+		grid.setBackground(new Color(0x11, 0x11, 0x11));
+		for (int i = 0; i < 4 * 4; i++) {
+			// Create button //
+			JButton button = new JButton();
+			
+			// Set button properties //
+			button.setOpaque(true);
+			button.setBorderPainted(false);
+			button.setEnabled(true);
+			button.setContentAreaFilled(false);
+			button.setFocusPainted(false);
+			button.setHorizontalAlignment(SwingConstants.CENTER);
+			button.setVerticalAlignment(SwingConstants.CENTER);
+			button.setForeground(new Color(0xEE, 0xEE, 0xEE));
+			button.setBackground(Color.BLACK);
+			button.setPreferredSize(new Dimension(80, 80));
+			button.setFont(new Font("Helvetica Neue", Font.PLAIN, 24));
+			
+			// Generate a random value //
+			if (i == 6) {
+				button.setBackground(new Color(0xEE, 0xEE, 0xEE));
+				button.setForeground(new Color(0x11, 0x11, 0x11));
+				button.setContentAreaFilled(true);
+			}
+			int value = ThreadLocalRandom.current().nextInt(4);
+			button.setText("" + value);
+			
+			// Add button to grid //
+			grid.add(button);
+		}
+		content.add(grid);
 		
 		// Update window with content //
 		this.setContentPane(content);
