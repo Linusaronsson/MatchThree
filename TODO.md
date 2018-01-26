@@ -1,5 +1,8 @@
 # Todo #
 
+## Appearance ##
++ Handle window resize better.
+
 ## Code style ##
 + Write code style.
 + Sort methods.
