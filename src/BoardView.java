@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
 /**
@@ -13,15 +15,16 @@ class BoardView
 	private static final String WINDOW_TITLE = "MatchThree";
 	
 	// DI fields //
-	private BoardModel model;
+	private BoardModel model = null;
 	
 	// Default fields //
 	private JButton    button    = new JButton("Confirm");
 	private JTextField textField = new JTextField(20);
 	
 	// Reference fields //
-	private JMenuItem openItem;
-	private JMenuItem quitItem;
+	private JMenuItem     openItem = null;
+	private JMenuItem     quitItem = null;
+	private List<JButton> board    = new ArrayList<JButton>();
 	
 	// TODO: Break into multiple methods?
 	/**
@@ -117,6 +120,7 @@ class BoardView
 			button.setForeground(color);
 			
 			// Add button to grid //
+			board.add(button);
 			grid.add(button);
 		}
 		
@@ -195,6 +199,17 @@ class BoardView
 	public void addButtonListener(ActionListener listener)
 	{
 		button.addActionListener(listener);
+	}
+	
+	/**
+	 * ...
+	 */
+	public void addBoardListener(ActionListener listener)
+	{
+		int width = model.getWidth();
+		for (int i = 0; i < width * width; i++) {
+			board.get(i).addActionListener(listener);
+		}
 	}
 	
 	/**

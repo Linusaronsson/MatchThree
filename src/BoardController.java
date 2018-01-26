@@ -7,8 +7,28 @@ import javax.swing.*;
  */
 class BoardController
 {
+	/**
+	 * ...
+	 */
+	class Coordinate
+	{
+		public int x = 0;
+		public int y = 0;
+		
+		/**
+		 * ...
+		 */
+		public Coordinate(int x, int y)
+		{
+			this.x = x;
+			this.y = y;
+		}
+	}
+	
 	private BoardModel model;
 	private BoardView  view;
+	
+	private Coordinate selected = null;
 	
 	/**
 	 * ...
@@ -21,6 +41,7 @@ class BoardController
 		view.addOpenListener(new OpenListener());
 		view.addQuitListener(new QuitListener());
 		view.addButtonListener(new ButtonListener());
+		view.addBoardListener(new BoardListener());
 	}
 	
 	/**
@@ -58,6 +79,18 @@ class BoardController
 		public void actionPerformed(ActionEvent event)
 		{
 			view.showMessage("Button pressed");
+		}
+	}
+	
+	/**
+	 * ...
+	 */
+	class BoardListener
+		implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			view.showMessage("You pressed: " + event.getActionCommand());
 		}
 	}
 }
