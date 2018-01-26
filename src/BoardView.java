@@ -94,6 +94,7 @@ class BoardView
 	{
 		// Use native menu bar on macOS/OS X //
 		System.setProperty("apple.laf.useScreenMenuBar", "true");
+		// TODO: Does not appear important or is misused.
 		System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Test");
 		
 		// Set look and feel //
