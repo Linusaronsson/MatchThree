@@ -6,6 +6,7 @@ import javax.swing.*;
 /**
  * ...
  */
+@SuppressWarnings("serial")
 class BoardView
 	extends JFrame
 {
