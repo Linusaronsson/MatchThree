@@ -4,7 +4,7 @@
 + Handle window resize better.
 
 ## Code style ##
-+ Write code style.
++ Canonicalize code style.
 + Sort methods.
 
 ## Correctness ##
