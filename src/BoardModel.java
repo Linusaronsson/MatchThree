@@ -8,12 +8,12 @@ import java.util.Random;
 import javax.swing.*;
 
 /**
- * ...
+ * MVC model.
  */
 class BoardModel
 {
 	/**
-	 * ...
+	 * Cell symbol enum.
 	 */
 	public enum Jewel {
 		DIAMOND,
@@ -29,6 +29,8 @@ class BoardModel
 		
 		/**
 		 * Return a random jewel.
+		 *
+		 * @return A random jewel type.
 		 */
 		public static Jewel random()
 		{
@@ -39,7 +41,9 @@ class BoardModel
 	private List<List<Jewel>> board = null;
 	
 	/**
-	 * ...
+	 * Constructor for `BoardModel` MVC model.
+	 *
+	 * @param width Size of the board on one axis in number of cells.
 	 */
 	public BoardModel(int width)
 	{
@@ -58,7 +62,9 @@ class BoardModel
 	}
 	
 	/**
-	 * ...
+	 * Prototype function for MVC implementation.
+	 *
+	 * @return A placeholder string.
 	 */
 	public String getValue()
 	{
@@ -66,7 +72,11 @@ class BoardModel
 	}
 	
 	/**
-	 * ...
+	 * Get the value of a cell.
+	 *
+	 * @param x X-coordinate of the cell.
+	 * @param y Y-coordinate of the cell.
+	 * @return  The cell value.
 	 */
 	public Jewel get(int x, int y)
 	{
@@ -75,7 +85,9 @@ class BoardModel
 	}
 	
 	/**
-	 * ...
+	 * Get the size the board.
+	 *
+	 * @return The number of cells per axis.
 	 */
 	public int getWidth()
 	{
@@ -84,6 +96,12 @@ class BoardModel
 	
 	/**
 	 * Swap two cells.
+	 *
+	 * @param x1 X-coordinate of the first cell.
+	 * @param y1 Y-coordinate of the first cell.
+	 * @param x2 X-coordinate of the second cell.
+	 * @param y2 Y-coordinate of the second cell.
+	 * @return   Whether the swap was successful.
 	 */
 	public boolean swap(int x1, int y1, int x2, int y2)
 	{

@@ -3,12 +3,12 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
- * ...
+ * MVC controller.
  */
 class BoardController
 {
 	/**
-	 * ...
+	 * Stores a two-dimensional coordinate.
 	 */
 	class Coordinate
 	{
@@ -16,7 +16,10 @@ class BoardController
 		public int y = 0;
 		
 		/**
-		 * ...
+		 * Constructor for `Coordinate`.
+		 *
+		 * @param x X-coordinate.
+		 * @param y Y-coordinate.
 		 */
 		public Coordinate(int x, int y)
 		{
@@ -31,7 +34,10 @@ class BoardController
 	private Coordinate selected = null;
 	
 	/**
-	 * ...
+	 * Constructor for `BoardController` MVC controller.
+	 *
+	 * @param model Model to use.
+	 * @param view  View to use.
 	 */
 	public BoardController(BoardModel model, BoardView view)
 	{
@@ -46,6 +52,12 @@ class BoardController
 	
 	/**
 	 * Swap two cells.
+	 *
+	 * @param x1 X-coordinate of first cell.
+	 * @param y1 Y-coordinate of first cell.
+	 * @param x2 X-coordinate of second cell.
+	 * @param y2 Y-coordinate of second cell.
+	 * @return   Whether the swap was successful.
 	 */
 	private boolean swapCells(int x1, int y1, int x2, int y2)
 	{
@@ -59,7 +71,7 @@ class BoardController
 	}
 	
 	/**
-	 * ...
+	 * Listens for board cell actions (clicks).
 	 */
 	class BoardListener
 		implements ActionListener
@@ -76,7 +88,7 @@ class BoardController
 	}
 	
 	/**
-	 * ...
+	 * Listens for top button press.
 	 */
 	class ButtonListener
 		implements ActionListener
@@ -88,7 +100,7 @@ class BoardController
 	}
 	
 	/**
-	 * ...
+	 * Listens for “Open” menu item.
 	 */
 	class OpenListener
 		implements ActionListener
@@ -100,7 +112,7 @@ class BoardController
 	}
 	
 	/**
-	 * ...
+	 * Listens for “Quit” menu item.
 	 */
 	class QuitListener
 		implements ActionListener

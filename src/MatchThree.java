@@ -9,6 +9,8 @@ public class MatchThree
 {
 	/**
 	 * Program entry point.
+	 *
+	 * @param args Program arguments.
 	 */
 	public static void main(String[] args)
 	{

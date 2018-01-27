@@ -5,7 +5,7 @@ import java.util.List;
 import javax.swing.*;
 
 /**
- * ...
+ * MVC view.
  */
 @SuppressWarnings("serial")
 class BoardView
@@ -26,10 +26,12 @@ class BoardView
 	private JMenuItem     quitItem = null;
 	private List<JButton> board    = null;
 	
-	// TODO: Break into multiple methods?
 	/**
-	 * ...
+	 * Constructor for `BoardView` MVC view.
+	 *
+	 * @param model Model to use
 	 */
+	// TODO: Break into multiple methods?
 	public BoardView(BoardModel model)
 	{
 		this.model = model;
@@ -133,10 +135,13 @@ class BoardView
 		this.pack();
 	}
 	
-	// TODO: Research use of `self` parameter name.
 	/**
 	 * Create window menu bar.
+	 *
+	 * @param self View to apply menu bar to.
+	 * @return     Menu bar object.
 	 */
+	// TODO: Research use of `self` parameter name.
 	private static JMenuBar createMenuBar(BoardView self)
 	{
 		// Create menu bar //
@@ -179,7 +184,9 @@ class BoardView
 	}
 	
 	/**
-	 * ...
+	 * Add listener for “Open” menu item.
+	 *
+	 * @param listener Event handler.
 	 */
 	public void addOpenListener(ActionListener listener)
 	{
@@ -187,7 +194,9 @@ class BoardView
 	}
 	
 	/**
-	 * ...
+	 * Add listener for “Quit” menu item.
+	 *
+	 * @param listener Event handler.
 	 */
 	public void addQuitListener(ActionListener listener)
 	{
@@ -195,7 +204,9 @@ class BoardView
 	}
 	
 	/**
-	 * ...
+	 * Add listener for top button press.
+	 *
+	 * @param listener Event handler.
 	 */
 	public void addButtonListener(ActionListener listener)
 	{
@@ -203,7 +214,9 @@ class BoardView
 	}
 	
 	/**
-	 * ...
+	 * Add listener for board cell actions (clicks).
+	 *
+	 * @param listener Event handler.
 	 */
 	public void addBoardListener(ActionListener listener)
 	{
@@ -214,7 +227,9 @@ class BoardView
 	}
 	
 	/**
-	 * ...
+	 * Display an informative message.
+	 *
+	 * @param message The message to display.
 	 */
 	public void showMessage(String message)
 	{
@@ -225,7 +240,9 @@ class BoardView
 	}
 	
 	/**
-	 * ...
+	 * Display an error message.
+	 *
+	 * @param message The message to display.
 	 */
 	public void showError(String message)
 	{
@@ -237,6 +254,9 @@ class BoardView
 	
 	/**
 	 * Update a cell.
+	 *
+	 * @param x X-coordinate of the cell.
+	 * @param y Y-coordinate of the cell.
 	 */
 	public void updateCell(int x, int y)
 	{
