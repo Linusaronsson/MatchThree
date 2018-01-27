@@ -17,7 +17,7 @@ Needed algorithms:
    list.
 
    Each time a swap is made, make sure the swap exists in this list. If it
-   isn't, the swap isn't allowed.
+   doesn't, the swap isn't allowed.
 
 3. When a swap is successful, find in which direction the chain is and remove
    the entire chain of cells. There could be a horizontal AND vertical chain at
