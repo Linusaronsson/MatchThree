@@ -7,3 +7,12 @@ Thumbs.db
 .project
 .settings/
 bin/
+
+# Javadoc #
+*.css
+*.html
+*.js
+*.zip
+jquery/
+package-list
+resources/
