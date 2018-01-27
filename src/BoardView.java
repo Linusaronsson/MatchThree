@@ -43,8 +43,7 @@ class BoardView
 		
 		// Set window properties //
 		this.setTitle(WINDOW_TITLE);
-		// TODO: Pass close event to controller instead.
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setLocationByPlatform(true);
 		
 		// Set menu bar //
@@ -224,6 +223,16 @@ class BoardView
 		for (int i = 0; i < width * width; i++) {
 			board.get(i).addActionListener(listener);
 		}
+	}
+	
+	/**
+	 * Add listener for window events.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addWindowListener(ActionListener listener)
+	{
+		addWindowListener(listener);
 	}
 	
 	/**

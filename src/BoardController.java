@@ -48,6 +48,7 @@ class BoardController
 		view.addButtonListener(new ButtonListener());
 		view.addOpenListener(new OpenListener());
 		view.addQuitListener(new QuitListener());
+		view.addWindowListener(new WindowListener());
 	}
 	
 	/**
@@ -119,9 +120,40 @@ class BoardController
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			// TODO: Verify proper cleanup.
-			// TODO: Perform proper shutdown.
-			System.exit(0);
+			// Close window //
+			WindowEvent e = new WindowEvent(view, WindowEvent.WINDOW_CLOSING);
+			view.dispatchEvent(e);
 		}
+	}
+	
+	/**
+	 * Listens for window events.
+	 */
+	class WindowListener
+		extends WindowAdapter
+	{
+		public void windowActivated(WindowEvent event) {}
+		
+		public void windowClosed(WindowEvent event) {}
+		
+		public void windowClosing(WindowEvent event) {
+			// Close windows and free its resources //
+			// TODO: Is it necessary to use `view.setVisible(false)` as well?
+			view.dispose();
+		}
+		
+		public void windowDeactivated(WindowEvent event) {}
+		
+		public void windowDeiconified(WindowEvent event) {}
+		
+		public void windowGainedFocus(WindowEvent event) {}
+		
+		public void windowIconified(WindowEvent event) {}
+		
+		public void windowLostFocus(WindowEvent event) {}
+		
+		public void windowOpened(WindowEvent event) {}
+		
+		public void windowStateChanged(WindowEvent event) {}
 	}
 }
