@@ -2,7 +2,7 @@ Possible classes: (not including GUI stuff here)
 
 - Gameboard (contains list of cells and list of possible swaps)
 - Cell
-- Swap (contains two cells, indicating the swap between to cells)
+- Swap (contains two cells, indicating the swap between two cells)
 - Chain (contains list of cells in a chain)
 
 NOTE: Not sure if Chain is needed since I didn't mention it (almost) in any of
