@@ -84,6 +84,20 @@ class BoardModel
 	/**
 	 * Get the value of a cell.
 	 *
+	 * @param position Coordinates of the cell.
+	 * @return         The cell value.
+	 */
+	public Jewel get(Coordinate position)
+	{
+		// TODO: Add assertions to row and column size.
+		int x = position.x;
+		int y = position.y;
+		return board.get(x).get(y);
+	}
+	
+	/**
+	 * Get the value of a cell.
+	 *
 	 * @param x X-coordinate of the cell.
 	 * @param y Y-coordinate of the cell.
 	 * @return  The cell value.
@@ -127,15 +141,19 @@ class BoardModel
 	/**
 	 * Swap two cells.
 	 *
-	 * @param x1 X-coordinate of the first cell.
-	 * @param y1 Y-coordinate of the first cell.
-	 * @param x2 X-coordinate of the second cell.
-	 * @param y2 Y-coordinate of the second cell.
-	 * @return   Whether the swap was successful, invalid or canceled.
+	 * @param position1 Coordinates of the first cell.
+	 * @param position2 Coordinates of the second cell.
+	 * @return          Whether the swap was successful, invalid or canceled.
 	 */
-	public MoveType swap(int x1, int y1, int x2, int y2)
+	public MoveType swap(Coordinate position1, Coordinate position2)
 	{
 		// TODO: Validate arguments.
+		
+		// Unpack coordinates //
+		int x1 = position1.x;
+		int y1 = position1.y;
+		int x2 = position2.x;
+		int y2 = position2.y;
 		
 		// Validate move //
 		if (x1 == x2 && y1 == y2) {

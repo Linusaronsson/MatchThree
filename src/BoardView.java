@@ -209,19 +209,20 @@ class BoardView
 	/**
 	 * Set cell activation state.
 	 *
-	 * @param x         X-coordinate of the cell.
-	 * @param y         Y-coordinate of the cell.
+	 * @param position  Coordinates of the cell.
 	 * @param activated Whether cell is active.
 	 */
-	public void setCellState(int x, int y, boolean activated)
+	public void setCellState(Coordinate position, boolean activated)
 	{
 		// TODO: Validate arguments.
 		
 		// Get the affected cell //
 		// TODO: Validate row-first or column-first store order of grid (and
 		//       make it unambiguous).
-		int width = model.getWidth();
-		Cell cell = board.get(x + y * width);
+		int  width = model.getWidth();
+		int  x     = position.x;
+		int  y     = position.y;
+		Cell cell  = board.get(x + y * width);
 		
 		// Set state //
 		if (activated) {
@@ -283,20 +284,21 @@ class BoardView
 	/**
 	 * Update a cell.
 	 *
-	 * @param x X-coordinate of the cell.
-	 * @param y Y-coordinate of the cell.
+	 * @param position Coordinates of the cell.
 	 */
-	public void updateCell(int x, int y)
+	public void updateCell(Coordinate position)
 	{
 		// TODO: Validate arguments.
 		
 		// Get jewel from model //
-		BoardModel.Jewel jewel = model.get(x, y);
+		BoardModel.Jewel jewel = model.get(position);
 		
 		// Get button from view //
 		// TODO: Add assert or rely less on model consistency.
-		int width = model.getWidth();
-		Cell cell = board.get(x % width + y * width);
+		int  width = model.getWidth();
+		int  x     = position.x;
+		int  y     = position.y;
+		Cell cell  = board.get(x % width + y * width);
 		
 		// Update text to match jewel //
 		String value = null;

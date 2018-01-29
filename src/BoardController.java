@@ -8,9 +8,9 @@ import java.awt.event.WindowEvent;
  */
 class BoardController
 {
-	private BoardModel model    = null;
-	private Coordinate selected = null;
-	private BoardView  view     = null;
+	private Coordinate activeCell = null;
+	private BoardModel model      = null;
+	private BoardView  view       = null;
 	
 	/**
 	 * Listens for board cell actions (clicks).
@@ -21,26 +21,20 @@ class BoardController
 		public void actionPerformed(ActionEvent event)
 		{
 			// Get cell coordinates //
-			Cell cell = (Cell) event.getSource();
-			int x1 = cell.getPositionX();
-			int y1 = cell.getPositionY();
-			Coordinate position = new Coordinate(x1, y1);
+			Cell       cell        = (Cell) event.getSource();
+			Coordinate clickedCell = cell.getPosition();
 			
-			// Select cell if appropriate //
-			if (selected == null) {
-				selected = position;
-				view.setCellState(x1, y1, true);
+			// Activate cell if appropriate //
+			if (activeCell == null) {
+				activeCell = clickedCell;
+				view.setCellState(activeCell, true);
 				return;
 			}
 			
-			// Deactivate cell //
-			int x2 = selected.x;
-			int y2 = selected.y;
-			view.setCellState(x2, y2, false);
-			selected = null;
-			
-			// Swap the two cells //
-			swapCells(x1, y1, x2, y2);
+			// Deactivate and swap cells //
+			view.setCellState(activeCell, false);
+			swapCells(activeCell, clickedCell);
+			activeCell = null;
 			
 			// Update score //
 			view.updateScore();
@@ -137,15 +131,13 @@ class BoardController
 	/**
 	 * Swap two cells.
 	 *
-	 * @param x1 X-coordinate of first cell.
-	 * @param y1 Y-coordinate of first cell.
-	 * @param x2 X-coordinate of second cell.
-	 * @param y2 Y-coordinate of second cell.
+	 * @param position1 Coordinates of first cell.
+	 * @param position2 Coordinates of second cell.
 	 */
-	private void swapCells(int x1, int y1, int x2, int y2)
+	private void swapCells(Coordinate position1, Coordinate position2)
 	{
 		// Swap cells //
-		switch (model.swap(x1, y1, x2, y2)) {
+		switch (model.swap(position1, position2)) {
 			case OK:     break;
 			case BAD:    view.showError("Invalid move"); break;
 			case CANCEL: break;
@@ -153,7 +145,7 @@ class BoardController
 		}
 		
 		// Update view //
-		view.updateCell(x1, y1);
-		view.updateCell(x2, y2);
+		view.updateCell(position1);
+		view.updateCell(position2);
 	}
 }

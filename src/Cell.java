@@ -7,21 +7,43 @@ import javax.swing.JButton;
 class Cell
 	extends JButton
 {
-	private int x = 0;
-	private int y = 0;
+	private Coordinate position = null;
 	
 	/**
 	 * Constructor for `Cell`.
 	 *
-	 * @param x X-coordinate of cell.
-	 * @param y Y-coordinate of cell.
+	 * @param position Coordinates of the cell.
+	 */
+	public Cell(Coordinate position)
+	{
+		super();
+		
+		// TODO: Validate argument.
+		
+		this.position = position;
+	}
+	
+	/**
+	 * Constructor for `Cell`.
+	 *
+	 * @param x X-coordinate of the cell.
+	 * @param y Y-coordinate of the cell.
 	 */
 	public Cell(int x, int y)
 	{
 		super();
 		
-		this.x = x;
-		this.y = y;
+		position = new Coordinate(x, y);
+	}
+	
+	/**
+	 * Get the coordinates of the cell.
+	 *
+	 * @return The coordinates.
+	 */
+	public Coordinate getPosition()
+	{
+		return position;
 	}
 	
 	/**
@@ -31,7 +53,7 @@ class Cell
 	 */
 	public int getPositionX()
 	{
-		return x;
+		return position.x;
 	}
 	
 	/**
@@ -41,6 +63,6 @@ class Cell
 	 */
 	public int getPositionY()
 	{
-		return y;
+		return position.y;
 	}
 }
