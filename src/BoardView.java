@@ -33,6 +33,7 @@ class BoardView
 	 * @param model Model to use
 	 */
 	// TODO: Break into multiple methods?
+	// TODO: Call parent constructor?
 	public BoardView(BoardModel model)
 	{
 		this.model = model;
