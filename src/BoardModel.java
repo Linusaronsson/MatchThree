@@ -137,6 +137,7 @@ class BoardModel
 		}
 		
 		// Swap cells //
+		// TODO: Push cell instead of swapping them.
 		Jewel first  = board.get(x1).get(y1);
 		Jewel second = board.get(x2).get(y2);
 		board.get(x1).set(y1, second);
