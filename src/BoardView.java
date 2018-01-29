@@ -63,11 +63,11 @@ class BoardView
 		content.add(header);
 		
 		// Construct grid //
-		JPanel grid = new JPanel(new GridLayout(4, 4));
+		int width = model.getWidth();
+		JPanel grid = new JPanel(new GridLayout(width, width));
 		grid.setBackground(new Color(0x11, 0x11, 0x11));
 		
 		// Fill grid //
-		int width = model.getWidth();
 		board = new ArrayList<Cell>(width * width);
 		for (int i = 0; i < width * width; i++) {
 			// Create button //
