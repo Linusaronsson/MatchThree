@@ -140,6 +140,7 @@ class BoardModel
 		}
 		
 		// Adjust score //
+		// TODO: Make score increase exponentially with longer matches.
 		int points = 0;
 		points += lengthX * 100;
 		points += lengthY * 100;
