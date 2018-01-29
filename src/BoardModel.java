@@ -9,6 +9,8 @@ import java.util.Random;
  */
 class BoardModel
 {
+	private static final int MINIMUM_LENGTH = 3;
+	
 	private List<List<Jewel>> board = null;
 	private int               score = 0;
 	
@@ -74,10 +76,75 @@ class BoardModel
 	 * @param jewels Jewels to clear.
 	 * @return       Gained score.
 	 */
-	private int clearMatch(Jewel[] jewels)
+	private int clearMatches(Coordinate position)
 	{
-		int points = jewels.length * 100;
+		// Get jewel type to match //
+		Jewel matchType = get(position);
+		
+		// Unpack coordinates //
+		int x = position.x;
+		int y = position.y;
+		
+		// Search for matches on X-axis //
+		int startX = position.x;
+		int stopX  = position.x;
+		for (int i = x; i >= 0; i--) {
+			Jewel cell = get(i, y);
+			if (cell == null || !cell.equals(matchType)) {
+				break;
+			}
+			startX = i;
+		}
+		for (int i = x; i < board.size(); i++) {
+			Jewel cell = get(i, y);
+			if (cell == null || !cell.equals(matchType)) {
+				break;
+			}
+			stopX = i;
+		}
+		
+		// Search for matches on Y-axis //
+		int startY = position.y;
+		int stopY  = position.y;
+		for (int i = y; i >= 0; i--) {
+			Jewel cell = get(x, i);
+			if (cell == null || !cell.equals(matchType)) {
+				break;
+			}
+			startY = i;
+		}
+		for (int i = y; i < board.size(); i++) {
+			Jewel cell = get(x, i);
+			if (cell == null || !cell.equals(matchType)) {
+				break;
+			}
+			stopY = i;
+		}
+		
+		// Clear matches on X-axis //
+		int lengthX = stopX - startX + 1;
+		if (lengthX >= MINIMUM_LENGTH) {
+			for (int i = startX; i <= stopX; i++) {
+				// TODO: Write a setter method.
+				board.get(i).set(y, null);
+			}
+		}
+		
+		// Clear matches on Y-axis //
+		int lengthY = stopY - startY + 1;
+		if (lengthY >= MINIMUM_LENGTH) {
+			for (int i = startY; i <= stopY; i++) {
+				// TODO: Write a setter method.
+				board.get(x).set(i, null);
+			}
+		}
+		
+		// Adjust score //
+		int points = 0;
+		points += lengthX * 100;
+		points += lengthY * 100;
 		score += points;
+		
 		return points;
 	}
 	
@@ -171,7 +238,7 @@ class BoardModel
 		board.get(x2).set(y2, first);
 		
 		// Clear cells //
-		clearMatch(new Jewel[] {first, second});
+		clearMatches(position2);
 		
 		return MoveType.OK;
 	}

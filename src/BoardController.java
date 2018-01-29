@@ -145,7 +145,6 @@ class BoardController
 		}
 		
 		// Update view //
-		view.updateCell(position1);
-		view.updateCell(position2);
+		view.update();
 	}
 }

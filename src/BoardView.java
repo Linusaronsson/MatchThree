@@ -282,6 +282,19 @@ class BoardView
 	}
 	
 	/**
+	 * Update all cells.
+	 */
+	public void update()
+	{
+		int width = model.getWidth();
+		for (int i = 0; i < width * width; i++) {
+			int x = i % width;
+			int y = i / width;
+			updateCell(x, y);
+		}
+	}
+	
+	/**
 	 * Update a cell.
 	 *
 	 * @param position Coordinates of the cell.
@@ -301,26 +314,42 @@ class BoardView
 		Cell cell  = board.get(x % width + y * width);
 		
 		// Update text to match jewel //
-		String value = null;
-		switch (jewel) {
-			case DIAMOND:  value = "Diamond";  break;
-			case EMERALD:  value = "Emerald";  break;
-			case RUBY:     value = "Ruby";     break;
-			case SAPPHIRE: value = "Sapphire"; break;
-			default: // TODO: Throw runtime error.
+		String value = "";
+		if (jewel != null) {
+			switch (jewel) {
+				case DIAMOND:  value = "Diamond";  break;
+				case EMERALD:  value = "Emerald";  break;
+				case RUBY:     value = "Ruby";     break;
+				case SAPPHIRE: value = "Sapphire"; break;
+				default: // TODO: Throw runtime error.
+			}
 		}
 		cell.setText(value);
 		
 		// Update color to match jewel //
-		Color color = null;
-		switch (jewel) {
-			case DIAMOND:  color = new Color(0xB9, 0xF2, 0xFF); break;
-			case EMERALD:  color = new Color(0x50, 0xC8, 0x78); break;
-			case RUBY:     color = new Color(0xE0, 0x11, 0x5F); break;
-			case SAPPHIRE: color = new Color(0x0F, 0x52, 0xBA); break;
-			default: // TODO: Throw runtime error.
+		Color color = Color.BLACK;
+		if (jewel != null) {
+			switch (jewel) {
+				case DIAMOND:  color = new Color(0xB9, 0xF2, 0xFF); break;
+				case EMERALD:  color = new Color(0x50, 0xC8, 0x78); break;
+				case RUBY:     color = new Color(0xE0, 0x11, 0x5F); break;
+				case SAPPHIRE: color = new Color(0x0F, 0x52, 0xBA); break;
+				default: // TODO: Throw runtime error.
+			}
 		}
 		cell.setForeground(color);
+	}
+	
+	/**
+	 * Update a cell.
+	 *
+	 * @param x X-coordinate of the cell.
+	 * @param y Y-coordinate of the cell.
+	 */
+	public void updateCell(int x, int y)
+	{
+		// TODO: Reverse order of methods?
+		updateCell(new Coordinate(x, y));
 	}
 	
 	/**
