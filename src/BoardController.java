@@ -8,48 +8,9 @@ import java.awt.event.WindowEvent;
  */
 class BoardController
 {
-	private BoardModel model = null;
-	private BoardView  view  = null;
-	
+	private BoardModel model    = null;
 	private Coordinate selected = null;
-	
-	/**
-	 * Constructor for `BoardController` MVC controller.
-	 *
-	 * @param model Model to use.
-	 * @param view  View to use.
-	 */
-	public BoardController(BoardModel model, BoardView view)
-	{
-		this.model = model;
-		this.view  = view;
-		
-		view.addBoardListener(new BoardListener());
-		view.addButtonListener(new ButtonListener());
-		view.addOpenListener(new OpenListener());
-		view.addQuitListener(new QuitListener());
-		view.addWindowListener(new WindowListener());
-	}
-	
-	/**
-	 * Swap two cells.
-	 *
-	 * @param x1 X-coordinate of first cell.
-	 * @param y1 Y-coordinate of first cell.
-	 * @param x2 X-coordinate of second cell.
-	 * @param y2 Y-coordinate of second cell.
-	 * @return   Whether the swap was successful.
-	 */
-	private boolean swapCells(int x1, int y1, int x2, int y2)
-	{
-		if (!model.swap(x1, y1, x2, y2)) {
-			return false;
-		}
-		
-		view.updateCell(x1, y1);
-		view.updateCell(x2, y2);
-		return true;
-	}
+	private BoardView  view     = null;
 	
 	/**
 	 * Listens for board cell actions (clicks).
@@ -155,5 +116,43 @@ class BoardController
 		public void windowOpened(WindowEvent event) {}
 		
 		public void windowStateChanged(WindowEvent event) {}
+	}
+	
+	/**
+	 * Constructor for `BoardController` MVC controller.
+	 *
+	 * @param model Model to use.
+	 * @param view  View to use.
+	 */
+	public BoardController(BoardModel model, BoardView view)
+	{
+		this.model = model;
+		this.view  = view;
+		
+		view.addBoardListener(new BoardListener());
+		view.addButtonListener(new ButtonListener());
+		view.addOpenListener(new OpenListener());
+		view.addQuitListener(new QuitListener());
+		view.addWindowListener(new WindowListener());
+	}
+	
+	/**
+	 * Swap two cells.
+	 *
+	 * @param x1 X-coordinate of first cell.
+	 * @param y1 Y-coordinate of first cell.
+	 * @param x2 X-coordinate of second cell.
+	 * @param y2 Y-coordinate of second cell.
+	 * @return   Whether the swap was successful.
+	 */
+	private boolean swapCells(int x1, int y1, int x2, int y2)
+	{
+		if (!model.swap(x1, y1, x2, y2)) {
+			return false;
+		}
+		
+		view.updateCell(x1, y1);
+		view.updateCell(x2, y2);
+		return true;
 	}
 }

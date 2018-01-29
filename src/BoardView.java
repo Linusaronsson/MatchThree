@@ -11,21 +11,15 @@ import javax.swing.*;
 class BoardView
 	extends JFrame
 {
-	// Constants //
 	private static final String WINDOW_TITLE = "MatchThree";
 	
-	// DI fields //
-	private BoardModel model = null;
-	
-	// Default fields //
+	private List<Cell> board     = null;
 	private JButton    button    = new JButton("Confirm");
-	private JTextField textField = new JTextField(20);
 	private JLabel     label     = new JLabel("");
-	
-	// Reference fields //
-	private JMenuItem  openItem = null;
-	private JMenuItem  quitItem = null;
-	private List<Cell> board    = null;
+	private BoardModel model     = null;
+	private JMenuItem  openItem  = null;
+	private JMenuItem  quitItem  = null;
+	private JTextField textField = new JTextField(20);
 	
 	/**
 	 * Constructor for `BoardView` MVC view.
@@ -131,6 +125,59 @@ class BoardView
 	}
 	
 	/**
+	 * Add listener for board cell actions (clicks).
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addBoardListener(ActionListener listener)
+	{
+		int width = model.getWidth();
+		for (int i = 0; i < width * width; i++) {
+			board.get(i).addActionListener(listener);
+		}
+	}
+	
+	/**
+	 * Add listener for top button press.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addButtonListener(ActionListener listener)
+	{
+		button.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for “Open” menu item.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addOpenListener(ActionListener listener)
+	{
+		openItem.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for “Quit” menu item.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addQuitListener(ActionListener listener)
+	{
+		quitItem.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for window events.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addWindowListener(ActionListener listener)
+	{
+		addWindowListener(listener);
+	}
+	
+	/**
 	 * Create window menu bar.
 	 *
 	 * @param self View to apply menu bar to.
@@ -160,6 +207,35 @@ class BoardView
 	}
 	
 	/**
+	 * Set cell activation state.
+	 *
+	 * @param x         X-coordinate of the cell.
+	 * @param y         Y-coordinate of the cell.
+	 * @param activated Whether cell is active.
+	 */
+	public void setCellState(int x, int y, boolean activated)
+	{
+		// TODO: Validate arguments.
+		
+		// Get the affected cell //
+		// TODO: Validate row-first or column-first store order of grid (and
+		//       make it unambiguous).
+		int width = model.getWidth();
+		Cell cell = board.get(x + y * width);
+		
+		// Set state //
+		if (activated) {
+			cell.setBackground(new Color(0xEE, 0xEE, 0xEE));
+			cell.setForeground(new Color(0x11, 0x11, 0x11));
+			cell.setContentAreaFilled(true);
+		} else {
+			cell.setBackground(Color.BLACK);
+			cell.setForeground(new Color(0xEE, 0xEE, 0xEE));
+			cell.setContentAreaFilled(false);
+		}
+	}
+	
+	/**
 	 * Set application properties.
 	 */
 	private static void setProperties()
@@ -179,56 +255,16 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for “Open” menu item.
+	 * Display an error message.
 	 *
-	 * @param listener Event handler.
+	 * @param message The message to display.
 	 */
-	public void addOpenListener(ActionListener listener)
+	public void showError(String message)
 	{
-		openItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for “Quit” menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addQuitListener(ActionListener listener)
-	{
-		quitItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for top button press.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addButtonListener(ActionListener listener)
-	{
-		button.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for board cell actions (clicks).
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addBoardListener(ActionListener listener)
-	{
-		int width = model.getWidth();
-		for (int i = 0; i < width * width; i++) {
-			board.get(i).addActionListener(listener);
-		}
-	}
-	
-	/**
-	 * Add listener for window events.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addWindowListener(ActionListener listener)
-	{
-		addWindowListener(listener);
+		JOptionPane.showMessageDialog(this,
+		                              message,
+		                              message,
+		                              JOptionPane.ERROR_MESSAGE);
 	}
 	
 	/**
@@ -242,19 +278,6 @@ class BoardView
 		                              message,
 		                              message,
 		                              JOptionPane.INFORMATION_MESSAGE);
-	}
-	
-	/**
-	 * Display an error message.
-	 *
-	 * @param message The message to display.
-	 */
-	public void showError(String message)
-	{
-		JOptionPane.showMessageDialog(this,
-		                              message,
-		                              message,
-		                              JOptionPane.ERROR_MESSAGE);
 	}
 	
 	/**
@@ -296,35 +319,6 @@ class BoardView
 			default: // TODO: Throw runtime error.
 		}
 		cell.setForeground(color);
-	}
-	
-	/**
-	 * Set cell activation state.
-	 *
-	 * @param x         X-coordinate of the cell.
-	 * @param y         Y-coordinate of the cell.
-	 * @param activated Whether cell is active.
-	 */
-	public void setCellState(int x, int y, boolean activated)
-	{
-		// TODO: Validate arguments.
-		
-		// Get the affected cell //
-		// TODO: Validate row-first or column-first store order of grid (and
-		//       make it unambiguous).
-		int width = model.getWidth();
-		Cell cell = board.get(x + y * width);
-		
-		// Set state //
-		if (activated) {
-			cell.setBackground(new Color(0xEE, 0xEE, 0xEE));
-			cell.setForeground(new Color(0x11, 0x11, 0x11));
-			cell.setContentAreaFilled(true);
-		} else {
-			cell.setBackground(Color.BLACK);
-			cell.setForeground(new Color(0xEE, 0xEE, 0xEE));
-			cell.setContentAreaFilled(false);
-		}
 	}
 	
 	/**

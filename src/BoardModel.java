@@ -9,6 +9,9 @@ import java.util.Random;
  */
 class BoardModel
 {
+	private List<List<Jewel>> board = null;
+	private int               score = 0;
+	
 	/**
 	 * Cell symbol enum.
 	 */
@@ -35,9 +38,6 @@ class BoardModel
 		}
 	}
 	
-	private int score = 0;
-	private List<List<Jewel>> board = null;
-	
 	/**
 	 * Constructor for `BoardModel` MVC model.
 	 *
@@ -60,13 +60,16 @@ class BoardModel
 	}
 	
 	/**
-	 * Prototype function for MVC implementation.
+	 * Clear jewels from the board.
 	 *
-	 * @return A placeholder string.
+	 * @param jewels Jewels to clear.
+	 * @return       Gained score.
 	 */
-	public String getValue()
+	private int clearMatch(Jewel[] jewels)
 	{
-		return "Hello, World!";
+		int points = jewels.length * 100;
+		score += points;
+		return points;
 	}
 	
 	/**
@@ -80,6 +83,26 @@ class BoardModel
 	{
 		// TODO: Add assertions to row and column size.
 		return board.get(x).get(y);
+	}
+	
+	/**
+	 * Get the current score.
+	 *
+	 * @return The current score.
+	 */
+	public int getScore()
+	{
+		return score;
+	}
+	
+	/**
+	 * Prototype function for MVC implementation.
+	 *
+	 * @return A placeholder string.
+	 */
+	public String getValue()
+	{
+		return "Hello, World!";
 	}
 	
 	/**
@@ -117,28 +140,5 @@ class BoardModel
 		clearMatch(new Jewel[] {first, second});
 		
 		return true;
-	}
-	
-	/**
-	 * Clear jewels from the board.
-	 *
-	 * @param jewels Jewels to clear.
-	 * @return       Gained score.
-	 */
-	private int clearMatch(Jewel[] jewels)
-	{
-		int points = jewels.length * 100;
-		score += points;
-		return points;
-	}
-	
-	/**
-	 * Get the current score.
-	 *
-	 * @return The current score.
-	 */
-	public int getScore()
-	{
-		return score;
 	}
 }
