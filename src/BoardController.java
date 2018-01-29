@@ -59,7 +59,7 @@ class BoardController
 		public void actionPerformed(ActionEvent event)
 		{
 			// Get cell coordinates //
-			BoardView.Cell cell = (BoardView.Cell) event.getSource();
+			Cell cell = (Cell) event.getSource();
 			int x1 = cell.getPositionX();
 			int y1 = cell.getPositionY();
 			Coordinate position = new Coordinate(x1, y1);
