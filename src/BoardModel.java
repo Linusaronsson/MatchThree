@@ -169,10 +169,7 @@ class BoardModel
 	 */
 	public Jewel get(Coordinate position)
 	{
-		// TODO: Add assertions to row and column size.
-		int x = position.x;
-		int y = position.y;
-		return board.get(x).get(y);
+		return get(position.x, position.y);
 	}
 	
 	/**
@@ -276,10 +273,7 @@ class BoardModel
 	 */
 	private void set(Coordinate position, Jewel value)
 	{
-		// TODO: Add assertions to row and column size.
-		int x = position.x;
-		int y = position.y;
-		board.get(x).set(y, value);
+		set(position.x, position.y, value);
 	}
 	
 	/**

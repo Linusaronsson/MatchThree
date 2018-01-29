@@ -301,16 +301,25 @@ class BoardView
 	 */
 	public void updateCell(Coordinate position)
 	{
+		updateCell(position.x, position.y);
+	}
+	
+	/**
+	 * Update a cell.
+	 *
+	 * @param x X-coordinate of the cell.
+	 * @param y Y-coordinate of the cell.
+	 */
+	public void updateCell(int x, int y)
+	{
 		// TODO: Validate arguments.
 		
 		// Get jewel from model //
-		BoardModel.Jewel jewel = model.get(position);
+		BoardModel.Jewel jewel = model.get(x, y);
 		
 		// Get button from view //
 		// TODO: Add assert or rely less on model consistency.
 		int  width = model.getWidth();
-		int  x     = position.x;
-		int  y     = position.y;
 		Cell cell  = board.get(x % width + y * width);
 		
 		// Update text to match jewel //
@@ -338,18 +347,6 @@ class BoardView
 			}
 		}
 		cell.setForeground(color);
-	}
-	
-	/**
-	 * Update a cell.
-	 *
-	 * @param x X-coordinate of the cell.
-	 * @param y Y-coordinate of the cell.
-	 */
-	public void updateCell(int x, int y)
-	{
-		// TODO: Reverse order of methods?
-		updateCell(new Coordinate(x, y));
 	}
 	
 	/**
