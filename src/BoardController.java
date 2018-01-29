@@ -22,7 +22,8 @@ class BoardController
 		{
 			// Get cell coordinates //
 			Cell       cell        = (Cell) event.getSource();
-			Coordinate clickedCell = cell.getPosition();
+			Coordinate tmp         = cell.getPosition(); // TODO: Implement `clone`.
+			Coordinate clickedCell = new Coordinate(tmp.x, tmp.y);
 			
 			// Activate cell if appropriate //
 			if (activeCell == null) {
@@ -33,7 +34,7 @@ class BoardController
 			
 			// Deactivate and swap cells //
 			view.setCellState(activeCell, false);
-			swapCells(activeCell, clickedCell);
+			moveCell(activeCell, clickedCell);
 			activeCell = null;
 			
 			// Update score //
@@ -134,10 +135,10 @@ class BoardController
 	 * @param position1 Coordinates of first cell.
 	 * @param position2 Coordinates of second cell.
 	 */
-	private void swapCells(Coordinate position1, Coordinate position2)
+	private void moveCell(Coordinate from, Coordinate to)
 	{
 		// Swap cells //
-		switch (model.swap(position1, position2)) {
+		switch (model.move(from, to)) {
 			case OK:     break;
 			case BAD:    view.showError("Invalid move"); break;
 			case CANCEL: break;
