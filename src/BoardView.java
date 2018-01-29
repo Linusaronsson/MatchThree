@@ -11,7 +11,16 @@ import javax.swing.*;
 class BoardView
 	extends JFrame
 {
-	private static final String WINDOW_TITLE = "MatchThree";
+	private static final String CELL_FONT_NAME   = "Helvetica Neue";
+	private static final int    CELL_FONT_SIZE   = 14;
+	private static final int    CELL_WIDTH       = 80;
+	private static final Color  COLOR_BACKGROUND = new Color(0x11, 0x11, 0x11);
+	private static final Color  COLOR_DIAMOND    = new Color(0xB9, 0xF2, 0xFF);
+	private static final Color  COLOR_EMERALD    = new Color(0x50, 0xC8, 0x78);
+	private static final Color  COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
+	private static final Color  COLOR_RUBY       = new Color(0xE0, 0x11, 0x5F);
+	private static final Color  COLOR_SAPPHIRE   = new Color(0x0F, 0x52, 0xBA);
+	private static final String WINDOW_TITLE     = "MatchThree";
 	
 	private List<Cell> board     = null;
 	private JButton    button    = new JButton("Confirm");
@@ -67,7 +76,7 @@ class BoardView
 		// Construct grid //
 		int width = model.getWidth();
 		JPanel grid = new JPanel(new GridLayout(width, width));
-		grid.setBackground(new Color(0x11, 0x11, 0x11));
+		grid.setBackground(COLOR_BACKGROUND);
 		
 		// Fill grid //
 		board = new ArrayList<Cell>(width * width);
@@ -87,10 +96,11 @@ class BoardView
 			button.setFocusPainted(false);
 			button.setHorizontalAlignment(SwingConstants.CENTER);
 			button.setVerticalAlignment(SwingConstants.CENTER);
-			button.setForeground(new Color(0xEE, 0xEE, 0xEE));
+			button.setForeground(COLOR_FOREGROUND);
 			button.setBackground(Color.BLACK);
-			button.setPreferredSize(new Dimension(80, 80));
-			button.setFont(new Font("Helvetica Neue", Font.PLAIN, 14));
+			button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
+			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
+			button.setFont(font);
 			
 			// Get jewel from model //
 			BoardModel.Jewel jewel = model.get(x, y);
@@ -109,10 +119,10 @@ class BoardView
 			// Update color to match jewel //
 			Color color = null;
 			switch (jewel) {
-				case DIAMOND:  color = new Color(0xB9, 0xF2, 0xFF); break;
-				case EMERALD:  color = new Color(0x50, 0xC8, 0x78); break;
-				case RUBY:     color = new Color(0xE0, 0x11, 0x5F); break;
-				case SAPPHIRE: color = new Color(0x0F, 0x52, 0xBA); break;
+				case DIAMOND:  color = COLOR_DIAMOND;  break;
+				case EMERALD:  color = COLOR_EMERALD;  break;
+				case RUBY:     color = COLOR_RUBY;     break;
+				case SAPPHIRE: color = COLOR_SAPPHIRE; break;
 				default: // TODO: Throw runtime error.
 			}
 			button.setForeground(color);
@@ -259,12 +269,12 @@ class BoardView
 		
 		// Set state //
 		if (activated) {
-			cell.setBackground(new Color(0xEE, 0xEE, 0xEE));
-			cell.setForeground(new Color(0x11, 0x11, 0x11));
+			cell.setBackground(COLOR_FOREGROUND);
+			cell.setForeground(COLOR_BACKGROUND);
 			cell.setContentAreaFilled(true);
 		} else {
 			cell.setBackground(Color.BLACK);
-			cell.setForeground(new Color(0xEE, 0xEE, 0xEE));
+			cell.setForeground(COLOR_FOREGROUND);
 			cell.setContentAreaFilled(false);
 		}
 	}
