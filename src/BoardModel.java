@@ -11,8 +11,9 @@ class BoardModel
 {
 	private static final int MINIMUM_LENGTH = 3;
 	
-	private List<List<Jewel>> board = null;
-	private int               score = 0;
+	private Jewel[] board = null;
+	private int     score = 0;
+	private int     width = 0;
 	
 	/**
 	 * Cell symbol enum.
@@ -59,15 +60,12 @@ class BoardModel
 	{
 		// TODO: Validate arguments.
 		
+		this.width = width;
+		
 		// Construct board //
-		// TODO: Add assertions?
-		board = new ArrayList<List<Jewel>>(width);
-		for (int x = 0; x < width; x++) {
-			board.add(new ArrayList<Jewel>(width));
-			for (int y = 0; y < width; y++) {
-				Jewel jewel = Jewel.random();
-				board.get(x).add(jewel);
-			}
+		board = new Jewel[width * width];
+		for (int i = 0; i < width * width; i++) {
+			board[i] = Jewel.random();
 		}
 	}
 	
@@ -102,7 +100,7 @@ class BoardModel
 				startX = i;
 				cellsX.add(new Coordinate(i, y));
 			}
-			for (int i = x + 1; i < board.size(); i++) {
+			for (int i = x + 1; i < width; i++) {
 				Jewel cell = get(i, y);
 				if (cell == null || !cell.equals(matchType)) {
 					break;
@@ -126,7 +124,7 @@ class BoardModel
 				startY = i;
 				cellsY.add(new Coordinate(x, i));
 			}
-			for (int i = y + 1; i < board.size(); i++) {
+			for (int i = y + 1; i < width; i++) {
 				Jewel cell = get(x, i);
 				if (cell == null || !cell.equals(matchType)) {
 					break;
@@ -183,7 +181,9 @@ class BoardModel
 	public Jewel get(int x, int y)
 	{
 		// TODO: Add assertions to row and column size.
-		return board.get(x).get(y);
+		
+		int i = y * width + x;
+		return board[i];
 	}
 	
 	/**
@@ -213,7 +213,7 @@ class BoardModel
 	 */
 	public int getWidth()
 	{
-		return board.size();
+		return width;
 	}
 	
 	/**
@@ -287,6 +287,8 @@ class BoardModel
 	private void set(int x, int y, Jewel value)
 	{
 		// TODO: Add assertions to row and column size.
-		board.get(x).set(y, value);
+		
+		int i = y * width + x;
+		board[i] = value;
 	}
 }

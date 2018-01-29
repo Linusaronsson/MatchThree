@@ -1,7 +1,5 @@
 import java.awt.*;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.*;
 
 /**
@@ -22,7 +20,7 @@ class BoardView
 	private static final Color  COLOR_SAPPHIRE   = new Color(0x0F, 0x52, 0xBA);
 	private static final String WINDOW_TITLE     = "MatchThree";
 	
-	private List<Cell> board     = null;
+	private Cell[]     board     = null;
 	private JButton    button    = new JButton("Confirm");
 	private JLabel     label     = new JLabel("");
 	private BoardModel model     = null;
@@ -79,7 +77,7 @@ class BoardView
 		grid.setBackground(COLOR_BACKGROUND);
 		
 		// Fill grid //
-		board = new ArrayList<Cell>(width * width);
+		board = new Cell[width * width];
 		for (int i = 0; i < width * width; i++) {
 			// Get coordinates //
 			int x = i % width;
@@ -128,7 +126,7 @@ class BoardView
 			button.setForeground(color);
 			
 			// Add button to grid //
-			board.add(button);
+			board[i] = button;
 			grid.add(button);
 		}
 		
@@ -265,7 +263,8 @@ class BoardView
 		int  width = model.getWidth();
 		int  x     = position.x;
 		int  y     = position.y;
-		Cell cell  = board.get(x + y * width);
+		int  i     = y * width + x;
+		Cell cell  = board[i];
 		
 		// Set state //
 		if (activated) {
@@ -363,7 +362,8 @@ class BoardView
 		// Get button from view //
 		// TODO: Add assert or rely less on model consistency.
 		int  width = model.getWidth();
-		Cell cell  = board.get(x % width + y * width);
+		int  i     = y * width + x;
+		Cell cell  = board[i];
 		
 		// Update text to match jewel //
 		String value = "";
