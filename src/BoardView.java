@@ -1,5 +1,5 @@
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
@@ -11,20 +11,15 @@ import javax.swing.*;
 class BoardView
 	extends JFrame
 {
-	// Constants //
 	private static final String WINDOW_TITLE = "MatchThree";
 	
-	// DI fields //
-	private BoardModel model = null;
-	
-	// Default fields //
+	private List<Cell> board     = null;
 	private JButton    button    = new JButton("Confirm");
+	private JLabel     label     = new JLabel("");
+	private BoardModel model     = null;
+	private JMenuItem  openItem  = null;
+	private JMenuItem  quitItem  = null;
 	private JTextField textField = new JTextField(20);
-	
-	// Reference fields //
-	private JMenuItem     openItem = null;
-	private JMenuItem     quitItem = null;
-	private List<JButton> board    = null;
 	
 	/**
 	 * Constructor for `BoardView` MVC view.
@@ -32,6 +27,7 @@ class BoardView
 	 * @param model Model to use
 	 */
 	// TODO: Break into multiple methods?
+	// TODO: Call parent constructor?
 	public BoardView(BoardModel model)
 	{
 		this.model = model;
@@ -53,6 +49,7 @@ class BoardView
 		// Initialize components //
 		textField.setText(model.getValue());
 		textField.setEditable(false);
+		updateScore();
 		
 		// Create content pane //
 		JPanel content = new JPanel();
@@ -60,7 +57,7 @@ class BoardView
 		
 		// Construct header //
 		JPanel header = new JPanel(new FlowLayout());
-		header.add(new JLabel("Label"));
+		header.add(label);
 		header.add(textField);
 		header.add(button);
 		content.add(header);
@@ -71,10 +68,10 @@ class BoardView
 		
 		// Fill grid //
 		int width = model.getWidth();
-		board = new ArrayList<JButton>(width * width);
+		board = new ArrayList<Cell>(width * width);
 		for (int i = 0; i < width * width; i++) {
 			// Create button //
-			JButton button = new JButton();
+			Cell button = new Cell(i % width, i / width);
 			
 			// Set button properties //
 			button.setOpaque(true);
@@ -88,13 +85,6 @@ class BoardView
 			button.setBackground(Color.BLACK);
 			button.setPreferredSize(new Dimension(80, 80));
 			button.setFont(new Font("Helvetica Neue", Font.PLAIN, 14));
-			
-			// Select button //
-			if (i == 6) {
-				button.setBackground(new Color(0xEE, 0xEE, 0xEE));
-				button.setForeground(new Color(0x11, 0x11, 0x11));
-				button.setContentAreaFilled(true);
-			}
 			
 			// Get jewel from model //
 			BoardModel.Jewel jewel = model.get(i % width, i / width);
@@ -135,6 +125,59 @@ class BoardView
 	}
 	
 	/**
+	 * Add listener for board cell actions (clicks).
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addBoardListener(ActionListener listener)
+	{
+		int width = model.getWidth();
+		for (int i = 0; i < width * width; i++) {
+			board.get(i).addActionListener(listener);
+		}
+	}
+	
+	/**
+	 * Add listener for top button press.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addButtonListener(ActionListener listener)
+	{
+		button.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for “Open” menu item.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addOpenListener(ActionListener listener)
+	{
+		openItem.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for “Quit” menu item.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addQuitListener(ActionListener listener)
+	{
+		quitItem.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for window events.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addWindowListener(ActionListener listener)
+	{
+		addWindowListener(listener);
+	}
+	
+	/**
 	 * Create window menu bar.
 	 *
 	 * @param self View to apply menu bar to.
@@ -164,6 +207,36 @@ class BoardView
 	}
 	
 	/**
+	 * Set cell activation state.
+	 *
+	 * @param position  Coordinates of the cell.
+	 * @param activated Whether cell is active.
+	 */
+	public void setCellState(Coordinate position, boolean activated)
+	{
+		// TODO: Validate arguments.
+		
+		// Get the affected cell //
+		// TODO: Validate row-first or column-first store order of grid (and
+		//       make it unambiguous).
+		int  width = model.getWidth();
+		int  x     = position.x;
+		int  y     = position.y;
+		Cell cell  = board.get(x + y * width);
+		
+		// Set state //
+		if (activated) {
+			cell.setBackground(new Color(0xEE, 0xEE, 0xEE));
+			cell.setForeground(new Color(0x11, 0x11, 0x11));
+			cell.setContentAreaFilled(true);
+		} else {
+			cell.setBackground(Color.BLACK);
+			cell.setForeground(new Color(0xEE, 0xEE, 0xEE));
+			cell.setContentAreaFilled(false);
+		}
+	}
+	
+	/**
 	 * Set application properties.
 	 */
 	private static void setProperties()
@@ -183,6 +256,7 @@ class BoardView
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Add listener for "Open" menu item.
 	 *
 	 * @param listener Event handler.
@@ -227,12 +301,18 @@ class BoardView
 	
 	/**
 	 * Add listener for window events.
+=======
+	 * Display an error message.
+>>>>>>> 7cbe82bf5ae192bd3a24749ab02b08fb4abc6b1e
 	 *
-	 * @param listener Event handler.
+	 * @param message The message to display.
 	 */
-	public void addWindowListener(ActionListener listener)
+	public void showError(String message)
 	{
-		addWindowListener(listener);
+		JOptionPane.showMessageDialog(this,
+		                              message,
+		                              message,
+		                              JOptionPane.ERROR_MESSAGE);
 	}
 	
 	/**
@@ -249,16 +329,62 @@ class BoardView
 	}
 	
 	/**
-	 * Display an error message.
-	 *
-	 * @param message The message to display.
+	 * Update all cells.
 	 */
-	public void showError(String message)
+	public void update()
 	{
-		JOptionPane.showMessageDialog(this,
-		                              message,
-		                              message,
-		                              JOptionPane.ERROR_MESSAGE);
+		int width = model.getWidth();
+		for (int i = 0; i < width * width; i++) {
+			int x = i % width;
+			int y = i / width;
+			updateCell(x, y);
+		}
+	}
+	
+	/**
+	 * Update a cell.
+	 *
+	 * @param position Coordinates of the cell.
+	 */
+	public void updateCell(Coordinate position)
+	{
+		// TODO: Validate arguments.
+		
+		// Get jewel from model //
+		BoardModel.Jewel jewel = model.get(position);
+		
+		// Get button from view //
+		// TODO: Add assert or rely less on model consistency.
+		int  width = model.getWidth();
+		int  x     = position.x;
+		int  y     = position.y;
+		Cell cell  = board.get(x % width + y * width);
+		
+		// Update text to match jewel //
+		String value = "";
+		if (jewel != null) {
+			switch (jewel) {
+				case DIAMOND:  value = "Diamond";  break;
+				case EMERALD:  value = "Emerald";  break;
+				case RUBY:     value = "Ruby";     break;
+				case SAPPHIRE: value = "Sapphire"; break;
+				default: // TODO: Throw runtime error.
+			}
+		}
+		cell.setText(value);
+		
+		// Update color to match jewel //
+		Color color = Color.BLACK;
+		if (jewel != null) {
+			switch (jewel) {
+				case DIAMOND:  color = new Color(0xB9, 0xF2, 0xFF); break;
+				case EMERALD:  color = new Color(0x50, 0xC8, 0x78); break;
+				case RUBY:     color = new Color(0xE0, 0x11, 0x5F); break;
+				case SAPPHIRE: color = new Color(0x0F, 0x52, 0xBA); break;
+				default: // TODO: Throw runtime error.
+			}
+		}
+		cell.setForeground(color);
 	}
 	
 	/**
@@ -269,36 +395,16 @@ class BoardView
 	 */
 	public void updateCell(int x, int y)
 	{
-		// TODO: Validate arguments.
-		
-		// Get jewel from model //
-		BoardModel.Jewel jewel = model.get(x, y);
-		
-		// Get button from view //
-		// TODO: Add assert or rely less on model consistency.
-		int width = model.getWidth();
-		JButton cell = board.get(x % width + y * width);
-		
-		// Update text to match jewel //
-		String value = null;
-		switch (jewel) {
-			case DIAMOND:  value = "Diamond";  break;
-			case EMERALD:  value = "Emerald";  break;
-			case RUBY:     value = "Ruby";     break;
-			case SAPPHIRE: value = "Sapphire"; break;
-			default: // TODO: Throw runtime error.
-		}
-		cell.setText(value);
-		
-		// Update color to match jewel //
-		Color color = null;
-		switch (jewel) {
-			case DIAMOND:  color = new Color(0xB9, 0xF2, 0xFF); break;
-			case EMERALD:  color = new Color(0x50, 0xC8, 0x78); break;
-			case RUBY:     color = new Color(0xE0, 0x11, 0x5F); break;
-			case SAPPHIRE: color = new Color(0x0F, 0x52, 0xBA); break;
-			default: // TODO: Throw runtime error.
-		}
-		cell.setForeground(color);
+		// TODO: Reverse order of methods?
+		updateCell(new Coordinate(x, y));
+	}
+	
+	/**
+	 * Update score label.
+	 */
+	public void updateScore()
+	{
+		int score = model.getScore();
+		label.setText("Score: " + score);
 	}
 }

@@ -1,7 +1,3 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-
 /**
  * MatchThree game.
  */
@@ -20,9 +16,7 @@ public class MatchThree
 		BoardController controller = new BoardController(model, view);
 		
 		// Show GUI //
+		// TODO: Move this to view?
 		view.setVisible(true);
-		
-		// Exit the program (killing any live threads) //
-		//System.exit(0);
 	}
 }

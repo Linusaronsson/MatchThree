@@ -1,75 +1,16 @@
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  * MVC controller.
  */
 class BoardController
 {
-	/**
-	 * Stores a two-dimensional coordinate.
-	 */
-	class Coordinate
-	{
-		public int x = 0;
-		public int y = 0;
-		
-		/**
-		 * Constructor for `Coordinate`.
-		 *
-		 * @param x X-coordinate.
-		 * @param y Y-coordinate.
-		 */
-		public Coordinate(int x, int y)
-		{
-			this.x = x;
-			this.y = y;
-		}
-	}
-	
-	private BoardModel model;
-	private BoardView  view;
-	
-	private Coordinate selected = null;
-	
-	/**
-	 * Constructor for `BoardController` MVC controller.
-	 *
-	 * @param model Model to use.
-	 * @param view  View to use.
-	 */
-	public BoardController(BoardModel model, BoardView view)
-	{
-		this.model = model;
-		this.view  = view;
-		
-		view.addBoardListener(new BoardListener());
-		view.addButtonListener(new ButtonListener());
-		view.addOpenListener(new OpenListener());
-		view.addQuitListener(new QuitListener());
-		view.addWindowListener(new WindowListener());
-	}
-	
-	/**
-	 * Swap two cells.
-	 *
-	 * @param x1 X-coordinate of first cell.
-	 * @param y1 Y-coordinate of first cell.
-	 * @param x2 X-coordinate of second cell.
-	 * @param y2 Y-coordinate of second cell.
-	 * @return   Whether the swap was successful.
-	 */
-	private boolean swapCells(int x1, int y1, int x2, int y2)
-	{
-		if (!model.swap(x1, y1, x2, y2)) {
-			return false;
-		}
-		
-		view.updateCell(x1, y1);
-		view.updateCell(x2, y2);
-		return true;
-	}
+	private Coordinate activeCell = null;
+	private BoardModel model      = null;
+	private BoardView  view       = null;
 	
 	/**
 	 * Listens for board cell actions (clicks).
@@ -79,12 +20,24 @@ class BoardController
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showMessage("You pressed: " + event.getActionCommand());
+			// Get cell coordinates //
+			Cell       cell        = (Cell) event.getSource();
+			Coordinate clickedCell = cell.getPosition();
 			
-			// Swap two cells //
-			if (!swapCells(0, 0, 0, 2)) {
-				view.showError("Could not swap cells");
+			// Activate cell if appropriate //
+			if (activeCell == null) {
+				activeCell = clickedCell;
+				view.setCellState(activeCell, true);
+				return;
 			}
+			
+			// Deactivate and swap cells //
+			view.setCellState(activeCell, false);
+			swapCells(activeCell, clickedCell);
+			activeCell = null;
+			
+			// Update score //
+			view.updateScore();
 		}
 	}
 	
@@ -155,5 +108,43 @@ class BoardController
 		public void windowOpened(WindowEvent event) {}
 		
 		public void windowStateChanged(WindowEvent event) {}
+	}
+	
+	/**
+	 * Constructor for `BoardController` MVC controller.
+	 *
+	 * @param model Model to use.
+	 * @param view  View to use.
+	 */
+	public BoardController(BoardModel model, BoardView view)
+	{
+		this.model = model;
+		this.view  = view;
+		
+		view.addBoardListener(new BoardListener());
+		view.addButtonListener(new ButtonListener());
+		view.addOpenListener(new OpenListener());
+		view.addQuitListener(new QuitListener());
+		view.addWindowListener(new WindowListener());
+	}
+	
+	/**
+	 * Swap two cells.
+	 *
+	 * @param position1 Coordinates of first cell.
+	 * @param position2 Coordinates of second cell.
+	 */
+	private void swapCells(Coordinate position1, Coordinate position2)
+	{
+		// Swap cells //
+		switch (model.swap(position1, position2)) {
+			case OK:     break;
+			case BAD:    view.showError("Invalid move"); break;
+			case CANCEL: break;
+			default:     break; // TODO: Throw exception.
+		}
+		
+		// Update view //
+		view.update();
 	}
 }

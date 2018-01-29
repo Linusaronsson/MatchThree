@@ -1,17 +1,19 @@
-import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import javax.swing.*;
 
 /**
  * MVC model.
  */
 class BoardModel
 {
+	private static final int MINIMUM_LENGTH = 3;
+	
+	private List<List<Jewel>> board = null;
+	private int               score = 0;
+	
 	/**
 	 * Cell symbol enum.
 	 */
@@ -38,7 +40,14 @@ class BoardModel
 		}
 	}
 	
-	private List<List<Jewel>> board = null;
+	/**
+	 * Move type enum.
+	 */
+	public enum MoveType {
+		BAD,
+		CANCEL,
+		OK;
+	}
 	
 	/**
 	 * Constructor for `BoardModel` MVC model.
@@ -62,13 +71,96 @@ class BoardModel
 	}
 	
 	/**
-	 * Prototype function for MVC implementation.
+	 * Clear jewels from the board.
 	 *
-	 * @return A placeholder string.
+	 * @param jewels Jewels to clear.
+	 * @return       Gained score.
 	 */
-	public String getValue()
+	private int clearMatches(Coordinate position)
 	{
-		return "Hello, World!";
+		// Get jewel type to match //
+		Jewel matchType = get(position);
+		
+		// Unpack coordinates //
+		int x = position.x;
+		int y = position.y;
+		
+		// Search for matches on X-axis //
+		int startX = position.x;
+		int stopX  = position.x;
+		for (int i = x; i >= 0; i--) {
+			Jewel cell = get(i, y);
+			if (cell == null || !cell.equals(matchType)) {
+				break;
+			}
+			startX = i;
+		}
+		for (int i = x; i < board.size(); i++) {
+			Jewel cell = get(i, y);
+			if (cell == null || !cell.equals(matchType)) {
+				break;
+			}
+			stopX = i;
+		}
+		
+		// Search for matches on Y-axis //
+		int startY = position.y;
+		int stopY  = position.y;
+		for (int i = y; i >= 0; i--) {
+			Jewel cell = get(x, i);
+			if (cell == null || !cell.equals(matchType)) {
+				break;
+			}
+			startY = i;
+		}
+		for (int i = y; i < board.size(); i++) {
+			Jewel cell = get(x, i);
+			if (cell == null || !cell.equals(matchType)) {
+				break;
+			}
+			stopY = i;
+		}
+		
+		// Clear matches on X-axis //
+		int lengthX = stopX - startX + 1;
+		if (lengthX >= MINIMUM_LENGTH) {
+			for (int i = startX; i <= stopX; i++) {
+				// TODO: Write a setter method.
+				board.get(i).set(y, null);
+			}
+		}
+		
+		// Clear matches on Y-axis //
+		int lengthY = stopY - startY + 1;
+		if (lengthY >= MINIMUM_LENGTH) {
+			for (int i = startY; i <= stopY; i++) {
+				// TODO: Write a setter method.
+				board.get(x).set(i, null);
+			}
+		}
+		
+		// Adjust score //
+		// TODO: Make score increase exponentially with longer matches.
+		int points = 0;
+		points += lengthX * 100;
+		points += lengthY * 100;
+		score += points;
+		
+		return points;
+	}
+	
+	/**
+	 * Get the value of a cell.
+	 *
+	 * @param position Coordinates of the cell.
+	 * @return         The cell value.
+	 */
+	public Jewel get(Coordinate position)
+	{
+		// TODO: Add assertions to row and column size.
+		int x = position.x;
+		int y = position.y;
+		return board.get(x).get(y);
 	}
 	
 	/**
@@ -85,6 +177,26 @@ class BoardModel
 	}
 	
 	/**
+	 * Get the current score.
+	 *
+	 * @return The current score.
+	 */
+	public int getScore()
+	{
+		return score;
+	}
+	
+	/**
+	 * Prototype function for MVC implementation.
+	 *
+	 * @return A placeholder string.
+	 */
+	public String getValue()
+	{
+		return "Hello, World!";
+	}
+	
+	/**
 	 * Get the size the board.
 	 *
 	 * @return The number of cells per axis.
@@ -97,24 +209,38 @@ class BoardModel
 	/**
 	 * Swap two cells.
 	 *
-	 * @param x1 X-coordinate of the first cell.
-	 * @param y1 Y-coordinate of the first cell.
-	 * @param x2 X-coordinate of the second cell.
-	 * @param y2 Y-coordinate of the second cell.
-	 * @return   Whether the swap was successful.
+	 * @param position1 Coordinates of the first cell.
+	 * @param position2 Coordinates of the second cell.
+	 * @return          Whether the swap was successful, invalid or canceled.
 	 */
-	public boolean swap(int x1, int y1, int x2, int y2)
+	public MoveType swap(Coordinate position1, Coordinate position2)
 	{
 		// TODO: Validate arguments.
 		
-		// TODO: Validate move.
+		// Unpack coordinates //
+		int x1 = position1.x;
+		int y1 = position1.y;
+		int x2 = position2.x;
+		int y2 = position2.y;
+		
+		// Validate move //
+		if (x1 == x2 && y1 == y2) {
+			return MoveType.CANCEL;
+		}
+		if (x1 != x2 && y1 != y2) {
+			return MoveType.BAD;
+		}
 		
 		// Swap cells //
+		// TODO: Push cell instead of swapping them.
 		Jewel first  = board.get(x1).get(y1);
 		Jewel second = board.get(x2).get(y2);
 		board.get(x1).set(y1, second);
 		board.get(x2).set(y2, first);
 		
-		return true;
+		// Clear cells //
+		clearMatches(position2);
+		
+		return MoveType.OK;
 	}
 }
