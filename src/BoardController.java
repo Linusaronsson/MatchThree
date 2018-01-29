@@ -7,8 +7,8 @@ import javax.swing.*;
  */
 class BoardController
 {
-	private BoardModel model;
-	private BoardView  view;
+	private BoardModel model = null;
+	private BoardView  view  = null;
 	
 	private Coordinate selected = null;
 	
