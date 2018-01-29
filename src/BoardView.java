@@ -72,8 +72,12 @@ class BoardView
 		// Fill grid //
 		board = new ArrayList<Cell>(width * width);
 		for (int i = 0; i < width * width; i++) {
+			// Get coordinates //
+			int x = i % width;
+			int y = i / width;
+			
 			// Create button //
-			Cell button = new Cell(i % width, i / width);
+			Cell button = new Cell(x, y);
 			
 			// Set button properties //
 			button.setOpaque(true);
@@ -89,7 +93,7 @@ class BoardView
 			button.setFont(new Font("Helvetica Neue", Font.PLAIN, 14));
 			
 			// Get jewel from model //
-			BoardModel.Jewel jewel = model.get(i % width, i / width);
+			BoardModel.Jewel jewel = model.get(x, y);
 			
 			// Update text to match jewel //
 			String value = null;
@@ -133,9 +137,8 @@ class BoardView
 	 */
 	public void addBoardListener(ActionListener listener)
 	{
-		int width = model.getWidth();
-		for (int i = 0; i < width * width; i++) {
-			board.get(i).addActionListener(listener);
+		for (Cell cell : board) {
+			cell.addActionListener(listener);
 		}
 	}
 	
