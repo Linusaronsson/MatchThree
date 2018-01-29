@@ -22,7 +22,8 @@ class BoardController
 		{
 			// Get cell coordinates //
 			Cell       cell        = (Cell) event.getSource();
-			Coordinate clickedCell = cell.getPosition();
+			Coordinate tmp         = cell.getPosition(); // TODO: Implement `clone`.
+			Coordinate clickedCell = new Coordinate(tmp.x, tmp.y);
 			
 			// Activate cell if appropriate //
 			if (activeCell == null) {
@@ -33,7 +34,7 @@ class BoardController
 			
 			// Deactivate and swap cells //
 			view.setCellState(activeCell, false);
-			swapCells(activeCell, clickedCell);
+			moveCell(activeCell, clickedCell);
 			activeCell = null;
 			
 			// Update score //
@@ -54,7 +55,23 @@ class BoardController
 	}
 	
 	/**
+<<<<<<< HEAD
 	 * Listens for "Open" menu item.
+=======
+	 * Listens for “New” menu item.
+	 */
+	class NewListener
+		implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			view.showError("“New” not implemented");
+		}
+	}
+	
+	/**
+	 * Listens for “Open” menu item.
+>>>>>>> 308e7a415a8f7d9f837255c4162c0a7edf8f23f4
 	 */
 	class OpenListener
 		implements ActionListener
@@ -76,6 +93,18 @@ class BoardController
 			// Close window //
 			WindowEvent e = new WindowEvent(view, WindowEvent.WINDOW_CLOSING);
 			view.dispatchEvent(e);
+		}
+	}
+	
+	/**
+	 * Listens for “Save” menu item.
+	 */
+	class SaveListener
+		implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			view.showError("“Save” not implemented");
 		}
 	}
 	
@@ -121,10 +150,13 @@ class BoardController
 		this.model = model;
 		this.view  = view;
 		
+		// Register event listeners //
 		view.addBoardListener(new BoardListener());
 		view.addButtonListener(new ButtonListener());
+		view.addNewListener(new NewListener());
 		view.addOpenListener(new OpenListener());
 		view.addQuitListener(new QuitListener());
+		view.addSaveListener(new SaveListener());
 		view.addWindowListener(new WindowListener());
 	}
 	
@@ -134,10 +166,10 @@ class BoardController
 	 * @param position1 Coordinates of first cell.
 	 * @param position2 Coordinates of second cell.
 	 */
-	private void swapCells(Coordinate position1, Coordinate position2)
+	private void moveCell(Coordinate from, Coordinate to)
 	{
 		// Swap cells //
-		switch (model.swap(position1, position2)) {
+		switch (model.move(from, to)) {
 			case OK:     break;
 			case BAD:    view.showError("Invalid move"); break;
 			case CANCEL: break;

@@ -11,8 +11,9 @@ class BoardModel
 {
 	private static final int MINIMUM_LENGTH = 3;
 	
-	private List<List<Jewel>> board = null;
-	private int               score = 0;
+	private Jewel[] board = null;
+	private int     score = 0;
+	private int     width = 0;
 	
 	/**
 	 * Cell symbol enum.
@@ -34,6 +35,7 @@ class BoardModel
 		 *
 		 * @return A random jewel type.
 		 */
+		// TODO: Support returning a limited subset of jewels?
 		public static Jewel random()
 		{
 			return VALUES.get(RANDOM.nextInt(SIZE));
@@ -58,93 +60,102 @@ class BoardModel
 	{
 		// TODO: Validate arguments.
 		
+		this.width = width;
+		
 		// Construct board //
-		// TODO: Add assertions?
-		board = new ArrayList<List<Jewel>>(width);
-		for (int x = 0; x < width; x++) {
-			board.add(new ArrayList<Jewel>(width));
-			for (int y = 0; y < width; y++) {
-				Jewel jewel = Jewel.random();
-				board.get(x).add(jewel);
-			}
+		board = new Jewel[width * width];
+		for (int i = 0; i < width * width; i++) {
+			board[i] = Jewel.random();
 		}
 	}
 	
 	/**
 	 * Clear jewels from the board.
 	 *
-	 * @param jewels Jewels to clear.
-	 * @return       Gained score.
+	 * @param positions Coordinates of affected cells.
+	 * @return          Gained score.
 	 */
-	private int clearMatches(Coordinate position)
+	// TODO: Revise algorithm and reduce complexity.
+	private int clearMatches(Coordinate[] positions)
 	{
-		// Get jewel type to match //
-		Jewel matchType = get(position);
-		
-		// Unpack coordinates //
-		int x = position.x;
-		int y = position.y;
-		
-		// Search for matches on X-axis //
-		int startX = position.x;
-		int stopX  = position.x;
-		for (int i = x; i >= 0; i--) {
-			Jewel cell = get(i, y);
-			if (cell == null || !cell.equals(matchType)) {
-				break;
+		// Find matches //
+		List<List<Coordinate>> matches = new ArrayList<List<Coordinate>>();
+		for (Coordinate position : positions) {
+			// Get jewel type to match //
+			Jewel matchType = get(position);
+			
+			// Unpack coordinates //
+			int x = position.x;
+			int y = position.y;
+			
+			// Search for matches on X-axis //
+			int startX = position.x;
+			int stopX  = position.x;
+			List<Coordinate> cellsX = new ArrayList<Coordinate>();
+			for (int i = x; i >= 0; i--) {
+				Jewel cell = get(i, y);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				startX = i;
+				cellsX.add(new Coordinate(i, y));
 			}
-			startX = i;
-		}
-		for (int i = x; i < board.size(); i++) {
-			Jewel cell = get(i, y);
-			if (cell == null || !cell.equals(matchType)) {
-				break;
+			for (int i = x + 1; i < width; i++) {
+				Jewel cell = get(i, y);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				stopX = i;
+				cellsX.add(new Coordinate(i, y));
 			}
-			stopX = i;
-		}
-		
-		// Search for matches on Y-axis //
-		int startY = position.y;
-		int stopY  = position.y;
-		for (int i = y; i >= 0; i--) {
-			Jewel cell = get(x, i);
-			if (cell == null || !cell.equals(matchType)) {
-				break;
+			if (cellsX.size() > 0) {
+				matches.add(cellsX);
 			}
-			startY = i;
-		}
-		for (int i = y; i < board.size(); i++) {
-			Jewel cell = get(x, i);
-			if (cell == null || !cell.equals(matchType)) {
-				break;
+			
+			// Search for matches on Y-axis //
+			int startY = position.y;
+			int stopY  = position.y;
+			List<Coordinate> cellsY = new ArrayList<Coordinate>();
+			for (int i = y; i >= 0; i--) {
+				Jewel cell = get(x, i);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				startY = i;
+				cellsY.add(new Coordinate(x, i));
 			}
-			stopY = i;
-		}
-		
-		// Clear matches on X-axis //
-		int lengthX = stopX - startX + 1;
-		if (lengthX >= MINIMUM_LENGTH) {
-			for (int i = startX; i <= stopX; i++) {
-				// TODO: Write a setter method.
-				board.get(i).set(y, null);
+			for (int i = y + 1; i < width; i++) {
+				Jewel cell = get(x, i);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				stopY = i;
+				cellsY.add(new Coordinate(x, i));
 			}
-		}
-		
-		// Clear matches on Y-axis //
-		int lengthY = stopY - startY + 1;
-		if (lengthY >= MINIMUM_LENGTH) {
-			for (int i = startY; i <= stopY; i++) {
-				// TODO: Write a setter method.
-				board.get(x).set(i, null);
+			if (cellsY.size() > 0) {
+				matches.add(cellsY);
 			}
 		}
 		
-		// Adjust score //
-		// TODO: Make score increase exponentially with longer matches.
+		// Clear matches and adjust score //
 		int points = 0;
-		points += lengthX * 100;
-		points += lengthY * 100;
-		score += points;
+		for (List<Coordinate> match : matches) {
+			// Verify length of match //
+			if (match.size() < MINIMUM_LENGTH) {
+				continue;
+			}
+			
+			// Clear cells //
+			for (Coordinate cell : match) {
+				set(cell, null);
+			}
+			
+			// Adjust score //
+			// TODO: Make score increase exponentially with longer matches.
+			int match_points = match.size() * 100;
+			points += match_points;
+			score  += match_points;
+		}
 		
 		return points;
 	}
@@ -157,10 +168,7 @@ class BoardModel
 	 */
 	public Jewel get(Coordinate position)
 	{
-		// TODO: Add assertions to row and column size.
-		int x = position.x;
-		int y = position.y;
-		return board.get(x).get(y);
+		return get(position.x, position.y);
 	}
 	
 	/**
@@ -173,7 +181,9 @@ class BoardModel
 	public Jewel get(int x, int y)
 	{
 		// TODO: Add assertions to row and column size.
-		return board.get(x).get(y);
+		
+		int i = y * width + x;
+		return board[i];
 	}
 	
 	/**
@@ -203,44 +213,82 @@ class BoardModel
 	 */
 	public int getWidth()
 	{
-		return board.size();
+		return width;
 	}
 	
 	/**
-	 * Swap two cells.
+	 * Move a cell.
 	 *
-	 * @param position1 Coordinates of the first cell.
-	 * @param position2 Coordinates of the second cell.
-	 * @return          Whether the swap was successful, invalid or canceled.
+	 * @param from Source coordinates.
+	 * @param to   Destination coordinates.
+	 * @return     Whether the move was successful, invalid or canceled.
 	 */
-	public MoveType swap(Coordinate position1, Coordinate position2)
+	public MoveType move(Coordinate from, Coordinate to)
 	{
 		// TODO: Validate arguments.
 		
-		// Unpack coordinates //
-		int x1 = position1.x;
-		int y1 = position1.y;
-		int x2 = position2.x;
-		int y2 = position2.y;
-		
 		// Validate move //
-		if (x1 == x2 && y1 == y2) {
+		if (from.x == to.x && from.y == to.y) {
 			return MoveType.CANCEL;
 		}
-		if (x1 != x2 && y1 != y2) {
+		if (from.x != to.x && from.y != to.y) {
 			return MoveType.BAD;
 		}
 		
-		// Swap cells //
-		// TODO: Push cell instead of swapping them.
-		Jewel first  = board.get(x1).get(y1);
-		Jewel second = board.get(x2).get(y2);
-		board.get(x1).set(y1, second);
-		board.get(x2).set(y2, first);
+		// Move cell //
+		Jewel source = get(from);
+		int dx = to.x - from.x;
+		int dy = to.y - from.y;
+		if (dx < 0) { dx = -1; }
+		if (dx > 0) { dx = +1; }
+		if (dy < 0) { dy = -1; }
+		if (dy > 0) { dy = +1; }
+		List<Coordinate> positions = new ArrayList<Coordinate>();
+		for (Coordinate position = from;
+		     position.x != to.x || position.y != to.y; // TODO: Implement `equals'.
+		     position.x += dx, position.y += dy)
+		{
+			// Swap cell with neighbor //
+			Jewel first  = get(position.x, position.y);
+			Jewel second = get(position.x + dx, position.y + dy);
+			set(position.x, position.y, second);
+			set(position.x + dx, position.y + dy, first);
+			
+			// Save coordinate //
+			positions.add(new Coordinate(position.x, position.y));
+		}
+		positions.add(to);
 		
 		// Clear cells //
-		clearMatches(position2);
+		Coordinate[] out = new Coordinate[positions.size()];
+		clearMatches(positions.toArray(out));
 		
 		return MoveType.OK;
+	}
+	
+	/**
+	 * Set the value of a cell.
+	 *
+	 * @param position Coordinates of the cell.
+	 * @param value    Value to set.
+	 */
+	private void set(Coordinate position, Jewel value)
+	{
+		set(position.x, position.y, value);
+	}
+	
+	/**
+	 * Set the value of a cell.
+	 *
+	 * @param x     X-coordinate of the cell.
+	 * @param y     Y-coordinate of the cell.
+	 * @param value Value to set.
+	 */
+	private void set(int x, int y, Jewel value)
+	{
+		// TODO: Add assertions to row and column size.
+		
+		int i = y * width + x;
+		board[i] = value;
 	}
 }

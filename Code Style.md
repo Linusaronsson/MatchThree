@@ -3,7 +3,7 @@
 ## General ##
 
 + Newline at EOF.
-+ 80 character line limit.
++ 80 character line limit (assuming 4 character tabs).
 + UTF-8 encoding (characters outside ASCII allowed in comments and strings).
 
 ## Java ##
