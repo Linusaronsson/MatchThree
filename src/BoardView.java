@@ -66,7 +66,7 @@ class BoardView
 		content.add(header);
 		
 		// Construct grid //
-		JPanel grid = new JPanel(new GridLayout(4, 4));
+		JPanel grid = new JPanel(new GridLayout(model.getWidth(), model.getWidth()));
 		grid.setBackground(new Color(0x11, 0x11, 0x11));
 		
 		// Fill grid //
@@ -149,11 +149,11 @@ class BoardView
 		// Create menus //
 		JMenu fileMenu = new JMenu("File");
 		
-		// Create “Open” menu item //
+		// Create "Open" menu item //
 		self.openItem = new JMenuItem("Open");
 		fileMenu.add(self.openItem);
 		
-		// Create “Quit” menu item //
+		// Create "Quit" menu item //
 		self.quitItem = new JMenuItem("Quit");
 		fileMenu.add(self.quitItem);
 		
@@ -183,7 +183,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for “Open” menu item.
+	 * Add listener for "Open" menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -193,7 +193,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for “Quit” menu item.
+	 * Add listener for "Quit" menu item.
 	 *
 	 * @param listener Event handler.
 	 */

@@ -101,19 +101,19 @@ class BoardController
 	}
 	
 	/**
-	 * Listens for “Open” menu item.
+	 * Listens for "Open" menu item.
 	 */
 	class OpenListener
 		implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showError("“Open” not implemented");
+			view.showError("\"Open\" not implemented");
 		}
 	}
 	
 	/**
-	 * Listens for “Quit” menu item.
+	 * Listens for "Quit" menu item.
 	 */
 	class QuitListener
 		implements ActionListener
