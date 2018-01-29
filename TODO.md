@@ -17,6 +17,9 @@
 ## Documentation ##
 + Improve documentation.
 
+## Features ##
++ Add reset button.
+
 ## Platform support ##
 + Improve native platform support (primarily macOS/OS X).
 
