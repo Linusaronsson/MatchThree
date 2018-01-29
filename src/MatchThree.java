@@ -17,8 +17,5 @@ public class MatchThree
 		
 		// Show GUI //
 		view.setVisible(true);
-		
-		// Exit the program (killing any live threads) //
-		//System.exit(0);
 	}
 }
