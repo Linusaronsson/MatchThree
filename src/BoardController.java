@@ -146,6 +146,7 @@ class BoardController
 		this.model = model;
 		this.view  = view;
 		
+		// Register event listeners //
 		view.addBoardListener(new BoardListener());
 		view.addButtonListener(new ButtonListener());
 		view.addNewListener(new NewListener());
