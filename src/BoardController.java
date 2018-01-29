@@ -41,7 +41,7 @@ class BoardController
 			
 			// Swap the two cells //
 			if (!swapCells(x1, y1, x2, y2)) {
-				view.showError("Could not swap cells");
+				view.showError("Invalid move");
 			}
 			
 			// Update score //

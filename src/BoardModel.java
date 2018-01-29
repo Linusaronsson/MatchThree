@@ -128,7 +128,13 @@ class BoardModel
 	{
 		// TODO: Validate arguments.
 		
-		// TODO: Validate move.
+		// Validate move //
+		if (x1 == x2 && y1 == y2) {
+			return false;
+		}
+		if (x1 != x2 && y1 != y2) {
+			return false;
+		}
 		
 		// Swap cells //
 		Jewel first  = board.get(x1).get(y1);
