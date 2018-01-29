@@ -55,6 +55,18 @@ class BoardController
 	}
 	
 	/**
+	 * Listens for “New” menu item.
+	 */
+	class NewListener
+		implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			view.showError("“New” not implemented");
+		}
+	}
+	
+	/**
 	 * Listens for “Open” menu item.
 	 */
 	class OpenListener
@@ -77,6 +89,18 @@ class BoardController
 			// Close window //
 			WindowEvent e = new WindowEvent(view, WindowEvent.WINDOW_CLOSING);
 			view.dispatchEvent(e);
+		}
+	}
+	
+	/**
+	 * Listens for “Save” menu item.
+	 */
+	class SaveListener
+		implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			view.showError("“Save” not implemented");
 		}
 	}
 	
@@ -124,8 +148,10 @@ class BoardController
 		
 		view.addBoardListener(new BoardListener());
 		view.addButtonListener(new ButtonListener());
+		view.addNewListener(new NewListener());
 		view.addOpenListener(new OpenListener());
 		view.addQuitListener(new QuitListener());
+		view.addSaveListener(new SaveListener());
 		view.addWindowListener(new WindowListener());
 	}
 	

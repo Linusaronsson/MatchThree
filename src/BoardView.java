@@ -17,8 +17,10 @@ class BoardView
 	private JButton    button    = new JButton("Confirm");
 	private JLabel     label     = new JLabel("");
 	private BoardModel model     = null;
+	private JMenuItem  newItem   = null;
 	private JMenuItem  openItem  = null;
 	private JMenuItem  quitItem  = null;
+	private JMenuItem  saveItem  = null;
 	private JTextField textField = new JTextField(20);
 	
 	/**
@@ -148,6 +150,16 @@ class BoardView
 	}
 	
 	/**
+	 * Add listener for “New” menu item.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addNewListener(ActionListener listener)
+	{
+		newItem.addActionListener(listener);
+	}
+	
+	/**
 	 * Add listener for “Open” menu item.
 	 *
 	 * @param listener Event handler.
@@ -165,6 +177,16 @@ class BoardView
 	public void addQuitListener(ActionListener listener)
 	{
 		quitItem.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for “Save” menu item.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addSaveListener(ActionListener listener)
+	{
+		saveItem.addActionListener(listener);
 	}
 	
 	/**
@@ -192,9 +214,17 @@ class BoardView
 		// Create menus //
 		JMenu fileMenu = new JMenu("File");
 		
+		// Create “New” menu item //
+		self.newItem = new JMenuItem("New");
+		fileMenu.add(self.newItem);
+		
 		// Create “Open” menu item //
 		self.openItem = new JMenuItem("Open");
 		fileMenu.add(self.openItem);
+		
+		// Create “Save” menu item //
+		self.saveItem = new JMenuItem("Save");
+		fileMenu.add(self.saveItem);
 		
 		// Create “Quit” menu item //
 		self.quitItem = new JMenuItem("Quit");
