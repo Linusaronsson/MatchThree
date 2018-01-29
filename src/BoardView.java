@@ -124,58 +124,7 @@ class BoardView
 		this.pack();
 	}
 	
-	/**
-	 * Add listener for board cell actions (clicks).
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addBoardListener(ActionListener listener)
-	{
-		int width = model.getWidth();
-		for (int i = 0; i < width * width; i++) {
-			board.get(i).addActionListener(listener);
-		}
-	}
 	
-	/**
-	 * Add listener for top button press.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addButtonListener(ActionListener listener)
-	{
-		button.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for “Open” menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addOpenListener(ActionListener listener)
-	{
-		openItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for “Quit” menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addQuitListener(ActionListener listener)
-	{
-		quitItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for window events.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addWindowListener(ActionListener listener)
-	{
-		addWindowListener(listener);
-	}
 	
 	/**
 	 * Create window menu bar.
