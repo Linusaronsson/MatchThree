@@ -34,6 +34,7 @@ class BoardModel
 		 *
 		 * @return A random jewel type.
 		 */
+		// TODO: Support returning a limited subset of jewels?
 		public static Jewel random()
 		{
 			return VALUES.get(RANDOM.nextInt(SIZE));
