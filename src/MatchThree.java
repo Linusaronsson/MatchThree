@@ -16,6 +16,7 @@ public class MatchThree
 		BoardController controller = new BoardController(model, view);
 		
 		// Show GUI //
+		// TODO: Move this to view?
 		view.setVisible(true);
 	}
 }
