@@ -73,8 +73,8 @@ class BoardModel
 	/**
 	 * Clear jewels from the board.
 	 *
-	 * @param jewels Jewels to clear.
-	 * @return       Gained score.
+	 * @param position Position of moved cell.
+	 * @return         Gained score.
 	 */
 	private int clearMatches(Coordinate position)
 	{
