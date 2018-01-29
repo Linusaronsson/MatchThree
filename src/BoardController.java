@@ -40,9 +40,7 @@ class BoardController
 			selected = null;
 			
 			// Swap the two cells //
-			if (!swapCells(x1, y1, x2, y2)) {
-				view.showError("Invalid move");
-			}
+			swapCells(x1, y1, x2, y2);
 			
 			// Update score //
 			view.updateScore();
@@ -143,16 +141,19 @@ class BoardController
 	 * @param y1 Y-coordinate of first cell.
 	 * @param x2 X-coordinate of second cell.
 	 * @param y2 Y-coordinate of second cell.
-	 * @return   Whether the swap was successful.
 	 */
-	private boolean swapCells(int x1, int y1, int x2, int y2)
+	private void swapCells(int x1, int y1, int x2, int y2)
 	{
-		if (!model.swap(x1, y1, x2, y2)) {
-			return false;
+		// Swap cells //
+		switch (model.swap(x1, y1, x2, y2)) {
+			case OK:     break;
+			case BAD:    view.showError("Invalid move"); break;
+			case CANCEL: break;
+			default:     break; // TODO: Throw exception.
 		}
 		
+		// Update view //
 		view.updateCell(x1, y1);
 		view.updateCell(x2, y2);
-		return true;
 	}
 }

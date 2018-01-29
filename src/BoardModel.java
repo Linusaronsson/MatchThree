@@ -39,6 +39,15 @@ class BoardModel
 	}
 	
 	/**
+	 * Move type enum.
+	 */
+	public enum MoveType {
+		BAD,
+		CANCEL,
+		OK;
+	}
+	
+	/**
 	 * Constructor for `BoardModel` MVC model.
 	 *
 	 * @param width Size of the board on one axis in number of cells.
@@ -122,18 +131,18 @@ class BoardModel
 	 * @param y1 Y-coordinate of the first cell.
 	 * @param x2 X-coordinate of the second cell.
 	 * @param y2 Y-coordinate of the second cell.
-	 * @return   Whether the swap was successful.
+	 * @return   Whether the swap was successful, invalid or canceled.
 	 */
-	public boolean swap(int x1, int y1, int x2, int y2)
+	public MoveType swap(int x1, int y1, int x2, int y2)
 	{
 		// TODO: Validate arguments.
 		
 		// Validate move //
 		if (x1 == x2 && y1 == y2) {
-			return false;
+			return MoveType.CANCEL;
 		}
 		if (x1 != x2 && y1 != y2) {
-			return false;
+			return MoveType.BAD;
 		}
 		
 		// Swap cells //
@@ -146,6 +155,6 @@ class BoardModel
 		// Clear cells //
 		clearMatch(new Jewel[] {first, second});
 		
-		return true;
+		return MoveType.OK;
 	}
 }
