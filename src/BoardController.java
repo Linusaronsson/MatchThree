@@ -79,12 +79,32 @@ class BoardController
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showMessage("You pressed: " + event.getActionCommand());
+			// Get cell coordinates //
+			BoardView.Cell cell = (BoardView.Cell) event.getSource();
+			int x1 = cell.getPositionX();
+			int y1 = cell.getPositionY();
+			Coordinate position = new Coordinate(x1, y1);
 			
-			// Swap two cells //
-			if (!swapCells(0, 0, 0, 2)) {
+			// Select cell if appropriate //
+			if (selected == null) {
+				selected = position;
+				view.setCellState(x1, y1, true);
+				return;
+			}
+			
+			// Deactivate cell //
+			int x2 = selected.x;
+			int y2 = selected.y;
+			view.setCellState(x2, y2, false);
+			selected = null;
+			
+			// Swap the two cells //
+			if (!swapCells(x1, y1, x2, y2)) {
 				view.showError("Could not swap cells");
 			}
+			
+			// Update score //
+			view.updateScore();
 		}
 	}
 	

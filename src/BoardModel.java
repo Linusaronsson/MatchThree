@@ -38,6 +38,7 @@ class BoardModel
 		}
 	}
 	
+	private int score = 0;
 	private List<List<Jewel>> board = null;
 	
 	/**
@@ -115,6 +116,32 @@ class BoardModel
 		board.get(x1).set(y1, second);
 		board.get(x2).set(y2, first);
 		
+		// Clear cells //
+		clearMatch(new Jewel[] {first, second});
+		
 		return true;
+	}
+	
+	/**
+	 * Clear jewels from the board.
+	 *
+	 * @param jewels Jewels to clear.
+	 * @return       Gained score.
+	 */
+	private int clearMatch(Jewel[] jewels)
+	{
+		int points = jewels.length * 100;
+		score += points;
+		return points;
+	}
+	
+	/**
+	 * Get the current score.
+	 *
+	 * @return The current score.
+	 */
+	public int getScore()
+	{
+		return score;
 	}
 }

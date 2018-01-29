@@ -20,11 +20,12 @@ class BoardView
 	// Default fields //
 	private JButton    button    = new JButton("Confirm");
 	private JTextField textField = new JTextField(20);
+	private JLabel     label     = new JLabel("");
 	
 	// Reference fields //
-	private JMenuItem     openItem = null;
-	private JMenuItem     quitItem = null;
-	private List<JButton> board    = null;
+	private JMenuItem  openItem = null;
+	private JMenuItem  quitItem = null;
+	private List<Cell> board    = null;
 	
 	/**
 	 * Constructor for `BoardView` MVC view.
@@ -53,6 +54,7 @@ class BoardView
 		// Initialize components //
 		textField.setText(model.getValue());
 		textField.setEditable(false);
+		updateScore();
 		
 		// Create content pane //
 		JPanel content = new JPanel();
@@ -60,7 +62,7 @@ class BoardView
 		
 		// Construct header //
 		JPanel header = new JPanel(new FlowLayout());
-		header.add(new JLabel("Label"));
+		header.add(label);
 		header.add(textField);
 		header.add(button);
 		content.add(header);
@@ -71,10 +73,10 @@ class BoardView
 		
 		// Fill grid //
 		int width = model.getWidth();
-		board = new ArrayList<JButton>(width * width);
+		board = new ArrayList<Cell>(width * width);
 		for (int i = 0; i < width * width; i++) {
 			// Create button //
-			JButton button = new JButton();
+			Cell button = new Cell(i % width, i / width);
 			
 			// Set button properties //
 			button.setOpaque(true);
@@ -88,13 +90,6 @@ class BoardView
 			button.setBackground(Color.BLACK);
 			button.setPreferredSize(new Dimension(80, 80));
 			button.setFont(new Font("Helvetica Neue", Font.PLAIN, 14));
-			
-			// Select button //
-			if (i == 6) {
-				button.setBackground(new Color(0xEE, 0xEE, 0xEE));
-				button.setForeground(new Color(0x11, 0x11, 0x11));
-				button.setContentAreaFilled(true);
-			}
 			
 			// Get jewel from model //
 			BoardModel.Jewel jewel = model.get(i % width, i / width);
@@ -277,7 +272,7 @@ class BoardView
 		// Get button from view //
 		// TODO: Add assert or rely less on model consistency.
 		int width = model.getWidth();
-		JButton cell = board.get(x % width + y * width);
+		Cell cell = board.get(x % width + y * width);
 		
 		// Update text to match jewel //
 		String value = null;
@@ -300,5 +295,87 @@ class BoardView
 			default: // TODO: Throw runtime error.
 		}
 		cell.setForeground(color);
+	}
+	
+	/**
+	 * Set cell activation state.
+	 *
+	 * @param x         X-coordinate of the cell.
+	 * @param y         Y-coordinate of the cell.
+	 * @param activated Whether cell is active.
+	 */
+	public void setCellState(int x, int y, boolean activated)
+	{
+		// TODO: Validate arguments.
+		
+		// Get the affected cell //
+		// TODO: Validate row-first or column-first store order of grid (and
+		//       make it unambiguous).
+		int width = model.getWidth();
+		Cell cell = board.get(x + y * width);
+		
+		// Set state //
+		if (activated) {
+			cell.setBackground(new Color(0xEE, 0xEE, 0xEE));
+			cell.setForeground(new Color(0x11, 0x11, 0x11));
+			cell.setContentAreaFilled(true);
+		} else {
+			cell.setBackground(Color.BLACK);
+			cell.setForeground(new Color(0xEE, 0xEE, 0xEE));
+			cell.setContentAreaFilled(false);
+		}
+	}
+	
+	/**
+	 * Update score label.
+	 */
+	public void updateScore()
+	{
+		int score = model.getScore();
+		label.setText("Score: " + score);
+	}
+	
+	/**
+	 * Board cell.
+	 */
+	class Cell
+		extends JButton
+	{
+		private int x = 0;
+		private int y = 0;
+		
+		/**
+		 * Constructor for `Cell`.
+		 *
+		 * @param x X-coordinate of cell.
+		 * @param y Y-coordinate of cell.
+		 */
+		public Cell(int x, int y)
+		{
+			super();
+			
+			this.x = x;
+			this.y = y;
+		}
+		
+		/**
+		 * Get the X-coordinate of the cell.
+		 *
+		 * @return The X-coordinate.
+		 */
+		public int getPositionX()
+		{
+			return x;
+		}
+		
+		/**
+		 * Get the Y-coordinate of the cell.
+		 *
+		 * @return The Y-coordinate.
+		 */
+		public int getPositionY()
+		{
+			return y;
+		}
 	}
 }
