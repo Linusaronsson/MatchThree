@@ -39,6 +39,11 @@ class BoardView
 	// TODO: Call parent constructor?
 	public BoardView(BoardModel model)
 	{
+		// Validate argument //
+		if (model == null) {
+			throw new NullPointerException();
+		}
+		
 		this.model = model;
 		
 		// Set application properties //
@@ -110,7 +115,7 @@ class BoardView
 				case EMERALD:  value = "Emerald";  break;
 				case RUBY:     value = "Ruby";     break;
 				case SAPPHIRE: value = "Sapphire"; break;
-				default: // TODO: Throw runtime error.
+				default: throw new IllegalStateException();
 			}
 			button.setText(value);
 			
@@ -121,7 +126,7 @@ class BoardView
 				case EMERALD:  color = COLOR_EMERALD;  break;
 				case RUBY:     color = COLOR_RUBY;     break;
 				case SAPPHIRE: color = COLOR_SAPPHIRE; break;
-				default: // TODO: Throw runtime error.
+				default: throw new IllegalStateException();
 			}
 			button.setForeground(color);
 			
@@ -145,6 +150,11 @@ class BoardView
 	 */
 	public void addBoardListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		for (Cell cell : board) {
 			cell.addActionListener(listener);
 		}
@@ -157,6 +167,11 @@ class BoardView
 	 */
 	public void addButtonListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		button.addActionListener(listener);
 	}
 	
@@ -167,6 +182,11 @@ class BoardView
 	 */
 	public void addNewListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		newItem.addActionListener(listener);
 	}
 	
@@ -177,6 +197,11 @@ class BoardView
 	 */
 	public void addOpenListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		openItem.addActionListener(listener);
 	}
 	
@@ -187,6 +212,11 @@ class BoardView
 	 */
 	public void addQuitListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		quitItem.addActionListener(listener);
 	}
 	
@@ -197,6 +227,11 @@ class BoardView
 	 */
 	public void addSaveListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		saveItem.addActionListener(listener);
 	}
 	
@@ -207,6 +242,11 @@ class BoardView
 	 */
 	public void addWindowListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		addWindowListener(listener);
 	}
 	
@@ -219,6 +259,11 @@ class BoardView
 	// TODO: Research use of `self` parameter name.
 	private static JMenuBar createMenuBar(BoardView self)
 	{
+		// Validate argument //
+		if (self == null) {
+			throw new NullPointerException();
+		}
+		
 		// Create menu bar //
 		JMenuBar menuBar = new JMenuBar();
 		
@@ -255,16 +300,20 @@ class BoardView
 	 */
 	public void setCellState(Coordinate position, boolean activated)
 	{
-		// TODO: Validate arguments.
+		// Validate arguments //
+		if (position == null) {
+			throw new NullPointerException();
+		}
+		int width = model.getWidth();
+		if (position.x >= width || position.y >= width) {
+			throw new IndexOutOfBoundsException();
+		}
 		
 		// Get the affected cell //
-		// TODO: Validate row-first or column-first store order of grid (and
-		//       make it unambiguous).
-		int  width = model.getWidth();
-		int  x     = position.x;
-		int  y     = position.y;
-		int  i     = y * width + x;
-		Cell cell  = board[i];
+		int  x    = position.x;
+		int  y    = position.y;
+		int  i    = y * width + x;
+		Cell cell = board[i];
 		
 		// Set state //
 		if (activated) {
@@ -304,6 +353,11 @@ class BoardView
 	 */
 	public void showError(String message)
 	{
+		// Validate argument //
+		if (message == null) {
+			throw new NullPointerException();
+		}
+		
 		JOptionPane.showMessageDialog(this,
 		                              message,
 		                              message,
@@ -317,6 +371,11 @@ class BoardView
 	 */
 	public void showMessage(String message)
 	{
+		// Validate argument //
+		if (message == null) {
+			throw new NullPointerException();
+		}
+		
 		JOptionPane.showMessageDialog(this,
 		                              message,
 		                              message,
@@ -343,6 +402,11 @@ class BoardView
 	 */
 	public void updateCell(Coordinate position)
 	{
+		// Validate argument //
+		if (position == null) {
+			throw new NullPointerException();
+		}
+		
 		updateCell(position.x, position.y);
 	}
 	
@@ -354,16 +418,22 @@ class BoardView
 	 */
 	public void updateCell(int x, int y)
 	{
-		// TODO: Validate arguments.
+		// Validate arguments //
+		if (x < 0 || y < 0) {
+			throw new IllegalArgumentException();
+		}
+		int width = model.getWidth();
+		if (x >= width || y >= width) {
+			throw new IndexOutOfBoundsException();
+		}
 		
 		// Get jewel from model //
 		BoardModel.Jewel jewel = model.get(x, y);
 		
 		// Get button from view //
-		// TODO: Add assert or rely less on model consistency.
-		int  width = model.getWidth();
-		int  i     = y * width + x;
-		Cell cell  = board[i];
+		// TODO: Add assert for `width` or rely less on model consistency?
+		int  i    = y * width + x;
+		Cell cell = board[i];
 		
 		// Update text to match jewel //
 		String value = "";
@@ -373,7 +443,7 @@ class BoardView
 				case EMERALD:  value = "Emerald";  break;
 				case RUBY:     value = "Ruby";     break;
 				case SAPPHIRE: value = "Sapphire"; break;
-				default: // TODO: Throw runtime error.
+				default: throw new IllegalStateException();
 			}
 		}
 		cell.setText(value);
@@ -386,7 +456,7 @@ class BoardView
 				case EMERALD:  color = new Color(0x50, 0xC8, 0x78); break;
 				case RUBY:     color = new Color(0xE0, 0x11, 0x5F); break;
 				case SAPPHIRE: color = new Color(0x0F, 0x52, 0xBA); break;
-				default: // TODO: Throw runtime error.
+				default: throw new IllegalStateException();
 			}
 		}
 		cell.setForeground(color);
