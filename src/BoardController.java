@@ -20,7 +20,13 @@ class BoardController
 	{
 		public void actionPerformed(ActionEvent event)
 		{
+			// Validate argument //
+			if (event == null) {
+				throw new NullPointerException();
+			}
+			
 			// Get cell coordinates //
+			// TODO: Assert event values?
 			Cell       cell        = (Cell) event.getSource();
 			Coordinate tmp         = cell.getPosition(); // TODO: Implement `clone`.
 			Coordinate clickedCell = new Coordinate(tmp.x, tmp.y);
@@ -147,6 +153,11 @@ class BoardController
 	 */
 	public BoardController(BoardModel model, BoardView view)
 	{
+		// Validate arguments //
+		if (model == null || view == null) {
+			throw new NullPointerException();
+		}
+		
 		this.model = model;
 		this.view  = view;
 		
@@ -168,6 +179,12 @@ class BoardController
 	 */
 	private void moveCell(Coordinate from, Coordinate to)
 	{
+		// Validate arguments //
+		// TODO: Do bounds-checking on coordinates?
+		if (from == null || to == null) {
+			throw new NullPointerException();
+		}
+		
 		// Swap cells //
 		switch (model.move(from, to)) {
 			case OK:     break;

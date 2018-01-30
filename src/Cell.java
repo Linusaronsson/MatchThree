@@ -18,7 +18,10 @@ class Cell
 	{
 		super();
 		
-		// TODO: Validate argument.
+		// Validate argument //
+		if (position == null) {
+			throw new NullPointerException();
+		}
 		
 		this.position = position;
 	}
@@ -32,6 +35,11 @@ class Cell
 	public Cell(int x, int y)
 	{
 		super();
+		
+		// Validate arguments //
+		if (x < 0 || y < 0) {
+			throw new IllegalArgumentException();
+		}
 		
 		position = new Coordinate(x, y);
 	}

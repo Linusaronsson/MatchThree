@@ -4,6 +4,7 @@
 + Handle window resize better.
 
 ## Code quality ##
++ Reduce amount of error-checking?
 + Write a class for managing a two-dimensional grid using coordinates.
 
 ## Code style ##

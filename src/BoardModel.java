@@ -58,7 +58,10 @@ class BoardModel
 	 */
 	public BoardModel(int width)
 	{
-		// TODO: Validate arguments.
+		// Validate argument //
+		if (width < 0) {
+			throw new IllegalArgumentException();
+		}
 		
 		this.width = width;
 		
@@ -78,7 +81,14 @@ class BoardModel
 	// TODO: Revise algorithm and reduce complexity.
 	private int clearMatches(Coordinate[] positions)
 	{
+		// Validate argument //
+		// TODO: Add assert on count not exceeding number of cells.
+		if (positions == null) {
+			throw new NullPointerException();
+		}
+		
 		// Find matches //
+		// TODO: Check for null values inside array?
 		List<List<Coordinate>> matches = new ArrayList<List<Coordinate>>();
 		for (Coordinate position : positions) {
 			// Get jewel type to match //
@@ -168,6 +178,11 @@ class BoardModel
 	 */
 	public Jewel get(Coordinate position)
 	{
+		// Validate argument //
+		if (position == null) {
+			throw new NullPointerException();
+		}
+		
 		return get(position.x, position.y);
 	}
 	
@@ -180,7 +195,13 @@ class BoardModel
 	 */
 	public Jewel get(int x, int y)
 	{
-		// TODO: Add assertions to row and column size.
+		// Validate arguments //
+		if (x < 0 || y < 0) {
+			throw new IllegalArgumentException();
+		}
+		if (x >= width || y >= width) {
+			throw new IndexOutOfBoundsException();
+		}
 		
 		int i = y * width + x;
 		return board[i];
@@ -225,7 +246,10 @@ class BoardModel
 	 */
 	public MoveType move(Coordinate from, Coordinate to)
 	{
-		// TODO: Validate arguments.
+		// Validate arguments //
+		if (from == null || to == null) {
+			throw new NullPointerException();
+		}
 		
 		// Validate move //
 		if (from.x == to.x && from.y == to.y) {
@@ -274,6 +298,11 @@ class BoardModel
 	 */
 	private void set(Coordinate position, Jewel value)
 	{
+		// Validate arguments //
+		if (position == null) {
+			throw new NullPointerException();
+		}
+		
 		set(position.x, position.y, value);
 	}
 	
@@ -286,7 +315,13 @@ class BoardModel
 	 */
 	private void set(int x, int y, Jewel value)
 	{
-		// TODO: Add assertions to row and column size.
+		// Validate arguments //
+		if (x < 0 || y < 0) {
+			throw new IllegalArgumentException();
+		}
+		if (x >= width || y >= width) {
+			throw new IndexOutOfBoundsException();
+		}
 		
 		int i = y * width + x;
 		board[i] = value;
