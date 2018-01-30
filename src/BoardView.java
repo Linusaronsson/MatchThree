@@ -77,14 +77,9 @@ class BoardView
 		content.add(header);
 		
 		// Construct grid //
-<<<<<<< HEAD
-		JPanel grid = new JPanel(new GridLayout(model.getWidth(), model.getWidth()));
-		grid.setBackground(new Color(0x11, 0x11, 0x11));
-=======
 		int width = model.getWidth();
 		JPanel grid = new JPanel(new GridLayout(width, width));
 		grid.setBackground(COLOR_BACKGROUND);
->>>>>>> 308e7a415a8f7d9f837255c4162c0a7edf8f23f4
 		
 		// Fill grid //
 		board = new Cell[width * width];
@@ -148,9 +143,6 @@ class BoardView
 		this.pack();
 	}
 	
-<<<<<<< HEAD
-	
-=======
 	/**
 	 * Add listener for board cell actions (clicks).
 	 *
@@ -184,7 +176,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for “New” menu item.
+	 * Add listener for â€œNewâ€� menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -199,7 +191,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for “Open” menu item.
+	 * Add listener for â€œOpenâ€� menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -214,7 +206,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for “Quit” menu item.
+	 * Add listener for â€œQuitâ€� menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -229,7 +221,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for “Save” menu item.
+	 * Add listener for â€œSaveâ€� menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -286,19 +278,19 @@ class BoardView
 		
 		// Create "Quit" menu item //
 =======
-		// Create “New” menu item //
+		// Create â€œNewâ€� menu item //
 		self.newItem = new JMenuItem("New");
 		fileMenu.add(self.newItem);
 		
-		// Create “Open” menu item //
+		// Create â€œOpenâ€� menu item //
 		self.openItem = new JMenuItem("Open");
 		fileMenu.add(self.openItem);
 		
-		// Create “Save” menu item //
+		// Create â€œSaveâ€� menu item //
 		self.saveItem = new JMenuItem("Save");
 		fileMenu.add(self.saveItem);
 		
-		// Create “Quit” menu item //
+		// Create â€œQuitâ€� menu item //
 >>>>>>> 308e7a415a8f7d9f837255c4162c0a7edf8f23f4
 		self.quitItem = new JMenuItem("Quit");
 		fileMenu.add(self.quitItem);
