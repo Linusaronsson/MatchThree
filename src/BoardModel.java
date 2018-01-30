@@ -167,6 +167,26 @@ class BoardModel
 			score  += match_points;
 		}
 		
+		// Drop cells //
+		for (int column = 0; column < width; column++) {
+			for (int row = width - 1; row >= 0; --row) {
+				// Move cell down to last empty space //
+				for (int index = row; index < width - 1; index++) {
+					int i1 = (index + 0) * width + column;
+					int i2 = (index + 1) * width + column;
+					if (board[i2] != null) {
+						break;
+					}
+					board[i2] = board[i1];
+					board[i1] = null;
+				}
+			}
+		}
+		
+		// TODO: Refill board.
+		
+		// TODO: Clear board again.
+		
 		return points;
 	}
 	
