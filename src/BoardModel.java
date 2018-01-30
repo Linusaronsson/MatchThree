@@ -183,7 +183,13 @@ class BoardModel
 			}
 		}
 		
-		// TODO: Refill board.
+		// Refill board //
+		// TODO: Assert that holes are not filled (fill from the top).
+		for (int i = 0; i < width * width; i++) {
+			if (board[i] == null) {
+				board[i] = Jewel.random();
+			}
+		}
 		
 		// TODO: Clear board again.
 		
