@@ -416,6 +416,7 @@ class BoardView
 	 * @param x X-coordinate of the cell.
 	 * @param y Y-coordinate of the cell.
 	 */
+	// TODO: Reduce code duplication.
 	public void updateCell(int x, int y)
 	{
 		// Validate arguments //
@@ -452,10 +453,10 @@ class BoardView
 		Color color = Color.BLACK;
 		if (jewel != null) {
 			switch (jewel) {
-				case DIAMOND:  color = new Color(0xB9, 0xF2, 0xFF); break;
-				case EMERALD:  color = new Color(0x50, 0xC8, 0x78); break;
-				case RUBY:     color = new Color(0xE0, 0x11, 0x5F); break;
-				case SAPPHIRE: color = new Color(0x0F, 0x52, 0xBA); break;
+				case DIAMOND:  color = COLOR_DIAMOND;  break;
+				case EMERALD:  color = COLOR_EMERALD;  break;
+				case RUBY:     color = COLOR_RUBY;     break;
+				case SAPPHIRE: color = COLOR_SAPPHIRE; break;
 				default: throw new IllegalStateException();
 			}
 		}
