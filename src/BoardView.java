@@ -109,24 +109,28 @@ class BoardView
 			BoardModel.Jewel jewel = model.get(x, y);
 			
 			// Update text to match jewel //
-			String value = null;
-			switch (jewel) {
-				case DIAMOND:  value = "Diamond";  break;
-				case EMERALD:  value = "Emerald";  break;
-				case RUBY:     value = "Ruby";     break;
-				case SAPPHIRE: value = "Sapphire"; break;
-				default: throw new IllegalStateException();
+			String value = "";
+			if (jewel != null) {
+				switch (jewel) {
+					case DIAMOND:  value = "Diamond";  break;
+					case EMERALD:  value = "Emerald";  break;
+					case RUBY:     value = "Ruby";     break;
+					case SAPPHIRE: value = "Sapphire"; break;
+					default: throw new IllegalStateException();
+				}
 			}
 			button.setText(value);
 			
 			// Update color to match jewel //
-			Color color = null;
-			switch (jewel) {
-				case DIAMOND:  color = COLOR_DIAMOND;  break;
-				case EMERALD:  color = COLOR_EMERALD;  break;
-				case RUBY:     color = COLOR_RUBY;     break;
-				case SAPPHIRE: color = COLOR_SAPPHIRE; break;
-				default: throw new IllegalStateException();
+			Color color = Color.BLACK;
+			if (jewel != null) {
+				switch (jewel) {
+					case DIAMOND:  color = COLOR_DIAMOND;  break;
+					case EMERALD:  color = COLOR_EMERALD;  break;
+					case RUBY:     color = COLOR_RUBY;     break;
+					case SAPPHIRE: color = COLOR_SAPPHIRE; break;
+					default: throw new IllegalStateException();
+				}
 			}
 			button.setForeground(color);
 			
