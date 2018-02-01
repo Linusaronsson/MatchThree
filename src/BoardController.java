@@ -61,35 +61,31 @@ class BoardController
 	}
 	
 	/**
-<<<<<<< HEAD
-	 * Listens for "Open" menu item.
-=======
-	 * Listens for “New” menu item.
+	 * Listens for [New] menu item.
 	 */
 	class NewListener
 		implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showError("“New” not implemented");
+			view.showError("[New] not implemented");
 		}
 	}
 	
 	/**
-	 * Listens for “Open” menu item.
->>>>>>> 308e7a415a8f7d9f837255c4162c0a7edf8f23f4
+	 * Listens for [Open] menu item.
 	 */
 	class OpenListener
 		implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showError("\"Open\" not implemented");
+			view.showError("[Open] not implemented");
 		}
 	}
 	
 	/**
-	 * Listens for "Quit" menu item.
+	 * Listens for [Quit] menu item.
 	 */
 	class QuitListener
 		implements ActionListener
@@ -103,14 +99,14 @@ class BoardController
 	}
 	
 	/**
-	 * Listens for “Save” menu item.
+	 * Listens for [Save] menu item.
 	 */
 	class SaveListener
 		implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showError("“Save” not implemented");
+			view.showError("[Save] not implemented");
 		}
 	}
 	
@@ -192,6 +188,10 @@ class BoardController
 			case CANCEL: break;
 			default:     break; // TODO: Throw exception.
 		}
+		
+		// Play swap audio //
+		view.prepareAudioClips();
+		view.getAudioSwap().start();
 		
 		// Update view //
 		view.update();

@@ -2,6 +2,13 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
+import java.io.*;
+import java.awt.image.*;
+import javax.imageio.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+
 /**
  * MVC view.
  */
@@ -30,6 +37,13 @@ class BoardView
 	private JMenuItem  saveItem  = null;
 	private JTextField textField = new JTextField(20);
 	
+	private BufferedImage img1 = null;
+	private BufferedImage img2 = null;
+	private BufferedImage img3 = null;
+	private BufferedImage img4 = null;
+	
+	private Clip audioSwap = null;
+	
 	/**
 	 * Constructor for `BoardView` MVC view.
 	 *
@@ -55,6 +69,12 @@ class BoardView
 		JMenuBar menuBar = createMenuBar(this);
 		this.setJMenuBar(menuBar);
 		
+		// Prepare graphics for the buttons //
+		prepareGraphics();
+		
+		// Prepare audio-clips //
+		prepareAudioClips();
+		
 		// Initialize components //
 		textField.setText(model.getValue());
 		textField.setEditable(false);
@@ -72,14 +92,9 @@ class BoardView
 		content.add(header);
 		
 		// Construct grid //
-<<<<<<< HEAD
-		JPanel grid = new JPanel(new GridLayout(model.getWidth(), model.getWidth()));
-		grid.setBackground(new Color(0x11, 0x11, 0x11));
-=======
 		int width = model.getWidth();
 		JPanel grid = new JPanel(new GridLayout(width, width));
 		grid.setBackground(COLOR_BACKGROUND);
->>>>>>> 308e7a415a8f7d9f837255c4162c0a7edf8f23f4
 		
 		// Fill grid //
 		board = new Cell[width * width];
@@ -111,12 +126,13 @@ class BoardView
 			// Update text to match jewel //
 			String value = null;
 			switch (jewel) {
-				case DIAMOND:  value = "Diamond";  break;
-				case EMERALD:  value = "Emerald";  break;
-				case RUBY:     value = "Ruby";     break;
-				case SAPPHIRE: value = "Sapphire"; break;
+				case DIAMOND:  value = "Diamond";  button.setIcon(new ImageIcon(img1)); break;
+				case EMERALD:  value = "Emerald";  button.setIcon(new ImageIcon(img2)); break;
+				case RUBY:     value = "Ruby";     button.setIcon(new ImageIcon(img3)); break;
+				case SAPPHIRE: value = "Sapphire"; button.setIcon(new ImageIcon(img4)); break;
 				default: // TODO: Throw runtime error.
 			}
+			value = "";
 			button.setText(value);
 			
 			// Update color to match jewel //
@@ -143,9 +159,42 @@ class BoardView
 		this.pack();
 	}
 	
-<<<<<<< HEAD
+	/**
+	 * Prepare graphics for the buttons
+	 */
+	public void prepareGraphics() {
+		try {
+			img1 = ImageIO.read(new File("src/Diamond.png"));
+			img2 = ImageIO.read(new File("src/Emerald.png"));
+			img3 = ImageIO.read(new File("src/Ruby.png"));
+			img4 = ImageIO.read(new File("src/Sapphire.png"));
+		}
+		catch(IOException e) {System.out.println("IOException detected!"); }
+	}
 	
-=======
+	/**
+	 * Prepare audio-clips
+	 */
+	public void prepareAudioClips() {
+		try {
+			AudioInputStream audioInputStream = 
+                AudioSystem.getAudioInputStream(new File("src/sound1.wav").getAbsoluteFile());
+         
+			// create clip reference
+			audioSwap = AudioSystem.getClip();
+         
+			// open audioInputStream to the clip
+			audioSwap.open(audioInputStream);
+			
+		} catch (Exception e) { 
+			e.printStackTrace(); 
+		}
+	}
+	
+	public Clip getAudioSwap() {
+		return audioSwap;
+	}
+	
 	/**
 	 * Add listener for board cell actions (clicks).
 	 *
@@ -169,7 +218,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for â€œNewâ€� menu item.
+	 * Add listener for [New] menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -179,7 +228,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for â€œOpenâ€� menu item.
+	 * Add listener for [Open] menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -189,7 +238,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for â€œQuitâ€� menu item.
+	 * Add listener for [Quit] menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -199,7 +248,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for â€œSaveâ€� menu item.
+	 * Add listener for [Save] menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -217,7 +266,6 @@ class BoardView
 	{
 		addWindowListener(listener);
 	}
->>>>>>> 308e7a415a8f7d9f837255c4162c0a7edf8f23f4
 	
 	/**
 	 * Create window menu bar.
@@ -234,27 +282,19 @@ class BoardView
 		// Create menus //
 		JMenu fileMenu = new JMenu("File");
 		
-<<<<<<< HEAD
-		// Create "Open" menu item //
-		self.openItem = new JMenuItem("Open");
-		fileMenu.add(self.openItem);
-		
-		// Create "Quit" menu item //
-=======
-		// Create â€œNewâ€� menu item //
+		// Create [New] menu item //
 		self.newItem = new JMenuItem("New");
 		fileMenu.add(self.newItem);
 		
-		// Create â€œOpenâ€� menu item //
+		// Create [Open] menu item //
 		self.openItem = new JMenuItem("Open");
 		fileMenu.add(self.openItem);
 		
-		// Create â€œSaveâ€� menu item //
+		// Create [Save] menu item //
 		self.saveItem = new JMenuItem("Save");
 		fileMenu.add(self.saveItem);
 		
-		// Create â€œQuitâ€� menu item //
->>>>>>> 308e7a415a8f7d9f837255c4162c0a7edf8f23f4
+		// Create [Quit] menu item //
 		self.quitItem = new JMenuItem("Quit");
 		fileMenu.add(self.quitItem);
 		
@@ -315,54 +355,7 @@ class BoardView
 	}
 	
 	/**
-<<<<<<< HEAD
-	 * Add listener for "Open" menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addOpenListener(ActionListener listener)
-	{
-		openItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for "Quit" menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addQuitListener(ActionListener listener)
-	{
-		quitItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for top button press.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addButtonListener(ActionListener listener)
-	{
-		button.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for board cell actions (clicks).
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addBoardListener(ActionListener listener)
-	{
-		int width = model.getWidth();
-		for (int i = 0; i < width * width; i++) {
-			board.get(i).addActionListener(listener);
-		}
-	}
-	
-	/**
-	 * Add listener for window events.
-=======
 	 * Display an error message.
->>>>>>> 7cbe82bf5ae192bd3a24749ab02b08fb4abc6b1e
 	 *
 	 * @param message The message to display.
 	 */
@@ -433,12 +426,17 @@ class BoardView
 		String value = "";
 		if (jewel != null) {
 			switch (jewel) {
-				case DIAMOND:  value = "Diamond";  break;
-				case EMERALD:  value = "Emerald";  break;
-				case RUBY:     value = "Ruby";     break;
-				case SAPPHIRE: value = "Sapphire"; break;
+				case DIAMOND:  value = "Diamond";  cell.setIcon(new ImageIcon(img1)); break;
+				case EMERALD:  value = "Emerald";  cell.setIcon(new ImageIcon(img2)); break;
+				case RUBY:     value = "Ruby";     cell.setIcon(new ImageIcon(img3)); break;
+				case SAPPHIRE: value = "Sapphire"; cell.setIcon(new ImageIcon(img4)); break;
 				default: // TODO: Throw runtime error.
 			}
+			value = "";
+		}
+		else {
+			cell.setIcon(null);
+			value = "";
 		}
 		cell.setText(value);
 		
@@ -446,10 +444,10 @@ class BoardView
 		Color color = Color.BLACK;
 		if (jewel != null) {
 			switch (jewel) {
-				case DIAMOND:  color = new Color(0xB9, 0xF2, 0xFF); break;
-				case EMERALD:  color = new Color(0x50, 0xC8, 0x78); break;
-				case RUBY:     color = new Color(0xE0, 0x11, 0x5F); break;
-				case SAPPHIRE: color = new Color(0x0F, 0x52, 0xBA); break;
+				case DIAMOND:  color = COLOR_DIAMOND; 	break;
+				case EMERALD:  color = COLOR_EMERALD; 	break;
+				case RUBY:     color = COLOR_RUBY; 		break;
+				case SAPPHIRE: color = COLOR_SAPPHIRE; 	break;
 				default: // TODO: Throw runtime error.
 			}
 		}
