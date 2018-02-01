@@ -20,7 +20,8 @@ class BoardModel
 	/**
 	 * Cell symbol enum.
 	 */
-	public enum Jewel {
+	public enum Jewel
+	{
 		DIAMOND,
 		EMERALD,
 		RUBY,
@@ -47,7 +48,8 @@ class BoardModel
 	/**
 	 * Move type enum.
 	 */
-	public enum MoveType {
+	public enum MoveType
+	{
 		BAD,
 		CANCEL,
 		OK;
