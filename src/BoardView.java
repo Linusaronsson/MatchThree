@@ -152,6 +152,11 @@ class BoardView
 	 */
 	public void addBoardListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		for (Cell cell : board) {
 			cell.addActionListener(listener);
 		}
@@ -164,6 +169,11 @@ class BoardView
 	 */
 	public void addButtonListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		button.addActionListener(listener);
 	}
 	
@@ -174,6 +184,11 @@ class BoardView
 	 */
 	public void addNewListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		newItem.addActionListener(listener);
 	}
 	
@@ -184,6 +199,11 @@ class BoardView
 	 */
 	public void addOpenListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		openItem.addActionListener(listener);
 	}
 	
@@ -194,6 +214,11 @@ class BoardView
 	 */
 	public void addQuitListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		quitItem.addActionListener(listener);
 	}
 	
@@ -204,6 +229,11 @@ class BoardView
 	 */
 	public void addSaveListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		saveItem.addActionListener(listener);
 	}
 	
@@ -214,6 +244,11 @@ class BoardView
 	 */
 	public void addWindowListener(ActionListener listener)
 	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
 		addWindowListener(listener);
 	}
 	
@@ -299,6 +334,11 @@ class BoardView
 	// TODO: Research use of `self` parameter name.
 	private static JMenuBar createMenuBar(BoardView self)
 	{
+		// Validate argument //
+		if (self == null) {
+			throw new NullPointerException();
+		}
+		
 		// Create menu bar //
 		JMenuBar menuBar = new JMenuBar();
 		
@@ -335,7 +375,14 @@ class BoardView
 	 */
 	public void setCellState(Coordinate position, boolean activated)
 	{
-		// TODO: Validate arguments.
+		// Validate arguments //
+		if (position == null) {
+				throw new NullPointerException();
+		}
+		int width = model.getWidth();
+		if (position.x >= width || position.y >= width) {
+				throw new IndexOutOfBoundsException();
+		}
 		
 		// Get the affected cell //
 		// TODO: Validate row-first or column-first store order of grid (and
@@ -384,6 +431,11 @@ class BoardView
 	 */
 	public void showError(String message)
 	{
+		// Validate argument //
+		if (message == null) {
+			throw new NullPointerException();
+		}
+		
 		JOptionPane.showMessageDialog(this,
 		                              message,
 		                              message,
@@ -397,6 +449,11 @@ class BoardView
 	 */
 	public void showMessage(String message)
 	{
+		// Validate argument //
+		if (message == null) {
+			throw new NullPointerException();
+		}
+		
 		JOptionPane.showMessageDialog(this,
 		                              message,
 		                              message,
@@ -423,6 +480,11 @@ class BoardView
 	 */
 	public void updateCell(Coordinate position)
 	{
+		// Validate argument //
+		if (position == null) {
+			throw new NullPointerException();
+		}
+		
 		updateCell(position.x, position.y);
 	}
 	
@@ -434,7 +496,14 @@ class BoardView
 	 */
 	public void updateCell(int x, int y)
 	{
-		// TODO: Validate arguments.
+		// Validate arguments //
+		if (x < 0 || y < 0) {
+				throw new IllegalArgumentException();
+		}
+		int width = model.getWidth();
+		if (x >= width || y >= width) {
+				throw new IndexOutOfBoundsException();
+		}
 		
 		// Get jewel from model //
 		Jewel jewel = model.get(x, y);
