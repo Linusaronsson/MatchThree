@@ -186,14 +186,19 @@ class BoardController
 		
 		// Swap cells //
 		switch (model.move(from, to)) {
-			case OK:     break;
-			case BAD:    view.showError("Invalid move"); break;
-			case CANCEL: break;
-			default:     break; // TODO: Throw exception.
+			case OK:
+				// Play swap audio //
+				view.playAudioSwap();
+				break;
+			case BAD:
+				view.showError("Invalid move");
+				break;
+			case CANCEL:
+				break;
+			default:
+				// TODO: Throw exception.
+				break;
 		}
-		
-		// Play swap audio //
-		view.playAudioSwap();
 		
 		// Update view //
 		view.update();
