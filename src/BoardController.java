@@ -2,6 +2,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * MVC controller.
@@ -40,7 +43,15 @@ class BoardController
 			
 			// Deactivate and swap cells //
 			view.setCellState(activeCell, false);
-			moveCell(activeCell, clickedCell);
+			try {
+				moveCell(activeCell, clickedCell);
+			} catch (IOException
+			      | LineUnavailableException
+			      | UnsupportedAudioFileException e)
+			{
+			    System.out.println("An IO-related error occurred. Exiting.");
+			    System.exit(1);
+			}
 			activeCell = null;
 			
 			// Update score //
@@ -174,6 +185,9 @@ class BoardController
 	 * @param position2 Coordinates of second cell.
 	 */
 	private void moveCell(Coordinate from, Coordinate to)
+		throws IOException,
+		       LineUnavailableException,
+		       UnsupportedAudioFileException
 	{
 		// Validate arguments //
 		// TODO: Do bounds-checking on coordinates?
