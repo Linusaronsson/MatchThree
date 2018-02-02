@@ -4,8 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.*;
 import java.io.*;
-import java.util.Observer;
-
 import javax.imageio.*;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
