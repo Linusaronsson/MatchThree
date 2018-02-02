@@ -168,7 +168,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for [New] menu item.
+	 * Add listener for "New" menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -178,7 +178,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for [Open] menu item.
+	 * Add listener for "Open" menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -188,7 +188,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for [Quit] menu item.
+	 * Add listener for "Quit" menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -198,7 +198,7 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for [Save] menu item.
+	 * Add listener for "Save" menu item.
 	 *
 	 * @param listener Event handler.
 	 */
@@ -305,19 +305,19 @@ class BoardView
 		// Create menus //
 		JMenu fileMenu = new JMenu("File");
 		
-		// Create [New] menu item //
+		// Create "New" menu item //
 		self.newItem = new JMenuItem("New");
 		fileMenu.add(self.newItem);
 		
-		// Create [Open] menu item //
+		// Create "Open" menu item //
 		self.openItem = new JMenuItem("Open");
 		fileMenu.add(self.openItem);
 		
-		// Create [Save] menu item //
+		// Create "Save" menu item //
 		self.saveItem = new JMenuItem("Save");
 		fileMenu.add(self.saveItem);
 		
-		// Create [Quit] menu item //
+		// Create "Quit" menu item //
 		self.quitItem = new JMenuItem("Quit");
 		fileMenu.add(self.quitItem);
 		
