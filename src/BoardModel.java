@@ -53,6 +53,7 @@ class BoardModel
 	 * @return          Gained score.
 	 */
 	// TODO: Revise algorithm and reduce complexity.
+	// TODO: Break into multiple methods with single responsibilities.
 	private int clearMatches(Coordinate[] positions)
 	{
 		// Validate argument //
