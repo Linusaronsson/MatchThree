@@ -441,6 +441,11 @@ class BoardModel
 	 */
 	private void swap(Coordinate first, Coordinate second)
 	{
+		// Validate arguments //
+		if (first == null || second == null) {
+			throw new NullPointerException();
+		}
+		
 		Jewel firstType  = get(first);
 		Jewel secondType = get(second);
 		set(first, secondType);
