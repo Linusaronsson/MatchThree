@@ -33,14 +33,15 @@ class BoardController
 			
 			// Activate cell if appropriate //
 			if (activeCell == null) {
-				setActiveCell(clickedCell);
+				activeCell = clickedCell;
+				view.setCellState(activeCell, true);
 				return;
 			}
 			
 			// Deactivate and swap cells //
-			Coordinate from = activeCell;
-			setActiveCell(null);
-			moveCell(from, clickedCell);
+			view.setCellState(activeCell, false);
+			moveCell(activeCell, clickedCell);
+			activeCell = null;
 			
 			// Update score //
 			view.updateScore();
@@ -60,32 +61,31 @@ class BoardController
 	}
 	
 	/**
-	 * Listens for "New" menu item.
+	 * Listens for [New] menu item.
 	 */
 	class NewListener
 		implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			// Restart the game //
-			restartGame();
+			view.showError("[New] not implemented");
 		}
 	}
 	
 	/**
-	 * Listens for "Open" menu item.
+	 * Listens for [Open] menu item.
 	 */
 	class OpenListener
 		implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showError("“Open” not implemented");
+			view.showError("[Open] not implemented");
 		}
 	}
 	
 	/**
-	 * Listens for "Quit" menu item.
+	 * Listens for [Quit] menu item.
 	 */
 	class QuitListener
 		implements ActionListener
@@ -99,14 +99,14 @@ class BoardController
 	}
 	
 	/**
-	 * Listens for "Save" menu item.
+	 * Listens for [Save] menu item.
 	 */
 	class SaveListener
 		implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showError("“Save” not implemented");
+			view.showError("[Save] not implemented");
 		}
 	}
 	
@@ -183,58 +183,17 @@ class BoardController
 		
 		// Swap cells //
 		switch (model.move(from, to)) {
-			case OK:
-				// Play swap audio //
-				view.playAudioSwap();
-				break;
-			case BAD:
-				view.showError("Invalid move");
-				break;
-			case CANCEL:
-				break;
-			default:
-				// TODO: Throw exception.
-				break;
+			case OK:     break;
+			case BAD:    view.showError("Invalid move"); break;
+			case CANCEL: break;
+			default:     break; // TODO: Throw exception.
 		}
+		
+		// Play swap audio //
+		view.prepareAudioClips();
+		view.getzSwap().start();
 		
 		// Update view //
 		view.update();
-	}
-	
-	/**
-	 * Resets model to its initial state.
-	 */
-	private void restartGame()
-	{
-		// Reset active cell //
-		setActiveCell(null);
-		
-		// Reinitialize model //
-		model.init();
-		
-		// Update view //
-		view.update();
-		view.updateScore();
-	}
-	
-	/**
-	 * Set or unset the currently active cell.
-	 *
-	 * @param position Coordinates of the cell to make active, or null if none.
-	 */
-	private void setActiveCell(Coordinate position)
-	{
-		// Deactivate cell if appropriate //
-		if (activeCell != null) {
-			view.setCellState(activeCell, false);
-		}
-		
-		// Activate new cell if appropriate //
-		if (position != null) {
-			view.setCellState(position, true);
-		}
-		
-		// Update reference //
-		activeCell = position;
 	}
 }
