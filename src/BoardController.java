@@ -43,15 +43,7 @@ class BoardController
 			
 			// Deactivate and swap cells //
 			view.setCellState(activeCell, false);
-			try {
-				moveCell(activeCell, clickedCell);
-			} catch (IOException
-			      | LineUnavailableException
-			      | UnsupportedAudioFileException e)
-			{
-				System.out.println(e);
-			    System.exit(1);
-			}
+			moveCell(activeCell, clickedCell);
 			activeCell = null;
 			
 			// Update score //
@@ -185,9 +177,6 @@ class BoardController
 	 * @param position2 Coordinates of second cell.
 	 */
 	private void moveCell(Coordinate from, Coordinate to)
-		throws IOException,
-		       LineUnavailableException,
-		       UnsupportedAudioFileException
 	{
 		// Validate arguments //
 		// TODO: Do bounds-checking on coordinates?
@@ -204,7 +193,6 @@ class BoardController
 		}
 		
 		// Play swap audio //
-		view.prepareAudio();
 		view.playAudioSwap();
 		
 		// Update view //

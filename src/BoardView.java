@@ -141,6 +141,7 @@ class BoardView
 	 */
 	public void playAudioSwap()
 	{
+		audioSwap.setFramePosition(0);
 		audioSwap.start();
 	}
 	
