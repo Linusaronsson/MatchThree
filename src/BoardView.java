@@ -51,6 +51,11 @@ class BoardView
 	// TODO: Call parent constructor?
 	public BoardView(BoardModel model)
 	{
+		// Validate argument //
+		if (model == null) {
+			throw new NullPointerException();
+		}
+		
 		this.model = model;
 		
 		// Set application properties //
