@@ -1,0 +1,4 @@
+address: sidju.noip.me:3306
+type: mysql
+username: java
+password: aoeuhtns
