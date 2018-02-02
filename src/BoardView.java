@@ -102,7 +102,7 @@ class BoardView
 	}
 	
 	/**
-	 * Prepare graphics for the buttons
+	 * Load external image resources.
 	 */
 	public void prepareGraphics() {
 		try {
@@ -115,7 +115,7 @@ class BoardView
 	}
 	
 	/**
-	 * Prepare audio-clips
+	 * Load external audio resources.
 	 */
 	public void prepareAudio() {
 		try {
