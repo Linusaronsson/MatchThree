@@ -39,6 +39,7 @@ class BoardModel
 		this.width = width;
 		
 		// Construct board //
+		// TODO: Is it necessary to null-initialize array?
 		board = new Jewel[width * width];
 		for (int i = 0; i < width * width; i++) {
 			board[i] = null;
