@@ -6,6 +6,8 @@ import javax.imageio.*;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 /**
@@ -50,6 +52,9 @@ class BoardView
 	// TODO: Break into multiple methods?
 	// TODO: Call parent constructor?
 	public BoardView(BoardModel model)
+		throws IOException,
+		       LineUnavailableException,
+		       UnsupportedAudioFileException
 	{
 		// Validate argument //
 		if (model == null) {
@@ -104,21 +109,23 @@ class BoardView
 	/**
 	 * Load external image resources.
 	 */
-	public void prepareGraphics() {
-		try {
-			imageDiamond  = ImageIO.read(new File("src/Diamond.png"));
-			imageEmerald  = ImageIO.read(new File("src/Emerald.png"));
-			imageRuby     = ImageIO.read(new File("src/Ruby.png"));
-			imageSapphire = ImageIO.read(new File("src/Sapphire.png"));
-		}
-		catch(IOException e) {System.out.println("IOException detected!"); }
+	public void prepareGraphics()
+		throws IOException
+	{
+		imageDiamond  = ImageIO.read(new File("src/Diamond.png"));
+		imageEmerald  = ImageIO.read(new File("src/Emerald.png"));
+		imageRuby     = ImageIO.read(new File("src/Ruby.png"));
+		imageSapphire = ImageIO.read(new File("src/Sapphire.png"));
 	}
 	
 	/**
 	 * Load external audio resources.
 	 */
-	public void prepareAudio() {
-		try {
+	public void prepareAudio()
+		throws IOException,
+		       LineUnavailableException,
+		       UnsupportedAudioFileException
+	{
 			AudioInputStream audioInputStream = 
                 AudioSystem.getAudioInputStream(new File("src/sound1.wav").getAbsoluteFile());
          
@@ -127,10 +134,6 @@ class BoardView
          
 			// open audioInputStream to the clip
 			audioSwap.open(audioInputStream);
-			
-		} catch (Exception e) { 
-			e.printStackTrace(); 
-		}
 	}
 	
 	public Clip getAudioSwap() {
