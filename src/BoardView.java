@@ -71,9 +71,6 @@ class BoardView
 	// TODO: Break into multiple methods?
 	// TODO: Call parent constructor?
 	public BoardView(BoardModel model)
-		throws IOException,
-		       LineUnavailableException,
-		       UnsupportedAudioFileException
 	{
 		// Validate argument //
 		if (model == null) {
@@ -324,38 +321,120 @@ class BoardView
 	 */
 	public void playAudioSwap()
 	{
-		audioSwap.setFramePosition(0);
-		audioSwap.start();
+		// Rewind and play clip //
+		if (audioSwap != null) {
+			audioSwap.setFramePosition(0);
+			audioSwap.start();
+		}
 	}
 	
 	/**
 	 * Load external audio resources.
 	 */
 	private void prepareAudio()
-		throws IOException,
-		       LineUnavailableException,
-		       UnsupportedAudioFileException
 	{
 		// Read audio from file //
 		File audioFile = new File(DIR_RESOURCES, "Swap.wav").getAbsoluteFile();
-		AudioInputStream audioStream =
-			AudioSystem.getAudioInputStream(audioFile);
+		AudioInputStream audioStream = null;
+		try {
+			audioStream = AudioSystem.getAudioInputStream(audioFile);
+		} catch (IOException
+		       | UnsupportedAudioFileException e)
+		{
+			System.err.printf(
+				"Failed to read \"%s\":%s",
+				audioFile,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				e,
+				System.lineSeparator()
+			);
+			return;
+		}
 		
 		// Send audio to system mixer //
-		audioSwap = AudioSystem.getClip();
-		audioSwap.open(audioStream);
+		try {
+			audioSwap = AudioSystem.getClip();
+			audioSwap.open(audioStream);
+		} catch (IOException
+		       | LineUnavailableException e)
+		{
+			System.err.println(e);
+			audioSwap = null;
+			return;
+		}
 	}
 	
 	/**
 	 * Load external image resources.
 	 */
 	private void prepareGraphics()
-		throws IOException
 	{
-		imageDiamond  = ImageIO.read(new File(DIR_RESOURCES, "Diamond.png"));
-		imageEmerald  = ImageIO.read(new File(DIR_RESOURCES, "Emerald.png"));
-		imageRuby     = ImageIO.read(new File(DIR_RESOURCES, "Ruby.png"));
-		imageSapphire = ImageIO.read(new File(DIR_RESOURCES, "Sapphire.png"));
+		// Get paths //
+		File fileDiamond  = new File(DIR_RESOURCES, "Diamond.png");
+		File fileEmerald  = new File(DIR_RESOURCES, "Emerald.png");
+		File fileRuby     = new File(DIR_RESOURCES, "Ruby.png");
+		File fileSapphire = new File(DIR_RESOURCES, "Sapphire.png");
+		
+		// Load images //
+		try {
+			imageDiamond = ImageIO.read(fileDiamond);
+		} catch (IOException e) {
+			System.err.printf(
+				"Failed to read \"%s\":%s",
+				fileDiamond,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				e,
+				System.lineSeparator()
+			);
+		}
+		try {
+			imageEmerald = ImageIO.read(fileEmerald);
+		} catch (IOException e) {
+			System.err.printf(
+				"Failed to read \"%s\":%s",
+				fileEmerald,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				e,
+				System.lineSeparator()
+			);
+		}
+		try {
+			imageRuby = ImageIO.read(fileRuby);
+		} catch (IOException e) {
+			System.err.printf(
+				"Failed to read \"%s\":%s",
+				fileRuby,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				e,
+				System.lineSeparator()
+			);
+		}
+		try {
+			imageSapphire = ImageIO.read(fileSapphire);
+		} catch (IOException e) {
+			System.err.printf(
+				"Failed to read \"%s\":%s",
+				fileSapphire,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				e,
+				System.lineSeparator()
+			);
+		}
 	}
 	
 	/**
