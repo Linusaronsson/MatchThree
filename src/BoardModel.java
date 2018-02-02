@@ -376,7 +376,7 @@ class BoardModel
 	}
 	
 	/**
-	 * Move a cell.
+	 * Move a cell and clear any generated chains.
 	 *
 	 * @param from Source coordinates.
 	 * @param to   Destination coordinates.
@@ -427,7 +427,7 @@ class BoardModel
 	}
 	
 	/**
-	 * Set the value of a cell.
+	 * Set the value of a cell. May leave the board in an inconsistent state.
 	 *
 	 * @param position Coordinates of the cell.
 	 * @param value    Value to set.
@@ -443,7 +443,7 @@ class BoardModel
 	}
 	
 	/**
-	 * Set the value of a cell.
+	 * Set the value of a cell. May leave the board in an inconsistent state.
 	 *
 	 * @param x     X-coordinate of the cell.
 	 * @param y     Y-coordinate of the cell.
@@ -464,8 +464,8 @@ class BoardModel
 	}
 	
 	/**
-	 * Convenience method for swapping two cells. Note that this may leave the
-	 * board in an inconsistent state.
+	 * Convenience method for swapping two cells. May leave the board in an
+	 * inconsistent state.
 	 *
 	 * @param first  Coordinates of first cell.
 	 * @param second Coordinates of second cell.
