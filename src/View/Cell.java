@@ -1,10 +1,12 @@
+package View;
 import javax.swing.JButton;
+import Model.*;
 
 /**
  * Board cell.
  */
 @SuppressWarnings("serial")
-class Cell
+public class Cell
 	extends JButton
 {
 	private Coordinate position = null;

@@ -1,7 +1,8 @@
+package Model;
 /**
  * Stores a two-dimensional coordinate, limited to the first quadrant.
  */
-class Coordinate
+public class Coordinate
 {
 	public int x = 0;
 	public int y = 0;

@@ -2,6 +2,10 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import Model.*;
+import Controller.*;
+import View.*;
+
 /**
  * MatchThree game.
  */

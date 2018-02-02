@@ -1,3 +1,4 @@
+package Model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -6,7 +7,7 @@ import java.util.Random;
 /**
  * MVC model.
  */
-class BoardModel
+public class BoardModel
 {
 	private static final int MINIMUM_LENGTH = 3;
 	

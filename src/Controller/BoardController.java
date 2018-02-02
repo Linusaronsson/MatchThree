@@ -1,3 +1,5 @@
+package Controller;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -6,10 +8,13 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import Model.*;
+import View.*;
+
 /**
  * MVC controller.
  */
-class BoardController
+public class BoardController
 {
 	private Coordinate activeCell = null;
 	private BoardModel model      = null;

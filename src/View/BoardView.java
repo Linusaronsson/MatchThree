@@ -1,3 +1,5 @@
+package View;
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.*;
@@ -10,11 +12,13 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
+import Model.*;
+
 /**
  * MVC view.
  */
 @SuppressWarnings("serial")
-class BoardView
+public class BoardView
 	extends JFrame
 {
 	private static final String CELL_FONT_NAME   = "Helvetica Neue";
@@ -374,6 +378,45 @@ class BoardView
 		}
 	}
 	
+	private BufferedImage getImage(Jewel j) {
+		switch(j) {
+			case DIAMOND:  return imageDiamond;
+			case EMERALD:  return imageEmerald;
+			case RUBY:     return imageRuby;
+			case SAPPHIRE: return imageSapphire;
+			case TOPAZ:	   return null;
+			default: throw new IllegalStateException();
+		}
+	}
+	
+	private Color getColor(Jewel j) {
+		switch(j) {
+			case DIAMOND:  return COLOR_DIAMOND;
+			case EMERALD:  return COLOR_EMERALD;
+			case RUBY:     return COLOR_RUBY;
+			case SAPPHIRE: return COLOR_SAPPHIRE;
+			case TOPAZ:	   return COLOR_TOPAZ;
+			default: throw new IllegalStateException();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param Jewel
+	 * @return String representation of specified Jewel
+	 */
+	
+	private String getStr(Jewel j) {
+		switch(j) {
+			case DIAMOND:  return "Diamond";
+			case EMERALD:  return "Emerald";
+			case RUBY:     return "Ruby";
+			case SAPPHIRE: return "Sapphire";
+			case TOPAZ:	   return "Topaz";
+			default: throw new IllegalStateException();
+		}
+	}
+	
 	/**
 	 * Set application properties.
 	 */
@@ -483,40 +526,25 @@ class BoardView
 		int  i    = y * width + x;
 		Cell cell = board[i];
 		
-		// Update text to match jewel //
-		ImageIcon     icon  = null;
-		BufferedImage image = null;
-		String        text  = "";
 		if (jewel != null) {
-			switch (jewel) {
-				case DIAMOND:  text = "Diamond";  image = imageDiamond;  break;
-				case EMERALD:  text = "Emerald";  image = imageEmerald;  break;
-				case RUBY:     text = "Ruby";     image = imageRuby;     break;
-				case SAPPHIRE: text = "Sapphire"; image = imageSapphire; break;
-				case TOPAZ:    text = "Topaz";                           break;
-				default: throw new IllegalStateException();
+			cell.setVisible(true);
+			ImageIcon     icon  = null;
+			BufferedImage image = getImage(jewel);
+			String        text  = getStr(jewel);
+			Color         color = getColor(jewel);
+			
+			if (image != null) {
+				icon = new ImageIcon(image);
+				text = "";
 			}
+			
+			cell.setIcon(icon);
+			cell.setText(text);
+			cell.setForeground(color);
+		} else {
+			// Make cells invisible when removed from board //
+			cell.setVisible(false);
 		}
-		if (image != null) {
-			icon = new ImageIcon(image);
-			text = "";
-		}
-		cell.setIcon(icon);
-		cell.setText(text);
-		
-		// Update color to match jewel //
-		Color color = Color.BLACK;
-		if (jewel != null) {
-			switch (jewel) {
-				case DIAMOND:  color = COLOR_DIAMOND;  break;
-				case EMERALD:  color = COLOR_EMERALD;  break;
-				case RUBY:     color = COLOR_RUBY;     break;
-				case SAPPHIRE: color = COLOR_SAPPHIRE; break;
-				case TOPAZ:    color = COLOR_TOPAZ;    break;
-				default: throw new IllegalStateException();
-			}
-		}
-		cell.setForeground(color);
 	}
 	
 	/**
