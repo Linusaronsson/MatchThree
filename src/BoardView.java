@@ -36,6 +36,7 @@ class BoardView
 	private BufferedImage imageEmerald   = null;
 	private BufferedImage imageRuby      = null;
 	private BufferedImage imageSapphire  = null;
+	private BufferedImage imageTopaz 	 = null;
 	private JLabel        label          = new JLabel("");
 	private BoardModel    model          = null;
 	private JMenuItem     newItem        = null;
@@ -104,6 +105,9 @@ class BoardView
 		// Update window with content //
 		this.setContentPane(content);
 		this.pack();
+		
+		// Set frame location to middle of your computer screen //
+		this.setLocationRelativeTo(null);
 	}
 	
 	/**
@@ -337,6 +341,7 @@ class BoardView
 		imageEmerald  = ImageIO.read(new File("src/Emerald.png"));
 		imageRuby     = ImageIO.read(new File("src/Ruby.png"));
 		imageSapphire = ImageIO.read(new File("src/Sapphire.png"));
+		imageTopaz 	  = ImageIO.read(new File("src/Topaz.png"));
 	}
 	
 	/**
@@ -493,7 +498,7 @@ class BoardView
 				case EMERALD:  text = "Emerald";  image = imageEmerald;  break;
 				case RUBY:     text = "Ruby";     image = imageRuby;     break;
 				case SAPPHIRE: text = "Sapphire"; image = imageSapphire; break;
-				case TOPAZ:    text = "Topaz";                           break;
+				case TOPAZ:    text = "Topaz";    image = imageTopaz; break;
 				default: throw new IllegalStateException();
 			}
 		}
