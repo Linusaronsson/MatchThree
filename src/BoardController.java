@@ -78,6 +78,7 @@ class BoardController
 			
 			// Update view //
 			view.update();
+			view.updateScore();
 		}
 	}
 	
