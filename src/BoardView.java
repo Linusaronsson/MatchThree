@@ -312,7 +312,7 @@ class BoardView
 	/**
 	 * Load external audio resources.
 	 */
-	public void prepareAudio()
+	private void prepareAudio()
 		throws IOException,
 		       LineUnavailableException,
 		       UnsupportedAudioFileException
@@ -330,7 +330,7 @@ class BoardView
 	/**
 	 * Load external image resources.
 	 */
-	public void prepareGraphics()
+	private void prepareGraphics()
 		throws IOException
 	{
 		imageDiamond  = ImageIO.read(new File("src/Diamond.png"));
