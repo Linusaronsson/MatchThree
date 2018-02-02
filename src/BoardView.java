@@ -72,11 +72,9 @@ class BoardView
 		JMenuBar menuBar = createMenuBar(this);
 		this.setJMenuBar(menuBar);
 		
-		// Prepare graphics for the buttons //
-		prepareGraphics();
-		
-		// Prepare audio-clips //
+		// Load external resources //
 		prepareAudio();
+		prepareGraphics();
 		
 		// Initialize components //
 		textField.setText("Hello, World!");
