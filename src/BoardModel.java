@@ -159,9 +159,7 @@ class BoardModel
 				set(position, jewel);
 				
 				// Look for chains //
-				// TODO: Add overloaded method to `findChains`.
-				Coordinate[] list = new Coordinate[] { position };
-				Coordinate[][] chains = findChains(list);
+				Coordinate[][] chains = findChains(position);
 				if (chains.length == 0) {
 					break;
 				}
@@ -173,7 +171,24 @@ class BoardModel
 	}
 	
 	/**
-	 * Identify chains involving affected cells.
+	 * Identify chains involving a single cell.
+	 *
+	 * @param position Coordinate of cell to check.
+	 * @return         Array of chains found.
+	 */
+	private Coordinate[][] findChains(Coordinate position)
+	{
+		// Validate argument //
+		if (position == null) {
+			throw new NullPointerException();
+		}
+		
+		Coordinate[] positions = new Coordinate[] { position };
+		return findChains(positions);
+	}
+	
+	/**
+	 * Identify chains involving a list of cells.
 	 *
 	 * @param positions Coordinates of cells to check.
 	 * @return          Array of chains found.
