@@ -43,7 +43,7 @@ class BoardModel
 		for (int i = 0; i < width * width; i++) {
 			board[i] = null;
 		}
-		fillBoard();
+		fill();
 	}
 	
 	/**
@@ -104,7 +104,7 @@ class BoardModel
 	 * Fill empty spaces in the board. Avoids creating matches. Depending on the
 	 * number of types of jewels, this may not be possible.
 	 */
-	private void fillBoard()
+	private void fill()
 	{
 		Random random = new Random();
 		for (int i = 0; i < width * width; i++) {
@@ -477,7 +477,7 @@ class BoardModel
 		dropCells();
 		
 		// Refill board //
-		fillBoard();
+		fill();
 		
 		// TODO: Clear board again.
 	}
