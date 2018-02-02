@@ -405,11 +405,15 @@ class BoardView
 		
 		// Set look and feel //
 		String lookAndFeel = UIManager.getSystemLookAndFeelClassName();
-		try { UIManager.setLookAndFeel(lookAndFeel); }
-		catch (ClassNotFoundException e) {}
-		catch (InstantiationException e) {}
-		catch (IllegalAccessException e) {}
-		catch (UnsupportedLookAndFeelException e) {}
+		try {
+			UIManager.setLookAndFeel(lookAndFeel);
+		} catch (ClassNotFoundException
+		       | InstantiationException
+		       | IllegalAccessException
+		       | UnsupportedLookAndFeelException e)
+		{
+			System.out.println(e);
+		}
 	}
 	
 	/**
