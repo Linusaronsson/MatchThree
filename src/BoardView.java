@@ -385,13 +385,10 @@ class BoardView
 		}
 		
 		// Get the affected cell //
-		// TODO: Validate row-first or column-first store order of grid (and
-		//       make it unambiguous).
-		int  width = model.getWidth();
-		int  x     = position.x;
-		int  y     = position.y;
-		int  i     = y * width + x;
-		Cell cell  = board[i];
+		int  x    = position.x;
+		int  y    = position.y;
+		int  i    = y * width + x;
+		Cell cell = board[i];
 		
 		// Set state //
 		if (activated) {
@@ -494,6 +491,7 @@ class BoardView
 	 * @param x X-coordinate of the cell.
 	 * @param y Y-coordinate of the cell.
 	 */
+	// TODO: Reduce code duplication.
 	public void updateCell(int x, int y)
 	{
 		// Validate arguments //
@@ -509,10 +507,9 @@ class BoardView
 		Jewel jewel = model.get(x, y);
 		
 		// Get button from view //
-		// TODO: Add assert or rely less on model consistency.
-		int  width = model.getWidth();
-		int  i     = y * width + x;
-		Cell cell  = board[i];
+		// TODO: Add assert for `width` or rely less on model consistency?
+		int  i    = y * width + x;
+		Cell cell = board[i];
 		
 		// Update text to match jewel //
 		String value = "";
