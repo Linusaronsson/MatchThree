@@ -39,12 +39,10 @@ class BoardModel
 		this.width = width;
 		
 		// Construct board //
-		// TODO: Is it necessary to null-initialize array?
 		board = new Jewel[width * width];
-		for (int i = 0; i < width * width; i++) {
-			board[i] = null;
-		}
-		fill();
+		
+		// Set initial state //
+		init();
 	}
 	
 	/**
@@ -323,6 +321,22 @@ class BoardModel
 	public int getWidth()
 	{
 		return width;
+	}
+	
+	/**
+	 * Initialize a new game.
+	 */
+	private void init()
+	{
+		// Reset board //
+		// TODO: Is it necessary to null-initialize array?
+		for (int i = 0; i < width * width; i++) {
+			board[i] = null;
+		}
+		fill();
+		
+		// Reset score //
+		score = 0;
 	}
 	
 	/**
