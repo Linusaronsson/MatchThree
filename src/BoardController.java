@@ -190,7 +190,7 @@ class BoardController
 		}
 		
 		// Play swap audio //
-		view.prepareAudioClips();
+		view.prepareAudio();
 		view.getAudioSwap().start();
 		
 		// Update view //
