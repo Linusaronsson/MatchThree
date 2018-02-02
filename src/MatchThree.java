@@ -29,7 +29,7 @@ public class MatchThree
 		      | LineUnavailableException
 		      | UnsupportedAudioFileException e)
 		{
-			System.out.println(e);
+			System.err.println(e);
 			System.exit(1);
 		}
 	}
