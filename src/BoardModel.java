@@ -47,7 +47,8 @@ class BoardModel
 	}
 	
 	/**
-	 * Clear jewels from the board.
+	 * Clear jewels from the board. May leave the board in an inconsistent
+	 * state.
 	 *
 	 * @param chains Array of chains with aligned cells to clear.
 	 * @return       Gained score.
@@ -346,7 +347,8 @@ class BoardModel
 	}
 	
 	/**
-	 * Move a cell and clear any generated chains.
+	 * Move a cell and clear any generated chains. Leaves the board in a
+	 * consistent state.
 	 *
 	 * @param from Source coordinates.
 	 * @param to   Destination coordinates.
