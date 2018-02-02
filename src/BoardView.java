@@ -94,8 +94,8 @@ class BoardView
 		setJMenuBar(menuBar);
 		
 		// Load external resources //
-		prepareAudio();
-		prepareGraphics();
+		initAudio();
+		initGraphics();
 		
 		// Initialize components //
 		textField.setText("Hello, World!");
@@ -317,21 +317,9 @@ class BoardView
 	}
 	
 	/**
-	 * Play swap audio clip.
-	 */
-	public void playAudioSwap()
-	{
-		// Rewind and play clip //
-		if (audioSwap != null) {
-			audioSwap.setFramePosition(0);
-			audioSwap.start();
-		}
-	}
-	
-	/**
 	 * Load external audio resources.
 	 */
-	private void prepareAudio()
+	private void initAudio()
 	{
 		// Read audio from file //
 		File audioFile = new File(DIR_RESOURCES, "Swap.wav").getAbsoluteFile();
@@ -370,7 +358,7 @@ class BoardView
 	/**
 	 * Load external image resources.
 	 */
-	private void prepareGraphics()
+	private void initGraphics()
 	{
 		// Get paths //
 		File fileDiamond  = new File(DIR_RESOURCES, "Diamond.png");
@@ -434,6 +422,18 @@ class BoardView
 				e,
 				System.lineSeparator()
 			);
+		}
+	}
+	
+	/**
+	 * Play swap audio clip.
+	 */
+	public void playAudioSwap()
+	{
+		// Rewind and play clip //
+		if (audioSwap != null) {
+			audioSwap.setFramePosition(0);
+			audioSwap.start();
 		}
 	}
 	
