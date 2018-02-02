@@ -49,124 +49,54 @@ class BoardModel
 	/**
 	 * Clear jewels from the board.
 	 *
-	 * @param positions Coordinates of affected cells.
-	 * @return          Gained score.
+	 * @param chains Array of chains with aligned cells to clear.
+	 * @return       Gained score.
 	 */
-	// TODO: Revise algorithm and reduce complexity.
-	// TODO: Break into multiple methods with single responsibilities.
-	private int clearMatches(Coordinate[] positions)
+	private int clearChains(Coordinate[][] chains)
 	{
 		// Validate argument //
-		// TODO: Add assert on count not exceeding number of cells.
-		if (positions == null) {
+		// TODO: Perform validation on array contents as well?
+		if (chains == null) {
 			throw new NullPointerException();
 		}
 		
-		// Find matches //
-		// TODO: Check for null values inside array?
-		List<List<Coordinate>> matches = new ArrayList<List<Coordinate>>();
-		for (Coordinate position : positions) {
-			// Get jewel type to match //
-			Jewel matchType = get(position);
-			
-			// Unpack coordinates //
-			int x = position.x;
-			int y = position.y;
-			
-			// Search for matches on X-axis //
-			int startX = position.x;
-			int stopX  = position.x;
-			List<Coordinate> cellsX = new ArrayList<Coordinate>();
-			for (int i = x; i >= 0; i--) {
-				Jewel cell = get(i, y);
-				if (cell == null || !cell.equals(matchType)) {
-					break;
-				}
-				startX = i;
-				cellsX.add(new Coordinate(i, y));
-			}
-			for (int i = x + 1; i < width; i++) {
-				Jewel cell = get(i, y);
-				if (cell == null || !cell.equals(matchType)) {
-					break;
-				}
-				stopX = i;
-				cellsX.add(new Coordinate(i, y));
-			}
-			if (cellsX.size() > 0) {
-				matches.add(cellsX);
-			}
-			
-			// Search for matches on Y-axis //
-			int startY = position.y;
-			int stopY  = position.y;
-			List<Coordinate> cellsY = new ArrayList<Coordinate>();
-			for (int i = y; i >= 0; i--) {
-				Jewel cell = get(x, i);
-				if (cell == null || !cell.equals(matchType)) {
-					break;
-				}
-				startY = i;
-				cellsY.add(new Coordinate(x, i));
-			}
-			for (int i = y + 1; i < width; i++) {
-				Jewel cell = get(x, i);
-				if (cell == null || !cell.equals(matchType)) {
-					break;
-				}
-				stopY = i;
-				cellsY.add(new Coordinate(x, i));
-			}
-			if (cellsY.size() > 0) {
-				matches.add(cellsY);
-			}
-		}
-		
-		// Clear matches and adjust score //
+		// Clear chains //
 		int points = 0;
-		for (List<Coordinate> match : matches) {
-			// Verify length of match //
-			if (match.size() < MINIMUM_LENGTH) {
-				continue;
-			}
-			
+		for (Coordinate[] chain : chains) {
 			// Clear cells //
-			for (Coordinate cell : match) {
+			for (Coordinate cell : chain) {
 				set(cell, null);
 			}
 			
-			// Adjust score //
+			// Count score //
 			// TODO: Make score increase exponentially with longer matches.
-			int match_points = match.size() * 100;
-			points += match_points;
-			score  += match_points;
+			points += chain.length * 100;
 		}
 		
-		// Drop cells //
-		// TODO: Assert board state?
+		return points;
+	}
+	
+	/**
+	 * Move cells downwards to fill any gaps. May leave the board in an
+	 * inconsistent state.
+	 */
+	private void dropCells()
+	{
+		// Iterate over columns //
 		for (int column = 0; column < width; column++) {
+			// Iterate bottom-up //
 			for (int row = width - 1; row >= 0; --row) {
 				// Move cell down to last empty space //
 				for (int index = row; index < width - 1; index++) {
-					int i1 = (index + 0) * width + column;
-					int i2 = (index + 1) * width + column;
-					if (board[i2] != null) {
+					Coordinate over  = new Coordinate(column, index);
+					Coordinate under = new Coordinate(column, index + 1);
+					if (get(under) != null) {
 						break;
 					}
-					board[i2] = board[i1];
-					board[i1] = null;
+					swap(over, under);
 				}
 			}
 		}
-		
-		// TODO: Recheck moved cells.
-		
-		// Refill board //
-		fillBoard();
-		
-		// TODO: Clear board again.
-		
-		return points;
 	}
 	
 	/**
@@ -275,6 +205,87 @@ class BoardModel
 				board[i] = jewel;
 			}
 		}
+	}
+	
+	/**
+	 * Identify chains involving affected cells.
+	 *
+	 * @param positions Coordinates of cells to check.
+	 * @return          Array of chains found.
+	 */
+	private Coordinate[][] findChains(Coordinate[] positions)
+	{
+		// Validate argument //
+		// TODO: Check for null values inside array?
+		if (positions == null) {
+			throw new NullPointerException();
+		}
+		
+		// Look for chains //
+		List<Coordinate[]> chains = new ArrayList<Coordinate[]>();
+		for (Coordinate position : positions) {
+			// Get jewel type to match //
+			Jewel matchType = get(position);
+			
+			// Unpack coordinates //
+			int x = position.x;
+			int y = position.y;
+			
+			// Search for matches on X-axis //
+			int startX = position.x;
+			int stopX  = position.x;
+			List<Coordinate> cellsX = new ArrayList<Coordinate>();
+			for (int i = x; i >= 0; i--) {
+				Jewel cell = get(i, y);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				startX = i;
+				cellsX.add(new Coordinate(i, y));
+			}
+			for (int i = x + 1; i < width; i++) {
+				Jewel cell = get(i, y);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				stopX = i;
+				cellsX.add(new Coordinate(i, y));
+			}
+			if (cellsX.size() >= MINIMUM_LENGTH) {
+				Coordinate[] chain = new Coordinate[cellsX.size()];
+				chain = cellsX.toArray(chain);
+				chains.add(chain);
+			}
+			
+			// Search for matches on Y-axis //
+			int startY = position.y;
+			int stopY  = position.y;
+			List<Coordinate> cellsY = new ArrayList<Coordinate>();
+			for (int i = y; i >= 0; i--) {
+				Jewel cell = get(x, i);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				startY = i;
+				cellsY.add(new Coordinate(x, i));
+			}
+			for (int i = y + 1; i < width; i++) {
+				Jewel cell = get(x, i);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				stopY = i;
+				cellsY.add(new Coordinate(x, i));
+			}
+			if (cellsY.size() >= MINIMUM_LENGTH) {
+				Coordinate[] chain = new Coordinate[cellsY.size()];
+				chain = cellsY.toArray(chain);
+				chains.add(chain);
+			}
+		}
+		
+		Coordinate[][] out = new Coordinate[chains.size()][];
+		return chains.toArray(out);
 	}
 	
 	/**
@@ -390,7 +401,7 @@ class BoardModel
 		
 		// Clear cells //
 		Coordinate[] out = new Coordinate[positions.size()];
-		clearMatches(positions.toArray(out));
+		update(positions.toArray(out));
 		
 		return MoveType.OK;
 	}
@@ -450,5 +461,32 @@ class BoardModel
 		Jewel secondType = get(second);
 		set(first, secondType);
 		set(second, firstType);
+	}
+	
+	/**
+	 * Progress board into a consistent state.
+	 */
+	private void update(Coordinate[] positions)
+	{
+		// Validate argument //
+		// TODO: Add assert on count not exceeding number of cells.
+		if (positions == null) {
+			throw new NullPointerException();
+		}
+		
+		// Find matches //
+		Coordinate[][] chains = findChains(positions);
+		
+		// Clear matches and adjust score //
+		int points = clearChains(chains);
+		score += points;
+		
+		// Drop cells //
+		dropCells();
+		
+		// Refill board //
+		fillBoard();
+		
+		// TODO: Clear board again.
 	}
 }
