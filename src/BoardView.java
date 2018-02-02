@@ -107,7 +107,7 @@ class BoardView
 			button.setFont(font);
 			
 			// Get jewel from model //
-			BoardModel.Jewel jewel = model.get(x, y);
+			Jewel jewel = model.get(x, y);
 			
 			// Update text to match jewel //
 			String value = "";
@@ -436,7 +436,7 @@ class BoardView
 		}
 		
 		// Get jewel from model //
-		BoardModel.Jewel jewel = model.get(x, y);
+		Jewel jewel = model.get(x, y);
 		
 		// Get button from view //
 		// TODO: Add assert for `width` or rely less on model consistency?

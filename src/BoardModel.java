@@ -1,8 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -16,35 +13,6 @@ class BoardModel
 	private Jewel[] board = null;
 	private int     score = 0;
 	private int     width = 0;
-	
-	/**
-	 * Cell symbol enum.
-	 */
-	public enum Jewel
-	{
-		DIAMOND,
-		EMERALD,
-		RUBY,
-		SAPPHIRE,
-		TOPAZ;
-		
-		// TODO: Use array instead?
-		private static final List<Jewel> VALUES =
-			Collections.unmodifiableList(Arrays.asList(values()));
-		private static final int    SIZE   = VALUES.size();
-		private static final Random RANDOM = new Random();
-		
-		/**
-		 * Return a random jewel.
-		 *
-		 * @return A random jewel type.
-		 */
-		// TODO: Support returning a limited subset of jewels?
-		public static Jewel random()
-		{
-			return VALUES.get(RANDOM.nextInt(SIZE));
-		}
-	}
 	
 	/**
 	 * Move type enum.
