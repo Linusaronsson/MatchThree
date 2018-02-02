@@ -32,7 +32,7 @@ class BoardModel
 	public BoardModel(int width)
 	{
 		// Validate argument //
-		if (width < 0) {
+		if (width <= 0) {
 			throw new IllegalArgumentException();
 		}
 		
