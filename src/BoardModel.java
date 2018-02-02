@@ -25,7 +25,8 @@ class BoardModel
 		DIAMOND,
 		EMERALD,
 		RUBY,
-		SAPPHIRE;
+		SAPPHIRE,
+		TOPAZ;
 		
 		// TODO: Use array instead?
 		private static final List<Jewel> VALUES =
@@ -216,6 +217,7 @@ class BoardModel
 				matches.add(Jewel.EMERALD);
 				matches.add(Jewel.RUBY);
 				matches.add(Jewel.SAPPHIRE);
+				matches.add(Jewel.TOPAZ);
 				Jewel type = null;
 				
 				// Find west matches //

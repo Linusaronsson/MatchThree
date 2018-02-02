@@ -18,6 +18,7 @@ class BoardView
 	private static final Color  COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
 	private static final Color  COLOR_RUBY       = new Color(0xE0, 0x11, 0x5F);
 	private static final Color  COLOR_SAPPHIRE   = new Color(0x0F, 0x52, 0xBA);
+	private static final Color  COLOR_TOPAZ      = new Color(0xFF, 0xBF, 0x00);
 	private static final String WINDOW_TITLE     = "MatchThree";
 	
 	private Cell[]     board     = null;
@@ -116,6 +117,7 @@ class BoardView
 					case EMERALD:  value = "Emerald";  break;
 					case RUBY:     value = "Ruby";     break;
 					case SAPPHIRE: value = "Sapphire"; break;
+					case TOPAZ:    value = "Topaz";    break;
 					default: throw new IllegalStateException();
 				}
 			}
@@ -129,6 +131,7 @@ class BoardView
 					case EMERALD:  color = COLOR_EMERALD;  break;
 					case RUBY:     color = COLOR_RUBY;     break;
 					case SAPPHIRE: color = COLOR_SAPPHIRE; break;
+					case TOPAZ:    color = COLOR_TOPAZ;    break;
 					default: throw new IllegalStateException();
 				}
 			}
@@ -448,6 +451,7 @@ class BoardView
 				case EMERALD:  value = "Emerald";  break;
 				case RUBY:     value = "Ruby";     break;
 				case SAPPHIRE: value = "Sapphire"; break;
+				case TOPAZ:    value = "Topaz";    break;
 				default: throw new IllegalStateException();
 			}
 		}
@@ -461,6 +465,7 @@ class BoardView
 				case EMERALD:  color = COLOR_EMERALD;  break;
 				case RUBY:     color = COLOR_RUBY;     break;
 				case SAPPHIRE: color = COLOR_SAPPHIRE; break;
+				case TOPAZ:    color = COLOR_TOPAZ;    break;
 				default: throw new IllegalStateException();
 			}
 		}
