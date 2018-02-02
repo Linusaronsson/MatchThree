@@ -68,14 +68,14 @@ class BoardView
 		
 		// Create content pane //
 		JPanel content = new JPanel();
-		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+		content.setLayout(new BorderLayout());
 		
 		// Construct header //
 		JPanel header = new JPanel(new FlowLayout());
 		header.add(label);
 		header.add(textField);
 		header.add(button);
-		content.add(header);
+		content.add(header, BorderLayout.PAGE_START);
 		
 		// Construct grid //
 		int width = model.getWidth();
@@ -143,7 +143,7 @@ class BoardView
 		}
 		
 		// Add grid to pane //
-		content.add(grid);
+		content.add(grid, BorderLayout.CENTER);
 		
 		// Update window with content //
 		this.setContentPane(content);
