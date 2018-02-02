@@ -27,20 +27,20 @@ class BoardView
 	private static final Color  COLOR_TOPAZ      = new Color(0xFF, 0xBF, 0x00);
 	private static final String WINDOW_TITLE     = "MatchThree";
 	
-	private Clip          audioSwap = null;
-	private Cell[]        board     = null;
-	private JButton       button    = new JButton("Confirm");
-	private BufferedImage img1      = null;
-	private BufferedImage img2      = null;
-	private BufferedImage img3      = null;
-	private BufferedImage img4      = null;
-	private JLabel        label     = new JLabel("");
-	private BoardModel    model     = null;
-	private JMenuItem     newItem   = null;
-	private JMenuItem     openItem  = null;
-	private JMenuItem     quitItem  = null;
-	private JMenuItem     saveItem  = null;
-	private JTextField    textField = new JTextField(20);
+	private Clip          audioSwap      = null;
+	private Cell[]        board          = null;
+	private JButton       button         = new JButton("Confirm");
+	private BufferedImage imageDiamond   = null;
+	private BufferedImage imageEmerald   = null;
+	private BufferedImage imageRuby      = null;
+	private BufferedImage imageSapphire  = null;
+	private JLabel        label          = new JLabel("");
+	private BoardModel    model          = null;
+	private JMenuItem     newItem        = null;
+	private JMenuItem     openItem       = null;
+	private JMenuItem     quitItem       = null;
+	private JMenuItem     saveItem       = null;
+	private JTextField    textField      = new JTextField(20);
 	
 	/**
 	 * Constructor for `BoardView` MVC view.
@@ -103,10 +103,10 @@ class BoardView
 	 */
 	public void prepareGraphics() {
 		try {
-			img1 = ImageIO.read(new File("src/Diamond.png"));
-			img2 = ImageIO.read(new File("src/Emerald.png"));
-			img3 = ImageIO.read(new File("src/Ruby.png"));
-			img4 = ImageIO.read(new File("src/Sapphire.png"));
+			imageDiamond  = ImageIO.read(new File("src/Diamond.png"));
+			imageEmerald  = ImageIO.read(new File("src/Emerald.png"));
+			imageRuby     = ImageIO.read(new File("src/Ruby.png"));
+			imageSapphire = ImageIO.read(new File("src/Sapphire.png"));
 		}
 		catch(IOException e) {System.out.println("IOException detected!"); }
 	}
@@ -247,10 +247,10 @@ class BoardView
 			String value = "";
 			if (jewel != null) {
 				switch (jewel) {
-					case DIAMOND:  value = "Diamond";  button.setIcon(new ImageIcon(img1)); break;
-					case EMERALD:  value = "Emerald";  button.setIcon(new ImageIcon(img2)); break;
-					case RUBY:     value = "Ruby";     button.setIcon(new ImageIcon(img3)); break;
-					case SAPPHIRE: value = "Sapphire"; button.setIcon(new ImageIcon(img4)); break;
+					case DIAMOND:  value = "Diamond";  button.setIcon(new ImageIcon(imageDiamond));  break;
+					case EMERALD:  value = "Emerald";  button.setIcon(new ImageIcon(imageEmerald));  break;
+					case RUBY:     value = "Ruby";     button.setIcon(new ImageIcon(imageRuby));     break;
+					case SAPPHIRE: value = "Sapphire"; button.setIcon(new ImageIcon(imageSapphire)); break;
 					case TOPAZ:    value = "Topaz";    break;
 					default: throw new IllegalStateException();
 				}
@@ -438,10 +438,10 @@ class BoardView
 		String value = "";
 		if (jewel != null) {
 			switch (jewel) {
-				case DIAMOND:  value = "Diamond";  cell.setIcon(new ImageIcon(img1)); break;
-				case EMERALD:  value = "Emerald";  cell.setIcon(new ImageIcon(img2)); break;
-				case RUBY:     value = "Ruby";     cell.setIcon(new ImageIcon(img3)); break;
-				case SAPPHIRE: value = "Sapphire"; cell.setIcon(new ImageIcon(img4)); break;
+				case DIAMOND:  value = "Diamond";  cell.setIcon(new ImageIcon(imageDiamond));  break;
+				case EMERALD:  value = "Emerald";  cell.setIcon(new ImageIcon(imageEmerald));  break;
+				case RUBY:     value = "Ruby";     cell.setIcon(new ImageIcon(imageRuby));     break;
+				case SAPPHIRE: value = "Sapphire"; cell.setIcon(new ImageIcon(imageSapphire)); break;
 				case TOPAZ:    value = "Topaz";    break;
 				default: throw new IllegalStateException();
 			}
