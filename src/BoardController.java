@@ -70,15 +70,8 @@ class BoardController
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			// Reset active cell //
-			setActiveCell(null);
-			
-			// Reinitialize model //
-			model.init();
-			
-			// Update view //
-			view.update();
-			view.updateScore();
+			// Restart the game //
+			restartGame();
 		}
 	}
 	
@@ -209,6 +202,22 @@ class BoardController
 		
 		// Update view //
 		view.update();
+	}
+	
+	/**
+	 * Resets model to its initial state.
+	 */
+	private void restartGame()
+	{
+		// Reset active cell //
+		setActiveCell(null);
+		
+		// Reinitialize model //
+		model.init();
+		
+		// Update view //
+		view.update();
+		view.updateScore();
 	}
 	
 	/**
