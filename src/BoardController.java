@@ -36,15 +36,14 @@ class BoardController
 			
 			// Activate cell if appropriate //
 			if (activeCell == null) {
-				activeCell = clickedCell;
-				view.setCellState(activeCell, true);
+				setActiveCell(clickedCell);
 				return;
 			}
 			
 			// Deactivate and swap cells //
-			view.setCellState(activeCell, false);
-			moveCell(activeCell, clickedCell);
-			activeCell = null;
+			Coordinate from = activeCell;
+			setActiveCell(null);
+			moveCell(from, clickedCell);
 			
 			// Update score //
 			view.updateScore();
@@ -72,10 +71,7 @@ class BoardController
 		public void actionPerformed(ActionEvent event)
 		{
 			// Reset active cell //
-			if (activeCell != null) {
-				view.setCellState(activeCell, false);
-				activeCell = null;
-			}
+			setActiveCell(null);
 			
 			// Reinitialize model //
 			model.init();
@@ -212,5 +208,26 @@ class BoardController
 		
 		// Update view //
 		view.update();
+	}
+	
+	/**
+	 * Set or unset the currently active cell.
+	 *
+	 * @param position Coordinates of the cell to make active, or null if none.
+	 */
+	private void setActiveCell(Coordinate position)
+	{
+		// Deactivate cell if appropriate //
+		if (activeCell != null) {
+			view.setCellState(activeCell, false);
+		}
+		
+		// Activate new cell if appropriate //
+		if (position != null) {
+			view.setCellState(position, true);
+		}
+		
+		// Update reference //
+		activeCell = position;
 	}
 }
