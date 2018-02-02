@@ -4,6 +4,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.image.*;
 import java.io.*;
+import java.util.Observer;
+
 import javax.imageio.*;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -14,12 +16,15 @@ import javax.swing.*;
 
 import Model.*;
 
+import java.util.Observer;
+import java.util.Observable;
+
 /**
  * MVC view.
  */
 @SuppressWarnings("serial")
 public class BoardView
-	extends JFrame
+	extends JFrame implements Observer
 {
 	private static final String CELL_FONT_NAME   = "Helvetica Neue";
 	private static final int    CELL_FONT_SIZE   = 14;
@@ -66,6 +71,7 @@ public class BoardView
 		}
 		
 		this.model = model;
+		model.addObserver(this);
 		
 		// Set application properties //
 		// TODO: Avoid calling global state changing method from instance
@@ -253,7 +259,7 @@ public class BoardView
 			button.setFont(font);
 			
 			// Update button state from view //
-			updateCell(x, y);
+			updateCell(x, y, model.get(x, y));
 			
 			// Add button to grid //
 			grid.add(button);
@@ -473,31 +479,32 @@ public class BoardView
 	}
 	
 	/**
-	 * Update all cells.
-	 */
-	public void update()
-	{
-		int width = model.getWidth();
-		for (int i = 0; i < width * width; i++) {
-			int x = i % width;
-			int y = i / width;
-			updateCell(x, y);
+	 * Update all cells. (Removed temporarily).
+	 
+		public void update()
+		{
+			int width = model.getWidth();
+			for (int i = 0; i < width * width; i++) {
+				int x = i % width;
+				int y = i / width;
+				updateCell(x, y);
+			}
 		}
-	}
+	*/
 	
 	/**
 	 * Update a cell.
 	 *
 	 * @param position Coordinates of the cell.
 	 */
-	public void updateCell(Coordinate position)
+	public void updateCell(Coordinate position, Jewel jewel)
 	{
 		// Validate argument //
 		if (position == null) {
 			throw new NullPointerException();
 		}
 		
-		updateCell(position.x, position.y);
+		updateCell(position.x, position.y, jewel);
 	}
 	
 	/**
@@ -507,7 +514,7 @@ public class BoardView
 	 * @param y Y-coordinate of the cell.
 	 */
 	// TODO: Reduce code duplication.
-	public void updateCell(int x, int y)
+	public void updateCell(int x, int y, Jewel jewel)
 	{
 		// Validate arguments //
 		if (x < 0 || y < 0) {
@@ -517,9 +524,6 @@ public class BoardView
 		if (x >= width || y >= width) {
 			throw new IndexOutOfBoundsException();
 		}
-		
-		// Get jewel from model //
-		Jewel jewel = model.get(x, y);
 		
 		// Get button from view //
 		// TODO: Add assert for `width` or rely less on model consistency?
@@ -554,5 +558,16 @@ public class BoardView
 	{
 		int score = model.getScore();
 		label.setText("Score: " + score);
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		if(o instanceof BoardModel &&
+		   arg instanceof BoardModel.CellEvent) {
+			BoardModel.CellEvent event = (BoardModel.CellEvent) arg;
+			Coordinate c = event.getPos();
+			Jewel j = event.getType();
+			updateCell(c, j);
+		}
 	}
 }

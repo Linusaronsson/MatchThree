@@ -206,7 +206,7 @@ public class BoardController
 		}
 		
 		// Update view //
-		view.update();
+		//view.update();
 	}
 	
 	/**
@@ -221,7 +221,7 @@ public class BoardController
 		model.init();
 		
 		// Update view //
-		view.update();
+		//view.update();
 		view.updateScore();
 	}
 	
