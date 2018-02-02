@@ -71,7 +71,17 @@ class BoardController
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showError("“New” not implemented");
+			// Reset active cell //
+			if (activeCell != null) {
+				view.setCellState(activeCell, false);
+				activeCell = null;
+			}
+			
+			// Reinitialize model //
+			model.init();
+			
+			// Update view //
+			view.update();
 		}
 	}
 	

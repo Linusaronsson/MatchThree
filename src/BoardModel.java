@@ -326,7 +326,7 @@ class BoardModel
 	/**
 	 * Initialize a new game.
 	 */
-	private void init()
+	public void init()
 	{
 		// Reset board //
 		// TODO: Is it necessary to null-initialize array?
