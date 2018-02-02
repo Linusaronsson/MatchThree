@@ -49,7 +49,7 @@ class BoardController
 			      | LineUnavailableException
 			      | UnsupportedAudioFileException e)
 			{
-			    System.out.println("An IO-related error occurred. Exiting.");
+				System.out.println(e);
 			    System.exit(1);
 			}
 			activeCell = null;
