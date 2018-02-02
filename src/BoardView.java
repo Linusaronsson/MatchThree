@@ -107,45 +107,6 @@ class BoardView
 	}
 	
 	/**
-	 * Load external image resources.
-	 */
-	public void prepareGraphics()
-		throws IOException
-	{
-		imageDiamond  = ImageIO.read(new File("src/Diamond.png"));
-		imageEmerald  = ImageIO.read(new File("src/Emerald.png"));
-		imageRuby     = ImageIO.read(new File("src/Ruby.png"));
-		imageSapphire = ImageIO.read(new File("src/Sapphire.png"));
-	}
-	
-	/**
-	 * Load external audio resources.
-	 */
-	public void prepareAudio()
-		throws IOException,
-		       LineUnavailableException,
-		       UnsupportedAudioFileException
-	{
-		// Read audio from file //
-		File audioFile = new File("src/sound1.wav").getAbsoluteFile();
-		AudioInputStream audioStream =
-			AudioSystem.getAudioInputStream(audioFile);
-		
-		// Send audio to system mixer //
-		audioSwap = AudioSystem.getClip();
-		audioSwap.open(audioStream);
-	}
-	
-	/**
-	 * Play swap audio clip.
-	 */
-	public void playAudioSwap()
-	{
-		audioSwap.setFramePosition(0);
-		audioSwap.start();
-	}
-	
-	/**
 	 * Add listener for board cell actions (clicks).
 	 *
 	 * @param listener Event handler.
@@ -372,6 +333,45 @@ class BoardView
 		menuBar.add(fileMenu);
 		
 		return menuBar;
+	}
+	
+	/**
+	 * Play swap audio clip.
+	 */
+	public void playAudioSwap()
+	{
+		audioSwap.setFramePosition(0);
+		audioSwap.start();
+	}
+	
+	/**
+	 * Load external audio resources.
+	 */
+	public void prepareAudio()
+		throws IOException,
+		       LineUnavailableException,
+		       UnsupportedAudioFileException
+	{
+		// Read audio from file //
+		File audioFile = new File("src/sound1.wav").getAbsoluteFile();
+		AudioInputStream audioStream =
+			AudioSystem.getAudioInputStream(audioFile);
+		
+		// Send audio to system mixer //
+		audioSwap = AudioSystem.getClip();
+		audioSwap.open(audioStream);
+	}
+	
+	/**
+	 * Load external image resources.
+	 */
+	public void prepareGraphics()
+		throws IOException
+	{
+		imageDiamond  = ImageIO.read(new File("src/Diamond.png"));
+		imageEmerald  = ImageIO.read(new File("src/Emerald.png"));
+		imageRuby     = ImageIO.read(new File("src/Ruby.png"));
+		imageSapphire = ImageIO.read(new File("src/Sapphire.png"));
 	}
 	
 	/**
