@@ -232,6 +232,7 @@ class BoardView
 			
 			// Create button //
 			Cell button = new Cell(x, y);
+			board[i] = button;
 			
 			// Set button properties //
 			button.setOpaque(true);
@@ -247,46 +248,10 @@ class BoardView
 			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
 			button.setFont(font);
 			
-			// Get jewel from model //
-			Jewel jewel = model.get(x, y);
-			
-			// Update text to match jewel //
-			ImageIcon     icon  = null;
-			BufferedImage image = null;
-			String        text  = "";
-			if (jewel != null) {
-				switch (jewel) {
-					case DIAMOND:  text = "Diamond";  image = imageDiamond;  break;
-					case EMERALD:  text = "Emerald";  image = imageEmerald;  break;
-					case RUBY:     text = "Ruby";     image = imageRuby;     break;
-					case SAPPHIRE: text = "Sapphire"; image = imageSapphire; break;
-					case TOPAZ:    text = "Topaz";    break;
-					default: throw new IllegalStateException();
-				}
-			}
-			if (image != null) {
-				icon = new ImageIcon(image);
-				text = "";
-			}
-			button.setIcon(icon);
-			button.setText(text);
-			
-			// Update color to match jewel //
-			Color color = Color.BLACK;
-			if (jewel != null) {
-				switch (jewel) {
-					case DIAMOND:  color = COLOR_DIAMOND;  break;
-					case EMERALD:  color = COLOR_EMERALD;  break;
-					case RUBY:     color = COLOR_RUBY;     break;
-					case SAPPHIRE: color = COLOR_SAPPHIRE; break;
-					case TOPAZ:    color = COLOR_TOPAZ;    break;
-					default: throw new IllegalStateException();
-				}
-			}
-			button.setForeground(color);
+			// Update button state from view //
+			updateCell(x, y);
 			
 			// Add button to grid //
-			board[i] = button;
 			grid.add(button);
 		}
 		
