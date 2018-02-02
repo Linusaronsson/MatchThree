@@ -290,18 +290,25 @@ class BoardView
 			Jewel jewel = model.get(x, y);
 			
 			// Update text to match jewel //
-			String value = "";
+			ImageIcon     icon  = null;
+			BufferedImage image = null;
+			String        text  = "";
 			if (jewel != null) {
 				switch (jewel) {
-					case DIAMOND:  value = "Diamond";  button.setIcon(new ImageIcon(imageDiamond));  break;
-					case EMERALD:  value = "Emerald";  button.setIcon(new ImageIcon(imageEmerald));  break;
-					case RUBY:     value = "Ruby";     button.setIcon(new ImageIcon(imageRuby));     break;
-					case SAPPHIRE: value = "Sapphire"; button.setIcon(new ImageIcon(imageSapphire)); break;
-					case TOPAZ:    value = "Topaz";    break;
+					case DIAMOND:  text = "Diamond";  image = imageDiamond;  break;
+					case EMERALD:  text = "Emerald";  image = imageEmerald;  break;
+					case RUBY:     text = "Ruby";     image = imageRuby;     break;
+					case SAPPHIRE: text = "Sapphire"; image = imageSapphire; break;
+					case TOPAZ:    text = "Topaz";    break;
 					default: throw new IllegalStateException();
 				}
 			}
-			button.setText(value);
+			if (image != null) {
+				icon = new ImageIcon(image);
+				text = "";
+			}
+			button.setIcon(icon);
+			button.setText(text);
 			
 			// Update color to match jewel //
 			Color color = Color.BLACK;
@@ -527,6 +534,7 @@ class BoardView
 		}
 		if (image != null) {
 			icon = new ImageIcon(image);
+			text = "";
 		}
 		cell.setIcon(icon);
 		cell.setText(text);
