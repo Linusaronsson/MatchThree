@@ -108,6 +108,8 @@ class BoardView
 		
 		// Set frame location to middle of your computer screen //
 		this.setLocationRelativeTo(null);
+		
+		this.setResizable(false);
 	}
 	
 	/**
