@@ -27,6 +27,7 @@ class BoardView
 	private static final Color  COLOR_RUBY       = new Color(0xE0, 0x11, 0x5F);
 	private static final Color  COLOR_SAPPHIRE   = new Color(0x0F, 0x52, 0xBA);
 	private static final Color  COLOR_TOPAZ      = new Color(0xFF, 0xBF, 0x00);
+	private static final String DIR_RESOURCES    = "src";
 	private static final String WINDOW_TITLE     = "MatchThree";
 	
 	private Clip          audioSwap      = null;
@@ -318,7 +319,7 @@ class BoardView
 		       UnsupportedAudioFileException
 	{
 		// Read audio from file //
-		File audioFile = new File("src/Swap.wav").getAbsoluteFile();
+		File audioFile = new File(DIR_RESOURCES, "Swap.wav").getAbsoluteFile();
 		AudioInputStream audioStream =
 			AudioSystem.getAudioInputStream(audioFile);
 		
@@ -333,10 +334,10 @@ class BoardView
 	private void prepareGraphics()
 		throws IOException
 	{
-		imageDiamond  = ImageIO.read(new File("src/Diamond.png"));
-		imageEmerald  = ImageIO.read(new File("src/Emerald.png"));
-		imageRuby     = ImageIO.read(new File("src/Ruby.png"));
-		imageSapphire = ImageIO.read(new File("src/Sapphire.png"));
+		imageDiamond  = ImageIO.read(new File(DIR_RESOURCES, "Diamond.png"));
+		imageEmerald  = ImageIO.read(new File(DIR_RESOURCES, "Emerald.png"));
+		imageRuby     = ImageIO.read(new File(DIR_RESOURCES, "Ruby.png"));
+		imageSapphire = ImageIO.read(new File(DIR_RESOURCES, "Sapphire.png"));
 	}
 	
 	/**
