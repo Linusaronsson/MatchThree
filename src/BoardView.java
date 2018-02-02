@@ -25,6 +25,7 @@ class BoardView
 	private static final Color  COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
 	private static final Color  COLOR_RUBY       = new Color(0xE0, 0x11, 0x5F);
 	private static final Color  COLOR_SAPPHIRE   = new Color(0x0F, 0x52, 0xBA);
+	private static final Color  COLOR_TOPAZ      = new Color(0xFF, 0xBF, 0x00);
 	private static final String WINDOW_TITLE     = "MatchThree";
 	
 	private Cell[]     board     = null;
@@ -76,87 +77,24 @@ class BoardView
 		prepareAudioClips();
 		
 		// Initialize components //
-		textField.setText(model.getValue());
+		textField.setText("Hello, World!");
 		textField.setEditable(false);
 		updateScore();
 		
 		// Create content pane //
 		JPanel content = new JPanel();
-		content.setLayout(new BoxLayout(content, BoxLayout.Y_AXIS));
+		content.setLayout(new BorderLayout());
 		
 		// Construct header //
 		JPanel header = new JPanel(new FlowLayout());
 		header.add(label);
 		header.add(textField);
 		header.add(button);
-		content.add(header);
+		content.add(header, BorderLayout.PAGE_START);
 		
 		// Construct grid //
-		int width = model.getWidth();
-		JPanel grid = new JPanel(new GridLayout(width, width));
-		grid.setBackground(COLOR_BACKGROUND);
-		
-		// Fill grid //
-		board = new Cell[width * width];
-		for (int i = 0; i < width * width; i++) {
-			// Get coordinates //
-			int x = i % width;
-			int y = i / width;
-			
-			// Create button //
-			Cell button = new Cell(x, y);
-			
-			// Set button properties //
-			button.setOpaque(true);
-			button.setBorderPainted(false);
-			button.setEnabled(true);
-			button.setContentAreaFilled(false);
-			button.setFocusPainted(false);
-			button.setHorizontalAlignment(SwingConstants.CENTER);
-			button.setVerticalAlignment(SwingConstants.CENTER);
-			button.setForeground(COLOR_FOREGROUND);
-			button.setBackground(Color.BLACK);
-			button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
-			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
-			button.setFont(font);
-			
-			// Get jewel from model //
-			BoardModel.Jewel jewel = model.get(x, y);
-			
-			// Update text to match jewel //
-			String value = "";
-			if (jewel != null) {
-				switch (jewel) {
-					case DIAMOND:  value = "Diamond";  button.setIcon(new ImageIcon(img1)); break;
-					case EMERALD:  value = "Emerald";  button.setIcon(new ImageIcon(img2)); break;
-					case RUBY:     value = "Ruby";     button.setIcon(new ImageIcon(img3)); break;
-					case SAPPHIRE: value = "Sapphire"; button.setIcon(new ImageIcon(img4)); break;
-					default: throw new IllegalStateException();
-				}
-			}
-			value = "";
-			button.setText(value);
-			
-			// Update color to match jewel //
-			Color color = Color.BLACK;
-			if (jewel != null) {
-				switch (jewel) {
-					case DIAMOND:  color = COLOR_DIAMOND;  break;
-					case EMERALD:  color = COLOR_EMERALD;  break;
-					case RUBY:     color = COLOR_RUBY;     break;
-					case SAPPHIRE: color = COLOR_SAPPHIRE; break;
-					default: throw new IllegalStateException();
-				}
-			}
-			button.setForeground(color);
-			
-			// Add button to grid //
-			board[i] = button;
-			grid.add(button);
-		}
-		
-		// Add grid to pane //
-		content.add(grid);
+		JPanel grid = createGrid();
+		content.add(grid, BorderLayout.CENTER);
 		
 		// Update window with content //
 		this.setContentPane(content);
@@ -269,6 +207,79 @@ class BoardView
 	public void addWindowListener(ActionListener listener)
 	{
 		addWindowListener(listener);
+	}
+	
+	/**
+	 * Create game grid.
+	 */
+	private JPanel createGrid()
+	{
+		// Create grid //
+		int width = model.getWidth();
+		JPanel grid = new JPanel(new GridLayout(width, width));
+		grid.setBackground(COLOR_BACKGROUND);
+		
+		// Fill grid //
+		board = new Cell[width * width];
+		for (int i = 0; i < width * width; i++) {
+			// Get coordinates //
+			int x = i % width;
+			int y = i / width;
+			
+			// Create button //
+			Cell button = new Cell(x, y);
+			
+			// Set button properties //
+			button.setOpaque(true);
+			button.setBorderPainted(false);
+			button.setEnabled(true);
+			button.setContentAreaFilled(false);
+			button.setFocusPainted(false);
+			button.setHorizontalAlignment(SwingConstants.CENTER);
+			button.setVerticalAlignment(SwingConstants.CENTER);
+			button.setForeground(COLOR_FOREGROUND);
+			button.setBackground(Color.BLACK);
+			button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
+			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
+			button.setFont(font);
+			
+			// Get jewel from model //
+			Jewel jewel = model.get(x, y);
+			
+			// Update text to match jewel //
+			String value = "";
+			if (jewel != null) {
+				switch (jewel) {
+					case DIAMOND:  value = "Diamond";  button.setIcon(new ImageIcon(img1)); break;
+					case EMERALD:  value = "Emerald";  button.setIcon(new ImageIcon(img2)); break;
+					case RUBY:     value = "Ruby";     button.setIcon(new ImageIcon(img3)); break;
+					case SAPPHIRE: value = "Sapphire"; button.setIcon(new ImageIcon(img4)); break;
+					case TOPAZ:    value = "Topaz";    break;
+					default: throw new IllegalStateException();
+				}
+			}
+			button.setText(value);
+			
+			// Update color to match jewel //
+			Color color = Color.BLACK;
+			if (jewel != null) {
+				switch (jewel) {
+					case DIAMOND:  color = COLOR_DIAMOND;  break;
+					case EMERALD:  color = COLOR_EMERALD;  break;
+					case RUBY:     color = COLOR_RUBY;     break;
+					case SAPPHIRE: color = COLOR_SAPPHIRE; break;
+					case TOPAZ:    color = COLOR_TOPAZ;    break;
+					default: throw new IllegalStateException();
+				}
+			}
+			button.setForeground(color);
+			
+			// Add button to grid //
+			board[i] = button;
+			grid.add(button);
+		}
+		
+		return grid;
 	}
 	
 	/**
@@ -418,7 +429,7 @@ class BoardView
 		// TODO: Validate arguments.
 		
 		// Get jewel from model //
-		BoardModel.Jewel jewel = model.get(x, y);
+		Jewel jewel = model.get(x, y);
 		
 		// Get button from view //
 		// TODO: Add assert or rely less on model consistency.
@@ -434,7 +445,8 @@ class BoardView
 				case EMERALD:  value = "Emerald";  cell.setIcon(new ImageIcon(img2)); break;
 				case RUBY:     value = "Ruby";     cell.setIcon(new ImageIcon(img3)); break;
 				case SAPPHIRE: value = "Sapphire"; cell.setIcon(new ImageIcon(img4)); break;
-				default: // TODO: Throw runtime error.
+				case TOPAZ:    value = "Topaz";    break;
+				default: throw new IllegalStateException();
 			}
 			value = "";
 		}
@@ -448,11 +460,12 @@ class BoardView
 		Color color = Color.BLACK;
 		if (jewel != null) {
 			switch (jewel) {
-				case DIAMOND:  color = COLOR_DIAMOND; 	break;
-				case EMERALD:  color = COLOR_EMERALD; 	break;
-				case RUBY:     color = COLOR_RUBY; 		break;
-				case SAPPHIRE: color = COLOR_SAPPHIRE; 	break;
-				default: // TODO: Throw runtime error.
+				case DIAMOND:  color = COLOR_DIAMOND;  break;
+				case EMERALD:  color = COLOR_EMERALD;  break;
+				case RUBY:     color = COLOR_RUBY;     break;
+				case SAPPHIRE: color = COLOR_SAPPHIRE; break;
+				case TOPAZ:    color = COLOR_TOPAZ;    break;
+				default: throw new IllegalStateException();
 			}
 		}
 		cell.setForeground(color);

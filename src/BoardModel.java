@@ -1,8 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -18,36 +15,10 @@ class BoardModel
 	private int     width = 0;
 	
 	/**
-	 * Cell symbol enum.
-	 */
-	public enum Jewel {
-		DIAMOND,
-		EMERALD,
-		RUBY,
-		SAPPHIRE;
-		
-		// TODO: Use array instead?
-		private static final List<Jewel> VALUES =
-			Collections.unmodifiableList(Arrays.asList(values()));
-		private static final int    SIZE   = VALUES.size();
-		private static final Random RANDOM = new Random();
-		
-		/**
-		 * Return a random jewel.
-		 *
-		 * @return A random jewel type.
-		 */
-		// TODO: Support returning a limited subset of jewels?
-		public static Jewel random()
-		{
-			return VALUES.get(RANDOM.nextInt(SIZE));
-		}
-	}
-	
-	/**
 	 * Move type enum.
 	 */
-	public enum MoveType {
+	public enum MoveType
+	{
 		BAD,
 		CANCEL,
 		OK;
@@ -68,31 +39,170 @@ class BoardModel
 		this.width = width;
 		
 		// Construct board //
+		// TODO: Is it necessary to null-initialize array?
 		board = new Jewel[width * width];
 		for (int i = 0; i < width * width; i++) {
 			board[i] = null;
 		}
-		fillBoard();
+		fill();
 	}
 	
 	/**
-	 * Clear jewels from the board.
+	 * Clear jewels from the board. May leave the board in an inconsistent
+	 * state.
 	 *
-	 * @param positions Coordinates of affected cells.
-	 * @return          Gained score.
+	 * @param chains Array of chains with aligned cells to clear.
+	 * @return       Gained score.
 	 */
-	// TODO: Revise algorithm and reduce complexity.
-	private int clearMatches(Coordinate[] positions)
+	private int clearChains(Coordinate[][] chains)
 	{
 		// Validate argument //
-		// TODO: Add assert on count not exceeding number of cells.
+		// TODO: Perform validation on array contents as well?
+		if (chains == null) {
+			throw new NullPointerException();
+		}
+		
+		// Clear chains //
+		int points = 0;
+		for (Coordinate[] chain : chains) {
+			// Clear cells //
+			for (Coordinate cell : chain) {
+				set(cell, null);
+			}
+			
+			// Count score //
+			// TODO: Make score increase exponentially with longer matches.
+			points += chain.length * 100;
+		}
+		
+		return points;
+	}
+	
+	/**
+	 * Move cells downwards to fill any gaps. May leave the board in an
+	 * inconsistent state.
+	 */
+	private void dropCells()
+	{
+		// Iterate over columns //
+		for (int column = 0; column < width; column++) {
+			// Iterate bottom-up //
+			for (int row = width - 1; row >= 0; --row) {
+				// Move cell down to last empty space //
+				for (int index = row; index < width - 1; index++) {
+					Coordinate over  = new Coordinate(column, index);
+					Coordinate under = new Coordinate(column, index + 1);
+					if (get(under) != null) {
+						break;
+					}
+					swap(over, under);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Fill empty spaces in the board. Avoids creating matches. Since the
+	 * algorithm is not proven to work in all instances, it may potentially
+	 * leave the board in an inconsistent state.
+	 */
+	private void fill()
+	{
+		// Create RNG //
+		// TODO: Store this higher in the hierarchy.
+		Random random = new Random();
+		
+		// Fill all cells //
+		for (int i = 0; i < width * width; i++) {
+			// Skip filled cells //
+			if (board[i] != null) {
+				continue;
+			}
+			
+			// Get coordinates //
+			int x = i % width;
+			int y = i / width;
+			Coordinate position = new Coordinate(x, y);
+			
+			// Create list of possible options //
+			HashSet<Jewel> options = new HashSet<Jewel>();
+			options.add(Jewel.DIAMOND);
+			options.add(Jewel.EMERALD);
+			options.add(Jewel.RUBY);
+			options.add(Jewel.SAPPHIRE);
+			options.add(Jewel.TOPAZ);
+			
+			// Attempt to fill cell //
+			while (true) {
+				// Bail-out if options are exhausted //
+				if (options.isEmpty()) {
+					System.out.printf(
+						"No possible jewel for (%d, %d), leaving empty%s",
+						x, y, System.lineSeparator()
+					);
+					set(position, null);
+					break;
+				}
+				
+				// Get a random option //
+				int   choice  = random.nextInt(options.size());
+				int   current = 0;
+				Jewel jewel   = null;
+				for (Jewel kind : options) {
+					if (current == choice) {
+						jewel = kind;
+					}
+					current++;
+				}
+				
+				// Update cell //
+				set(position, jewel);
+				
+				// Look for chains //
+				Coordinate[][] chains = findChains(position);
+				if (chains.length == 0) {
+					break;
+				}
+				
+				// Option exhausted //
+				options.remove(jewel);
+			}
+		}
+	}
+	
+	/**
+	 * Identify chains involving a single cell.
+	 *
+	 * @param position Coordinate of cell to check.
+	 * @return         Array of chains found.
+	 */
+	private Coordinate[][] findChains(Coordinate position)
+	{
+		// Validate argument //
+		if (position == null) {
+			throw new NullPointerException();
+		}
+		
+		Coordinate[] positions = new Coordinate[] { position };
+		return findChains(positions);
+	}
+	
+	/**
+	 * Identify chains involving a list of cells.
+	 *
+	 * @param positions Coordinates of cells to check.
+	 * @return          Array of chains found.
+	 */
+	private Coordinate[][] findChains(Coordinate[] positions)
+	{
+		// Validate argument //
+		// TODO: Check for null values inside array?
 		if (positions == null) {
 			throw new NullPointerException();
 		}
 		
-		// Find matches //
-		// TODO: Check for null values inside array?
-		List<List<Coordinate>> matches = new ArrayList<List<Coordinate>>();
+		// Look for chains //
+		List<Coordinate[]> chains = new ArrayList<Coordinate[]>();
 		for (Coordinate position : positions) {
 			// Get jewel type to match //
 			Jewel matchType = get(position);
@@ -121,8 +231,10 @@ class BoardModel
 				stopX = i;
 				cellsX.add(new Coordinate(i, y));
 			}
-			if (cellsX.size() > 0) {
-				matches.add(cellsX);
+			if (cellsX.size() >= MINIMUM_LENGTH) {
+				Coordinate[] chain = new Coordinate[cellsX.size()];
+				chain = cellsX.toArray(chain);
+				chains.add(chain);
 			}
 			
 			// Search for matches on Y-axis //
@@ -145,163 +257,15 @@ class BoardModel
 				stopY = i;
 				cellsY.add(new Coordinate(x, i));
 			}
-			if (cellsY.size() > 0) {
-				matches.add(cellsY);
+			if (cellsY.size() >= MINIMUM_LENGTH) {
+				Coordinate[] chain = new Coordinate[cellsY.size()];
+				chain = cellsY.toArray(chain);
+				chains.add(chain);
 			}
 		}
 		
-		// Clear matches and adjust score //
-		int points = 0;
-		for (List<Coordinate> match : matches) {
-			// Verify length of match //
-			if (match.size() < MINIMUM_LENGTH) {
-				continue;
-			}
-			
-			// Clear cells //
-			for (Coordinate cell : match) {
-				set(cell, null);
-			}
-			
-			// Adjust score //
-			// TODO: Make score increase exponentially with longer matches.
-			int match_points = match.size() * 100;
-			points += match_points;
-			score  += match_points;
-		}
-		
-		// Drop cells //
-		// TODO: Assert board state?
-		for (int column = 0; column < width; column++) {
-			for (int row = width - 1; row >= 0; --row) {
-				// Move cell down to last empty space //
-				for (int index = row; index < width - 1; index++) {
-					int i1 = (index + 0) * width + column;
-					int i2 = (index + 1) * width + column;
-					if (board[i2] != null) {
-						break;
-					}
-					board[i2] = board[i1];
-					board[i1] = null;
-				}
-			}
-		}
-		
-		// TODO: Recheck moved cells.
-		
-		// Refill board //
-		fillBoard();
-		
-		// TODO: Clear board again.
-		
-		return points;
-	}
-	
-	/**
-	 * Fill empty spaces in the board. Avoids creating matches. Depending on the
-	 * number of types of jewels, this may not be possible.
-	 */
-	private void fillBoard()
-	{
-		Random random = new Random();
-		for (int i = 0; i < width * width; i++) {
-			if (board[i] == null) {
-				// Find potential matches //
-				int x = i % width;
-				int y = i / width;
-				HashSet<Jewel> matches = new HashSet<Jewel>();
-				matches.add(Jewel.DIAMOND);
-				matches.add(Jewel.EMERALD);
-				matches.add(Jewel.RUBY);
-				matches.add(Jewel.SAPPHIRE);
-				Jewel type = null;
-				
-				// Find west matches //
-				if (x >= 1) {
-					type = get(x - 1, y);
-					for (int n = 1; n <= x; n++) {
-						if (n >= MINIMUM_LENGTH - 1) {
-							matches.remove(type);
-							break;
-						}
-						if (get(x - n, y) == null) {
-							continue;
-						}
-						if (get(x - n, y) != type) {
-							break;
-						}
-					}
-				}
-				
-				// Find east matches //
-				if (x <= width - 2) {
-					type = get(x + 1, y);
-					for (int n = 1; n <= x; n++) {
-						if (n >= MINIMUM_LENGTH - 1) {
-							matches.remove(type);
-							break;
-						}
-						if (get(x + n, y) == null) {
-							continue;
-						}
-						if (get(x + n, y) != type) {
-							break;
-						}
-					}
-				}
-				
-				// Find north matches //
-				if (y >= 1) {
-					type = get(x, y - 1);
-					for (int n = 1; n <= x; n++) {
-						if (n >= MINIMUM_LENGTH - 1) {
-							matches.remove(type);
-							break;
-						}
-						if (get(x, y - n) == null) {
-							continue;
-						}
-						if (get(x, y - n) != type) {
-							break;
-						}
-					}
-				}
-				
-				// Find south matches //
-				if (y <= width - 2) {
-					type = get(x, y + 1);
-					for (int n = 1; n <= x; n++) {
-						if (n >= MINIMUM_LENGTH - 1) {
-							matches.remove(type);
-							break;
-						}
-						if (get(x, y + 1) == null) {
-							continue;
-						}
-						if (get(x, y + 1) != type) {
-							break;
-						}
-					}
-				}
-				
-				// Fill cell //
-				Jewel jewel = null;
-				if (matches.isEmpty()) {
-					System.out.println("No possible jewel for (" + x + ", " + y + "), ramdomizing");
-					jewel = Jewel.random();
-				} else {
-					int index = random.nextInt(matches.size());
-					int j     = 0;
-					for (Jewel kind : matches) {
-						if (j == index) {
-							jewel = kind;
-						}
-						j++;
-					}
-				}
-				board[i] = jewel;
-			}
-		}
+		Coordinate[][] out = new Coordinate[chains.size()][];
+		return chains.toArray(out);
 	}
 	
 	/**
@@ -352,16 +316,6 @@ class BoardModel
 	}
 	
 	/**
-	 * Prototype function for MVC implementation.
-	 *
-	 * @return A placeholder string.
-	 */
-	public String getValue()
-	{
-		return "Hello, World!";
-	}
-	
-	/**
 	 * Get the size the board.
 	 *
 	 * @return The number of cells per axis.
@@ -372,7 +326,8 @@ class BoardModel
 	}
 	
 	/**
-	 * Move a cell.
+	 * Move a cell and clear any generated chains. Leaves the board in a
+	 * consistent state.
 	 *
 	 * @param from Source coordinates.
 	 * @param to   Destination coordinates.
@@ -407,10 +362,8 @@ class BoardModel
 		     position.x += dx, position.y += dy)
 		{
 			// Swap cell with neighbor //
-			Jewel first  = get(position.x, position.y);
-			Jewel second = get(position.x + dx, position.y + dy);
-			set(position.x, position.y, second);
-			set(position.x + dx, position.y + dy, first);
+			Coordinate next = new Coordinate(position.x + dx, position.y + dy);
+			swap(position, next);
 			
 			// Save coordinate //
 			positions.add(new Coordinate(position.x, position.y));
@@ -419,13 +372,13 @@ class BoardModel
 		
 		// Clear cells //
 		Coordinate[] out = new Coordinate[positions.size()];
-		clearMatches(positions.toArray(out));
+		update(positions.toArray(out));
 		
 		return MoveType.OK;
 	}
 	
 	/**
-	 * Set the value of a cell.
+	 * Set the value of a cell. May leave the board in an inconsistent state.
 	 *
 	 * @param position Coordinates of the cell.
 	 * @param value    Value to set.
@@ -441,7 +394,7 @@ class BoardModel
 	}
 	
 	/**
-	 * Set the value of a cell.
+	 * Set the value of a cell. May leave the board in an inconsistent state.
 	 *
 	 * @param x     X-coordinate of the cell.
 	 * @param y     Y-coordinate of the cell.
@@ -459,5 +412,52 @@ class BoardModel
 		
 		int i = y * width + x;
 		board[i] = value;
+	}
+	
+	/**
+	 * Convenience method for swapping two cells. May leave the board in an
+	 * inconsistent state.
+	 *
+	 * @param first  Coordinates of first cell.
+	 * @param second Coordinates of second cell.
+	 */
+	private void swap(Coordinate first, Coordinate second)
+	{
+		// Validate arguments //
+		if (first == null || second == null) {
+			throw new NullPointerException();
+		}
+		
+		Jewel firstType  = get(first);
+		Jewel secondType = get(second);
+		set(first, secondType);
+		set(second, firstType);
+	}
+	
+	/**
+	 * Progress board into a consistent state.
+	 */
+	private void update(Coordinate[] positions)
+	{
+		// Validate argument //
+		// TODO: Add assert on count not exceeding number of cells.
+		if (positions == null) {
+			throw new NullPointerException();
+		}
+		
+		// Find matches //
+		Coordinate[][] chains = findChains(positions);
+		
+		// Clear matches and adjust score //
+		int points = clearChains(chains);
+		score += points;
+		
+		// Drop cells //
+		dropCells();
+		
+		// Refill board //
+		fill();
+		
+		// TODO: Clear board again.
 	}
 }
