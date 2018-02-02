@@ -76,7 +76,7 @@ class BoardView
 		prepareGraphics();
 		
 		// Prepare audio-clips //
-		prepareAudioClips();
+		prepareAudio();
 		
 		// Initialize components //
 		textField.setText("Hello, World!");
@@ -119,7 +119,7 @@ class BoardView
 	/**
 	 * Prepare audio-clips
 	 */
-	public void prepareAudioClips() {
+	public void prepareAudio() {
 		try {
 			AudioInputStream audioInputStream = 
                 AudioSystem.getAudioInputStream(new File("src/sound1.wav").getAbsoluteFile());
