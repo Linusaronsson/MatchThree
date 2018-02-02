@@ -336,16 +336,6 @@ class BoardModel
 	}
 	
 	/**
-	 * Prototype function for MVC implementation.
-	 *
-	 * @return A placeholder string.
-	 */
-	public String getValue()
-	{
-		return "Hello, World!";
-	}
-	
-	/**
 	 * Get the size the board.
 	 *
 	 * @return The number of cells per axis.

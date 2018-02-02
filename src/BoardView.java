@@ -62,7 +62,7 @@ class BoardView
 		this.setJMenuBar(menuBar);
 		
 		// Initialize components //
-		textField.setText(model.getValue());
+		textField.setText("Hello, World!");
 		textField.setEditable(false);
 		updateScore();
 		
