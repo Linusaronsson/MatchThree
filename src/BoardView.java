@@ -137,13 +137,11 @@ class BoardView
 	}
 	
 	/**
-	 * Get reference to swap sound clip.
-	 *
-	 * @return Reference to clip.
+	 * Play swap audio clip.
 	 */
-	public Clip getAudioSwap()
+	public void playAudioSwap()
 	{
-		return audioSwap;
+		audioSwap.start();
 	}
 	
 	/**
