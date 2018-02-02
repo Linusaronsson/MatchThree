@@ -78,71 +78,7 @@ class BoardView
 		content.add(header, BorderLayout.PAGE_START);
 		
 		// Construct grid //
-		int width = model.getWidth();
-		JPanel grid = new JPanel(new GridLayout(width, width));
-		grid.setBackground(COLOR_BACKGROUND);
-		
-		// Fill grid //
-		board = new Cell[width * width];
-		for (int i = 0; i < width * width; i++) {
-			// Get coordinates //
-			int x = i % width;
-			int y = i / width;
-			
-			// Create button //
-			Cell button = new Cell(x, y);
-			
-			// Set button properties //
-			button.setOpaque(true);
-			button.setBorderPainted(false);
-			button.setEnabled(true);
-			button.setContentAreaFilled(false);
-			button.setFocusPainted(false);
-			button.setHorizontalAlignment(SwingConstants.CENTER);
-			button.setVerticalAlignment(SwingConstants.CENTER);
-			button.setForeground(COLOR_FOREGROUND);
-			button.setBackground(Color.BLACK);
-			button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
-			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
-			button.setFont(font);
-			
-			// Get jewel from model //
-			Jewel jewel = model.get(x, y);
-			
-			// Update text to match jewel //
-			String value = "";
-			if (jewel != null) {
-				switch (jewel) {
-					case DIAMOND:  value = "Diamond";  break;
-					case EMERALD:  value = "Emerald";  break;
-					case RUBY:     value = "Ruby";     break;
-					case SAPPHIRE: value = "Sapphire"; break;
-					case TOPAZ:    value = "Topaz";    break;
-					default: throw new IllegalStateException();
-				}
-			}
-			button.setText(value);
-			
-			// Update color to match jewel //
-			Color color = Color.BLACK;
-			if (jewel != null) {
-				switch (jewel) {
-					case DIAMOND:  color = COLOR_DIAMOND;  break;
-					case EMERALD:  color = COLOR_EMERALD;  break;
-					case RUBY:     color = COLOR_RUBY;     break;
-					case SAPPHIRE: color = COLOR_SAPPHIRE; break;
-					case TOPAZ:    color = COLOR_TOPAZ;    break;
-					default: throw new IllegalStateException();
-				}
-			}
-			button.setForeground(color);
-			
-			// Add button to grid //
-			board[i] = button;
-			grid.add(button);
-		}
-		
-		// Add grid to pane //
+		JPanel grid = createGrid();
 		content.add(grid, BorderLayout.CENTER);
 		
 		// Update window with content //
@@ -255,6 +191,79 @@ class BoardView
 		}
 		
 		addWindowListener(listener);
+	}
+	
+	/**
+	 * Create game grid.
+	 */
+	private JPanel createGrid()
+	{
+		// Create grid //
+		int width = model.getWidth();
+		JPanel grid = new JPanel(new GridLayout(width, width));
+		grid.setBackground(COLOR_BACKGROUND);
+		
+		// Fill grid //
+		board = new Cell[width * width];
+		for (int i = 0; i < width * width; i++) {
+			// Get coordinates //
+			int x = i % width;
+			int y = i / width;
+			
+			// Create button //
+			Cell button = new Cell(x, y);
+			
+			// Set button properties //
+			button.setOpaque(true);
+			button.setBorderPainted(false);
+			button.setEnabled(true);
+			button.setContentAreaFilled(false);
+			button.setFocusPainted(false);
+			button.setHorizontalAlignment(SwingConstants.CENTER);
+			button.setVerticalAlignment(SwingConstants.CENTER);
+			button.setForeground(COLOR_FOREGROUND);
+			button.setBackground(Color.BLACK);
+			button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
+			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
+			button.setFont(font);
+			
+			// Get jewel from model //
+			Jewel jewel = model.get(x, y);
+			
+			// Update text to match jewel //
+			String value = "";
+			if (jewel != null) {
+				switch (jewel) {
+					case DIAMOND:  value = "Diamond";  break;
+					case EMERALD:  value = "Emerald";  break;
+					case RUBY:     value = "Ruby";     break;
+					case SAPPHIRE: value = "Sapphire"; break;
+					case TOPAZ:    value = "Topaz";    break;
+					default: throw new IllegalStateException();
+				}
+			}
+			button.setText(value);
+			
+			// Update color to match jewel //
+			Color color = Color.BLACK;
+			if (jewel != null) {
+				switch (jewel) {
+					case DIAMOND:  color = COLOR_DIAMOND;  break;
+					case EMERALD:  color = COLOR_EMERALD;  break;
+					case RUBY:     color = COLOR_RUBY;     break;
+					case SAPPHIRE: color = COLOR_SAPPHIRE; break;
+					case TOPAZ:    color = COLOR_TOPAZ;    break;
+					default: throw new IllegalStateException();
+				}
+			}
+			button.setForeground(color);
+			
+			// Add button to grid //
+			board[i] = button;
+			grid.add(button);
+		}
+		
+		return grid;
 	}
 	
 	/**
