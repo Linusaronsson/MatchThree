@@ -124,25 +124,29 @@ class BoardView
 			BoardModel.Jewel jewel = model.get(x, y);
 			
 			// Update text to match jewel //
-			String value = null;
-			switch (jewel) {
-				case DIAMOND:  value = "Diamond";  button.setIcon(new ImageIcon(img1)); break;
-				case EMERALD:  value = "Emerald";  button.setIcon(new ImageIcon(img2)); break;
-				case RUBY:     value = "Ruby";     button.setIcon(new ImageIcon(img3)); break;
-				case SAPPHIRE: value = "Sapphire"; button.setIcon(new ImageIcon(img4)); break;
-				default: // TODO: Throw runtime error.
+			String value = "";
+			if (jewel != null) {
+				switch (jewel) {
+					case DIAMOND:  value = "Diamond";  button.setIcon(new ImageIcon(img1)); break;
+					case EMERALD:  value = "Emerald";  button.setIcon(new ImageIcon(img2)); break;
+					case RUBY:     value = "Ruby";     button.setIcon(new ImageIcon(img3)); break;
+					case SAPPHIRE: value = "Sapphire"; button.setIcon(new ImageIcon(img4)); break;
+					default: throw new IllegalStateException();
+				}
 			}
 			value = "";
 			button.setText(value);
 			
 			// Update color to match jewel //
-			Color color = null;
-			switch (jewel) {
-				case DIAMOND:  color = COLOR_DIAMOND;  break;
-				case EMERALD:  color = COLOR_EMERALD;  break;
-				case RUBY:     color = COLOR_RUBY;     break;
-				case SAPPHIRE: color = COLOR_SAPPHIRE; break;
-				default: // TODO: Throw runtime error.
+			Color color = Color.BLACK;
+			if (jewel != null) {
+				switch (jewel) {
+					case DIAMOND:  color = COLOR_DIAMOND;  break;
+					case EMERALD:  color = COLOR_EMERALD;  break;
+					case RUBY:     color = COLOR_RUBY;     break;
+					case SAPPHIRE: color = COLOR_SAPPHIRE; break;
+					default: throw new IllegalStateException();
+				}
 			}
 			button.setForeground(color);
 			

@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -68,8 +70,9 @@ class BoardModel
 		// Construct board //
 		board = new Jewel[width * width];
 		for (int i = 0; i < width * width; i++) {
-			board[i] = Jewel.random();
+			board[i] = null;
 		}
+		fillBoard();
 	}
 	
 	/**
@@ -167,7 +170,138 @@ class BoardModel
 			score  += match_points;
 		}
 		
+		// Drop cells //
+		// TODO: Assert board state?
+		for (int column = 0; column < width; column++) {
+			for (int row = width - 1; row >= 0; --row) {
+				// Move cell down to last empty space //
+				for (int index = row; index < width - 1; index++) {
+					int i1 = (index + 0) * width + column;
+					int i2 = (index + 1) * width + column;
+					if (board[i2] != null) {
+						break;
+					}
+					board[i2] = board[i1];
+					board[i1] = null;
+				}
+			}
+		}
+		
+		// TODO: Recheck moved cells.
+		
+		// Refill board //
+		fillBoard();
+		
+		// TODO: Clear board again.
+		
 		return points;
+	}
+	
+	/**
+	 * Fill empty spaces in the board. Avoids creating matches. Depending on the
+	 * number of types of jewels, this may not be possible.
+	 */
+	private void fillBoard()
+	{
+		Random random = new Random();
+		for (int i = 0; i < width * width; i++) {
+			if (board[i] == null) {
+				// Find potential matches //
+				int x = i % width;
+				int y = i / width;
+				HashSet<Jewel> matches = new HashSet<Jewel>();
+				matches.add(Jewel.DIAMOND);
+				matches.add(Jewel.EMERALD);
+				matches.add(Jewel.RUBY);
+				matches.add(Jewel.SAPPHIRE);
+				Jewel type = null;
+				
+				// Find west matches //
+				if (x >= 1) {
+					type = get(x - 1, y);
+					for (int n = 1; n <= x; n++) {
+						if (n >= MINIMUM_LENGTH - 1) {
+							matches.remove(type);
+							break;
+						}
+						if (get(x - n, y) == null) {
+							continue;
+						}
+						if (get(x - n, y) != type) {
+							break;
+						}
+					}
+				}
+				
+				// Find east matches //
+				if (x <= width - 2) {
+					type = get(x + 1, y);
+					for (int n = 1; n <= x; n++) {
+						if (n >= MINIMUM_LENGTH - 1) {
+							matches.remove(type);
+							break;
+						}
+						if (get(x + n, y) == null) {
+							continue;
+						}
+						if (get(x + n, y) != type) {
+							break;
+						}
+					}
+				}
+				
+				// Find north matches //
+				if (y >= 1) {
+					type = get(x, y - 1);
+					for (int n = 1; n <= x; n++) {
+						if (n >= MINIMUM_LENGTH - 1) {
+							matches.remove(type);
+							break;
+						}
+						if (get(x, y - n) == null) {
+							continue;
+						}
+						if (get(x, y - n) != type) {
+							break;
+						}
+					}
+				}
+				
+				// Find south matches //
+				if (y <= width - 2) {
+					type = get(x, y + 1);
+					for (int n = 1; n <= x; n++) {
+						if (n >= MINIMUM_LENGTH - 1) {
+							matches.remove(type);
+							break;
+						}
+						if (get(x, y + 1) == null) {
+							continue;
+						}
+						if (get(x, y + 1) != type) {
+							break;
+						}
+					}
+				}
+				
+				// Fill cell //
+				Jewel jewel = null;
+				if (matches.isEmpty()) {
+					System.out.println("No possible jewel for (" + x + ", " + y + "), ramdomizing");
+					jewel = Jewel.random();
+				} else {
+					int index = random.nextInt(matches.size());
+					int j     = 0;
+					for (Jewel kind : matches) {
+						if (j == index) {
+							jewel = kind;
+						}
+						j++;
+					}
+				}
+				board[i] = jewel;
+			}
+		}
 	}
 	
 	/**
