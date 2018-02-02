@@ -377,11 +377,11 @@ class BoardView
 	{
 		// Validate arguments //
 		if (position == null) {
-				throw new NullPointerException();
+			throw new NullPointerException();
 		}
 		int width = model.getWidth();
 		if (position.x >= width || position.y >= width) {
-				throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException();
 		}
 		
 		// Get the affected cell //
@@ -496,11 +496,11 @@ class BoardView
 	{
 		// Validate arguments //
 		if (x < 0 || y < 0) {
-				throw new IllegalArgumentException();
+			throw new IllegalArgumentException();
 		}
 		int width = model.getWidth();
 		if (x >= width || y >= width) {
-				throw new IndexOutOfBoundsException();
+			throw new IndexOutOfBoundsException();
 		}
 		
 		// Get jewel from model //
