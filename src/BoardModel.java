@@ -102,109 +102,72 @@ class BoardModel
 	}
 	
 	/**
-	 * Fill empty spaces in the board. Avoids creating matches. Depending on the
-	 * number of types of jewels, this may not be possible.
+	 * Fill empty spaces in the board. Avoids creating matches. Since the
+	 * algorithm is not proven to work in all instances, it may potentially
+	 * leave the board in an inconsistent state.
 	 */
 	private void fill()
 	{
+		// Create RNG //
+		// TODO: Store this higher in the hierarchy.
 		Random random = new Random();
+		
+		// Fill all cells //
 		for (int i = 0; i < width * width; i++) {
-			if (board[i] == null) {
-				// Find potential matches //
-				int x = i % width;
-				int y = i / width;
-				HashSet<Jewel> matches = new HashSet<Jewel>();
-				matches.add(Jewel.DIAMOND);
-				matches.add(Jewel.EMERALD);
-				matches.add(Jewel.RUBY);
-				matches.add(Jewel.SAPPHIRE);
-				matches.add(Jewel.TOPAZ);
-				Jewel type = null;
-				
-				// Find west matches //
-				if (x >= 1) {
-					type = get(x - 1, y);
-					for (int n = 1; n <= x; n++) {
-						if (n >= MINIMUM_LENGTH - 1) {
-							matches.remove(type);
-							break;
-						}
-						if (get(x - n, y) == null) {
-							continue;
-						}
-						if (get(x - n, y) != type) {
-							break;
-						}
-					}
+			// Skip filled cells //
+			if (board[i] != null) {
+				continue;
+			}
+			
+			// Get coordinates //
+			int x = i % width;
+			int y = i / width;
+			Coordinate position = new Coordinate(x, y);
+			
+			// Create list of possible options //
+			HashSet<Jewel> options = new HashSet<Jewel>();
+			options.add(Jewel.DIAMOND);
+			options.add(Jewel.EMERALD);
+			options.add(Jewel.RUBY);
+			options.add(Jewel.SAPPHIRE);
+			options.add(Jewel.TOPAZ);
+			
+			// Attempt to fill cell //
+			while (true) {
+				// Bail-out if options are exhausted //
+				if (options.isEmpty()) {
+					System.out.printf(
+						"No possible jewel for (%d, %d), leaving empty%s",
+						x, y, System.lineSeparator()
+					);
+					set(position, null);
+					break;
 				}
 				
-				// Find east matches //
-				if (x <= width - 2) {
-					type = get(x + 1, y);
-					for (int n = 1; n <= x; n++) {
-						if (n >= MINIMUM_LENGTH - 1) {
-							matches.remove(type);
-							break;
-						}
-						if (get(x + n, y) == null) {
-							continue;
-						}
-						if (get(x + n, y) != type) {
-							break;
-						}
+				// Get a random option //
+				int   choice  = random.nextInt(options.size());
+				int   current = 0;
+				Jewel jewel   = null;
+				for (Jewel kind : options) {
+					if (current == choice) {
+						jewel = kind;
 					}
+					current++;
 				}
 				
-				// Find north matches //
-				if (y >= 1) {
-					type = get(x, y - 1);
-					for (int n = 1; n <= x; n++) {
-						if (n >= MINIMUM_LENGTH - 1) {
-							matches.remove(type);
-							break;
-						}
-						if (get(x, y - n) == null) {
-							continue;
-						}
-						if (get(x, y - n) != type) {
-							break;
-						}
-					}
+				// Update cell //
+				set(position, jewel);
+				
+				// Look for chains //
+				// TODO: Add overloaded method to `findChains`.
+				Coordinate[] list = new Coordinate[] { position };
+				Coordinate[][] chains = findChains(list);
+				if (chains.length == 0) {
+					break;
 				}
 				
-				// Find south matches //
-				if (y <= width - 2) {
-					type = get(x, y + 1);
-					for (int n = 1; n <= x; n++) {
-						if (n >= MINIMUM_LENGTH - 1) {
-							matches.remove(type);
-							break;
-						}
-						if (get(x, y + 1) == null) {
-							continue;
-						}
-						if (get(x, y + 1) != type) {
-							break;
-						}
-					}
-				}
-				
-				// Fill cell //
-				Jewel jewel = null;
-				if (matches.isEmpty()) {
-					System.out.println("No possible jewel for (" + x + ", " + y + "), ramdomizing");
-					jewel = Jewel.random();
-				} else {
-					int index = random.nextInt(matches.size());
-					int j     = 0;
-					for (Jewel kind : matches) {
-						if (j == index) {
-							jewel = kind;
-						}
-						j++;
-					}
-				}
-				board[i] = jewel;
+				// Option exhausted //
+				options.remove(jewel);
 			}
 		}
 	}
