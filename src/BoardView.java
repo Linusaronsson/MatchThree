@@ -126,17 +126,18 @@ class BoardView
 		       LineUnavailableException,
 		       UnsupportedAudioFileException
 	{
-			AudioInputStream audioInputStream = 
-                AudioSystem.getAudioInputStream(new File("src/sound1.wav").getAbsoluteFile());
-         
-			// create clip reference
-			audioSwap = AudioSystem.getClip();
-         
-			// open audioInputStream to the clip
-			audioSwap.open(audioInputStream);
+		AudioInputStream audioInputStream =
+			AudioSystem.getAudioInputStream(new File("src/sound1.wav").getAbsoluteFile());
+		
+		// create clip reference
+		audioSwap = AudioSystem.getClip();
+		
+		// open audioInputStream to the clip
+		audioSwap.open(audioInputStream);
 	}
 	
-	public Clip getAudioSwap() {
+	public Clip getAudioSwap()
+	{
 		return audioSwap;
 	}
 	
