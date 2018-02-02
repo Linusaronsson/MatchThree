@@ -136,6 +136,11 @@ class BoardView
 		audioSwap.open(audioStream);
 	}
 	
+	/**
+	 * Get reference to swap sound clip.
+	 *
+	 * @return Reference to clip.
+	 */
 	public Clip getAudioSwap()
 	{
 		return audioSwap;
