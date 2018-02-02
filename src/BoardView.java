@@ -318,7 +318,7 @@ class BoardView
 		       UnsupportedAudioFileException
 	{
 		// Read audio from file //
-		File audioFile = new File("src/sound1.wav").getAbsoluteFile();
+		File audioFile = new File("src/Swap.wav").getAbsoluteFile();
 		AudioInputStream audioStream =
 			AudioSystem.getAudioInputStream(audioFile);
 		
