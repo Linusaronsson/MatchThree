@@ -27,22 +27,20 @@ class BoardView
 	private static final Color  COLOR_TOPAZ      = new Color(0xFF, 0xBF, 0x00);
 	private static final String WINDOW_TITLE     = "MatchThree";
 	
-	private Cell[]     board     = null;
-	private JButton    button    = new JButton("Confirm");
-	private JLabel     label     = new JLabel("");
-	private BoardModel model     = null;
-	private JMenuItem  newItem   = null;
-	private JMenuItem  openItem  = null;
-	private JMenuItem  quitItem  = null;
-	private JMenuItem  saveItem  = null;
-	private JTextField textField = new JTextField(20);
-	
-	private BufferedImage img1 = null;
-	private BufferedImage img2 = null;
-	private BufferedImage img3 = null;
-	private BufferedImage img4 = null;
-	
-	private Clip audioSwap = null;
+	private Clip          audioSwap = null;
+	private Cell[]        board     = null;
+	private JButton       button    = new JButton("Confirm");
+	private BufferedImage img1      = null;
+	private BufferedImage img2      = null;
+	private BufferedImage img3      = null;
+	private BufferedImage img4      = null;
+	private JLabel        label     = new JLabel("");
+	private BoardModel    model     = null;
+	private JMenuItem     newItem   = null;
+	private JMenuItem     openItem  = null;
+	private JMenuItem     quitItem  = null;
+	private JMenuItem     saveItem  = null;
+	private JTextField    textField = new JTextField(20);
 	
 	/**
 	 * Constructor for `BoardView` MVC view.
