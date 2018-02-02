@@ -498,7 +498,7 @@ class BoardView
 				case EMERALD:  text = "Emerald";  image = imageEmerald;  break;
 				case RUBY:     text = "Ruby";     image = imageRuby;     break;
 				case SAPPHIRE: text = "Sapphire"; image = imageSapphire; break;
-				case TOPAZ:    text = "Topaz";    image = imageTopaz; break;
+				case TOPAZ:    text = "Topaz";    image = imageTopaz;    break;
 				default: throw new IllegalStateException();
 			}
 		}
