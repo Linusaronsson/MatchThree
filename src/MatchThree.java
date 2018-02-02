@@ -1,3 +1,7 @@
+import java.io.IOException;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 /**
  * MatchThree game.
  */
@@ -12,13 +16,21 @@ public class MatchThree
 	 */
 	public static void main(String[] args)
 	{
-		// Create MVC context //
-		BoardModel      model      = new BoardModel(GAME_SIZE);
-		BoardView       view       = new BoardView(model);
-		BoardController controller = new BoardController(model, view);
-		
-		// Show GUI //
-		// TODO: Move this to view?
-		view.setVisible(true);
+		try {
+			// Create MVC context //
+			BoardModel      model      = new BoardModel(GAME_SIZE);
+			BoardView       view       = new BoardView(model);
+			BoardController controller = new BoardController(model, view);
+			
+			// Show GUI //
+			// TODO: Move this to view?
+			view.setVisible(true);
+		} catch (IOException
+		      | LineUnavailableException
+		      | UnsupportedAudioFileException e)
+		{
+			System.out.println("An IO-related error occurred. Exiting.");
+			System.exit(1);
+		}
 	}
 }
