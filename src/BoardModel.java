@@ -411,10 +411,8 @@ class BoardModel
 		     position.x += dx, position.y += dy)
 		{
 			// Swap cell with neighbor //
-			Jewel first  = get(position.x, position.y);
-			Jewel second = get(position.x + dx, position.y + dy);
-			set(position.x, position.y, second);
-			set(position.x + dx, position.y + dy, first);
+			Coordinate next = new Coordinate(position.x + dx, position.y + dy);
+			swap(position, next);
 			
 			// Save coordinate //
 			positions.add(new Coordinate(position.x, position.y));
@@ -463,5 +461,20 @@ class BoardModel
 		
 		int i = y * width + x;
 		board[i] = value;
+	}
+	
+	/**
+	 * Convenience method for swapping two cells. Note that this may leave the
+	 * board in an inconsistent state.
+	 *
+	 * @param first  Coordinates of first cell.
+	 * @param second Coordinates of second cell.
+	 */
+	private void swap(Coordinate first, Coordinate second)
+	{
+		Jewel firstType  = get(first);
+		Jewel secondType = get(second);
+		set(first, secondType);
+		set(second, firstType);
 	}
 }
