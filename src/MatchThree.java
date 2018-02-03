@@ -1,9 +1,16 @@
+import java.awt.Component;
+import java.awt.PopupMenu;
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JOptionPane;
 
 import Model.*;
 import Controller.*;
+import GUI.GUI;
 import View.*;
 
 /**
@@ -11,30 +18,38 @@ import View.*;
  */
 public class MatchThree
 {
-	private static final int GAME_SIZE = 6;
+	class clientHandler {
+		public clientHandler(Socket client, Component c) {
+				JOptionPane.showMessageDialog(c,
+				                              "Client connected",
+				                              "asd",
+				                              JOptionPane.INFORMATION_MESSAGE);
+			}
+	}
 	
 	/**
 	 * Program entry point.
 	 *
 	 * @param args Program arguments.
+	 * @throws IOException 
 	 */
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
-		try {
-			// Create MVC context //
-			BoardModel      model      = new BoardModel(GAME_SIZE);
-			BoardView       view       = new BoardView(model);
-			BoardController controller = new BoardController(model, view);
-			
-			// Show GUI //
-			// TODO: Move this to view?
-			view.setVisible(true);
-		} catch (IOException
-		      | LineUnavailableException
-		      | UnsupportedAudioFileException e)
-		{
-			System.out.println(e);
-			System.exit(1);
-		}
+		//Initialize GUI
+		GUI ui = new GUI();
+		
+		/*
+		ServerSocket server  = new ServerSocket(9000);
+	
+		//Setup server socket listener
+		new Thread() {
+			public void run() {
+				while(true) {
+					Socket client = server.accept();
+					new clientHandler(client, ui);
+				}
+			}
+		};
+		*/
 	}
 }

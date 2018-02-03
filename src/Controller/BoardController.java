@@ -67,87 +67,6 @@ public class BoardController
 		}
 	}
 	
-	/**
-	 * Listens for "New" menu item.
-	 */
-	class NewListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			// Restart the game //
-			restartGame();
-		}
-	}
-	
-	/**
-	 * Listens for "Open" menu item.
-	 */
-	class OpenListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			view.showError("“Open” not implemented");
-		}
-	}
-	
-	/**
-	 * Listens for "Quit" menu item.
-	 */
-	class QuitListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			// Close window //
-			WindowEvent e = new WindowEvent(view, WindowEvent.WINDOW_CLOSING);
-			view.dispatchEvent(e);
-		}
-	}
-	
-	/**
-	 * Listens for "Save" menu item.
-	 */
-	class SaveListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			view.showError("“Save” not implemented");
-		}
-	}
-	
-	/**
-	 * Listens for window events.
-	 */
-	class WindowListener
-		extends WindowAdapter
-	{
-		public void windowActivated(WindowEvent event) {}
-		
-		public void windowClosed(WindowEvent event) {}
-		
-		public void windowClosing(WindowEvent event) {
-			// Close windows and free its resources //
-			// TODO: Is it necessary to use `view.setVisible(false)` as well?
-			view.dispose();
-		}
-		
-		public void windowDeactivated(WindowEvent event) {}
-		
-		public void windowDeiconified(WindowEvent event) {}
-		
-		public void windowGainedFocus(WindowEvent event) {}
-		
-		public void windowIconified(WindowEvent event) {}
-		
-		public void windowLostFocus(WindowEvent event) {}
-		
-		public void windowOpened(WindowEvent event) {}
-		
-		public void windowStateChanged(WindowEvent event) {}
-	}
 	
 	/**
 	 * Constructor for `BoardController` MVC controller.
@@ -168,11 +87,6 @@ public class BoardController
 		// Register event listeners //
 		view.addBoardListener(new BoardListener());
 		view.addButtonListener(new ButtonListener());
-		view.addNewListener(new NewListener());
-		view.addOpenListener(new OpenListener());
-		view.addQuitListener(new QuitListener());
-		view.addSaveListener(new SaveListener());
-		view.addWindowListener(new WindowListener());
 	}
 	
 	/**

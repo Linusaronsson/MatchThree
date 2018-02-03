@@ -22,7 +22,7 @@ import java.util.Observable;
  */
 @SuppressWarnings("serial")
 public class BoardView
-	extends JFrame implements Observer
+	extends JPanel implements Observer
 {
 	private static final String CELL_FONT_NAME   = "Helvetica Neue";
 	private static final int    CELL_FONT_SIZE   = 14;
@@ -34,21 +34,16 @@ public class BoardView
 	private static final Color  COLOR_RUBY       = new Color(0xE0, 0x11, 0x5F);
 	private static final Color  COLOR_SAPPHIRE   = new Color(0x0F, 0x52, 0xBA);
 	private static final Color  COLOR_TOPAZ      = new Color(0xFF, 0xBF, 0x00);
-	private static final String WINDOW_TITLE     = "MatchThree";
 	
 	private Clip          audioSwap      = null;
 	private Cell[]        board          = null;
-	private JButton       button         = new JButton("Confirm");
+	private JButton       button         = new JButton("Test");
 	private BufferedImage imageDiamond   = null;
 	private BufferedImage imageEmerald   = null;
 	private BufferedImage imageRuby      = null;
 	private BufferedImage imageSapphire  = null;
 	private JLabel        label          = new JLabel("");
 	private BoardModel    model          = null;
-	private JMenuItem     newItem        = null;
-	private JMenuItem     openItem       = null;
-	private JMenuItem     quitItem       = null;
-	private JMenuItem     saveItem       = null;
 	private JTextField    textField      = new JTextField(20);
 	
 	/**
@@ -71,20 +66,6 @@ public class BoardView
 		this.model = model;
 		model.addObserver(this);
 		
-		// Set application properties //
-		// TODO: Avoid calling global state changing method from instance
-		//       method.
-		setProperties();
-		
-		// Set window properties //
-		this.setTitle(WINDOW_TITLE);
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setLocationByPlatform(true);
-		
-		// Set menu bar //
-		JMenuBar menuBar = createMenuBar(this);
-		this.setJMenuBar(menuBar);
-		
 		// Load external resources //
 		prepareAudio();
 		prepareGraphics();
@@ -94,24 +75,58 @@ public class BoardView
 		textField.setEditable(false);
 		updateScore();
 		
-		// Create content pane //
-		JPanel content = new JPanel();
-		content.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout());
 		
 		// Construct header //
 		JPanel header = new JPanel(new FlowLayout());
 		header.add(label);
 		header.add(textField);
 		header.add(button);
-		content.add(header, BorderLayout.PAGE_START);
+		this.add(header, BorderLayout.PAGE_START);
 		
 		// Construct grid //
 		JPanel grid = createGrid();
-		content.add(grid, BorderLayout.CENTER);
+		this.add(grid, BorderLayout.CENTER);
 		
 		// Update window with content //
-		this.setContentPane(content);
-		this.pack();
+		//this.setContentPane(content);
+		//this.pack();
+	}
+	
+	/**
+	 * Display an error message.
+	 *
+	 * @param message The message to display.
+	 */
+	public void showError(String message)
+	{
+		// Validate argument //
+		if (message == null) {
+			throw new NullPointerException();
+		}
+		
+		JOptionPane.showMessageDialog(this,
+		                              message,
+		                              message,
+		                              JOptionPane.ERROR_MESSAGE);
+	}
+	
+	/**
+	 * Display an informative message.
+	 *
+	 * @param message The message to display.
+	 */
+	public void showMessage(String message)
+	{
+		// Validate argument //
+		if (message == null) {
+			throw new NullPointerException();
+		}
+		
+		JOptionPane.showMessageDialog(this,
+		                              message,
+		                              message,
+		                              JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	/**
@@ -144,81 +159,6 @@ public class BoardView
 		}
 		
 		button.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for "New" menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addNewListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		newItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for "Open" menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addOpenListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		openItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for "Quit" menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addQuitListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		quitItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for "Save" menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addSaveListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		saveItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for window events.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addWindowListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		addWindowListener(listener);
 	}
 	
 	/**
@@ -264,48 +204,6 @@ public class BoardView
 		}
 		
 		return grid;
-	}
-	
-	/**
-	 * Create window menu bar.
-	 *
-	 * @param self View to apply menu bar to.
-	 * @return     Menu bar object.
-	 */
-	// TODO: Research use of `self` parameter name.
-	private static JMenuBar createMenuBar(BoardView self)
-	{
-		// Validate argument //
-		if (self == null) {
-			throw new NullPointerException();
-		}
-		
-		// Create menu bar //
-		JMenuBar menuBar = new JMenuBar();
-		
-		// Create menus //
-		JMenu fileMenu = new JMenu("File");
-		
-		// Create "New" menu item //
-		self.newItem = new JMenuItem("New");
-		fileMenu.add(self.newItem);
-		
-		// Create "Open" menu item //
-		self.openItem = new JMenuItem("Open");
-		fileMenu.add(self.openItem);
-		
-		// Create "Save" menu item //
-		self.saveItem = new JMenuItem("Save");
-		fileMenu.add(self.saveItem);
-		
-		// Create "Quit" menu item //
-		self.quitItem = new JMenuItem("Quit");
-		fileMenu.add(self.quitItem);
-		
-		// Add menus to menu bar //
-		menuBar.add(fileMenu);
-		
-		return menuBar;
 	}
 	
 	/**
@@ -421,60 +319,6 @@ public class BoardView
 		}
 	}
 	
-	/**
-	 * Set application properties.
-	 */
-	private static void setProperties()
-	{
-		// Use native menu bar on macOS/OS X //
-		System.setProperty("apple.laf.useScreenMenuBar", "true");
-		// TODO: Does not appear important or is misused.
-		System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Test");
-		
-		// Set look and feel //
-		String lookAndFeel = UIManager.getSystemLookAndFeelClassName();
-		try { UIManager.setLookAndFeel(lookAndFeel); }
-		catch (ClassNotFoundException e) {}
-		catch (InstantiationException e) {}
-		catch (IllegalAccessException e) {}
-		catch (UnsupportedLookAndFeelException e) {}
-	}
-	
-	/**
-	 * Display an error message.
-	 *
-	 * @param message The message to display.
-	 */
-	public void showError(String message)
-	{
-		// Validate argument //
-		if (message == null) {
-			throw new NullPointerException();
-		}
-		
-		JOptionPane.showMessageDialog(this,
-		                              message,
-		                              message,
-		                              JOptionPane.ERROR_MESSAGE);
-	}
-	
-	/**
-	 * Display an informative message.
-	 *
-	 * @param message The message to display.
-	 */
-	public void showMessage(String message)
-	{
-		// Validate argument //
-		if (message == null) {
-			throw new NullPointerException();
-		}
-		
-		JOptionPane.showMessageDialog(this,
-		                              message,
-		                              message,
-		                              JOptionPane.INFORMATION_MESSAGE);
-	}
 	
 	/**
 	 * Update all cells. (Removed temporarily).

@@ -63,6 +63,21 @@ public class BoardModel extends Observable
 		init();
 	}
 	
+	public BoardModel(Jewel[] board, int width)
+	{
+		// Validate argument //
+		if (board == null) {
+			throw new NullPointerException();
+		}
+		
+		this.width = width;		
+		this.board = board;
+	}
+	
+	public Jewel[] getBoard() {
+		return board;
+	}
+	
 	/**
 	 * Clear jewels from the board. May leave the board in an inconsistent
 	 * state.
