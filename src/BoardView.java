@@ -365,20 +365,29 @@ class BoardView
 	 */
 	private void initGraphics()
 	{
-		// Get paths //
-		File fileDiamond  = new File(DIR_RESOURCES, "Diamond.png");
-		File fileEmerald  = new File(DIR_RESOURCES, "Emerald.png");
-		File fileRuby     = new File(DIR_RESOURCES, "Ruby.png");
-		File fileSapphire = new File(DIR_RESOURCES, "Sapphire.png");
-		File fileTopaz    = new File(DIR_RESOURCES, "Topaz.png");
-		
 		// Load images //
+		imageDiamond  = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
+		imageEmerald  = loadImage(new File(DIR_RESOURCES, "Emerald.png"));
+		imageRuby     = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
+		imageSapphire = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
+		imageTopaz    = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
+	}
+	
+	/**
+	 * Load an image resource.
+	 *
+	 * @param file File to read from.
+	 * @return     Loaded image buffer.
+	 */
+	private static BufferedImage loadImage(File file)
+	{
+		BufferedImage image = null;
 		try {
-			imageDiamond = ImageIO.read(fileDiamond);
+			image = ImageIO.read(file);
 		} catch (IOException e) {
 			System.err.printf(
 				"Failed to read \"%s\":%s",
-				fileDiamond,
+				file,
 				System.lineSeparator()
 			);
 			System.err.printf(
@@ -387,62 +396,7 @@ class BoardView
 				System.lineSeparator()
 			);
 		}
-		try {
-			imageEmerald = ImageIO.read(fileEmerald);
-		} catch (IOException e) {
-			System.err.printf(
-				"Failed to read \"%s\":%s",
-				fileEmerald,
-				System.lineSeparator()
-			);
-			System.err.printf(
-				"\t%s%s",
-				e,
-				System.lineSeparator()
-			);
-		}
-		try {
-			imageRuby = ImageIO.read(fileRuby);
-		} catch (IOException e) {
-			System.err.printf(
-				"Failed to read \"%s\":%s",
-				fileRuby,
-				System.lineSeparator()
-			);
-			System.err.printf(
-				"\t%s%s",
-				e,
-				System.lineSeparator()
-			);
-		}
-		try {
-			imageSapphire = ImageIO.read(fileSapphire);
-		} catch (IOException e) {
-			System.err.printf(
-				"Failed to read \"%s\":%s",
-				fileSapphire,
-				System.lineSeparator()
-			);
-			System.err.printf(
-				"\t%s%s",
-				e,
-				System.lineSeparator()
-			);
-		}
-		try {
-			imageTopaz = ImageIO.read(fileTopaz);
-		} catch (IOException e) {
-			System.err.printf(
-				"Failed to read \"%s\":%s",
-				fileTopaz,
-				System.lineSeparator()
-			);
-			System.err.printf(
-				"\t%s%s",
-				e,
-				System.lineSeparator()
-			);
-		}
+		return image;
 	}
 	
 	/**
