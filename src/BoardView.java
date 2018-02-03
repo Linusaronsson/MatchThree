@@ -70,14 +70,14 @@ class BoardView
 		setProperties();
 		
 		// Set window properties //
-		this.setTitle(WINDOW_TITLE);
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setLocationByPlatform(true);
-		this.setResizable(true);
+		setTitle(WINDOW_TITLE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setLocationByPlatform(true);
+		setResizable(true);
 		
 		// Set menu bar //
 		JMenuBar menuBar = createMenuBar(this);
-		this.setJMenuBar(menuBar);
+		setJMenuBar(menuBar);
 		
 		// Load external resources //
 		prepareAudio();
@@ -104,11 +104,11 @@ class BoardView
 		content.add(grid, BorderLayout.CENTER);
 		
 		// Update window with content //
-		this.setContentPane(content);
-		this.pack();
+		setContentPane(content);
+		pack();
 		
 		// Center window on screen //
-		this.setLocationRelativeTo(null);
+		setLocationRelativeTo(null);
 	}
 	
 	/**
