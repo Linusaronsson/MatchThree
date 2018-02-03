@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.net.InetAddress;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -141,15 +143,29 @@ public class GUI extends JFrame {
 			mainPanel.add(mp);
 			break;
 		case MULTIPLAYER_GAME:
+		{
 			mode = GameMode.MULTIPLAYER;
-			Multiplayer s = new Multiplayer(GAME_SIZE);
+			Multiplayer s = null;
+			
+			try {
+				s = new Multiplayer(
+						mp.getIp(),
+						Integer.parseInt(mp.getPort()),
+						GAME_SIZE);
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			setSize(1000, 650);
 			s.setLayout(new FlowLayout());
 			s.add(goBack); //button to go back to main menu panel
-			mainPanel.add(s);
-			System.out.println(mp.getIp());
-			System.out.println(mp.getPort());
+			mainPanel.add(s);			
 			break;
+		}
 		default: //throw something
 			break;
 		}

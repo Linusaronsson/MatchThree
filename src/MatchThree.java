@@ -16,10 +16,9 @@ import View.*;
 /**
  * MatchThree game.
  */
-public class MatchThree
-{
-	class clientHandler {
-		public clientHandler(Socket client, Component c) {
+	class ClientHandler {
+		public ClientHandler(Socket client, Component c) {
+				System.out.printf("Client connected from \nport: %d\nip: %s\n", client.getPort(), client.getInetAddress());
 				JOptionPane.showMessageDialog(c,
 				                              "Client connected",
 				                              "asd",
@@ -27,29 +26,55 @@ public class MatchThree
 			}
 	}
 	
-	/**
-	 * Program entry point.
-	 *
-	 * @param args Program arguments.
-	 * @throws IOException 
-	 */
-	public static void main(String[] args) throws IOException
-	{
-		//Initialize GUI
-		GUI ui = new GUI();
-		
-		/*
-		ServerSocket server  = new ServerSocket(9000);
 	
-		//Setup server socket listener
-		new Thread() {
-			public void run() {
-				while(true) {
-					Socket client = server.accept();
-					new clientHandler(client, ui);
-				}
+	class Server extends Thread {
+		ServerSocket listener = null;
+		int port;
+		Component c;
+		public Server(int port, Component c) {
+			this.port = port;
+			this.c = c;
+			
+			try {
+				listener = new ServerSocket(port);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-		};
-		*/
+		}
+		
+		public void run() {
+			Socket s = null;
+			while(true) {
+				try {
+					s = listener.accept();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				new ClientHandler(s, c);
+			}
+		}
 	}
-}
+
+	public class MatchThree {
+
+		/**
+		 * Program entry point.
+		 *
+		 * @param args Program arguments.
+		 * @throws IOException 
+		 */
+		public static void main(String[] args) throws IOException
+		{
+		
+			//Initialize GUI
+			GUI ui = new GUI();
+			
+			//Setup server listener
+			Server s = new Server(3333, ui);
+			s.start();
+	
+			
+		}
+	}

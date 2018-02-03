@@ -1,7 +1,8 @@
 package GameModes;
 import java.awt.GridLayout;
 import java.io.IOException;
-
+import java.net.Socket;
+import java.net.InetAddress;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
@@ -15,10 +16,13 @@ public class Multiplayer extends JPanel {
 	private BoardView       viewPlayer       = null;
 	private BoardController controller       = null;
 	
-	private BoardModel      modelOpponent      = null;
+	private BoardModel      modelOpponent     = null;
 	private BoardView       viewOpponent      = null;
 	
-	public Multiplayer(final int GAME_SIZE) {
+	public Multiplayer(String address, int port, final int GAME_SIZE) throws IOException {
+		Socket socket = new Socket(InetAddress.getByName(address), port);
+
+		
 		try {
 			// Create MVC context //
 			BoardModel      modelPlayer    = new BoardModel(GAME_SIZE);
