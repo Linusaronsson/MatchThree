@@ -55,6 +55,7 @@ class BoardView
 	private BufferedImage imageEmerald   = null;
 	private BufferedImage imageRuby      = null;
 	private BufferedImage imageSapphire  = null;
+	private BufferedImage imageTopaz     = null;
 	private JLabel        label          = new JLabel("");
 	private BoardModel    model          = null;
 	private JMenuItem     newItem        = null;
@@ -88,6 +89,7 @@ class BoardView
 		setTitle(WINDOW_TITLE);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationByPlatform(true);
+		setResizable(true);
 		
 		// Set menu bar //
 		JMenuBar menuBar = createMenuBar(this);
@@ -120,6 +122,9 @@ class BoardView
 		// Update window with content //
 		setContentPane(content);
 		pack();
+		
+		// Center window on screen //
+		setLocationRelativeTo(null);
 	}
 	
 	/**
@@ -365,6 +370,7 @@ class BoardView
 		File fileEmerald  = new File(DIR_RESOURCES, "Emerald.png");
 		File fileRuby     = new File(DIR_RESOURCES, "Ruby.png");
 		File fileSapphire = new File(DIR_RESOURCES, "Sapphire.png");
+		File fileTopaz    = new File(DIR_RESOURCES, "Topaz.png");
 		
 		// Load images //
 		try {
@@ -415,6 +421,20 @@ class BoardView
 			System.err.printf(
 				"Failed to read \"%s\":%s",
 				fileSapphire,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				e,
+				System.lineSeparator()
+			);
+		}
+		try {
+			imageTopaz = ImageIO.read(fileTopaz);
+		} catch (IOException e) {
+			System.err.printf(
+				"Failed to read \"%s\":%s",
+				fileTopaz,
 				System.lineSeparator()
 			);
 			System.err.printf(
@@ -595,7 +615,7 @@ class BoardView
 				case EMERALD:  text = "Emerald";  image = imageEmerald;  break;
 				case RUBY:     text = "Ruby";     image = imageRuby;     break;
 				case SAPPHIRE: text = "Sapphire"; image = imageSapphire; break;
-				case TOPAZ:    text = "Topaz";                           break;
+				case TOPAZ:    text = "Topaz";    image = imageTopaz;    break;
 				default: throw new IllegalStateException();
 			}
 		}
