@@ -36,7 +36,7 @@ class BoardView
 	private BufferedImage imageEmerald   = null;
 	private BufferedImage imageRuby      = null;
 	private BufferedImage imageSapphire  = null;
-	private BufferedImage imageTopaz 	 = null;
+	private BufferedImage imageTopaz     = null;
 	private JLabel        label          = new JLabel("");
 	private BoardModel    model          = null;
 	private JMenuItem     newItem        = null;
@@ -343,7 +343,7 @@ class BoardView
 		imageEmerald  = ImageIO.read(new File("src/Emerald.png"));
 		imageRuby     = ImageIO.read(new File("src/Ruby.png"));
 		imageSapphire = ImageIO.read(new File("src/Sapphire.png"));
-		imageTopaz 	  = ImageIO.read(new File("src/Topaz.png"));
+		imageTopaz    = ImageIO.read(new File("src/Topaz.png"));
 	}
 	
 	/**
