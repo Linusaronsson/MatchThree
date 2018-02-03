@@ -73,6 +73,7 @@ class BoardView
 		this.setTitle(WINDOW_TITLE);
 		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setLocationByPlatform(true);
+		this.setResizable(true);
 		
 		// Set menu bar //
 		JMenuBar menuBar = createMenuBar(this);
@@ -108,8 +109,6 @@ class BoardView
 		
 		// Set frame location to middle of your computer screen //
 		this.setLocationRelativeTo(null);
-		
-		this.setResizable(false);
 	}
 	
 	/**
