@@ -107,7 +107,7 @@ class BoardView
 		this.setContentPane(content);
 		this.pack();
 		
-		// Set frame location to middle of your computer screen //
+		// Center window on screen //
 		this.setLocationRelativeTo(null);
 	}
 	
