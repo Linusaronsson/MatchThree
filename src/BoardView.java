@@ -48,26 +48,26 @@ class BoardView
 	private static final String DIR_RESOURCES    = "src";
 	private static final String WINDOW_TITLE     = "MatchThree";
 	
-	private Clip          audioSwap      	= null;
-	private Cell[]        board          	= null;
-	private JButton       button         	= new JButton("Confirm");
-	private BufferedImage imageDiamond   	= null;
-	private BufferedImage imageEmerald   	= null;
-	private BufferedImage imageRuby      	= null;
-	private BufferedImage imageSapphire  	= null;
-	private BufferedImage imageTopaz     	= null;
-	private BufferedImage imageDiamond_v2 	= null;
-	private BufferedImage imageEmerald_v2 	= null;
-	private BufferedImage imageRuby_v2 		= null;
-	private BufferedImage imageSapphire_v2 	= null;
-	private BufferedImage imageTopaz_v2 	= null;
-	private JLabel        label          	= new JLabel("");
-	private BoardModel    model          	= null;
-	private JMenuItem     newItem        	= null;
-	private JMenuItem     openItem       	= null;
-	private JMenuItem     quitItem       	= null;
-	private JMenuItem     saveItem       	= null;
-	private JTextField    textField      	= new JTextField(20);
+	private Clip          audioSwap        = null;
+	private Cell[]        board            = null;
+	private JButton       button           = new JButton("Confirm");
+	private BufferedImage imageDiamond     = null;
+	private BufferedImage imageEmerald     = null;
+	private BufferedImage imageRuby        = null;
+	private BufferedImage imageSapphire    = null;
+	private BufferedImage imageTopaz       = null;
+	private BufferedImage imageDiamond_v2  = null;
+	private BufferedImage imageEmerald_v2  = null;
+	private BufferedImage imageRuby_v2     = null;
+	private BufferedImage imageSapphire_v2 = null;
+	private BufferedImage imageTopaz_v2    = null;
+	private JLabel        label            = new JLabel("");
+	private BoardModel    model            = null;
+	private JMenuItem     newItem          = null;
+	private JMenuItem     openItem         = null;
+	private JMenuItem     quitItem         = null;
+	private JMenuItem     saveItem         = null;
+	private JTextField    textField        = new JTextField(20);
 	
 	/**
 	 * Constructor for `BoardView` MVC view.
