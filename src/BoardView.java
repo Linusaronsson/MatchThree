@@ -376,7 +376,7 @@ class BoardView
 		imageRuby     = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
 		imageSapphire = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
 		imageTopaz    = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
-
+		
 		// Other alternative button images.. (not completed yet) //
 		//imageDiamond_v2  = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
 		//imageEmerald_v2  = loadImage(new File(DIR_RESOURCES, "Emerald_v2.png"));
