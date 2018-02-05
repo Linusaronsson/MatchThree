@@ -80,7 +80,7 @@ class BoardController
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showError("“Open” not implemented");
+			view.showError("\"Open\" not implemented");
 		}
 	}
 	
@@ -106,7 +106,7 @@ class BoardController
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showError("“Save” not implemented");
+			view.showError("\"Save\" not implemented");
 		}
 	}
 	

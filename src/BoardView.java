@@ -54,9 +54,9 @@ class BoardView
 	private BufferedImage imageDiamond   	= null;
 	private BufferedImage imageEmerald   	= null;
 	private BufferedImage imageRuby      	= null;
-	private BufferedImage imageSapphire  	= null;
-	private BufferedImage imageTopaz     	= null;
-	private BufferedImage imageDiamond_v2 	= null;
+	private BufferedImage imageSapphire		= null;
+	private BufferedImage imageTopaz		= null;
+	private BufferedImage imageDiamond_v2	= null;
 	private BufferedImage imageEmerald_v2 	= null;
 	private BufferedImage imageRuby_v2 		= null;
 	private BufferedImage imageSapphire_v2 	= null;
