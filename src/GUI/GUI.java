@@ -1,4 +1,8 @@
 package GUI;
+
+import GUI.MainMenu;
+import GameModes.*;
+import View.BoardView;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
@@ -10,7 +14,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.InetAddress;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -20,9 +23,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import View.BoardView;
-import GameModes.*;
-import GUI.MainMenu;
 
 public class GUI extends JFrame {
 	private WindowState viewState;
