@@ -3,7 +3,7 @@
  */
 public class MatchThree
 {
-	private static final int GAME_SIZE = 6;
+	private static final int GAME_SIZE = 11;
 	
 	/**
 	 * Program entry point.

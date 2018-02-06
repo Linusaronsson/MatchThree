@@ -48,26 +48,26 @@ class BoardView
 	private static final String DIR_RESOURCES    = "src";
 	private static final String WINDOW_TITLE     = "MatchThree";
 	
-	private Clip          audioSwap      	= null;
-	private Cell[]        board          	= null;
-	private JButton       button         	= new JButton("Confirm");
-	private BufferedImage imageDiamond   	= null;
-	private BufferedImage imageEmerald   	= null;
-	private BufferedImage imageRuby      	= null;
-	private BufferedImage imageSapphire		= null;
-	private BufferedImage imageTopaz		= null;
-	private BufferedImage imageDiamond_v2	= null;
-	private BufferedImage imageEmerald_v2 	= null;
-	private BufferedImage imageRuby_v2 		= null;
-	private BufferedImage imageSapphire_v2 	= null;
-	private BufferedImage imageTopaz_v2 	= null;
-	private JLabel        label          	= new JLabel("");
-	private BoardModel    model          	= null;
-	private JMenuItem     newItem        	= null;
-	private JMenuItem     openItem       	= null;
-	private JMenuItem     quitItem       	= null;
-	private JMenuItem     saveItem       	= null;
-	private JTextField    textField      	= new JTextField(20);
+	private Clip          audioSwap        = null;
+	private Cell[]        board            = null;
+	private JButton       button           = new JButton("Confirm");
+	private BufferedImage imageDiamond     = null;
+	private BufferedImage imageDiamond_v2  = null;
+	private BufferedImage imageEmerald     = null;
+	private BufferedImage imageEmerald_v2  = null;
+	private BufferedImage imageRuby        = null;
+	private BufferedImage imageRuby_v2     = null;
+	private BufferedImage imageSapphire    = null;
+	private BufferedImage imageSapphire_v2 = null;
+	private BufferedImage imageTopaz       = null;
+	private BufferedImage imageTopaz_v2    = null;
+	private JLabel        label            = new JLabel("");
+	private BoardModel    model            = null;
+	private JMenuItem     newItem          = null;
+	private JMenuItem     openItem         = null;
+	private JMenuItem     quitItem         = null;
+	private JMenuItem     saveItem         = null;
+	private JTextField    textField        = new JTextField(20);
 	
 	/**
 	 * Constructor for `BoardView` MVC view.
@@ -371,18 +371,17 @@ class BoardView
 	private void initGraphics()
 	{
 		// Load images //
+		// TODO: Load new images as well.
 		imageDiamond  = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
 		imageEmerald  = loadImage(new File(DIR_RESOURCES, "Emerald.png"));
 		imageRuby     = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
 		imageSapphire = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
 		imageTopaz    = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
-
-		// Other alternative button images.. (not completed yet) //
-		//imageDiamond_v2  = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
-		//imageEmerald_v2  = loadImage(new File(DIR_RESOURCES, "Emerald_v2.png"));
-		//imageRuby_v2     = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
-		//imageSapphire_v2 = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
-		//imageTopaz_v2    = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
+		//imageDiamond_v2  = loadImage(new File(DIR_RESOURCES, "Diamond_v2.png"));
+		imageEmerald_v2  = loadImage(new File(DIR_RESOURCES, "Emerald_v2.png"));
+		imageRuby_v2     = loadImage(new File(DIR_RESOURCES, "Ruby_v2.png"));
+		//imageSapphire_v2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
+		//imageTopaz_v2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
 	}
 	
 	/**
@@ -578,8 +577,8 @@ class BoardView
 		if (jewel != null) {
 			switch (jewel) {
 				case DIAMOND:  text = "Diamond";  image = imageDiamond;  break;
-				case EMERALD:  text = "Emerald";  image = imageEmerald;  break;
-				case RUBY:     text = "Ruby";     image = imageRuby;     break;
+				case EMERALD:  text = "Emerald";  image = imageEmerald_v2;  break;
+				case RUBY:     text = "Ruby";     image = imageRuby_v2;     break;
 				case SAPPHIRE: text = "Sapphire"; image = imageSapphire; break;
 				case TOPAZ:    text = "Topaz";    image = imageTopaz;    break;
 				default: throw new IllegalStateException();
