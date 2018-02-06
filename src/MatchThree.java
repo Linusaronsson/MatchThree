@@ -1,17 +1,15 @@
+import Controller.*;
+import GUI.GUI;
+import Model.*;
+import View.*;
 import java.awt.Component;
 import java.awt.PopupMenu;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
-
-import Model.*;
-import Controller.*;
-import GUI.GUI;
-import View.*;
 
 /**
  * MatchThree game.

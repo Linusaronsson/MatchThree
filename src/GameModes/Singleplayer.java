@@ -15,21 +15,13 @@ public class Singleplayer extends JPanel {
 	private BoardController controller = null;
 	
 	public Singleplayer(final int GAME_SIZE) {
-		try {
-			// Create MVC context //
-			BoardModel      model      = new BoardModel(GAME_SIZE);
-			BoardView       view       = new BoardView(model);
-			BoardController controller = new BoardController(model, view);
-			add(view);
-			// Show GUI //
-			// TODO: Move this to view?
-		} catch (IOException
-		      | LineUnavailableException
-		      | UnsupportedAudioFileException e)
-		{
-			System.out.println(e);
-			System.exit(1);
-		}
+		// Create MVC context //
+		BoardModel      model      = new BoardModel(GAME_SIZE);
+		BoardView       view       = new BoardView(model);
+		BoardController controller = new BoardController(model, view);
+		add(view);
+		// Show GUI //
+		// TODO: Move this to view?
 	}
 	
 	public BoardView getView() { return view; }

@@ -4,9 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 import Model.*;
 import View.*;
@@ -26,6 +23,7 @@ public class BoardController
 	class BoardListener
 		implements ActionListener
 	{
+		@Override
 		public void actionPerformed(ActionEvent event)
 		{
 			// Validate argument //
@@ -56,17 +54,41 @@ public class BoardController
 	}
 	
 	/**
-	 * Listens for top button press.
+	 * Listens for "New" menu item.
 	 */
-	class ButtonListener
+	class NewListener
 		implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showMessage("Button pressed");
+			// Restart the game //
+			restartGame();
 		}
 	}
 	
+	/**
+	 * Listens for "Open" menu item.
+	 */
+	class OpenListener
+		implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			view.showError("“Open” not implemented");
+		}
+	}
+	
+	/**
+	 * Listens for "Save" menu item.
+	 */
+	class SaveListener
+		implements ActionListener
+	{
+		public void actionPerformed(ActionEvent event)
+		{
+			view.showError("“Save” not implemented");
+		}
+	}
 	
 	/**
 	 * Constructor for `BoardController` MVC controller.
@@ -86,7 +108,6 @@ public class BoardController
 		
 		// Register event listeners //
 		view.addBoardListener(new BoardListener());
-		view.addButtonListener(new ButtonListener());
 	}
 	
 	/**
