@@ -152,7 +152,7 @@ public class BoardModel extends Observable
 			while (true) {
 				// Bail-out if options are exhausted //
 				if (options.isEmpty()) {
-					System.out.printf(
+					System.err.printf(
 						"No possible jewel for (%d, %d), leaving empty%s",
 						x, y, System.lineSeparator()
 					);

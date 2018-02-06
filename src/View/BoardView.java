@@ -1,21 +1,36 @@
 package View;
 
+import Model.*;
 import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
-import java.awt.image.*;
-import java.io.*;
-import javax.imageio.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
+import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.*;
-
-import Model.*;
-
-import java.util.Observer;
-import java.util.Observable;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * MVC view.
@@ -34,22 +49,27 @@ public class BoardView
 	private static final Color  COLOR_RUBY       = new Color(0xE0, 0x11, 0x5F);
 	private static final Color  COLOR_SAPPHIRE   = new Color(0x0F, 0x52, 0xBA);
 	private static final Color  COLOR_TOPAZ      = new Color(0xFF, 0xBF, 0x00);
+	private static final String DIR_RESOURCES    = "src";
 	private static final String WINDOW_TITLE     = "MatchThree";
 	
-	private Clip          audioSwap      = null;
-	private Cell[]        board          = null;
-	private JButton       button         = new JButton("Confirm");
-	private BufferedImage imageDiamond   = null;
-	private BufferedImage imageEmerald   = null;
-	private BufferedImage imageRuby      = null;
-	private BufferedImage imageSapphire  = null;
-	private JLabel        label          = new JLabel("");
-	private BoardModel    model          = null;
-	private JMenuItem     newItem        = null;
-	private JMenuItem     openItem       = null;
-	private JMenuItem     quitItem       = null;
-	private JMenuItem     saveItem       = null;
-	private JTextField    textField      = new JTextField(20);
+	private Clip          audioSwap        = null;
+	private Cell[]        board            = null;
+	private BufferedImage imageDiamond     = null;
+	private BufferedImage imageDiamond_v2  = null;
+	private BufferedImage imageEmerald     = null;
+	private BufferedImage imageEmerald_v2  = null;
+	private BufferedImage imageRuby        = null;
+	private BufferedImage imageRuby_v2     = null;
+	private BufferedImage imageSapphire    = null;
+	private BufferedImage imageSapphire_v2 = null;
+	private BufferedImage imageTopaz       = null;
+	private BufferedImage imageTopaz_v2    = null;
+	private JLabel        label            = new JLabel("");
+	private BoardModel    model            = null;
+	private JMenuItem     newItem          = null;
+	private JMenuItem     openItem         = null;
+	private JMenuItem     quitItem         = null;
+	private JMenuItem     saveItem         = null;
 	
 	/**
 	 * Constructor for `BoardView` MVC view.
@@ -59,9 +79,6 @@ public class BoardView
 	// TODO: Break into multiple methods?
 	// TODO: Call parent constructor?
 	public BoardView(BoardModel model)
-		throws IOException,
-		       LineUnavailableException,
-		       UnsupportedAudioFileException
 	{
 		// Validate argument //
 		if (model == null) {
@@ -77,21 +94,20 @@ public class BoardView
 		setProperties();
 		
 		// Set window properties //
-		this.setTitle(WINDOW_TITLE);
-		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		this.setLocationByPlatform(true);
+		setTitle(WINDOW_TITLE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setLocationByPlatform(true);
+		setResizable(true);
 		
 		// Set menu bar //
 		JMenuBar menuBar = createMenuBar(this);
-		this.setJMenuBar(menuBar);
+		setJMenuBar(menuBar);
 		
 		// Load external resources //
-		prepareAudio();
-		prepareGraphics();
+		initAudio();
+		initGraphics();
 		
 		// Initialize components //
-		textField.setText("Hello, World!");
-		textField.setEditable(false);
 		updateScore();
 		
 		// Create content pane //
@@ -101,8 +117,6 @@ public class BoardView
 		// Construct header //
 		JPanel header = new JPanel(new FlowLayout());
 		header.add(label);
-		header.add(textField);
-		header.add(button);
 		content.add(header, BorderLayout.PAGE_START);
 		
 		// Construct grid //
@@ -110,8 +124,14 @@ public class BoardView
 		content.add(grid, BorderLayout.CENTER);
 		
 		// Update window with content //
-		this.setContentPane(content);
-		this.pack();
+		setContentPane(content);
+		pack();
+		
+		// Center window on screen //
+		setLocationRelativeTo(null);
+		
+		// Make window visible //
+		setVisible(true);
 	}
 	
 	/**
@@ -129,21 +149,6 @@ public class BoardView
 		for (Cell cell : board) {
 			cell.addActionListener(listener);
 		}
-	}
-	
-	/**
-	 * Add listener for top button press.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addButtonListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		button.addActionListener(listener);
 	}
 	
 	/**
@@ -309,42 +314,99 @@ public class BoardView
 	}
 	
 	/**
-	 * Play swap audio clip.
-	 */
-	public void playAudioSwap()
-	{
-		audioSwap.setFramePosition(0);
-		audioSwap.start();
-	}
-	
-	/**
 	 * Load external audio resources.
 	 */
-	private void prepareAudio()
-		throws IOException,
-		       LineUnavailableException,
-		       UnsupportedAudioFileException
+	private void initAudio()
 	{
 		// Read audio from file //
-		File audioFile = new File("src/Swap.wav").getAbsoluteFile();
-		AudioInputStream audioStream =
-			AudioSystem.getAudioInputStream(audioFile);
+		File audioFile = new File(DIR_RESOURCES, "Swap.wav").getAbsoluteFile();
+		AudioInputStream audioStream = null;
+		try {
+			audioStream = AudioSystem.getAudioInputStream(audioFile);
+		} catch (IOException
+		       | UnsupportedAudioFileException e)
+		{
+			System.err.printf(
+				"Failed to read \"%s\":%s",
+				audioFile,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				e,
+				System.lineSeparator()
+			);
+			return;
+		}
 		
 		// Send audio to system mixer //
-		audioSwap = AudioSystem.getClip();
-		audioSwap.open(audioStream);
+		try {
+			audioSwap = AudioSystem.getClip();
+			audioSwap.open(audioStream);
+		} catch (IOException
+		       | LineUnavailableException e)
+		{
+			System.err.println(e);
+			audioSwap = null;
+			return;
+		}
 	}
 	
 	/**
 	 * Load external image resources.
 	 */
-	private void prepareGraphics()
-		throws IOException
+	private void initGraphics()
 	{
-		imageDiamond  = ImageIO.read(new File("src/Diamond.png"));
-		imageEmerald  = ImageIO.read(new File("src/Emerald.png"));
-		imageRuby     = ImageIO.read(new File("src/Ruby.png"));
-		imageSapphire = ImageIO.read(new File("src/Sapphire.png"));
+		// Load images //
+		// TODO: Load new images as well.
+		imageDiamond  = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
+		imageEmerald  = loadImage(new File(DIR_RESOURCES, "Emerald.png"));
+		imageRuby     = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
+		imageSapphire = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
+		imageTopaz    = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
+		//imageDiamond_v2  = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
+		//imageEmerald_v2  = loadImage(new File(DIR_RESOURCES, "Emerald_v2.png"));
+		//imageRuby_v2     = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
+		//imageSapphire_v2 = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
+		//imageTopaz_v2    = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
+	}
+	
+	/**
+	 * Load an image resource.
+	 *
+	 * @param file File to read from.
+	 * @return     Loaded image buffer.
+	 */
+	private static BufferedImage loadImage(File file)
+	{
+		BufferedImage image = null;
+		try {
+			image = ImageIO.read(file);
+		} catch (IOException e) {
+			System.err.printf(
+				"Failed to read \"%s\":%s",
+				file,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				e,
+				System.lineSeparator()
+			);
+		}
+		return image;
+	}
+	
+	/**
+	 * Play swap audio clip.
+	 */
+	public void playAudioSwap()
+	{
+		// Rewind and play clip //
+		if (audioSwap != null) {
+			audioSwap.setFramePosition(0);
+			audioSwap.start();
+		}
 	}
 	
 	/**
@@ -388,7 +450,7 @@ public class BoardView
 			case EMERALD:  return imageEmerald;
 			case RUBY:     return imageRuby;
 			case SAPPHIRE: return imageSapphire;
-			case TOPAZ:	   return null;
+			case TOPAZ:	   return imageTopaz;
 			default: throw new IllegalStateException();
 		}
 	}
@@ -433,11 +495,15 @@ public class BoardView
 		
 		// Set look and feel //
 		String lookAndFeel = UIManager.getSystemLookAndFeelClassName();
-		try { UIManager.setLookAndFeel(lookAndFeel); }
-		catch (ClassNotFoundException e) {}
-		catch (InstantiationException e) {}
-		catch (IllegalAccessException e) {}
-		catch (UnsupportedLookAndFeelException e) {}
+		try {
+			UIManager.setLookAndFeel(lookAndFeel);
+		} catch (ClassNotFoundException
+		       | InstantiationException
+		       | IllegalAccessException
+		       | UnsupportedLookAndFeelException e)
+		{
+			System.err.println(e);
+		}
 	}
 	
 	/**
@@ -528,8 +594,10 @@ public class BoardView
 		int  i    = y * width + x;
 		Cell cell = board[i];
 		
+		// Hide cell if empty //
+		cell.setVisible(cell != null);
+		
 		if (jewel != null) {
-			cell.setVisible(true);
 			ImageIcon     icon  = null;
 			BufferedImage image = getImage(jewel);
 			String        text  = getStr(jewel);
@@ -543,9 +611,6 @@ public class BoardView
 			cell.setIcon(icon);
 			cell.setText(text);
 			cell.setForeground(color);
-		} else {
-			// Make cells invisible when removed from board //
-			cell.setVisible(false);
 		}
 	}
 	

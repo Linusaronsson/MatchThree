@@ -4,9 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.IOException;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 import Model.*;
 import View.*;
@@ -26,6 +23,7 @@ public class BoardController
 	class BoardListener
 		implements ActionListener
 	{
+		@Override
 		public void actionPerformed(ActionEvent event)
 		{
 			// Validate argument //
@@ -52,18 +50,6 @@ public class BoardController
 			
 			// Update score //
 			view.updateScore();
-		}
-	}
-	
-	/**
-	 * Listens for top button press.
-	 */
-	class ButtonListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			view.showMessage("Button pressed");
 		}
 	}
 	
@@ -167,7 +153,6 @@ public class BoardController
 		
 		// Register event listeners //
 		view.addBoardListener(new BoardListener());
-		view.addButtonListener(new ButtonListener());
 		view.addNewListener(new NewListener());
 		view.addOpenListener(new OpenListener());
 		view.addQuitListener(new QuitListener());
