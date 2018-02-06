@@ -25,11 +25,11 @@ public class MultiplayerMenu extends JPanel {
 		ip.setPreferredSize(new Dimension(200, 24));
 		port.setPreferredSize(new Dimension(200, 24));
 		
-	    this.add(connect);
-	    this.add(ip_text);
-	    this.add(ip); 
-	    this.add(port_text);
-	    this.add(port); 
+		this.add(connect);
+		this.add(ip_text);
+		this.add(ip);
+		this.add(port_text);
+		this.add(port);
 	}
 	
 	public void addConnectListener(ActionListener listener) {
@@ -43,6 +43,4 @@ public class MultiplayerMenu extends JPanel {
 	public String getPort() {
 		return port.getText();
 	}
-	
-
-} 
+}

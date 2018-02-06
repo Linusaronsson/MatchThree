@@ -1,6 +1,7 @@
 package View;
-import javax.swing.JButton;
+
 import Model.*;
+import javax.swing.JButton;
 
 /**
  * Board cell.

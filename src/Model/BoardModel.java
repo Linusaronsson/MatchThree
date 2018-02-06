@@ -1,9 +1,10 @@
 package Model;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
 import java.util.Observable;
+import java.util.Random;
 
 /**
  * MVC model.
@@ -70,7 +71,7 @@ public class BoardModel extends Observable
 			throw new NullPointerException();
 		}
 		
-		this.width = width;		
+		this.width = width;
 		this.board = board;
 	}
 	
