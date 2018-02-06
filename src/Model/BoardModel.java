@@ -71,7 +71,7 @@ public class BoardModel extends Observable
 			throw new NullPointerException();
 		}
 		
-		this.width = width;		
+		this.width = width;
 		this.board = board;
 	}
 	

@@ -346,7 +346,7 @@ public class BoardView
 			case EMERALD:  return imageEmerald;
 			case RUBY:     return imageRuby;
 			case SAPPHIRE: return imageSapphire;
-			case TOPAZ:	   return imageTopaz;
+			case TOPAZ:    return imageTopaz;
 			default: throw new IllegalStateException();
 		}
 	}
@@ -357,31 +357,29 @@ public class BoardView
 			case EMERALD:  return COLOR_EMERALD;
 			case RUBY:     return COLOR_RUBY;
 			case SAPPHIRE: return COLOR_SAPPHIRE;
-			case TOPAZ:	   return COLOR_TOPAZ;
+			case TOPAZ:    return COLOR_TOPAZ;
 			default: throw new IllegalStateException();
 		}
 	}
 	
 	/**
-	 * 
+	 *
 	 * @param Jewel
 	 * @return String representation of specified Jewel
 	 */
-	
 	private String getStr(Jewel j) {
 		switch(j) {
 			case DIAMOND:  return "Diamond";
 			case EMERALD:  return "Emerald";
 			case RUBY:     return "Ruby";
 			case SAPPHIRE: return "Sapphire";
-			case TOPAZ:	   return "Topaz";
+			case TOPAZ:    return "Topaz";
 			default: throw new IllegalStateException();
 		}
 	}
 	
 	/**
 	 * Update all cells. (Removed temporarily).
-	 
 		public void update()
 		{
 			int width = model.getWidth();

@@ -14,65 +14,60 @@ import javax.swing.JOptionPane;
 /**
  * MatchThree game.
  */
-	class ClientHandler {
-		public ClientHandler(Socket client, Component c) {
-				System.out.printf("Client connected from \nport: %d\nip: %s\n", client.getPort(), client.getInetAddress());
-				JOptionPane.showMessageDialog(c,
-				                              "Client connected",
-				                              "asd",
-				                              JOptionPane.INFORMATION_MESSAGE);
-			}
+class ClientHandler {
+	public ClientHandler(Socket client, Component c) {
+		System.out.printf("Client connected from \nport: %d\nip: %s\n", client.getPort(), client.getInetAddress());
+		JOptionPane.showMessageDialog(c,
+			"Client connected",
+			"asd",
+			JOptionPane.INFORMATION_MESSAGE);
+	}
+}
+
+class Server extends Thread {
+	ServerSocket listener = null;
+	int port;
+	Component c;
+	public Server(int port, Component c) {
+		this.port = port;
+		this.c = c;
+		
+		try {
+			listener = new ServerSocket(port);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	
-	
-	class Server extends Thread {
-		ServerSocket listener = null;
-		int port;
-		Component c;
-		public Server(int port, Component c) {
-			this.port = port;
-			this.c = c;
-			
+	public void run() {
+		Socket s = null;
+		while(true) {
 			try {
-				listener = new ServerSocket(port);
-			} catch (IOException e1) {
+				s = listener.accept();
+			} catch (IOException e) {
 				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				e.printStackTrace();
 			}
-		}
-		
-		public void run() {
-			Socket s = null;
-			while(true) {
-				try {
-					s = listener.accept();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				new ClientHandler(s, c);
-			}
+			new ClientHandler(s, c);
 		}
 	}
+}
 
-	public class MatchThree {
-
-		/**
-		 * Program entry point.
-		 *
-		 * @param args Program arguments.
-		 * @throws IOException 
-		 */
-		public static void main(String[] args) throws IOException
-		{
+public class MatchThree {
+	/**
+	 * Program entry point.
+	 *
+	 * @param args Program arguments.
+	 * @throws IOException
+	 */
+	public static void main(String[] args) throws IOException
+	{
+		//Initialize GUI
+		GUI ui = new GUI();
 		
-			//Initialize GUI
-			GUI ui = new GUI();
-			
-			//Setup server listener
-			Server s = new Server(3333, ui);
-			s.start();
-	
-			
-		}
+		//Setup server listener
+		Server s = new Server(3333, ui);
+		s.start();
 	}
+}

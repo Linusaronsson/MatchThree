@@ -38,7 +38,7 @@ public class GUI extends JFrame {
 	private JPanel       mainPanel = null;
 	private MainMenu       mainMenu = null;
 	private MultiplayerMenu      mp = null;
- 
+	
 	public GUI() {
 		mainPanel = new JPanel();
 		mainMenu = new MainMenu();
@@ -48,7 +48,6 @@ public class GUI extends JFrame {
 		
 		initializeHandlers();
 		
-
 		// Set application properties //
 		// TODO: Avoid calling global state changing method from instance
 		//       method.
@@ -85,7 +84,7 @@ public class GUI extends JFrame {
 		MULTIPLAYER_MENU,
 		MULTIPLAYER_GAME
 	}
-
+	
 	/**
 	 * Display an error message.
 	 *
@@ -123,16 +122,16 @@ public class GUI extends JFrame {
 	}
 	
 	private void changeState(WindowState state) {
-        mainPanel.removeAll();
-        //TODO: Fix Layouts for probably all different states. Multiplayer especially.
+		mainPanel.removeAll();
+		//TODO: Fix Layouts for probably all different states. Multiplayer especially.
 		switch(state) {
 		case START_MENU:
-	          mainPanel.add(mainMenu);
+			mainPanel.add(mainMenu);
 			break;
 		case SINGLEPLAYER_GAME:
 			mode = GameMode.SINGLEPLAYER;
 			Singleplayer sp = new Singleplayer(GAME_SIZE);
-
+			
 			//Display new panel (the game)
 			sp.setLayout(new FlowLayout());
 			sp.add(goBack); //button to go back to main menu panel
@@ -149,9 +148,9 @@ public class GUI extends JFrame {
 			
 			try {
 				s = new Multiplayer(
-						mp.getIp(),
-						Integer.parseInt(mp.getPort()),
-						GAME_SIZE);
+					mp.getIp(),
+					Integer.parseInt(mp.getPort()),
+					GAME_SIZE);
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -163,15 +162,15 @@ public class GUI extends JFrame {
 			setSize(1000, 650);
 			s.setLayout(new FlowLayout());
 			s.add(goBack); //button to go back to main menu panel
-			mainPanel.add(s);			
+			mainPanel.add(s);
 			break;
 		}
 		default: //throw something
 			break;
 		}
 		
-        mainPanel.revalidate();
-        mainPanel.repaint();
+		mainPanel.revalidate();
+		mainPanel.repaint();
 	}
 	
 	private void initializeHandlers() {
@@ -183,7 +182,7 @@ public class GUI extends JFrame {
 			changeState(WindowState.MULTIPLAYER_GAME);
 		});
 		
-		mainMenu.addMultiplayerListener((ActionEvent e) -> {			
+		mainMenu.addMultiplayerListener((ActionEvent e) -> {
 			changeState(WindowState.MULTIPLAYER_MENU);
 		});
 		
@@ -201,7 +200,6 @@ public class GUI extends JFrame {
 	// TODO: Research use of `self` parameter name.
 	private JMenuBar createMenuBar()
 	{
-		
 		// Create menu bar //
 		JMenuBar menuBar = new JMenuBar();
 		
@@ -335,6 +333,4 @@ public class GUI extends JFrame {
 			showError("“Save” not implemented");
 		}
 	}
-	
-	
 }
