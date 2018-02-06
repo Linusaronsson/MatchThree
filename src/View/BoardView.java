@@ -1,13 +1,19 @@
+package View;
+
+import Model.*;
+import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -15,7 +21,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -23,7 +28,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -32,8 +36,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  * MVC view.
  */
 @SuppressWarnings("serial")
-class BoardView
-	extends JFrame
+public class BoardView
+	extends JPanel implements Observer
 {
 	private static final String CELL_FONT_NAME   = "Helvetica Neue";
 	private static final int    CELL_FONT_SIZE   = 14;
@@ -47,10 +51,10 @@ class BoardView
 	private static final Color  COLOR_TOPAZ      = new Color(0xFF, 0xBF, 0x00);
 	private static final String DIR_RESOURCES    = "src";
 	private static final String WINDOW_TITLE     = "MatchThree";
+	private static final int 	GAP				 = 2;
 	
 	private Clip          audioSwap        = null;
 	private Cell[]        board            = null;
-	private JButton       button           = new JButton("Confirm");
 	private BufferedImage imageDiamond     = null;
 	private BufferedImage imageDiamond_v2  = null;
 	private BufferedImage imageEmerald     = null;
@@ -61,13 +65,17 @@ class BoardView
 	private BufferedImage imageSapphire_v2 = null;
 	private BufferedImage imageTopaz       = null;
 	private BufferedImage imageTopaz_v2    = null;
+	private BufferedImage currentDiamond   = null;
+	private BufferedImage currentEmerald   = null;
+	private BufferedImage currentRuby      = null;
+	private BufferedImage currentSapphire  = null;
+	private BufferedImage currentTopaz     = null;
 	private JLabel        label            = new JLabel("");
 	private BoardModel    model            = null;
 	private JMenuItem     newItem          = null;
 	private JMenuItem     openItem         = null;
 	private JMenuItem     quitItem         = null;
 	private JMenuItem     saveItem         = null;
-	private JTextField    textField        = new JTextField(20);
 	
 	/**
 	 * Constructor for `BoardView` MVC view.
@@ -84,52 +92,67 @@ class BoardView
 		}
 		
 		this.model = model;
-		
-		// Set application properties //
-		// TODO: Avoid calling global state changing method from instance
-		//       method.
-		setProperties();
-		
-		// Set window properties //
-		setTitle(WINDOW_TITLE);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setLocationByPlatform(true);
-		setResizable(true);
-		
-		// Set menu bar //
-		JMenuBar menuBar = createMenuBar(this);
-		setJMenuBar(menuBar);
+		model.addObserver(this);
 		
 		// Load external resources //
 		initAudio();
 		initGraphics();
 		
 		// Initialize components //
-		textField.setText("Hello, World!");
-		textField.setEditable(false);
 		updateScore();
 		
-		// Create content pane //
-		JPanel content = new JPanel();
-		content.setLayout(new BorderLayout());
+		this.setLayout(new BorderLayout());
 		
 		// Construct header //
 		JPanel header = new JPanel(new FlowLayout());
+		label.setForeground(Color.WHITE);
 		header.add(label);
-		header.add(textField);
-		header.add(button);
-		content.add(header, BorderLayout.PAGE_START);
+		header.setBackground(Color.BLACK);
+		this.add(header, BorderLayout.PAGE_START);
 		
 		// Construct grid //
 		JPanel grid = createGrid();
-		content.add(grid, BorderLayout.CENTER);
+		this.add(grid, BorderLayout.CENTER);
 		
 		// Update window with content //
-		setContentPane(content);
-		pack();
+		//this.setContentPane(content);
+		//this.pack();
+	}
+	
+	/**
+	 * Display an error message.
+	 *
+	 * @param message The message to display.
+	 */
+	public void showError(String message)
+	{
+		// Validate argument //
+		if (message == null) {
+			throw new NullPointerException();
+		}
 		
-		// Center window on screen //
-		setLocationRelativeTo(null);
+		JOptionPane.showMessageDialog(this,
+		                              message,
+		                              message,
+		                              JOptionPane.ERROR_MESSAGE);
+	}
+	
+	/**
+	 * Display an informative message.
+	 *
+	 * @param message The message to display.
+	 */
+	public void showMessage(String message)
+	{
+		// Validate argument //
+		if (message == null) {
+			throw new NullPointerException();
+		}
+		
+		JOptionPane.showMessageDialog(this,
+		                              message,
+		                              message,
+		                              JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	/**
@@ -150,103 +173,13 @@ class BoardView
 	}
 	
 	/**
-	 * Add listener for top button press.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addButtonListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		button.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for "New" menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addNewListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		newItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for "Open" menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addOpenListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		openItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for "Quit" menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addQuitListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		quitItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for "Save" menu item.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addSaveListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		saveItem.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for window events.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addWindowListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		addWindowListener(listener);
-	}
-	
-	/**
 	 * Create game grid.
 	 */
 	private JPanel createGrid()
 	{
 		// Create grid //
 		int width = model.getWidth();
-		JPanel grid = new JPanel(new GridLayout(width, width));
+		JPanel grid = new JPanel(new GridLayout(width, width, GAP, GAP));
 		grid.setBackground(COLOR_BACKGROUND);
 		
 		// Fill grid //
@@ -275,55 +208,13 @@ class BoardView
 			button.setFont(font);
 			
 			// Update button state from view //
-			updateCell(x, y);
+			updateCell(x, y, model.get(x, y));
 			
 			// Add button to grid //
 			grid.add(button);
 		}
 		
 		return grid;
-	}
-	
-	/**
-	 * Create window menu bar.
-	 *
-	 * @param self View to apply menu bar to.
-	 * @return     Menu bar object.
-	 */
-	// TODO: Research use of `self` parameter name.
-	private static JMenuBar createMenuBar(BoardView self)
-	{
-		// Validate argument //
-		if (self == null) {
-			throw new NullPointerException();
-		}
-		
-		// Create menu bar //
-		JMenuBar menuBar = new JMenuBar();
-		
-		// Create menus //
-		JMenu fileMenu = new JMenu("File");
-		
-		// Create "New" menu item //
-		self.newItem = new JMenuItem("New");
-		fileMenu.add(self.newItem);
-		
-		// Create "Open" menu item //
-		self.openItem = new JMenuItem("Open");
-		fileMenu.add(self.openItem);
-		
-		// Create "Save" menu item //
-		self.saveItem = new JMenuItem("Save");
-		fileMenu.add(self.saveItem);
-		
-		// Create "Quit" menu item //
-		self.quitItem = new JMenuItem("Quit");
-		fileMenu.add(self.quitItem);
-		
-		// Add menus to menu bar //
-		menuBar.add(fileMenu);
-		
-		return menuBar;
 	}
 	
 	/**
@@ -366,6 +257,44 @@ class BoardView
 	}
 	
 	/**
+	 * Change images on buttons
+	 * @param i, jewel version
+	 */
+	public void changeSprites(int i) {
+		switch(i) {
+			case 1:
+				currentDiamond   = imageDiamond;
+				currentEmerald   = imageEmerald;
+				currentRuby      = imageRuby;
+				currentSapphire  = imageSapphire;
+				currentTopaz     = imageTopaz;
+				break;
+			case 2:
+				currentDiamond   = imageDiamond_v2;
+				currentEmerald   = imageEmerald_v2;
+				currentRuby      = imageRuby_v2;
+				currentSapphire  = imageSapphire_v2;
+				currentTopaz     = imageTopaz_v2;
+				break;
+			default: break;
+		}
+		int d = 0;
+		
+		for(Jewel j : model.getBoard()) {
+			Cell cell = board[d];
+			switch(j) {
+			case DIAMOND:  cell.setIcon(new ImageIcon(currentDiamond));  break;
+			case EMERALD:  cell.setIcon(new ImageIcon(currentEmerald));  break;
+			case RUBY:     cell.setIcon(new ImageIcon(currentRuby));     break;
+			case SAPPHIRE: cell.setIcon(new ImageIcon(currentSapphire)); break;
+			case TOPAZ:    cell.setIcon(new ImageIcon(currentTopaz));    break;
+				default: break;
+			}
+			d++;
+		}
+	}
+	
+	/**
 	 * Load external image resources.
 	 */
 	private void initGraphics()
@@ -377,11 +306,19 @@ class BoardView
 		imageRuby     = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
 		imageSapphire = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
 		imageTopaz    = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
-		//imageDiamond_v2  = loadImage(new File(DIR_RESOURCES, "Diamond_v2.png"));
+		imageDiamond_v2  = loadImage(new File(DIR_RESOURCES, "Diamond_v2.png")); 
 		imageEmerald_v2  = loadImage(new File(DIR_RESOURCES, "Emerald_v2.png"));
 		imageRuby_v2     = loadImage(new File(DIR_RESOURCES, "Ruby_v2.png"));
-		//imageSapphire_v2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
-		//imageTopaz_v2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
+		imageSapphire_v2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
+		imageTopaz_v2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
+		// Not actually jewels btw, just some block
+		
+		// Default images
+		currentDiamond  = imageDiamond;
+		currentEmerald  = imageEmerald;
+		currentRuby     = imageRuby;
+		currentSapphire = imageSapphire;
+		currentTopaz    = imageTopaz;
 	}
 	
 	/**
@@ -457,91 +394,72 @@ class BoardView
 		}
 	}
 	
+	private BufferedImage getImage(Jewel j) {
+		switch(j) {
+			case DIAMOND:  return currentDiamond;
+			case EMERALD:  return currentEmerald;
+			case RUBY:     return currentRuby;
+			case SAPPHIRE: return currentSapphire;
+			case TOPAZ:	   return currentTopaz;
+			default: throw new IllegalStateException();
+		}
+	}
+	
+	private Color getColor(Jewel j) {
+		switch(j) {
+			case DIAMOND:  return COLOR_DIAMOND;
+			case EMERALD:  return COLOR_EMERALD;
+			case RUBY:     return COLOR_RUBY;
+			case SAPPHIRE: return COLOR_SAPPHIRE;
+			case TOPAZ:	   return COLOR_TOPAZ;
+			default: throw new IllegalStateException();
+		}
+	}
+	
 	/**
-	 * Set application properties.
+	 * 
+	 * @param Jewel
+	 * @return String representation of specified Jewel
 	 */
-	private static void setProperties()
-	{
-		// Use native menu bar on macOS/OS X //
-		System.setProperty("apple.laf.useScreenMenuBar", "true");
-		// TODO: Does not appear important or is misused.
-		System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Test");
-		
-		// Set look and feel //
-		String lookAndFeel = UIManager.getSystemLookAndFeelClassName();
-		try {
-			UIManager.setLookAndFeel(lookAndFeel);
-		} catch (ClassNotFoundException
-		       | InstantiationException
-		       | IllegalAccessException
-		       | UnsupportedLookAndFeelException e)
+	
+	private String getStr(Jewel j) {
+		switch(j) {
+			case DIAMOND:  return "Diamond";
+			case EMERALD:  return "Emerald";
+			case RUBY:     return "Ruby";
+			case SAPPHIRE: return "Sapphire";
+			case TOPAZ:	   return "Topaz";
+			default: throw new IllegalStateException();
+		}
+	}
+	
+	/**
+	 * Update all cells. (Removed temporarily).
+	 
+		public void update()
 		{
-			System.err.println(e);
+			int width = model.getWidth();
+			for (int i = 0; i < width * width; i++) {
+				int x = i % width;
+				int y = i / width;
+				updateCell(x, y);
+			}
 		}
-	}
-	
-	/**
-	 * Display an error message.
-	 *
-	 * @param message The message to display.
-	 */
-	public void showError(String message)
-	{
-		// Validate argument //
-		if (message == null) {
-			throw new NullPointerException();
-		}
-		
-		JOptionPane.showMessageDialog(this,
-		                              message,
-		                              message,
-		                              JOptionPane.ERROR_MESSAGE);
-	}
-	
-	/**
-	 * Display an informative message.
-	 *
-	 * @param message The message to display.
-	 */
-	public void showMessage(String message)
-	{
-		// Validate argument //
-		if (message == null) {
-			throw new NullPointerException();
-		}
-		
-		JOptionPane.showMessageDialog(this,
-		                              message,
-		                              message,
-		                              JOptionPane.INFORMATION_MESSAGE);
-	}
-	
-	/**
-	 * Update all cells.
-	 */
-	public void update()
-	{
-		int width = model.getWidth();
-		for (int i = 0; i < width * width; i++) {
-			int x = i % width;
-			int y = i / width;
-			updateCell(x, y);
-		}
-	}
+	*/
 	
 	/**
 	 * Update a cell.
 	 *
 	 * @param position Coordinates of the cell.
 	 */
-	public void updateCell(Coordinate position)
+	public void updateCell(Coordinate position, Jewel jewel)
 	{
 		// Validate argument //
 		if (position == null) {
 			throw new NullPointerException();
 		}
 		
-		updateCell(position.x, position.y);
+		updateCell(position.x, position.y, jewel);
 	}
 	
 	/**
@@ -551,7 +469,7 @@ class BoardView
 	 * @param y Y-coordinate of the cell.
 	 */
 	// TODO: Reduce code duplication.
-	public void updateCell(int x, int y)
+	public void updateCell(int x, int y, Jewel jewel)
 	{
 		// Validate arguments //
 		if (x < 0 || y < 0) {
@@ -562,48 +480,29 @@ class BoardView
 			throw new IndexOutOfBoundsException();
 		}
 		
-		// Get jewel from model //
-		Jewel jewel = model.get(x, y);
-		
 		// Get button from view //
 		// TODO: Add assert for `width` or rely less on model consistency?
 		int  i    = y * width + x;
 		Cell cell = board[i];
 		
-		// Update text to match jewel //
-		ImageIcon     icon  = null;
-		BufferedImage image = null;
-		String        text  = "";
-		if (jewel != null) {
-			switch (jewel) {
-				case DIAMOND:  text = "Diamond";  image = imageDiamond;  break;
-				case EMERALD:  text = "Emerald";  image = imageEmerald_v2;  break;
-				case RUBY:     text = "Ruby";     image = imageRuby_v2;     break;
-				case SAPPHIRE: text = "Sapphire"; image = imageSapphire; break;
-				case TOPAZ:    text = "Topaz";    image = imageTopaz;    break;
-				default: throw new IllegalStateException();
-			}
-		}
-		if (image != null) {
-			icon = new ImageIcon(image);
-			text = "";
-		}
-		cell.setIcon(icon);
-		cell.setText(text);
+		// Hide cell if empty //
+		cell.setVisible(cell != null);
 		
-		// Update color to match jewel //
-		Color color = Color.BLACK;
 		if (jewel != null) {
-			switch (jewel) {
-				case DIAMOND:  color = COLOR_DIAMOND;  break;
-				case EMERALD:  color = COLOR_EMERALD;  break;
-				case RUBY:     color = COLOR_RUBY;     break;
-				case SAPPHIRE: color = COLOR_SAPPHIRE; break;
-				case TOPAZ:    color = COLOR_TOPAZ;    break;
-				default: throw new IllegalStateException();
+			ImageIcon     icon  = null;
+			BufferedImage image = getImage(jewel);
+			String        text  = getStr(jewel);
+			Color         color = getColor(jewel);
+			
+			if (image != null) {
+				icon = new ImageIcon(image);
+				text = "";
 			}
+			
+			cell.setIcon(icon);
+			cell.setText(text);
+			cell.setForeground(color);
 		}
-		cell.setForeground(color);
 	}
 	
 	/**
@@ -613,5 +512,16 @@ class BoardView
 	{
 		int score = model.getScore();
 		label.setText("Score: " + score);
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		if(o instanceof BoardModel &&
+		   arg instanceof BoardModel.CellEvent) {
+			BoardModel.CellEvent event = (BoardModel.CellEvent) arg;
+			Coordinate c = event.getPos();
+			Jewel j = event.getType();
+			updateCell(c, j);
+		}
 	}
 }

@@ -1,12 +1,14 @@
+package Model;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Observable;
 
 /**
  * MVC model.
  */
-class BoardModel
+public class BoardModel extends Observable
 {
 	private static final int MINIMUM_LENGTH = 3;
 	
@@ -23,6 +25,22 @@ class BoardModel
 		CANCEL,
 		OK;
 	}
+	
+	/**
+	 * Cell event that is sent to the view.
+	 */
+	public class CellEvent {
+		private Coordinate pos;
+		private Jewel cell_type;
+		public CellEvent(Coordinate pos, Jewel cell_type) {
+			this.pos = pos;
+			this.cell_type = cell_type;
+		}
+		
+		public Jewel getType() { return cell_type; }
+		public Coordinate getPos() { return pos; }
+	}
+
 	
 	/**
 	 * Constructor for `BoardModel` MVC model.
@@ -43,6 +61,21 @@ class BoardModel
 		
 		// Set initial state //
 		init();
+	}
+	
+	public BoardModel(Jewel[] board, int width)
+	{
+		// Validate argument //
+		if (board == null) {
+			throw new NullPointerException();
+		}
+		
+		this.width = width;		
+		this.board = board;
+	}
+	
+	public Jewel[] getBoard() {
+		return board;
 	}
 	
 	/**
@@ -426,6 +459,8 @@ class BoardModel
 		
 		int i = y * width + x;
 		board[i] = value;
+		setChanged();
+		notifyObservers(new CellEvent(new Coordinate(x, y), value));
 	}
 	
 	/**
