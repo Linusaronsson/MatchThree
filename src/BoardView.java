@@ -122,6 +122,9 @@ class BoardView
 		
 		// Center window on screen //
 		setLocationRelativeTo(null);
+		
+		// Make window visible //
+		setVisible(true);
 	}
 	
 	/**

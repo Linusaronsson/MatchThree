@@ -16,9 +16,5 @@ public class MatchThree
 		BoardModel      model      = new BoardModel(GAME_SIZE);
 		BoardView       view       = new BoardView(model);
 		BoardController controller = new BoardController(model, view);
-		
-		// Show GUI //
-		// TODO: Move this to view?
-		view.setVisible(true);
 	}
 }
