@@ -15,7 +15,6 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -23,7 +22,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -50,7 +48,6 @@ class BoardView
 	
 	private Clip          audioSwap        = null;
 	private Cell[]        board            = null;
-	private JButton       button           = new JButton("Confirm");
 	private BufferedImage imageDiamond     = null;
 	private BufferedImage imageDiamond_v2  = null;
 	private BufferedImage imageEmerald     = null;
@@ -67,7 +64,6 @@ class BoardView
 	private JMenuItem     openItem         = null;
 	private JMenuItem     quitItem         = null;
 	private JMenuItem     saveItem         = null;
-	private JTextField    textField        = new JTextField(20);
 	
 	/**
 	 * Constructor for `BoardView` MVC view.
@@ -105,8 +101,6 @@ class BoardView
 		initGraphics();
 		
 		// Initialize components //
-		textField.setText("Hello, World!");
-		textField.setEditable(false);
 		updateScore();
 		
 		// Create content pane //
@@ -116,8 +110,6 @@ class BoardView
 		// Construct header //
 		JPanel header = new JPanel(new FlowLayout());
 		header.add(label);
-		header.add(textField);
-		header.add(button);
 		content.add(header, BorderLayout.PAGE_START);
 		
 		// Construct grid //
@@ -147,21 +139,6 @@ class BoardView
 		for (Cell cell : board) {
 			cell.addActionListener(listener);
 		}
-	}
-	
-	/**
-	 * Add listener for top button press.
-	 *
-	 * @param listener Event handler.
-	 */
-	public void addButtonListener(ActionListener listener)
-	{
-		// Validate argument //
-		if (listener == null) {
-			throw new NullPointerException();
-		}
-		
-		button.addActionListener(listener);
 	}
 	
 	/**

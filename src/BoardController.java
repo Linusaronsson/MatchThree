@@ -48,18 +48,6 @@ class BoardController
 	}
 	
 	/**
-	 * Listens for top button press.
-	 */
-	class ButtonListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			view.showMessage("Button pressed");
-		}
-	}
-	
-	/**
 	 * Listens for "New" menu item.
 	 */
 	class NewListener
@@ -159,7 +147,6 @@ class BoardController
 		
 		// Register event listeners //
 		view.addBoardListener(new BoardListener());
-		view.addButtonListener(new ButtonListener());
 		view.addNewListener(new NewListener());
 		view.addOpenListener(new OpenListener());
 		view.addQuitListener(new QuitListener());
