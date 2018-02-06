@@ -24,6 +24,9 @@
 + Multithreading.
 + Score counter (number of matches and of what types they were).
 
+## Performance ##
++ Improve application launch and quit times.
+
 ## Platform support ##
 + Improve native platform support (primarily macOS/OS X).
 
