@@ -5,6 +5,8 @@ import java.io.IOException;
  * MatchThree game.
  */
 public class MatchThree {
+	private static final int PORT_NUMBER = 3333;
+	
 	/**
 	 * Program entry point.
 	 *
@@ -17,7 +19,7 @@ public class MatchThree {
 		GUI ui = new GUI();
 		
 		// Setup server listener //
-		Server server = new Server(3333, ui);
+		Server server = new Server(PORT_NUMBER, ui);
 		server.start();
 	}
 }
