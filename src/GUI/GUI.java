@@ -27,7 +27,7 @@ public class GUI extends JFrame {
 	private WindowState viewState;
 	private GameMode mode = GameMode.WAITING;
 	private static final String WINDOW_TITLE = "MatchThree";
-	private static final int GAME_SIZE = 10;
+	private static final int GAME_SIZE = 6;
 	private JButton	v1btn = new JButton("Version 1");
 	private JButton	v2btn = new JButton("Version 2");
 	private JButton       goBack         = new JButton("Back to Main Menu");
@@ -36,8 +36,7 @@ public class GUI extends JFrame {
 	private JMenuItem     quitItem       = null;
 	private JMenuItem     saveItem       = null;
 	
-	private Singleplayer single = null;
-	private Multiplayer multi = null;
+	private BoardView 	view  = null;
 	private JPanel 		rightPanel = null;
 	private JPanel       mainPanel = null;
 	private MainMenu       mainMenu = null;
@@ -152,7 +151,7 @@ public class GUI extends JFrame {
 			mainPanel.add(rightPanel);
 			setSize(getPerfectDimension());
 			centerWindow();
-			single = sp;
+			view = sp.getView();
 			break;
 		case MULTIPLAYER_MENU:
 			viewState = WindowState.MULTIPLAYER_MENU;
@@ -183,7 +182,7 @@ public class GUI extends JFrame {
 			s.setBackground(Color.BLACK);
 			mainPanel.add(s);
 			setSize(getPerfectDimension());
-			multi = s;
+			view = s.getView();
 			break;
 		}
 		default: //throw something
@@ -211,18 +210,10 @@ public class GUI extends JFrame {
 			changeState(WindowState.SINGLEPLAYER_GAME);
 		});
 		v1btn.addActionListener((ActionEvent e) -> {
-			switch(viewState) {
-				case SINGLEPLAYER_GAME: single.getView().changeSprites(1); break;
-				case MULTIPLAYER_GAME: multi.getView().changeSprites(1); break;
-				default: break;
-			}
+			view.changeSprites(1);
 		});
 		v2btn.addActionListener((ActionEvent e) -> {
-			switch(viewState) {
-				case SINGLEPLAYER_GAME: single.getView().changeSprites(2); break;
-				case MULTIPLAYER_GAME: multi.getView().changeSprites(2); break;
-				default: break;
-			}
+			view.changeSprites(2);
 		});
 	}
 	
