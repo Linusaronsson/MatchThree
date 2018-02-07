@@ -69,7 +69,7 @@ public class GUI extends JFrame {
 		add(mainPanel);
 		
 		// Set menu bar //
-		JMenuBar menuBar = createMenuBar();
+		JMenuBar menuBar = createMenuBar(this);
 		setJMenuBar(menuBar);
 		
 		// Update window with content //
@@ -205,8 +205,13 @@ public class GUI extends JFrame {
 	 * @return     Menu bar object.
 	 */
 	// TODO: Research use of `self` parameter name.
-	private JMenuBar createMenuBar()
+	private JMenuBar createMenuBar(GUI self)
 	{
+		// Validate argument //
+		if (self == null) {
+			throw new NullPointerException();
+		}
+		
 		// Create menu bar //
 		JMenuBar menuBar = new JMenuBar();
 		
@@ -214,20 +219,20 @@ public class GUI extends JFrame {
 		JMenu fileMenu = new JMenu("File");
 		
 		// Create "New" menu item //
-		this.newItem = new JMenuItem("New");
-		fileMenu.add(this.newItem);
+		self.newItem = new JMenuItem("New");
+		fileMenu.add(self.newItem);
 		
 		// Create "Open" menu item //
-		this.openItem = new JMenuItem("Open");
-		fileMenu.add(this.openItem);
+		self.openItem = new JMenuItem("Open");
+		fileMenu.add(self.openItem);
 		
 		// Create "Save" menu item //
-		this.saveItem = new JMenuItem("Save");
-		fileMenu.add(this.saveItem);
+		self.saveItem = new JMenuItem("Save");
+		fileMenu.add(self.saveItem);
 		
 		// Create "Quit" menu item //
-		this.quitItem = new JMenuItem("Quit");
-		fileMenu.add(this.quitItem);
+		self.quitItem = new JMenuItem("Quit");
+		fileMenu.add(self.quitItem);
 		
 		// Add menus to menu bar //
 		menuBar.add(fileMenu);
