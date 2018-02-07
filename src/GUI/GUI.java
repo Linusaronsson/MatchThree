@@ -64,9 +64,6 @@ public class GUI
 		setPreferredSize(new Dimension(650, 650));
 		setResizable(true);
 		
-		// Add event listeners //
-		addWindowListener(new WindowListener());
-		
 		// Add main panel //
 		add(mainPanel);
 		
@@ -239,12 +236,6 @@ public class GUI
 		// Add menus to menu bar //
 		menuBar.add(fileMenu);
 		
-		// Add event listeners //
-		newItem.addActionListener(new NewListener());
-		openItem.addActionListener(new OpenListener());
-		quitItem.addActionListener(new QuitListener());
-		saveItem.addActionListener(new SaveListener());
-		
 		return menuBar;
 	}
 	
@@ -268,88 +259,6 @@ public class GUI
 		         UnsupportedLookAndFeelException e)
 		{
 			System.err.println(e);
-		}
-	}
-	
-	/**
-	 * Listens for window events.
-	 */
-	class WindowListener
-		extends WindowAdapter
-	{
-		public void windowActivated(WindowEvent event) {}
-		
-		public void windowClosed(WindowEvent event) {}
-		
-		public void windowClosing(WindowEvent event) {
-			// Close windows and free its resources //
-			// TODO: Is it necessary to use `view.setVisible(false)` as well?
-			dispose();
-		}
-		
-		public void windowDeactivated(WindowEvent event) {}
-		
-		public void windowDeiconified(WindowEvent event) {}
-		
-		public void windowGainedFocus(WindowEvent event) {}
-		
-		public void windowIconified(WindowEvent event) {}
-		
-		public void windowLostFocus(WindowEvent event) {}
-		
-		public void windowOpened(WindowEvent event) {}
-		
-		public void windowStateChanged(WindowEvent event) {}
-	}
-	
-	/**
-	 * Listens for "New" menu item.
-	 */
-	class NewListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			// Restart the game //
-			//restartGame();
-		}
-	}
-	
-	/**
-	 * Listens for "Open" menu item.
-	 */
-	class OpenListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			showError("“Open” not implemented");
-		}
-	}
-	
-	/**
-	 * Listens for "Quit" menu item.
-	 */
-	class QuitListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			// Close window //
-			//WindowEvent e = new WindowEvent(view, WindowEvent.WINDOW_CLOSING);
-			//dispatchEvent(e);
-		}
-	}
-	
-	/**
-	 * Listens for "Save" menu item.
-	 */
-	class SaveListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			showError("“Save” not implemented");
 		}
 	}
 }
