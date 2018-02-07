@@ -89,8 +89,8 @@ public class BoardModel
 	{
 		return board;
 	}
-	
-	/**
+
+		/**
 	 * Clear jewels from the board. May leave the board in an inconsistent
 	 * state.
 	 *
@@ -312,130 +312,226 @@ public class BoardModel
 	}
 	
 	/**
-	 * Get the value of a cell.
+	 * Clear jewels from the board. May leave the board in an inconsistent
+	 * state.
 	 *
-	 * @param position Coordinates of the cell.
-	 * @return         The cell value.
+	 * @param chains Array of chains with aligned cells to clear.
+	 * @return       Gained score.
 	 */
-	public Jewel get(Coordinate position)
+	private int clearChains(Coordinate[][] chains)
+	{
+		// Validate argument //
+		// TODO: Perform validation on array contents as well?
+		if (chains == null) {
+			throw new NullPointerException();
+		}
+		
+		// Clear chains //
+		int points = 0;
+		for (Coordinate[] chain : chains) {
+			// Clear cells //
+			for (Coordinate cell : chain) {
+				set(cell, null);
+			}
+			
+			// Count score //
+			// TODO: Make score increase exponentially with longer matches.
+			points += chain.length * 100;
+		}
+		
+		return points;
+	}
+	
+	/**
+	 * Move cells downwards to fill any gaps. May leave the board in an
+	 * inconsistent state.
+	 */
+	private void dropCells()
+	{
+		// Iterate over columns //
+		for (int column = 0; column < width; column++) {
+			// Iterate bottom-up //
+			for (int row = width - 1; row >= 0; --row) {
+				// Move cell down to last empty space //
+				for (int index = row; index < width - 1; index++) {
+					Coordinate over  = new Coordinate(column, index);
+					Coordinate under = new Coordinate(column, index + 1);
+					if (get(under) != null) {
+						break;
+					}
+					swap(over, under);
+				}
+			}
+		}
+	}
+	
+	/**
+	 * Fill empty spaces in the board. Avoids creating matches. Since the
+	 * algorithm is not proven to work in all instances, it may potentially
+	 * leave the board in an inconsistent state.
+	 */
+	private void fill()
+	{
+		// Create RNG //
+		// TODO: Store this higher in the hierarchy.
+		Random random = new Random();
+		
+		// Fill all cells //
+		for (int i = 0; i < width * width; i++) {
+			// Skip filled cells //
+			if (board[i] != null) {
+				continue;
+			}
+			
+			// Get coordinates //
+			int x = i % width;
+			int y = i / width;
+			Coordinate position = new Coordinate(x, y);
+			
+			// Create list of possible options //
+			HashSet<Jewel> options = new HashSet<Jewel>();
+			options.add(Jewel.DIAMOND);
+			options.add(Jewel.EMERALD);
+			options.add(Jewel.RUBY);
+			options.add(Jewel.SAPPHIRE);
+			options.add(Jewel.TOPAZ);
+			
+			// Attempt to fill cell //
+			while (true) {
+				// Bail-out if options are exhausted //
+				if (options.isEmpty()) {
+					System.err.printf(
+						"No possible jewel for (%d, %d), leaving empty%s",
+						x, y, System.lineSeparator()
+					);
+					set(position, null);
+					break;
+				}
+				
+				// Get a random option //
+				int   choice  = random.nextInt(options.size());
+				int   current = 0;
+				Jewel jewel   = null;
+				for (Jewel kind : options) {
+					if (current == choice) {
+						jewel = kind;
+					}
+					current++;
+				}
+				
+				// Update cell //
+				set(position, jewel);
+				
+				// Look for chains //
+				Coordinate[][] chains = findChains(position);
+				if (chains.length == 0) {
+					break;
+				}
+				
+				// Option exhausted //
+				options.remove(jewel);
+			}
+		}
+	}
+	
+	/**
+	 * Identify chains involving a single cell.
+	 *
+	 * @param position Coordinate of cell to check.
+	 * @return         Array of chains found.
+	 */
+	private Coordinate[][] findChains(Coordinate position)
 	{
 		// Validate argument //
 		if (position == null) {
 			throw new NullPointerException();
 		}
 		
-		return get(position.x, position.y);
+		Coordinate[] positions = new Coordinate[] { position };
+		return findChains(positions);
 	}
 	
 	/**
-	 * Get the value of a cell.
+	 * Identify chains involving a list of cells.
 	 *
-	 * @param x X-coordinate of the cell.
-	 * @param y Y-coordinate of the cell.
-	 * @return  The cell value.
+	 * @param positions Coordinates of cells to check.
+	 * @return          Array of chains found.
 	 */
-	public Jewel get(int x, int y)
+	private Coordinate[][] findChains(Coordinate[] positions)
 	{
-		// Validate arguments //
-		if (x < 0 || y < 0) {
-			throw new IllegalArgumentException();
-		}
-		if (x >= width || y >= width) {
-			throw new IndexOutOfBoundsException();
-		}
-		
-		int i = y * width + x;
-		return board[i];
-	}
-	
-	/**
-	 * Get the current score.
-	 *
-	 * @return The current score.
-	 */
-	public int getScore()
-	{
-		return score;
-	}
-	
-	/**
-	 * Get the size the board.
-	 *
-	 * @return The number of cells per axis.
-	 */
-	public int getWidth()
-	{
-		return width;
-	}
-	
-	/**
-	 * Initialize a new game.
-	 */
-	public void init()
-	{
-		// Reset board //
-		// TODO: Is it necessary to null-initialize array?
-		for (int i = 0; i < width * width; i++) {
-			board[i] = null;
-		}
-		fill();
-		
-		// Reset score //
-		score = 0;
-	}
-	
-	/**
-	 * Move a cell and clear any generated chains. Leaves the board in a
-	 * consistent state.
-	 *
-	 * @param from Source coordinates.
-	 * @param to   Destination coordinates.
-	 * @return     Whether the move was successful, invalid or canceled.
-	 */
-	public MoveType move(Coordinate from, Coordinate to)
-	{
-		// Validate arguments //
-		if (from == null || to == null) {
+		// Validate argument //
+		// TODO: Check for null values inside array?
+		if (positions == null) {
 			throw new NullPointerException();
 		}
 		
-		// Validate move //
-		if (from.x == to.x && from.y == to.y) {
-			return MoveType.CANCEL;
-		}
-		if (from.x != to.x && from.y != to.y) {
-			return MoveType.BAD;
-		}
-		
-		// Move cell //
-		Jewel source = get(from);
-		int dx = to.x - from.x;
-		int dy = to.y - from.y;
-		if (dx < 0) { dx = -1; }
-		if (dx > 0) { dx = +1; }
-		if (dy < 0) { dy = -1; }
-		if (dy > 0) { dy = +1; }
-		List<Coordinate> positions = new ArrayList<Coordinate>();
-		for (Coordinate position = from;
-		     position.x != to.x || position.y != to.y; // TODO: Implement `equals'.
-		     position.x += dx, position.y += dy)
-		{
-			// Swap cell with neighbor //
-			Coordinate next = new Coordinate(position.x + dx, position.y + dy);
-			swap(position, next);
+		// Look for chains //
+		List<Coordinate[]> chains = new ArrayList<Coordinate[]>();
+		for (Coordinate position : positions) {
+			// Get jewel type to match //
+			Jewel matchType = get(position);
 			
-			// Save coordinate //
-			positions.add(new Coordinate(position.x, position.y));
+			// Unpack coordinates //
+			int x = position.x;
+			int y = position.y;
+			
+			// Search for matches on X-axis //
+			int startX = position.x;
+			int stopX  = position.x;
+			List<Coordinate> cellsX = new ArrayList<Coordinate>();
+			for (int i = x; i >= 0; i--) {
+				Jewel cell = get(i, y);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				startX = i;
+				cellsX.add(new Coordinate(i, y));
+			}
+			for (int i = x + 1; i < width; i++) {
+				Jewel cell = get(i, y);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				stopX = i;
+				cellsX.add(new Coordinate(i, y));
+			}
+			if (cellsX.size() >= MINIMUM_LENGTH) {
+				Coordinate[] chain = new Coordinate[cellsX.size()];
+				chain = cellsX.toArray(chain);
+				chains.add(chain);
+			}
+			
+			// Search for matches on Y-axis //
+			int startY = position.y;
+			int stopY  = position.y;
+			List<Coordinate> cellsY = new ArrayList<Coordinate>();
+			for (int i = y; i >= 0; i--) {
+				Jewel cell = get(x, i);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				startY = i;
+				cellsY.add(new Coordinate(x, i));
+			}
+			for (int i = y + 1; i < width; i++) {
+				Jewel cell = get(x, i);
+				if (cell == null || !cell.equals(matchType)) {
+					break;
+				}
+				stopY = i;
+				cellsY.add(new Coordinate(x, i));
+			}
+			if (cellsY.size() >= MINIMUM_LENGTH) {
+				Coordinate[] chain = new Coordinate[cellsY.size()];
+				chain = cellsY.toArray(chain);
+				chains.add(chain);
+			}
 		}
-		positions.add(to);
 		
-		// Clear cells //
-		Coordinate[] out = new Coordinate[positions.size()];
-		update(positions.toArray(out));
-		
-		return MoveType.OK;
+		Coordinate[][] out = new Coordinate[chains.size()][];
+		return chains.toArray(out);
 	}
-	
+
 	/**
 	 * Set the value of a cell. May leave the board in an inconsistent state.
 	 *
