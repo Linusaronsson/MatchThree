@@ -25,24 +25,26 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 public class GUI extends JFrame {
-	private WindowState viewState;
-	private GameMode mode = GameMode.WAITING;
+	private static final int    GAME_SIZE    = 6;
 	private static final String WINDOW_TITLE = "MatchThree";
-	private static final int GAME_SIZE = 6;
-	private JButton       goBack         = new JButton("Back to Main Menu");
-	private JMenuItem     newItem        = null;
-	private JMenuItem     openItem       = null;
-	private JMenuItem     quitItem       = null;
-	private JMenuItem     saveItem       = null;
 	
-	private JPanel       mainPanel = null;
-	private MainMenu       mainMenu = null;
-	private MultiplayerMenu      mp = null;
+	private JButton     goBack    = new JButton("Back to Main Menu");
+	private GameMode    mode      = GameMode.WAITING;
+	private JMenuItem   newItem   = null;
+	private JMenuItem   openItem  = null;
+	private JMenuItem   quitItem  = null;
+	private JMenuItem   saveItem  = null;
+	private WindowState viewState = null;
 	
-	public GUI() {
+	private MainMenu        mainMenu  = null;
+	private JPanel          mainPanel = null;
+	private MultiplayerMenu mp        = null;
+	
+	public GUI()
+	{
 		mainPanel = new JPanel();
-		mainMenu = new MainMenu();
-		mp = new MultiplayerMenu();
+		mainMenu  = new MainMenu();
+		mp        = new MultiplayerMenu();
 		
 		changeState(WindowState.START_MENU);
 		
@@ -55,10 +57,12 @@ public class GUI extends JFrame {
 		
 		// Set window properties //
 		setTitle(WINDOW_TITLE);
-		setPreferredSize(new Dimension(650, 650));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationByPlatform(true);
+		setPreferredSize(new Dimension(650, 650));
 		setResizable(true);
+		
+		// Add event listeners //
 		addWindowListener(new WindowListener());
 		
 		// Add main panel //
@@ -68,7 +72,10 @@ public class GUI extends JFrame {
 		JMenuBar menuBar = createMenuBar();
 		setJMenuBar(menuBar);
 		
+		// Update window with content //
 		pack();
+		
+		// Make window visible //
 		setVisible(true);
 	}
 	
@@ -79,10 +86,10 @@ public class GUI extends JFrame {
 	}
 	
 	public enum WindowState {
-		START_MENU,
-		SINGLEPLAYER_GAME,
+		MULTIPLAYER_GAME,
 		MULTIPLAYER_MENU,
-		MULTIPLAYER_GAME
+		SINGLEPLAYER_GAME,
+		START_MENU
 	}
 	
 	/**
@@ -225,6 +232,7 @@ public class GUI extends JFrame {
 		// Add menus to menu bar //
 		menuBar.add(fileMenu);
 		
+		// Add event listeners //
 		newItem.addActionListener(new NewListener());
 		openItem.addActionListener(new OpenListener());
 		quitItem.addActionListener(new QuitListener());

@@ -63,11 +63,11 @@ public class MatchThree {
 	 */
 	public static void main(String[] args) throws IOException
 	{
-		//Initialize GUI
+		// Initialize GUI //
 		GUI ui = new GUI();
 		
-		//Setup server listener
-		Server s = new Server(3333, ui);
-		s.start();
+		// Setup server listener //
+		Server server = new Server(3333, ui);
+		server.start();
 	}
 }
