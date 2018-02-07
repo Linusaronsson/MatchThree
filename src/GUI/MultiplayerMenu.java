@@ -9,19 +9,23 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class MultiplayerMenu extends JPanel {
+public class MultiplayerMenu
+	extends JPanel
+{
+	private JButton    connect;
 	private JTextField ip;
+	private JLabel     ip_text;
 	private JTextField port;
-	private JButton connect;
-	private JLabel ip_text;
-	private JLabel port_text;
+	private JLabel     port_text;
 	
-	public MultiplayerMenu() {
-		connect = new JButton("Connect to player");
-		ip_text = new JLabel("IP: ");
+	public MultiplayerMenu()
+	{
+		connect   = new JButton("Connect to player");
+		ip        = new JTextField();
+		ip_text   = new JLabel("IP: ");
+		port      = new JTextField();
 		port_text = new JLabel("Port: ");
-		ip = new JTextField();
-		port = new JTextField();
+		
 		ip.setPreferredSize(new Dimension(200, 24));
 		port.setPreferredSize(new Dimension(200, 24));
 		
@@ -32,15 +36,18 @@ public class MultiplayerMenu extends JPanel {
 		this.add(port);
 	}
 	
-	public void addConnectListener(ActionListener listener) {
+	public void addConnectListener(ActionListener listener)
+	{
 		connect.addActionListener(listener);
 	}
 	
-	public String getIp() {
+	public String getIp()
+	{
 		return ip.getText();
 	}
 	
-	public String getPort() {
+	public String getPort()
+	{
 		return port.getText();
 	}
 }

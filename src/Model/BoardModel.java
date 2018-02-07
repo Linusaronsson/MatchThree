@@ -9,7 +9,8 @@ import java.util.Random;
 /**
  * MVC model.
  */
-public class BoardModel extends Observable
+public class BoardModel
+	extends Observable
 {
 	private static final int MINIMUM_LENGTH = 3;
 	
@@ -30,18 +31,27 @@ public class BoardModel extends Observable
 	/**
 	 * Cell event that is sent to the view.
 	 */
-	public class CellEvent {
+	public class CellEvent
+	{
 		private Coordinate pos;
-		private Jewel cell_type;
-		public CellEvent(Coordinate pos, Jewel cell_type) {
-			this.pos = pos;
+		private Jewel      cell_type;
+		
+		public CellEvent(Coordinate pos, Jewel cell_type)
+		{
+			this.pos       = pos;
 			this.cell_type = cell_type;
 		}
 		
-		public Jewel getType() { return cell_type; }
-		public Coordinate getPos() { return pos; }
+		public Jewel getType()
+		{
+			return cell_type;
+		}
+		
+		public Coordinate getPos()
+		{
+			return pos;
+		}
 	}
-
 	
 	/**
 	 * Constructor for `BoardModel` MVC model.
@@ -75,7 +85,8 @@ public class BoardModel extends Observable
 		this.board = board;
 	}
 	
-	public Jewel[] getBoard() {
+	public Jewel[] getBoard()
+	{
 		return board;
 	}
 	
@@ -458,8 +469,11 @@ public class BoardModel extends Observable
 			throw new IndexOutOfBoundsException();
 		}
 		
+		// Set value //
 		int i = y * width + x;
 		board[i] = value;
+		
+		// Notify observers //
 		setChanged();
 		notifyObservers(new CellEvent(new Coordinate(x, y), value));
 	}

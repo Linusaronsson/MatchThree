@@ -5,22 +5,28 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class MainMenu extends JPanel {
-	private JButton singleplayer;
+public class MainMenu
+	extends JPanel
+{
 	private JButton multiplayer;
+	private JButton singleplayer;
 	
-	public MainMenu() {
+	public MainMenu()
+	{
+		multiplayer  = new JButton("Multiplayer");
 		singleplayer = new JButton("Singleplayer");
-		multiplayer = new JButton("Multiplayer");
+		
 		this.add(singleplayer);
 		this.add(multiplayer);
 	}
 	
-	public void addSingleplayerListener(ActionListener listener) {
+	public void addSingleplayerListener(ActionListener listener)
+	{
 		singleplayer.addActionListener(listener);
 	}
 	
-	public void addMultiplayerListener(ActionListener listener) {
+	public void addMultiplayerListener(ActionListener listener)
+	{
 		multiplayer.addActionListener(listener);
 	}
 }

@@ -3,13 +3,17 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-class Server extends Thread {
+class Server
+	extends Thread
+{
 	ServerSocket listener = null;
-	int port;
-	Component c;
-	public Server(int port, Component c) {
+	int          port;
+	Component    c;
+	
+	public Server(int port, Component c)
+	{
 		this.port = port;
-		this.c = c;
+		this.c    = c;
 		
 		try {
 			listener = new ServerSocket(port);
@@ -19,9 +23,10 @@ class Server extends Thread {
 		}
 	}
 	
-	public void run() {
+	public void run()
+	{
 		Socket s = null;
-		while(true) {
+		while (true) {
 			try {
 				s = listener.accept();
 			} catch (IOException e) {

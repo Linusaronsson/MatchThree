@@ -8,12 +8,15 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 
-public class Singleplayer extends JPanel {
+public class Singleplayer
+	extends JPanel
+{
+	private BoardController controller = null;
 	private BoardModel      model      = null;
 	private BoardView       view       = null;
-	private BoardController controller = null;
 	
-	public Singleplayer(final int GAME_SIZE) {
+	public Singleplayer(final int GAME_SIZE)
+	{
 		// Create MVC context //
 		BoardModel      model      = new BoardModel(GAME_SIZE);
 		BoardView       view       = new BoardView(model);
@@ -23,5 +26,8 @@ public class Singleplayer extends JPanel {
 		// TODO: Move this to view?
 	}
 	
-	public BoardView getView() { return view; }
+	public BoardView getView()
+	{
+		return view;
+	}
 }

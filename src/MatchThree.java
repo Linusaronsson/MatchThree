@@ -4,7 +4,8 @@ import java.io.IOException;
 /**
  * MatchThree game.
  */
-public class MatchThree {
+public class MatchThree
+{
 	private static final int PORT_NUMBER = 3333;
 	
 	/**
@@ -13,7 +14,8 @@ public class MatchThree {
 	 * @param args Program arguments.
 	 * @throws IOException
 	 */
-	public static void main(String[] args) throws IOException
+	public static void main(String[] args)
+		throws IOException
 	{
 		// Initialize GUI //
 		GUI ui = new GUI();

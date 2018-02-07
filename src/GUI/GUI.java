@@ -24,7 +24,9 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-public class GUI extends JFrame {
+public class GUI
+	extends JFrame
+{
 	private static final int    GAME_SIZE    = 6;
 	private static final String WINDOW_TITLE = "MatchThree";
 	

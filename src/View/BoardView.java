@@ -37,7 +37,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 @SuppressWarnings("serial")
 public class BoardView
-	extends JPanel implements Observer
+	extends JPanel
+	implements Observer
 {
 	private static final String CELL_FONT_NAME   = "Helvetica Neue";
 	private static final int    CELL_FONT_SIZE   = 14;
@@ -85,6 +86,7 @@ public class BoardView
 			throw new NullPointerException();
 		}
 		
+		// Bind to model //
 		this.model = model;
 		model.addObserver(this);
 		
@@ -95,6 +97,7 @@ public class BoardView
 		// Initialize components //
 		updateScore();
 		
+		// Set layout //
 		this.setLayout(new BorderLayout());
 		
 		// Construct header //
