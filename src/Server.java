@@ -6,9 +6,9 @@ import java.net.Socket;
 class Server
 	extends Thread
 {
-	ServerSocket listener = null;
-	int          port;
-	Component    c;
+	private ServerSocket listener = null;
+	private int          port     = 0;
+	private Component    c        = null;
 	
 	public Server(int port, Component c)
 	{
