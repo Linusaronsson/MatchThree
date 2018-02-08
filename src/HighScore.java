@@ -1,6 +1,9 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
 import java.util.List;
 import java.util.ArrayList;
     
@@ -9,7 +12,9 @@ public class HighScore
     static String url = "jdbc:mysql://sidju.noip.me:3306/java";
     static String username = "java";
     static String password = "testeste";
-    
+    static String getScoresQuery = "SELECT * FROM scores ORDER BY scores.score DESC;";
+
+    private Connection connection;
     private int currentScore;
     private String name;
     
@@ -25,14 +30,8 @@ public class HighScore
 	} catch (ClassNotFoundException e) {
 	    throw new IllegalStateException("Cannot find the driver in the classpath!", e);
 	}
-	
-	System.out.println("Connecting database...");
-	try (Connection connection = DriverManager.getConnection(url, username, password)) {
-	    System.out.println("Database connected!");
-	} catch (SQLException e) {
-	    throw new IllegalStateException("Cannot connect the database!", e);
-	}
-	
+
+	getScoreTable();
     }
 
     //Called when game is over
@@ -42,9 +41,55 @@ public class HighScore
     }
 
     //Used to get current highscores
-    public List getScoreTable()
+    public List<Score> getScoreTable()
     {
-	List scoreTable = new ArrayList<Score>();
+	Statement statement;
+	ResultSet selection;
+	
+	Score tmp = new Score();
+	List<Score> scoreTable = new ArrayList<Score>();
+
+
+	// connect database
+	try {
+	    connection = DriverManager.getConnection(url, username, password);
+	    System.out.println("Database connected!");
+	} catch (SQLException e) {
+	    throw new IllegalStateException("Cannot connect the database!", e);
+	}
+	
+	// query database
+	try {statement = connection.createStatement();
+	    selection = statement.executeQuery(getScoresQuery);
+	    System.out.println("Database responded!");
+	} catch (SQLException e) {
+	    throw new IllegalStateException("Database unresponsive!", e);
+	}
+
+	// read response
+	try {
+	    selection.first();
+	    while (!selection.isLast())
+		{
+		    tmp.score = selection.getInt("score");
+		    tmp.name = selection.getString("name");
+		    scoreTable.add(tmp);
+		    selection.next();
+		}
+	} catch (SQLException e) {
+	    throw new IllegalStateException("ResultSet non-functional!", e);
+	}
+	
+
+	// disconnect database
+	if (connection != null) {
+	    try {
+		connection.close();
+		connection = null;
+	    } catch (SQLException e) {
+		e.printStackTrace();
+	    }
+	}		
 	return scoreTable;
     }
 
