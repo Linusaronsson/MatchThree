@@ -124,42 +124,6 @@ public class MatchThreeUI
 	}
 	
 	/**
-	 * Display an error message.
-	 *
-	 * @param message The message to display.
-	 */
-	public void showError(String message)
-	{
-		// Validate argument //
-		if (message == null) {
-			throw new NullPointerException();
-		}
-		
-		JOptionPane.showMessageDialog(this,
-		                              message,
-		                              message,
-		                              JOptionPane.ERROR_MESSAGE);
-	}
-	
-	/**
-	 * Display an informative message.
-	 *
-	 * @param message The message to display.
-	 */
-	public void showMessage(String message)
-	{
-		// Validate argument //
-		if (message == null) {
-			throw new NullPointerException();
-		}
-		
-		JOptionPane.showMessageDialog(this,
-		                              message,
-		                              message,
-		                              JOptionPane.INFORMATION_MESSAGE);
-	}
-	
-	/**
 	 * Add listener for board cell actions (clicks).
 	 *
 	 * @param listener Event handler.

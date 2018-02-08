@@ -16,6 +16,7 @@ public class MatchThreeController
 	private Coordinate      activeCell = null;
 	private MatchThreeModel model      = null;
 	private MatchThreeUI    view       = null;
+	private Window          window     = null;
 	
 	/**
 	 * Listens for board cell actions (clicks).
@@ -54,96 +55,15 @@ public class MatchThreeController
 	}
 	
 	/**
-	 * Listens for "New" menu item.
-	 */
-	class NewListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			// Restart the game //
-			restartGame();
-		}
-	}
-	
-	/**
-	 * Listens for "Open" menu item.
-	 */
-	class OpenListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			view.showError("“Open” not implemented");
-		}
-	}
-	
-	/**
-	 * Listens for "Save" menu item.
-	 */
-	class SaveListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			view.showError("“Save” not implemented");
-		}
-	}
-	
-	/**
-	 * Listens for "Quit" menu item.
-	 */
-	class QuitListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			// Close window //
-			//WindowEvent e = new WindowEvent(view, WindowEvent.WINDOW_CLOSING);
-			//view.dispatchEvent(e);
-		}
-	}
-	
-	/**
-	 * Listens for window events.
-	 */
-	class WindowListener
-		extends WindowAdapter
-	{
-		public void windowActivated(WindowEvent event) {}
-		
-		public void windowClosed(WindowEvent event) {}
-		
-		public void windowClosing(WindowEvent event)
-		{
-			// Close windows and free its resources //
-			// TODO: Is it necessary to use `view.setVisible(false)` as well?
-			//view.dispose();
-		}
-		
-		public void windowDeactivated(WindowEvent event) {}
-		
-		public void windowDeiconified(WindowEvent event) {}
-		
-		public void windowGainedFocus(WindowEvent event) {}
-		
-		public void windowIconified(WindowEvent event) {}
-		
-		public void windowLostFocus(WindowEvent event) {}
-		
-		public void windowOpened(WindowEvent event) {}
-		
-		public void windowStateChanged(WindowEvent event) {}
-	}
-	
-	/**
 	 * Constructor for `MatchThreeController`.
 	 *
 	 * @param model Model to use.
 	 * @param view  View to use.
 	 */
-	public MatchThreeController(MatchThreeModel model, MatchThreeUI view)
-	{
+	public MatchThreeController(
+		MatchThreeModel model,
+		MatchThreeUI view
+	) {
 		// Validate arguments //
 		if (model == null || view == null) {
 			throw new NullPointerException();
@@ -177,7 +97,8 @@ public class MatchThreeController
 				view.playAudioSwap();
 				break;
 			case BAD:
-				view.showError("Invalid move");
+				// TODO: Handle null values.
+				window.showError("Invalid move");
 				break;
 			case CANCEL:
 				break;
@@ -193,7 +114,7 @@ public class MatchThreeController
 	/**
 	 * Resets model to its initial state.
 	 */
-	private void restartGame()
+	protected void restartGame()
 	{
 		// Reset active cell //
 		setActiveCell(null);
@@ -225,5 +146,15 @@ public class MatchThreeController
 		
 		// Update reference //
 		activeCell = position;
+	}
+	
+	/**
+	 * Set reference to parent window.
+	 *
+	 * @param window The parent window.
+	 */
+	public void setWindow(Window window)
+	{
+		this.window = window;
 	}
 }
