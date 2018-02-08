@@ -3,6 +3,7 @@ set -euC
 
 CLASS_NAME='MatchThree'     # Main class name.
 EXIT_BAD_VERB=1             # Exit code - Unrecognized verb.
+EXIT_MISSING_VERB=2         # Exit code - No verbs provided.
 EXIT_OK=0                   # Exit code - Success
 EXIT_UNIMPLEMENTED=-1       # Exit code - Feature not implemented.
 MAIN_FILE='MatchThree.java' # Main class file name.
@@ -62,22 +63,28 @@ main () {
 	# Get script directory #
 	get_path
 	
-	# Execute verb #
+	# Print usage #
 	if [ "$#" -lt 1 ]
 	then
-		build
-	else
-		case "$1" in
+		print_usage 1>&2
+		exit "$EXIT_MISSING_VERB"
+	fi
+	
+	# Execute verbs #
+	for verb in "$@"
+	do
+		case "$verb" in
 			build) build ;;
 			clean) clean ;;
-			doc) doc ;;
-			run) run ;;
+			doc)   doc ;;
+			help)  print_usage ;;
+			run)   run ;;
 			*)
 				printf 'Verb not recognized: "%s"\n' "$1" 1>&2
 				print_usage 1>&2
 				exit "$EXIT_BAD_VERB"
 		esac
-	fi
+	done
 	
 	# Success #
 	exit "$EXIT_OK"
