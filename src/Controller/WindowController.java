@@ -10,8 +10,8 @@ import View.*;
 
 public class WindowController
 {
-	private MatchThreeController matchThree = null;
-	private Window               view       = null;
+	private SwapView swapView = null;
+	private Window   window   = null;
 	
 	/**
 	 * Listens for "New" menu item.
@@ -22,7 +22,10 @@ public class WindowController
 		public void actionPerformed(ActionEvent event)
 		{
 			// Restart the game //
-			matchThree.restartGame();
+			if (swapView == null) {throw new IllegalStateException();}
+			MatchThreeController matchThreeController =
+				swapView.getMatchThreeController();
+			matchThreeController.restartGame();
 		}
 	}
 	
@@ -34,7 +37,7 @@ public class WindowController
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showError("“Open” not implemented");
+			window.showError("“Open” not implemented");
 		}
 	}
 	
@@ -46,7 +49,7 @@ public class WindowController
 	{
 		public void actionPerformed(ActionEvent event)
 		{
-			view.showError("“Save” not implemented");
+			window.showError("“Save” not implemented");
 		}
 	}
 	
@@ -59,8 +62,8 @@ public class WindowController
 		public void actionPerformed(ActionEvent event)
 		{
 			// Close window //
-			//WindowEvent e = new WindowEvent(view, WindowEvent.WINDOW_CLOSING);
-			//view.dispatchEvent(e);
+			WindowEvent e = new WindowEvent(window, WindowEvent.WINDOW_CLOSING);
+			window.dispatchEvent(e);
 		}
 	}
 	
@@ -78,7 +81,7 @@ public class WindowController
 		{
 			// Close windows and free its resources //
 			// TODO: Is it necessary to use `view.setVisible(false)` as well?
-			//view.dispose();
+			window.dispose();
 		}
 		
 		public void windowDeactivated(WindowEvent event) {}
@@ -96,9 +99,18 @@ public class WindowController
 		public void windowStateChanged(WindowEvent event) {}
 	}
 	
-	public WindowController(Window view, MatchThreeController matchThree)
-	{
-		this.matchThree = matchThree;
-		this.view       = view;
+	public WindowController(
+		Window   window,
+		SwapView swapView
+	) {
+		// Register event listeners //
+		window.addNewListener(new NewListener());
+		window.addOpenListener(new OpenListener());
+		window.addQuitListener(new QuitListener());
+		window.addSaveListener(new SaveListener());
+		window.addWindowListener(new WindowListener());
+		
+		this.swapView = swapView;
+		this.window   = window;
 	}
 }

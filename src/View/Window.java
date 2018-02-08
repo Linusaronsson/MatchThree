@@ -72,6 +72,77 @@ public class Window
 	}
 	
 	/**
+	 * Add listener for "New" menu item.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addNewListener(ActionListener listener)
+	{
+			// Validate argument //
+			if (listener == null) {
+					throw new NullPointerException();
+			}
+			newItem.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for "Open" menu item.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addOpenListener(ActionListener listener)
+	{
+			// Validate argument //
+			if (listener == null) {
+					throw new NullPointerException();
+			}
+			openItem.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for "Quit" menu item.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addQuitListener(ActionListener listener)
+	{
+			// Validate argument //
+			if (listener == null) {
+					throw new NullPointerException();
+			}
+			quitItem.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for "Save" menu item.
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addSaveListener(ActionListener listener)
+	{
+			// Validate argument //
+			if (listener == null) {
+					throw new NullPointerException();
+			}
+			saveItem.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for board cell actions (clicks).
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addWindowListener(ActionListener listener)
+	{
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
+		addWindowListener(listener);
+	}
+	
+	/**
 	 * Display an error message.
 	 *
 	 * @param message The message to display.

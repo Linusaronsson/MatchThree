@@ -35,6 +35,12 @@ public class Singleplayer
 		this.matchThreeUI         = matchThreeUI;
 	}
 	
+	// TODO: Try to remove this method.
+	public MatchThreeController getMatchThreeController()
+	{
+		return matchThreeController;
+	}
+	
 	// TODO: Remove this method.
 	public MatchThreeUI getView()
 	{

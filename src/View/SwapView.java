@@ -1,5 +1,6 @@
 package View;
 
+import Controller.MatchThreeController;
 import GameModes.*;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -128,6 +129,12 @@ public class SwapView
 		
 		revalidate();
 		repaint();
+	}
+	
+	// TODO: Use mediator pattern instead.
+	public MatchThreeController getMatchThreeController()
+	{
+		return sp.getMatchThreeController();
 	}
 	
 	/**

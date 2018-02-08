@@ -1,3 +1,4 @@
+import Controller.WindowController;
 import java.io.IOException;
 import View.SwapView;
 import View.Window;
@@ -21,6 +22,10 @@ public class MatchThree
 		// Create GUI //
 		SwapView swapView = new SwapView();
 		Window   window   = new Window(swapView);
+		WindowController windowController = new WindowController(
+			window,
+			swapView
+		);
 		swapView.setWindow(window);
 		
 		// Setup server listener //
