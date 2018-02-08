@@ -17,7 +17,10 @@ script_dir='.' # Path to script. Updated at run-time.
 build () {
 	cd -- "${script_dir}/${SOURCE}"
 	mkdir -p -- "${script_dir}/${TARGET}/${TARGET_MAIN}"
-	javac -d "${script_dir}/${TARGET}/${TARGET_MAIN}" \
+	javac \
+		-encoding UTF-8 \
+		-Xlint:all \
+		-d "${script_dir}/${TARGET}/${TARGET_MAIN}" \
 		"${script_dir}/${SOURCE}/${MAIN_FILE}"
 	ln -snf "../../${RESOURCE}" \
 		"${script_dir}/${TARGET}/${TARGET_MAIN}/${RESOURCE}"
