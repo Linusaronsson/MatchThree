@@ -168,184 +168,6 @@ public class BoardView
 	}
 	
 	/**
-	 * Play swap audio clip.
-	 */
-	public void playAudioSwap()
-	{
-		// Rewind and play clip //
-		if (audioSwap != null) {
-			audioSwap.setFramePosition(0);
-			audioSwap.start();
-		}
-	}
-	
-	/**
-	 * Set cell activation state.
-	 *
-	 * @param position  Coordinates of the cell.
-	 * @param activated Whether cell is active.
-	 */
-	public void setCellState(Coordinate position, boolean activated)
-	{
-		// Validate arguments //
-		if (position == null) {
-			throw new NullPointerException();
-		}
-		int width = model.getWidth();
-		if (position.x >= width || position.y >= width) {
-			throw new IndexOutOfBoundsException();
-		}
-		
-		// Get the affected cell //
-		int  x    = position.x;
-		int  y    = position.y;
-		int  i    = y * width + x;
-		Cell cell = board[i];
-		
-		// Set state //
-		if (activated) {
-			cell.setBackground(COLOR_FOREGROUND);
-			cell.setForeground(COLOR_BACKGROUND);
-			cell.setContentAreaFilled(true);
-		} else {
-			cell.setBackground(Color.BLACK);
-			cell.setForeground(COLOR_FOREGROUND);
-			cell.setContentAreaFilled(false);
-		}
-	}
-		
-	/**
-	 * Update all cells.
-	 */
-	public void update()
-	{
-		throw new IllegalStateException();
-		
-		//int width = model.getWidth();
-		//for (int i = 0; i < width * width; i++) {
-		//	int x = i % width;
-		//	int y = i / width;
-		//	updateCell(x, y);
-		//}
-	}
-	
-	/**
-	 * Update a cell.
-	 *
-	 * @param position Coordinates of the cell.
-	 */
-	public void updateCell(Coordinate position, Jewel jewel)
-	{
-		// Validate argument //
-		if (position == null) {
-			throw new NullPointerException();
-		}
-		
-		updateCell(position.x, position.y, jewel);
-	}
-	
-	/**
-	 * Update a cell.
-	 *
-	 * @param x X-coordinate of the cell.
-	 * @param y Y-coordinate of the cell.
-	 */
-	// TODO: Reduce code duplication.
-	public void updateCell(int x, int y, Jewel jewel)
-	{
-		// Validate arguments //
-		if (x < 0 || y < 0) {
-			throw new IllegalArgumentException();
-		}
-		int width = model.getWidth();
-		if (x >= width || y >= width) {
-			throw new IndexOutOfBoundsException();
-		}
-		
-		// Get button from view //
-		// TODO: Add assert for `width` or rely less on model consistency?
-		int  i    = y * width + x;
-		Cell cell = board[i];
-		
-		// Hide cell if empty //
-		cell.setVisible(cell != null);
-		
-		if (jewel != null) {
-			ImageIcon     icon  = null;
-			BufferedImage image = getImage(jewel);
-			String        text  = getStr(jewel);
-			Color         color = getColor(jewel);
-			
-			if (image != null) {
-				icon = new ImageIcon(image);
-				text = "";
-			}
-			
-			cell.setIcon(icon);
-			cell.setText(text);
-			cell.setForeground(color);
-		}
-	}
-	
-	/**
-	 * Update score label.
-	 */
-	public void updateScore()
-	{
-		int score = model.getScore();
-		label.setText("Score: " + score);
-	}
-	
-	@Override
-	public void update(Observable o, Object arg) {
-		if(o instanceof BoardModel &&
-		   arg instanceof BoardModel.CellEvent) {
-			BoardModel.CellEvent event = (BoardModel.CellEvent) arg;
-			Coordinate c = event.getPos();
-			Jewel j = event.getType();
-			updateCell(c, j);
-		}
-	}
-
-	private BufferedImage getImage(Jewel j) {
-		switch(j) {
-			case DIAMOND:  return imageDiamond;
-			case EMERALD:  return imageEmerald;
-			case RUBY:     return imageRuby;
-			case SAPPHIRE: return imageSapphire;
-			case TOPAZ:    return imageTopaz;
-			default: throw new IllegalStateException();
-		}
-	}
-	
-	private Color getColor(Jewel j) {
-		switch(j) {
-			case DIAMOND:  return COLOR_DIAMOND;
-			case EMERALD:  return COLOR_EMERALD;
-			case RUBY:     return COLOR_RUBY;
-			case SAPPHIRE: return COLOR_SAPPHIRE;
-			case TOPAZ:    return COLOR_TOPAZ;
-			default: throw new IllegalStateException();
-		}
-	}
-	
-	/**
-	 *
-	 * @param Jewel
-	 * @return String representation of specified Jewel
-	 */
-	private String getStr(Jewel j) {
-		switch(j) {
-			case DIAMOND:  return "Diamond";
-			case EMERALD:  return "Emerald";
-			case RUBY:     return "Ruby";
-			case SAPPHIRE: return "Sapphire";
-			case TOPAZ:    return "Topaz";
-			default: throw new IllegalStateException();
-		}
-	}
-
-	/**
 	 * Create game grid.
 	 */
 	private JPanel createGrid()
@@ -473,6 +295,182 @@ public class BoardView
 		}
 		return image;
 	}
-
-
+	
+	/**
+	 * Play swap audio clip.
+	 */
+	public void playAudioSwap()
+	{
+		// Rewind and play clip //
+		if (audioSwap != null) {
+			audioSwap.setFramePosition(0);
+			audioSwap.start();
+		}
+	}
+	
+	/**
+	 * Set cell activation state.
+	 *
+	 * @param position  Coordinates of the cell.
+	 * @param activated Whether cell is active.
+	 */
+	public void setCellState(Coordinate position, boolean activated)
+	{
+		// Validate arguments //
+		if (position == null) {
+			throw new NullPointerException();
+		}
+		int width = model.getWidth();
+		if (position.x >= width || position.y >= width) {
+			throw new IndexOutOfBoundsException();
+		}
+		
+		// Get the affected cell //
+		int  x    = position.x;
+		int  y    = position.y;
+		int  i    = y * width + x;
+		Cell cell = board[i];
+		
+		// Set state //
+		if (activated) {
+			cell.setBackground(COLOR_FOREGROUND);
+			cell.setForeground(COLOR_BACKGROUND);
+			cell.setContentAreaFilled(true);
+		} else {
+			cell.setBackground(Color.BLACK);
+			cell.setForeground(COLOR_FOREGROUND);
+			cell.setContentAreaFilled(false);
+		}
+	}
+	
+	private BufferedImage getImage(Jewel j) {
+		switch(j) {
+			case DIAMOND:  return imageDiamond;
+			case EMERALD:  return imageEmerald;
+			case RUBY:     return imageRuby;
+			case SAPPHIRE: return imageSapphire;
+			case TOPAZ:    return imageTopaz;
+			default: throw new IllegalStateException();
+		}
+	}
+	
+	private Color getColor(Jewel j) {
+		switch(j) {
+			case DIAMOND:  return COLOR_DIAMOND;
+			case EMERALD:  return COLOR_EMERALD;
+			case RUBY:     return COLOR_RUBY;
+			case SAPPHIRE: return COLOR_SAPPHIRE;
+			case TOPAZ:    return COLOR_TOPAZ;
+			default: throw new IllegalStateException();
+		}
+	}
+	
+	/**
+	 *
+	 * @param Jewel
+	 * @return String representation of specified Jewel
+	 */
+	private String getStr(Jewel j) {
+		switch(j) {
+			case DIAMOND:  return "Diamond";
+			case EMERALD:  return "Emerald";
+			case RUBY:     return "Ruby";
+			case SAPPHIRE: return "Sapphire";
+			case TOPAZ:    return "Topaz";
+			default: throw new IllegalStateException();
+		}
+	}
+	
+	/**
+	 * Update all cells.
+	 */
+	public void update()
+	{
+		throw new IllegalStateException();
+		
+		//int width = model.getWidth();
+		//for (int i = 0; i < width * width; i++) {
+		//	int x = i % width;
+		//	int y = i / width;
+		//	updateCell(x, y);
+		//}
+	}
+	
+	/**
+	 * Update a cell.
+	 *
+	 * @param position Coordinates of the cell.
+	 */
+	public void updateCell(Coordinate position, Jewel jewel)
+	{
+		// Validate argument //
+		if (position == null) {
+			throw new NullPointerException();
+		}
+		
+		updateCell(position.x, position.y, jewel);
+	}
+	
+	/**
+	 * Update a cell.
+	 *
+	 * @param x X-coordinate of the cell.
+	 * @param y Y-coordinate of the cell.
+	 */
+	// TODO: Reduce code duplication.
+	public void updateCell(int x, int y, Jewel jewel)
+	{
+		// Validate arguments //
+		if (x < 0 || y < 0) {
+			throw new IllegalArgumentException();
+		}
+		int width = model.getWidth();
+		if (x >= width || y >= width) {
+			throw new IndexOutOfBoundsException();
+		}
+		
+		// Get button from view //
+		// TODO: Add assert for `width` or rely less on model consistency?
+		int  i    = y * width + x;
+		Cell cell = board[i];
+		
+		// Hide cell if empty //
+		cell.setVisible(cell != null);
+		
+		if (jewel != null) {
+			ImageIcon     icon  = null;
+			BufferedImage image = getImage(jewel);
+			String        text  = getStr(jewel);
+			Color         color = getColor(jewel);
+			
+			if (image != null) {
+				icon = new ImageIcon(image);
+				text = "";
+			}
+			
+			cell.setIcon(icon);
+			cell.setText(text);
+			cell.setForeground(color);
+		}
+	}
+	
+	/**
+	 * Update score label.
+	 */
+	public void updateScore()
+	{
+		int score = model.getScore();
+		label.setText("Score: " + score);
+	}
+	
+	@Override
+	public void update(Observable o, Object arg) {
+		if(o instanceof BoardModel &&
+		   arg instanceof BoardModel.CellEvent) {
+			BoardModel.CellEvent event = (BoardModel.CellEvent) arg;
+			Coordinate c = event.getPos();
+			Jewel j = event.getType();
+			updateCell(c, j);
+		}
+	}
 }
