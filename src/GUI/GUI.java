@@ -1,17 +1,16 @@
 package GUI;
 
-import GUI.MainMenu;
 import GameModes.*;
-import View.BoardView;
+import GUI.MainMenu;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.FlowLayout;
 import java.io.IOException;
 import java.net.InetAddress;
 import javax.swing.JButton;
@@ -23,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import View.BoardView;
 
 public class GUI
 	extends JFrame
