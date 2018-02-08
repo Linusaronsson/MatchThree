@@ -30,14 +30,14 @@ public class GUI
 	private static final String WINDOW_TITLE = "MatchThree";
 	
 	private JButton         goBack     = new JButton("Back to Main Menu");
-	private MainMenu        mainMenu   = null;
-	private JPanel          mainPanel  = null;
+	private MainMenu        mainMenu   = new MainMenu();
+	private JPanel          mainPanel  = new JPanel();
 	private GameMode        mode       = GameMode.WAITING;
-	private MultiplayerMenu mp         = null;
+	private MultiplayerMenu mp         = new MultiplayerMenu();
 	private JMenuItem       newItem    = null;
 	private JMenuItem       openItem   = null;
 	private JMenuItem       quitItem   = null;
-	private JPanel          rightPanel = null;
+	private JPanel          rightPanel = JPanel();
 	private JMenuItem       saveItem   = null;
 	private JButton         v1btn      = new JButton("Version 1");
 	private JButton         v2btn      = new JButton("Version 2");
@@ -46,11 +46,6 @@ public class GUI
 	
 	public GUI()
 	{
-		rightPanel = new JPanel();
-		mainPanel = new JPanel();
-		mainMenu  = new MainMenu();
-		mp        = new MultiplayerMenu();
-		
 		changeState(WindowState.START_MENU);
 		
 		initializeHandlers();
