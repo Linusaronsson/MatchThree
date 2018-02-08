@@ -399,7 +399,8 @@ public class MatchThreeUI
 		}
 	}
 	
-	private BufferedImage getImage(Jewel j) {
+	private BufferedImage getImage(Jewel j)
+	{
 		switch (j) {
 			case DIAMOND:  return currentDiamond;
 			case EMERALD:  return currentEmerald;
@@ -410,7 +411,8 @@ public class MatchThreeUI
 		}
 	}
 	
-	private Color getColor(Jewel j) {
+	private Color getColor(Jewel j)
+	{
 		switch (j) {
 			case DIAMOND:  return COLOR_DIAMOND;
 			case EMERALD:  return COLOR_EMERALD;
@@ -426,7 +428,8 @@ public class MatchThreeUI
 	 * @param Jewel
 	 * @return String representation of specified Jewel
 	 */
-	private String getStr(Jewel j) {
+	private String getStr(Jewel j)
+	{
 		switch (j) {
 			case DIAMOND:  return "Diamond";
 			case EMERALD:  return "Emerald";
@@ -520,7 +523,8 @@ public class MatchThreeUI
 	}
 	
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable o, Object arg)
+	{
 		if (o instanceof MatchThreeModel
 			&& arg instanceof MatchThreeModel.CellEvent)
 		{
