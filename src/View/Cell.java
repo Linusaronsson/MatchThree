@@ -1,7 +1,7 @@
 package View;
 
-import Model.*;
 import javax.swing.JButton;
+import Model.Coordinate;
 
 /**
  * Board cell.

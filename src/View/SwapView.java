@@ -1,7 +1,8 @@
 package View;
 
 import Controller.MatchThreeController;
-import GameModes.*;
+import GameModes.Multiplayer;
+import GameModes.Singleplayer;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;

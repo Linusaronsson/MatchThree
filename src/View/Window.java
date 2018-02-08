@@ -1,6 +1,5 @@
 package View;
 
-import GameModes.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
