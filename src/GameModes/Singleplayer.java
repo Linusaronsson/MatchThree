@@ -22,6 +22,7 @@ public class Singleplayer
 		BoardView       view       = new BoardView(model);
 		BoardController controller = new BoardController(model, view);
 		add(view);
+		
 		// Show GUI //
 		// TODO: Move this to view?
 		this.view = view;
