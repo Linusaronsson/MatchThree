@@ -1,4 +1,5 @@
 import java.io.IOException;
+import View.SwapView;
 import View.Window;
 
 /**
@@ -18,7 +19,8 @@ public class MatchThree
 		throws IOException
 	{
 		// Initialize GUI //
-		Window window = new Window();
+		SwapView swapView = new SwapView();
+		Window   window   = new Window(swapView);
 		
 		// Setup server listener //
 		Server server = new Server(PORT_NUMBER, window);
