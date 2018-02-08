@@ -15,7 +15,7 @@ public class MatchThreeController
 {
 	private Coordinate      activeCell = null;
 	private MatchThreeModel model      = null;
-	private BoardView       view       = null;
+	private MatchThreeUI    view       = null;
 	
 	/**
 	 * Listens for board cell actions (clicks).
@@ -142,7 +142,7 @@ public class MatchThreeController
 	 * @param model Model to use.
 	 * @param view  View to use.
 	 */
-	public MatchThreeController(MatchThreeModel model, BoardView view)
+	public MatchThreeController(MatchThreeModel model, MatchThreeUI view)
 	{
 		// Validate arguments //
 		if (model == null || view == null) {

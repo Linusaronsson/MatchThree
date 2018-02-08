@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import View.BoardView;
+import View.MatchThreeUI;
 import View.MainMenu;
 
 public class Window
@@ -41,7 +41,7 @@ public class Window
 	private JMenuItem       saveItem   = null;
 	private JButton         v1btn      = new JButton("Version 1");
 	private JButton         v2btn      = new JButton("Version 2");
-	private BoardView       view       = null;
+	private MatchThreeUI    view       = null;
 	private WindowState     viewState  = null;
 	
 	public Window()

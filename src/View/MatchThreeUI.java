@@ -37,7 +37,7 @@ import Model.MatchThreeModel;
  * MVC view.
  */
 @SuppressWarnings("serial")
-public class BoardView
+public class MatchThreeUI
 	extends JPanel
 	implements Observer
 {
@@ -80,13 +80,13 @@ public class BoardView
 	private JMenuItem       saveItem         = null;
 	
 	/**
-	 * Constructor for `BoardView` MVC view.
+	 * Constructor for `MatchThreeUI`.
 	 *
 	 * @param model Model to use
 	 */
 	// TODO: Break into multiple methods?
 	// TODO: Call parent constructor?
-	public BoardView(MatchThreeModel model)
+	public MatchThreeUI(MatchThreeModel model)
 	{
 		// Validate argument //
 		if (model == null) {

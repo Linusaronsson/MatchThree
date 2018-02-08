@@ -9,7 +9,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import Model.MatchThreeModel;
-import View.BoardView;
+import View.MatchThreeUI;
 
 public class Multiplayer
 	extends JPanel
@@ -17,8 +17,8 @@ public class Multiplayer
 	private MatchThreeController controller    = null;
 	private MatchThreeModel      modelOpponent = null;
 	private MatchThreeModel      modelPlayer   = null;
-	private BoardView            viewOpponent  = null;
-	private BoardView            viewPlayer    = null;
+	private MatchThreeUI         viewOpponent  = null;
+	private MatchThreeUI         viewPlayer    = null;
 	
 	public Multiplayer(String address, int port, final int GAME_SIZE)
 		throws IOException
@@ -27,7 +27,7 @@ public class Multiplayer
 		
 		// Create MVC context //
 		MatchThreeModel modelPlayer = new MatchThreeModel(GAME_SIZE);
-		BoardView       viewPlayer  = new BoardView(modelPlayer);
+		MatchThreeUI    viewPlayer  = new MatchThreeUI(modelPlayer);
 		MatchThreeController controller  = new MatchThreeController(
 			modelPlayer,
 			viewPlayer
@@ -37,7 +37,7 @@ public class Multiplayer
 			modelPlayer.getBoard(),
 			GAME_SIZE
 		);
-		BoardView viewOpponent = new BoardView(modelOpponent);
+		MatchThreeUI viewOpponent = new MatchThreeUI(modelOpponent);
 		
 		setLayout(new GridLayout(1, 2, 15, 15));
 		add(viewPlayer);
@@ -45,7 +45,7 @@ public class Multiplayer
 		this.viewPlayer = viewPlayer;
 	}
 	
-	public BoardView getView()
+	public MatchThreeUI getView()
 	{
 		return viewPlayer;
 	}

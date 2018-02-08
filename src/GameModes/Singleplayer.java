@@ -6,20 +6,20 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import Model.MatchThreeModel;
-import View.BoardView;
+import View.MatchThreeUI;
 
 public class Singleplayer
 	extends JPanel
 {
 	private MatchThreeController controller = null;
 	private MatchThreeModel      model      = null;
-	private BoardView            view       = null;
+	private MatchThreeUI         view       = null;
 	
 	public Singleplayer(final int GAME_SIZE)
 	{
 		// Create MVC context //
 		MatchThreeModel      model      = new MatchThreeModel(GAME_SIZE);
-		BoardView            view       = new BoardView(model);
+		MatchThreeUI         view       = new MatchThreeUI(model);
 		MatchThreeController controller = new MatchThreeController(model, view);
 		add(view);
 		
@@ -28,7 +28,7 @@ public class Singleplayer
 		this.view = view;
 	}
 	
-	public BoardView getView()
+	public MatchThreeUI getView()
 	{
 		return view;
 	}
