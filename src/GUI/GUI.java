@@ -37,7 +37,7 @@ public class GUI
 	private JMenuItem       newItem    = null;
 	private JMenuItem       openItem   = null;
 	private JMenuItem       quitItem   = null;
-	private JPanel          rightPanel = JPanel();
+	private JPanel          rightPanel = new JPanel();
 	private JMenuItem       saveItem   = null;
 	private JButton         v1btn      = new JButton("Version 1");
 	private JButton         v2btn      = new JButton("Version 2");
