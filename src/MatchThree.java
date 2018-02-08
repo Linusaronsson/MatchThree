@@ -1,5 +1,5 @@
-import GUI.GUI;
 import java.io.IOException;
+import View.GUI;
 
 /**
  * MatchThree game.

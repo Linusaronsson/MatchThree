@@ -1,7 +1,6 @@
-package GUI;
+package View;
 
 import GameModes.*;
-import GUI.MainMenu;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -22,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import View.BoardView;
+import View.MainMenu;
 
 public class GUI
 	extends JFrame
