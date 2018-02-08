@@ -50,7 +50,7 @@ public class BoardView
 	private static final Color  COLOR_RUBY       = new Color(0xE0, 0x11, 0x5F);
 	private static final Color  COLOR_SAPPHIRE   = new Color(0x0F, 0x52, 0xBA);
 	private static final Color  COLOR_TOPAZ      = new Color(0xFF, 0xBF, 0x00);
-	private static final String DIR_RESOURCES    = "src";
+	private static final String DIR_RESOURCES    = "resources";
 	private static final int    GAP              = 2;
 	private static final String WINDOW_TITLE     = "MatchThree";
 	
