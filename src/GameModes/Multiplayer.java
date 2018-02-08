@@ -1,8 +1,6 @@
 package GameModes;
 
 import Controller.BoardController;
-import Model.BoardModel;
-import View.BoardView;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -10,6 +8,8 @@ import java.net.Socket;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
+import Model.BoardModel;
+import View.BoardView;
 
 public class Multiplayer
 	extends JPanel

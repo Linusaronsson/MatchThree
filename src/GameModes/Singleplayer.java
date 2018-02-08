@@ -1,12 +1,12 @@
 package GameModes;
 
 import Controller.BoardController;
-import Model.BoardModel;
-import View.BoardView;
 import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
+import Model.BoardModel;
+import View.BoardView;
 
 public class Singleplayer
 	extends JPanel
