@@ -23,7 +23,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import View.BoardView;
 import View.MainMenu;
 
-public class GUI
+public class Window
 	extends JFrame
 {
 	private static final int    GAME_SIZE    = 6;
@@ -44,7 +44,7 @@ public class GUI
 	private BoardView       view       = null;
 	private WindowState     viewState  = null;
 	
-	public GUI()
+	public Window()
 	{
 		changeState(WindowState.START_MENU);
 		
@@ -249,7 +249,7 @@ public class GUI
 	 * @return     Menu bar object.
 	 */
 	// TODO: Research use of `self` parameter name.
-	private JMenuBar createMenuBar(GUI self)
+	private JMenuBar createMenuBar(Window self)
 	{
 		// Validate argument //
 		if (self == null) {

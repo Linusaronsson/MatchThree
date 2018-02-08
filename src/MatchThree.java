@@ -1,5 +1,5 @@
 import java.io.IOException;
-import View.GUI;
+import View.Window;
 
 /**
  * MatchThree game.
@@ -18,10 +18,10 @@ public class MatchThree
 		throws IOException
 	{
 		// Initialize GUI //
-		GUI ui = new GUI();
+		Window window = new Window();
 		
 		// Setup server listener //
-		Server server = new Server(PORT_NUMBER, ui);
+		Server server = new Server(PORT_NUMBER, window);
 		server.start();
 	}
 }
