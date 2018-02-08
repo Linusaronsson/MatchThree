@@ -38,6 +38,7 @@ public class SwapView
 	private JButton         v2btn      = new JButton("Version 2");
 	private MatchThreeUI    view       = null;
 	private WindowState     viewState  = null;
+	private Window          window     = null;
 	
 	public enum GameMode
 	{
@@ -75,6 +76,7 @@ public class SwapView
 				viewState = WindowState.SINGLEPLAYER_GAME;
 				mode = GameMode.SINGLEPLAYER;
 				Singleplayer sp = new Singleplayer(GAME_SIZE);
+				sp.setWindow(window);
 				
 				//Display new panel (the game)
 				sp.setLayout(new FlowLayout());

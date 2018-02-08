@@ -18,9 +18,10 @@ public class MatchThree
 	public static void main(String[] args)
 		throws IOException
 	{
-		// Initialize GUI //
+		// Create GUI //
 		SwapView swapView = new SwapView();
 		Window   window   = new Window(swapView);
+		swapView.setWindow(window);
 		
 		// Setup server listener //
 		Server server = new Server(PORT_NUMBER, window);

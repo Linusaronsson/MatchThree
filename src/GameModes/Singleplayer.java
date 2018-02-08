@@ -15,7 +15,8 @@ import View.Window;
 public class Singleplayer
 	extends JPanel
 {
-	private MatchThreeUI matchThreeUI = null;
+	private MatchThreeController matchThreeController = null;
+	private MatchThreeUI         matchThreeUI         = null;
 	
 	public Singleplayer(final int GAME_SIZE)
 	{
@@ -30,12 +31,23 @@ public class Singleplayer
 		// Add view to panel //
 		add(matchThreeUI);
 		
-		this.matchThreeUI = matchThreeUI;
+		this.matchThreeController = matchThreeController;
+		this.matchThreeUI         = matchThreeUI;
 	}
 	
 	// TODO: Remove this method.
 	public MatchThreeUI getView()
 	{
 		return matchThreeUI;
+	}
+	
+	/**
+	 * Set reference to parent window.
+	 *
+	 * @param window The parent window.
+	 */
+	public void setWindow(Window window)
+	{
+		matchThreeController.setWindow(window);
 	}
 }
