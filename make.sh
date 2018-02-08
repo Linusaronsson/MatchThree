@@ -22,7 +22,8 @@ build () {
 		-Xlint:all \
 		-d "${script_dir}/${TARGET}/${TARGET_MAIN}" \
 		"${script_dir}/${SOURCE}/${MAIN_FILE}"
-	ln -snf "../../${RESOURCE}" \
+	ln -snf \
+		"../../${RESOURCE}" \
 		"${script_dir}/${TARGET}/${TARGET_MAIN}/${RESOURCE}"
 }
 
@@ -34,7 +35,11 @@ clean () {
 doc () {
 	mkdir -p -- "${script_dir}/${TARGET}/${TARGET_DOC}"
 	# TODO: Avoid wildstar character, use find(1) instead?
-	javadoc -locale en_US -private -encoding UTF-8 -keywords \
+	javadoc \
+		-locale en_US \
+		-private \
+		-encoding UTF-8 \
+		-keywords \
 		-docencoding UTF-8 \
 		-d "${script_dir}/${TARGET}/${TARGET_DOC}" \
 		"${script_dir}/${SOURCE}/"*".java"
