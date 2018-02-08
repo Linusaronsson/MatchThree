@@ -9,14 +9,11 @@ import javax.swing.JPanel;
 public class MainMenu
 	extends JPanel
 {
-	private JButton multiplayer;
-	private JButton singleplayer;
+	private JButton multiplayer  = new JButton("Multiplayer");
+	private JButton singleplayer = new JButton("Singleplayer");
 	
 	public MainMenu()
 	{
-		multiplayer  = new JButton("Multiplayer");
-		singleplayer = new JButton("Singleplayer");
-		
 		this.add(singleplayer);
 		this.add(multiplayer);
 	}

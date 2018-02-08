@@ -13,20 +13,14 @@ import javax.swing.JTextField;
 public class MultiplayerMenu
 	extends JPanel
 {
-	private JButton    connect;
-	private JTextField ip;
-	private JLabel     ip_text;
-	private JTextField port;
-	private JLabel     port_text;
+	private JButton    connect   = new JButton("Connect to player");
+	private JTextField ip        = new JTextField();
+	private JLabel     ip_text   = new JLabel("IP: ");
+	private JTextField port      = new JTextField();
+	private JLabel     port_text = new JLabel("Port: ");
 	
 	public MultiplayerMenu()
 	{
-		connect   = new JButton("Connect to player");
-		ip        = new JTextField();
-		ip_text   = new JLabel("IP: ");
-		port      = new JTextField();
-		port_text = new JLabel("Port: ");
-		
 		ip.setPreferredSize(new Dimension(200, 24));
 		port.setPreferredSize(new Dimension(200, 24));
 		
