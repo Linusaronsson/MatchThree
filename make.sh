@@ -21,7 +21,7 @@ build () {
 	mkdir -p -- "${script_dir}/${TARGET_DIR}/${TARGET_MAIN}"
 	javac -d "${script_dir}/${TARGET_DIR}/${TARGET_MAIN}" \
 		 "${script_dir}/${SOURCE_DIR}/${MAIN_FILE}"
-	ln -shf "${TARGET_MAIN_REV_DIR}/${TARGET_REV_DIR}/${RESOURCE_DIR}" \
+	ln -snf "${TARGET_MAIN_REV_DIR}/${TARGET_REV_DIR}/${RESOURCE_DIR}" \
 		 "${script_dir}/${TARGET_DIR}/${TARGET_MAIN}/${RESOURCE_DIR}"
 }
 
