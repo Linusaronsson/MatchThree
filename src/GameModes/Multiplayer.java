@@ -1,6 +1,6 @@
 package GameModes;
 
-import Controller.BoardController;
+import Controller.MatchThreeController;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -14,11 +14,11 @@ import View.BoardView;
 public class Multiplayer
 	extends JPanel
 {
-	private BoardController controller    = null;
-	private MatchThreeModel modelOpponent = null;
-	private MatchThreeModel modelPlayer   = null;
-	private BoardView       viewOpponent  = null;
-	private BoardView       viewPlayer    = null;
+	private MatchThreeController controller    = null;
+	private MatchThreeModel      modelOpponent = null;
+	private MatchThreeModel      modelPlayer   = null;
+	private BoardView            viewOpponent  = null;
+	private BoardView            viewPlayer    = null;
 	
 	public Multiplayer(String address, int port, final int GAME_SIZE)
 		throws IOException
@@ -28,7 +28,7 @@ public class Multiplayer
 		// Create MVC context //
 		MatchThreeModel modelPlayer = new MatchThreeModel(GAME_SIZE);
 		BoardView       viewPlayer  = new BoardView(modelPlayer);
-		BoardController controller  = new BoardController(
+		MatchThreeController controller  = new MatchThreeController(
 			modelPlayer,
 			viewPlayer
 		);

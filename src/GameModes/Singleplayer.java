@@ -1,6 +1,6 @@
 package GameModes;
 
-import Controller.BoardController;
+import Controller.MatchThreeController;
 import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -11,16 +11,16 @@ import View.BoardView;
 public class Singleplayer
 	extends JPanel
 {
-	private BoardController controller = null;
-	private MatchThreeModel model      = null;
-	private BoardView       view       = null;
+	private MatchThreeController controller = null;
+	private MatchThreeModel      model      = null;
+	private BoardView            view       = null;
 	
 	public Singleplayer(final int GAME_SIZE)
 	{
 		// Create MVC context //
-		MatchThreeModel model      = new MatchThreeModel(GAME_SIZE);
-		BoardView       view       = new BoardView(model);
-		BoardController controller = new BoardController(model, view);
+		MatchThreeModel      model      = new MatchThreeModel(GAME_SIZE);
+		BoardView            view       = new BoardView(model);
+		MatchThreeController controller = new MatchThreeController(model, view);
 		add(view);
 		
 		// Show GUI //

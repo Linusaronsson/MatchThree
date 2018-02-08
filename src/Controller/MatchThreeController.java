@@ -11,7 +11,7 @@ import View.*;
 /**
  * MVC controller.
  */
-public class BoardController
+public class MatchThreeController
 {
 	private Coordinate      activeCell = null;
 	private MatchThreeModel model      = null;
@@ -137,12 +137,12 @@ public class BoardController
 	}
 	
 	/**
-	 * Constructor for `BoardController` MVC controller.
+	 * Constructor for `MatchThreeController`.
 	 *
 	 * @param model Model to use.
 	 * @param view  View to use.
 	 */
-	public BoardController(MatchThreeModel model, BoardView view)
+	public MatchThreeController(MatchThreeModel model, BoardView view)
 	{
 		// Validate arguments //
 		if (model == null || view == null) {
