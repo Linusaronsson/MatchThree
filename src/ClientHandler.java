@@ -2,8 +2,14 @@ import java.awt.Component;
 import java.net.Socket;
 import javax.swing.JOptionPane;
 
+/**
+ * ...
+ */
 class ClientHandler
 {
+	/**
+	 * ...
+	 */
 	public ClientHandler(Socket client, Component component)
 	{
 		System.out.printf(

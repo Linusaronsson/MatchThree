@@ -23,10 +23,10 @@ public enum Jewel
 	private static final Random RANDOM = new Random();
 	
 	/**
-		* Return a random jewel.
-		*
-		* @return A random jewel type.
-		*/
+	 * Return a random jewel.
+	 *
+	 * @return A random jewel type.
+	 */
 	// TODO: Support returning a limited subset of jewels?
 	public static Jewel random()
 	{

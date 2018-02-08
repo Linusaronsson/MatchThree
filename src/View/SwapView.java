@@ -25,6 +25,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 import View.MainMenu;
 import View.MatchThreeUI;
 
+/**
+ * Maintains multiples views, and swaps between them.
+ */
 @SuppressWarnings("serial")
 public class SwapView
 	extends JPanel
@@ -43,6 +46,9 @@ public class SwapView
 	private WindowState     viewState  = null;
 	private Window          window     = null;
 	
+	/**
+	 * ...
+	 */
 	public enum GameMode
 	{
 		MULTIPLAYER,
@@ -50,6 +56,9 @@ public class SwapView
 		WAITING
 	}
 	
+	/**
+	 * ...
+	 */
 	public enum WindowState
 	{
 		MULTIPLAYER_GAME,
@@ -58,6 +67,9 @@ public class SwapView
 		START_MENU
 	}
 	
+	/**
+	 * ...
+	 */
 	public SwapView()
 	{
 		changeState(WindowState.START_MENU);
@@ -65,6 +77,9 @@ public class SwapView
 		initializeHandlers();
 	}
 	
+	/**
+	 * ...
+	 */
 	private void changeState(WindowState state)
 	{
 		removeAll();
@@ -132,6 +147,9 @@ public class SwapView
 		repaint();
 	}
 	
+	/**
+	 * ...
+	 */
 	// TODO: Use mediator pattern instead.
 	public MatchThreeController getMatchThreeController()
 	{
@@ -152,6 +170,9 @@ public class SwapView
 		);
 	}
 	
+	/**
+	 * ...
+	 */
 	private void initializeHandlers()
 	{
 		goBack.addActionListener((ActionEvent e) -> {

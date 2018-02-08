@@ -34,7 +34,7 @@ import Model.Jewel;
 import Model.MatchThreeModel;
 
 /**
- * MVC view.
+ * MatchThree game view.
  */
 @SuppressWarnings("serial")
 public class MatchThreeUI
@@ -363,6 +363,9 @@ public class MatchThreeUI
 		}
 	}
 	
+	/**
+	 * ...
+	 */
 	private BufferedImage getImage(Jewel j)
 	{
 		switch (j) {
@@ -375,6 +378,9 @@ public class MatchThreeUI
 		}
 	}
 	
+	/**
+	 * ...
+	 */
 	private Color getColor(Jewel j)
 	{
 		switch (j) {
@@ -486,6 +492,9 @@ public class MatchThreeUI
 		label.setText("Score: " + score);
 	}
 	
+	/**
+	 * ...
+	 */
 	@Override
 	public void update(Observable o, Object arg)
 	{

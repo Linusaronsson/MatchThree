@@ -11,7 +11,7 @@ import View.MatchThreeUI;
 import View.Window;
 
 /**
- * MVC controller.
+ * MatchThree game controller.
  */
 public class MatchThreeController
 {

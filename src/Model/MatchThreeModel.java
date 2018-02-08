@@ -7,7 +7,7 @@ import java.util.Observable;
 import java.util.Random;
 
 /**
- * MVC model.
+ * MatchThree game model.
  */
 public class MatchThreeModel
 	extends Observable
@@ -74,6 +74,9 @@ public class MatchThreeModel
 		init();
 	}
 	
+	/**
+	 * ...
+	 */
 	public MatchThreeModel(Jewel[] board, int width)
 	{
 		// Validate argument //
@@ -85,6 +88,9 @@ public class MatchThreeModel
 		this.board = board;
 	}
 	
+	/**
+	 * ...
+	 */
 	public Jewel[] getBoard()
 	{
 		return board;

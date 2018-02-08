@@ -8,6 +8,9 @@ import Model.MatchThreeModel;
 import View.SwapView;
 import View.Window;
 
+/**
+ * Main window controller.
+ */
 public class WindowController
 {
 	private SwapView swapView = null;
@@ -98,6 +101,9 @@ public class WindowController
 		public void windowStateChanged(WindowEvent event) {}
 	}
 	
+	/**
+	 * ...
+	 */
 	public WindowController(
 		Window   window,
 		SwapView swapView

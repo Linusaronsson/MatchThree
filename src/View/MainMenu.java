@@ -5,6 +5,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * Application start view.
+ */
 @SuppressWarnings("serial")
 public class MainMenu
 	extends JPanel
@@ -12,17 +15,26 @@ public class MainMenu
 	private JButton multiplayer  = new JButton("Multiplayer");
 	private JButton singleplayer = new JButton("Singleplayer");
 	
+	/**
+	 * ...
+	 */
 	public MainMenu()
 	{
 		add(singleplayer);
 		add(multiplayer);
 	}
 	
+	/**
+	 * ...
+	 */
 	public void addSingleplayerListener(ActionListener listener)
 	{
 		singleplayer.addActionListener(listener);
 	}
 	
+	/**
+	 * ...
+	 */
 	public void addMultiplayerListener(ActionListener listener)
 	{
 		multiplayer.addActionListener(listener);

@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 import Model.MatchThreeModel;
 import View.MatchThreeUI;
 
+/**
+ * ...
+ */
 @SuppressWarnings("serial")
 public class Multiplayer
 	extends JPanel
@@ -21,6 +24,9 @@ public class Multiplayer
 	private MatchThreeUI         viewOpponent  = null;
 	private MatchThreeUI         viewPlayer    = null;
 	
+	/**
+	 * ...
+	 */
 	public Multiplayer(String address, int port, final int GAME_SIZE)
 		throws IOException
 	{
@@ -46,6 +52,9 @@ public class Multiplayer
 		this.viewPlayer = viewPlayer;
 	}
 	
+	/**
+	 * ...
+	 */
 	public MatchThreeUI getView()
 	{
 		return viewPlayer;

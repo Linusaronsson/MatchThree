@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * Multiplayer setup screen.
+ */
 @SuppressWarnings("serial")
 public class MultiplayerMenu
 	extends JPanel
@@ -19,6 +22,9 @@ public class MultiplayerMenu
 	private JTextField port      = new JTextField();
 	private JLabel     port_text = new JLabel("Port: ");
 	
+	/**
+	 * ...
+	 */
 	public MultiplayerMenu()
 	{
 		ip.setPreferredSize(new Dimension(200, 24));
@@ -31,16 +37,25 @@ public class MultiplayerMenu
 		add(port);
 	}
 	
+	/**
+	 * ...
+	 */
 	public void addConnectListener(ActionListener listener)
 	{
 		connect.addActionListener(listener);
 	}
 	
+	/**
+	 * ...
+	 */
 	public String getIp()
 	{
 		return ip.getText();
 	}
 	
+	/**
+	 * ...
+	 */
 	public String getPort()
 	{
 		return port.getText();

@@ -11,6 +11,9 @@ import View.MatchThreeUI;
 import View.SwapView;
 import View.Window;
 
+/**
+ * ...
+ */
 @SuppressWarnings("serial")
 public class Singleplayer
 	extends JPanel
@@ -18,6 +21,9 @@ public class Singleplayer
 	private MatchThreeController matchThreeController = null;
 	private MatchThreeUI         matchThreeUI         = null;
 	
+	/**
+	 * ...
+	 */
 	public Singleplayer(final int GAME_SIZE)
 	{
 		// Create game //
@@ -35,12 +41,18 @@ public class Singleplayer
 		this.matchThreeUI         = matchThreeUI;
 	}
 	
+	/**
+	 * ...
+	 */
 	// TODO: Try to remove this method.
 	public MatchThreeController getMatchThreeController()
 	{
 		return matchThreeController;
 	}
 	
+	/**
+	 * ...
+	 */
 	// TODO: Remove this method.
 	public MatchThreeUI getView()
 	{

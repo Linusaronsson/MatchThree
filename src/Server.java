@@ -3,6 +3,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * ...
+ */
 class Server
 	extends Thread
 {
@@ -10,6 +13,9 @@ class Server
 	private ServerSocket listener  = null;
 	private int          port      = 0;
 	
+	/**
+	 * ...
+	 */
 	public Server(int port, Component component)
 	{
 		try {
@@ -23,6 +29,9 @@ class Server
 		this.port      = port;
 	}
 	
+	/**
+	 * ...
+	 */
 	public void run()
 	{
 		Socket socket = null;

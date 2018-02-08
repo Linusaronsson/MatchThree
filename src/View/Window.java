@@ -22,6 +22,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 import View.MatchThreeUI;
 import View.MainMenu;
 
+/**
+ * Application main window.
+ */
 @SuppressWarnings("serial")
 public class Window
 	extends JFrame
@@ -34,6 +37,9 @@ public class Window
 	private JMenuItem quitItem = null;
 	private JMenuItem saveItem = null;
 	
+	/**
+	 * ...
+	 */
 	public Window(JPanel content)
 	{
 		// Validate arguments //
