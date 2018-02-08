@@ -8,15 +8,15 @@ import java.net.Socket;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
-import Model.BoardModel;
+import Model.MatchThreeModel;
 import View.BoardView;
 
 public class Multiplayer
 	extends JPanel
 {
 	private BoardController controller    = null;
-	private BoardModel      modelOpponent = null;
-	private BoardModel      modelPlayer   = null;
+	private MatchThreeModel modelOpponent = null;
+	private MatchThreeModel modelPlayer   = null;
 	private BoardView       viewOpponent  = null;
 	private BoardView       viewPlayer    = null;
 	
@@ -26,13 +26,17 @@ public class Multiplayer
 		Socket socket = new Socket(InetAddress.getByName(address), port);
 		
 		// Create MVC context //
-		BoardModel      modelPlayer = new BoardModel(GAME_SIZE);
+		MatchThreeModel modelPlayer = new MatchThreeModel(GAME_SIZE);
 		BoardView       viewPlayer  = new BoardView(modelPlayer);
-		BoardController controller  = new BoardController(modelPlayer,
-		                                                  viewPlayer);
+		BoardController controller  = new BoardController(
+			modelPlayer,
+			viewPlayer
+		);
 		
-		BoardModel modelOpponent = new BoardModel(modelPlayer.getBoard(),
-		                                          GAME_SIZE);
+		MatchThreeModel modelOpponent = new MatchThreeModel(
+			modelPlayer.getBoard(),
+			GAME_SIZE
+		);
 		BoardView viewOpponent = new BoardView(modelOpponent);
 		
 		setLayout(new GridLayout(1, 2, 15, 15));

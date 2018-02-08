@@ -1,14 +1,13 @@
 package View;
 
-import Model.*;
 import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +30,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import Model.*;
+import Model.MatchThreeModel;
 
 /**
  * MVC view.
@@ -54,29 +55,29 @@ public class BoardView
 	private static final int    GAP              = 2;
 	private static final String WINDOW_TITLE     = "MatchThree";
 	
-	private Clip          audioSwap        = null;
-	private Cell[]        board            = null;
-	private BufferedImage currentDiamond   = null;
-	private BufferedImage currentEmerald   = null;
-	private BufferedImage currentRuby      = null;
-	private BufferedImage currentSapphire  = null;
-	private BufferedImage currentTopaz     = null;
-	private BufferedImage imageDiamond     = null;
-	private BufferedImage imageDiamond_v2  = null;
-	private BufferedImage imageEmerald     = null;
-	private BufferedImage imageEmerald_v2  = null;
-	private BufferedImage imageRuby        = null;
-	private BufferedImage imageRuby_v2     = null;
-	private BufferedImage imageSapphire    = null;
-	private BufferedImage imageSapphire_v2 = null;
-	private BufferedImage imageTopaz       = null;
-	private BufferedImage imageTopaz_v2    = null;
-	private JLabel        label            = new JLabel("");
-	private BoardModel    model            = null;
-	private JMenuItem     newItem          = null;
-	private JMenuItem     openItem         = null;
-	private JMenuItem     quitItem         = null;
-	private JMenuItem     saveItem         = null;
+	private Clip            audioSwap        = null;
+	private Cell[]          board            = null;
+	private BufferedImage   currentDiamond   = null;
+	private BufferedImage   currentEmerald   = null;
+	private BufferedImage   currentRuby      = null;
+	private BufferedImage   currentSapphire  = null;
+	private BufferedImage   currentTopaz     = null;
+	private BufferedImage   imageDiamond     = null;
+	private BufferedImage   imageDiamond_v2  = null;
+	private BufferedImage   imageEmerald     = null;
+	private BufferedImage   imageEmerald_v2  = null;
+	private BufferedImage   imageRuby        = null;
+	private BufferedImage   imageRuby_v2     = null;
+	private BufferedImage   imageSapphire    = null;
+	private BufferedImage   imageSapphire_v2 = null;
+	private BufferedImage   imageTopaz       = null;
+	private BufferedImage   imageTopaz_v2    = null;
+	private JLabel          label            = new JLabel("");
+	private MatchThreeModel model            = null;
+	private JMenuItem       newItem          = null;
+	private JMenuItem       openItem         = null;
+	private JMenuItem       quitItem         = null;
+	private JMenuItem       saveItem         = null;
 	
 	/**
 	 * Constructor for `BoardView` MVC view.
@@ -85,7 +86,7 @@ public class BoardView
 	 */
 	// TODO: Break into multiple methods?
 	// TODO: Call parent constructor?
-	public BoardView(BoardModel model)
+	public BoardView(MatchThreeModel model)
 	{
 		// Validate argument //
 		if (model == null) {
@@ -520,9 +521,10 @@ public class BoardView
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		if(o instanceof BoardModel &&
-		   arg instanceof BoardModel.CellEvent) {
-			BoardModel.CellEvent event = (BoardModel.CellEvent) arg;
+		if (o instanceof MatchThreeModel
+			&& arg instanceof MatchThreeModel.CellEvent)
+		{
+			MatchThreeModel.CellEvent event = (MatchThreeModel.CellEvent) arg;
 			Coordinate c = event.getPos();
 			Jewel j = event.getType();
 			updateCell(c, j);

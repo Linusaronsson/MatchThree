@@ -1,20 +1,21 @@
 package Controller;
 
-import Model.*;
-import View.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import Model.*;
+import Model.MatchThreeModel;
+import View.*;
 
 /**
  * MVC controller.
  */
 public class BoardController
 {
-	private Coordinate activeCell = null;
-	private BoardModel model      = null;
-	private BoardView  view       = null;
+	private Coordinate      activeCell = null;
+	private MatchThreeModel model      = null;
+	private BoardView       view       = null;
 	
 	/**
 	 * Listens for board cell actions (clicks).
@@ -141,7 +142,7 @@ public class BoardController
 	 * @param model Model to use.
 	 * @param view  View to use.
 	 */
-	public BoardController(BoardModel model, BoardView view)
+	public BoardController(MatchThreeModel model, BoardView view)
 	{
 		// Validate arguments //
 		if (model == null || view == null) {

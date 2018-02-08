@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * MVC model.
  */
-public class BoardModel
+public class MatchThreeModel
 	extends Observable
 {
 	private static final int MINIMUM_LENGTH = 3;
@@ -54,11 +54,11 @@ public class BoardModel
 	}
 	
 	/**
-	 * Constructor for `BoardModel` MVC model.
+	 * Constructor for `MatchThreeModel`.
 	 *
 	 * @param width Size of the board on one axis in number of cells.
 	 */
-	public BoardModel(int width)
+	public MatchThreeModel(int width)
 	{
 		// Validate argument //
 		if (width <= 0) {
@@ -74,7 +74,7 @@ public class BoardModel
 		init();
 	}
 	
-	public BoardModel(Jewel[] board, int width)
+	public MatchThreeModel(Jewel[] board, int width)
 	{
 		// Validate argument //
 		if (board == null) {
