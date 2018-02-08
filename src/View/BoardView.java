@@ -51,11 +51,16 @@ public class BoardView
 	private static final Color  COLOR_SAPPHIRE   = new Color(0x0F, 0x52, 0xBA);
 	private static final Color  COLOR_TOPAZ      = new Color(0xFF, 0xBF, 0x00);
 	private static final String DIR_RESOURCES    = "src";
+	private static final int    GAP              = 2;
 	private static final String WINDOW_TITLE     = "MatchThree";
-	private static final int 	GAP				 = 2;
 	
 	private Clip          audioSwap        = null;
 	private Cell[]        board            = null;
+	private BufferedImage currentDiamond   = null;
+	private BufferedImage currentEmerald   = null;
+	private BufferedImage currentRuby      = null;
+	private BufferedImage currentSapphire  = null;
+	private BufferedImage currentTopaz     = null;
 	private BufferedImage imageDiamond     = null;
 	private BufferedImage imageDiamond_v2  = null;
 	private BufferedImage imageEmerald     = null;
@@ -66,11 +71,6 @@ public class BoardView
 	private BufferedImage imageSapphire_v2 = null;
 	private BufferedImage imageTopaz       = null;
 	private BufferedImage imageTopaz_v2    = null;
-	private BufferedImage currentDiamond   = null;
-	private BufferedImage currentEmerald   = null;
-	private BufferedImage currentRuby      = null;
-	private BufferedImage currentSapphire  = null;
-	private BufferedImage currentTopaz     = null;
 	private JLabel        label            = new JLabel("");
 	private BoardModel    model            = null;
 	private JMenuItem     newItem          = null;
@@ -263,34 +263,35 @@ public class BoardView
 	 * Change images on buttons
 	 * @param i, jewel version
 	 */
-	public void changeSprites(int i) {
-		switch(i) {
+	public void changeSprites(int i)
+	{
+		switch (i) {
 			case 1:
-				currentDiamond   = imageDiamond;
-				currentEmerald   = imageEmerald;
-				currentRuby      = imageRuby;
-				currentSapphire  = imageSapphire;
-				currentTopaz     = imageTopaz;
+				currentDiamond  = imageDiamond;
+				currentEmerald  = imageEmerald;
+				currentRuby     = imageRuby;
+				currentSapphire = imageSapphire;
+				currentTopaz    = imageTopaz;
 				break;
 			case 2:
-				currentDiamond   = imageDiamond_v2;
-				currentEmerald   = imageEmerald_v2;
-				currentRuby      = imageRuby_v2;
-				currentSapphire  = imageSapphire_v2;
-				currentTopaz     = imageTopaz_v2;
+				currentDiamond  = imageDiamond_v2;
+				currentEmerald  = imageEmerald_v2;
+				currentRuby     = imageRuby_v2;
+				currentSapphire = imageSapphire_v2;
+				currentTopaz    = imageTopaz_v2;
 				break;
 			default: break;
 		}
 		int d = 0;
 		
-		for(Jewel j : model.getBoard()) {
+		for (Jewel j : model.getBoard()) {
 			Cell cell = board[d];
 			switch(j) {
-			case DIAMOND:  cell.setIcon(new ImageIcon(currentDiamond));  break;
-			case EMERALD:  cell.setIcon(new ImageIcon(currentEmerald));  break;
-			case RUBY:     cell.setIcon(new ImageIcon(currentRuby));     break;
-			case SAPPHIRE: cell.setIcon(new ImageIcon(currentSapphire)); break;
-			case TOPAZ:    cell.setIcon(new ImageIcon(currentTopaz));    break;
+				case DIAMOND:  cell.setIcon(new ImageIcon(currentDiamond));  break;
+				case EMERALD:  cell.setIcon(new ImageIcon(currentEmerald));  break;
+				case RUBY:     cell.setIcon(new ImageIcon(currentRuby));     break;
+				case SAPPHIRE: cell.setIcon(new ImageIcon(currentSapphire)); break;
+				case TOPAZ:    cell.setIcon(new ImageIcon(currentTopaz));    break;
 				default: break;
 			}
 			d++;
@@ -304,15 +305,15 @@ public class BoardView
 	{
 		// Load images //
 		// TODO: Load new images as well.
-		imageDiamond  = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
-		imageEmerald  = loadImage(new File(DIR_RESOURCES, "Emerald.png"));
-		imageRuby     = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
-		imageSapphire = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
-		imageTopaz    = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
-		imageDiamond_v2  = loadImage(new File(DIR_RESOURCES, "Diamond_v2.png")); 
+		imageDiamond     = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
+		imageDiamond_v2  = loadImage(new File(DIR_RESOURCES, "Diamond_v2.png"));
+		imageEmerald     = loadImage(new File(DIR_RESOURCES, "Emerald.png"));
 		imageEmerald_v2  = loadImage(new File(DIR_RESOURCES, "Emerald_v2.png"));
+		imageRuby        = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
 		imageRuby_v2     = loadImage(new File(DIR_RESOURCES, "Ruby_v2.png"));
+		imageSapphire    = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
 		imageSapphire_v2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
+		imageTopaz       = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
 		imageTopaz_v2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
 		// Not actually jewels btw, just some block
 		
@@ -398,18 +399,18 @@ public class BoardView
 	}
 	
 	private BufferedImage getImage(Jewel j) {
-		switch(j) {
+		switch (j) {
 			case DIAMOND:  return currentDiamond;
 			case EMERALD:  return currentEmerald;
 			case RUBY:     return currentRuby;
 			case SAPPHIRE: return currentSapphire;
-			case TOPAZ:	   return currentTopaz;
+			case TOPAZ:    return currentTopaz;
 			default: throw new IllegalStateException();
 		}
 	}
 	
 	private Color getColor(Jewel j) {
-		switch(j) {
+		switch (j) {
 			case DIAMOND:  return COLOR_DIAMOND;
 			case EMERALD:  return COLOR_EMERALD;
 			case RUBY:     return COLOR_RUBY;
@@ -425,7 +426,7 @@ public class BoardView
 	 * @return String representation of specified Jewel
 	 */
 	private String getStr(Jewel j) {
-		switch(j) {
+		switch (j) {
 			case DIAMOND:  return "Diamond";
 			case EMERALD:  return "Emerald";
 			case RUBY:     return "Ruby";
