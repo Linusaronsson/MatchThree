@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import Model.MatchThreeModel;
 import View.MatchThreeUI;
 
+@SuppressWarnings("serial")
 public class Singleplayer
 	extends JPanel
 {

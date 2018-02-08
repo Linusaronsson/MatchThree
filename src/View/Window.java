@@ -23,6 +23,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import View.MatchThreeUI;
 import View.MainMenu;
 
+@SuppressWarnings("serial")
 public class Window
 	extends JFrame
 {

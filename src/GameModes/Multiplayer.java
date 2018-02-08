@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import Model.MatchThreeModel;
 import View.MatchThreeUI;
 
+@SuppressWarnings("serial")
 public class Multiplayer
 	extends JPanel
 {
