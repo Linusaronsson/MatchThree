@@ -22,7 +22,6 @@ public class WindowController
 		public void actionPerformed(ActionEvent event)
 		{
 			// Restart the game //
-			if (swapView == null) {throw new IllegalStateException();}
 			MatchThreeController matchThreeController =
 				swapView.getMatchThreeController();
 			matchThreeController.restartGame();
