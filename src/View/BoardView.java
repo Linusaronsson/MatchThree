@@ -37,7 +37,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 @SuppressWarnings("serial")
 public class BoardView
-	extends JPanel implements Observer
+	extends JPanel
+	implements Observer
 {
 	private static final String CELL_FONT_NAME   = "Helvetica Neue";
 	private static final int    CELL_FONT_SIZE   = 14;
@@ -91,6 +92,7 @@ public class BoardView
 			throw new NullPointerException();
 		}
 		
+		// Bind to model //
 		this.model = model;
 		model.addObserver(this);
 		
@@ -101,6 +103,7 @@ public class BoardView
 		// Initialize components //
 		updateScore();
 		
+		// Set layout //
 		this.setLayout(new BorderLayout());
 		
 		// Construct header //
@@ -433,17 +436,19 @@ public class BoardView
 	}
 	
 	/**
-	 * Update all cells. (Removed temporarily).
-		public void update()
-		{
-			int width = model.getWidth();
-			for (int i = 0; i < width * width; i++) {
-				int x = i % width;
-				int y = i / width;
-				updateCell(x, y);
-			}
-		}
-	*/
+	 * Update all cells.
+	 */
+	public void update()
+	{
+		throw new IllegalStateException();
+		
+		//int width = model.getWidth();
+		//for (int i = 0; i < width * width; i++) {
+		//	int x = i % width;
+		//	int y = i / width;
+		//	updateCell(x, y);
+		//}
+	}
 	
 	/**
 	 * Update a cell.

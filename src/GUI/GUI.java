@@ -23,30 +23,33 @@ import View.BoardView;
 import GameModes.*;
 import GUI.MainMenu;
 
-public class GUI extends JFrame {
-	private WindowState viewState;
-	private GameMode mode = GameMode.WAITING;
+public class GUI
+	extends JFrame
+{
+	private static final int    GAME_SIZE    = 6;
 	private static final String WINDOW_TITLE = "MatchThree";
-	private static final int GAME_SIZE = 6;
-	private JButton	v1btn = new JButton("Version 1");
-	private JButton	v2btn = new JButton("Version 2");
-	private JButton       goBack         = new JButton("Back to Main Menu");
-	private JMenuItem     newItem        = null;
-	private JMenuItem     openItem       = null;
-	private JMenuItem     quitItem       = null;
-	private JMenuItem     saveItem       = null;
 	
-	private BoardView 	view  = null;
-	private JPanel 		rightPanel = null;
-	private JPanel       mainPanel = null;
-	private MainMenu       mainMenu = null;
-	private MultiplayerMenu      mp = null;
- 
-	public GUI() {
+	private JButton         goBack     = new JButton("Back to Main Menu");
+	private MainMenu        mainMenu   = null;
+	private JPanel          mainPanel  = null;
+	private GameMode        mode       = GameMode.WAITING;
+	private MultiplayerMenu mp         = null;
+	private JMenuItem       newItem    = null;
+	private JMenuItem       openItem   = null;
+	private JMenuItem       quitItem   = null;
+	private JPanel          rightPanel = null;
+	private JMenuItem       saveItem   = null;
+	private JButton         v1btn      = new JButton("Version 1");
+	private JButton         v2btn      = new JButton("Version 2");
+	private BoardView       view       = null;
+	private WindowState     viewState  = null;
+	
+	public GUI()
+	{
 		rightPanel = new JPanel();
 		mainPanel = new JPanel();
-		mainMenu = new MainMenu();
-		mp = new MultiplayerMenu();
+		mainMenu  = new MainMenu();
+		mp        = new MultiplayerMenu();
 		
 		changeState(WindowState.START_MENU);
 		
@@ -60,20 +63,22 @@ public class GUI extends JFrame {
 		
 		// Set window properties //
 		setTitle(WINDOW_TITLE);
-		setPreferredSize(new Dimension(650, 650));
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationByPlatform(true);
+		setPreferredSize(new Dimension(650, 650));
 		setResizable(true);
-		addWindowListener(new WindowListener());
 		
 		// Add main panel //
 		add(mainPanel);
 		
 		// Set menu bar //
-		JMenuBar menuBar = createMenuBar();
+		JMenuBar menuBar = createMenuBar(this);
 		setJMenuBar(menuBar);
 		
+		// Update window with content //
 		pack();
+		
+		// Make window visible //
 		centerWindow();
 		setVisible(true);
 	}
@@ -85,10 +90,10 @@ public class GUI extends JFrame {
 	}
 	
 	public enum WindowState {
-		START_MENU,
-		SINGLEPLAYER_GAME,
+		MULTIPLAYER_GAME,
 		MULTIPLAYER_MENU,
-		MULTIPLAYER_GAME
+		SINGLEPLAYER_GAME,
+		START_MENU
 	}
 
 	/**
@@ -247,8 +252,12 @@ public class GUI extends JFrame {
 	 * @return     Menu bar object.
 	 */
 	// TODO: Research use of `self` parameter name.
-	private JMenuBar createMenuBar()
+	private JMenuBar createMenuBar(GUI self)
 	{
+		// Validate argument //
+		if (self == null) {
+			throw new NullPointerException();
+		}
 		
 		// Create menu bar //
 		JMenuBar menuBar = new JMenuBar();
@@ -257,28 +266,23 @@ public class GUI extends JFrame {
 		JMenu fileMenu = new JMenu("File");
 		
 		// Create "New" menu item //
-		this.newItem = new JMenuItem("New");
-		fileMenu.add(this.newItem);
+		self.newItem = new JMenuItem("New");
+		fileMenu.add(self.newItem);
 		
 		// Create "Open" menu item //
-		this.openItem = new JMenuItem("Open");
-		fileMenu.add(this.openItem);
+		self.openItem = new JMenuItem("Open");
+		fileMenu.add(self.openItem);
 		
 		// Create "Save" menu item //
-		this.saveItem = new JMenuItem("Save");
-		fileMenu.add(this.saveItem);
+		self.saveItem = new JMenuItem("Save");
+		fileMenu.add(self.saveItem);
 		
 		// Create "Quit" menu item //
-		this.quitItem = new JMenuItem("Quit");
-		fileMenu.add(this.quitItem);
+		self.quitItem = new JMenuItem("Quit");
+		fileMenu.add(self.quitItem);
 		
 		// Add menus to menu bar //
 		menuBar.add(fileMenu);
-		
-		newItem.addActionListener(new NewListener());
-		openItem.addActionListener(new OpenListener());
-		quitItem.addActionListener(new QuitListener());
-		saveItem.addActionListener(new SaveListener());
 		
 		return menuBar;
 	}
@@ -295,92 +299,14 @@ public class GUI extends JFrame {
 		
 		// Set look and feel //
 		String lookAndFeel = UIManager.getSystemLookAndFeelClassName();
-		try { UIManager.setLookAndFeel(lookAndFeel); }
-		catch (ClassNotFoundException e) {}
-		catch (InstantiationException e) {}
-		catch (IllegalAccessException e) {}
-		catch (UnsupportedLookAndFeelException e) {}
-	}
-	
-	/**
-	 * Listens for window events.
-	 */
-	class WindowListener
-		extends WindowAdapter
-	{
-		public void windowActivated(WindowEvent event) {}
-		
-		public void windowClosed(WindowEvent event) {}
-		
-		public void windowClosing(WindowEvent event) {
-			// Close windows and free its resources //
-			// TODO: Is it necessary to use `view.setVisible(false)` as well?
-			dispose();
-		}
-		
-		public void windowDeactivated(WindowEvent event) {}
-		
-		public void windowDeiconified(WindowEvent event) {}
-		
-		public void windowGainedFocus(WindowEvent event) {}
-		
-		public void windowIconified(WindowEvent event) {}
-		
-		public void windowLostFocus(WindowEvent event) {}
-		
-		public void windowOpened(WindowEvent event) {}
-		
-		public void windowStateChanged(WindowEvent event) {}
-	}
-	
-	/**
-	 * Listens for "New" menu item.
-	 */
-	class NewListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
+		try {
+			UIManager.setLookAndFeel(lookAndFeel);
+		} catch (ClassNotFoundException |
+		         InstantiationException |
+		         IllegalAccessException |
+		         UnsupportedLookAndFeelException e)
 		{
-			// Restart the game //
-			//restartGame();
-		}
-	}
-	
-	/**
-	 * Listens for "Open" menu item.
-	 */
-	class OpenListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			showError("â€œOpenâ€� not implemented");
-		}
-	}
-	
-	/**
-	 * Listens for "Quit" menu item.
-	 */
-	class QuitListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			// Close window //
-			//WindowEvent e = new WindowEvent(view, WindowEvent.WINDOW_CLOSING);
-			//dispatchEvent(e);
-		}
-	}
-	
-	/**
-	 * Listens for "Save" menu item.
-	 */
-	class SaveListener
-		implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			showError("â€œSaveâ€� not implemented");
+			System.err.println(e);
 		}
 	}
 	
