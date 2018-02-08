@@ -6,9 +6,17 @@ import View.Window;
 /**
  * MatchThree game.
  */
-public class MatchThree
+public final class MatchThree
 {
 	private static final int PORT_NUMBER = 3333;
+	
+	/**
+	 * ...
+	 */
+	private MatchThree()
+	{
+		throw new UnsupportedOperationException();
+	}
 	
 	/**
 	 * Program entry point.
