@@ -34,6 +34,7 @@ public class SwapView
 	private GameMode        mode       = GameMode.WAITING;
 	private MultiplayerMenu mp         = new MultiplayerMenu();
 	private JPanel          rightPanel = new JPanel();
+	private Singleplayer    sp         = null;
 	private JButton         v1btn      = new JButton("Version 1");
 	private JButton         v2btn      = new JButton("Version 2");
 	private MatchThreeUI    view       = null;
@@ -75,7 +76,7 @@ public class SwapView
 			case SINGLEPLAYER_GAME:
 				viewState = WindowState.SINGLEPLAYER_GAME;
 				mode = GameMode.SINGLEPLAYER;
-				Singleplayer sp = new Singleplayer(GAME_SIZE);
+				sp = new Singleplayer(GAME_SIZE);
 				sp.setWindow(window);
 				
 				//Display new panel (the game)
@@ -168,5 +169,19 @@ public class SwapView
 		v2btn.addActionListener((ActionEvent e) -> {
 			view.changeSprites(2);
 		});
+	}
+	
+	/**
+	 * Set reference to parent window.
+	 *
+	 * @param window The parent window.
+	 */
+	public void setWindow(Window window)
+	{
+		this.window = window;
+		
+		if (view != null) {
+			sp.setWindow(window);
+		}
 	}
 }
