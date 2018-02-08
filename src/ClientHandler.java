@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 class ClientHandler
 {
-	public ClientHandler(Socket client, Component c)
+	public ClientHandler(Socket client, Component component)
 	{
 		System.out.printf(
 			"Client connected from \nport: %d\nip: %s\n",
@@ -12,9 +12,9 @@ class ClientHandler
 			client.getInetAddress()
 		);
 		JOptionPane.showMessageDialog(
-			c,
+			component,
 			"Client connected",
-			"asd",
+			"Foo bar",
 			JOptionPane.INFORMATION_MESSAGE
 		);
 	}

@@ -6,34 +6,34 @@ import java.net.Socket;
 class Server
 	extends Thread
 {
-	private ServerSocket listener = null;
-	private int          port     = 0;
-	private Component    c        = null;
+	private Component    component = null;
+	private ServerSocket listener  = null;
+	private int          port      = 0;
 	
-	public Server(int port, Component c)
+	public Server(int port, Component component)
 	{
-		this.port = port;
-		this.c    = c;
-		
 		try {
 			listener = new ServerSocket(port);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
+		this.component = component;
+		this.port      = port;
 	}
 	
 	public void run()
 	{
-		Socket s = null;
+		Socket socket = null;
 		while (true) {
 			try {
-				s = listener.accept();
+				socket = listener.accept();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			new ClientHandler(s, c);
+			new ClientHandler(socket, component);
 		}
 	}
 }
