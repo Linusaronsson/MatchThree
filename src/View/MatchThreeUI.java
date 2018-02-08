@@ -105,22 +105,22 @@ public class MatchThreeUI
 		updateScore();
 		
 		// Set layout //
-		this.setLayout(new BorderLayout());
+		setLayout(new BorderLayout());
 		
 		// Construct header //
 		JPanel header = new JPanel(new FlowLayout());
 		label.setForeground(Color.WHITE);
 		header.add(label);
 		header.setBackground(Color.BLACK);
-		this.add(header, BorderLayout.PAGE_START);
+		add(header, BorderLayout.PAGE_START);
 		
 		// Construct grid //
 		JPanel grid = createGrid();
-		this.add(grid, BorderLayout.CENTER);
+		add(grid, BorderLayout.CENTER);
 		
 		// Update window with content //
-		//this.setContentPane(content);
-		//this.pack();
+		//setContentPane(content);
+		//pack();
 	}
 	
 	/**

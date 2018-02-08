@@ -14,8 +14,8 @@ public class MainMenu
 	
 	public MainMenu()
 	{
-		this.add(singleplayer);
-		this.add(multiplayer);
+		add(singleplayer);
+		add(multiplayer);
 	}
 	
 	public void addSingleplayerListener(ActionListener listener)
