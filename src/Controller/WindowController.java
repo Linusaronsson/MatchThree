@@ -81,7 +81,11 @@ public class WindowController
 		public void windowActivated(final WindowEvent event) { }
 		
 		@Override
-		public void windowClosed(final WindowEvent event) { }
+		public void windowClosed(final WindowEvent event) {
+			// TODO: Avoid directly closing the application.
+			// TODO: Use constant for exit code.
+			System.exit(0);
+		}
 		
 		@Override
 		public void windowClosing(final WindowEvent event) {
