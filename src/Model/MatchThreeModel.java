@@ -435,17 +435,19 @@ public class MatchThreeModel
 		Jewel source = get(from);
 		int dx = to.getX() - from.getX();
 		int dy = to.getY() - from.getY();
+		// CHECKSTYLE.OFF: LeftCurly
 		if (dx < 0) { dx = -1; }
 		if (dx > 0) { dx = +1; }
 		if (dy < 0) { dy = -1; }
 		if (dy > 0) { dy = +1; }
+		// CHECKSTYLE.ON: LeftCurly
 		List<Coordinate> positions = new ArrayList<Coordinate>();
 		// TODO: Implement `equals'.
 		// TODO: Implement `clone`.
 		// TODO: Make a cleaner loop.
-		for (Coordinate position = new Coordinate(from.getX(), from.getY())
-		; position.getX() != to.getX() || position.getY() != to.getY()
-		; position.setX(position.getX() + dx),
+		for (Coordinate position = new Coordinate(from.getX(), from.getY());
+		position.getX() != to.getX() || position.getY() != to.getY();
+		position.setX(position.getX() + dx),
 		position.setY(position.getY() + dy)) {
 			// Swap cell with neighbor //
 			Coordinate next = new Coordinate(
