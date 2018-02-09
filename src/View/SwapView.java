@@ -4,7 +4,6 @@ import Controller.MatchThreeController;
 import GameModes.Multiplayer;
 import GameModes.Singleplayer;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -48,9 +47,6 @@ public class SwapView
 	
 	/** ... */
 	private MatchThreeUI view = null;
-	
-	/** ... */
-	private WindowState viewState = null;
 	
 	/** ... */
 	private Window window  = null;
@@ -109,11 +105,9 @@ public class SwapView
 		//       especially.
 		switch (state) {
 			case START_MENU:
-				viewState = WindowState.START_MENU;
 				add(mainMenu);
 				break;
 			case SINGLEPLAYER_GAME:
-				viewState = WindowState.SINGLEPLAYER_GAME;
 				mode = GameMode.SINGLEPLAYER;
 				sp = new Singleplayer(GAME_SIZE);
 				sp.setWindow(window);
@@ -128,16 +122,13 @@ public class SwapView
 				rightPanel.add(v2btn);
 				add(sp);
 				add(rightPanel);
-				setSize(getPerfectDimension());
 				view = sp.getView();
 				break;
 			case MULTIPLAYER_MENU:
-				viewState = WindowState.MULTIPLAYER_MENU;
 				add(goBack); //button to go back to main menu panel
 				add(mp);
 				break;
 			case MULTIPLAYER_GAME:
-				viewState = WindowState.MULTIPLAYER_GAME;
 				mode = GameMode.MULTIPLAYER;
 				Multiplayer s = null;
 				
@@ -159,7 +150,6 @@ public class SwapView
 				s.add(goBack); //button to go back to main menu panel
 				s.setBackground(Color.BLACK);
 				add(s);
-				setSize(getPerfectDimension());
 				view = s.getView();
 				break;
 			default: //throw something
@@ -178,20 +168,6 @@ public class SwapView
 	// TODO: Use mediator pattern instead.
 	public MatchThreeController getMatchThreeController() {
 		return sp.getMatchThreeController();
-	}
-	
-	/**
-	 * Get the dimension for the Main panel that fits the frame.
-	 *
-	 * @return ...
-	 */
-	private Dimension getPerfectDimension() {
-		final int extraWidth  = 13;
-		final int extraHeight = 70;
-		return new Dimension(
-			getPreferredSize().width  + extraWidth,
-			getPreferredSize().height + extraHeight
-		);
 	}
 	
 	/**
