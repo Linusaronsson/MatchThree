@@ -1,0 +1,46 @@
+Possible classes: (not including GUI stuff here)
+
+- Gameboard (contains list of cells and list of possible swaps)
+- Cell
+- Swap (contains two cells, indicating the swap between two cells)
+- Chain (contains list of cells in a chain)
+
+NOTE: Not sure if Chain is needed since I didn't mention it (almost) in any of
+      the algorithms below. But it seems logical to have it somewhere?
+
+Needed algorithms:
+
+1. Placing initial cells in the grid without having three of the same type next
+   to each other vertically/horizontally.
+
+2. Analyzing the generated grid to find allowed swaps and store them in some
+   list.
+
+   Each time a swap is made, make sure the swap exists in this list. If it
+   doesn't, the swap isn't allowed.
+
+3. When a swap is successful, find in which direction the chain is and remove
+   the entire chain of cells. There could be a horizontal AND vertical chain at
+   the same time, so make sure to check both.
+
+   (Maybe save the chains in a Chain object so that algorithm 4 gets faster?)
+
+4. Scan through grid to find all cells that are now empty, push the cells down
+   and add new cells above. This means we need a way to identify empty cells
+   (just add a special value to the enum of cell types).
+
+   When an empty cell is found, move cells above it down 1 step and add new cell
+   at the top until it reached bottom or another cell. (Assuming you scan the
+   grid starting at pos (0,0), (0,1), (0,2) etc.).
+
+5. When new cells have been added, the columns the were affected must be
+   analyzed again, possibly adding more possible swaps to the list (this
+   algorithm is of course based on or even the same as algorithm 2). In the same
+   process we could also check for potential new chains that occurred after the
+   new cells were added.
+
+Extra features: (not game related)
+
+- Saving current state to file.
+- Loading existing state from file.
+- Multiplayer?
