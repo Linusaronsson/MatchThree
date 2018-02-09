@@ -10,6 +10,7 @@ import Model.Coordinate;
 public class Cell
 	extends JButton
 {
+	/** ... */
 	private Coordinate position = null;
 	
 	/**
@@ -17,8 +18,7 @@ public class Cell
 	 *
 	 * @param position Coordinates of the cell.
 	 */
-	public Cell(Coordinate position)
-	{
+	public Cell(final Coordinate position) {
 		super();
 		
 		// Validate argument //
@@ -35,8 +35,7 @@ public class Cell
 	 * @param x X-coordinate of the cell.
 	 * @param y Y-coordinate of the cell.
 	 */
-	public Cell(int x, int y)
-	{
+	public Cell(final int x, final int y) {
 		super();
 		
 		// Validate arguments //
@@ -52,8 +51,7 @@ public class Cell
 	 *
 	 * @return The coordinates.
 	 */
-	public Coordinate getPosition()
-	{
+	public Coordinate getPosition() {
 		return position;
 	}
 	
@@ -62,9 +60,8 @@ public class Cell
 	 *
 	 * @return The X-coordinate.
 	 */
-	public int getPositionX()
-	{
-		return position.x;
+	public int getPositionX() {
+		return position.getX();
 	}
 	
 	/**
@@ -72,8 +69,7 @@ public class Cell
 	 *
 	 * @return The Y-coordinate.
 	 */
-	public int getPositionY()
-	{
-		return position.y;
+	public int getPositionY() {
+		return position.getY();
 	}
 }

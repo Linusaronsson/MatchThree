@@ -1,14 +1,9 @@
 package GameModes;
 
 import Controller.MatchThreeController;
-import Controller.WindowController;
-import java.io.IOException;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import Model.MatchThreeModel;
 import View.MatchThreeUI;
-import View.SwapView;
 import View.Window;
 
 /**
@@ -18,18 +13,22 @@ import View.Window;
 public class Singleplayer
 	extends JPanel
 {
+	/** ... */
 	private MatchThreeController matchThreeController = null;
-	private MatchThreeUI         matchThreeUI         = null;
+	
+	/** ... */
+	private MatchThreeUI matchThreeUI = null;
 	
 	/**
 	 * ...
+	 *
+	 * @param gameSize ...
 	 */
-	public Singleplayer(final int GAME_SIZE)
-	{
+	public Singleplayer(final int gameSize) {
 		// Create game //
-		MatchThreeModel matchThreeModel = new MatchThreeModel(GAME_SIZE);
-		MatchThreeUI    matchThreeUI    = new MatchThreeUI(matchThreeModel);
-		MatchThreeController matchThreeController = new MatchThreeController(
+		MatchThreeModel matchThreeModel = new MatchThreeModel(gameSize);
+		matchThreeUI = new MatchThreeUI(matchThreeModel);
+		matchThreeController = new MatchThreeController(
 			matchThreeModel,
 			matchThreeUI
 		);
@@ -43,19 +42,21 @@ public class Singleplayer
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
 	// TODO: Try to remove this method.
-	public MatchThreeController getMatchThreeController()
-	{
+	public MatchThreeController getMatchThreeController() {
 		return matchThreeController;
 	}
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
 	// TODO: Remove this method.
-	public MatchThreeUI getView()
-	{
+	public MatchThreeUI getView() {
 		return matchThreeUI;
 	}
 	
@@ -64,8 +65,7 @@ public class Singleplayer
 	 *
 	 * @param window The parent window.
 	 */
-	public void setWindow(Window window)
-	{
+	public void setWindow(final Window window) {
 		matchThreeController.setWindow(window);
 	}
 }

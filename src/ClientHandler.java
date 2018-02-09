@@ -9,9 +9,11 @@ class ClientHandler
 {
 	/**
 	 * ...
+	 *
+	 * @param client    ...
+	 * @param component ...
 	 */
-	public ClientHandler(Socket client, Component component)
-	{
+	ClientHandler(final Socket client, final Component component) {
 		System.out.printf(
 			"Client connected from \nport: %d\nip: %s\n",
 			client.getPort(),

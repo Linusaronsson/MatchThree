@@ -1,16 +1,8 @@
 package View;
 
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.io.IOException;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -19,8 +11,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import View.MatchThreeUI;
-import View.MainMenu;
 
 /**
  * Application main window.
@@ -29,19 +19,30 @@ import View.MainMenu;
 public class Window
 	extends JFrame
 {
+	/** ... */
 	private static final String WINDOW_TITLE = "MatchThree";
 	
-	private JPanel    content  = null;
-	private JMenuItem newItem  = null;
+	/** ... */
+	private JPanel content = null;
+	
+	/** ... */
+	private JMenuItem newItem = null;
+	
+	/** ... */
 	private JMenuItem openItem = null;
+	
+	/** ... */
 	private JMenuItem quitItem = null;
+	
+	/** ... */
 	private JMenuItem saveItem = null;
 	
 	/**
 	 * ...
+	 *
+	 * @param content ...
 	 */
-	public Window(JPanel content)
-	{
+	public Window(final JPanel content) {
 		// Validate arguments //
 		if (content == null) {
 			throw new NullPointerException();
@@ -55,6 +56,7 @@ public class Window
 		setProperties();
 		
 		// Set window properties //
+		// TODO: Avoid magic numbers.
 		setTitle(WINDOW_TITLE);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationByPlatform(true);
@@ -81,8 +83,7 @@ public class Window
 	 *
 	 * @param listener Event handler.
 	 */
-	public void addNewListener(ActionListener listener)
-	{
+	public void addNewListener(final ActionListener listener) {
 			// Validate argument //
 			if (listener == null) {
 					throw new NullPointerException();
@@ -95,8 +96,7 @@ public class Window
 	 *
 	 * @param listener Event handler.
 	 */
-	public void addOpenListener(ActionListener listener)
-	{
+	public void addOpenListener(final ActionListener listener) {
 			// Validate argument //
 			if (listener == null) {
 					throw new NullPointerException();
@@ -109,8 +109,7 @@ public class Window
 	 *
 	 * @param listener Event handler.
 	 */
-	public void addQuitListener(ActionListener listener)
-	{
+	public void addQuitListener(final ActionListener listener) {
 			// Validate argument //
 			if (listener == null) {
 					throw new NullPointerException();
@@ -123,8 +122,7 @@ public class Window
 	 *
 	 * @param listener Event handler.
 	 */
-	public void addSaveListener(ActionListener listener)
-	{
+	public void addSaveListener(final ActionListener listener) {
 			// Validate argument //
 			if (listener == null) {
 					throw new NullPointerException();
@@ -137,8 +135,7 @@ public class Window
 	 *
 	 * @param listener Event handler.
 	 */
-	public void addWindowListener(ActionListener listener)
-	{
+	public void addWindowListener(final ActionListener listener) {
 		// Validate argument //
 		if (listener == null) {
 			throw new NullPointerException();
@@ -152,8 +149,7 @@ public class Window
 	 *
 	 * @param message The message to display.
 	 */
-	public void showError(String message)
-	{
+	public void showError(final String message) {
 		// Validate argument //
 		if (message == null) {
 			throw new NullPointerException();
@@ -170,8 +166,7 @@ public class Window
 	 *
 	 * @param message The message to display.
 	 */
-	public void showMessage(String message)
-	{
+	public void showMessage(final String message) {
 		// Validate argument //
 		if (message == null) {
 			throw new NullPointerException();
@@ -184,12 +179,14 @@ public class Window
 	}
 	
 	/**
-	 * Centers the frame
+	 * Center the frame.
 	 */
-	private void centerWindow()
-	{
+	private void centerWindow() {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation(dim.width/2-getSize().width/2, dim.height/2-getSize().height/2);
+		setLocation(
+			dim.width  / 2 - getSize().width  / 2,
+			dim.height / 2 - getSize().height / 2
+		);
 	}
 	
 	/**
@@ -199,8 +196,7 @@ public class Window
 	 * @return     Menu bar object.
 	 */
 	// TODO: Research use of `self` parameter name.
-	private JMenuBar createMenuBar(Window self)
-	{
+	private JMenuBar createMenuBar(final Window self) {
 		// Validate argument //
 		if (self == null) {
 			throw new NullPointerException();
@@ -237,22 +233,23 @@ public class Window
 	/**
 	 * Set application properties.
 	 */
-	private static void setProperties()
-	{
+	private static void setProperties() {
 		// Use native menu bar on macOS/OS X //
 		System.setProperty("apple.laf.useScreenMenuBar", "true");
 		// TODO: Does not appear important or is misused.
-		System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Test");
+		System.setProperty(
+			"com.apple.mrj.application.apple.menu.about.name",
+			"Test"
+		);
 		
 		// Set look and feel //
 		String lookAndFeel = UIManager.getSystemLookAndFeelClassName();
 		try {
 			UIManager.setLookAndFeel(lookAndFeel);
-		} catch (ClassNotFoundException |
-		         InstantiationException |
-		         IllegalAccessException |
-		         UnsupportedLookAndFeelException e)
-		{
+		} catch (ClassNotFoundException
+		| InstantiationException
+		| IllegalAccessException
+		| UnsupportedLookAndFeelException e) {
 			System.err.println(e);
 		}
 	}

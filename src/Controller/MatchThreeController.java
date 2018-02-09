@@ -2,8 +2,6 @@ package Controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import Model.Coordinate;
 import Model.MatchThreeModel;
 import View.Cell;
@@ -15,10 +13,17 @@ import View.Window;
  */
 public class MatchThreeController
 {
-	private Coordinate      activeCell = null;
-	private MatchThreeModel model      = null;
-	private MatchThreeUI    view       = null;
-	private Window          window     = null;
+	/** ... */
+	private Coordinate activeCell = null;
+	
+	/** ... */
+	private MatchThreeModel model = null;
+	
+	/** ... */
+	private MatchThreeUI view = null;
+	
+	/** ... */
+	private Window window = null;
 	
 	/**
 	 * Listens for board cell actions (clicks).
@@ -27,8 +32,7 @@ public class MatchThreeController
 		implements ActionListener
 	{
 		@Override
-		public void actionPerformed(ActionEvent event)
-		{
+		public void actionPerformed(final ActionEvent event) {
 			// Validate argument //
 			if (event == null) {
 				throw new NullPointerException();
@@ -36,9 +40,10 @@ public class MatchThreeController
 			
 			// Get cell coordinates //
 			// TODO: Assert event values?
+			// TODO: Implement `clone`.
 			Cell       cell        = (Cell) event.getSource();
-			Coordinate tmp         = cell.getPosition(); // TODO: Implement `clone`.
-			Coordinate clickedCell = new Coordinate(tmp.x, tmp.y);
+			Coordinate tmp         = cell.getPosition();
+			Coordinate clickedCell = new Coordinate(tmp.getX(), tmp.getY());
 			
 			// Activate cell if appropriate //
 			if (activeCell == null) {
@@ -63,8 +68,8 @@ public class MatchThreeController
 	 * @param view  View to use.
 	 */
 	public MatchThreeController(
-		MatchThreeModel model,
-		MatchThreeUI view
+		final MatchThreeModel model,
+		final MatchThreeUI view
 	) {
 		// Validate arguments //
 		if (model == null || view == null) {
@@ -81,11 +86,10 @@ public class MatchThreeController
 	/**
 	 * Swap two cells.
 	 *
-	 * @param position1 Coordinates of first cell.
-	 * @param position2 Coordinates of second cell.
+	 * @param from Coordinates of first cell.
+	 * @param to   Coordinates of second cell.
 	 */
-	private void moveCell(Coordinate from, Coordinate to)
-	{
+	private void moveCell(final Coordinate from, final Coordinate to) {
 		// Validate arguments //
 		// TODO: Do bounds-checking on coordinates?
 		if (from == null || to == null) {
@@ -116,8 +120,7 @@ public class MatchThreeController
 	/**
 	 * Resets model to its initial state.
 	 */
-	protected void restartGame()
-	{
+	protected void restartGame() {
 		// Reset active cell //
 		setActiveCell(null);
 		
@@ -134,8 +137,7 @@ public class MatchThreeController
 	 *
 	 * @param position Coordinates of the cell to make active, or null if none.
 	 */
-	private void setActiveCell(Coordinate position)
-	{
+	private void setActiveCell(final Coordinate position) {
 		// Deactivate cell if appropriate //
 		if (activeCell != null) {
 			view.setCellState(activeCell, false);
@@ -155,8 +157,7 @@ public class MatchThreeController
 	 *
 	 * @param window The parent window.
 	 */
-	public void setWindow(Window window)
-	{
+	public void setWindow(final Window window) {
 		this.window = window;
 	}
 }

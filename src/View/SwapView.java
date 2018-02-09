@@ -6,24 +6,11 @@ import GameModes.Singleplayer;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.Toolkit;
 import java.io.IOException;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import View.MainMenu;
-import View.MatchThreeUI;
 
 /**
  * Maintains multiples views, and swaps between them.
@@ -32,27 +19,54 @@ import View.MatchThreeUI;
 public class SwapView
 	extends JPanel
 {
+	/** ... */
 	private static final int GAME_SIZE = 6;
 	
-	private JButton         goBack     = new JButton("Back to Main Menu");
-	private MainMenu        mainMenu   = new MainMenu();
-	private GameMode        mode       = GameMode.WAITING;
-	private MultiplayerMenu mp         = new MultiplayerMenu();
-	private JPanel          rightPanel = new JPanel();
-	private Singleplayer    sp         = null;
-	private JButton         v1btn      = new JButton("Version 1");
-	private JButton         v2btn      = new JButton("Version 2");
-	private MatchThreeUI    view       = null;
-	private WindowState     viewState  = null;
-	private Window          window     = null;
+	/** ... */
+	private JButton goBack = new JButton("Back to Main Menu");
+	
+	/** ... */
+	private MainMenu mainMenu = new MainMenu();
+	
+	/** ... */
+	private GameMode mode = GameMode.WAITING;
+	
+	/** ... */
+	private MultiplayerMenu mp = new MultiplayerMenu();
+	
+	/** ... */
+	private JPanel rightPanel = new JPanel();
+	
+	/** ... */
+	private Singleplayer sp = null;
+	
+	/** ... */
+	private JButton v1btn = new JButton("Version 1");
+	
+	/** ... */
+	private JButton v2btn = new JButton("Version 2");
+	
+	/** ... */
+	private MatchThreeUI view = null;
+	
+	/** ... */
+	private WindowState viewState = null;
+	
+	/** ... */
+	private Window window  = null;
 	
 	/**
 	 * ...
 	 */
 	public enum GameMode
 	{
+		/** ... */
 		MULTIPLAYER,
+		
+		/** ... */
 		SINGLEPLAYER,
+		
+		/** ... */
 		WAITING
 	}
 	
@@ -61,17 +75,23 @@ public class SwapView
 	 */
 	public enum WindowState
 	{
+		/** ... */
 		MULTIPLAYER_GAME,
+		
+		/** ... */
 		MULTIPLAYER_MENU,
+		
+		/** ... */
 		SINGLEPLAYER_GAME,
+		
+		/** ... */
 		START_MENU
 	}
 	
 	/**
 	 * ...
 	 */
-	public SwapView()
-	{
+	public SwapView() {
 		changeState(WindowState.START_MENU);
 		
 		initializeHandlers();
@@ -79,12 +99,14 @@ public class SwapView
 	
 	/**
 	 * ...
+	 *
+	 * @param state ...
 	 */
-	private void changeState(WindowState state)
-	{
+	private void changeState(final WindowState state) {
 		removeAll();
 		
-		//TODO: Fix Layouts for probably all different states. Multiplayer especially.
+		// TODO: Fix Layouts for probably all different states. Multiplayer
+		//       especially.
 		switch (state) {
 			case START_MENU:
 				viewState = WindowState.START_MENU;
@@ -96,6 +118,7 @@ public class SwapView
 				sp = new Singleplayer(GAME_SIZE);
 				sp.setWindow(window);
 				
+				// TODO: Avoid magic numbers.
 				//Display new panel (the game)
 				sp.setLayout(new FlowLayout());
 				sp.setBackground(Color.BLACK);
@@ -149,32 +172,32 @@ public class SwapView
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
 	// TODO: Use mediator pattern instead.
-	public MatchThreeController getMatchThreeController()
-	{
+	public MatchThreeController getMatchThreeController() {
 		return sp.getMatchThreeController();
 	}
 	
 	/**
-	 * Get the dimension for the Main panel that fits the frame
-	 * @return
+	 * Get the dimension for the Main panel that fits the frame.
+	 *
+	 * @return ...
 	 */
-	private Dimension getPerfectDimension()
-	{
-		final int extra_width  = 13;
-		final int extra_height = 70;
+	private Dimension getPerfectDimension() {
+		final int extraWidth  = 13;
+		final int extraHeight = 70;
 		return new Dimension(
-			getPreferredSize().width  + extra_width,
-			getPreferredSize().height + extra_height
+			getPreferredSize().width  + extraWidth,
+			getPreferredSize().height + extraHeight
 		);
 	}
 	
 	/**
 	 * ...
 	 */
-	private void initializeHandlers()
-	{
+	private void initializeHandlers() {
 		goBack.addActionListener((ActionEvent e) -> {
 			changeState(WindowState.START_MENU);
 		});
@@ -205,8 +228,7 @@ public class SwapView
 	 *
 	 * @param window The parent window.
 	 */
-	public void setWindow(Window window)
-	{
+	public void setWindow(final Window window) {
 		this.window = window;
 		
 		if (view != null) {

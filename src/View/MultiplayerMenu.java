@@ -1,10 +1,8 @@
 package View;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -16,48 +14,60 @@ import javax.swing.JTextField;
 public class MultiplayerMenu
 	extends JPanel
 {
-	private JButton    connect   = new JButton("Connect to player");
-	private JTextField ip        = new JTextField();
-	private JLabel     ip_text   = new JLabel("IP: ");
-	private JTextField port      = new JTextField();
-	private JLabel     port_text = new JLabel("Port: ");
+	/** ... */
+	private JButton connect = new JButton("Connect to player");
+	
+	/** ... */
+	private JTextField ip = new JTextField();
+	
+	/** ... */
+	private JLabel ipText = new JLabel("IP: ");
+	
+	/** ... */
+	private JTextField port = new JTextField();
+	
+	/** ... */
+	private JLabel portText = new JLabel("Port: ");
 	
 	/**
 	 * ...
 	 */
-	public MultiplayerMenu()
-	{
+	public MultiplayerMenu() {
+		// TODO: Avoid magic numbers.
 		ip.setPreferredSize(new Dimension(200, 24));
 		port.setPreferredSize(new Dimension(200, 24));
 		
 		add(connect);
-		add(ip_text);
+		add(ipText);
 		add(ip);
-		add(port_text);
+		add(portText);
 		add(port);
 	}
 	
 	/**
 	 * ...
+	 *
+	 * @param listener ...
 	 */
-	public void addConnectListener(ActionListener listener)
-	{
+	public void addConnectListener(final ActionListener listener) {
 		connect.addActionListener(listener);
 	}
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
-	public String getIp()
-	{
+	public String getIp() {
 		return ip.getText();
 	}
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
-	public String getPort()
-	{
+	public String getPort() {
 		return port.getText();
 	}
 }

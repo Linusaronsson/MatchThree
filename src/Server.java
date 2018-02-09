@@ -9,15 +9,22 @@ import java.net.Socket;
 class Server
 	extends Thread
 {
-	private Component    component = null;
-	private ServerSocket listener  = null;
-	private int          port      = 0;
+	/** ... */
+	private Component component = null;
+	
+	/** ... */
+	private ServerSocket listener = null;
+	
+	/** ... */
+	private int port = 0;
 	
 	/**
 	 * ...
+	 *
+	 * @param port      ...
+	 * @param component ...
 	 */
-	public Server(int port, Component component)
-	{
+	Server(final int port, final Component component) {
 		try {
 			listener = new ServerSocket(port);
 		} catch (IOException e1) {
@@ -32,8 +39,7 @@ class Server
 	/**
 	 * ...
 	 */
-	public void run()
-	{
+	public void run() {
 		Socket socket = null;
 		while (true) {
 			try {

@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import Model.MatchThreeModel;
 import View.SwapView;
 import View.Window;
 
@@ -13,8 +12,11 @@ import View.Window;
  */
 public class WindowController
 {
+	/** ... */
 	private SwapView swapView = null;
-	private Window   window   = null;
+	
+	/** ... */
+	private Window window = null;
 	
 	/**
 	 * Listens for "New" menu item.
@@ -22,8 +24,8 @@ public class WindowController
 	class NewListener
 		implements ActionListener
 	{
-		public void actionPerformed(ActionEvent event)
-		{
+		@Override
+		public void actionPerformed(final ActionEvent event) {
 			// Restart the game //
 			MatchThreeController matchThreeController =
 				swapView.getMatchThreeController();
@@ -37,8 +39,8 @@ public class WindowController
 	class OpenListener
 		implements ActionListener
 	{
-		public void actionPerformed(ActionEvent event)
-		{
+		@Override
+		public void actionPerformed(final ActionEvent event) {
 			window.showError("“Open” not implemented");
 		}
 	}
@@ -49,8 +51,8 @@ public class WindowController
 	class SaveListener
 		implements ActionListener
 	{
-		public void actionPerformed(ActionEvent event)
-		{
+		@Override
+		public void actionPerformed(final ActionEvent event) {
 			window.showError("“Save” not implemented");
 		}
 	}
@@ -61,8 +63,8 @@ public class WindowController
 	class QuitListener
 		implements ActionListener
 	{
-		public void actionPerformed(ActionEvent event)
-		{
+		@Override
+		public void actionPerformed(final ActionEvent event) {
 			// Close window //
 			WindowEvent e = new WindowEvent(window, WindowEvent.WINDOW_CLOSING);
 			window.dispatchEvent(e);
@@ -75,38 +77,50 @@ public class WindowController
 	class WindowListener
 		extends WindowAdapter
 	{
-		public void windowActivated(WindowEvent event) {}
+		@Override
+		public void windowActivated(final WindowEvent event) { }
 		
-		public void windowClosed(WindowEvent event) {}
+		@Override
+		public void windowClosed(final WindowEvent event) { }
 		
-		public void windowClosing(WindowEvent event)
-		{
+		@Override
+		public void windowClosing(final WindowEvent event) {
 			// Close windows and free its resources //
 			// TODO: Is it necessary to use `view.setVisible(false)` as well?
 			window.dispose();
 		}
 		
-		public void windowDeactivated(WindowEvent event) {}
+		@Override
+		public void windowDeactivated(final WindowEvent event) { }
 		
-		public void windowDeiconified(WindowEvent event) {}
+		@Override
+		public void windowDeiconified(final WindowEvent event) { }
 		
-		public void windowGainedFocus(WindowEvent event) {}
+		@Override
+		public void windowGainedFocus(final WindowEvent event) { }
 		
-		public void windowIconified(WindowEvent event) {}
+		@Override
+		public void windowIconified(final WindowEvent event) { }
 		
-		public void windowLostFocus(WindowEvent event) {}
+		@Override
+		public void windowLostFocus(final WindowEvent event) { }
 		
-		public void windowOpened(WindowEvent event) {}
+		@Override
+		public void windowOpened(final WindowEvent event) { }
 		
-		public void windowStateChanged(WindowEvent event) {}
+		@Override
+		public void windowStateChanged(final WindowEvent event) { }
 	}
 	
 	/**
 	 * ...
+	 *
+	 * @param window   ...
+	 * @param swapView ...
 	 */
 	public WindowController(
-		Window   window,
-		SwapView swapView
+		final Window   window,
+		final SwapView swapView
 	) {
 		// Register event listeners //
 		window.addNewListener(new NewListener());

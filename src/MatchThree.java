@@ -8,13 +8,13 @@ import View.Window;
  */
 public final class MatchThree
 {
+	/** Port number for network play. */
 	private static final int PORT_NUMBER = 3333;
 	
 	/**
 	 * ...
 	 */
-	private MatchThree()
-	{
+	private MatchThree() {
 		throw new UnsupportedOperationException();
 	}
 	
@@ -22,11 +22,10 @@ public final class MatchThree
 	 * Program entry point.
 	 *
 	 * @param args Program arguments.
-	 * @throws IOException
+	 * @throws IOException On file-system access errors.
 	 */
-	public static void main(String[] args)
-		throws IOException
-	{
+	public static void main(final String[] args)
+	throws IOException {
 		// Create GUI //
 		SwapView swapView = new SwapView();
 		Window   window   = new Window(swapView);

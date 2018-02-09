@@ -19,16 +19,10 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import Model.Coordinate;
 import Model.Jewel;
 import Model.MatchThreeModel;
@@ -41,43 +35,113 @@ public class MatchThreeUI
 	extends JPanel
 	implements Observer
 {
-	private static final String CELL_FONT_NAME   = "Helvetica Neue";
-	private static final int    CELL_FONT_SIZE   = 14;
-	private static final int    CELL_WIDTH       = 80;
-	private static final Color  COLOR_BACKGROUND = new Color(0x11, 0x11, 0x11);
-	private static final Color  COLOR_DIAMOND    = new Color(0xB9, 0xF2, 0xFF);
-	private static final Color  COLOR_EMERALD    = new Color(0x50, 0xC8, 0x78);
-	private static final Color  COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
-	private static final Color  COLOR_RUBY       = new Color(0xE0, 0x11, 0x5F);
-	private static final Color  COLOR_SAPPHIRE   = new Color(0x0F, 0x52, 0xBA);
-	private static final Color  COLOR_TOPAZ      = new Color(0xFF, 0xBF, 0x00);
-	private static final String DIR_RESOURCES    = "resources";
-	private static final int    GAP              = 2;
-	private static final String WINDOW_TITLE     = "MatchThree";
+	/** ... */
+	private static final String CELL_FONT_NAME = "Helvetica Neue";
 	
-	private Clip            audioSwap        = null;
-	private Cell[]          board            = null;
-	private BufferedImage   currentDiamond   = null;
-	private BufferedImage   currentEmerald   = null;
-	private BufferedImage   currentRuby      = null;
-	private BufferedImage   currentSapphire  = null;
-	private BufferedImage   currentTopaz     = null;
-	private BufferedImage   imageDiamond     = null;
-	private BufferedImage   imageDiamond_v2  = null;
-	private BufferedImage   imageEmerald     = null;
-	private BufferedImage   imageEmerald_v2  = null;
-	private BufferedImage   imageRuby        = null;
-	private BufferedImage   imageRuby_v2     = null;
-	private BufferedImage   imageSapphire    = null;
-	private BufferedImage   imageSapphire_v2 = null;
-	private BufferedImage   imageTopaz       = null;
-	private BufferedImage   imageTopaz_v2    = null;
-	private JLabel          label            = new JLabel("");
-	private MatchThreeModel model            = null;
-	private JMenuItem       newItem          = null;
-	private JMenuItem       openItem         = null;
-	private JMenuItem       quitItem         = null;
-	private JMenuItem       saveItem         = null;
+	/** ... */
+	private static final int CELL_FONT_SIZE = 14;
+	
+	/** ... */
+	private static final int CELL_WIDTH = 80;
+	
+	/** ... */
+	private static final Color COLOR_BACKGROUND = new Color(0x11, 0x11, 0x11);
+	
+	/** ... */
+	private static final Color COLOR_DIAMOND = new Color(0xB9, 0xF2, 0xFF);
+	
+	/** ... */
+	private static final Color COLOR_EMERALD = new Color(0x50, 0xC8, 0x78);
+	
+	/** ... */
+	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
+	
+	/** ... */
+	private static final Color COLOR_RUBY = new Color(0xE0, 0x11, 0x5F);
+	
+	/** ... */
+	private static final Color COLOR_SAPPHIRE = new Color(0x0F, 0x52, 0xBA);
+	
+	/** ... */
+	private static final Color COLOR_TOPAZ = new Color(0xFF, 0xBF, 0x00);
+	
+	/** ... */
+	private static final String DIR_RESOURCES = "resources";
+	
+	/** ... */
+	private static final int GAP = 2;
+	
+	/** ... */
+	private static final String WINDOW_TITLE = "MatchThree";
+	
+	/** ... */
+	private Clip audioSwap = null;
+	
+	/** ... */
+	private Cell[] board = null;
+	
+	/** ... */
+	private BufferedImage currentDiamond = null;
+	
+	/** ... */
+	private BufferedImage currentEmerald = null;
+	
+	/** ... */
+	private BufferedImage currentRuby = null;
+	
+	/** ... */
+	private BufferedImage currentSapphire = null;
+	
+	/** ... */
+	private BufferedImage currentTopaz = null;
+	
+	/** ... */
+	private BufferedImage imageDiamond = null;
+	
+	/** ... */
+	private BufferedImage imageDiamondV2 = null;
+	
+	/** ... */
+	private BufferedImage imageEmerald = null;
+	
+	/** ... */
+	private BufferedImage imageEmeraldV2 = null;
+	
+	/** ... */
+	private BufferedImage imageRuby = null;
+	
+	/** ... */
+	private BufferedImage imageRubyV2 = null;
+	
+	/** ... */
+	private BufferedImage imageSapphire = null;
+	
+	/** ... */
+	private BufferedImage imageSapphireV2 = null;
+	
+	/** ... */
+	private BufferedImage imageTopaz = null;
+	
+	/** ... */
+	private BufferedImage imageTopazV2 = null;
+	
+	/** ... */
+	private JLabel label = new JLabel("");
+	
+	/** ... */
+	private MatchThreeModel model = null;
+	
+	/** ... */
+	private JMenuItem newItem = null;
+	
+	/** ... */
+	private JMenuItem openItem = null;
+	
+	/** ... */
+	private JMenuItem quitItem = null;
+	
+	/** ... */
+	private JMenuItem saveItem = null;
 	
 	/**
 	 * Constructor for `MatchThreeUI`.
@@ -86,8 +150,7 @@ public class MatchThreeUI
 	 */
 	// TODO: Break into multiple methods?
 	// TODO: Call parent constructor?
-	public MatchThreeUI(MatchThreeModel model)
-	{
+	public MatchThreeUI(final MatchThreeModel model) {
 		// Validate argument //
 		if (model == null) {
 			throw new NullPointerException();
@@ -128,8 +191,7 @@ public class MatchThreeUI
 	 *
 	 * @param listener Event handler.
 	 */
-	public void addBoardListener(ActionListener listener)
-	{
+	public void addBoardListener(final ActionListener listener) {
 		// Validate argument //
 		if (listener == null) {
 			throw new NullPointerException();
@@ -142,9 +204,10 @@ public class MatchThreeUI
 	
 	/**
 	 * Create game grid.
+	 *
+	 * @return ...
 	 */
-	private JPanel createGrid()
-	{
+	private JPanel createGrid() {
 		// Create grid //
 		int width = model.getWidth();
 		JPanel grid = new JPanel(new GridLayout(width, width, GAP, GAP));
@@ -188,16 +251,14 @@ public class MatchThreeUI
 	/**
 	 * Load external audio resources.
 	 */
-	private void initAudio()
-	{
+	private void initAudio() {
 		// Read audio from file //
 		File audioFile = new File(DIR_RESOURCES, "Swap.wav").getAbsoluteFile();
 		AudioInputStream audioStream = null;
 		try {
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
 		} catch (IOException
-		       | UnsupportedAudioFileException e)
-		{
+		| UnsupportedAudioFileException e) {
 			System.err.printf(
 				"Failed to read \"%s\":%s",
 				audioFile,
@@ -216,8 +277,7 @@ public class MatchThreeUI
 			audioSwap = AudioSystem.getClip();
 			audioSwap.open(audioStream);
 		} catch (IOException
-		       | LineUnavailableException e)
-		{
+		| LineUnavailableException e) {
 			System.err.println(e);
 			audioSwap = null;
 			return;
@@ -225,11 +285,11 @@ public class MatchThreeUI
 	}
 	
 	/**
-	 * Change images on buttons
-	 * @param i, jewel version
+	 * Change images on buttons.
+	 *
+	 * @param i Jewel version.
 	 */
-	public void changeSprites(int i)
-	{
+	public void changeSprites(final int i) {
 		switch (i) {
 			case 1:
 				currentDiamond  = imageDiamond;
@@ -239,11 +299,11 @@ public class MatchThreeUI
 				currentTopaz    = imageTopaz;
 				break;
 			case 2:
-				currentDiamond  = imageDiamond_v2;
-				currentEmerald  = imageEmerald_v2;
-				currentRuby     = imageRuby_v2;
-				currentSapphire = imageSapphire_v2;
-				currentTopaz    = imageTopaz_v2;
+				currentDiamond  = imageDiamondV2;
+				currentEmerald  = imageEmeraldV2;
+				currentRuby     = imageRubyV2;
+				currentSapphire = imageSapphireV2;
+				currentTopaz    = imageTopazV2;
 				break;
 			default: break;
 		}
@@ -251,13 +311,18 @@ public class MatchThreeUI
 		
 		for (Jewel j : model.getBoard()) {
 			Cell cell = board[d];
-			switch(j) {
-				case DIAMOND:  cell.setIcon(new ImageIcon(currentDiamond));  break;
-				case EMERALD:  cell.setIcon(new ImageIcon(currentEmerald));  break;
-				case RUBY:     cell.setIcon(new ImageIcon(currentRuby));     break;
-				case SAPPHIRE: cell.setIcon(new ImageIcon(currentSapphire)); break;
-				case TOPAZ:    cell.setIcon(new ImageIcon(currentTopaz));    break;
-				default: break;
+			switch (j) {
+				case DIAMOND:  cell.setIcon(new ImageIcon(currentDiamond));
+				               break;
+				case EMERALD:  cell.setIcon(new ImageIcon(currentEmerald));
+				               break;
+				case RUBY:     cell.setIcon(new ImageIcon(currentRuby));
+				               break;
+				case SAPPHIRE: cell.setIcon(new ImageIcon(currentSapphire));
+				               break;
+				case TOPAZ:    cell.setIcon(new ImageIcon(currentTopaz));
+				               break;
+				default:       break;
 			}
 			d++;
 		}
@@ -266,20 +331,19 @@ public class MatchThreeUI
 	/**
 	 * Load external image resources.
 	 */
-	private void initGraphics()
-	{
+	private void initGraphics() {
 		// Load images //
 		// TODO: Load new images as well.
-		imageDiamond     = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
-		imageDiamond_v2  = loadImage(new File(DIR_RESOURCES, "Diamond_v2.png"));
-		imageEmerald     = loadImage(new File(DIR_RESOURCES, "Emerald.png"));
-		imageEmerald_v2  = loadImage(new File(DIR_RESOURCES, "Emerald_v2.png"));
-		imageRuby        = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
-		imageRuby_v2     = loadImage(new File(DIR_RESOURCES, "Ruby_v2.png"));
-		imageSapphire    = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
-		imageSapphire_v2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
-		imageTopaz       = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
-		imageTopaz_v2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
+		imageDiamond    = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
+		imageDiamondV2  = loadImage(new File(DIR_RESOURCES, "Diamond_v2.png"));
+		imageEmerald    = loadImage(new File(DIR_RESOURCES, "Emerald.png"));
+		imageEmeraldV2  = loadImage(new File(DIR_RESOURCES, "Emerald_v2.png"));
+		imageRuby       = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
+		imageRubyV2     = loadImage(new File(DIR_RESOURCES, "Ruby_v2.png"));
+		imageSapphire   = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
+		imageSapphireV2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
+		imageTopaz      = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
+		imageTopazV2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
 		// Not actually jewels btw, just some block
 		
 		// Default images
@@ -296,8 +360,7 @@ public class MatchThreeUI
 	 * @param file File to read from.
 	 * @return     Loaded image buffer.
 	 */
-	private static BufferedImage loadImage(File file)
-	{
+	private static BufferedImage loadImage(final File file) {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(file);
@@ -319,8 +382,7 @@ public class MatchThreeUI
 	/**
 	 * Play swap audio clip.
 	 */
-	public void playAudioSwap()
-	{
+	public void playAudioSwap() {
 		// Rewind and play clip //
 		if (audioSwap != null) {
 			audioSwap.setFramePosition(0);
@@ -334,20 +396,22 @@ public class MatchThreeUI
 	 * @param position  Coordinates of the cell.
 	 * @param activated Whether cell is active.
 	 */
-	public void setCellState(Coordinate position, boolean activated)
-	{
+	public void setCellState(
+		final Coordinate position,
+		final boolean    activated
+	) {
 		// Validate arguments //
 		if (position == null) {
 			throw new NullPointerException();
 		}
 		int width = model.getWidth();
-		if (position.x >= width || position.y >= width) {
+		if (position.getX() >= width || position.getY() >= width) {
 			throw new IndexOutOfBoundsException();
 		}
 		
 		// Get the affected cell //
-		int  x    = position.x;
-		int  y    = position.y;
+		int  x    = position.getX();
+		int  y    = position.getY();
 		int  i    = y * width + x;
 		Cell cell = board[i];
 		
@@ -365,9 +429,11 @@ public class MatchThreeUI
 	
 	/**
 	 * ...
+	 *
+	 * @param j ...
+	 * @return  ...
 	 */
-	private BufferedImage getImage(Jewel j)
-	{
+	private BufferedImage getImage(final Jewel j) {
 		switch (j) {
 			case DIAMOND:  return currentDiamond;
 			case EMERALD:  return currentEmerald;
@@ -380,9 +446,11 @@ public class MatchThreeUI
 	
 	/**
 	 * ...
+	 *
+	 * @param j ...
+	 * @return  ...
 	 */
-	private Color getColor(Jewel j)
-	{
+	private Color getColor(final Jewel j) {
 		switch (j) {
 			case DIAMOND:  return COLOR_DIAMOND;
 			case EMERALD:  return COLOR_EMERALD;
@@ -394,12 +462,12 @@ public class MatchThreeUI
 	}
 	
 	/**
+	 * ...
 	 *
-	 * @param Jewel
-	 * @return String representation of specified Jewel
+	 * @param j ...
+	 * @return  ...
 	 */
-	private String getStr(Jewel j)
-	{
+	private String getStr(final Jewel j) {
 		switch (j) {
 			case DIAMOND:  return "Diamond";
 			case EMERALD:  return "Emerald";
@@ -413,8 +481,7 @@ public class MatchThreeUI
 	/**
 	 * Update all cells.
 	 */
-	public void update()
-	{
+	public void update() {
 		throw new IllegalStateException();
 		
 		//int width = model.getWidth();
@@ -429,26 +496,26 @@ public class MatchThreeUI
 	 * Update a cell.
 	 *
 	 * @param position Coordinates of the cell.
+	 * @param jewel    ...
 	 */
-	public void updateCell(Coordinate position, Jewel jewel)
-	{
+	public void updateCell(final Coordinate position, final Jewel jewel) {
 		// Validate argument //
 		if (position == null) {
 			throw new NullPointerException();
 		}
 		
-		updateCell(position.x, position.y, jewel);
+		updateCell(position.getX(), position.getY(), jewel);
 	}
 	
 	/**
 	 * Update a cell.
 	 *
-	 * @param x X-coordinate of the cell.
-	 * @param y Y-coordinate of the cell.
+	 * @param x     X-coordinate of the cell.
+	 * @param y     Y-coordinate of the cell.
+	 * @param jewel ...
 	 */
 	// TODO: Reduce code duplication.
-	public void updateCell(int x, int y, Jewel jewel)
-	{
+	public void updateCell(final int x, final int y, final Jewel jewel) {
 		// Validate arguments //
 		if (x < 0 || y < 0) {
 			throw new IllegalArgumentException();
@@ -486,8 +553,7 @@ public class MatchThreeUI
 	/**
 	 * Update score label.
 	 */
-	public void updateScore()
-	{
+	public void updateScore() {
 		int score = model.getScore();
 		label.setText("Score: " + score);
 	}
@@ -496,11 +562,9 @@ public class MatchThreeUI
 	 * ...
 	 */
 	@Override
-	public void update(Observable o, Object arg)
-	{
+	public void update(final Observable o, final Object arg) {
 		if (o instanceof MatchThreeModel
-			&& arg instanceof MatchThreeModel.CellEvent)
-		{
+		&& arg instanceof MatchThreeModel.CellEvent) {
 			MatchThreeModel.CellEvent event = (MatchThreeModel.CellEvent) arg;
 			Coordinate c = event.getPos();
 			Jewel j = event.getType();

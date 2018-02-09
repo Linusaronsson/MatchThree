@@ -5,8 +5,6 @@ import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JPanel;
 import Model.MatchThreeModel;
 import View.MatchThreeUI;
@@ -18,45 +16,59 @@ import View.MatchThreeUI;
 public class Multiplayer
 	extends JPanel
 {
-	private MatchThreeController controller    = null;
-	private MatchThreeModel      modelOpponent = null;
-	private MatchThreeModel      modelPlayer   = null;
-	private MatchThreeUI         viewOpponent  = null;
-	private MatchThreeUI         viewPlayer    = null;
+	/** ... */
+	private MatchThreeController controller = null;
+	
+	/** ... */
+	private MatchThreeModel modelOpponent = null;
+	
+	/** ... */
+	private MatchThreeModel modelPlayer = null;
+	
+	/** ... */
+	private MatchThreeUI viewOpponent = null;
+	
+	/** ... */
+	private MatchThreeUI viewPlayer = null;
 	
 	/**
 	 * ...
+	 *
+	 * @param address  ...
+	 * @param port     ...
+	 * @param gameSize ...
+	 * @throws IOException On file-system access errors.
 	 */
-	public Multiplayer(String address, int port, final int GAME_SIZE)
-		throws IOException
-	{
+	public Multiplayer(
+		final String address,
+		final int port,
+		final int gameSize
+	) throws IOException {
 		Socket socket = new Socket(InetAddress.getByName(address), port);
 		
 		// Create MVC context //
-		MatchThreeModel modelPlayer = new MatchThreeModel(GAME_SIZE);
-		MatchThreeUI    viewPlayer  = new MatchThreeUI(modelPlayer);
-		MatchThreeController controller  = new MatchThreeController(
-			modelPlayer,
-			viewPlayer
-		);
+		modelPlayer = new MatchThreeModel(gameSize);
+		viewPlayer  = new MatchThreeUI(modelPlayer);
+		controller  = new MatchThreeController(modelPlayer, viewPlayer);
 		
-		MatchThreeModel modelOpponent = new MatchThreeModel(
+		modelOpponent = new MatchThreeModel(
 			modelPlayer.getBoard(),
-			GAME_SIZE
+			gameSize
 		);
-		MatchThreeUI viewOpponent = new MatchThreeUI(modelOpponent);
+		viewOpponent = new MatchThreeUI(modelOpponent);
 		
+		// TODO: Use constants for these numbers.
 		setLayout(new GridLayout(1, 2, 15, 15));
 		add(viewPlayer);
 		add(viewOpponent);
-		this.viewPlayer = viewPlayer;
 	}
 	
 	/**
 	 * ...
+	 *
+	 * @return The view in use.
 	 */
-	public MatchThreeUI getView()
-	{
+	public MatchThreeUI getView() {
 		return viewPlayer;
 	}
 }

@@ -12,19 +12,30 @@ import java.util.Random;
 public class MatchThreeModel
 	extends Observable
 {
+	/** ... */
 	private static final int MINIMUM_LENGTH = 3;
 	
+	/** ... */
 	private Jewel[] board = null;
-	private int     score = 0;
-	private int     width = 0;
+	
+	/** ... */
+	private int score = 0;
+	
+	/** ... */
+	private int width = 0;
 	
 	/**
 	 * Move type enum.
 	 */
 	public enum MoveType
 	{
+		/** ... */
 		BAD,
+		
+		/** ... */
 		CANCEL,
+		
+		/** ... */
 		OK;
 	}
 	
@@ -33,23 +44,38 @@ public class MatchThreeModel
 	 */
 	public class CellEvent
 	{
-		private Coordinate pos;
-		private Jewel      cell_type;
+		/** ... */
+		private Jewel cellType;
 		
-		public CellEvent(Coordinate pos, Jewel cell_type)
-		{
-			this.pos       = pos;
-			this.cell_type = cell_type;
+		/** ... */
+		private Coordinate position;
+		
+		/**
+		 * ...
+		 * @param position ...
+		 * @param cellType ...
+		 */
+		public CellEvent(final Coordinate position, final Jewel cellType) {
+			this.cellType = cellType;
+			this.position = position;
 		}
 		
-		public Jewel getType()
-		{
-			return cell_type;
+		/**
+		 * ...
+		 *
+		 * @return ...
+		 */
+		public Jewel getType() {
+			return cellType;
 		}
 		
-		public Coordinate getPos()
-		{
-			return pos;
+		/**
+		 * ...
+		 *
+		 * @return ...
+		 */
+		public Coordinate getPos() {
+			return position;
 		}
 	}
 	
@@ -58,8 +84,7 @@ public class MatchThreeModel
 	 *
 	 * @param width Size of the board on one axis in number of cells.
 	 */
-	public MatchThreeModel(int width)
-	{
+	public MatchThreeModel(final int width) {
 		// Validate argument //
 		if (width <= 0) {
 			throw new IllegalArgumentException();
@@ -76,9 +101,11 @@ public class MatchThreeModel
 	
 	/**
 	 * ...
+	 *
+	 * @param board ...
+	 * @param width ...
 	 */
-	public MatchThreeModel(Jewel[] board, int width)
-	{
+	public MatchThreeModel(final Jewel[] board, final int width) {
 		// Validate argument //
 		if (board == null) {
 			throw new NullPointerException();
@@ -90,9 +117,10 @@ public class MatchThreeModel
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
-	public Jewel[] getBoard()
-	{
+	public Jewel[] getBoard() {
 		return board;
 	}
 	
@@ -103,8 +131,7 @@ public class MatchThreeModel
 	 * @param chains Array of chains with aligned cells to clear.
 	 * @return       Gained score.
 	 */
-	private int clearChains(Coordinate[][] chains)
-	{
+	private int clearChains(final Coordinate[][] chains) {
 		// Validate argument //
 		// TODO: Perform validation on array contents as well?
 		if (chains == null) {
@@ -121,6 +148,7 @@ public class MatchThreeModel
 			
 			// Count score //
 			// TODO: Make score increase exponentially with longer matches.
+			// TODO: Make number a constant.
 			points += chain.length * 100;
 		}
 		
@@ -131,8 +159,7 @@ public class MatchThreeModel
 	 * Move cells downwards to fill any gaps. May leave the board in an
 	 * inconsistent state.
 	 */
-	private void dropCells()
-	{
+	private void dropCells() {
 		// Iterate over columns //
 		for (int column = 0; column < width; column++) {
 			// Iterate bottom-up //
@@ -155,8 +182,7 @@ public class MatchThreeModel
 	 * algorithm is not proven to work in all instances, it may potentially
 	 * leave the board in an inconsistent state.
 	 */
-	private void fill()
-	{
+	private void fill() {
 		// Create RNG //
 		// TODO: Store this higher in the hierarchy.
 		Random random = new Random();
@@ -225,14 +251,13 @@ public class MatchThreeModel
 	 * @param position Coordinate of cell to check.
 	 * @return         Array of chains found.
 	 */
-	private Coordinate[][] findChains(Coordinate position)
-	{
+	private Coordinate[][] findChains(final Coordinate position) {
 		// Validate argument //
 		if (position == null) {
 			throw new NullPointerException();
 		}
 		
-		Coordinate[] positions = new Coordinate[] { position };
+		Coordinate[] positions = new Coordinate[] {position};
 		return findChains(positions);
 	}
 	
@@ -242,8 +267,7 @@ public class MatchThreeModel
 	 * @param positions Coordinates of cells to check.
 	 * @return          Array of chains found.
 	 */
-	private Coordinate[][] findChains(Coordinate[] positions)
-	{
+	private Coordinate[][] findChains(final Coordinate[] positions) {
 		// Validate argument //
 		// TODO: Check for null values inside array?
 		if (positions == null) {
@@ -257,12 +281,12 @@ public class MatchThreeModel
 			Jewel matchType = get(position);
 			
 			// Unpack coordinates //
-			int x = position.x;
-			int y = position.y;
+			int x = position.getX();
+			int y = position.getY();
 			
 			// Search for matches on X-axis //
-			int startX = position.x;
-			int stopX  = position.x;
+			int startX = position.getX();
+			int stopX  = position.getX();
 			List<Coordinate> cellsX = new ArrayList<Coordinate>();
 			for (int i = x; i >= 0; i--) {
 				Jewel cell = get(i, y);
@@ -287,8 +311,8 @@ public class MatchThreeModel
 			}
 			
 			// Search for matches on Y-axis //
-			int startY = position.y;
-			int stopY  = position.y;
+			int startY = position.getY();
+			int stopY  = position.getY();
 			List<Coordinate> cellsY = new ArrayList<Coordinate>();
 			for (int i = y; i >= 0; i--) {
 				Jewel cell = get(x, i);
@@ -323,14 +347,13 @@ public class MatchThreeModel
 	 * @param position Coordinates of the cell.
 	 * @return         The cell value.
 	 */
-	public Jewel get(Coordinate position)
-	{
+	public Jewel get(final Coordinate position) {
 		// Validate argument //
 		if (position == null) {
 			throw new NullPointerException();
 		}
 		
-		return get(position.x, position.y);
+		return get(position.getX(), position.getY());
 	}
 	
 	/**
@@ -340,8 +363,7 @@ public class MatchThreeModel
 	 * @param y Y-coordinate of the cell.
 	 * @return  The cell value.
 	 */
-	public Jewel get(int x, int y)
-	{
+	public Jewel get(final int x, final int y) {
 		// Validate arguments //
 		if (x < 0 || y < 0) {
 			throw new IllegalArgumentException();
@@ -359,8 +381,7 @@ public class MatchThreeModel
 	 *
 	 * @return The current score.
 	 */
-	public int getScore()
-	{
+	public int getScore() {
 		return score;
 	}
 	
@@ -369,16 +390,14 @@ public class MatchThreeModel
 	 *
 	 * @return The number of cells per axis.
 	 */
-	public int getWidth()
-	{
+	public int getWidth() {
 		return width;
 	}
 	
 	/**
 	 * Initialize a new game.
 	 */
-	public void init()
-	{
+	public void init() {
 		// Reset board //
 		// TODO: Is it necessary to null-initialize array?
 		for (int i = 0; i < width * width; i++) {
@@ -398,40 +417,45 @@ public class MatchThreeModel
 	 * @param to   Destination coordinates.
 	 * @return     Whether the move was successful, invalid or canceled.
 	 */
-	public MoveType move(Coordinate from, Coordinate to)
-	{
+	public MoveType move(final Coordinate from, final Coordinate to) {
 		// Validate arguments //
 		if (from == null || to == null) {
 			throw new NullPointerException();
 		}
 		
 		// Validate move //
-		if (from.x == to.x && from.y == to.y) {
+		if (from.getX() == to.getX() && from.getY() == to.getY()) {
 			return MoveType.CANCEL;
 		}
-		if (from.x != to.x && from.y != to.y) {
+		if (from.getX() != to.getX() && from.getY() != to.getY()) {
 			return MoveType.BAD;
 		}
 		
 		// Move cell //
 		Jewel source = get(from);
-		int dx = to.x - from.x;
-		int dy = to.y - from.y;
+		int dx = to.getX() - from.getX();
+		int dy = to.getY() - from.getY();
 		if (dx < 0) { dx = -1; }
 		if (dx > 0) { dx = +1; }
 		if (dy < 0) { dy = -1; }
 		if (dy > 0) { dy = +1; }
 		List<Coordinate> positions = new ArrayList<Coordinate>();
-		for (Coordinate position = from;
-		     position.x != to.x || position.y != to.y; // TODO: Implement `equals'.
-		     position.x += dx, position.y += dy)
-		{
+		// TODO: Implement `equals'.
+		// TODO: Implement `clone`.
+		// TODO: Make a cleaner loop.
+		for (Coordinate position = new Coordinate(from.getX(), from.getY())
+		; position.getX() != to.getX() || position.getY() != to.getY()
+		; position.setX(position.getX() + dx),
+		position.setY(position.getY() + dy)) {
 			// Swap cell with neighbor //
-			Coordinate next = new Coordinate(position.x + dx, position.y + dy);
+			Coordinate next = new Coordinate(
+				position.getX() + dx,
+				position.getY() + dy
+			);
 			swap(position, next);
 			
 			// Save coordinate //
-			positions.add(new Coordinate(position.x, position.y));
+			positions.add(new Coordinate(position.getX(), position.getY()));
 		}
 		positions.add(to);
 		
@@ -448,14 +472,13 @@ public class MatchThreeModel
 	 * @param position Coordinates of the cell.
 	 * @param value    Value to set.
 	 */
-	private void set(Coordinate position, Jewel value)
-	{
+	private void set(final Coordinate position, final Jewel value) {
 		// Validate arguments //
 		if (position == null) {
 			throw new NullPointerException();
 		}
 		
-		set(position.x, position.y, value);
+		set(position.getX(), position.getY(), value);
 	}
 	
 	/**
@@ -465,8 +488,7 @@ public class MatchThreeModel
 	 * @param y     Y-coordinate of the cell.
 	 * @param value Value to set.
 	 */
-	private void set(int x, int y, Jewel value)
-	{
+	private void set(final int x, final int y, final Jewel value) {
 		// Validate arguments //
 		if (x < 0 || y < 0) {
 			throw new IllegalArgumentException();
@@ -491,8 +513,7 @@ public class MatchThreeModel
 	 * @param first  Coordinates of first cell.
 	 * @param second Coordinates of second cell.
 	 */
-	private void swap(Coordinate first, Coordinate second)
-	{
+	private void swap(final Coordinate first, final Coordinate second) {
 		// Validate arguments //
 		if (first == null || second == null) {
 			throw new NullPointerException();
@@ -506,9 +527,10 @@ public class MatchThreeModel
 	
 	/**
 	 * Progress board into a consistent state.
+	 *
+	 * @param positions ...
 	 */
-	private void update(Coordinate[] positions)
-	{
+	private void update(final Coordinate[] positions) {
 		// Validate argument //
 		// TODO: Add assert on count not exceeding number of cells.
 		if (positions == null) {
