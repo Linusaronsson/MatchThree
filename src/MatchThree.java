@@ -1,24 +1,42 @@
+import Controller.WindowController;
+import java.io.IOException;
+import View.SwapView;
+import View.Window;
+
 /**
  * MatchThree game.
  */
-public class MatchThree
+public final class MatchThree
 {
-	private static final int GAME_SIZE = 6;
+	/** Port number for network play. */
+	private static final int PORT_NUMBER = 3333;
+	
+	/**
+	 * ...
+	 */
+	private MatchThree() {
+		throw new UnsupportedOperationException();
+	}
 	
 	/**
 	 * Program entry point.
 	 *
 	 * @param args Program arguments.
+	 * @throws IOException On file-system access errors.
 	 */
-	public static void main(String[] args)
-	{
-		// Create MVC context //
-		BoardModel      model      = new BoardModel(GAME_SIZE);
-		BoardView       view       = new BoardView(model);
-		BoardController controller = new BoardController(model, view);
+	public static void main(final String[] args)
+	throws IOException {
+		// Create GUI //
+		SwapView swapView = new SwapView();
+		Window   window   = new Window(swapView);
+		WindowController windowController = new WindowController(
+			window,
+			swapView
+		);
+		swapView.setWindow(window);
 		
-		// Show GUI //
-		// TODO: Move this to view?
-		view.setVisible(true);
+		// Setup server listener //
+		Server server = new Server(PORT_NUMBER, window);
+		server.start();
 	}
 }

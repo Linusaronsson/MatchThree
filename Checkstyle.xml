@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+	"http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd">
+<!-- See http://checkstyle.sourceforge.net/checks.html for documentation -->
+<module name="Checker">
+	<!-- <property name="basedir" value=""/> -->
+	<property name="cacheFile" value="target/checkstyle.cache"/>
+	<property name="localeCountry" value="SE"/>
+	<property name="localeLanguage" value="en"/>
+	<property name="charset" value="UTF-8"/>
+	<property name="fileExtensions" value="java, properties, xml"/>
+	<property name="severity" value="error"/>
+	<property name="haltOnException" value="true"/>
+	
+	<!-- package-info.java -->
+	<!--
+	<module name="JavadocPackage">
+		<property name="allowLegacy" value="false"/>
+		<property name="fileExtensions" value=".java"/>
+	</module>
+	-->
+	
+	<!-- Assert LF at EOF -->
+	<module name="NewlineAtEndOfFile">
+		<property name="lineSeparator" value="LF"/>
+	</module>
+	
+	<!-- Checks that property files contain the same keys -->
+	<module name="Translation"/>
+	
+	<!-- Limit lines of code -->
+	<module name="FileLength">
+		<property name="max" value="1000"/>
+	</module>
+	
+	<!-- Whitespace -->
+	<!-- <module name="FileTabCharacter"/> -->
+	
+	<!-- Regular expressions -->
+	<module name="RegexpSingleline">
+		<property name="format" value="[^\s]\s+$"/>
+		<property name="minimum" value="0"/>
+		<property name="maximum" value="0"/>
+		<property name="message" value="Line has trailing spaces."/>
+	</module>
+	
+	<!-- Headers -->
+	<!--
+	<module name="Header">
+		<property name="headerFile" value="${checkstyle.header.file}"/>
+		<property name="fileExtensions" value="java"/>
+	</module>
+	-->
+	
+	<module name="TreeWalker">
+		<property name="tabWidth" value="4"/>
+		
+		<!-- Javadoc -->
+		<module name="JavadocMethod"/>
+		<module name="JavadocType"/>
+		<module name="JavadocVariable"/>
+		<module name="JavadocStyle"/>
+		
+		<!-- Naming conventions -->
+		<module name="ConstantName"/>
+		<module name="LocalFinalVariableName"/>
+		<module name="LocalVariableName"/>
+		<module name="MemberName"/>
+		<module name="MethodName"/>
+		<!-- <module name="PackageName"/> -->
+		<module name="ParameterName"/>
+		<module name="StaticVariableName"/>
+		<module name="TypeName"/>
+		
+		<!-- Imports -->
+		<module name="AvoidStarImport"/>
+		<module name="IllegalImport"/>
+		<module name="RedundantImport"/>
+		<module name="UnusedImports">
+			<property name="processJavadoc" value="false"/>
+		</module>
+		
+		<!-- Size limits -->
+		<module name="LineLength"/>
+		<module name="MethodLength"/>
+		<module name="ParameterNumber"/>
+		
+		<!-- Whitespace -->
+		<module name="EmptyForIteratorPad"/>
+		<module name="GenericWhitespace"/>
+		<module name="MethodParamPad"/>
+		<module name="NoWhitespaceAfter"/>
+		<module name="NoWhitespaceBefore"/>
+		<module name="OperatorWrap"/>
+		<module name="ParenPad"/>
+		<module name="TypecastParenPad"/>
+		<module name="WhitespaceAfter"/>
+		<module name="WhitespaceAround"/>
+		
+		<!-- Modifiers -->
+		<module name="ModifierOrder"/>
+		<module name="RedundantModifier"/>
+		
+		<!-- Blocks -->
+		<module name="AvoidNestedBlocks"/>
+		<module name="EmptyBlock"/>
+		<module name="LeftCurly">
+			<property name="option" value="nl"/>
+			<property name="tokens" value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, OBJBLOCK"/>
+		</module>
+		<module name="LeftCurly">
+			<property name="option" value="eol"/>
+			<property name="tokens" value="ANNOTATION_DEF, CTOR_DEF, METHOD_DEF, ENUM_CONSTANT_DEF, STATIC_INIT, LAMBDA"/>
+		</module>
+		<module name="LeftCurly">
+			<property name="option" value="eol"/>
+			<property name="tokens" value="LITERAL_WHILE, LITERAL_SYNCHRONIZED, LITERAL_SWITCH, LITERAL_DO, LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY"/>
+		</module>
+		<module name="NeedBraces"/>
+		<module name="RightCurly"/>
+		
+		<!-- Common problems -->
+		<module name="AvoidInlineConditionals"/>
+		<module name="EmptyStatement"/>
+		<module name="EqualsHashCode"/>
+		<module name="HiddenField">
+			<!-- Disabled: PARAMETER_DEF -->
+			<property name="tokens" value="LAMBDA, VARIABLE_DEF"/>
+		</module>
+		<module name="IllegalInstantiation"/>
+		<module name="InnerAssignment"/>
+		<!-- <module name="MagicNumber"/> -->
+		<module name="MissingSwitchDefault"/>
+		<module name="SimplifyBooleanExpression"/>
+		<module name="SimplifyBooleanReturn"/>
+		
+		<!-- Class design -->
+		<module name="DesignForExtension"/>
+		<module name="FinalClass"/>
+		<module name="HideUtilityClassConstructor"/>
+		<module name="InterfaceIsType"/>
+		<module name="VisibilityModifier"/>
+		
+		<!-- Miscellaneous -->
+		<module name="ArrayTypeStyle"/>
+		<module name="FinalParameters"/>
+		<!-- <module name="TodoComment"/> -->
+		<module name="UpperEll"/>
+		
+		<!-- Temporary lint suppression -->
+		<module name="SuppressionCommentFilter">
+			<property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)"/>
+			<property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)"/>
+			<property name="checkFormat" value="$1"/>
+			<property name="checkCPP" value="true"/>
+			<property name="checkC" value="true"/>
+		</module>
+	</module>
+</module>

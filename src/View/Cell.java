@@ -1,12 +1,16 @@
+package View;
+
 import javax.swing.JButton;
+import Model.Coordinate;
 
 /**
  * Board cell.
  */
 @SuppressWarnings("serial")
-class Cell
+public class Cell
 	extends JButton
 {
+	/** ... */
 	private Coordinate position = null;
 	
 	/**
@@ -14,8 +18,7 @@ class Cell
 	 *
 	 * @param position Coordinates of the cell.
 	 */
-	public Cell(Coordinate position)
-	{
+	public Cell(final Coordinate position) {
 		super();
 		
 		// Validate argument //
@@ -32,8 +35,7 @@ class Cell
 	 * @param x X-coordinate of the cell.
 	 * @param y Y-coordinate of the cell.
 	 */
-	public Cell(int x, int y)
-	{
+	public Cell(final int x, final int y) {
 		super();
 		
 		// Validate arguments //
@@ -49,8 +51,7 @@ class Cell
 	 *
 	 * @return The coordinates.
 	 */
-	public Coordinate getPosition()
-	{
+	public Coordinate getPosition() {
 		return position;
 	}
 	
@@ -59,9 +60,8 @@ class Cell
 	 *
 	 * @return The X-coordinate.
 	 */
-	public int getPositionX()
-	{
-		return position.x;
+	public int getPositionX() {
+		return position.getX();
 	}
 	
 	/**
@@ -69,8 +69,7 @@ class Cell
 	 *
 	 * @return The Y-coordinate.
 	 */
-	public int getPositionY()
-	{
-		return position.y;
+	public int getPositionY() {
+		return position.getY();
 	}
 }
