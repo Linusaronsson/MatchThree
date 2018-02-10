@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -143,8 +144,9 @@ public class SwapView
 				
 				// TODO: Avoid magic numbers.
 				//Display new panel (the game)
-				singleplayer.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
+				singleplayer.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
 				singleplayer.setBackground(Color.BLACK);
+				singleplayer.setBorder(BorderFactory.createLineBorder(Color.white));
 				singleplayerButtonPanel.add(back);
 				singleplayerButtonPanel.add(buttonV1);
 				singleplayerButtonPanel.add(buttonV2);

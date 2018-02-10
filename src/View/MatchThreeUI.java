@@ -194,6 +194,8 @@ public class MatchThreeUI
 		// Construct header //
 		JPanel header = new JPanel(new FlowLayout());
 		label.setForeground(Color.WHITE);
+		label.setFont(new Font(CELL_FONT_NAME, Font.BOLD, 20));
+		
 		header.add(label);
 		header.setBackground(Color.BLACK);
 		add(header, BorderLayout.PAGE_START);
