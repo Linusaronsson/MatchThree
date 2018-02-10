@@ -36,7 +36,7 @@ public final class MatchThree
 		swapView.setWindow(window);
 		
 		// Setup server listener //
-		Server server = new Server(PORT_NUMBER, window);
+		Server server = new Server(swapView, PORT_NUMBER);
 		server.start();
 	}
 }
