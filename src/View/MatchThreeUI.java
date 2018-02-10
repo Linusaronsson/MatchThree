@@ -75,7 +75,7 @@ public class MatchThreeUI
 	private static final int GAP = 2;
 	
 	/** ... */
-	private Clip audioSwap = null;
+	private Clip audioClip = null;
 	
 	/** ... */
 	private Cell[] board = null;
@@ -99,7 +99,7 @@ public class MatchThreeUI
 	private BufferedImage imageDiamond = null;
 	
 	/** ... */
-    private BufferedImage imageDiamondV2 = null;
+	private BufferedImage imageDiamondV2 = null;
 	
 	/** ... */
 	private BufferedImage imageEmerald = null;
@@ -182,7 +182,7 @@ public class MatchThreeUI
 		model.addObserver(this);
 		
 		// Load external resources //
-		initAudio();
+		initAudio("Swap.wav");
 		initGraphics();
 		
 		// Initialize components //
@@ -270,7 +270,7 @@ public class MatchThreeUI
 		return grid;
 	}
 	
-	private class MouseAction 
+	private class MouseAction
 		implements MouseListener 
 		{
 		private Cell cell = null;
@@ -356,9 +356,9 @@ public class MatchThreeUI
 	/**
 	 * Load external audio resources.
 	 */
-	private void initAudio() {
+	private void initAudio(String audio) {
 		// Read audio from file //
-		File audioFile = new File(DIR_RESOURCES, "Swap.wav").getAbsoluteFile();
+		File audioFile = new File(DIR_RESOURCES, audio).getAbsoluteFile();
 		AudioInputStream audioStream = null;
 		try {
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
@@ -379,12 +379,12 @@ public class MatchThreeUI
 		
 		// Send audio to system mixer //
 		try {
-			audioSwap = AudioSystem.getClip();
-			audioSwap.open(audioStream);
+			audioClip = AudioSystem.getClip();
+			audioClip.open(audioStream);
 		} catch (IOException
 		| LineUnavailableException e) {
 			System.err.println(e);
-			audioSwap = null;
+			audioClip = null;
 			return;
 		}
 	}
@@ -500,11 +500,12 @@ public class MatchThreeUI
 	/**
 	 * Play swap audio clip.
 	 */
-	public void playAudioSwap() {
+	public void playAudio(String audio) {
 		// Rewind and play clip //
-		if (audioSwap != null) {
-			audioSwap.setFramePosition(0);
-			audioSwap.start();
+		initAudio(audio);
+		if (audioClip != null) {
+			audioClip.setFramePosition(0);
+			audioClip.start();
 		}
 	}
 	

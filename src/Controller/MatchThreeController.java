@@ -100,11 +100,12 @@ public class MatchThreeController
 		switch (model.move(from, to)) {
 			case OK:
 				// Play swap audio //
-				view.playAudioSwap();
+				view.playAudio("Swap.wav");
 				break;
 			case BAD:
 				// TODO: Handle null values.
-				window.showError("Invalid move");
+				view.playAudio("InvalidMove.wav");
+				//window.showError("Invalid move");
 				break;
 			case CANCEL:
 				break;

@@ -41,7 +41,7 @@ public class WindowController
 	{
 		@Override
 		public void actionPerformed(final ActionEvent event) {
-			window.showError("“Open” not implemented");
+			window.showError("Open not implemented");
 		}
 	}
 	
@@ -53,7 +53,7 @@ public class WindowController
 	{
 		@Override
 		public void actionPerformed(final ActionEvent event) {
-			window.showError("“Save” not implemented");
+			window.showError("Save not implemented");
 		}
 	}
 	
