@@ -3,12 +3,24 @@ package View;
 import Controller.MatchThreeController;
 import GameModes.Multiplayer;
 import GameModes.Singleplayer;
+import Model.Jewel;
+import Multiplayer.Message;
+import Multiplayer.Server;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -32,13 +44,16 @@ public class SwapView
 	private GameMode mode = GameMode.WAITING;
 	
 	/** ... */
-	private MultiplayerMenu mp = new MultiplayerMenu();
+	private MultiplayerMenu mpMenu = new MultiplayerMenu();
 	
 	/** ... */
 	private JPanel rightPanel = new JPanel();
 	
 	/** ... */
 	private Singleplayer sp = null;
+	
+	/** .. */
+	private Multiplayer mp = null;
 	
 	/** ... */
 	private JButton v1btn = new JButton("Version 1");
@@ -104,16 +119,15 @@ public class SwapView
 	 */
 	private void changeState(final WindowState state) {
 		removeAll();
+		viewState = state;
 		
 		// TODO: Fix Layouts for probably all different states. Multiplayer
 		//       especially.
 		switch (state) {
 			case START_MENU:
-				viewState = WindowState.START_MENU;
 				add(mainMenu);
 				break;
 			case SINGLEPLAYER_GAME:
-				viewState = WindowState.SINGLEPLAYER_GAME;
 				mode = GameMode.SINGLEPLAYER;
 				sp = new Singleplayer(GAME_SIZE);
 				sp.setWindow(window);
@@ -132,35 +146,23 @@ public class SwapView
 				view = sp.getView();
 				break;
 			case MULTIPLAYER_MENU:
-				viewState = WindowState.MULTIPLAYER_MENU;
 				add(goBack); //button to go back to main menu panel
-				add(mp);
+				add(mpMenu);
 				break;
 			case MULTIPLAYER_GAME:
-				viewState = WindowState.MULTIPLAYER_GAME;
 				mode = GameMode.MULTIPLAYER;
-				Multiplayer s = null;
-				
-				try {
-					s = new Multiplayer(
-						mp.getIp(),
-						Integer.parseInt(mp.getPort()),
-						GAME_SIZE
-					);
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				if(mp == null) {
+					//Should be unreachable
+					System.err.println("MP was null");
+					System.exit(1);
 				}
 				
-				s.setLayout(new FlowLayout());
-				s.add(goBack); //button to go back to main menu panel
-				s.setBackground(Color.BLACK);
-				add(s);
-				setSize(getPerfectDimension());
-				view = s.getView();
+				mp.setLayout(new FlowLayout());
+				mp.add(goBack); //button to go back to main menu panel
+				mp.setBackground(Color.BLACK);
+				add(mp);
+				window.setSize(1300, 600);
+				view = mp.getView(); //remove?
 				break;
 			default: //throw something
 				break;
@@ -168,6 +170,20 @@ public class SwapView
 		
 		revalidate();
 		repaint();
+	}
+	
+	/**
+	 * ...
+	 *
+	 */
+	public void changeToMultiplayer(InetAddress ip, int port, boolean isHost, Jewel[] board) {
+		try {
+			mp = new Multiplayer(ip, port, isHost, board, GAME_SIZE);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		changeState(WindowState.MULTIPLAYER_GAME);
 	}
 	
 	/**
@@ -202,8 +218,18 @@ public class SwapView
 			changeState(WindowState.START_MENU);
 		});
 		
-		mp.addConnectListener((ActionEvent e) -> {
-			changeState(WindowState.MULTIPLAYER_GAME);
+		mpMenu.addConnectListener((ActionEvent e) -> {
+			//changeState(WindowState.);
+			//Send message to port requesting gameMULTIPLAYER_GAME
+			try {
+				InetAddress ip = InetAddress.getByName(mpMenu.getIp());
+				int port = Integer.parseInt(mpMenu.getPort());
+				DatagramSocket client = new DatagramSocket();
+				Server.sendDatagram(new Message(Message.MessageType.REQUESTED_GAME), client, ip, port);
+	        } catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		});
 		
 		mainMenu.addMultiplayerListener((ActionEvent e) -> {
