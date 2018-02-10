@@ -478,7 +478,7 @@ public class MatchThreeUI
 	 * @param file File to read from.
 	 * @return     Loaded image buffer.
 	 */
-	private static BufferedImage loadImage(final File file) {
+	protected static BufferedImage loadImage(final File file) {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(file);

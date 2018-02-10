@@ -4,10 +4,15 @@ import Controller.MatchThreeController;
 import GameModes.Multiplayer;
 import GameModes.Singleplayer;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.image.BufferedImage;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.File;
 import java.io.IOException;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -22,7 +27,7 @@ public class SwapView
 	private static final int GAME_SIZE = 6;
 	
 	/** ... */
-	private JButton back = new JButton("Back to Main Menu");
+	private JButton back = new JButton("");
 	
 	/** ... */
 	private MainMenu mainMenu = new MainMenu();
@@ -37,16 +42,28 @@ public class SwapView
 	private Singleplayer singleplayer = null;
 	
 	/** ... */
-	private JButton buttonV1 = new JButton("Version 1");
+	private JButton buttonV1 = new JButton("");
 	
 	/** ... */
-	private JButton buttonV2 = new JButton("Version 2");
+	private JButton buttonV2 = new JButton("");
 	
 	/** ... */
 	private MatchThreeUI view = null;
 	
 	/** ... */
 	private Window window  = null;
+	
+	/** ... */
+	private static final String DIR_RESOURCES = "resources";
+	
+	/** ... */
+	private static final BufferedImage imageV1 = MatchThreeUI.loadImage(new File(DIR_RESOURCES, "V1.png"));
+	
+	/** ... */
+	private static final BufferedImage imageV2 = MatchThreeUI.loadImage(new File(DIR_RESOURCES, "V2.png"));
+	
+	/** ... */
+	private static final BufferedImage imageBack = MatchThreeUI.loadImage(new File(DIR_RESOURCES, "Back.png"));
 	
 	/**
 	 * ...
@@ -88,6 +105,22 @@ public class SwapView
 		changeState(WindowState.START_MENU);
 		
 		initializeHandlers();
+		initGraphics();
+		setBackground(Color.DARK_GRAY);
+	}
+	
+	private void initGraphics() {
+		back.setPreferredSize(new Dimension(50, 50));
+		back.setIcon(new ImageIcon(imageBack));
+		back.setBackground(Color.DARK_GRAY);
+		
+		buttonV1.setIcon(new ImageIcon(imageV1));
+		buttonV1.setPreferredSize(new Dimension(80, 80));
+		buttonV1.setBackground(Color.DARK_GRAY);
+		
+		buttonV2.setIcon(new ImageIcon(imageV2));
+		buttonV2.setPreferredSize(new Dimension(80, 80));
+		buttonV2.setBackground(Color.DARK_GRAY);
 	}
 	
 	/**
@@ -105,16 +138,18 @@ public class SwapView
 				add(mainMenu);
 				break;
 			case SINGLEPLAYER_GAME:
+				singleplayer = new Singleplayer(GAME_SIZE);
 				singleplayer.setWindow(window);
 				
 				// TODO: Avoid magic numbers.
 				//Display new panel (the game)
-				singleplayer.setLayout(new FlowLayout());
+				singleplayer.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 20));
 				singleplayer.setBackground(Color.BLACK);
 				singleplayerButtonPanel.add(back);
 				singleplayerButtonPanel.add(buttonV1);
 				singleplayerButtonPanel.add(buttonV2);
-				singleplayerButtonPanel.setLayout(new GridLayout(3, 1));
+				singleplayerButtonPanel.setBackground(Color.DARK_GRAY);
+				singleplayerButtonPanel.setLayout(new GridLayout(3, 1, 10, 10));
 				add(singleplayer);
 				add(singleplayerButtonPanel);
 				view = singleplayer.getView();
