@@ -1,4 +1,6 @@
 import Controller.WindowController;
+import Multiplayer.Server;
+
 import java.io.IOException;
 import View.SwapView;
 import View.Window;

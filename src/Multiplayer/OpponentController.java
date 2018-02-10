@@ -8,6 +8,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 
 import javax.swing.JOptionPane;
 
@@ -38,12 +39,17 @@ public class OpponentController extends Thread {
             System.exit(1);
         }
     }
+    
+    public void close() {
+    	this.interrupt();
+    	opponent.close();
+    }
 
     @Override
     public void run() {
         try {
             while(!interrupted()) {
-        		opponent.receive(in);
+            	opponent.receive(in);
                 ByteArrayInputStream byteInStream = new ByteArrayInputStream(inBuffer);
                 ObjectInputStream inStream = new ObjectInputStream(byteInStream);
                 UpdateCell m = (UpdateCell) inStream.readObject();
@@ -51,9 +57,14 @@ public class OpponentController extends Thread {
                 System.out.println("OpponentController Recieved: \n" + m.toString());
                 inStream.close();
             }
-        } catch(Exception e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
+        } catch(SocketException e) {
+            return;
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

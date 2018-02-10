@@ -12,6 +12,7 @@ import Model.MatchThreeModel;
 import Multiplayer.MultiplayerModel;
 import Multiplayer.OpponentController;
 import View.MatchThreeUI;
+import View.Window;
 
 /**
  * ...
@@ -62,7 +63,6 @@ public class Multiplayer
 
 		playerView  = new MatchThreeUI(playerModel);
 		playerController  = new MatchThreeController(playerModel, playerView);
-		
 
 		opponentView = new MatchThreeUI(opponentModel);
 		opponentController = new OpponentController(port, opponentModel);
@@ -75,6 +75,15 @@ public class Multiplayer
 	}
 	
 	/**
+	 * Set reference to parent window.
+	 *
+	 * @param window The parent window.
+	 */
+	public void setWindow(final Window window) {
+		playerController.setWindow(window);
+	}
+	
+	/**
 	 * ...
 	 *
 	 * @return The view in use.
@@ -82,4 +91,9 @@ public class Multiplayer
 	public MatchThreeUI getView() {
 		return playerView;
 	}
+	
+	public void closeGame() {
+		opponentController.close();
+	}
+	
 }

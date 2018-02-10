@@ -119,6 +119,16 @@ public class SwapView
 	 */
 	private void changeState(final WindowState state) {
 		removeAll();
+		
+		//If a state change was issued during a multiplayer game,
+		//then let the other user know that game ended.
+		if(viewState == WindowState.MULTIPLAYER_GAME) {
+			//TODO
+			Server.setInGame(false);
+			mp.closeGame();
+			mp = null;
+		}
+		
 		viewState = state;
 		
 		// TODO: Fix Layouts for probably all different states. Multiplayer
@@ -183,6 +193,7 @@ public class SwapView
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		mp.setWindow(window);
 		changeState(WindowState.MULTIPLAYER_GAME);
 	}
 	
