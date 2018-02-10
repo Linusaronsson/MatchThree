@@ -16,13 +16,13 @@ public class MatchThreeModel
 	private static final int MINIMUM_LENGTH = 3;
 	
 	/** ... */
-	private Jewel[] board = null;
+	protected Jewel[] board = null;
 	
 	/** ... */
-	private int score = 0;
+	protected int score = 0;
 	
 	/** ... */
-	private int width = 0;
+	protected int width = 0;
 	
 	/**
 	 * Move type enum.
@@ -490,7 +490,7 @@ public class MatchThreeModel
 	 * @param y     Y-coordinate of the cell.
 	 * @param value Value to set.
 	 */
-	private void set(final int x, final int y, final Jewel value) {
+	public void set(final int x, final int y, final Jewel value) {
 		// Validate arguments //
 		if (x < 0 || y < 0) {
 			throw new IllegalArgumentException();
