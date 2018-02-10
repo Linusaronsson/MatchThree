@@ -175,7 +175,12 @@ public class SwapView
 		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+			switch(button.getMnemonic()) {
+			case 0: /* BACK */ changeState(WindowState.START_MENU); break;
+			case 1: /* V1 */   view.changeSprites(1);   break;
+			case 2: /* V2 */   view.changeSprites(2);   break;
+				default: break;
+			}
 		}
 
 		@Override
@@ -294,10 +299,6 @@ public class SwapView
 	 * ...
 	 */
 	private void initializeHandlers() {
-		back.addActionListener((ActionEvent e) -> {
-			changeState(WindowState.START_MENU);
-		});
-		
 		multiplayerMenu.addConnectListener((ActionEvent e) -> {
 			changeState(WindowState.MULTIPLAYER_GAME);
 		});
@@ -308,14 +309,6 @@ public class SwapView
 		
 		mainMenu.addSingleplayerListener((ActionEvent e) -> {
 			changeState(WindowState.SINGLEPLAYER_GAME);
-		});
-		
-		buttonV1.addActionListener((ActionEvent e) -> {
-			view.changeSprites(1);
-		});
-		
-		buttonV2.addActionListener((ActionEvent e) -> {
-			view.changeSprites(2);
 		});
 	}
 	

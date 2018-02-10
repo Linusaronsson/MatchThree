@@ -264,7 +264,7 @@ public class MatchThreeUI
 		return grid;
 	}
 	
-	protected static final void initButtonDefaultValue(JButton button) {
+	protected static final void initButtonDefaultValue(final JButton button) {
 		button.setOpaque(true);
 		button.setBorderPainted(false);
 		button.setEnabled(true);
@@ -421,11 +421,10 @@ public class MatchThreeUI
 				break;
 			default: break;
 		}
-		int d = 0;
-		
-		for (Jewel j : model.getBoard()) {
-			Cell cell = board[d];
-			switch (j) {
+		int index = 0;
+		for (Jewel jewel : model.getBoard()) {
+			Cell cell = board[index];
+			switch (jewel) {
 				case DIAMOND:  cell.setIcon(new ImageIcon(currentDiamond));
 				               break;
 				case EMERALD:  cell.setIcon(new ImageIcon(currentEmerald));
@@ -438,7 +437,7 @@ public class MatchThreeUI
 				               break;
 				default:       break;
 			}
-			d++;
+			index++;
 		}
 	}
 	
@@ -458,7 +457,6 @@ public class MatchThreeUI
 		imageSapphireV2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
 		imageTopaz      = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
 		imageTopazV2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
-		
 		imageDiamondHalfAlpha    = loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond.png"));
 		imageDiamondV2HalfAlpha  = loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond_v2.png"));
 		imageEmeraldHalfAlpha    = loadImage(new File(DIR_RESOURCES, "MouseEnteredEmerald.png"));
@@ -469,7 +467,7 @@ public class MatchThreeUI
 		imageSapphireV2HalfAlpha = loadImage(new File(DIR_RESOURCES, "MouseEnteredSapphire_v2.png"));
 		imageTopazHalfAlpha      = loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz.png"));
 		imageTopazV2HalfAlpha    = loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz_v2.png"));
-		// Not actually jewels btw, just some blocks
+		// Block images instead of jewels
 		
 		// Default images
 		currentDiamond  = imageDiamond;
