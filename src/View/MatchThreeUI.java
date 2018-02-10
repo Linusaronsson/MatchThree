@@ -22,6 +22,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -248,16 +249,7 @@ public class MatchThreeUI
 			board[i] = button;
 			
 			// Set button properties //
-			button.setOpaque(true);
-			button.setBorderPainted(false);
-			button.setEnabled(true);
-			button.setContentAreaFilled(false);
-			button.setFocusPainted(false);
-			button.setHorizontalAlignment(SwingConstants.CENTER);
-			button.setVerticalAlignment(SwingConstants.CENTER);
-			button.setForeground(COLOR_FOREGROUND);
-			button.setBackground(Color.BLACK);
-			button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
+			initButtonDefaultValue(button);
 			button.addMouseListener(new MouseAction(button));
 			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
 			button.setFont(font);
@@ -270,6 +262,19 @@ public class MatchThreeUI
 		}
 		
 		return grid;
+	}
+	
+	protected static final void initButtonDefaultValue(JButton button) {
+		button.setOpaque(true);
+		button.setBorderPainted(false);
+		button.setEnabled(true);
+		button.setContentAreaFilled(false);
+		button.setFocusPainted(false);
+		button.setHorizontalAlignment(SwingConstants.CENTER);
+		button.setVerticalAlignment(SwingConstants.CENTER);
+		button.setForeground(COLOR_FOREGROUND);
+		button.setBackground(Color.BLACK);
+		button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
 	}
 	
 	private class MouseAction
