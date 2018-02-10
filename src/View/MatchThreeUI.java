@@ -4,8 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -20,7 +23,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import Model.Coordinate;
@@ -72,9 +75,6 @@ public class MatchThreeUI
 	private static final int GAP = 2;
 	
 	/** ... */
-	private static final String WINDOW_TITLE = "MatchThree";
-	
-	/** ... */
 	private Clip audioSwap = null;
 	
 	/** ... */
@@ -99,7 +99,7 @@ public class MatchThreeUI
 	private BufferedImage imageDiamond = null;
 	
 	/** ... */
-	private BufferedImage imageDiamondV2 = null;
+    private BufferedImage imageDiamondV2 = null;
 	
 	/** ... */
 	private BufferedImage imageEmerald = null;
@@ -126,22 +126,43 @@ public class MatchThreeUI
 	private BufferedImage imageTopazV2 = null;
 	
 	/** ... */
+	private BufferedImage imageDiamondHalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageDiamondV2HalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageEmeraldHalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageEmeraldV2HalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageRubyHalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageRubyV2HalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageSapphireHalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageSapphireV2HalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageTopazHalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageTopazV2HalfAlpha = null;
+	
+	/** ... */
 	private JLabel label = new JLabel("");
 	
 	/** ... */
 	private MatchThreeModel model = null;
 	
 	/** ... */
-	private JMenuItem newItem = null;
-	
-	/** ... */
-	private JMenuItem openItem = null;
-	
-	/** ... */
-	private JMenuItem quitItem = null;
-	
-	/** ... */
-	private JMenuItem saveItem = null;
+	private int jewelVersion = 1;
 	
 	/**
 	 * Constructor for `MatchThreeUI`.
@@ -235,6 +256,81 @@ public class MatchThreeUI
 			button.setForeground(COLOR_FOREGROUND);
 			button.setBackground(Color.BLACK);
 			button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
+			button.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mousePressed(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseReleased(MouseEvent e) {
+					// TODO Auto-generated method stub
+					
+				}
+
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					// TODO Auto-generated method stub
+					switch(jewelVersion) {
+					case 1: 
+						switch(button.getMnemonic()) {
+							case 0: /** Diamond */  button.setIcon(new ImageIcon(imageDiamondHalfAlpha));  break;
+							case 1: /** Emerald */  button.setIcon(new ImageIcon(imageEmeraldHalfAlpha));  break;
+							case 2: /** Ruby */     button.setIcon(new ImageIcon(imageRubyHalfAlpha));     break;
+							case 3: /** Sapphire */ button.setIcon(new ImageIcon(imageSapphireHalfAlpha)); break;
+							case 4: /** Topaz */    button.setIcon(new ImageIcon(imageTopazHalfAlpha));    break;
+							default: break;
+						}
+						break;
+					case 2: 
+						switch(button.getMnemonic()) {
+							case 0: /** DiamondV2 */  button.setIcon(new ImageIcon(imageDiamondV2HalfAlpha));  break;
+							case 1: /** EmeraldV2 */  button.setIcon(new ImageIcon(imageEmeraldV2HalfAlpha));  break;
+							case 2: /** RubyV2 */     button.setIcon(new ImageIcon(imageRubyV2HalfAlpha));     break;
+							case 3: /** SapphireV2 */ button.setIcon(new ImageIcon(imageSapphireV2HalfAlpha)); break;
+							case 4: /** TopazV2 */    button.setIcon(new ImageIcon(imageTopazV2HalfAlpha));    break;
+							default: break;
+						}
+						break;
+					default: break;
+					}
+				}
+
+				@Override
+				public void mouseExited(MouseEvent e) {
+					switch(jewelVersion) {
+					case 1: 
+						switch(button.getMnemonic()) {
+							case 0: /** Diamond */  button.setIcon(new ImageIcon(imageDiamond));  break;
+							case 1: /** Emerald */  button.setIcon(new ImageIcon(imageEmerald));  break;
+							case 2: /** Ruby */     button.setIcon(new ImageIcon(imageRuby));     break;
+							case 3: /** Sapphire */ button.setIcon(new ImageIcon(imageSapphire)); break;
+							case 4: /** Topaz */    button.setIcon(new ImageIcon(imageTopaz));    break;
+							default: break;
+						}
+						break;
+					case 2: 
+						switch(button.getMnemonic()) {
+							case 0: /** DiamondV2 */  button.setIcon(new ImageIcon(imageDiamondV2));  break;
+							case 1: /** EmeraldV2 */  button.setIcon(new ImageIcon(imageEmeraldV2));  break;
+							case 2: /** RubyV2 */     button.setIcon(new ImageIcon(imageRubyV2));     break;
+							case 3: /** SapphireV2 */ button.setIcon(new ImageIcon(imageSapphireV2)); break;
+							case 4: /** TopazV2 */    button.setIcon(new ImageIcon(imageTopazV2));    break;
+							default: break;
+						}
+						break;
+					default: break;
+					}
+				}
+			});
 			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
 			button.setFont(font);
 			
@@ -242,7 +338,7 @@ public class MatchThreeUI
 			updateCell(x, y, model.get(x, y));
 			
 			// Add button to grid //
-			grid.add(button);
+			grid.add(button, JLayeredPane.DEFAULT_LAYER);
 		}
 		
 		return grid;
@@ -297,6 +393,7 @@ public class MatchThreeUI
 				currentRuby     = imageRuby;
 				currentSapphire = imageSapphire;
 				currentTopaz    = imageTopaz;
+				jewelVersion = i;
 				break;
 			case 2:
 				currentDiamond  = imageDiamondV2;
@@ -304,6 +401,7 @@ public class MatchThreeUI
 				currentRuby     = imageRubyV2;
 				currentSapphire = imageSapphireV2;
 				currentTopaz    = imageTopazV2;
+				jewelVersion = i;
 				break;
 			default: break;
 		}
@@ -344,7 +442,18 @@ public class MatchThreeUI
 		imageSapphireV2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
 		imageTopaz      = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
 		imageTopazV2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
-		// Not actually jewels btw, just some block
+		
+		imageDiamondHalfAlpha    = loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond.png"));
+		imageDiamondV2HalfAlpha  = loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond_v2.png"));
+		imageEmeraldHalfAlpha    = loadImage(new File(DIR_RESOURCES, "MouseEnteredEmerald.png"));
+		imageEmeraldV2HalfAlpha  = loadImage(new File(DIR_RESOURCES, "MouseEnteredEmerald_v2.png"));
+		imageRubyHalfAlpha       = loadImage(new File(DIR_RESOURCES, "MouseEnteredRuby.png"));
+		imageRubyV2HalfAlpha     = loadImage(new File(DIR_RESOURCES, "MouseEnteredRuby_v2.png"));
+		imageSapphireHalfAlpha   = loadImage(new File(DIR_RESOURCES, "MouseEnteredSapphire.png"));
+		imageSapphireV2HalfAlpha = loadImage(new File(DIR_RESOURCES, "MouseEnteredSapphire_v2.png"));
+		imageTopazHalfAlpha      = loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz.png"));
+		imageTopazV2HalfAlpha    = loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz_v2.png"));
+		// Not actually jewels btw, just some blocks
 		
 		// Default images
 		currentDiamond  = imageDiamond;
@@ -419,7 +528,7 @@ public class MatchThreeUI
 		if (activated) {
 			cell.setBackground(COLOR_FOREGROUND);
 			cell.setForeground(COLOR_BACKGROUND);
-			cell.setContentAreaFilled(true);
+			cell.setContentAreaFilled(true);    
 		} else {
 			cell.setBackground(Color.BLACK);
 			cell.setForeground(COLOR_FOREGROUND);
@@ -539,11 +648,12 @@ public class MatchThreeUI
 			String        text  = getStr(jewel);
 			Color         color = getColor(jewel);
 			
+			cell.setMnemonic(jewel.ordinal());
+			
 			if (image != null) {
 				icon = new ImageIcon(image);
 				text = "";
 			}
-			
 			cell.setIcon(icon);
 			cell.setText(text);
 			cell.setForeground(color);
