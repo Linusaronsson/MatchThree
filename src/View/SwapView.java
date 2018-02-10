@@ -22,28 +22,25 @@ public class SwapView
 	private static final int GAME_SIZE = 6;
 	
 	/** ... */
-	private JButton goBack = new JButton("Back to Main Menu");
+	private JButton back = new JButton("Back to Main Menu");
 	
 	/** ... */
 	private MainMenu mainMenu = new MainMenu();
 	
 	/** ... */
-	private GameMode mode = GameMode.WAITING;
+	private MultiplayerMenu multiplayerMenu = new MultiplayerMenu();
 	
 	/** ... */
-	private MultiplayerMenu mp = new MultiplayerMenu();
+	private JPanel singleplayerButtonPanel = new JPanel();
 	
 	/** ... */
-	private JPanel rightPanel = new JPanel();
+	private Singleplayer singleplayer = null;
 	
 	/** ... */
-	private Singleplayer sp = null;
+	private JButton buttonV1 = new JButton("Version 1");
 	
 	/** ... */
-	private JButton v1btn = new JButton("Version 1");
-	
-	/** ... */
-	private JButton v2btn = new JButton("Version 2");
+	private JButton buttonV2 = new JButton("Version 2");
 	
 	/** ... */
 	private MatchThreeUI view = null;
@@ -108,34 +105,31 @@ public class SwapView
 				add(mainMenu);
 				break;
 			case SINGLEPLAYER_GAME:
-				mode = GameMode.SINGLEPLAYER;
-				sp = new Singleplayer(GAME_SIZE);
-				sp.setWindow(window);
+				singleplayer.setWindow(window);
 				
 				// TODO: Avoid magic numbers.
 				//Display new panel (the game)
-				sp.setLayout(new FlowLayout());
-				sp.setBackground(Color.BLACK);
-				rightPanel.setLayout(new GridLayout(3, 1));
-				rightPanel.add(goBack); //button to go back to main menu panel
-				rightPanel.add(v1btn);
-				rightPanel.add(v2btn);
-				add(sp);
-				add(rightPanel);
-				view = sp.getView();
+				singleplayer.setLayout(new FlowLayout());
+				singleplayer.setBackground(Color.BLACK);
+				singleplayerButtonPanel.add(back);
+				singleplayerButtonPanel.add(buttonV1);
+				singleplayerButtonPanel.add(buttonV2);
+				singleplayerButtonPanel.setLayout(new GridLayout(3, 1));
+				add(singleplayer);
+				add(singleplayerButtonPanel);
+				view = singleplayer.getView();
 				break;
 			case MULTIPLAYER_MENU:
-				add(goBack); //button to go back to main menu panel
-				add(mp);
+				add(back);
+				add(multiplayerMenu);
 				break;
 			case MULTIPLAYER_GAME:
-				mode = GameMode.MULTIPLAYER;
-				Multiplayer s = null;
+				Multiplayer multiplayer = null;
 				
 				try {
-					s = new Multiplayer(
-						mp.getIp(),
-						Integer.parseInt(mp.getPort()),
+					multiplayer = new Multiplayer(
+						multiplayerMenu.getIp(),
+						Integer.parseInt(multiplayerMenu.getPort()),
 						GAME_SIZE
 					);
 				} catch (NumberFormatException e) {
@@ -146,14 +140,19 @@ public class SwapView
 					e.printStackTrace();
 				}
 				
-				s.setLayout(new FlowLayout());
-				s.add(goBack); //button to go back to main menu panel
-				s.setBackground(Color.BLACK);
-				add(s);
-				view = s.getView();
+				multiplayer.setLayout(new FlowLayout());
+				multiplayer.add(back);
+				multiplayer.setBackground(Color.BLACK);
+				add(multiplayer);
+				view = multiplayer.getView();
 				break;
 			default: //throw something
 				break;
+		}
+		
+		if(window != null) {
+			window.pack();
+			window.centerWindow();
 		}
 		
 		revalidate();
@@ -167,18 +166,18 @@ public class SwapView
 	 */
 	// TODO: Use mediator pattern instead.
 	public MatchThreeController getMatchThreeController() {
-		return sp.getMatchThreeController();
+		return singleplayer.getMatchThreeController();
 	}
 	
 	/**
 	 * ...
 	 */
 	private void initializeHandlers() {
-		goBack.addActionListener((ActionEvent e) -> {
+		back.addActionListener((ActionEvent e) -> {
 			changeState(WindowState.START_MENU);
 		});
 		
-		mp.addConnectListener((ActionEvent e) -> {
+		multiplayerMenu.addConnectListener((ActionEvent e) -> {
 			changeState(WindowState.MULTIPLAYER_GAME);
 		});
 		
@@ -190,11 +189,11 @@ public class SwapView
 			changeState(WindowState.SINGLEPLAYER_GAME);
 		});
 		
-		v1btn.addActionListener((ActionEvent e) -> {
+		buttonV1.addActionListener((ActionEvent e) -> {
 			view.changeSprites(1);
 		});
 		
-		v2btn.addActionListener((ActionEvent e) -> {
+		buttonV2.addActionListener((ActionEvent e) -> {
 			view.changeSprites(2);
 		});
 	}
@@ -208,7 +207,7 @@ public class SwapView
 		this.window = window;
 		
 		if (view != null) {
-			sp.setWindow(window);
+			singleplayer.setWindow(window);
 		}
 	}
 }
