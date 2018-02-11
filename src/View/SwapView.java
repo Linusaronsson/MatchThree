@@ -327,8 +327,7 @@ public class SwapView
 				view = multiplayer.getView();
 				break;
 			default:
-				// TODO: Throw an exception.
-				break;
+				throw new IllegalStateException();
 		}
 		
 		if (window != null) {
