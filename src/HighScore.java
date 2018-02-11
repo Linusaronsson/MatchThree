@@ -102,9 +102,8 @@ public class HighScore
 		}
 	}
 	
-	// Used to get current highscores.
 	/**
-	 * ...
+	 * Get current list of high scores.
 	 *
 	 * @return ...
 	 */
