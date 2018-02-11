@@ -8,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -264,6 +263,11 @@ public class MatchThreeUI
 		return grid;
 	}
 	
+	/**
+	 * ...
+	 *
+	 * @param button ...
+	 */
 	protected static final void initButtonDefaultValue(final JButton button) {
 		button.setOpaque(true);
 		button.setBorderPainted(false);
@@ -277,93 +281,153 @@ public class MatchThreeUI
 		button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
 	}
 	
-	private class MouseAction
-		implements MouseListener 
-		{
+	/**
+	 * ...
+	 */
+	private final class MouseAction
+		implements MouseListener
+	{
+		/** ... */
 		private Cell cell = null;
+		
+		/**
+		 * ...
+		 *
+		 * @param cell ...
+		 */
 		private MouseAction(final Cell cell) {
 			// TODO Auto-generated constructor stub
 			this.cell = cell;
 		}
-
+		
 		@Override
-		public void mouseClicked(MouseEvent e) {
+		public void mouseClicked(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			
 		}
-
+		
 		@Override
-		public void mousePressed(MouseEvent e) {
+		public void mousePressed(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			
 		}
-
+		
 		@Override
-		public void mouseReleased(MouseEvent e) {
+		public void mouseReleased(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			
 		}
-
+		
 		@Override
-		public void mouseEntered(MouseEvent e) {
+		public void mouseEntered(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			switch(jewelVersion) {
-			case 1: 
-				switch(cell.getMnemonic()) {
-					case 0: /** Diamond */  cell.setIcon(new ImageIcon(imageDiamondHalfAlpha));  break;
-					case 1: /** Emerald */  cell.setIcon(new ImageIcon(imageEmeraldHalfAlpha));  break;
-					case 2: /** Ruby */     cell.setIcon(new ImageIcon(imageRubyHalfAlpha));     break;
-					case 3: /** Sapphire */ cell.setIcon(new ImageIcon(imageSapphireHalfAlpha)); break;
-					case 4: /** Topaz */    cell.setIcon(new ImageIcon(imageTopazHalfAlpha));    break;
-					default: break;
-				}
-				break;
-			case 2: 
-				switch(cell.getMnemonic()) {
-					case 0: /** DiamondV2 */  cell.setIcon(new ImageIcon(imageDiamondV2HalfAlpha));  break;
-					case 1: /** EmeraldV2 */  cell.setIcon(new ImageIcon(imageEmeraldV2HalfAlpha));  break;
-					case 2: /** RubyV2 */     cell.setIcon(new ImageIcon(imageRubyV2HalfAlpha));     break;
-					case 3: /** SapphireV2 */ cell.setIcon(new ImageIcon(imageSapphireV2HalfAlpha)); break;
-					case 4: /** TopazV2 */    cell.setIcon(new ImageIcon(imageTopazV2HalfAlpha));    break;
-					default: break;
-				}
-				break;
-			default: break;
+			switch (jewelVersion) {
+				case 1:
+					switch (cell.getMnemonic()) {
+						case 0: /** Diamond */
+							cell.setIcon(new ImageIcon(imageDiamondHalfAlpha));
+							break;
+						case 1: /** Emerald */
+							cell.setIcon(new ImageIcon(imageEmeraldHalfAlpha));
+							break;
+						case 2: /** Ruby */
+							cell.setIcon(new ImageIcon(imageRubyHalfAlpha));
+							break;
+						case 3: /** Sapphire */
+							cell.setIcon(new ImageIcon(imageSapphireHalfAlpha));
+							break;
+						case 4: /** Topaz */
+							cell.setIcon(new ImageIcon(imageTopazHalfAlpha));
+							break;
+						default:
+							break;
+					}
+					break;
+				case 2:
+					switch (cell.getMnemonic()) {
+						case 0: /** DiamondV2 */
+							cell.setIcon(
+								new ImageIcon(imageDiamondV2HalfAlpha)
+							);
+							break;
+						case 1: /** EmeraldV2 */
+							cell.setIcon(
+								new ImageIcon(imageEmeraldV2HalfAlpha)
+							);
+							break;
+						case 2: /** RubyV2 */
+							cell.setIcon(new ImageIcon(imageRubyV2HalfAlpha));
+							break;
+						case 3: /** SapphireV2 */
+							cell.setIcon(
+								new ImageIcon(imageSapphireV2HalfAlpha)
+							);
+							break;
+						case 4: /** TopazV2 */
+							cell.setIcon(new ImageIcon(imageTopazV2HalfAlpha));
+							break;
+						default:
+							break;
+					}
+					break;
+				default: break;
 			}
 		}
-
+		
 		@Override
-		public void mouseExited(MouseEvent e) {
-			switch(jewelVersion) {
-			case 1: 
-				switch(cell.getMnemonic()) {
-					case 0: /** Diamond */  cell.setIcon(new ImageIcon(imageDiamond));  break;
-					case 1: /** Emerald */  cell.setIcon(new ImageIcon(imageEmerald));  break;
-					case 2: /** Ruby */     cell.setIcon(new ImageIcon(imageRuby));     break;
-					case 3: /** Sapphire */ cell.setIcon(new ImageIcon(imageSapphire)); break;
-					case 4: /** Topaz */    cell.setIcon(new ImageIcon(imageTopaz));    break;
-					default: break;
-				}
-				break;
-			case 2: 
-				switch(cell.getMnemonic()) {
-					case 0: /** DiamondV2 */  cell.setIcon(new ImageIcon(imageDiamondV2));  break;
-					case 1: /** EmeraldV2 */  cell.setIcon(new ImageIcon(imageEmeraldV2));  break;
-					case 2: /** RubyV2 */     cell.setIcon(new ImageIcon(imageRubyV2));     break;
-					case 3: /** SapphireV2 */ cell.setIcon(new ImageIcon(imageSapphireV2)); break;
-					case 4: /** TopazV2 */    cell.setIcon(new ImageIcon(imageTopazV2));    break;
-					default: break;
-				}
-				break;
-			default: break;
+		public void mouseExited(final MouseEvent e) {
+			switch (jewelVersion) {
+				case 1:
+					switch (cell.getMnemonic()) {
+						case 0: /** Diamond */
+							cell.setIcon(new ImageIcon(imageDiamond));
+							break;
+						case 1: /** Emerald */
+							cell.setIcon(new ImageIcon(imageEmerald));
+							break;
+						case 2: /** Ruby */
+							cell.setIcon(new ImageIcon(imageRuby));
+							break;
+						case 3: /** Sapphire */
+							cell.setIcon(new ImageIcon(imageSapphire));
+							break;
+						case 4: /** Topaz */
+							cell.setIcon(new ImageIcon(imageTopaz));
+							break;
+						default:
+							break;
+					}
+					break;
+				case 2:
+					switch (cell.getMnemonic()) {
+						case 0: /** DiamondV2 */
+							cell.setIcon(new ImageIcon(imageDiamondV2));
+							break;
+						case 1: /** EmeraldV2 */
+							cell.setIcon(new ImageIcon(imageEmeraldV2));
+							break;
+						case 2: /** RubyV2 */
+							cell.setIcon(new ImageIcon(imageRubyV2));
+							break;
+						case 3: /** SapphireV2 */
+							cell.setIcon(new ImageIcon(imageSapphireV2));
+							break;
+						case 4: /** TopazV2 */
+							cell.setIcon(new ImageIcon(imageTopazV2));
+							break;
+						default:
+							break;
+					}
+					break;
+				default:
+					break;
 			}
 		}
 	}
 	
 	/**
 	 * Load external audio resources.
+	 *
+	 * @param audio ...
 	 */
-	private void initAudio(String audio) {
+	private void initAudio(final String audio) {
 		// Read audio from file //
 		File audioFile = new File(DIR_RESOURCES, audio).getAbsoluteFile();
 		AudioInputStream audioStream = null;
@@ -457,16 +521,26 @@ public class MatchThreeUI
 		imageSapphireV2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
 		imageTopaz      = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
 		imageTopazV2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
-		imageDiamondHalfAlpha    = loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond.png"));
-		imageDiamondV2HalfAlpha  = loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond_v2.png"));
-		imageEmeraldHalfAlpha    = loadImage(new File(DIR_RESOURCES, "MouseEnteredEmerald.png"));
-		imageEmeraldV2HalfAlpha  = loadImage(new File(DIR_RESOURCES, "MouseEnteredEmerald_v2.png"));
-		imageRubyHalfAlpha       = loadImage(new File(DIR_RESOURCES, "MouseEnteredRuby.png"));
-		imageRubyV2HalfAlpha     = loadImage(new File(DIR_RESOURCES, "MouseEnteredRuby_v2.png"));
-		imageSapphireHalfAlpha   = loadImage(new File(DIR_RESOURCES, "MouseEnteredSapphire.png"));
-		imageSapphireV2HalfAlpha = loadImage(new File(DIR_RESOURCES, "MouseEnteredSapphire_v2.png"));
-		imageTopazHalfAlpha      = loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz.png"));
-		imageTopazV2HalfAlpha    = loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz_v2.png"));
+		imageDiamondHalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond.png"));
+		imageDiamondV2HalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond_v2.png"));
+		imageEmeraldHalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredEmerald.png"));
+		imageEmeraldV2HalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredEmerald_v2.png"));
+		imageRubyHalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredRuby.png"));
+		imageRubyV2HalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredRuby_v2.png"));
+		imageSapphireHalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredSapphire.png"));
+		imageSapphireV2HalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredSapphire_v2.png"));
+		imageTopazHalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz.png"));
+		imageTopazV2HalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz_v2.png"));
 		// Block images instead of jewels
 		
 		// Default images
@@ -504,8 +578,10 @@ public class MatchThreeUI
 	
 	/**
 	 * Play swap audio clip.
+	 *
+	 * @param audio ...
 	 */
-	public void playAudio(String audio) {
+	public void playAudio(final String audio) {
 		// Rewind and play clip //
 		initAudio(audio);
 		if (audioClip != null) {
@@ -543,7 +619,7 @@ public class MatchThreeUI
 		if (activated) {
 			cell.setBackground(COLOR_FOREGROUND);
 			cell.setForeground(COLOR_BACKGROUND);
-			cell.setContentAreaFilled(true);    
+			cell.setContentAreaFilled(true);
 		} else {
 			cell.setBackground(Color.BLACK);
 			cell.setForeground(COLOR_FOREGROUND);

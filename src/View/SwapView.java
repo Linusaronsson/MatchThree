@@ -3,18 +3,16 @@ package View;
 import Controller.MatchThreeController;
 import GameModes.Multiplayer;
 import GameModes.Singleplayer;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -28,7 +26,34 @@ public class SwapView
 	extends JPanel
 {
 	/** ... */
+	private static final String DIR_RESOURCES = "resources";
+	
+	/** ... */
 	private static final int GAME_SIZE = 6;
+	
+	/** ... */
+	private static final BufferedImage IMAGE_BACK =
+		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "Back.png"));
+	
+	/** ... */
+	private static final BufferedImage IMAGE_BACK_HALF_ALPHA =
+		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "MouseEnteredBack.png"));
+	
+	/** ... */
+	private static final BufferedImage IMAGE_V1 =
+		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "V1.png"));
+	
+	/** ... */
+	private static final BufferedImage IMAGE_V1_HALF_ALPHA =
+		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "MouseEnteredV1.png"));
+	
+	/** ... */
+	private static final BufferedImage IMAGE_V2 =
+		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "V2.png"));
+	
+	/** ... */
+	private static final BufferedImage IMAGE_V2_HALF_ALPHA =
+		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "MouseEnteredV2.png"));
 	
 	/** ... */
 	private JButton back = new JButton("");
@@ -56,27 +81,6 @@ public class SwapView
 	
 	/** ... */
 	private Window window  = null;
-	
-	/** ... */
-	private static final String DIR_RESOURCES = "resources";
-	
-	/** ... */
-	private static final BufferedImage imageV1 = MatchThreeUI.loadImage(new File(DIR_RESOURCES, "V1.png"));
-	
-	/** ... */
-	private static final BufferedImage imageV2 = MatchThreeUI.loadImage(new File(DIR_RESOURCES, "V2.png"));
-	
-	/** ... */
-	private static final BufferedImage imageBack = MatchThreeUI.loadImage(new File(DIR_RESOURCES, "Back.png"));
-	
-	/** ... */
-	private static final BufferedImage imageV1HalfAlpha = MatchThreeUI.loadImage(new File(DIR_RESOURCES, "MouseEnteredV1.png"));
-	
-	/** ... */
-	private static final BufferedImage imageV2HalfAlpha = MatchThreeUI.loadImage(new File(DIR_RESOURCES, "MouseEnteredV2.png"));
-	
-	/** ... */
-	private static final BufferedImage imageBackHalfAlpha = MatchThreeUI.loadImage(new File(DIR_RESOURCES, "MouseEnteredBack.png"));
 	
 	/**
 	 * ...
@@ -122,12 +126,22 @@ public class SwapView
 		setBackground(Color.DARK_GRAY);
 	}
 	
-	private enum Button {
+	/** ... */
+	private enum Button
+	{
+		/** ... */
 		BACK,
+		
+		/** ... */
 		V1,
+		
+		/** ... */
 		V2
 	}
 	
+	/**
+	 * ...
+	 */
 	private void setButtonProperties() {
 		MatchThreeUI.initButtonDefaultValue(back);
 		MatchThreeUI.initButtonDefaultValue(buttonV1);
@@ -151,63 +165,97 @@ public class SwapView
 		buttonV2.setMnemonic(Button.V2.ordinal());
 	}
 	
+	/**
+	 * ...
+	 */
 	private void resetButtonImage() {
-		back.setIcon(new ImageIcon(imageBack));
-		buttonV1.setIcon(new ImageIcon(imageV1));
-		buttonV2.setIcon(new ImageIcon(imageV2));
+		back.setIcon(new ImageIcon(IMAGE_BACK));
+		buttonV1.setIcon(new ImageIcon(IMAGE_V1));
+		buttonV2.setIcon(new ImageIcon(IMAGE_V2));
 	}
 	
-	private class MouseAction 
-	implements MouseListener
+	/**
+	 * ...
+	 */
+	private final class MouseAction
+		implements MouseListener
 	{
+		/** ... */
 		private JButton button = null;
-		private MouseAction(JButton button) {
+		
+		/**
+		 * ...
+		 *
+		 * @param button ...
+		 */
+		private MouseAction(final JButton button) {
 			// TODO Auto-generated constructor stub
 			this.button = button;
 		}
-
+		
 		@Override
-		public void mouseClicked(MouseEvent e) {
+		public void mouseClicked(final MouseEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
-
+		
 		@Override
-		public void mousePressed(MouseEvent e) {
+		public void mousePressed(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			switch(button.getMnemonic()) {
-			case 0: /* BACK */ changeState(WindowState.START_MENU); break;
-			case 1: /* V1 */   view.changeSprites(1);   break;
-			case 2: /* V2 */   view.changeSprites(2);   break;
-				default: break;
+			switch (button.getMnemonic()) {
+				case 0: /* BACK */
+					changeState(WindowState.START_MENU);
+					break;
+				case 1: /* V1 */
+					view.changeSprites(1);
+					break;
+				case 2: /* V2 */
+					view.changeSprites(2);
+					break;
+				default:
+					break;
 			}
 		}
-
+		
 		@Override
-		public void mouseReleased(MouseEvent e) {
+		public void mouseReleased(final MouseEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
-
+		
 		@Override
-		public void mouseEntered(MouseEvent e) {
+		public void mouseEntered(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			switch(button.getMnemonic()) {
-			case 0: /* BACK */ button.setIcon(new ImageIcon(imageBackHalfAlpha)); break;
-			case 1: /* V1 */   button.setIcon(new ImageIcon(imageV1HalfAlpha));   break;
-			case 2: /* V2 */   button.setIcon(new ImageIcon(imageV2HalfAlpha));   break;
-				default: break;
+			switch (button.getMnemonic()) {
+				case 0: /* BACK */
+					button.setIcon(new ImageIcon(IMAGE_BACK_HALF_ALPHA));
+					break;
+				case 1: /* V1 */
+					button.setIcon(new ImageIcon(IMAGE_V1_HALF_ALPHA));
+					break;
+				case 2: /* V2 */
+					button.setIcon(new ImageIcon(IMAGE_V2_HALF_ALPHA));
+					break;
+				default:
+					break;
 			}
 		}
-
+		
 		@Override
-		public void mouseExited(MouseEvent e) {
+		public void mouseExited(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			switch(button.getMnemonic()) {
-			case 0: /* BACK */ button.setIcon(new ImageIcon(imageBack)); break;
-			case 1: /* V1 */   button.setIcon(new ImageIcon(imageV1));   break;
-			case 2: /* V2 */   button.setIcon(new ImageIcon(imageV2));   break;
-				default: break;
+			switch (button.getMnemonic()) {
+				case 0: /* BACK */
+					button.setIcon(new ImageIcon(IMAGE_BACK));
+					break;
+				case 1: /* V1 */
+					button.setIcon(new ImageIcon(IMAGE_V1));
+					break;
+				case 2: /* V2 */
+					button.setIcon(new ImageIcon(IMAGE_V2));
+					break;
+				default:
+					break;
 			}
 		}
 	}
@@ -233,14 +281,20 @@ public class SwapView
 				
 				// TODO: Avoid magic numbers.
 				//Display new panel (the game)
-				singleplayer.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
+				singleplayer.setLayout(
+					new FlowLayout(FlowLayout.CENTER, 10, 10)
+				);
 				singleplayer.setBackground(Color.BLACK);
-				singleplayer.setBorder(BorderFactory.createLineBorder(Color.white));
+				singleplayer.setBorder(
+					BorderFactory.createLineBorder(Color.white)
+				);
 				singleplayerButtonPanel.add(back);
 				singleplayerButtonPanel.add(buttonV1);
 				singleplayerButtonPanel.add(buttonV2);
 				singleplayerButtonPanel.setBackground(Color.DARK_GRAY);
-				singleplayerButtonPanel.setLayout(new GridLayout(3, 1, 10, 10));
+				singleplayerButtonPanel.setLayout(
+					new GridLayout(3, 1, 10, 10)
+				);
 				add(singleplayer);
 				add(singleplayerButtonPanel);
 				view = singleplayer.getView();
@@ -272,11 +326,12 @@ public class SwapView
 				add(multiplayer);
 				view = multiplayer.getView();
 				break;
-			default: //throw something
+			default:
+				// TODO: Throw an exception.
 				break;
 		}
 		
-		if(window != null) {
+		if (window != null) {
 			window.pack();
 			window.centerWindow();
 		}
