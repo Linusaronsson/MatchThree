@@ -76,7 +76,7 @@ public class MatchThreeUI
 	/** ... */
 	private static final int GAP = 2;
 	
-	/** Stores loaded audio clips */
+	/** Stores loaded audio clips. */
 	// TODO: Rework clip usage.
 	private Map<Audio, Clip> audioClips = new HashMap<Audio, Clip>();
 	
@@ -167,9 +167,13 @@ public class MatchThreeUI
 	/** ... */
 	private int jewelVersion = 1;
 	
+	/** Audio file specifier. */
 	public enum Audio
 	{
+		/** Invalid move audio. */
 		INVALID,
+		
+		/** Swap audio. */
 		SWAP
 	}
 	
@@ -484,7 +488,7 @@ public class MatchThreeUI
 			
 			// Soft return //
 			return;
-		} catch(UnsupportedAudioFileException exception) {
+		} catch (UnsupportedAudioFileException exception) {
 			System.err.printf(
 				"File type not supported for \"%s\"%s",
 				audioFile,
