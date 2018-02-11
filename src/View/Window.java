@@ -206,6 +206,7 @@ public class Window
 		fileMenu.add(self.newItem);
 		fileMenu.add(self.openItem);
 		fileMenu.add(self.saveItem);
+		fileMenu.addSeparator();
 		fileMenu.add(self.quitItem);
 		
 		// Create menu bar //
