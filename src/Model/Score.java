@@ -6,8 +6,18 @@ package Model;
 public class Score
 {
 	/** ... */
-	public String name;
+	private String name = null;
 	
 	/** ... */
-	public int score;
+	private int score = 0;
+	
+	/** ... */
+	public String getName() {
+		return name;
+	}
+	
+	/** ... */
+	public int getScore() {
+		return score;
+	}
 }
