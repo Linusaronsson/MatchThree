@@ -11,6 +11,10 @@ import java.io.ObjectOutputStream;
 import java.net.*;
 import Multiplayer.Message;
 
+/**
+ * 
+ * Extension of MatchThreeModel used for the player view to send datagrams to opponent
+ */
 public class MultiplayerModel extends MatchThreeModel {
     private DatagramSocket client = null;
     private DatagramPacket out = null;
@@ -18,6 +22,12 @@ public class MultiplayerModel extends MatchThreeModel {
     private int port;
     private boolean gameStarted = false;
    
+	/**
+	 * 
+	 * @param width
+	 * @param ip
+	 * @param port
+	 */
 	public MultiplayerModel(int width, InetAddress ip, int port) {
 		super(width);
 		this.ip = ip;
@@ -32,6 +42,13 @@ public class MultiplayerModel extends MatchThreeModel {
 		
 	}
 	
+	/**
+	 * 
+	 * @param board
+	 * @param width
+	 * @param ip
+	 * @param port
+	 */
 	public MultiplayerModel(Jewel[] board, int width, InetAddress ip, int port) {
 		super(board, width);
 		this.ip = ip;
@@ -46,6 +63,9 @@ public class MultiplayerModel extends MatchThreeModel {
 		
 	}
 	
+	/**
+	 * ...
+	 */
 	public void setGameStarted(boolean b) { gameStarted = b; }
 	
 	/**
@@ -63,10 +83,16 @@ public class MultiplayerModel extends MatchThreeModel {
 			notifyOpponent(new UpdateCell(x, y, value));
 	}
 	
+	/**
+	 * ...
+	 */
 	public void sendBoard(int port) {
 		Server.sendDatagram(new UpdateBoard(board), client, ip, port);
 	}
 	
+	/**
+	 * ...
+	 */
 	private void notifyOpponent(Message m) {
         Server.sendDatagram(m, client, ip, port);
 	}

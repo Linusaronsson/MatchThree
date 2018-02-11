@@ -3,7 +3,9 @@ package Multiplayer;
 import java.io.Serializable;
 
 import Model.Jewel;
-
+/**
+ * Message sent between two users playing
+ */
 public class Message implements Serializable {
     private static final long serialVersionUID = 123456789L;
     private MessageType type;
@@ -15,10 +17,18 @@ public class Message implements Serializable {
         CELL_UPDATE
     }
 
+    /**
+     * 
+     * @param type
+     */
     public Message(MessageType type) {
         this.type = type;
     }
     
+    /**
+     * 
+     * @param type
+     */
     public String asString(MessageType type) {
     	switch(type) {
     	case REQUESTED_GAME:
@@ -33,7 +43,15 @@ public class Message implements Serializable {
     	return null;
     }
     
+    /**
+     * ...
+     */
     public MessageType getType() { return type; }
+
+
+    /**
+     * ...
+     */
     public String toString() {
     	return "Message type: " + asString(type) + "\n";
     }

@@ -161,7 +161,7 @@ public class MatchThreeUI
 		model.addObserver(this);
 		
 		// Load external resources //
-		initAudio();
+		//initAudio();
 		initGraphics();
 		
 		// Initialize components //

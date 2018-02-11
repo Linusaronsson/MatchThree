@@ -91,7 +91,10 @@ public class Multiplayer
 	public MatchThreeUI getView() {
 		return playerView;
 	}
-	
+
+	/**
+	 * Close an ongoing multiplayer game. (Will close active sockets etc)
+	 */
 	public void closeGame() {
 		opponentController.close();
 	}

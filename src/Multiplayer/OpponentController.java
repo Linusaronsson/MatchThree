@@ -25,6 +25,9 @@ public class OpponentController extends Thread {
     byte[] inBuffer;
     private int port;
 
+    /**
+     * ...
+     */
     public OpponentController(int port, MatchThreeModel model) {
     	this.model = model;
         this.port = port;
@@ -40,11 +43,17 @@ public class OpponentController extends Thread {
         }
     }
     
+    /**
+     * ...
+     */
     public void close() {
     	this.interrupt();
     	opponent.close();
     }
 
+    /**
+     * ...
+     */
     @Override
     public void run() {
         try {

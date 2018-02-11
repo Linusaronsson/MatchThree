@@ -29,6 +29,9 @@ public class Server extends Thread {
     
     private static boolean inGame = false;
 
+	/**
+	 * ...
+	 */
     public Server(SwapView window, int port) {
 		this.window = window;
         this.port = port;
@@ -44,6 +47,9 @@ public class Server extends Thread {
         }
     }
 
+	/**
+	 * ...
+	 */
     public static void sendDatagram(Message m, DatagramSocket socket, InetAddress ip, int port) {
         try {
 	        ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
@@ -59,9 +65,15 @@ public class Server extends Thread {
 			e.printStackTrace();
 		}
     }
-    
+	
+	/**
+	 * ...
+	 */
     public static void setInGame(boolean b) { inGame = b; }
-    
+	
+	/**
+	 * 
+	 */
     @Override
     public void run() {
         try {
