@@ -12,6 +12,8 @@ import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import javax.imageio.ImageIO;
@@ -74,8 +76,9 @@ public class MatchThreeUI
 	/** ... */
 	private static final int GAP = 2;
 	
-	/** ... */
-	private Clip audioClip = null;
+	/** Stores loaded audio clips */
+	// TODO: Rework clip usage.
+	private Map<Audio, Clip> audioClips = new HashMap<Audio, Clip>();
 	
 	/** ... */
 	private Cell[] board = null;
@@ -164,6 +167,12 @@ public class MatchThreeUI
 	/** ... */
 	private int jewelVersion = 1;
 	
+	public enum Audio
+	{
+		INVALID,
+		SWAP
+	}
+	
 	/**
 	 * Constructor for `MatchThreeUI`.
 	 *
@@ -182,7 +191,6 @@ public class MatchThreeUI
 		model.addObserver(this);
 		
 		// Load external resources //
-		initAudio("Swap.wav");
 		initGraphics();
 		
 		// Initialize components //
@@ -423,41 +431,114 @@ public class MatchThreeUI
 	}
 	
 	/**
-	 * Load external audio resources.
+	 * Preemptively load all audio resouces.
+	 */
+	private void preloadAudio() {
+		// TODO: Run automatically for all values of `Audio`.
+		loadAudio(Audio.INVALID);
+		loadAudio(Audio.SWAP);
+	}
+	
+	/**
+	 * Load an external audio resource.
 	 *
 	 * @param audio ...
 	 */
-	private void initAudio(final String audio) {
+	private void loadAudio(final Audio audio) {
+		// Validate argument //
+		if (audio == null) {
+			throw new NullPointerException();
+		}
+		
+		// Skip loading already loaded audio //
+		if (audioClips.containsKey(audio)) {
+			return;
+		}
+		
+		// Get file path //
+		// TODO: Use correct type for path.
+		// TODO: Move file path information to `Audio` type.
+		String path = null;
+		switch (audio) {
+			case INVALID: path = "InvalidMove.wav"; break;
+			case SWAP:    path = "Swap.wav";        break;
+			default: throw new IllegalStateException();
+		}
+		
 		// Read audio from file //
-		File audioFile = new File(DIR_RESOURCES, audio).getAbsoluteFile();
+		File audioFile = new File(DIR_RESOURCES, path).getAbsoluteFile();
 		AudioInputStream audioStream = null;
 		try {
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
-		} catch (IOException
-		| UnsupportedAudioFileException e) {
+		} catch (IOException exception) {
 			System.err.printf(
-				"Failed to read \"%s\":%s",
+				"Error while reading \"%s\"%s",
 				audioFile,
 				System.lineSeparator()
 			);
 			System.err.printf(
 				"\t%s%s",
-				e,
+				exception,
 				System.lineSeparator()
 			);
+			
+			// Soft return //
+			return;
+		} catch(UnsupportedAudioFileException exception) {
+			System.err.printf(
+				"File type not supported for \"%s\"%s",
+				audioFile,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				exception,
+				System.lineSeparator()
+			);
+			
+			// Soft return //
 			return;
 		}
 		
 		// Send audio to system mixer //
+		// TODO: Split try clause into two blocks.
+		Clip audioClip = null;
 		try {
 			audioClip = AudioSystem.getClip();
 			audioClip.open(audioStream);
-		} catch (IOException
-		| LineUnavailableException e) {
-			System.err.println(e);
-			audioClip = null;
+		} catch (IOException exception) {
+			System.err.printf(
+				"IO error while loading \"%s\"%s",
+				audioFile,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				exception,
+				System.lineSeparator()
+			);
+			
+			// Soft return //
+			return;
+		} catch (LineUnavailableException exception) {
+			System.err.printf(
+				"Error loading audio \"%s\": LineUnavailableException%s",
+				audioFile,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				exception,
+				System.lineSeparator()
+			);
+			
+			// Soft return //
 			return;
 		}
+		
+		// Store reference to clip //
+		// TODO: Assert element does not already exist.
+		audioClips.put(audio, audioClip);
 	}
 	
 	/**
@@ -581,13 +662,22 @@ public class MatchThreeUI
 	 *
 	 * @param audio ...
 	 */
-	public void playAudio(final String audio) {
-		// Rewind and play clip //
-		initAudio(audio);
-		if (audioClip != null) {
-			audioClip.setFramePosition(0);
-			audioClip.start();
+	public void playAudio(final Audio audio) {
+		// Validate argument //
+		if (audio == null) {
+			throw new NullPointerException();
 		}
+		
+		// Lazy load audio //
+		loadAudio(audio);
+		
+		// Get a reference to clip //
+		// TODO: Assert not null.
+		Clip clip = audioClips.get(audio);
+		
+		// Rewind and play clip //
+		clip.setFramePosition(0);
+		clip.start();
 	}
 	
 	/**
