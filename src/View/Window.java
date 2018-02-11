@@ -26,16 +26,16 @@ public class Window
 	private JPanel content = null;
 	
 	/** ... */
-	private JMenuItem newItem = null;
+	private JMenuItem newItem = new JMenuItem("New game");
 	
 	/** ... */
-	private JMenuItem openItem = null;
+	private JMenuItem openItem = new JMenuItem("Open…");
 	
 	/** ... */
-	private JMenuItem quitItem = null;
+	private JMenuItem quitItem = new JMenuItem("Quit");
 	
 	/** ... */
-	private JMenuItem saveItem = null;
+	private JMenuItem saveItem = new JMenuItem("Save…");
 	
 	/**
 	 * ...
@@ -201,29 +201,15 @@ public class Window
 			throw new NullPointerException();
 		}
 		
-		// Create menu bar //
-		JMenuBar menuBar = new JMenuBar();
-		
-		// Create menus //
+		// Create "File" menu //
 		JMenu fileMenu = new JMenu("File");
-		
-		// Create "New" menu item //
-		self.newItem = new JMenuItem("New");
 		fileMenu.add(self.newItem);
-		
-		// Create "Open" menu item //
-		self.openItem = new JMenuItem("Open");
 		fileMenu.add(self.openItem);
-		
-		// Create "Save" menu item //
-		self.saveItem = new JMenuItem("Save");
 		fileMenu.add(self.saveItem);
-		
-		// Create "Quit" menu item //
-		self.quitItem = new JMenuItem("Quit");
 		fileMenu.add(self.quitItem);
 		
-		// Add menus to menu bar //
+		// Create menu bar //
+		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(fileMenu);
 		
 		return menuBar;
