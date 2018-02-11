@@ -44,4 +44,3 @@ Import-Package: javax.net.ssl;javax.crypto;resolution:=optional,javax.
  =optional,org.slf4j;resolution:=optional,javax.xml.datatype;org.hiber
  nate;org.hibernate.cfg;org.hibernate.service;org.hibernate.service.jd
  bc.connections.spi;resolution:=optional
-
