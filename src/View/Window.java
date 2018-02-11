@@ -60,7 +60,6 @@ public class Window
 		setTitle(WINDOW_TITLE);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationByPlatform(true);
-		//setPreferredSize(new Dimension(650, 650));
 		setResizable(true);
 		
 		// Add content //
