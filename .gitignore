@@ -8,3 +8,8 @@ Thumbs.db
 .project
 .settings/
 bin/
+
+# IntelliJ support
+.idea
+src/MatchThree.iml
+src/out
