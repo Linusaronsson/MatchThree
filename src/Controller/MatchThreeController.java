@@ -69,18 +69,18 @@ public class MatchThreeController
 	 */
 	public MatchThreeController(
 		final MatchThreeModel model,
-		final MatchThreeUI view
+		final MatchThreeUI    view
 	) {
 		// Validate arguments //
 		if (model == null || view == null) {
 			throw new NullPointerException();
 		}
 		
-		this.model = model;
-		this.view  = view;
-		
 		// Register event listeners //
 		view.addBoardListener(new BoardListener());
+		
+		this.model = model;
+		this.view  = view;
 	}
 	
 	/**

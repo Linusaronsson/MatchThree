@@ -286,7 +286,7 @@ public class SwapView
 				);
 				singleplayer.setBackground(Color.BLACK);
 				singleplayer.setBorder(
-					BorderFactory.createLineBorder(Color.white)
+					BorderFactory.createLineBorder(Color.WHITE)
 				);
 				singleplayerButtonPanel.add(back);
 				singleplayerButtonPanel.add(buttonV1);
