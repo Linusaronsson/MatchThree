@@ -35,7 +35,7 @@ import Model.MatchThreeModel;
 /**
  * MatchThree game view.
  */
-@SuppressWarnings("serial")
+@SuppressWarnings({"deprecation", "serial"})
 public class MatchThreeUI
 	extends JPanel
 	implements Observer

@@ -9,6 +9,7 @@ import java.util.Random;
 /**
  * MatchThree game model.
  */
+@SuppressWarnings("deprecation")
 public class MatchThreeModel
 	extends Observable
 {
