@@ -27,9 +27,7 @@ public class WindowController
 		@Override
 		public void actionPerformed(final ActionEvent event) {
 			// Restart the game //
-			MatchThreeController matchThreeController =
-				swapView.getMatchThreeController();
-			matchThreeController.restartGame();
+			restartGame();
 		}
 	}
 	
@@ -53,7 +51,8 @@ public class WindowController
 	{
 		@Override
 		public void actionPerformed(final ActionEvent event) {
-			window.showError("Save not implemented");
+			// Save the game //
+			saveGame();
 		}
 	}
 	
@@ -65,9 +64,8 @@ public class WindowController
 	{
 		@Override
 		public void actionPerformed(final ActionEvent event) {
-			// Close window //
-			WindowEvent e = new WindowEvent(window, WindowEvent.WINDOW_CLOSING);
-			window.dispatchEvent(e);
+			// Close main window //
+			closeWindow();
 		}
 	}
 	
@@ -133,7 +131,79 @@ public class WindowController
 		window.addSaveListener(new SaveListener());
 		window.addWindowListener(new WindowListener());
 		
-		this.swapView = swapView;
-		this.window   = window;
+		this.matchThreeModel = matchThreeModel;
+		this.swapView        = swapView;
+		this.window          = window;
+	}
+	
+	/**
+	 * Close main window.
+	 */
+	private void closeWindow() {
+		WindowEvent e = new WindowEvent(window, WindowEvent.WINDOW_CLOSING);
+		window.dispatchEvent(e);
+	}
+	
+	/**
+	 * Save the game.
+	 */
+	private void saveGame() {
+		// Serialize board content //
+		Jewel[] board = matchThreeModel.getBoard();
+		String serial = null;
+		try {
+			serial = Serialize.serialize(board);
+		} catch (Serialize.UnsupportedTypeException e) {
+			window.showError("Could not serialize model contents");
+			return;
+		}
+		
+		// Get score //
+		int score = matchThreeModel.getScore();
+		
+		// Get width //
+		int width = matchThreeModel.getWidth();
+		
+		// Get save destination //
+		File f = window.showSaveDialog();
+		
+		// Cancel if no file was chosen //
+		if (f == null) {
+			return;
+		}
+		
+		// Save game //
+		System.out.printf(
+			"Saving game to \"%s\"...%s",
+			f.toString(),
+			System.lineSeparator()
+		);
+		System.out.printf(
+			"> score: %d%s",
+			score,
+			System.lineSeparator()
+		);
+		System.out.printf(
+			"> width: %d%s",
+			width,
+			System.lineSeparator()
+		);
+		System.out.printf(
+			"> board: %s%s",
+			serial,
+			System.lineSeparator()
+		);
+		
+		// Display confirmation //
+		window.showMessage("Game saved");
+	}
+	
+	/**
+	 * Restart the game.
+	 */
+	private void restartGame() {
+		MatchThreeController matchThreeController =
+			swapView.getMatchThreeController();
+		matchThreeController.restartGame();
 	}
 }
