@@ -135,7 +135,7 @@ public class MatchThreeUI
 	private MatchThreeModel model = null;
 	
 	/** ... */
-	private int jewelVersion = 1;
+	private static int jewelVersion = 1;
 	
 	/** Audio file specifier. */
 	public enum Audio
@@ -165,7 +165,7 @@ public class MatchThreeUI
 		model.addObserver(this);
 		
 		// Load external resources //
-		initGraphics();
+		initGraphics(jewelVersion);
 		
 		// Initialize components //
 		updateScore();
@@ -467,8 +467,10 @@ public class MatchThreeUI
 	
 	/**
 	 * Load external image resources.
+	 * 
+	 * @param jewelversion ...
 	 */
-	private void initGraphics() {
+	private void initGraphics(int jewelversion) {
 		// Load images //
 		// TODO: Load new images as well.
 		imageDiamond    = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
@@ -483,12 +485,23 @@ public class MatchThreeUI
 		imageTopazV2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
 		// Block images instead of jewels
 		
-		// Default images
-		currentDiamond  = imageDiamond;
-		currentEmerald  = imageEmerald;
-		currentRuby     = imageRuby;
-		currentSapphire = imageSapphire;
-		currentTopaz    = imageTopaz;
+		switch(jewelversion) {
+			case 1:
+				currentDiamond  = imageDiamond;
+				currentEmerald  = imageEmerald;
+				currentRuby     = imageRuby;
+				currentSapphire = imageSapphire;
+				currentTopaz    = imageTopaz;
+				break;
+			case 2:
+				currentDiamond  = imageDiamondV2;
+				currentEmerald  = imageEmeraldV2;
+				currentRuby     = imageRubyV2;
+				currentSapphire = imageSapphireV2;
+				currentTopaz    = imageTopazV2;
+				break;
+			default: break;
+		}
 	}
 	
 	/**

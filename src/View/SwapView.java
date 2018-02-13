@@ -167,15 +167,17 @@ public class SwapView
 		MatchThreeUI.initButtonDefaultValue(buttonV2);
 		
 		// Now specifying properties values to the buttons
-		resetButtonImage();
+		back.setIcon(new ImageIcon(IMAGE_BACK));
 		back.setPreferredSize(new Dimension(50, 50));
 		back.setBackground(Color.DARK_GRAY);
 		back.setMnemonic(Button.BACK.ordinal());
 		
+		buttonV1.setIcon(new ImageIcon(IMAGE_V1));
 		buttonV1.setPreferredSize(new Dimension(80, 80));
 		buttonV1.setBackground(Color.DARK_GRAY);
 		buttonV1.setMnemonic(Button.V1.ordinal());
 		
+		buttonV2.setIcon(new ImageIcon(IMAGE_V2));
 		buttonV2.setPreferredSize(new Dimension(80, 80));
 		buttonV2.setBackground(Color.DARK_GRAY);
 		buttonV2.setMnemonic(Button.V2.ordinal());
@@ -185,9 +187,9 @@ public class SwapView
 	 * ...
 	 */
 	private void resetButtonImage() {
-		back.setIcon(new ImageIcon(IMAGE_BACK));
-		buttonV1.setIcon(new ImageIcon(IMAGE_V1));
-		buttonV2.setIcon(new ImageIcon(IMAGE_V2));
+		back.setAlpha(1f);
+		buttonV1.setAlpha(1f);
+		buttonV2.setAlpha(1f);
 	}
 	
 	/**
@@ -205,7 +207,6 @@ public class SwapView
 		 * @param button ...
 		 */
 		private MouseAction(final Cell cell) {
-			// TODO Auto-generated constructor stub
 			this.cell = cell;
 		}
 		
@@ -217,7 +218,6 @@ public class SwapView
 		
 		@Override
 		public void mousePressed(final MouseEvent e) {
-			// TODO Auto-generated method stub
 			switch(cell.getMnemonic()) {
 				case 0:
 					changeState(WindowState.START_MENU);
@@ -241,13 +241,11 @@ public class SwapView
 		
 		@Override
 		public void mouseEntered(final MouseEvent e) {
-			// TODO Auto-generated method stub
 			cell.setAlpha(0.5f);
 		}
 		
 		@Override
 		public void mouseExited(final MouseEvent e) {
-			// TODO Auto-generated method stub
 			cell.setAlpha(1f);
 		}
 	}
