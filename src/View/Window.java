@@ -3,6 +3,9 @@ package View;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.Toolkit;
+import java.io.File;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -237,6 +240,38 @@ public class Window
 		| IllegalAccessException
 		| UnsupportedLookAndFeelException e) {
 			System.err.println(e);
+		}
+	}
+	
+	/**
+	 * Display a save dialog.
+	 *
+	 * @return The chosen file.
+	 */
+	public File showSaveDialog() {
+		// TODO: Use `FileDialog` instead?
+		//FileDialog fileDialog = new FileDialog(this);
+		//fileDialog.setVisible(true);
+		
+		// Create dialog //
+		JFileChooser chooser = new JFileChooser();
+		
+		// Set file extension filter //
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(
+			"MatchThree Save File",
+			"jewel"
+		);
+		chooser.setFileFilter(filter);
+		
+		// Display dialog //
+		int choice = chooser.showSaveDialog(this);
+		
+		// Handle response //
+		switch (choice) {
+			case JFileChooser.APPROVE_OPTION: return chooser.getSelectedFile();
+			case JFileChooser.CANCEL_OPTION:  return null;
+			case JFileChooser.ERROR_OPTION:   return null;
+			default: throw new IllegalStateException();
 		}
 	}
 }

@@ -4,7 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import Model.Jewel;
 import Model.MatchThreeModel;
 import Model.Serialize;
@@ -174,34 +177,49 @@ public class WindowController
 		int width = matchThreeModel.getWidth();
 		
 		// Get save destination //
-		File f = window.showSaveDialog();
+		File file = window.showSaveDialog();
 		
 		// Cancel if no file was chosen //
-		if (f == null) {
+		if (file == null) {
 			return;
 		}
 		
 		// Save game //
-		System.out.printf(
-			"Saving game to \"%s\"...%s",
-			f.toString(),
-			System.lineSeparator()
-		);
-		System.out.printf(
-			"> score: %d%s",
-			score,
-			System.lineSeparator()
-		);
-		System.out.printf(
-			"> width: %d%s",
-			width,
-			System.lineSeparator()
-		);
-		System.out.printf(
-			"> board: %s%s",
-			serial,
-			System.lineSeparator()
-		);
+		BufferedWriter out = null;
+		try {
+			System.out.printf(
+				"Saving game to \"%s\"...%s",
+				file.toString(),
+				System.lineSeparator()
+			);
+			
+			FileWriter writer = new FileWriter(file);
+			out = new BufferedWriter(writer);
+			
+			out.write("MatchThree Save Data Version 1.0\n");
+			out.write("score: ");
+			out.write(String.valueOf(score));
+			out.write("\n");
+			out.write("width: ");
+			out.write(String.valueOf(width));
+			out.write("\n");
+			out.write("board: ");
+			out.write(serial.toString());
+			out.write("\n");
+		} catch (IOException exception) {
+			window.showError("Failed to save game");
+			System.err.println(exception);
+			return;
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (IOException exception) {
+					System.err.println("Failed to close file");
+					System.err.println(exception);
+				}
+			}
+		}
 		
 		// Display confirmation //
 		window.showMessage("Game saved");
