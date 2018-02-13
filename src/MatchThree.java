@@ -1,4 +1,6 @@
 import Controller.WindowController;
+import Multiplayer.Server;
+
 import java.io.IOException;
 import Model.MatchThreeModel;
 import View.SwapView;
@@ -42,7 +44,7 @@ public final class MatchThree
 		swapView.setWindow(window);
 		
 		// Setup server listener //
-		Server server = new Server(PORT_NUMBER, window);
+		Server server = new Server(swapView, PORT_NUMBER);
 		server.start();
 	}
 }

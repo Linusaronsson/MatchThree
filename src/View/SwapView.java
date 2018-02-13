@@ -3,6 +3,10 @@ package View;
 import Controller.MatchThreeController;
 import GameModes.Multiplayer;
 import GameModes.Singleplayer;
+import Model.Jewel;
+import Multiplayer.Message;
+import Multiplayer.Server;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -10,11 +14,23 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
+
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import Model.MatchThreeModel;
@@ -37,27 +53,27 @@ public class SwapView
 		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "Back.png"));
 	
 	/** ... */
-	private static final BufferedImage IMAGE_BACK_HALF_ALPHA =
-		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "MouseEnteredBack.png"));
-	
-	/** ... */
 	private static final BufferedImage IMAGE_V1 =
 		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "V1.png"));
 	
 	/** ... */
-	private static final BufferedImage IMAGE_V1_HALF_ALPHA =
-		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "MouseEnteredV1.png"));
-	
-	/** ... */
 	private static final BufferedImage IMAGE_V2 =
 		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "V2.png"));
+
+	/** ... */
+	private MultiplayerMenu mpMenu = new MultiplayerMenu();
 	
 	/** ... */
-	private static final BufferedImage IMAGE_V2_HALF_ALPHA =
-		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "MouseEnteredV2.png"));
+	private WindowState viewState = WindowState.START_MENU;
 	
 	/** ... */
-	private JButton back = new JButton("");
+	private GameMode mode = GameMode.WAITING;
+	
+	/** .. */
+	private Multiplayer mp = null;
+	
+	/** ... */
+	private Cell back = new Cell(0);
 	
 	/** ... */
 	private MainMenu mainMenu = new MainMenu();
@@ -69,13 +85,13 @@ public class SwapView
 	private JPanel singleplayerButtonPanel = new JPanel();
 	
 	/** ... */
-	private Singleplayer singleplayer = null;
+	private Singleplayer sp = null;
 	
 	/** ... */
-	private JButton buttonV1 = new JButton("");
+	private Cell buttonV1 = new Cell(0);
 	
 	/** ... */
-	private JButton buttonV2 = new JButton("");
+	private Cell buttonV2 = new Cell(0);
 	
 	/** ... */
 	private MatchThreeUI view = null;
@@ -119,16 +135,7 @@ public class SwapView
 	/**
 	 * ...
 	 */
-	public SwapView() {
-		changeState(WindowState.START_MENU);
-		
-		initializeHandlers();
-		setButtonProperties();
-		setBackground(Color.DARK_GRAY);
-	}
-	
-	/** ... */
-	private enum Button
+	public enum Button
 	{
 		/** ... */
 		BACK,
@@ -143,6 +150,17 @@ public class SwapView
 	/**
 	 * ...
 	 */
+	public SwapView() {
+		changeState(WindowState.START_MENU);
+		
+		initializeHandlers();
+		setButtonProperties();
+		setBackground(Color.DARK_GRAY);
+	}
+	
+	/**
+	 * ...
+	 */
 	private void setButtonProperties() {
 		MatchThreeUI.initButtonDefaultValue(back);
 		MatchThreeUI.initButtonDefaultValue(buttonV1);
@@ -152,17 +170,14 @@ public class SwapView
 		resetButtonImage();
 		back.setPreferredSize(new Dimension(50, 50));
 		back.setBackground(Color.DARK_GRAY);
-		back.addMouseListener(new MouseAction(back));
 		back.setMnemonic(Button.BACK.ordinal());
 		
 		buttonV1.setPreferredSize(new Dimension(80, 80));
 		buttonV1.setBackground(Color.DARK_GRAY);
-		buttonV1.addMouseListener(new MouseAction(buttonV1));
 		buttonV1.setMnemonic(Button.V1.ordinal());
 		
 		buttonV2.setPreferredSize(new Dimension(80, 80));
 		buttonV2.setBackground(Color.DARK_GRAY);
-		buttonV2.addMouseListener(new MouseAction(buttonV2));
 		buttonV2.setMnemonic(Button.V2.ordinal());
 	}
 	
@@ -182,16 +197,16 @@ public class SwapView
 		implements MouseListener
 	{
 		/** ... */
-		private JButton button = null;
+		private Cell cell = null;
 		
 		/**
 		 * ...
 		 *
 		 * @param button ...
 		 */
-		private MouseAction(final JButton button) {
+		private MouseAction(final Cell cell) {
 			// TODO Auto-generated constructor stub
-			this.button = button;
+			this.cell = cell;
 		}
 		
 		@Override
@@ -203,14 +218,14 @@ public class SwapView
 		@Override
 		public void mousePressed(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			switch (button.getMnemonic()) {
-				case 0: /* BACK */
+			switch(cell.getMnemonic()) {
+				case 0:
 					changeState(WindowState.START_MENU);
 					break;
-				case 1: /* V1 */
+				case 1:
 					view.changeSprites(1);
 					break;
-				case 2: /* V2 */
+				case 2:
 					view.changeSprites(2);
 					break;
 				default:
@@ -227,37 +242,13 @@ public class SwapView
 		@Override
 		public void mouseEntered(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			switch (button.getMnemonic()) {
-				case 0: /* BACK */
-					button.setIcon(new ImageIcon(IMAGE_BACK_HALF_ALPHA));
-					break;
-				case 1: /* V1 */
-					button.setIcon(new ImageIcon(IMAGE_V1_HALF_ALPHA));
-					break;
-				case 2: /* V2 */
-					button.setIcon(new ImageIcon(IMAGE_V2_HALF_ALPHA));
-					break;
-				default:
-					break;
-			}
+			cell.setAlpha(0.5f);
 		}
 		
 		@Override
 		public void mouseExited(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			switch (button.getMnemonic()) {
-				case 0: /* BACK */
-					button.setIcon(new ImageIcon(IMAGE_BACK));
-					break;
-				case 1: /* V1 */
-					button.setIcon(new ImageIcon(IMAGE_V1));
-					break;
-				case 2: /* V2 */
-					button.setIcon(new ImageIcon(IMAGE_V2));
-					break;
-				default:
-					break;
-			}
+			cell.setAlpha(1f);
 		}
 	}
 	
@@ -270,6 +261,17 @@ public class SwapView
 		removeAll();
 		resetButtonImage();
 		
+		//If a state change was issued during a multiplayer game,
+		//then let the other user know that game ended.
+		if(viewState == WindowState.MULTIPLAYER_GAME) {
+			//TODO
+			Server.setInGame(false);
+			mp.closeGame();
+			mp = null;
+		}
+		
+		viewState = state;
+		
 		// TODO: Fix Layouts for probably all different states. Multiplayer
 		//       especially.
 		switch (state) {
@@ -277,18 +279,17 @@ public class SwapView
 				add(mainMenu);
 				break;
 			case SINGLEPLAYER_GAME:
-				MatchThreeModel matchThreeModel =
-					new MatchThreeModel(GAME_SIZE);
-				singleplayer = new Singleplayer(matchThreeModel);
-				singleplayer.setWindow(window);
+				mode = GameMode.SINGLEPLAYER;
+				sp = new Singleplayer(new MatchThreeModel(GAME_SIZE));
+				sp.setWindow(window);
 				
 				// TODO: Avoid magic numbers.
 				//Display new panel (the game)
-				singleplayer.setLayout(
+				sp.setLayout(
 					new FlowLayout(FlowLayout.CENTER, 10, 10)
 				);
-				singleplayer.setBackground(Color.BLACK);
-				singleplayer.setBorder(
+				sp.setBackground(Color.BLACK);
+				sp.setBorder(
 					BorderFactory.createLineBorder(Color.WHITE)
 				);
 				singleplayerButtonPanel.add(back);
@@ -298,38 +299,30 @@ public class SwapView
 				singleplayerButtonPanel.setLayout(
 					new GridLayout(3, 1, 10, 10)
 				);
-				add(singleplayer);
+				add(sp);
 				add(singleplayerButtonPanel);
-				view = singleplayer.getView();
+				view = sp.getView();
 				break;
 			case MULTIPLAYER_MENU:
-				add(back);
-				add(multiplayerMenu);
+				add(back); //button to go back to main menu panel
+				add(mpMenu);
 				break;
 			case MULTIPLAYER_GAME:
-				Multiplayer multiplayer = null;
-				
-				try {
-					multiplayer = new Multiplayer(
-						multiplayerMenu.getIp(),
-						Integer.parseInt(multiplayerMenu.getPort()),
-						GAME_SIZE
-					);
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				mode = GameMode.MULTIPLAYER;
+				if(mp == null) {
+					//Should be unreachable
+					System.err.println("MP was null");
+					System.exit(1);
 				}
 				
-				multiplayer.setLayout(new FlowLayout());
-				multiplayer.add(back);
-				multiplayer.setBackground(Color.BLACK);
-				add(multiplayer);
-				view = multiplayer.getView();
+				mp.setLayout(new FlowLayout());
+				mp.add(back); //button to go back to main menu panel
+				mp.setBackground(Color.BLACK);
+				add(mp);
+				window.setSize(1300, 600);
+				view = mp.getView(); //remove?
 				break;
-			default:
+			default: //throw something
 				throw new IllegalStateException();
 		}
 		
@@ -345,19 +338,48 @@ public class SwapView
 	/**
 	 * ...
 	 *
+	 */
+	public void changeToMultiplayer(InetAddress ip, int port, boolean isHost, Jewel[] board) {
+		try {
+			mp = new Multiplayer(ip, port, isHost, board, GAME_SIZE);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		mp.setWindow(window);
+		changeState(WindowState.MULTIPLAYER_GAME);
+	}
+	
+	/**
+	 * ...
+	 *
 	 * @return ...
 	 */
 	// TODO: Use mediator pattern instead.
 	public MatchThreeController getMatchThreeController() {
-		return singleplayer.getMatchThreeController();
+		return sp.getMatchThreeController();
 	}
 	
 	/**
 	 * ...
 	 */
 	private void initializeHandlers() {
-		multiplayerMenu.addConnectListener((ActionEvent e) -> {
-			changeState(WindowState.MULTIPLAYER_GAME);
+		back.addMouseListener(new MouseAction(back));
+		buttonV1.addMouseListener(new MouseAction(buttonV1));
+		buttonV2.addMouseListener(new MouseAction(buttonV2));
+		
+		mpMenu.addConnectListener((ActionEvent e) -> {
+			//changeState(WindowState.);
+			//Send message to port requesting gameMULTIPLAYER_GAME
+			try {
+				InetAddress ip = InetAddress.getByName(mpMenu.getIp());
+				int port = Integer.parseInt(mpMenu.getPort());
+				DatagramSocket client = new DatagramSocket();
+				Server.sendDatagram(new Message(Message.MessageType.REQUESTED_GAME), client, ip, port);
+	        } catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		});
 		
 		mainMenu.addMultiplayerListener((ActionEvent e) -> {
@@ -378,7 +400,7 @@ public class SwapView
 		this.window = window;
 		
 		if (view != null) {
-			singleplayer.setWindow(window);
+			sp.setWindow(window);
 		}
 	}
 }
