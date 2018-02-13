@@ -117,12 +117,12 @@ public class MatchThreeModel
 	}
 	
 	/**
-	 * ...
+	 * Get a copy of the board contents.
 	 *
-	 * @return ...
+	 * @return A copy of the board.
 	 */
 	public Jewel[] getBoard() {
-		return board;
+		return board.clone();
 	}
 	
 	/**
