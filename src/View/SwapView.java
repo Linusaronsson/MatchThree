@@ -17,6 +17,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import Model.MatchThreeModel;
 
 /**
  * Maintains multiples views, and swaps between them.
@@ -276,7 +277,9 @@ public class SwapView
 				add(mainMenu);
 				break;
 			case SINGLEPLAYER_GAME:
-				singleplayer = new Singleplayer(GAME_SIZE);
+				MatchThreeModel matchThreeModel =
+					new MatchThreeModel(GAME_SIZE);
+				singleplayer = new Singleplayer(matchThreeModel);
 				singleplayer.setWindow(window);
 				
 				// TODO: Avoid magic numbers.
