@@ -4,12 +4,16 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 import javax.imageio.ImageIO;
@@ -19,8 +23,9 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JMenuItem;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import Model.Coordinate;
@@ -71,11 +76,9 @@ public class MatchThreeUI
 	/** ... */
 	private static final int GAP = 2;
 	
-	/** ... */
-	private static final String WINDOW_TITLE = "MatchThree";
-	
-	/** ... */
-	private Clip audioSwap = null;
+	/** Stores loaded audio clips. */
+	// TODO: Rework clip usage.
+	private Map<Audio, Clip> audioClips = new HashMap<Audio, Clip>();
 	
 	/** ... */
 	private Cell[] board = null;
@@ -126,22 +129,53 @@ public class MatchThreeUI
 	private BufferedImage imageTopazV2 = null;
 	
 	/** ... */
+	private BufferedImage imageDiamondHalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageDiamondV2HalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageEmeraldHalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageEmeraldV2HalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageRubyHalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageRubyV2HalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageSapphireHalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageSapphireV2HalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageTopazHalfAlpha = null;
+	
+	/** ... */
+	private BufferedImage imageTopazV2HalfAlpha = null;
+	
+	/** ... */
 	private JLabel label = new JLabel("");
 	
 	/** ... */
 	private MatchThreeModel model = null;
 	
 	/** ... */
-	private JMenuItem newItem = null;
+	private int jewelVersion = 1;
 	
-	/** ... */
-	private JMenuItem openItem = null;
-	
-	/** ... */
-	private JMenuItem quitItem = null;
-	
-	/** ... */
-	private JMenuItem saveItem = null;
+	/** Audio file specifier. */
+	public enum Audio
+	{
+		/** Invalid move audio. */
+		INVALID,
+		
+		/** Swap audio. */
+		SWAP
+	}
 	
 	/**
 	 * Constructor for `MatchThreeUI`.
@@ -173,6 +207,8 @@ public class MatchThreeUI
 		// Construct header //
 		JPanel header = new JPanel(new FlowLayout());
 		label.setForeground(Color.WHITE);
+		label.setFont(new Font(CELL_FONT_NAME, Font.BOLD, 20));
+		
 		header.add(label);
 		header.setBackground(Color.BLACK);
 		add(header, BorderLayout.PAGE_START);
@@ -225,16 +261,8 @@ public class MatchThreeUI
 			board[i] = button;
 			
 			// Set button properties //
-			button.setOpaque(true);
-			button.setBorderPainted(false);
-			button.setEnabled(true);
-			button.setContentAreaFilled(false);
-			button.setFocusPainted(false);
-			button.setHorizontalAlignment(SwingConstants.CENTER);
-			button.setVerticalAlignment(SwingConstants.CENTER);
-			button.setForeground(COLOR_FOREGROUND);
-			button.setBackground(Color.BLACK);
-			button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
+			initButtonDefaultValue(button);
+			button.addMouseListener(new MouseAction(button));
 			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
 			button.setFont(font);
 			
@@ -242,46 +270,280 @@ public class MatchThreeUI
 			updateCell(x, y, model.get(x, y));
 			
 			// Add button to grid //
-			grid.add(button);
+			grid.add(button, JLayeredPane.DEFAULT_LAYER);
 		}
 		
 		return grid;
 	}
 	
 	/**
-	 * Load external audio resources.
+	 * ...
+	 *
+	 * @param button ...
 	 */
-	private void initAudio() {
+	protected static final void initButtonDefaultValue(final JButton button) {
+		button.setOpaque(true);
+		button.setBorderPainted(false);
+		button.setEnabled(true);
+		button.setContentAreaFilled(false);
+		button.setFocusPainted(false);
+		button.setHorizontalAlignment(SwingConstants.CENTER);
+		button.setVerticalAlignment(SwingConstants.CENTER);
+		button.setForeground(COLOR_FOREGROUND);
+		button.setBackground(Color.BLACK);
+		button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
+	}
+	
+	/**
+	 * ...
+	 */
+	private final class MouseAction
+		implements MouseListener
+	{
+		/** ... */
+		private Cell cell = null;
+		
+		/**
+		 * ...
+		 *
+		 * @param cell ...
+		 */
+		private MouseAction(final Cell cell) {
+			// TODO Auto-generated constructor stub
+			this.cell = cell;
+		}
+		
+		@Override
+		public void mouseClicked(final MouseEvent e) {
+			// TODO Auto-generated method stub
+		}
+		
+		@Override
+		public void mousePressed(final MouseEvent e) {
+			// TODO Auto-generated method stub
+		}
+		
+		@Override
+		public void mouseReleased(final MouseEvent e) {
+			// TODO Auto-generated method stub
+		}
+		
+		@Override
+		public void mouseEntered(final MouseEvent e) {
+			// TODO Auto-generated method stub
+			switch (jewelVersion) {
+				case 1:
+					switch (cell.getMnemonic()) {
+						case 0: /** Diamond */
+							cell.setIcon(new ImageIcon(imageDiamondHalfAlpha));
+							break;
+						case 1: /** Emerald */
+							cell.setIcon(new ImageIcon(imageEmeraldHalfAlpha));
+							break;
+						case 2: /** Ruby */
+							cell.setIcon(new ImageIcon(imageRubyHalfAlpha));
+							break;
+						case 3: /** Sapphire */
+							cell.setIcon(new ImageIcon(imageSapphireHalfAlpha));
+							break;
+						case 4: /** Topaz */
+							cell.setIcon(new ImageIcon(imageTopazHalfAlpha));
+							break;
+						default:
+							break;
+					}
+					break;
+				case 2:
+					switch (cell.getMnemonic()) {
+						case 0: /** DiamondV2 */
+							cell.setIcon(
+								new ImageIcon(imageDiamondV2HalfAlpha)
+							);
+							break;
+						case 1: /** EmeraldV2 */
+							cell.setIcon(
+								new ImageIcon(imageEmeraldV2HalfAlpha)
+							);
+							break;
+						case 2: /** RubyV2 */
+							cell.setIcon(new ImageIcon(imageRubyV2HalfAlpha));
+							break;
+						case 3: /** SapphireV2 */
+							cell.setIcon(
+								new ImageIcon(imageSapphireV2HalfAlpha)
+							);
+							break;
+						case 4: /** TopazV2 */
+							cell.setIcon(new ImageIcon(imageTopazV2HalfAlpha));
+							break;
+						default:
+							break;
+					}
+					break;
+				default: break;
+			}
+		}
+		
+		@Override
+		public void mouseExited(final MouseEvent e) {
+			switch (jewelVersion) {
+				case 1:
+					switch (cell.getMnemonic()) {
+						case 0: /** Diamond */
+							cell.setIcon(new ImageIcon(imageDiamond));
+							break;
+						case 1: /** Emerald */
+							cell.setIcon(new ImageIcon(imageEmerald));
+							break;
+						case 2: /** Ruby */
+							cell.setIcon(new ImageIcon(imageRuby));
+							break;
+						case 3: /** Sapphire */
+							cell.setIcon(new ImageIcon(imageSapphire));
+							break;
+						case 4: /** Topaz */
+							cell.setIcon(new ImageIcon(imageTopaz));
+							break;
+						default:
+							break;
+					}
+					break;
+				case 2:
+					switch (cell.getMnemonic()) {
+						case 0: /** DiamondV2 */
+							cell.setIcon(new ImageIcon(imageDiamondV2));
+							break;
+						case 1: /** EmeraldV2 */
+							cell.setIcon(new ImageIcon(imageEmeraldV2));
+							break;
+						case 2: /** RubyV2 */
+							cell.setIcon(new ImageIcon(imageRubyV2));
+							break;
+						case 3: /** SapphireV2 */
+							cell.setIcon(new ImageIcon(imageSapphireV2));
+							break;
+						case 4: /** TopazV2 */
+							cell.setIcon(new ImageIcon(imageTopazV2));
+							break;
+						default:
+							break;
+					}
+					break;
+				default:
+					break;
+			}
+		}
+	}
+	
+	/**
+	 * Preemptively load all audio resouces.
+	 */
+	private void preloadAudio() {
+		// TODO: Run automatically for all values of `Audio`.
+		loadAudio(Audio.INVALID);
+		loadAudio(Audio.SWAP);
+	}
+	
+	/**
+	 * Load an external audio resource.
+	 *
+	 * @param audio ...
+	 */
+	private void loadAudio(final Audio audio) {
+		// Validate argument //
+		if (audio == null) {
+			throw new NullPointerException();
+		}
+		
+		// Skip loading already loaded audio //
+		if (audioClips.containsKey(audio)) {
+			return;
+		}
+		
+		// Get file path //
+		// TODO: Use correct type for path.
+		// TODO: Move file path information to `Audio` type.
+		String path = null;
+		switch (audio) {
+			case INVALID: path = "InvalidMove.wav"; break;
+			case SWAP:    path = "Swap.wav";        break;
+			default: throw new IllegalStateException();
+		}
+		
 		// Read audio from file //
-		File audioFile = new File(DIR_RESOURCES, "Swap.wav").getAbsoluteFile();
+		File audioFile = new File(DIR_RESOURCES, path).getAbsoluteFile();
 		AudioInputStream audioStream = null;
 		try {
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
-		} catch (IOException
-		| UnsupportedAudioFileException e) {
+		} catch (IOException exception) {
 			System.err.printf(
-				"Failed to read \"%s\":%s",
+				"Error while reading \"%s\"%s",
 				audioFile,
 				System.lineSeparator()
 			);
 			System.err.printf(
 				"\t%s%s",
-				e,
+				exception,
 				System.lineSeparator()
 			);
+			
+			// Soft return //
+			return;
+		} catch (UnsupportedAudioFileException exception) {
+			System.err.printf(
+				"File type not supported for \"%s\"%s",
+				audioFile,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				exception,
+				System.lineSeparator()
+			);
+			
+			// Soft return //
 			return;
 		}
 		
 		// Send audio to system mixer //
+		// TODO: Split try clause into two blocks.
+		Clip audioClip = null;
 		try {
-			audioSwap = AudioSystem.getClip();
-			audioSwap.open(audioStream);
-		} catch (IOException
-		| LineUnavailableException e) {
-			System.err.println(e);
-			audioSwap = null;
+			audioClip = AudioSystem.getClip();
+			audioClip.open(audioStream);
+		} catch (IOException exception) {
+			System.err.printf(
+				"IO error while loading \"%s\"%s",
+				audioFile,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				exception,
+				System.lineSeparator()
+			);
+			
+			// Soft return //
+			return;
+		} catch (LineUnavailableException exception) {
+			System.err.printf(
+				"Error loading audio \"%s\": LineUnavailableException%s",
+				audioFile,
+				System.lineSeparator()
+			);
+			System.err.printf(
+				"\t%s%s",
+				exception,
+				System.lineSeparator()
+			);
+			
+			// Soft return //
 			return;
 		}
+		
+		// Store reference to clip //
+		// TODO: Assert element does not already exist.
+		audioClips.put(audio, audioClip);
 	}
 	
 	/**
@@ -297,6 +559,7 @@ public class MatchThreeUI
 				currentRuby     = imageRuby;
 				currentSapphire = imageSapphire;
 				currentTopaz    = imageTopaz;
+				jewelVersion = i;
 				break;
 			case 2:
 				currentDiamond  = imageDiamondV2;
@@ -304,14 +567,14 @@ public class MatchThreeUI
 				currentRuby     = imageRubyV2;
 				currentSapphire = imageSapphireV2;
 				currentTopaz    = imageTopazV2;
+				jewelVersion = i;
 				break;
 			default: break;
 		}
-		int d = 0;
-		
-		for (Jewel j : model.getBoard()) {
-			Cell cell = board[d];
-			switch (j) {
+		int index = 0;
+		for (Jewel jewel : model.getBoard()) {
+			Cell cell = board[index];
+			switch (jewel) {
 				case DIAMOND:  cell.setIcon(new ImageIcon(currentDiamond));
 				               break;
 				case EMERALD:  cell.setIcon(new ImageIcon(currentEmerald));
@@ -324,7 +587,7 @@ public class MatchThreeUI
 				               break;
 				default:       break;
 			}
-			d++;
+			index++;
 		}
 	}
 	
@@ -344,7 +607,27 @@ public class MatchThreeUI
 		imageSapphireV2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
 		imageTopaz      = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
 		imageTopazV2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
-		// Not actually jewels btw, just some block
+		imageDiamondHalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond.png"));
+		imageDiamondV2HalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond_v2.png"));
+		imageEmeraldHalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredEmerald.png"));
+		imageEmeraldV2HalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredEmerald_v2.png"));
+		imageRubyHalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredRuby.png"));
+		imageRubyV2HalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredRuby_v2.png"));
+		imageSapphireHalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredSapphire.png"));
+		imageSapphireV2HalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredSapphire_v2.png"));
+		imageTopazHalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz.png"));
+		imageTopazV2HalfAlpha =
+			loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz_v2.png"));
+		// Block images instead of jewels
 		
 		// Default images
 		currentDiamond  = imageDiamond;
@@ -360,7 +643,7 @@ public class MatchThreeUI
 	 * @param file File to read from.
 	 * @return     Loaded image buffer.
 	 */
-	private static BufferedImage loadImage(final File file) {
+	protected static BufferedImage loadImage(final File file) {
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(file);
@@ -381,13 +664,25 @@ public class MatchThreeUI
 	
 	/**
 	 * Play swap audio clip.
+	 *
+	 * @param audio ...
 	 */
-	public void playAudioSwap() {
-		// Rewind and play clip //
-		if (audioSwap != null) {
-			audioSwap.setFramePosition(0);
-			audioSwap.start();
+	public void playAudio(final Audio audio) {
+		// Validate argument //
+		if (audio == null) {
+			throw new NullPointerException();
 		}
+		
+		// Lazy load audio //
+		loadAudio(audio);
+		
+		// Get a reference to clip //
+		// TODO: Assert not null.
+		Clip clip = audioClips.get(audio);
+		
+		// Rewind and play clip //
+		clip.setFramePosition(0);
+		clip.start();
 	}
 	
 	/**
@@ -539,11 +834,12 @@ public class MatchThreeUI
 			String        text  = getStr(jewel);
 			Color         color = getColor(jewel);
 			
+			cell.setMnemonic(jewel.ordinal());
+			
 			if (image != null) {
 				icon = new ImageIcon(image);
 				text = "";
 			}
-			
 			cell.setIcon(icon);
 			cell.setText(text);
 			cell.setForeground(color);

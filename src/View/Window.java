@@ -60,7 +60,6 @@ public class Window
 		setTitle(WINDOW_TITLE);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationByPlatform(true);
-		setPreferredSize(new Dimension(650, 650));
 		setResizable(true);
 		
 		// Add content //
@@ -181,7 +180,7 @@ public class Window
 	/**
 	 * Center the frame.
 	 */
-	private void centerWindow() {
+	public void centerWindow() {
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		setLocation(
 			dim.width  / 2 - getSize().width  / 2,

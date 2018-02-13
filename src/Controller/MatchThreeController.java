@@ -98,19 +98,10 @@ public class MatchThreeController
 		
 		// Swap cells //
 		switch (model.move(from, to)) {
-			case OK:
-				// Play swap audio //
-				view.playAudioSwap();
-				break;
-			case BAD:
-				// TODO: Handle null values.
-				window.showError("Invalid move");
-				break;
-			case CANCEL:
-				break;
-			default:
-				// TODO: Throw exception.
-				break;
+			case OK:     view.playAudio(MatchThreeUI.Audio.SWAP);    break;
+			case BAD:    view.playAudio(MatchThreeUI.Audio.INVALID); break;
+			case CANCEL: break;
+			default: throw new IllegalStateException();
 		}
 		
 		// Update view //

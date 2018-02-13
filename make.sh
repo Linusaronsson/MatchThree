@@ -59,7 +59,11 @@ lint () {
 		printf 'checkstyle not found\n' 1>&2
 		exit "$EXIT_MISSING_PROGRAM"
 	fi
-	checkstyle -c "${script_dir}/${CHECKSTYLE}" -- "${script_dir}/${SOURCE}"
+	checkstyle \
+		-c "${script_dir}/${CHECKSTYLE}" \
+		-e "${script_dir}/${SOURCE}/com" \
+		-e "${script_dir}/${SOURCE}/org" \
+		-- "${script_dir}/${SOURCE}"
 }
 
 print_usage () {
