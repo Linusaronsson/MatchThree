@@ -1,5 +1,6 @@
 import Controller.WindowController;
 import java.io.IOException;
+import Model.MatchThreeModel;
 import View.SwapView;
 import View.Window;
 
@@ -8,6 +9,9 @@ import View.Window;
  */
 public final class MatchThree
 {
+	/** ... */
+	private static final int GAME_SIZE = 6;
+	
 	/** Port number for network play. */
 	private static final int PORT_NUMBER = 3333;
 	
@@ -26,12 +30,14 @@ public final class MatchThree
 	 */
 	public static void main(final String[] args)
 	throws IOException {
-		// Create GUI //
+		// Create game //
+		MatchThreeModel matchThreeModel = new MatchThreeModel(GAME_SIZE);
 		SwapView swapView = new SwapView();
 		Window   window   = new Window(swapView);
 		WindowController windowController = new WindowController(
 			window,
-			swapView
+			swapView,
+			matchThreeModel
 		);
 		swapView.setWindow(window);
 		

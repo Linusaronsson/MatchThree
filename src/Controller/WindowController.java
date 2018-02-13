@@ -4,6 +4,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import Model.Jewel;
+import Model.MatchThreeModel;
+import Model.Serialize;
 import View.SwapView;
 import View.Window;
 
@@ -12,6 +16,9 @@ import View.Window;
  */
 public class WindowController
 {
+	/** ... */
+	private MatchThreeModel matchThreeModel = null;
+	
 	/** ... */
 	private SwapView swapView = null;
 	
@@ -117,12 +124,14 @@ public class WindowController
 	/**
 	 * ...
 	 *
-	 * @param window   ...
-	 * @param swapView ...
+	 * @param window          ...
+	 * @param swapView        ...
+	 * @param matchThreeModel ...
 	 */
 	public WindowController(
-		final Window   window,
-		final SwapView swapView
+		final Window          window,
+		final SwapView        swapView,
+		final MatchThreeModel matchThreeModel
 	) {
 		// Register event listeners //
 		window.addNewListener(new NewListener());
