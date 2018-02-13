@@ -37,12 +37,12 @@ public class Multiplayer
 	 * @param address  ...
 	 * @param port     ...
 	 * @param gameSize ...
-	 * @throws IOException On file-system access errors.
+	 * @throws IOException On file system access errors.
 	 */
 	public Multiplayer(
 		final String address,
-		final int port,
-		final int gameSize
+		final int    port,
+		final int    gameSize
 	) throws IOException {
 		Socket socket = new Socket(InetAddress.getByName(address), port);
 		
