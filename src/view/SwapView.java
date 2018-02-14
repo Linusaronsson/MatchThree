@@ -368,7 +368,7 @@ public class SwapView
 				int port = Integer.parseInt(mpMenu.getPort());
 				DatagramSocket client = new DatagramSocket();
 				Server.sendDatagram(new Message(Message.MessageType.REQUESTED_GAME), client, ip, port);
-	        } catch (Exception e1) {
+			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
