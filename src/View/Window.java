@@ -3,6 +3,9 @@ package View;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.Toolkit;
+import java.io.File;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -26,16 +29,16 @@ public class Window
 	private JPanel content = null;
 	
 	/** ... */
-	private JMenuItem newItem = null;
+	private JMenuItem newItem = new JMenuItem("New game");
 	
 	/** ... */
-	private JMenuItem openItem = null;
+	private JMenuItem openItem = new JMenuItem("Open…");
 	
 	/** ... */
-	private JMenuItem quitItem = null;
+	private JMenuItem quitItem = new JMenuItem("Quit");
 	
 	/** ... */
-	private JMenuItem saveItem = null;
+	private JMenuItem saveItem = new JMenuItem("Save…");
 	
 	/**
 	 * ...
@@ -201,29 +204,16 @@ public class Window
 			throw new NullPointerException();
 		}
 		
-		// Create menu bar //
-		JMenuBar menuBar = new JMenuBar();
-		
-		// Create menus //
+		// Create "File" menu //
 		JMenu fileMenu = new JMenu("File");
-		
-		// Create "New" menu item //
-		self.newItem = new JMenuItem("New");
 		fileMenu.add(self.newItem);
-		
-		// Create "Open" menu item //
-		self.openItem = new JMenuItem("Open");
 		fileMenu.add(self.openItem);
-		
-		// Create "Save" menu item //
-		self.saveItem = new JMenuItem("Save");
 		fileMenu.add(self.saveItem);
-		
-		// Create "Quit" menu item //
-		self.quitItem = new JMenuItem("Quit");
+		fileMenu.addSeparator();
 		fileMenu.add(self.quitItem);
 		
-		// Add menus to menu bar //
+		// Create menu bar //
+		JMenuBar menuBar = new JMenuBar();
 		menuBar.add(fileMenu);
 		
 		return menuBar;
@@ -250,6 +240,38 @@ public class Window
 		| IllegalAccessException
 		| UnsupportedLookAndFeelException e) {
 			System.err.println(e);
+		}
+	}
+	
+	/**
+	 * Display a save dialog.
+	 *
+	 * @return The chosen file.
+	 */
+	public File showSaveDialog() {
+		// TODO: Use `FileDialog` instead?
+		//FileDialog fileDialog = new FileDialog(this);
+		//fileDialog.setVisible(true);
+		
+		// Create dialog //
+		JFileChooser chooser = new JFileChooser();
+		
+		// Set file extension filter //
+		FileNameExtensionFilter filter = new FileNameExtensionFilter(
+			"MatchThree Save File",
+			"jewel"
+		);
+		chooser.setFileFilter(filter);
+		
+		// Display dialog //
+		int choice = chooser.showSaveDialog(this);
+		
+		// Handle response //
+		switch (choice) {
+			case JFileChooser.APPROVE_OPTION: return chooser.getSelectedFile();
+			case JFileChooser.CANCEL_OPTION:  return null;
+			case JFileChooser.ERROR_OPTION:   return null;
+			default: throw new IllegalStateException();
 		}
 	}
 }

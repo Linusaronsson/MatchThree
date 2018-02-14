@@ -35,7 +35,7 @@ import Model.MatchThreeModel;
 /**
  * MatchThree game view.
  */
-@SuppressWarnings("serial")
+@SuppressWarnings({"deprecation", "serial"})
 public class MatchThreeUI
 	extends JPanel
 	implements Observer
@@ -129,43 +129,13 @@ public class MatchThreeUI
 	private BufferedImage imageTopazV2 = null;
 	
 	/** ... */
-	private BufferedImage imageDiamondHalfAlpha = null;
-	
-	/** ... */
-	private BufferedImage imageDiamondV2HalfAlpha = null;
-	
-	/** ... */
-	private BufferedImage imageEmeraldHalfAlpha = null;
-	
-	/** ... */
-	private BufferedImage imageEmeraldV2HalfAlpha = null;
-	
-	/** ... */
-	private BufferedImage imageRubyHalfAlpha = null;
-	
-	/** ... */
-	private BufferedImage imageRubyV2HalfAlpha = null;
-	
-	/** ... */
-	private BufferedImage imageSapphireHalfAlpha = null;
-	
-	/** ... */
-	private BufferedImage imageSapphireV2HalfAlpha = null;
-	
-	/** ... */
-	private BufferedImage imageTopazHalfAlpha = null;
-	
-	/** ... */
-	private BufferedImage imageTopazV2HalfAlpha = null;
-	
-	/** ... */
 	private JLabel label = new JLabel("");
 	
 	/** ... */
 	private MatchThreeModel model = null;
 	
 	/** ... */
-	private int jewelVersion = 1;
+	private static int jewelVersion = 1;
 	
 	/** Audio file specifier. */
 	public enum Audio
@@ -195,8 +165,7 @@ public class MatchThreeUI
 		model.addObserver(this);
 		
 		// Load external resources //
-		//initAudio();
-		initGraphics();
+		initGraphics(jewelVersion);
 		
 		// Initialize components //
 		updateScore();
@@ -281,7 +250,7 @@ public class MatchThreeUI
 	 *
 	 * @param button ...
 	 */
-	protected static final void initButtonDefaultValue(final JButton button) {
+	protected static final void initButtonDefaultValue(final Cell button) {
 		button.setOpaque(true);
 		button.setBorderPainted(false);
 		button.setEnabled(true);
@@ -331,107 +300,12 @@ public class MatchThreeUI
 		@Override
 		public void mouseEntered(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			switch (jewelVersion) {
-				case 1:
-					switch (cell.getMnemonic()) {
-						case 0: /** Diamond */
-							cell.setIcon(new ImageIcon(imageDiamondHalfAlpha));
-							break;
-						case 1: /** Emerald */
-							cell.setIcon(new ImageIcon(imageEmeraldHalfAlpha));
-							break;
-						case 2: /** Ruby */
-							cell.setIcon(new ImageIcon(imageRubyHalfAlpha));
-							break;
-						case 3: /** Sapphire */
-							cell.setIcon(new ImageIcon(imageSapphireHalfAlpha));
-							break;
-						case 4: /** Topaz */
-							cell.setIcon(new ImageIcon(imageTopazHalfAlpha));
-							break;
-						default:
-							break;
-					}
-					break;
-				case 2:
-					switch (cell.getMnemonic()) {
-						case 0: /** DiamondV2 */
-							cell.setIcon(
-								new ImageIcon(imageDiamondV2HalfAlpha)
-							);
-							break;
-						case 1: /** EmeraldV2 */
-							cell.setIcon(
-								new ImageIcon(imageEmeraldV2HalfAlpha)
-							);
-							break;
-						case 2: /** RubyV2 */
-							cell.setIcon(new ImageIcon(imageRubyV2HalfAlpha));
-							break;
-						case 3: /** SapphireV2 */
-							cell.setIcon(
-								new ImageIcon(imageSapphireV2HalfAlpha)
-							);
-							break;
-						case 4: /** TopazV2 */
-							cell.setIcon(new ImageIcon(imageTopazV2HalfAlpha));
-							break;
-						default:
-							break;
-					}
-					break;
-				default: break;
-			}
+			cell.setAlpha(0.5f);
 		}
 		
 		@Override
 		public void mouseExited(final MouseEvent e) {
-			switch (jewelVersion) {
-				case 1:
-					switch (cell.getMnemonic()) {
-						case 0: /** Diamond */
-							cell.setIcon(new ImageIcon(imageDiamond));
-							break;
-						case 1: /** Emerald */
-							cell.setIcon(new ImageIcon(imageEmerald));
-							break;
-						case 2: /** Ruby */
-							cell.setIcon(new ImageIcon(imageRuby));
-							break;
-						case 3: /** Sapphire */
-							cell.setIcon(new ImageIcon(imageSapphire));
-							break;
-						case 4: /** Topaz */
-							cell.setIcon(new ImageIcon(imageTopaz));
-							break;
-						default:
-							break;
-					}
-					break;
-				case 2:
-					switch (cell.getMnemonic()) {
-						case 0: /** DiamondV2 */
-							cell.setIcon(new ImageIcon(imageDiamondV2));
-							break;
-						case 1: /** EmeraldV2 */
-							cell.setIcon(new ImageIcon(imageEmeraldV2));
-							break;
-						case 2: /** RubyV2 */
-							cell.setIcon(new ImageIcon(imageRubyV2));
-							break;
-						case 3: /** SapphireV2 */
-							cell.setIcon(new ImageIcon(imageSapphireV2));
-							break;
-						case 4: /** TopazV2 */
-							cell.setIcon(new ImageIcon(imageTopazV2));
-							break;
-						default:
-							break;
-					}
-					break;
-				default:
-					break;
-			}
+			cell.setAlpha(1f);
 		}
 	}
 	
@@ -593,8 +467,10 @@ public class MatchThreeUI
 	
 	/**
 	 * Load external image resources.
+	 * 
+	 * @param jewelversion ...
 	 */
-	private void initGraphics() {
+	private void initGraphics(int jewelversion) {
 		// Load images //
 		// TODO: Load new images as well.
 		imageDiamond    = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
@@ -607,34 +483,25 @@ public class MatchThreeUI
 		imageSapphireV2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
 		imageTopaz      = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
 		imageTopazV2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
-		imageDiamondHalfAlpha =
-			loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond.png"));
-		imageDiamondV2HalfAlpha =
-			loadImage(new File(DIR_RESOURCES, "MouseEnteredDiamond_v2.png"));
-		imageEmeraldHalfAlpha =
-			loadImage(new File(DIR_RESOURCES, "MouseEnteredEmerald.png"));
-		imageEmeraldV2HalfAlpha =
-			loadImage(new File(DIR_RESOURCES, "MouseEnteredEmerald_v2.png"));
-		imageRubyHalfAlpha =
-			loadImage(new File(DIR_RESOURCES, "MouseEnteredRuby.png"));
-		imageRubyV2HalfAlpha =
-			loadImage(new File(DIR_RESOURCES, "MouseEnteredRuby_v2.png"));
-		imageSapphireHalfAlpha =
-			loadImage(new File(DIR_RESOURCES, "MouseEnteredSapphire.png"));
-		imageSapphireV2HalfAlpha =
-			loadImage(new File(DIR_RESOURCES, "MouseEnteredSapphire_v2.png"));
-		imageTopazHalfAlpha =
-			loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz.png"));
-		imageTopazV2HalfAlpha =
-			loadImage(new File(DIR_RESOURCES, "MouseEnteredTopaz_v2.png"));
 		// Block images instead of jewels
 		
-		// Default images
-		currentDiamond  = imageDiamond;
-		currentEmerald  = imageEmerald;
-		currentRuby     = imageRuby;
-		currentSapphire = imageSapphire;
-		currentTopaz    = imageTopaz;
+		switch(jewelversion) {
+			case 1:
+				currentDiamond  = imageDiamond;
+				currentEmerald  = imageEmerald;
+				currentRuby     = imageRuby;
+				currentSapphire = imageSapphire;
+				currentTopaz    = imageTopaz;
+				break;
+			case 2:
+				currentDiamond  = imageDiamondV2;
+				currentEmerald  = imageEmeraldV2;
+				currentRuby     = imageRubyV2;
+				currentSapphire = imageSapphireV2;
+				currentTopaz    = imageTopazV2;
+				break;
+			default: break;
+		}
 	}
 	
 	/**
@@ -833,8 +700,6 @@ public class MatchThreeUI
 			BufferedImage image = getImage(jewel);
 			String        text  = getStr(jewel);
 			Color         color = getColor(jewel);
-			
-			cell.setMnemonic(jewel.ordinal());
 			
 			if (image != null) {
 				icon = new ImageIcon(image);

@@ -4,6 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import Model.Jewel;
+import Model.MatchThreeModel;
+import Model.Serialize;
 import View.SwapView;
 import View.Window;
 
@@ -12,6 +19,9 @@ import View.Window;
  */
 public class WindowController
 {
+	/** ... */
+	private MatchThreeModel matchThreeModel = null;
+	
 	/** ... */
 	private SwapView swapView = null;
 	
@@ -27,9 +37,7 @@ public class WindowController
 		@Override
 		public void actionPerformed(final ActionEvent event) {
 			// Restart the game //
-			MatchThreeController matchThreeController =
-				swapView.getMatchThreeController();
-			matchThreeController.restartGame();
+			restartGame();
 		}
 	}
 	
@@ -53,7 +61,8 @@ public class WindowController
 	{
 		@Override
 		public void actionPerformed(final ActionEvent event) {
-			window.showError("Save not implemented");
+			// Save the game //
+			saveGame();
 		}
 	}
 	
@@ -65,9 +74,8 @@ public class WindowController
 	{
 		@Override
 		public void actionPerformed(final ActionEvent event) {
-			// Close window //
-			WindowEvent e = new WindowEvent(window, WindowEvent.WINDOW_CLOSING);
-			window.dispatchEvent(e);
+			// Close main window //
+			closeWindow();
 		}
 	}
 	
@@ -119,12 +127,14 @@ public class WindowController
 	/**
 	 * ...
 	 *
-	 * @param window   ...
-	 * @param swapView ...
+	 * @param window          ...
+	 * @param swapView        ...
+	 * @param matchThreeModel ...
 	 */
 	public WindowController(
-		final Window   window,
-		final SwapView swapView
+		final Window          window,
+		final SwapView        swapView,
+		final MatchThreeModel matchThreeModel
 	) {
 		// Register event listeners //
 		window.addNewListener(new NewListener());
@@ -133,7 +143,94 @@ public class WindowController
 		window.addSaveListener(new SaveListener());
 		window.addWindowListener(new WindowListener());
 		
-		this.swapView = swapView;
-		this.window   = window;
+		this.matchThreeModel = matchThreeModel;
+		this.swapView        = swapView;
+		this.window          = window;
+	}
+	
+	/**
+	 * Close main window.
+	 */
+	private void closeWindow() {
+		WindowEvent e = new WindowEvent(window, WindowEvent.WINDOW_CLOSING);
+		window.dispatchEvent(e);
+	}
+	
+	/**
+	 * Save the game.
+	 */
+	private void saveGame() {
+		// Serialize board content //
+		Jewel[] board = matchThreeModel.getBoard();
+		String serial = null;
+		try {
+			serial = Serialize.serialize(board);
+		} catch (Serialize.UnsupportedTypeException e) {
+			window.showError("Could not serialize model contents");
+			return;
+		}
+		
+		// Get score //
+		int score = matchThreeModel.getScore();
+		
+		// Get width //
+		int width = matchThreeModel.getWidth();
+		
+		// Get save destination //
+		File file = window.showSaveDialog();
+		
+		// Cancel if no file was chosen //
+		if (file == null) {
+			return;
+		}
+		
+		// Save game //
+		BufferedWriter out = null;
+		try {
+			System.out.printf(
+				"Saving game to \"%s\"...%s",
+				file.toString(),
+				System.lineSeparator()
+			);
+			
+			FileWriter writer = new FileWriter(file);
+			out = new BufferedWriter(writer);
+			
+			out.write("MatchThree Save Data Version 1.0\n");
+			out.write("score: ");
+			out.write(String.valueOf(score));
+			out.write("\n");
+			out.write("width: ");
+			out.write(String.valueOf(width));
+			out.write("\n");
+			out.write("board: ");
+			out.write(serial.toString());
+			out.write("\n");
+		} catch (IOException exception) {
+			window.showError("Failed to save game");
+			System.err.println(exception);
+			return;
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (IOException exception) {
+					System.err.println("Failed to close file");
+					System.err.println(exception);
+				}
+			}
+		}
+		
+		// Display confirmation //
+		window.showMessage("Game saved");
+	}
+	
+	/**
+	 * Restart the game.
+	 */
+	private void restartGame() {
+		MatchThreeController matchThreeController =
+			swapView.getMatchThreeController();
+		matchThreeController.restartGame();
 	}
 }

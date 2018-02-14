@@ -22,11 +22,10 @@ public class Singleplayer
 	/**
 	 * ...
 	 *
-	 * @param gameSize ...
+	 * @param matchThreeModel ...
 	 */
-	public Singleplayer(final int gameSize) {
+	public Singleplayer(final MatchThreeModel matchThreeModel) {
 		// Create game //
-		MatchThreeModel matchThreeModel = new MatchThreeModel(gameSize);
 		matchThreeUI = new MatchThreeUI(matchThreeModel);
 		matchThreeController = new MatchThreeController(
 			matchThreeModel,
