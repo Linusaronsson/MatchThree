@@ -11,7 +11,6 @@ import java.util.List;
 /** ... */
 public class HighScore
 {
-	
 	/** ... */
 	static final String GET_SCORES_QUERY =
 		"SELECT * FROM scores ORDER BY scores.score DESC;";
