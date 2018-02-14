@@ -58,9 +58,9 @@ public class Server extends Thread {
 	        outStream.flush();
 	        byte[] data = byteOutStream.toByteArray();
 	        DatagramPacket out = new DatagramPacket(data, data.length, ip, port);
-	        socket.send(out);
+			socket.send(out);
 	        outStream.close();
-        } catch (IOException e) {
+        } catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

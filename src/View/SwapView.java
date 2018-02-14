@@ -69,6 +69,9 @@ public class SwapView
 	/** ... */
 	private static final BufferedImage IMAGE_V2_HALF_ALPHA =
 		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "MouseEnteredV2.png"));
+
+	private WindowState viewState = WindowState.START_MENU;
+	private GameMode mode = GameMode.SINGLEPLAYER;
 	
 	/** .. */
 	private Multiplayer mp = null;
@@ -303,8 +306,8 @@ public class SwapView
 				break;
 			case SINGLEPLAYER_GAME:
 				mode = GameMode.SINGLEPLAYER;
-				sp = new Singleplayer(GAME_SIZE);
-				sp.setWindow(window);
+				singleplayer = new Singleplayer(GAME_SIZE);
+				singleplayer.setWindow(window);
 				
 				// TODO: Avoid magic numbers.
 				//Display new panel (the game)
@@ -327,7 +330,7 @@ public class SwapView
 				view = singleplayer.getView();
 				break;
 			case MULTIPLAYER_MENU:
-				add(goBack); //button to go back to main menu panel
+				add(back); //button to go back to main menu panel
 				add(mpMenu);
 				break;
 			case MULTIPLAYER_GAME:
@@ -339,7 +342,7 @@ public class SwapView
 				}
 				
 				mp.setLayout(new FlowLayout());
-				mp.add(goBack); //button to go back to main menu panel
+				mp.add(back); //button to go back to main menu panel
 				mp.setBackground(Color.BLACK);
 				add(mp);
 				window.setSize(1300, 600);
@@ -387,7 +390,7 @@ public class SwapView
 	 * ...
 	 */
 	private void initializeHandlers() {
-		goBack.addActionListener((ActionEvent e) -> {
+		back.addActionListener((ActionEvent e) -> {
 			changeState(WindowState.START_MENU);
 		});
 		
