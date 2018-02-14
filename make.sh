@@ -68,7 +68,7 @@ lint () {
 }
 
 print_usage () {
-	printf 'usage: make.sh [build|clean|doc|help|run]...\n'
+	printf 'usage: make.sh [build|clean|doc|help|lint|run]...\n'
 }
 
 run () {
