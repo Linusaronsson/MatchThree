@@ -44,18 +44,20 @@ public class Multiplayer
 	 */
 	public Multiplayer(
 		final InetAddress ip,
-		final int port,
-		final boolean isHost, //Could probably be removed
-		final Jewel[] board,
-		final int gameSize
+		final int         port,
+		final boolean     isHost, //Could probably be removed
+		final Jewel[]     board,
+		final int         gameSize
 	) throws IOException {
-		
-		
 		// Create MVC context for the player //
-		if(board == null) {
+		if (board == null) {
 			playerModel = new MultiplayerModel(gameSize, ip, port);
-			opponentModel = new MatchThreeModel(playerModel.getBoard(), gameSize);
-			//host sends the board to opponent
+			opponentModel = new MatchThreeModel(
+				playerModel.getBoard(),
+				gameSize
+			);
+			
+			// Host sends the board to opponent //
 			playerModel.sendBoard(3333);
 		} else {
 			playerModel = new MultiplayerModel(board, gameSize, ip, port);
@@ -63,11 +65,15 @@ public class Multiplayer
 		}
 		
 		playerModel.setGameStarted(true);
-
+		
 		playerGrid = new GridView(playerModel);
 		playerView  = new MatchThreeUI(playerModel, playerGrid);
-		playerController  = new MatchThreeController(playerModel, playerView, playerGrid);
-
+		playerController = new MatchThreeController(
+			playerModel,
+			playerView,
+			playerGrid
+		);
+		
 		opponentGrid = new GridView(opponentModel);
 		opponentView = new MatchThreeUI(opponentModel, opponentGrid);
 		opponentController = new OpponentController(port, opponentModel);
@@ -96,12 +102,11 @@ public class Multiplayer
 	public MatchThreeUI getView() {
 		return playerView;
 	}
-
+	
 	/**
 	 * Close an ongoing multiplayer game. (Will close active sockets etc)
 	 */
 	public void closeGame() {
 		opponentController.close();
 	}
-	
 }

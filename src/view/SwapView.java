@@ -311,7 +311,7 @@ public class SwapView
 				break;
 			case MULTIPLAYER_GAME:
 				mode = GameMode.MULTIPLAYER;
-				if(mp == null) {
+				if (mp == null) {
 					//Should be unreachable
 					System.err.println("MP was null");
 					System.exit(1);
@@ -325,10 +325,9 @@ public class SwapView
 				view = mp.getView(); //remove?
 				gridView = sp.getGridView();
 				break;
-		        case SCORE_MENU:
-			        add(scoreMenu);
+			case SCORE_MENU:
+				add(scoreMenu);
 				break;
-				
 			default: //throw something
 				throw new IllegalStateException();
 		}
@@ -344,9 +343,13 @@ public class SwapView
 	
 	/**
 	 * ...
-	 *
 	 */
-	public void changeToMultiplayer(InetAddress ip, int port, boolean isHost, Jewel[] board) {
+	public void changeToMultiplayer(
+		InetAddress ip,
+		int         port,
+		boolean     isHost,
+		Jewel[]     board
+	) {
 		try {
 			mp = new Multiplayer(ip, port, isHost, board, GAME_SIZE);
 		} catch (IOException e) {
@@ -382,7 +385,12 @@ public class SwapView
 				InetAddress ip = InetAddress.getByName(mpMenu.getIp());
 				int port = Integer.parseInt(mpMenu.getPort());
 				DatagramSocket client = new DatagramSocket();
-				Server.sendDatagram(new Message(Message.MessageType.REQUESTED_GAME), client, ip, port);
+				Server.sendDatagram(
+					new Message(Message.MessageType.REQUESTED_GAME),
+					client,
+					ip,
+					port
+				);
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
