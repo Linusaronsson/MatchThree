@@ -14,7 +14,7 @@ public class ScoreMenu
 {
     //private String base = "Score:            Name:";
 
-    final JList scoreTable = new JList();
+    final JList<String> scoreTable = new JList<String>();
     final JButton refresh = new JButton("Refresh");
     
     public ScoreMenu()
@@ -25,7 +25,7 @@ public class ScoreMenu
 
     public void refresh()
     {
-	scoreTable.setModel(new HighScore.getScoreTable());
+	scoreTable.setListData(new HighScore().getScoreTable());
     }
 
     public void addRefreshListener(final ActionListener listener)

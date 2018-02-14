@@ -108,7 +108,7 @@ public class HighScore
 	 *
 	 * @return ...
 	 */
-	public List<String> getScoreTable() {
+	public String[] getScoreTable() {
 		Statement statement;
 		ResultSet selection;
 		
@@ -152,7 +152,7 @@ public class HighScore
 				e.printStackTrace();
 			}
 		}
-		return scoreTable;
+		return scoreTable.toArray(new String[scoreTable.size()]);
 	}
 	
 	// Reset score before next game.

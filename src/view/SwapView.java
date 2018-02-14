@@ -73,6 +73,9 @@ public class SwapView
 	private MainMenu mainMenu = new MainMenu();
 	
 	/** ... */
+	private ScoreMenu scoreMenu = new ScoreMenu();
+	
+	/** ... */
 	private MultiplayerMenu multiplayerMenu = new MultiplayerMenu();
 	
 	/** ... */
@@ -123,7 +126,10 @@ public class SwapView
 		SINGLEPLAYER_GAME,
 		
 		/** ... */
-		START_MENU
+		START_MENU,
+
+		/** ... */
+		SCORE_MENU
 	}
 	
 	/**
@@ -314,6 +320,10 @@ public class SwapView
 				window.setSize(1300, 600);
 				view = mp.getView(); //remove?
 				break;
+		        case SCORE_MENU:
+			        add(scoreMenu);
+				break;
+				
 			default: //throw something
 				throw new IllegalStateException();
 		}
@@ -372,6 +382,10 @@ public class SwapView
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		});
+
+		scoreMenu.addRefreshListener((ActionEvent e) -> {
+			changeState(WindowState.SCORE_MENU);
 		});
 		
 		mainMenu.addMultiplayerListener((ActionEvent e) -> {
