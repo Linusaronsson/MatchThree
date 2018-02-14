@@ -1,18 +1,18 @@
-package GameModes;
+package gamemodes;
 
-import Controller.MatchThreeController;
+import controller.MatchThreeController;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import javax.swing.JPanel;
 
-import Model.Jewel;
-import Model.MatchThreeModel;
-import Multiplayer.MultiplayerModel;
-import Multiplayer.OpponentController;
-import View.MatchThreeUI;
-import View.Window;
+import model.Jewel;
+import model.MatchThreeModel;
+import multiplayer.MultiplayerModel;
+import multiplayer.OpponentController;
+import view.MatchThreeUI;
+import view.Window;
 
 /**
  * ...

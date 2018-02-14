@@ -1,10 +1,10 @@
-package GameModes;
+package gamemodes;
 
-import Controller.MatchThreeController;
+import controller.MatchThreeController;
 import javax.swing.JPanel;
-import Model.MatchThreeModel;
-import View.MatchThreeUI;
-import View.Window;
+import model.MatchThreeModel;
+import view.MatchThreeUI;
+import view.Window;
 
 /**
  * ...
