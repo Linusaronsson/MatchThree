@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import model.Coordinate;
 import model.MatchThreeModel;
 import view.Cell;
+import view.GridView;
 import view.MatchThreeUI;
 import view.Window;
 
@@ -15,6 +16,9 @@ public class MatchThreeController
 {
 	/** ... */
 	private Coordinate activeCell = null;
+	
+	/** ... */
+	private GridView gridView = null;
 	
 	/** ... */
 	private MatchThreeModel model = null;
@@ -69,7 +73,8 @@ public class MatchThreeController
 	 */
 	public MatchThreeController(
 		final MatchThreeModel model,
-		final MatchThreeUI    view
+		final MatchThreeUI    view,
+		final GridView        gridView
 	) {
 		// Validate arguments //
 		if (model == null || view == null) {
@@ -77,10 +82,11 @@ public class MatchThreeController
 		}
 		
 		// Register event listeners //
-		view.addBoardListener(new BoardListener());
+		gridView.addBoardListener(new BoardListener());
 		
-		this.model = model;
-		this.view  = view;
+		this.gridView = gridView;
+		this.model    = model;
+		this.view     = view;
 	}
 	
 	/**
@@ -98,8 +104,8 @@ public class MatchThreeController
 		
 		// Swap cells //
 		switch (model.move(from, to)) {
-			case OK:     view.playAudio(MatchThreeUI.Audio.SWAP);    break;
-			case BAD:    view.playAudio(MatchThreeUI.Audio.INVALID); break;
+			case OK:     gridView.playAudio(GridView.Audio.SWAP);    break;
+			case BAD:    gridView.playAudio(GridView.Audio.INVALID); break;
 			case CANCEL: break;
 			default: throw new IllegalStateException();
 		}
@@ -131,12 +137,12 @@ public class MatchThreeController
 	private void setActiveCell(final Coordinate position) {
 		// Deactivate cell if appropriate //
 		if (activeCell != null) {
-			view.setCellState(activeCell, false);
+			gridView.setCellState(activeCell, false);
 		}
 		
 		// Activate new cell if appropriate //
 		if (position != null) {
-			view.setCellState(position, true);
+			gridView.setCellState(position, true);
 		}
 		
 		// Update reference //

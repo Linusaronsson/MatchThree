@@ -3,6 +3,7 @@ package gamemodes;
 import controller.MatchThreeController;
 import javax.swing.JPanel;
 import model.MatchThreeModel;
+import view.GridView;
 import view.MatchThreeUI;
 import view.Window;
 
@@ -13,6 +14,9 @@ import view.Window;
 public class Singleplayer
 	extends JPanel
 {
+	/** ... */
+	private GridView gridView = null;
+	
 	/** ... */
 	private MatchThreeController matchThreeController = null;
 	
@@ -26,17 +30,26 @@ public class Singleplayer
 	 */
 	public Singleplayer(final MatchThreeModel matchThreeModel) {
 		// Create game //
-		matchThreeUI = new MatchThreeUI(matchThreeModel);
+		gridView = new GridView(matchThreeModel);
+		matchThreeUI = new MatchThreeUI(matchThreeModel, gridView);
 		matchThreeController = new MatchThreeController(
 			matchThreeModel,
-			matchThreeUI
+			matchThreeUI,
+			gridView
 		);
 		
 		// Add view to panel //
 		add(matchThreeUI);
-		
-		this.matchThreeController = matchThreeController;
-		this.matchThreeUI         = matchThreeUI;
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
+	// TODO: Remove this method.
+	public GridView getGridView() {
+		return gridView;
 	}
 	
 	/**
