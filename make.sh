@@ -73,7 +73,7 @@ print_usage () {
 
 run () {
 	cd -- "${script_dir}/${TARGET}/${TARGET_MAIN}"
-	java -cp "${script_dir}/${LIBRARY}":$CLASSPATH "$CLASS_NAME"
+	java -cp "${script_dir}/${LIBRARY}/*":$CLASSPATH "$CLASS_NAME"
 }
 
 main () {
