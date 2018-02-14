@@ -1,11 +1,11 @@
-package View;
+package view;
 
-import Controller.MatchThreeController;
-import GameModes.Multiplayer;
-import GameModes.Singleplayer;
-import Model.Jewel;
-import Multiplayer.Message;
-import Multiplayer.Server;
+import controller.MatchThreeController;
+import gameModes.Multiplayer;
+import gameModes.Singleplayer;
+import model.Jewel;
+import multiplayer.Message;
+import multiplayer.Server;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,7 +33,7 @@ import java.net.UnknownHostException;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import Model.MatchThreeModel;
+import model.MatchThreeModel;
 
 /**
  * Maintains multiples views, and swaps between them.

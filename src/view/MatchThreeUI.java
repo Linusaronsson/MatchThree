@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -28,9 +28,9 @@ import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import Model.Coordinate;
-import Model.Jewel;
-import Model.MatchThreeModel;
+import model.Coordinate;
+import model.Jewel;
+import model.MatchThreeModel;
 
 /**
  * MatchThree game view.

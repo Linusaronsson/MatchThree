@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -8,7 +8,7 @@ import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JButton;
-import Model.Coordinate;
+import model.Coordinate;
 
 /**
  * Board cell.
