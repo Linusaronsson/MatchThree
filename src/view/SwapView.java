@@ -1,8 +1,8 @@
 package view;
 
 import controller.MatchThreeController;
-import gameModes.Multiplayer;
-import gameModes.Singleplayer;
+import gamemodes.Multiplayer;
+import gamemodes.Singleplayer;
 import model.Jewel;
 import multiplayer.Message;
 import multiplayer.Server;

@@ -1,10 +1,10 @@
-import Controller.WindowController;
-import Multiplayer.Server;
+import controller.WindowController;
+import multiplayer.Server;
 
 import java.io.IOException;
-import Model.MatchThreeModel;
-import View.SwapView;
-import View.Window;
+import model.MatchThreeModel;
+import view.SwapView;
+import view.Window;
 
 /**
  * MatchThree game.
