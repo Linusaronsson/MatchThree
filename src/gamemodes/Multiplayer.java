@@ -11,6 +11,7 @@ import model.Jewel;
 import model.MatchThreeModel;
 import multiplayer.MultiplayerModel;
 import multiplayer.OpponentController;
+import view.GridView;
 import view.MatchThreeUI;
 import view.Window;
 
@@ -22,11 +23,13 @@ public class Multiplayer
 	extends JPanel
 {
 	// Player
+	private GridView playerGrid = null;
 	private MultiplayerModel playerModel = null;
 	private MatchThreeUI playerView = null;
 	private MatchThreeController playerController = null;
 	
 	// Opponent
+	private GridView opponentGrid = null;
 	private MatchThreeModel opponentModel = null;
 	private MatchThreeUI opponentView = null;
 	private OpponentController opponentController = null;
@@ -61,10 +64,12 @@ public class Multiplayer
 		
 		playerModel.setGameStarted(true);
 
-		playerView  = new MatchThreeUI(playerModel);
-		playerController  = new MatchThreeController(playerModel, playerView);
+		playerGrid = new GridView(playerModel);
+		playerView  = new MatchThreeUI(playerModel, playerGrid);
+		playerController  = new MatchThreeController(playerModel, playerView, playerGrid);
 
-		opponentView = new MatchThreeUI(opponentModel);
+		opponentGrid = new GridView(opponentModel);
+		opponentView = new MatchThreeUI(opponentModel, opponentGrid);
 		opponentController = new OpponentController(port, opponentModel);
 		opponentController.start();
 		

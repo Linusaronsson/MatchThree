@@ -44,15 +44,15 @@ public class SwapView
 	
 	/** ... */
 	private static final BufferedImage IMAGE_BACK =
-		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "Back.png"));
+		GridView.loadImage(new File(DIR_RESOURCES, "Back.png"));
 	
 	/** ... */
 	private static final BufferedImage IMAGE_V1 =
-		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "V1.png"));
+		GridView.loadImage(new File(DIR_RESOURCES, "V1.png"));
 	
 	/** ... */
 	private static final BufferedImage IMAGE_V2 =
-		MatchThreeUI.loadImage(new File(DIR_RESOURCES, "V2.png"));
+		GridView.loadImage(new File(DIR_RESOURCES, "V2.png"));
 
 	/** ... */
 	private MultiplayerMenu mpMenu = new MultiplayerMenu();
@@ -86,6 +86,9 @@ public class SwapView
 	
 	/** ... */
 	private Cell buttonV2 = new Cell(0);
+	
+	/** ... */
+	private GridView gridView = null;
 	
 	/** ... */
 	private MatchThreeUI view = null;
@@ -156,9 +159,9 @@ public class SwapView
 	 * ...
 	 */
 	private void setButtonProperties() {
-		MatchThreeUI.initButtonDefaultValue(back);
-		MatchThreeUI.initButtonDefaultValue(buttonV1);
-		MatchThreeUI.initButtonDefaultValue(buttonV2);
+		GridView.initButtonDefaultValue(back);
+		GridView.initButtonDefaultValue(buttonV1);
+		GridView.initButtonDefaultValue(buttonV2);
 		
 		// Now specifying properties values to the buttons
 		back.setIcon(new ImageIcon(IMAGE_BACK));
@@ -217,10 +220,10 @@ public class SwapView
 					changeState(WindowState.START_MENU);
 					break;
 				case 1:
-					view.changeSprites(1);
+					gridView.changeSprites(1);
 					break;
 				case 2:
-					view.changeSprites(2);
+					gridView.changeSprites(2);
 					break;
 				default:
 					break;
@@ -294,6 +297,7 @@ public class SwapView
 				add(sp);
 				add(singleplayerButtonPanel);
 				view = sp.getView();
+				gridView = sp.getGridView();
 				break;
 			case MULTIPLAYER_MENU:
 				add(back); //button to go back to main menu panel
@@ -313,6 +317,7 @@ public class SwapView
 				add(mp);
 				window.setSize(1300, 600);
 				view = mp.getView(); //remove?
+				gridView = sp.getGridView();
 				break;
 			default: //throw something
 				throw new IllegalStateException();
