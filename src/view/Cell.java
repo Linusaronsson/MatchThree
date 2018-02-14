@@ -113,11 +113,11 @@ public class Cell
 	 */
 	@Override
 	protected void paintComponent(Graphics g) {
-		BufferedImage image = 
+		BufferedImage image =
 				getGraphicsConfiguration().
 				createCompatibleImage(
-						getWidth(), 
-						getHeight(), 
+						getWidth(),
+						getHeight(),
 						Transparency.TRANSLUCENT
 						);
 		image.coerceData(true);
@@ -126,11 +126,11 @@ public class Cell
 		super.paintComponent(imageGraphics);
 		imageGraphics.dispose();
 		
-		BufferedImage mask = 
+		BufferedImage mask =
 				getGraphicsConfiguration().
 				createCompatibleImage(
-						image.getWidth(), 
-						image.getHeight(), 
+						image.getWidth(),
+						image.getHeight(),
 						Transparency.TRANSLUCENT
 						);
 		mask.coerceData(true);
