@@ -3,25 +3,16 @@ package view;
 import controller.MatchThreeController;
 import gamemodes.Multiplayer;
 import gamemodes.Singleplayer;
-import model.Jewel;
-import multiplayer.Message;
-import multiplayer.Server;
-
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
@@ -29,11 +20,14 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-
-
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import model.Jewel;
 import model.MatchThreeModel;
+import multiplayer.Message;
+import multiplayer.Server;
 
 /**
  * Maintains multiples views, and swaps between them.

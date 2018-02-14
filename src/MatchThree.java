@@ -1,8 +1,7 @@
 import controller.WindowController;
-import multiplayer.Server;
-
 import java.io.IOException;
 import model.MatchThreeModel;
+import multiplayer.Server;
 import view.SwapView;
 import view.Window;
 
