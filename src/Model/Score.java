@@ -5,27 +5,29 @@ package Model;
  */
 public class Score
 {
-	/** ... */
-	private String name = null;
+    //protected to enable HighScore to work on the raw data
+    
+    /** ... */
+    protected String name = null;
 	
-	/** ... */
-	private int score = 0;
+    /** ... */
+    protected int score = 0;
+    
+    /**
+     * ...
+     *
+     * @return ...
+     */
+    public String getName() {
+	return name;
+    }
 	
-	/**
-	 * ...
-	 *
-	 * @return ...
-	 */
-	public String getName() {
-		return name;
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @return ...
-	 */
-	public int getScore() {
-		return score;
-	}
+    /**
+     * ...
+     *
+     * @return ...
+     */
+    public int getScore() {
+	return score;
+    }
 }
