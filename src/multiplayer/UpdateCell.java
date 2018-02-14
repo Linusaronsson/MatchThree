@@ -1,6 +1,6 @@
-package Multiplayer;
+package multiplayer;
 
-import Model.Jewel;
+import model.Jewel;
 
 /**
  * Message sent between users over a DatagramSocket (Specific jewel)

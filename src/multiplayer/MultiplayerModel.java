@@ -1,15 +1,15 @@
-package Multiplayer;
+package multiplayer;
 
-import Model.Coordinate;
-import Model.Jewel;
-import Model.MatchThreeModel;
-import Model.MatchThreeModel.CellEvent;
+import model.Coordinate;
+import model.Jewel;
+import model.MatchThreeModel;
+import model.MatchThreeModel.CellEvent;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.*;
-import Multiplayer.Message;
+import multiplayer.Message;
 
 /**
  * 

@@ -1,4 +1,4 @@
-package Multiplayer;
+package multiplayer;
 
 import java.awt.Component;
 import java.io.ByteArrayInputStream;
@@ -14,7 +14,7 @@ import java.net.Socket;
 
 import javax.swing.JOptionPane;
 
-import View.SwapView;
+import view.SwapView;
 
 /**
  * ...

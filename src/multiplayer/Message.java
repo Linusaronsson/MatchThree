@@ -1,8 +1,8 @@
-package Multiplayer;
+package multiplayer;
 
 import java.io.Serializable;
 
-import Model.Jewel;
+import model.Jewel;
 /**
  * Message sent between two users playing
  */

@@ -1,4 +1,4 @@
-package Multiplayer;
+package multiplayer;
 
 import java.awt.Component;
 import java.io.ByteArrayInputStream;
@@ -12,8 +12,8 @@ import java.net.SocketException;
 
 import javax.swing.JOptionPane;
 
-import Model.MatchThreeModel;
-import View.SwapView;
+import model.MatchThreeModel;
+import view.SwapView;
 
 /**
  * ...
