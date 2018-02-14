@@ -1,12 +1,12 @@
-package Controller;
+package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import Model.Coordinate;
-import Model.MatchThreeModel;
-import View.Cell;
-import View.MatchThreeUI;
-import View.Window;
+import model.Coordinate;
+import model.MatchThreeModel;
+import view.Cell;
+import view.MatchThreeUI;
+import view.Window;
 
 /**
  * MatchThree game controller.
