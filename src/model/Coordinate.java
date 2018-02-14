@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 /**
  * Stores a two-dimensional coordinate, limited to the first quadrant.
