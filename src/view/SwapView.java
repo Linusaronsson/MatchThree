@@ -63,7 +63,7 @@ public class SwapView
 	/** ... */
 	private GameMode mode = GameMode.WAITING;
 	
-	/** .. */
+	/** ... */
 	private Multiplayer mp = null;
 	
 	/** ... */
