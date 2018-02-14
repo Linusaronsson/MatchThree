@@ -108,12 +108,11 @@ public class HighScore
 	 *
 	 * @return ...
 	 */
-	public List<Score> getScoreTable() {
+	public List<String> getScoreTable() {
 		Statement statement;
 		ResultSet selection;
-		Score tmp;
 		
-		List<Score> scoreTable = new ArrayList<Score>();
+		List<String> scoreTable = new ArrayList<String>();
 		
 		// connect database
 		try {
@@ -136,10 +135,7 @@ public class HighScore
 		try {
 			selection.first();
 			while (!selection.isAfterLast()) {
-				tmp = new Score();
-				tmp.score = selection.getInt("score");
-				tmp.name = selection.getString("name");
-				scoreTable.add(tmp);
+				scoreTable.add("" + selection.getInt("score") + selection.getString("name"));
 				selection.next();
 			}
 		} catch (SQLException e) {
