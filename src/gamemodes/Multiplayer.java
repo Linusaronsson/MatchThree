@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import javax.swing.JPanel;
-
 import model.Jewel;
 import model.MatchThreeModel;
 import multiplayer.MultiplayerModel;
