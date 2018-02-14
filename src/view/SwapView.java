@@ -396,7 +396,7 @@ public class SwapView
 				e1.printStackTrace();
 			}
 		});
-
+		
 		scoreMenu.addRefreshListener((ActionEvent e) -> {
 			changeState(WindowState.SCORE_MENU);
 		});
