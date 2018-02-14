@@ -44,7 +44,7 @@ public class Multiplayer
 	public Multiplayer(
 		final InetAddress ip,
 		final int         port,
-		final boolean     isHost, //Could probably be removed
+		final boolean     isHost, // TODO: Could probably be removed.
 		final Jewel[]     board,
 		final int         gameSize
 	) throws IOException {
