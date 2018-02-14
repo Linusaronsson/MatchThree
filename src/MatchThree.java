@@ -10,14 +10,14 @@ import view.Window;
  */
 public final class MatchThree
 {
-	/** ... */
+	/** Default game width */
 	private static final int GAME_SIZE = 6;
 	
 	/** Port number for network play. */
 	private static final int PORT_NUMBER = 3333;
 	
 	/**
-	 * ...
+	 * Create a `MatchThree`.
 	 */
 	private MatchThree() {
 		throw new UnsupportedOperationException();
