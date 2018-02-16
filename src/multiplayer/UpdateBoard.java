@@ -3,21 +3,25 @@ package multiplayer;
 import model.Jewel;
 
 /**
- * Message sent between users over a DatagramSocket. (The entire board)
+ * Message sent between users over a DatagramSocket. (The entire board).
  */
-public class UpdateBoard extends Message {
+public class UpdateBoard
+	extends Message
+{
 	Jewel[] board;
-
-    /**
-     * 
-     */
-    public UpdateBoard(Jewel[] board) {
-        super(MessageType.ACCEPTED_GAME);
-        this.board = board;
-    }
-
-    /**
-     * 
-     */
-    public Jewel[] getBoard() { return board; }
+	
+	/**
+	 * ...
+	 */
+	public UpdateBoard(final Jewel[] board) {
+		super(MessageType.ACCEPTED_GAME);
+		this.board = board;
+	}
+	
+	/**
+	 * ...
+	 */
+	public Jewel[] getBoard() {
+		return board;
+	}
 }

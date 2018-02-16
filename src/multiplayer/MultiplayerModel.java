@@ -1,34 +1,34 @@
 package multiplayer;
 
-import model.Coordinate;
+import java.net.*;
 import model.Jewel;
 import model.MatchThreeModel;
-import model.MatchThreeModel.CellEvent;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.*;
-import multiplayer.Message;
 
 /**
- * 
- * Extension of MatchThreeModel used for the player view to send datagrams to opponent
+ * Extension of MatchThreeModel used for the player view to send datagrams to
+ * opponent.
  */
-public class MultiplayerModel extends MatchThreeModel {
-    private DatagramSocket client = null;
-    private DatagramPacket out = null;
-    private InetAddress ip = null;
-    private int port;
-    private boolean gameStarted = false;
-   
+public class MultiplayerModel
+	extends MatchThreeModel
+{
+	private DatagramSocket client = null;
+	private DatagramPacket out = null;
+	private InetAddress ip = null;
+	private int port;
+	private boolean gameStarted = false;
+	
 	/**
-	 * 
+	 * ...
+	 *
 	 * @param width
 	 * @param ip
 	 * @param port
 	 */
-	public MultiplayerModel(int width, InetAddress ip, int port) {
+	public MultiplayerModel(
+		final int width,
+		final InetAddress ip,
+		final int port
+	) {
 		super(width);
 		this.ip = ip;
 		this.port = port;
@@ -43,13 +43,19 @@ public class MultiplayerModel extends MatchThreeModel {
 	}
 	
 	/**
-	 * 
+	 * ...
+	 *
 	 * @param board
 	 * @param width
 	 * @param ip
 	 * @param port
 	 */
-	public MultiplayerModel(Jewel[] board, int width, InetAddress ip, int port) {
+	public MultiplayerModel(
+		final Jewel[] board,
+		final int width,
+		final InetAddress ip,
+		final int port
+	) {
 		super(board, width);
 		this.ip = ip;
 		this.port = port;
@@ -60,13 +66,14 @@ public class MultiplayerModel extends MatchThreeModel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	/**
 	 * ...
 	 */
-	public void setGameStarted(boolean b) { gameStarted = b; }
+	public void setGameStarted(final boolean b) {
+		gameStarted = b;
+	}
 	
 	/**
 	 * Set the value of a cell. May leave the board in an inconsistent state.
@@ -79,21 +86,22 @@ public class MultiplayerModel extends MatchThreeModel {
 	public void set(final int x, final int y, final Jewel value) {
 		super.set(x, y, value);
 		// Notify opponent //
-		if(gameStarted)
+		if (gameStarted) {
 			notifyOpponent(new UpdateCell(x, y, value));
+		}
 	}
 	
 	/**
 	 * ...
 	 */
-	public void sendBoard(int port) {
+	public void sendBoard(final int port) {
 		Server.sendDatagram(new UpdateBoard(board), client, ip, port);
 	}
 	
 	/**
 	 * ...
 	 */
-	private void notifyOpponent(Message m) {
-        Server.sendDatagram(m, client, ip, port);
+	private void notifyOpponent(final Message m) {
+		Server.sendDatagram(m, client, ip, port);
 	}
 }
