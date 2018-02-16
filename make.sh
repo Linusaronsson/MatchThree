@@ -25,7 +25,8 @@ build () {
 		-encoding UTF-8 \
 		-Xlint:all \
 		-d "${script_dir}/${TARGET}/${TARGET_MAIN}" \
-		"${script_dir}/${SOURCE}/${MAIN_FILE}"
+		"${script_dir}/${SOURCE}/${MAIN_FILE}" \
+		2>&1
 	ln -snf \
 		"../../${RESOURCE}" \
 		"${script_dir}/${TARGET}/${TARGET_MAIN}/${RESOURCE}"
