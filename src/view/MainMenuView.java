@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.event.ActionListener;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -8,7 +9,7 @@ import javax.swing.JPanel;
  * Application start view.
  */
 @SuppressWarnings("serial")
-public class MainMenu
+public class MainMenuView
 	extends JPanel
 {
 	/** ... */
@@ -20,7 +21,11 @@ public class MainMenu
 	/**
 	 * ...
 	 */
-	public MainMenu() {
+	public MainMenuView() {
+		// Set layout //
+		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
+		// Assemble view //
 		add(singleplayer);
 		add(multiplayer);
 	}
@@ -30,8 +35,8 @@ public class MainMenu
 	 *
 	 * @param listener ...
 	 */
-	public void addSingleplayerListener(final ActionListener listener) {
-		singleplayer.addActionListener(listener);
+	public void addMultiplayerListener(final ActionListener listener) {
+		multiplayer.addActionListener(listener);
 	}
 	
 	/**
@@ -39,7 +44,7 @@ public class MainMenu
 	 *
 	 * @param listener ...
 	 */
-	public void addMultiplayerListener(final ActionListener listener) {
-		multiplayer.addActionListener(listener);
+	public void addSingleplayerListener(final ActionListener listener) {
+		singleplayer.addActionListener(listener);
 	}
 }

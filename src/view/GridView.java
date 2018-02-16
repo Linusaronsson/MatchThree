@@ -6,31 +6,20 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
-import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
+import util.AssetManager;
 
 /**
  * MatchThree grid view.
@@ -71,14 +60,7 @@ public class GridView
 	private static final Color COLOR_TOPAZ = new Color(0xFF, 0xBF, 0x00);
 	
 	/** ... */
-	private static final String DIR_RESOURCES = "resources";
-	
-	/** ... */
 	private static final int GAP = 2;
-	
-	/** Stores loaded audio clips. */
-	// TODO: Rework clip usage.
-	private Map<Audio, Clip> audioClips = new HashMap<Audio, Clip>();
 	
 	/** ... */
 	private Cell[] board = null;
@@ -181,19 +163,19 @@ public class GridView
 		@Override
 		public void mouseEntered(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			cell.setAlpha(0.5f);
+			//cell.setAlpha(0.5f);
 		}
 		
 		@Override
 		public void mouseExited(final MouseEvent e) {
-			cell.setAlpha(1f);
+			//cell.setAlpha(1f);
 		}
 	}
 	
 	/**
 	 * Create a new `GridView`.
 	 */
-	public GridView(MatchThreeModel model) {
+	public GridView(final MatchThreeModel model) {
 		// Validate argument //
 		if (model == null) {
 			throw new NullPointerException();
@@ -282,7 +264,6 @@ public class GridView
 		// Create grid //
 		int width = model.getWidth();
 		JPanel grid = new JPanel(new GridLayout(width, width, GAP, GAP));
-		grid.setBackground(COLOR_BACKGROUND);
 		
 		// Fill grid //
 		board = new Cell[width * width];
@@ -309,6 +290,16 @@ public class GridView
 		}
 		
 		return grid;
+	}
+	
+	private String getAudioName(final Audio audio) {
+		String name = null;
+		switch (audio) {
+			case INVALID: name = "InvalidMove.wav"; break;
+			case SWAP:    name = "Swap.wav";        break;
+			default: throw new IllegalStateException();
+		}
+		return name;
 	}
 	
 	/**
@@ -385,22 +376,22 @@ public class GridView
 	 *
 	 * @param jewelversion ...
 	 */
-	private void initGraphics(int jewelversion) {
+	private void initGraphics(final int jewelversion) {
 		// Load images //
 		// TODO: Load new images as well.
-		imageDiamond    = loadImage(new File(DIR_RESOURCES, "Diamond.png"));
-		imageDiamondV2  = loadImage(new File(DIR_RESOURCES, "Diamond_v2.png"));
-		imageEmerald    = loadImage(new File(DIR_RESOURCES, "Emerald.png"));
-		imageEmeraldV2  = loadImage(new File(DIR_RESOURCES, "Emerald_v2.png"));
-		imageRuby       = loadImage(new File(DIR_RESOURCES, "Ruby.png"));
-		imageRubyV2     = loadImage(new File(DIR_RESOURCES, "Ruby_v2.png"));
-		imageSapphire   = loadImage(new File(DIR_RESOURCES, "Sapphire.png"));
-		imageSapphireV2 = loadImage(new File(DIR_RESOURCES, "Sapphire_v2.png"));
-		imageTopaz      = loadImage(new File(DIR_RESOURCES, "Topaz.png"));
-		imageTopazV2    = loadImage(new File(DIR_RESOURCES, "Topaz_v2.png"));
+		imageDiamond    = AssetManager.loadImage("Diamond.png");
+		imageDiamondV2  = AssetManager.loadImage("Diamond_v2.png");
+		imageEmerald    = AssetManager.loadImage("Emerald.png");
+		imageEmeraldV2  = AssetManager.loadImage("Emerald_v2.png");
+		imageRuby       = AssetManager.loadImage("Ruby.png");
+		imageRubyV2     = AssetManager.loadImage("Ruby_v2.png");
+		imageSapphire   = AssetManager.loadImage("Sapphire.png");
+		imageSapphireV2 = AssetManager.loadImage("Sapphire_v2.png");
+		imageTopaz      = AssetManager.loadImage("Topaz.png");
+		imageTopazV2    = AssetManager.loadImage("Topaz_v2.png");
 		// Block images instead of jewels
 		
-		switch(jewelversion) {
+		switch (jewelversion) {
 			case 1:
 				currentDiamond  = imageDiamond;
 				currentEmerald  = imageEmerald;
@@ -420,133 +411,6 @@ public class GridView
 	}
 	
 	/**
-	 * Load an external audio resource.
-	 *
-	 * @param audio ...
-	 */
-	private void loadAudio(final Audio audio) {
-		// Validate argument //
-		if (audio == null) {
-			throw new NullPointerException();
-		}
-		
-		// Skip loading already loaded audio //
-		if (audioClips.containsKey(audio)) {
-			return;
-		}
-		
-		// Get file path //
-		// TODO: Use correct type for path.
-		// TODO: Move file path information to `Audio` type.
-		String path = null;
-		switch (audio) {
-			case INVALID: path = "InvalidMove.wav"; break;
-			case SWAP:    path = "Swap.wav";        break;
-			default: throw new IllegalStateException();
-		}
-		
-		// Read audio from file //
-		File audioFile = new File(DIR_RESOURCES, path).getAbsoluteFile();
-		AudioInputStream audioStream = null;
-		try {
-			audioStream = AudioSystem.getAudioInputStream(audioFile);
-		} catch (IOException exception) {
-			System.err.printf(
-				"Error while reading \"%s\"%s",
-				audioFile,
-				System.lineSeparator()
-			);
-			System.err.printf(
-				"\t%s%s",
-				exception,
-				System.lineSeparator()
-			);
-			
-			// Soft return //
-			return;
-		} catch (UnsupportedAudioFileException exception) {
-			System.err.printf(
-				"File type not supported for \"%s\"%s",
-				audioFile,
-				System.lineSeparator()
-			);
-			System.err.printf(
-				"\t%s%s",
-				exception,
-				System.lineSeparator()
-			);
-			
-			// Soft return //
-			return;
-		}
-		
-		// Send audio to system mixer //
-		// TODO: Split try clause into two blocks.
-		Clip audioClip = null;
-		try {
-			audioClip = AudioSystem.getClip();
-			audioClip.open(audioStream);
-		} catch (IOException exception) {
-			System.err.printf(
-				"IO error while loading \"%s\"%s",
-				audioFile,
-				System.lineSeparator()
-			);
-			System.err.printf(
-				"\t%s%s",
-				exception,
-				System.lineSeparator()
-			);
-			
-			// Soft return //
-			return;
-		} catch (LineUnavailableException exception) {
-			System.err.printf(
-				"Error loading audio \"%s\": LineUnavailableException%s",
-				audioFile,
-				System.lineSeparator()
-			);
-			System.err.printf(
-				"\t%s%s",
-				exception,
-				System.lineSeparator()
-			);
-			
-			// Soft return //
-			return;
-		}
-		
-		// Store reference to clip //
-		// TODO: Assert element does not already exist.
-		audioClips.put(audio, audioClip);
-	}
-	
-	/**
-	 * Load an image resource.
-	 *
-	 * @param file File to read from.
-	 * @return     Loaded image buffer.
-	 */
-	protected static BufferedImage loadImage(final File file) {
-		BufferedImage image = null;
-		try {
-			image = ImageIO.read(file);
-		} catch (IOException e) {
-			System.err.printf(
-				"Failed to read \"%s\":%s",
-				file,
-				System.lineSeparator()
-			);
-			System.err.printf(
-				"\t%s%s",
-				e,
-				System.lineSeparator()
-			);
-		}
-		return image;
-	}
-	
-	/**
 	 * Play swap audio clip.
 	 *
 	 * @param audio ...
@@ -557,12 +421,9 @@ public class GridView
 			throw new NullPointerException();
 		}
 		
-		// Lazy load audio //
-		loadAudio(audio);
-		
 		// Get a reference to clip //
-		// TODO: Assert not null.
-		Clip clip = audioClips.get(audio);
+		String name = getAudioName(audio);
+		Clip clip = AssetManager.loadAudio(name);
 		
 		// Rewind and play clip //
 		clip.setFramePosition(0);
@@ -574,8 +435,8 @@ public class GridView
 	 */
 	private void preloadAudio() {
 		// TODO: Run automatically for all values of `Audio`.
-		loadAudio(Audio.INVALID);
-		loadAudio(Audio.SWAP);
+		AssetManager.loadAudio(getAudioName(Audio.INVALID));
+		AssetManager.loadAudio(getAudioName(Audio.SWAP));
 	}
 	
 	/**

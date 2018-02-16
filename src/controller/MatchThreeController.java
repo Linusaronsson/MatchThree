@@ -2,11 +2,20 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import model.Coordinate;
+import model.Jewel;
 import model.MatchThreeModel;
+import model.Serialize;
 import view.Cell;
+import view.ErrorDialog;
 import view.GridView;
 import view.MatchThreeUI;
+import view.MessageDialog;
+import view.SaveDialog;
 import view.Window;
 
 /**
@@ -21,10 +30,10 @@ public class MatchThreeController
 	private GridView gridView = null;
 	
 	/** ... */
-	private MatchThreeModel model = null;
+	private MatchThreeModel matchThreeModel = null;
 	
 	/** ... */
-	private MatchThreeUI view = null;
+	private MatchThreeUI matchThreeUI = null;
 	
 	/** ... */
 	private Window window = null;
@@ -59,9 +68,6 @@ public class MatchThreeController
 			Coordinate from = activeCell;
 			setActiveCell(null);
 			moveCell(from, clickedCell);
-			
-			// Update score //
-			view.updateScore();
 		}
 	}
 	
@@ -84,9 +90,9 @@ public class MatchThreeController
 		// Register event listeners //
 		gridView.addBoardListener(new BoardListener());
 		
-		this.gridView = gridView;
-		this.model    = model;
-		this.view     = view;
+		this.gridView        = gridView;
+		this.matchThreeModel = model;
+		this.matchThreeUI    = view;
 	}
 	
 	/**
@@ -103,7 +109,7 @@ public class MatchThreeController
 		}
 		
 		// Swap cells //
-		switch (model.move(from, to)) {
+		switch (matchThreeModel.move(from, to)) {
 			case OK:     gridView.playAudio(GridView.Audio.SWAP);    break;
 			case BAD:    gridView.playAudio(GridView.Audio.INVALID); break;
 			case CANCEL: break;
@@ -111,7 +117,7 @@ public class MatchThreeController
 		}
 		
 		// Update view //
-		//view.update();
+		//matchThreeUI.update();
 	}
 	
 	/**
@@ -122,11 +128,8 @@ public class MatchThreeController
 		setActiveCell(null);
 		
 		// Reinitialize model //
-		model.init();
-		
-		// Update view //
-		//view.update();
-		view.updateScore();
+		// TODO: Make sure model notifies observers.
+		matchThreeModel.init();
 	}
 	
 	/**
@@ -156,5 +159,77 @@ public class MatchThreeController
 	 */
 	public void setWindow(final Window window) {
 		this.window = window;
+	}
+	
+	/**
+	 * Save the game.
+	 */
+	public void saveGame() {
+		// Serialize board content //
+		Jewel[] board = matchThreeModel.getBoard();
+		String serial = null;
+		try {
+			serial = Serialize.serialize(board);
+		} catch (Serialize.UnsupportedTypeException e) {
+			new ErrorDialog(
+				"Serialization failed",
+				"Could not serialize model contents"
+			);
+			return;
+		}
+		
+		// Get score //
+		int score = matchThreeModel.getScore();
+		
+		// Get width //
+		int width = matchThreeModel.getWidth();
+		
+		// Get save destination //
+		File file = new SaveDialog().getResult();
+		
+		// Cancel if no file was chosen //
+		if (file == null) {
+			return;
+		}
+		
+		// Save game //
+		BufferedWriter out = null;
+		try {
+			System.out.printf(
+				"Saving game to \"%s\"...%s",
+				file.toString(),
+				System.lineSeparator()
+			);
+			
+			FileWriter writer = new FileWriter(file);
+			out = new BufferedWriter(writer);
+			
+			out.write("MatchThree Save Data Version 1.0\n");
+			out.write("score: ");
+			out.write(String.valueOf(score));
+			out.write("\n");
+			out.write("width: ");
+			out.write(String.valueOf(width));
+			out.write("\n");
+			out.write("board: ");
+			out.write(serial.toString());
+			out.write("\n");
+		} catch (IOException exception) {
+			new ErrorDialog("Save game failed", "Failed to save game");
+			System.err.println(exception);
+			return;
+		} finally {
+			if (out != null) {
+				try {
+					out.close();
+				} catch (IOException exception) {
+					System.err.println("Failed to close file");
+					System.err.println(exception);
+				}
+			}
+		}
+		
+		// Display confirmation //
+		new MessageDialog("Game saved", "Game saved successfully");
 	}
 }

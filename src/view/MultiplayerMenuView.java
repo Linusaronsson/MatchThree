@@ -11,7 +11,7 @@ import javax.swing.JTextField;
  * Multiplayer setup screen.
  */
 @SuppressWarnings("serial")
-public class MultiplayerMenu
+public class MultiplayerMenuView
 	extends JPanel
 {
 	/** ... */
@@ -21,26 +21,22 @@ public class MultiplayerMenu
 	private JTextField ip = new JTextField();
 	
 	/** ... */
-	private JLabel ipText = new JLabel("IP: ");
-	
-	/** ... */
 	private JTextField port = new JTextField();
-	
-	/** ... */
-	private JLabel portText = new JLabel("Port: ");
 	
 	/**
 	 * ...
 	 */
-	public MultiplayerMenu() {
+	public MultiplayerMenuView() {
+		// Set properties //
 		// TODO: Avoid magic numbers.
 		ip.setPreferredSize(new Dimension(200, 24));
 		port.setPreferredSize(new Dimension(200, 24));
 		
+		// Assemble view //
 		add(connect);
-		add(ipText);
+		add(new JLabel("IP: "));
 		add(ip);
-		add(portText);
+		add(new JLabel("Port: "));
 		add(port);
 	}
 	

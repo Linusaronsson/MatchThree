@@ -52,16 +52,12 @@ public class Cell
 		position = new Coordinate(x, y);
 	}
 	
-	/**
-	 * //Not a board cell, just a normal JButton that needs the setAlpha method 
-	 * [backButton, buttonV1, buttonV2]
-	 * @param i ...
-	 */
 	public Cell(final int i) {
-		if(i == 0) {
+		if (i == 0) {
 			return;
+		} else {
+			throw new IllegalArgumentException();
 		}
-		else throw new IllegalArgumentException();
 	}
 	
 	/**
@@ -95,24 +91,10 @@ public class Cell
 	private Color color = new Color(0, 0, 0, 0f);
 	
 	/**
-	 * @param alpha Alpha value to be set.
-	 */
-	protected void setAlpha(float alpha) {
-		alpha = 1-alpha;
-		if(alpha >= 0f && alpha <= 1f) {
-			Color alphaColor = new Color(0, 0, 0, alpha);
-			firePropertyChange("alpha", color, alphaColor);
-			color = alphaColor;
-			repaint();
-		}
-		else throw new IllegalArgumentException("alpha is required to be a value between 0f and 1f.");
-	}
-	
-	/**
 	 * Paints the cell graphical image
 	 */
 	@Override
-	protected void paintComponent(Graphics g) {
+	protected void paintComponent(final Graphics g) {
 		BufferedImage image =
 				getGraphicsConfiguration().
 				createCompatibleImage(

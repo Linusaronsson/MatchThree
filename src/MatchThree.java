@@ -1,16 +1,12 @@
-import controller.WindowController;
+import controller.ApplicationController;
 import java.io.IOException;
-import model.MatchThreeModel;
-import multiplayer.Server;
-import view.SwapView;
-import view.Window;
 
 /**
  * MatchThree game.
  */
 public final class MatchThree
 {
-	/** Default game width */
+	/** Default game width. */
 	private static final int GAME_SIZE = 6;
 	
 	/** Port number for network play. */
@@ -31,19 +27,7 @@ public final class MatchThree
 	 */
 	public static void main(final String[] args)
 	throws IOException {
-		// Create game //
-		MatchThreeModel matchThreeModel = new MatchThreeModel(GAME_SIZE);
-		SwapView swapView = new SwapView();
-		Window   window   = new Window(swapView);
-		WindowController windowController = new WindowController(
-			window,
-			swapView,
-			matchThreeModel
-		);
-		swapView.setWindow(window);
-		
-		// Setup server listener //
-		Server server = new Server(swapView, PORT_NUMBER);
-		server.start();
+		// Create application //
+		ApplicationController application = new ApplicationController();
 	}
 }
