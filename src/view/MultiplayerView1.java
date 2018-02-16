@@ -79,7 +79,6 @@ public class MultiplayerView1
 		opponentController.start();
 		
 		// TODO: Use constants for these numbers.
-		
 		setLayout(new BorderLayout());
 		JPanel j = new JPanel(new GridLayout(1, 2, 100, 150));
 		j.add(playerView);
