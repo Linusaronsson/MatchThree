@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JPanel;
+
+import multiplayer.Server;
 import view.ErrorDialog;
 import view.MainMenuBar;
 import view.Window;
@@ -148,6 +150,10 @@ public class MainWindowController
 		
 		// TODO: Fix this.
 		this.matchThreeController = null;
+		
+		//Start server.
+		Server s = new Server(window, uiController, 3333);
+		s.start();
 	}
 	
 	/**

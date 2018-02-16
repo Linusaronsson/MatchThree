@@ -3,6 +3,8 @@ package controller;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import multiplayer.Server;
+
 public class ApplicationController
 {
 	public ApplicationController() {
@@ -11,10 +13,7 @@ public class ApplicationController
 		
 		// Create main window //
 		MainWindowController window = new MainWindowController();
-		
-		// Setup server listener //
-		//Server server = new Server(swapView, PORT_NUMBER);
-		//server.start();
+
 	}
 	
 	/**

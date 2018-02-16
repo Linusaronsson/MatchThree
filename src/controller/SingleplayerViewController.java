@@ -32,11 +32,8 @@ public class SingleplayerViewController
 			= new SingleplayerView(matchThreeModel);
 		
 		// Add event listeners //
-		singlePlayerView.addBackListener(new ActionListener() {
-			@Override
-			public void actionPerformed(final ActionEvent event) {
-				uiController.changeView(UIController.View.MAIN_MENU);
-			}
+		singlePlayerView.addBackListener(e -> {
+			uiController.changeView(UIController.View.MAIN_MENU);
 		});
 		
 		// Add view to parent //

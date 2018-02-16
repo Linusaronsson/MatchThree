@@ -1,5 +1,6 @@
 package multiplayer;
 
+import java.awt.Container;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -9,7 +10,12 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import javax.swing.JOptionPane;
-import view.SwapView;
+
+import controller.UIController;
+import controller.UIController.View;
+import model.Jewel;
+import view.ErrorDialog;
+import view.Window;
 
 /**
  * ...
@@ -17,7 +23,8 @@ import view.SwapView;
 public class Server
 	extends Thread
 {
-	private SwapView window;
+	private Window window;
+	private UIController ui;
 	private DatagramSocket server;
 	private DatagramPacket in;
 	
@@ -25,11 +32,26 @@ public class Server
 	private int port;
 	
 	private static boolean inGame = false;
+	private static OpponentInfo opponentInfo = null;
+	
+	public class OpponentInfo {
+		public InetAddress ip;
+		public int port;
+		public Jewel[] board;
+		public OpponentInfo(InetAddress ip, int port, Jewel[] board) {
+			this.ip = ip;
+			this.port = port;
+			this.board = board;
+		}
+	}
 	
 	/**
-	 * ...
+	 * 
+	 * @param window
+	 * @param port
 	 */
-	public Server(final SwapView window, final int port) {
+	public Server(final Window window, final UIController ui, final int port) {
+		this.ui = ui;
 		this.window = window;
 		this.port = port;
 		try {
@@ -44,8 +66,13 @@ public class Server
 		}
 	}
 	
+
 	/**
-	 * ...
+	 * 
+	 * @param m
+	 * @param socket
+	 * @param ip
+	 * @param port
 	 */
 	public static void sendDatagram(
 		final Message        m,
@@ -71,7 +98,24 @@ public class Server
 	}
 	
 	/**
-	 * ...
+	 * 
+	 * @return
+	 * @throws IllegalStateException
+	 */
+	public static OpponentInfo getOpponentInfo() 
+			throws IllegalStateException  {
+		OpponentInfo info = opponentInfo;
+		opponentInfo = null;
+		if(info != null) {
+			return info;
+		} else {
+			throw new IllegalStateException();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param b
 	 */
 	public static void setInGame(final boolean b) {
 		inGame = b;
@@ -102,12 +146,12 @@ public class Server
 							if (response == 0)  {
 								//start game as host.
 								inGame = true;
-								window.changeToMultiplayer(
-									in.getAddress(),
-									2000,
-									true,
-									null
-								);
+								opponentInfo = new OpponentInfo(
+										in.getAddress(),
+										2000, //TODO: change to in.getPort() (problems for localhost)
+										null
+									);
+								ui.changeView(View.MULTIPLAYER_GAME);
 							} else {
 								sendDatagram(
 									new Message(Message.MessageType.END_GAME),
@@ -120,15 +164,16 @@ public class Server
 						case ACCEPTED_GAME:
 							//start game as non host
 							inGame = true;
-							window.changeToMultiplayer(
-								in.getAddress(),
-								2000,
-								false,
-								((UpdateBoard) m).getBoard()
-							);
+							opponentInfo = new OpponentInfo(
+									in.getAddress(),
+									2000, //TODO: change to in.getPort() 
+									((UpdateBoard) m).getBoard()
+								);
+							ui.changeView(View.MULTIPLAYER_GAME);
 							break;
 						case END_GAME:
 							inGame = false;
+							new ErrorDialog("Game request denied", "Reponse");
 							break;
 						default:
 							throw new IllegalStateException();

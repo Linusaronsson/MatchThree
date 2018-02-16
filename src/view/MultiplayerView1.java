@@ -1,7 +1,10 @@
 package view;
 
 import controller.MatchThreeController;
+
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.InetAddress;
 import javax.swing.JPanel;
@@ -14,7 +17,7 @@ import multiplayer.OpponentController;
  * ...
  */
 @SuppressWarnings("serial")
-public class Multiplayer
+public class MultiplayerView1
 	extends JPanel
 {
 	// Player
@@ -29,6 +32,8 @@ public class Multiplayer
 	private MatchThreeUI opponentView = null;
 	private OpponentController opponentController = null;
 	
+	private ButtonPanel buttonPanel = new ButtonPanel();
+	
 	/**
 	 * ...
 	 *
@@ -37,10 +42,9 @@ public class Multiplayer
 	 * @param gameSize ...
 	 * @throws IOException On file system access errors.
 	 */
-	public Multiplayer(
+	public MultiplayerView1(
 		final InetAddress ip,
 		final int         port,
-		final boolean     isHost, // TODO: Could probably be removed.
 		final Jewel[]     board,
 		final int         gameSize
 	) throws IOException {
@@ -75,9 +79,21 @@ public class Multiplayer
 		opponentController.start();
 		
 		// TODO: Use constants for these numbers.
-		setLayout(new GridLayout(1, 2, 1000, 150));
-		add(playerView);
-		add(opponentView);
+		
+		setLayout(new BorderLayout());
+		JPanel j = new JPanel(new GridLayout(1, 2, 100, 150));
+		j.add(playerView);
+		j.add(opponentView);
+		add(j, BorderLayout.CENTER);
+		add(buttonPanel, BorderLayout.EAST);
+	}
+
+	/**
+	 * 
+	 * @param listener
+	 */
+	public void addBackListener(final ActionListener listener) {
+		buttonPanel.addBackListener(listener);
 	}
 	
 	/**
