@@ -14,10 +14,10 @@ import model.MatchThreeModel;
 public class OpponentController
 	extends Thread
 {
-	MatchThreeModel model = null;
+	private MatchThreeModel model = null;
 	private DatagramSocket opponent;
 	private DatagramPacket  in;
-	byte[] inBuffer;
+	private byte[] inBuffer;
 	private int port;
 
 	/**
@@ -58,8 +58,17 @@ public class OpponentController
 					new ByteArrayInputStream(inBuffer);
 				ObjectInputStream inStream =
 					new ObjectInputStream(byteInStream);
-				UpdateCell m = (UpdateCell) inStream.readObject();
-				model.set(m.getX(), m.getY(), m.getJewelType());
+				Message m = (Message) inStream.readObject();
+				switch(m.getType()) {
+				case CELL_UPDATE:
+					UpdateCell c = (UpdateCell) m;
+					model.set(c.getX(), c.getY(), c.getJewelType());
+				case SCORE_UPDATE:
+					break;
+				case END_GAME:
+					//TODO: Close game in a good way
+					break;
+				}
 				System.out.println(
 					"OpponentController Recieved: \n" + m.toString()
 				);
@@ -68,10 +77,8 @@ public class OpponentController
 		} catch (SocketException e) {
 			return;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

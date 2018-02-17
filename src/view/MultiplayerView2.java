@@ -11,7 +11,7 @@ import model.MatchThreeModel;
  * ...
  */
 @SuppressWarnings("serial")
-public class MultiplayerView
+public class MultiplayerView2
 	extends JPanel
 {
 	/** ... */
@@ -43,7 +43,7 @@ public class MultiplayerView
 	 *
 	 * @param matchThreeModel ...
 	 */
-	public MultiplayerView(final MatchThreeModel matchThreeModel) {
+	public MultiplayerView2(final MatchThreeModel matchThreeModel) {
 		// Set layout //
 		setLayout(new FlowLayout());
 		

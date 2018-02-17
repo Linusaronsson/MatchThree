@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.Container;
 import model.MatchThreeModel;
+import multiplayer.Server;
 import view.ErrorDialog;
 
 public class UIController
@@ -61,16 +62,10 @@ public class UIController
 				new MainMenuViewController(this, view);
 				break;
 			case MULTIPLAYER_GAME:
-				new ErrorDialog(
-					"Not Implemented",
-					"This binding is not implemented"
-				);
+				new MultiplayerViewController(this, view);
 				break;
 			case MULTIPLAYER_MENU:
-				new ErrorDialog(
-					"Not Implemented",
-					"This binding is not implemented"
-				);
+				new MultiplayerSetupController(this, view);
 				break;
 			case SCORE_MENU:
 				new ErrorDialog(
@@ -89,23 +84,11 @@ public class UIController
 		//view.revalidate();
 		//view.repaint();
 		windowController.pack();
-		
 		//If a state change was issued during a multiplayer game,
 		//then let the other user know that game ended.
 		//if (viewState == WindowState.MULTIPLAYER_GAME) {
 		//	Server.setInGame(false);
 		//	mp.closeGame();
 		
-		//mpMenu.addConnectListener((ActionEvent e) -> {
-		//		InetAddress ip = InetAddress.getByName(mpMenu.getIp());
-		//		int port = Integer.parseInt(mpMenu.getPort());
-		//		DatagramSocket client = new DatagramSocket();
-		//		Server.sendDatagram(
-		//			new Message(Message.MessageType.REQUESTED_GAME),
-		//			client,
-		//			ip,
-		//			port
-		//		);
-		//}
 	}
 }
