@@ -16,10 +16,10 @@ public class OpponentController
 {
 	private OpponentModel model = null;
 	private DatagramSocket opponent;
-	private DatagramPacket  in;
+	private DatagramPacket in;
 	private byte[] inBuffer;
 	private int port;
-
+	
 	/**
 	 * ...
 	 */
@@ -37,7 +37,7 @@ public class OpponentController
 			System.exit(1);
 		}
 	}
-
+	
 	/**
 	 * ...
 	 */
@@ -45,7 +45,7 @@ public class OpponentController
 		this.interrupt();
 		opponent.close();
 	}
-
+	
 	/**
 	 * ...
 	 */
@@ -59,18 +59,18 @@ public class OpponentController
 				ObjectInputStream inStream =
 					new ObjectInputStream(byteInStream);
 				Message m = (Message) inStream.readObject();
-				switch(m.getType()) {
-				case CELL_UPDATE:
-					UpdateCell c = (UpdateCell) m;
-					model.set(c.getX(), c.getY(), c.getJewelType());
-					break;
-				case SCORE_UPDATE:
-					UpdateScore s = (UpdateScore) m;
-					model.setScore(s.getScore());
-					break;
-				case END_GAME:
-					//TODO: Close game in a good way
-					break;
+				switch (m.getType()) {
+					case CELL_UPDATE:
+						UpdateCell c = (UpdateCell) m;
+						model.set(c.getX(), c.getY(), c.getJewelType());
+						break;
+					case SCORE_UPDATE:
+						UpdateScore s = (UpdateScore) m;
+						model.setScore(s.getScore());
+						break;
+					case END_GAME:
+						//TODO: Close game in a good way
+						break;
 				}
 				System.out.println(
 					"OpponentController Recieved: \n" + m.toString()

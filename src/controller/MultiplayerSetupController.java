@@ -29,34 +29,34 @@ public class MultiplayerSetupController
 		}
 		
 		this.uiController = uiController;
-		MultiplayerMenuView multiplayerMenu = new MultiplayerMenuView();
 		
+		MultiplayerMenuView multiplayerMenu = new MultiplayerMenuView();
 		
 		// Add event listeners //
 		multiplayerMenu.addConnectListener(e -> {
-			InetAddress ip = null;
 			DatagramSocket client = null;
 			try {
-				ip = InetAddress.getByName(multiplayerMenu.getIp());
+				InetAddress ip = InetAddress.getByName(multiplayerMenu.getIp());
 				int port = Integer.parseInt(multiplayerMenu.getPort());
 				client = new DatagramSocket();
 				Server.sendDatagram(
-				new Message(Message.MessageType.REQUESTED_GAME),
-				client,
-				ip,
-				port);
+					new Message(Message.MessageType.REQUESTED_GAME),
+					client,
+					ip,
+					port
+				);
 			} catch (Exception e1) {
 				new ErrorDialog(
-						"Error sending game request",
-						"Error"
-					);
+					"Error sending game request",
+					"Error"
+				);
 				e1.printStackTrace();
 			} finally {
-				if(client != null)
+				if (client != null) {
 					client.close();
+				}
 			}
 		});
-			
 		
 		// Add view to parent //
 		parent.add(multiplayerMenu);

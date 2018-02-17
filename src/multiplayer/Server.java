@@ -34,13 +34,14 @@ public class Server
 	private static OpponentInfo opponentInfo = null;
 	
 	public class OpponentInfo {
+		public Jewel[] board;
 		public InetAddress ip;
 		public int port;
-		public Jewel[] board;
+		
 		public OpponentInfo(InetAddress ip, int port, Jewel[] board) {
-			this.ip = ip;
-			this.port = port;
 			this.board = board;
+			this.ip    = ip;
+			this.port  = port;
 		}
 	}
 	
@@ -50,9 +51,10 @@ public class Server
 	 * @param port
 	 */
 	public Server(final Window window, final UIController ui, final int port) {
-		this.ui = ui;
+		this.ui     = ui;
+		this.port   = port;
 		this.window = window;
-		this.port = port;
+		
 		try {
 			//Listen on port
 			server = new DatagramSocket(port);
@@ -101,11 +103,11 @@ public class Server
 	 * @return
 	 * @throws IllegalStateException
 	 */
-	public static OpponentInfo getOpponentInfo() 
-			throws IllegalStateException  {
+	public static OpponentInfo getOpponentInfo()
+	throws IllegalStateException {
 		OpponentInfo info = opponentInfo;
 		opponentInfo = null;
-		if(info != null) {
+		if (info != null) {
 			return info;
 		} else {
 			throw new IllegalStateException();
@@ -138,18 +140,19 @@ public class Server
 					switch (m.getType()) {
 						case REQUESTED_GAME:
 							int response = JOptionPane.showConfirmDialog(
-									window,
-									"Multiplayer",
-									"User requesting to play...",
-									JOptionPane.INFORMATION_MESSAGE);
-							if (response == 0)  {
+								window,
+								"Multiplayer",
+								"User requesting to play...",
+								JOptionPane.INFORMATION_MESSAGE
+							);
+							if (response == 0) {
 								//start game as host.
 								inGame = true;
 								opponentInfo = new OpponentInfo(
-										in.getAddress(),
-										2000, //TODO: change to in.getPort() (problems for localhost)
-										null
-									);
+									in.getAddress(),
+									2000, // TODO: change to in.getPort() (problems for localhost)
+									null
+								);
 								ui.changeView(View.MULTIPLAYER_GAME);
 							} else {
 								sendDatagram(
@@ -164,10 +167,10 @@ public class Server
 							//start game as non host
 							inGame = true;
 							opponentInfo = new OpponentInfo(
-									in.getAddress(),
-									2000, //TODO: change to in.getPort() 
-									((UpdateBoard) m).getBoard()
-								);
+								in.getAddress(),
+								2000, //TODO: change to in.getPort() 
+								((UpdateBoard) m).getBoard()
+							);
 							ui.changeView(View.MULTIPLAYER_GAME);
 							break;
 						case END_GAME:

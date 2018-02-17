@@ -32,26 +32,25 @@ public class MultiplayerViewController
 		}
 		
 		this.uiController = uiController;
-		OpponentInfo info = null;
+		
 		try {
-			info = Server.getOpponentInfo();
+			OpponentInfo info = Server.getOpponentInfo();
 			final MultiplayerView1 multiplayerView = new MultiplayerView1(
-						info.ip,
-						info.port,
-						info.board,
-						GAME_SIZE
-					);
+				info.ip,
+				info.port,
+				info.board,
+				GAME_SIZE
+			);
 			
-		// Add event listeners //
-		multiplayerView.addBackListener(e -> {
-			uiController.changeView(UIController.View.MAIN_MENU);
-			multiplayerView.closeGame();
-			Server.setInGame(false);
-		});
-		
-		// Add view to parent //
-		parent.add(multiplayerView);
-		
+			// Add event listeners //
+			multiplayerView.addBackListener(e -> {
+				uiController.changeView(UIController.View.MAIN_MENU);
+				multiplayerView.closeGame();
+				Server.setInGame(false);
+			});
+			
+			// Add view to parent //
+			parent.add(multiplayerView);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -59,6 +58,5 @@ public class MultiplayerViewController
 			System.err.println("getOpponentInfo() was called at a bad time");
 			System.exit(1);
 		}
-		
 	}
 }

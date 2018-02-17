@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JPanel;
-
 import multiplayer.Server;
 import view.ErrorDialog;
 import view.MainMenuBar;
@@ -129,6 +128,9 @@ public class MainWindowController
 	 * @param matchThreeModel ...
 	 */
 	public MainWindowController() {
+		// TODO: Fix this.
+		this.matchThreeController = null;
+		
 		// Create main window //
 		// TODO: Consider removing this panel.
 		JPanel panel = new JPanel();
@@ -148,10 +150,7 @@ public class MainWindowController
 		menuBar.addSaveListener(new SaveListener());
 		window.addWindowListener(new WindowListener());
 		
-		// TODO: Fix this.
-		this.matchThreeController = null;
-		
-		//Start server.
+		// Start server //
 		new Server(window, uiController, 3333).start();
 	}
 	
