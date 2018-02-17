@@ -6,6 +6,9 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+
+import javax.sound.sampled.Port.Info;
+
 import multiplayer.Message;
 import multiplayer.Server;
 import multiplayer.Server.OpponentInfo;
@@ -33,9 +36,9 @@ public class MultiplayerViewController
 		}
 		
 		this.uiController = uiController;
-		
+		OpponentInfo info = null;
 		try {
-			OpponentInfo info = Server.getOpponentInfo();
+			info = Server.getOpponentInfo();
 			multiplayerView = new MultiplayerView1(
 				info.ip,
 				info.port,
@@ -52,19 +55,32 @@ public class MultiplayerViewController
 			System.exit(1);
 		}
 		
+		final InetAddress ip = info.ip;
+		final int port = info.port;
+		
 		// Add event listeners //
 		multiplayerView.addBackListener(event -> {
 			// Go to main menu //
-			goToMainMenu();
+			goToMainMenu(ip, port);
 		});
 		
 		// Add view to parent //
 		parent.add(multiplayerView);
 	}
 	
-	private void goToMainMenu() {
+	private void goToMainMenu(final InetAddress ip, final int port) {
 		uiController.changeView(UIController.View.MAIN_MENU);
 		multiplayerView.closeGame();
 		Server.setInGame(false);
+		try {
+			Server.sendDatagram(
+				new Message(Message.MessageType.END_GAME),
+				new DatagramSocket(), 
+				ip,
+				port
+			);
+		} catch(SocketException e) {
+			e.printStackTrace();
+		}
 	}
 }
