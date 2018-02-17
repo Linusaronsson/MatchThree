@@ -1,5 +1,7 @@
 package multiplayer;
 
+import controller.UIController;
+import controller.UIController.View;
 import java.awt.Container;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -10,9 +12,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import javax.swing.JOptionPane;
-
-import controller.UIController;
-import controller.UIController.View;
 import model.Jewel;
 import view.ErrorDialog;
 import view.Window;

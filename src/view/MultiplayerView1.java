@@ -1,18 +1,17 @@
 package view;
 
 import controller.MatchThreeController;
-
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.InetAddress;
 import javax.swing.JPanel;
 import model.Jewel;
 import model.MatchThreeModel;
-import multiplayer.PlayerModel;
 import multiplayer.OpponentController;
 import multiplayer.OpponentModel;
+import multiplayer.PlayerModel;
 
 /**
  * ...
