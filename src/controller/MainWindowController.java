@@ -13,13 +13,13 @@ import view.Window;
  */
 public class MainWindowController
 {
-	/** ... */
+	/** Default window title. */
 	private static final String WINDOW_TITLE = "MatchThree";
 	
-	/** ... */
+	/** Reference to MatchThree controller. */
 	private MatchThreeController matchThreeController = null;
 	
-	/** ... */
+	/** Window view. */
 	private Window window = null;
 	
 	/**
@@ -68,11 +68,7 @@ public class MainWindowController
 	}
 	
 	/**
-	 * ...
-	 *
-	 * @param window          ...
-	 * @param swapView        ...
-	 * @param matchThreeModel ...
+	 * Create `MainWindowController`.
 	 */
 	public MainWindowController() {
 		// TODO: Fix this.
@@ -121,6 +117,9 @@ public class MainWindowController
 		window.dispatchEvent(e);
 	}
 	
+	/**
+	 * Update window with content.
+	 */
 	public void pack() {
 		window.pack();
 	}

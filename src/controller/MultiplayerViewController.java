@@ -2,24 +2,30 @@ package controller;
 
 import java.awt.Container;
 import java.io.IOException;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.net.SocketException;
-import java.net.UnknownHostException;
-import multiplayer.Message;
 import multiplayer.Server;
 import multiplayer.Server.OpponentInfo;
-import view.ErrorDialog;
-import view.MultiplayerMenuView;
 import view.MultiplayerView1;
 
+/**
+ * Controller for `MultiplayerView`.
+ */
 public class MultiplayerViewController
 {
+	/** Default game size. */
 	private static final int GAME_SIZE = 6;
 	
+	/** View to control. */
 	private MultiplayerView1 multiplayerView = null;
+	
+	/** Reference to UI controller. */
 	private UIController uiController = null;
 	
+	/**
+	 * Create `MultiplayerViewController`.
+	 *
+	 * @param uiController UI controller to use.
+	 * @param parent       Parent view to use.
+	 */
 	public MultiplayerViewController(
 		final UIController uiController,
 		final Container    parent
@@ -54,12 +60,15 @@ public class MultiplayerViewController
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);
-		} catch(IllegalStateException e) {
+		} catch (IllegalStateException e) {
 			System.err.println("getOpponentInfo() was called at a bad time");
 			System.exit(1);
 		}
 	}
 	
+	/**
+	 * Navigate to main menu.
+	 */
 	private void goToMainMenu() {
 		uiController.changeView(UIController.View.MAIN_MENU);
 		multiplayerView.closeGame();

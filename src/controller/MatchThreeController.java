@@ -22,26 +22,27 @@ import view.Window;
  */
 public class MatchThreeController
 {
-	/** ... */
+	/** Currently active cell. */
 	private Coordinate activeCell = null;
 	
-	/** ... */
+	/** Grid view. */
 	private GridView gridView = null;
 	
-	/** ... */
+	/** MatchThree model. */
 	private MatchThreeModel matchThreeModel = null;
 	
-	/** ... */
+	/** Game view. */
 	private MatchThreeUI matchThreeUI = null;
 	
-	/** ... */
+	/** Window view. */
 	private Window window = null;
 	
 	/**
 	 * Constructor for `MatchThreeController`.
 	 *
-	 * @param model Model to use.
-	 * @param view  View to use.
+	 * @param model    Model to use.
+	 * @param view     View to use.
+	 * @param gridView Grid view to use.
 	 */
 	public MatchThreeController(
 		final MatchThreeModel model,
@@ -66,6 +67,8 @@ public class MatchThreeController
 	
 	/**
 	 * Handle board cell action (click).
+	 *
+	 * @param event Event object.
 	 */
 	public void handleAction(final ActionEvent event) {
 		// Validate argument //

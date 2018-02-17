@@ -135,7 +135,9 @@ public class HighScore
 		try {
 			selection.first();
 			while (!selection.isAfterLast()) {
-				scoreTable.add("" + selection.getInt("score") + selection.getString("name"));
+				scoreTable.add(
+					"" + selection.getInt("score") + selection.getString("name")
+				);
 				selection.next();
 			}
 		} catch (SQLException e) {

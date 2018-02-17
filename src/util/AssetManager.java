@@ -12,22 +12,32 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-public class AssetManager
+/**
+ * Loads and caches external resources.
+ */
+public final class AssetManager
 {
-	/** ... */
+	/** Path to resource directory. */
 	private static final String DIR_RESOURCES = "resources";
 	
-	/** ... */
+	/** Loaded audio assets. */
 	private static Map<String, Clip> audio = new HashMap<String, Clip>();
 	
-	/** ... */
+	/** Loaded image assets. */
 	private static Map<String, BufferedImage> images =
 		new HashMap<String, BufferedImage>();
 	
 	/**
-	 * Load an audio resource.
+	 * Forbidden constructor.
+	 */
+	private AssetManager() {
+		throw new IllegalStateException();
+	}
+	
+	/**
+	 * Load an audio asset.
 	 *
-	 * @param file File to read from.
+	 * @param name Filename of asset.
 	 * @return     Loaded audio clip.
 	 */
 	public static Clip loadAudio(final String name) {
@@ -115,9 +125,9 @@ public class AssetManager
 	}
 	
 	/**
-	 * Load an image resource.
+	 * Load an image asset.
 	 *
-	 * @param file File to read from.
+	 * @param name Filename of asset.
 	 * @return     Loaded image buffer.
 	 */
 	public static BufferedImage loadImage(final String name) {
@@ -141,11 +151,21 @@ public class AssetManager
 		return image;
 	}
 	
+	/**
+	 * Unload audio asset from memory.
+	 *
+	 * @param name Filename of the asset.
+	 */
 	public static void unloadAudio(final String name) {
 		// TODO: Not implemented.
 		throw new IllegalStateException();
 	}
 	
+	/**
+	 * Unload image asset from memory.
+	 *
+	 * @param name Filename of the asset.
+	 */
 	public static void unloadImage(final String name) {
 		// TODO: Not implemented.
 		throw new IllegalStateException();

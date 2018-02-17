@@ -2,54 +2,67 @@ package controller;
 
 import java.awt.Container;
 import model.MatchThreeModel;
-import multiplayer.Server;
 import view.ErrorDialog;
 
+/**
+ * UI controller. Manages application navigation between views.
+ */
 public class UIController
 {
+	/** Default view. */
 	private static final View DEFAULT_VIEW = View.MAIN_MENU;
 	
+	/** Default game size. */
 	private static final int GAME_SIZE = 6;
 	
+	/** Container to control. */
 	private Container view = null;
 	
+	/** Reference to window controller for window updates. */
 	private MainWindowController windowController = null;
 	
 	/**
-	 * ...
+	 * View selection.
 	 */
 	public enum View
 	{
-		/** ... */
+		/** Main menu. */
 		MAIN_MENU,
 		
-		/** ... */
+		/** Multiplayer game screen. */
 		MULTIPLAYER_GAME,
 		
-		/** ... */
+		/** Multiplayer menu. */
 		MULTIPLAYER_MENU,
 		
-		/** ... */
+		/** Score menu. */
 		SCORE_MENU,
 		
-		/** ... */
+		/** Singleplayer game screen. */
 		SINGLEPLAYER_GAME
 	}
 	
+	/**
+	 * Create `UIController`.
+	 *
+	 * @param view             Container view to control.
+	 * @param windowController Window controller to use for updating window.
+	 */
 	public UIController(
-		final Container        view,
+		final Container            view,
 		final MainWindowController windowController
 	) {
 		this.view             = view;
 		this.windowController = windowController;
 		
+		// Set default view //
 		changeView(DEFAULT_VIEW);
 	}
 	
 	/**
-	 * ...
+	 * Change the active view.
 	 *
-	 * @param state ...
+	 * @param newView View to navigate to.
 	 */
 	public void changeView(final View newView) {
 		// Remove previous view //
@@ -81,14 +94,6 @@ public class UIController
 		}
 		
 		// Update view //
-		//view.revalidate();
-		//view.repaint();
 		windowController.pack();
-		//If a state change was issued during a multiplayer game,
-		//then let the other user know that game ended.
-		//if (viewState == WindowState.MULTIPLAYER_GAME) {
-		//	Server.setInGame(false);
-		//	mp.closeGame();
-		
 	}
 }

@@ -6,14 +6,14 @@ import java.io.IOException;
  */
 public final class MatchThree
 {
-	/** Default game width. */
+	/** Default game size. */
 	private static final int GAME_SIZE = 6;
 	
 	/** Port number for network play. */
 	private static final int PORT_NUMBER = 3333;
 	
 	/**
-	 * Create a `MatchThree`.
+	 * Forbidden constructor.
 	 */
 	private MatchThree() {
 		throw new UnsupportedOperationException();

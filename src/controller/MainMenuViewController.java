@@ -3,10 +3,20 @@ package controller;
 import java.awt.Container;
 import view.MainMenuView;
 
+/**
+ * Controller for main menu view.
+ */
 public class MainMenuViewController
 {
+	/** Reference to UI controller. */
 	private UIController uiController = null;
 	
+	/**
+	 * Create `MainMenuViewController`.
+	 *
+	 * @param uiController Reference to UI controller for navigation.
+	 * @param parent       Parent container view to use.
+	 */
 	public MainMenuViewController(
 		final UIController uiController,
 		final Container    parent

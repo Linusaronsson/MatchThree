@@ -1,19 +1,19 @@
 package model;
 
 /**
- * ...
+ * Serialize board content for storage.
  */
 public final class Serialize
 {
 	/**
-	 * ...
+	 * Forbidden constructor.
 	 */
 	private Serialize() {
 		throw new UnsupportedOperationException();
 	}
 	
 	/**
-	 * ...
+	 * Exception for unrecognized data.
 	 */
 	@SuppressWarnings("serial")
 	// TODO: Is it in any way ok to have this be a static class?
