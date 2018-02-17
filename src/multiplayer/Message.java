@@ -55,11 +55,6 @@ public class Message
 		return type;
 	}
 	
-	/**
-	 * ...
-	 *
-	 * @return ...
-	 */
 	@Override
 	public String toString() {
 		return "Message type: " + asString(type) + "\n";

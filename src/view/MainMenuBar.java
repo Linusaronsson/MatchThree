@@ -5,20 +5,23 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+/**
+ * Main menu bar.
+ */
 @SuppressWarnings("serial")
 public class MainMenuBar
 	extends JMenuBar
 {
-	/** ... */
+	/** "New Game" item. */
 	private JMenuItem newItem = new JMenuItem("New Game");
 	
-	/** ... */
+	/** "Open" item. */
 	private JMenuItem openItem = new JMenuItem("Open…");
 	
-	/** ... */
+	/** "Quit" item. */
 	private JMenuItem quitItem = new JMenuItem("Quit");
 	
-	/** ... */
+	/** "Save" item. */
 	private JMenuItem saveItem = new JMenuItem("Save…");
 	
 	/**

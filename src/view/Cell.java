@@ -52,6 +52,11 @@ public class Cell
 		position = new Coordinate(x, y);
 	}
 	
+	/**
+	 * Create `Cell`.
+	 *
+	 * @param i ...
+	 */
 	public Cell(final int i) {
 		// Validate argument //
 		if (i != 0) {
@@ -86,11 +91,9 @@ public class Cell
 		return position.getY();
 	}
 	
+	/** ... */
 	private Color color = new Color(0, 0, 0, 0f);
 	
-	/**
-	 * Paints the cell graphical image
-	 */
 	@Override
 	protected void paintComponent(final Graphics g) {
 		BufferedImage image =

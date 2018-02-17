@@ -7,6 +7,9 @@ import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+/**
+ * Button.
+ */
 @SuppressWarnings("serial")
 public class Button
 	extends JButton
@@ -35,7 +38,7 @@ public class Button
 		/**
 		 * ...
 		 *
-		 * @param button ...
+		 * @param target ...
 		 */
 		private ButtonHoverListener(final Button target) {
 			this.target = target;
@@ -61,6 +64,9 @@ public class Button
 		public void mouseReleased(final MouseEvent e) { }
 	}
 	
+	/**
+	 * Create `Button`.
+	 */
 	public Button() {
 		// Set colors //
 		setForeground(COLOR_FOREGROUND);
@@ -93,7 +99,9 @@ public class Button
 	//		color = alphaColor;
 	//		repaint();
 	//	} else {
-	//		throw new IllegalArgumentException("alpha is required to be a value between 0f and 1f.");
+	//		throw new IllegalArgumentException(
+	//			"alpha is required to be a value between 0f and 1f."
+	//		);
 	//	}
 	//}
 }

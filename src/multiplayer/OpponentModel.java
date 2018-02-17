@@ -1,7 +1,6 @@
 package multiplayer;
 
 import java.net.*;
-
 import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
@@ -13,9 +12,10 @@ import model.MatchThreeModel.MoveType;
  */
 public class OpponentModel
 	extends MatchThreeModel
-{	
+{
 	/**
-	 * 
+	 * ...
+	 *
 	 * @param board
 	 * @param width
 	 */
@@ -24,11 +24,12 @@ public class OpponentModel
 	}
 	
 	/**
+	 * ...
+	 *
 	 * @param score
 	 */
 	public void setScore(final int score) {
 		setChanged();
 		notifyObservers(new ScoreEvent(score));
 	}
-	
 }

@@ -81,6 +81,7 @@ public class PlayerModel
 	/**
 	 * Set the value of a cell. May leave the board in an inconsistent state.
 	 * Also sends the updated cell to the opponent.
+	 *
 	 * @param x     X-coordinate of the cell.
 	 * @param y     Y-coordinate of the cell.
 	 * @param value Value to set.

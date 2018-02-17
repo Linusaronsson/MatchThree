@@ -2,7 +2,6 @@ package view;
 
 import controller.MatchThreeController;
 import controller.UIController;
-
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.GridLayout;
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.net.InetAddress;
 import javax.swing.JPanel;
 import model.Jewel;
-import model.MatchThreeModel;
 import multiplayer.OpponentController;
 import multiplayer.OpponentModel;
 import multiplayer.PlayerModel;
@@ -22,30 +20,45 @@ import multiplayer.PlayerModel;
 public class MultiplayerView1
 	extends JPanel
 {
-	// Player
-	private GridView playerGrid = null;
-	private PlayerModel playerModel = null;
-	private MatchThreeUI playerView = null;
-	private MatchThreeController playerController = null;
+	/** ... */
+	private ButtonPanel buttonPanel = new ButtonPanel();
 	
-	// Opponent
-	private GridView opponentGrid = null;
-	private OpponentModel opponentModel = null;
-	private MatchThreeUI opponentView = null;
+	/** ... */
 	private OpponentController opponentController = null;
 	
-	private ButtonPanel buttonPanel = new ButtonPanel();
+	/** ... */
+	private GridView opponentGrid = null;
+	
+	/** ... */
+	private OpponentModel opponentModel = null;
+	
+	/** ... */
+	private MatchThreeUI opponentView = null;
+	
+	/** ... */
+	private MatchThreeController playerController = null;
+	
+	/** ... */
+	private GridView playerGrid = null;
+	
+	/** ... */
+	private PlayerModel playerModel = null;
+	
+	/** ... */
+	private MatchThreeUI playerView = null;
 	
 	/**
 	 * ...
 	 *
-	 * @param address  ...
-	 * @param port     ...
-	 * @param gameSize ...
+	 * @param host         ...
+	 * @param port         ...
+	 * @param board        ...
+	 * @param gameSize     ...
+	 * @param uiController ...
 	 * @throws IOException On file system access errors.
 	 */
 	public MultiplayerView1(
-		final InetAddress  ip,
+		final InetAddress  host,
 		final int          port,
 		final Jewel[]      board,
 		final int          gameSize,
@@ -53,7 +66,7 @@ public class MultiplayerView1
 	) throws IOException {
 		// Create MVC context for the player //
 		if (board == null) {
-			playerModel = new PlayerModel(gameSize, ip, port);
+			playerModel = new PlayerModel(gameSize, host, port);
 			opponentModel = new OpponentModel(
 				playerModel.getBoard(),
 				gameSize
@@ -62,7 +75,7 @@ public class MultiplayerView1
 			// Host sends the board to opponent //
 			playerModel.sendBoard(3333);
 		} else {
-			playerModel = new PlayerModel(board, gameSize, ip, port);
+			playerModel = new PlayerModel(board, gameSize, host, port);
 			opponentModel = new OpponentModel(board, gameSize);
 		}
 		
@@ -79,7 +92,7 @@ public class MultiplayerView1
 		opponentGrid = new GridView(opponentModel);
 		opponentView = new MatchThreeUI(opponentModel, opponentGrid);
 		opponentController = new OpponentController(
-				port, 
+				port,
 				opponentModel,
 				uiController
 			);
@@ -95,9 +108,9 @@ public class MultiplayerView1
 	}
 
 	/**
-	 * ...
+	 * Add listener for back button.
 	 *
-	 * @param listener
+	 * @param listener Event listener to use.
 	 */
 	public void addBackListener(final ActionListener listener) {
 		buttonPanel.addBackListener(listener);

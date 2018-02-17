@@ -9,6 +9,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import util.AssetManager;
 
+/**
+ * Game button panel.
+ */
 @SuppressWarnings("serial")
 public class ButtonPanel
 	extends JPanel
@@ -31,8 +34,13 @@ public class ButtonPanel
 	private static final BufferedImage IMAGE_V2 =
 		AssetManager.loadImage("V2.png");
 	
-	private Button back     = null;
+	/** ... */
+	private Button back = null;
+	
+	/** ... */
 	private Button buttonV1 = null;
+	
+	/** ... */
 	private Button buttonV2 = null;
 	
 	/**
@@ -50,6 +58,9 @@ public class ButtonPanel
 		V2
 	}
 	
+	/**
+	 * Create `ButtonPanel`.
+	 */
 	public ButtonPanel() {
 		// Set layout //
 		// TODO: Do not use `GridLayout`.
@@ -93,14 +104,29 @@ public class ButtonPanel
 		add(buttonV2);
 	}
 	
+	/**
+	 * Add listener for back button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addBackListener(final ActionListener listener) {
 		back.addActionListener(listener);
 	}
 	
+	/**
+	 * Add listener for version 1 button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addButtonV1Listener(final ActionListener listener) {
 		buttonV2.addActionListener(listener);
 	}
 	
+	/**
+	 * Add listener for version 2 button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addButtonV2Listener(final ActionListener listener) {
 		buttonV1.addActionListener(listener);
 	}

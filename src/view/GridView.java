@@ -173,7 +173,9 @@ public class GridView
 	}
 	
 	/**
-	 * Create a new `GridView`.
+	 * Create `GridView`.
+	 *
+	 * @param model MatchThree model to use.
 	 */
 	public GridView(final MatchThreeModel model) {
 		// Validate argument //
@@ -292,6 +294,12 @@ public class GridView
 		return grid;
 	}
 	
+	/**
+	 * Get the filename of an audio asset.
+	 *
+	 * @param audio Audio asset to get filename of.
+	 * @return Filename of audio asset.
+	 */
 	private String getAudioName(final Audio audio) {
 		String name = null;
 		switch (audio) {
@@ -303,13 +311,13 @@ public class GridView
 	}
 	
 	/**
-	 * ...
+	 * Get the color of a jewel.
 	 *
-	 * @param j ...
-	 * @return  ...
+	 * @param jewel Jewel to get the color of.
+	 * @return      The color of the jewel.
 	 */
-	private Color getColor(final Jewel j) {
-		switch (j) {
+	private Color getColor(final Jewel jewel) {
+		switch (jewel) {
 			case DIAMOND:  return COLOR_DIAMOND;
 			case EMERALD:  return COLOR_EMERALD;
 			case RUBY:     return COLOR_RUBY;
@@ -320,13 +328,13 @@ public class GridView
 	}
 	
 	/**
-	 * ...
+	 * Get the image of a jewel.
 	 *
-	 * @param j ...
-	 * @return  ...
+	 * @param jewel Jewel to get the image of.
+	 * @return      The image of the jewel.
 	 */
-	private BufferedImage getImage(final Jewel j) {
-		switch (j) {
+	private BufferedImage getImage(final Jewel jewel) {
+		switch (jewel) {
 			case DIAMOND:  return currentDiamond;
 			case EMERALD:  return currentEmerald;
 			case RUBY:     return currentRuby;
@@ -337,13 +345,13 @@ public class GridView
 	}
 	
 	/**
-	 * ...
+	 * Get the name of a jewel.
 	 *
-	 * @param j ...
-	 * @return  ...
+	 * @param jewel Jewel to get the name of.
+	 * @return      The name of the jewel.
 	 */
-	private String getStr(final Jewel j) {
-		switch (j) {
+	private String getName(final Jewel jewel) {
+		switch (jewel) {
 			case DIAMOND:  return "Diamond";
 			case EMERALD:  return "Emerald";
 			case RUBY:     return "Ruby";
@@ -490,9 +498,6 @@ public class GridView
 		//}
 	}
 	
-	/**
-	 * ...
-	 */
 	@Override
 	public void update(final Observable o, final Object arg) {
 		if (o instanceof MatchThreeModel
@@ -548,7 +553,7 @@ public class GridView
 		if (jewel != null) {
 			ImageIcon     icon  = null;
 			BufferedImage image = getImage(jewel);
-			String        text  = getStr(jewel);
+			String        text  = getName(jewel);
 			Color         color = getColor(jewel);
 			
 			if (image != null) {

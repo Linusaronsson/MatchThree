@@ -55,9 +55,6 @@ public class OpponentController
 		opponent.close();
 	}
 	
-	/**
-	 * ...
-	 */
 	@Override
 	public void run() {
 		try {

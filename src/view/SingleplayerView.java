@@ -62,14 +62,29 @@ public class SingleplayerView
 		add(buttonPanel);
 	}
 	
+	/**
+	 * Add event listener for back button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addBackListener(final ActionListener listener) {
 		buttonPanel.addBackListener(listener);
 	}
 	
+	/**
+	 * Add event listener for version 1 button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addButtonV1Listener(final ActionListener listener) {
 		buttonPanel.addButtonV1Listener(listener);
 	}
 	
+	/**
+	 * Add event listener for version 2 button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addButtonV2Listener(final ActionListener listener) {
 		buttonPanel.addButtonV2Listener(listener);
 	}

@@ -2,10 +2,13 @@ package view;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Floating error dialog.
+ */
 public class ErrorDialog
 {
 	/**
-	 * ...
+	 * Create `ErrorDialog`.
 	 *
 	 * @param title   Title of the dialog.
 	 * @param message Message of the dialog.

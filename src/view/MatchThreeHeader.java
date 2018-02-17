@@ -1,17 +1,21 @@
 package view;
 
 import java.awt.FlowLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.MatchThreeModel;
 
+/**
+ * MatchThree game header.
+ */
 @SuppressWarnings("serial")
 public class MatchThreeHeader
 	extends JPanel
 {
-	/** ... */
-	private JLabel label = new JLabel("");
-	
+	/**
+	 * Create `MatchThreeHeader`.
+	 *
+	 * @param matchThreeModel MatchThree model to use.
+	 */
 	public MatchThreeHeader(final MatchThreeModel matchThreeModel) {
 		// Validate argument //
 		if (matchThreeModel == null) {
