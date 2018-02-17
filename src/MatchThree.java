@@ -28,7 +28,6 @@ public final class MatchThree
 	public static void main(final String[] args)
 	throws IOException {
 		// Create application //
-		ApplicationController application = new ApplicationController();
-	
+		new ApplicationController();
 	}
 }

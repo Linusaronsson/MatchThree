@@ -152,8 +152,7 @@ public class MainWindowController
 		this.matchThreeController = null;
 		
 		//Start server.
-		Server s = new Server(window, uiController, 3333);
-		s.start();
+		new Server(window, uiController, 3333).start();
 	}
 	
 	/**

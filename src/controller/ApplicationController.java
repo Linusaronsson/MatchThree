@@ -10,8 +10,7 @@ public class ApplicationController
 		setProperties();
 		
 		// Create main window //
-		MainWindowController window = new MainWindowController();
-
+		new MainWindowController();
 	}
 	
 	/**
