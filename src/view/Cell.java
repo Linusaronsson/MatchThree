@@ -53,9 +53,8 @@ public class Cell
 	}
 	
 	public Cell(final int i) {
-		if (i == 0) {
-			return;
-		} else {
+		// Validate argument //
+		if (i != 0) {
 			throw new IllegalArgumentException();
 		}
 	}
