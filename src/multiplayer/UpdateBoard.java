@@ -5,6 +5,7 @@ import model.Jewel;
 /**
  * Message sent between users over a DatagramSocket. (The entire board).
  */
+@SuppressWarnings("serial")
 public class UpdateBoard
 	extends Message
 {
