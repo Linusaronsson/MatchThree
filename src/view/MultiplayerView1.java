@@ -1,6 +1,8 @@
 package view;
 
 import controller.MatchThreeController;
+import controller.UIController;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.GridLayout;
@@ -43,10 +45,11 @@ public class MultiplayerView1
 	 * @throws IOException On file system access errors.
 	 */
 	public MultiplayerView1(
-		final InetAddress ip,
-		final int         port,
-		final Jewel[]     board,
-		final int         gameSize
+		final InetAddress  ip,
+		final int          port,
+		final Jewel[]      board,
+		final int          gameSize,
+		final UIController uiController
 	) throws IOException {
 		// Create MVC context for the player //
 		if (board == null) {
@@ -75,7 +78,11 @@ public class MultiplayerView1
 		
 		opponentGrid = new GridView(opponentModel);
 		opponentView = new MatchThreeUI(opponentModel, opponentGrid);
-		opponentController = new OpponentController(port, opponentModel);
+		opponentController = new OpponentController(
+				port, 
+				opponentModel,
+				uiController
+			);
 		opponentController.start();
 		
 		// TODO: Use constants for these numbers.
