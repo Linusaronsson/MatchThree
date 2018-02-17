@@ -15,6 +15,7 @@ public class OpponentController
 	extends Thread
 {
 	private MatchThreeModel model = null;
+	//private M
 	private DatagramSocket opponent;
 	private DatagramPacket  in;
 	private byte[] inBuffer;
