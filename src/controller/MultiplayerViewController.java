@@ -40,17 +40,10 @@ public class MultiplayerViewController
 				info.ip,
 				info.port,
 				info.board,
-				GAME_SIZE
+				GAME_SIZE,
+				uiController
 			);
 			
-			// Add event listeners //
-			multiplayerView.addBackListener(event -> {
-				// Go to main menu //
-				goToMainMenu();
-			});
-			
-			// Add view to parent //
-			parent.add(multiplayerView);
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -58,6 +51,15 @@ public class MultiplayerViewController
 			System.err.println("getOpponentInfo() was called at a bad time");
 			System.exit(1);
 		}
+		
+		// Add event listeners //
+		multiplayerView.addBackListener(event -> {
+			// Go to main menu //
+			goToMainMenu();
+		});
+		
+		// Add view to parent //
+		parent.add(multiplayerView);
 	}
 	
 	private void goToMainMenu() {
