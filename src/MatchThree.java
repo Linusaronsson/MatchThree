@@ -1,18 +1,19 @@
-import Controller.WindowController;
+import controller.ApplicationController;
 import java.io.IOException;
-import View.SwapView;
-import View.Window;
 
 /**
  * MatchThree game.
  */
 public final class MatchThree
 {
+	/** Default game width. */
+	private static final int GAME_SIZE = 6;
+	
 	/** Port number for network play. */
 	private static final int PORT_NUMBER = 3333;
 	
 	/**
-	 * ...
+	 * Create a `MatchThree`.
 	 */
 	private MatchThree() {
 		throw new UnsupportedOperationException();
@@ -26,17 +27,7 @@ public final class MatchThree
 	 */
 	public static void main(final String[] args)
 	throws IOException {
-		// Create GUI //
-		SwapView swapView = new SwapView();
-		Window   window   = new Window(swapView);
-		WindowController windowController = new WindowController(
-			window,
-			swapView
-		);
-		swapView.setWindow(window);
-		
-		// Setup server listener //
-		Server server = new Server(PORT_NUMBER, window);
-		server.start();
+		// Create application //
+		new ApplicationController();
 	}
 }

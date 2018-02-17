@@ -6,10 +6,11 @@ CLASS_NAME='MatchThree'     # Main class name.
 EXIT_BAD_VERB=1             # Exit code - Unrecognized verb.
 EXIT_MISSING_PROGRAM=3      # Exit code - Needed program not found.
 EXIT_MISSING_VERB=2         # Exit code - No verbs provided.
-EXIT_OK=0                   # Exit code - Success
+EXIT_OK=0                   # Exit code - Success.
 EXIT_UNIMPLEMENTED=-1       # Exit code - Feature not implemented.
 MAIN_FILE='MatchThree.java' # Main class file name.
 RESOURCE='resources'        # Resource directory.
+LIBRARY='libraries'         # External class library directory.
 SOURCE='src'                # Source code directory.
 TARGET='target'             # Target directory.
 TARGET_DOC='doc'            # Documentation artifact directory name.
@@ -24,7 +25,8 @@ build () {
 		-encoding UTF-8 \
 		-Xlint:all \
 		-d "${script_dir}/${TARGET}/${TARGET_MAIN}" \
-		"${script_dir}/${SOURCE}/${MAIN_FILE}"
+		"${script_dir}/${SOURCE}/${MAIN_FILE}" \
+		2>&1
 	ln -snf \
 		"../../${RESOURCE}" \
 		"${script_dir}/${TARGET}/${TARGET_MAIN}/${RESOURCE}"
@@ -59,16 +61,20 @@ lint () {
 		printf 'checkstyle not found\n' 1>&2
 		exit "$EXIT_MISSING_PROGRAM"
 	fi
-	checkstyle -c "${script_dir}/${CHECKSTYLE}" -- "${script_dir}/${SOURCE}"
+	checkstyle \
+		-c "${script_dir}/${CHECKSTYLE}" \
+		-e "${script_dir}/${SOURCE}/com" \
+		-e "${script_dir}/${SOURCE}/org" \
+		-- "${script_dir}/${SOURCE}"
 }
 
 print_usage () {
-	printf 'usage: make.sh [build|clean|doc|help|run]...\n'
+	printf 'usage: make.sh [build|clean|doc|help|lint|run]...\n'
 }
 
 run () {
 	cd -- "${script_dir}/${TARGET}/${TARGET_MAIN}"
-	java "$CLASS_NAME"
+	java -cp "${script_dir}/${LIBRARY}/*:${CLASSPATH=.}" "$CLASS_NAME"
 }
 
 main () {
