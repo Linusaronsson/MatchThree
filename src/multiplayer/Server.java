@@ -27,7 +27,7 @@ public class Server
 	private DatagramSocket server;
 	private DatagramPacket in;
 	
-	byte[] inBuffer;
+	private byte[] inBuffer;
 	private int port;
 	
 	private static boolean inGame = false;
