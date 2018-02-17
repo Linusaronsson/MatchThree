@@ -18,6 +18,7 @@ public class Score
 	private static final String FONT_NAME = "Helvetica Neue";
 	private static final int FONT_SIZE = 20;
 	
+	//TODO: Remove this?
 	private MatchThreeModel matchThreeModel = null;
 	
 	public Score(final MatchThreeModel matchThreeModel) {
