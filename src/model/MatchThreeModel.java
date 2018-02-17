@@ -80,6 +80,28 @@ public class MatchThreeModel
 		}
 	}
 	
+	public class ScoreEvent {
+		/** ... */
+		private int score;
+		
+
+		/**
+		 * @param score
+		 */
+		public ScoreEvent(final int score) {
+			this.score = score;
+		}
+		
+		/**
+		 * ...
+		 *
+		 * @return ...
+		 */
+		public int getScore() {
+			return score;
+		}
+	}
+	
 	/**
 	 * Constructor for `MatchThreeModel`.
 	 *
@@ -546,6 +568,10 @@ public class MatchThreeModel
 		// Clear matches and adjust score //
 		int points = clearChains(chains);
 		score += points;
+		
+		// Notify observers //
+		setChanged();
+		notifyObservers(new ScoreEvent(score));
 		
 		// Drop cells //
 		dropCells();

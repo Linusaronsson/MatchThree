@@ -14,7 +14,7 @@ import model.MatchThreeModel;
 public class OpponentController
 	extends Thread
 {
-	private MatchThreeModel model = null;
+	private OpponentModel model = null;
 	private DatagramSocket opponent;
 	private DatagramPacket  in;
 	private byte[] inBuffer;
@@ -23,7 +23,7 @@ public class OpponentController
 	/**
 	 * ...
 	 */
-	public OpponentController(final int port, final MatchThreeModel model) {
+	public OpponentController(final int port, final OpponentModel model) {
 		this.model = model;
 		this.port = port;
 		try {
@@ -63,7 +63,10 @@ public class OpponentController
 				case CELL_UPDATE:
 					UpdateCell c = (UpdateCell) m;
 					model.set(c.getX(), c.getY(), c.getJewelType());
+					break;
 				case SCORE_UPDATE:
+					UpdateScore s = (UpdateScore) m;
+					model.setScore(s.getScore());
 					break;
 				case END_GAME:
 					//TODO: Close game in a good way

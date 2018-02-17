@@ -10,8 +10,9 @@ import java.net.InetAddress;
 import javax.swing.JPanel;
 import model.Jewel;
 import model.MatchThreeModel;
-import multiplayer.MultiplayerModel;
+import multiplayer.PlayerModel;
 import multiplayer.OpponentController;
+import multiplayer.OpponentModel;
 
 /**
  * ...
@@ -22,13 +23,13 @@ public class MultiplayerView1
 {
 	// Player
 	private GridView playerGrid = null;
-	private MultiplayerModel playerModel = null;
+	private PlayerModel playerModel = null;
 	private MatchThreeUI playerView = null;
 	private MatchThreeController playerController = null;
 	
 	// Opponent
 	private GridView opponentGrid = null;
-	private MatchThreeModel opponentModel = null;
+	private OpponentModel opponentModel = null;
 	private MatchThreeUI opponentView = null;
 	private OpponentController opponentController = null;
 	
@@ -50,8 +51,8 @@ public class MultiplayerView1
 	) throws IOException {
 		// Create MVC context for the player //
 		if (board == null) {
-			playerModel = new MultiplayerModel(gameSize, ip, port);
-			opponentModel = new MatchThreeModel(
+			playerModel = new PlayerModel(gameSize, ip, port);
+			opponentModel = new OpponentModel(
 				playerModel.getBoard(),
 				gameSize
 			);
@@ -59,8 +60,8 @@ public class MultiplayerView1
 			// Host sends the board to opponent //
 			playerModel.sendBoard(3333);
 		} else {
-			playerModel = new MultiplayerModel(board, gameSize, ip, port);
-			opponentModel = new MatchThreeModel(board, gameSize);
+			playerModel = new PlayerModel(board, gameSize, ip, port);
+			opponentModel = new OpponentModel(board, gameSize);
 		}
 		
 		playerModel.setGameStarted(true);

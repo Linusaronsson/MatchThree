@@ -5,6 +5,9 @@ import java.awt.Font;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JLabel;
+
+import model.Coordinate;
+import model.Jewel;
 import model.MatchThreeModel;
 
 @SuppressWarnings({"deprecation", "serial"})
@@ -15,6 +18,7 @@ public class Score
 	private static final String FONT_NAME = "Helvetica Neue";
 	private static final int FONT_SIZE = 20;
 	
+	//TODO: Remove this?
 	private MatchThreeModel matchThreeModel = null;
 	
 	public Score(final MatchThreeModel matchThreeModel) {
@@ -26,7 +30,7 @@ public class Score
 		this.matchThreeModel = matchThreeModel;
 		
 		// Update state //
-		update();
+		update(0);
 		
 		// Add observer //
 		matchThreeModel.addObserver(this);
@@ -39,8 +43,7 @@ public class Score
 	/**
 	 * Update score label.
 	 */
-	public void update() {
-		int score = matchThreeModel.getScore();
+	public void update(final int score) {
 		setText("Score: " + score);
 	}
 	
@@ -49,7 +52,10 @@ public class Score
 	 */
 	@Override
 	public void update(final Observable o, final Object arg) {
-		// TODO: Verify correctness.
-		update();
+		if (o instanceof MatchThreeModel
+		&& arg instanceof MatchThreeModel.ScoreEvent) {
+			MatchThreeModel.ScoreEvent event = (MatchThreeModel.ScoreEvent) arg;
+			update(event.getScore());
+		}
 	}
 }

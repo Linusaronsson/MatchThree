@@ -1,14 +1,17 @@
 package multiplayer;
 
 import java.net.*;
+
+import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
+import model.MatchThreeModel.MoveType;
 
 /**
  * Extension of MatchThreeModel used for the player view to send datagrams to
  * opponent.
  */
-public class MultiplayerModel
+public class PlayerModel
 	extends MatchThreeModel
 {
 	private DatagramSocket client = null;
@@ -24,7 +27,7 @@ public class MultiplayerModel
 	 * @param ip
 	 * @param port
 	 */
-	public MultiplayerModel(
+	public PlayerModel(
 		final int width,
 		final InetAddress ip,
 		final int port
@@ -50,7 +53,7 @@ public class MultiplayerModel
 	 * @param ip
 	 * @param port
 	 */
-	public MultiplayerModel(
+	public PlayerModel(
 		final Jewel[] board,
 		final int width,
 		final InetAddress ip,
@@ -77,7 +80,7 @@ public class MultiplayerModel
 	
 	/**
 	 * Set the value of a cell. May leave the board in an inconsistent state.
-	 *
+	 * Also sends the updated cell to the opponent.
 	 * @param x     X-coordinate of the cell.
 	 * @param y     Y-coordinate of the cell.
 	 * @param value Value to set.
@@ -89,6 +92,23 @@ public class MultiplayerModel
 		if (gameStarted) {
 			notifyOpponent(new UpdateCell(x, y, value));
 		}
+	}
+	
+	/**
+	 * Move a cell and clear any generated chains. Leaves the board in a
+	 * consistent state. Also sends the new score to opponent.
+	 *
+	 * @param from Source coordinates.
+	 * @param to   Destination coordinates.
+	 * @return     Whether the move was successful, invalid or canceled.
+	 */
+	@Override
+	public MoveType move(final Coordinate from, final Coordinate to) {
+		MoveType type = super.move(from, to);
+		if (gameStarted) {
+			notifyOpponent(new UpdateScore(score));
+		}
+		return type;
 	}
 	
 	/**
