@@ -22,16 +22,14 @@ import view.Window;
 public class Server
 	extends Thread
 {
-	private Window window;
-	private UIController ui;
-	private DatagramSocket server;
-	private DatagramPacket in;
-	
-	private byte[] inBuffer;
-	private int port;
-	
 	private static boolean inGame = false;
 	private static OpponentInfo opponentInfo = null;
+	private DatagramPacket in;
+	private byte[] inBuffer;
+	private int port;
+	private DatagramSocket server;
+	private UIController ui;
+	private Window window;
 	
 	public class OpponentInfo {
 		public Jewel[] board;
