@@ -10,7 +10,7 @@ public class MainMenuBar
 	extends JMenuBar
 {
 	/** ... */
-	private JMenuItem newItem = new JMenuItem("New game");
+	private JMenuItem newItem = new JMenuItem("New Game");
 	
 	/** ... */
 	private JMenuItem openItem = new JMenuItem("Open…");
