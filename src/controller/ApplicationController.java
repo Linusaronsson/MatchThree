@@ -3,8 +3,6 @@ package controller;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import multiplayer.Server;
-
 public class ApplicationController
 {
 	public ApplicationController() {

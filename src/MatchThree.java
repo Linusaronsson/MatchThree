@@ -1,6 +1,4 @@
 import controller.ApplicationController;
-import multiplayer.Server;
-
 import java.io.IOException;
 
 /**
