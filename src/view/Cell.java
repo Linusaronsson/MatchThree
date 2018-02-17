@@ -87,7 +87,6 @@ public class Cell
 		return position.getY();
 	}
 	
-	
 	private Color color = new Color(0, 0, 0, 0f);
 	
 	/**
@@ -96,12 +95,11 @@ public class Cell
 	@Override
 	protected void paintComponent(final Graphics g) {
 		BufferedImage image =
-				getGraphicsConfiguration().
-				createCompatibleImage(
-						getWidth(),
-						getHeight(),
-						Transparency.TRANSLUCENT
-						);
+			getGraphicsConfiguration().createCompatibleImage(
+				getWidth(),
+				getHeight(),
+				Transparency.TRANSLUCENT
+			);
 		image.coerceData(true);
 		
 		Graphics2D imageGraphics = image.createGraphics();
@@ -109,17 +107,18 @@ public class Cell
 		imageGraphics.dispose();
 		
 		BufferedImage mask =
-				getGraphicsConfiguration().
-				createCompatibleImage(
-						image.getWidth(),
-						image.getHeight(),
-						Transparency.TRANSLUCENT
-						);
+			getGraphicsConfiguration().createCompatibleImage(
+				image.getWidth(),
+				image.getHeight(),
+				Transparency.TRANSLUCENT
+			);
 		mask.coerceData(true);
 		
 		Graphics2D maskGraphics = mask.createGraphics();
 		maskGraphics.drawImage(image, 0, 0, null);
-		maskGraphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, 1f));
+		maskGraphics.setComposite(
+			AlphaComposite.getInstance(AlphaComposite.SRC_IN, 1f)
+		);
 		maskGraphics.setColor(color);
 		maskGraphics.fillRect(0, 0, image.getWidth(), image.getHeight());
 		maskGraphics.dispose();
