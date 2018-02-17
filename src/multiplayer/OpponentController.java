@@ -6,7 +6,10 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+
+import controller.UIController;
 import model.MatchThreeModel;
+import view.ErrorDialog;
 
 /**
  * ...
@@ -15,6 +18,7 @@ public class OpponentController
 	extends Thread
 {
 	private OpponentModel model = null;
+	private UIController uiController = null;
 	private DatagramSocket opponent;
 	private DatagramPacket in;
 	private byte[] inBuffer;
@@ -23,8 +27,13 @@ public class OpponentController
 	/**
 	 * ...
 	 */
-	public OpponentController(final int port, final OpponentModel model) {
+	public OpponentController(
+			final int port,
+			final OpponentModel model, 
+			final UIController uiController
+		) {
 		this.model = model;
+		this.uiController = uiController;
 		this.port = port;
 		try {
 			//Listen on port (2000)
@@ -69,7 +78,13 @@ public class OpponentController
 						model.setScore(s.getScore());
 						break;
 					case END_GAME:
-						//TODO: Close game in a good way
+						uiController.changeView(UIController.View.MAIN_MENU);
+						new ErrorDialog(
+								"Opponent ended the game",
+								"End of game"
+							);
+						Server.setInGame(false);
+						close();
 						break;
 					default:
 						throw new IllegalStateException();
