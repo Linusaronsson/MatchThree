@@ -71,6 +71,8 @@ public class OpponentController
 					case END_GAME:
 						//TODO: Close game in a good way
 						break;
+					default:
+						throw new IllegalStateException();
 				}
 				System.out.println(
 					"OpponentController Recieved: \n" + m.toString()
