@@ -17,6 +17,7 @@ public class MultiplayerViewController
 {
 	private static final int GAME_SIZE = 6;
 	
+	private MultiplayerView1 multiplayerView = null;
 	private UIController uiController = null;
 	
 	public MultiplayerViewController(
@@ -35,7 +36,7 @@ public class MultiplayerViewController
 		
 		try {
 			OpponentInfo info = Server.getOpponentInfo();
-			final MultiplayerView1 multiplayerView = new MultiplayerView1(
+			multiplayerView = new MultiplayerView1(
 				info.ip,
 				info.port,
 				info.board,
@@ -43,10 +44,9 @@ public class MultiplayerViewController
 			);
 			
 			// Add event listeners //
-			multiplayerView.addBackListener(e -> {
-				uiController.changeView(UIController.View.MAIN_MENU);
-				multiplayerView.closeGame();
-				Server.setInGame(false);
+			multiplayerView.addBackListener(event -> {
+				// Go to main menu //
+				goToMainMenu();
 			});
 			
 			// Add view to parent //
@@ -58,5 +58,11 @@ public class MultiplayerViewController
 			System.err.println("getOpponentInfo() was called at a bad time");
 			System.exit(1);
 		}
+	}
+	
+	private void goToMainMenu() {
+		uiController.changeView(UIController.View.MAIN_MENU);
+		multiplayerView.closeGame();
+		Server.setInGame(false);
 	}
 }

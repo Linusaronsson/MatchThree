@@ -1,7 +1,5 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JPanel;
@@ -23,57 +21,6 @@ public class MainWindowController
 	
 	/** ... */
 	private Window window = null;
-	
-	/**
-	 * Listens for "New" menu item.
-	 */
-	class NewListener
-		implements ActionListener
-	{
-		@Override
-		public void actionPerformed(final ActionEvent event) {
-			// Restart the game //
-			matchThreeController.restartGame();
-		}
-	}
-	
-	/**
-	 * Listens for "Open" menu item.
-	 */
-	class OpenListener
-		implements ActionListener
-	{
-		@Override
-		public void actionPerformed(final ActionEvent event) {
-			new ErrorDialog("Function not implemented", "Open not implemented");
-		}
-	}
-	
-	/**
-	 * Listens for "Save" menu item.
-	 */
-	class SaveListener
-		implements ActionListener
-	{
-		@Override
-		public void actionPerformed(final ActionEvent event) {
-			// Save the game //
-			matchThreeController.saveGame();
-		}
-	}
-	
-	/**
-	 * Listens for "Quit" menu item.
-	 */
-	class QuitListener
-		implements ActionListener
-	{
-		@Override
-		public void actionPerformed(final ActionEvent event) {
-			// Close main window //
-			closeWindow();
-		}
-	}
 	
 	/**
 	 * Listens for window events.
@@ -144,10 +91,22 @@ public class MainWindowController
 		pack();
 		
 		// Register event listeners //
-		menuBar.addNewListener(new NewListener());
-		menuBar.addOpenListener(new OpenListener());
-		menuBar.addQuitListener(new QuitListener());
-		menuBar.addSaveListener(new SaveListener());
+		menuBar.addNewListener(event -> {
+			// Restart the game //
+			matchThreeController.restartGame();
+		});
+		menuBar.addOpenListener(event -> {
+			// TODO: Not implemented.
+			new ErrorDialog("Function not implemented", "Open not implemented");
+		});
+		menuBar.addQuitListener(event -> {
+			// Close main window //
+			closeWindow();
+		});
+		menuBar.addSaveListener(event -> {
+			// Save the game //
+			matchThreeController.saveGame();
+		});
 		window.addWindowListener(new WindowListener());
 		
 		// Start server //

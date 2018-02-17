@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -39,39 +38,6 @@ public class MatchThreeController
 	private Window window = null;
 	
 	/**
-	 * Listens for board cell actions (clicks).
-	 */
-	class BoardListener
-		implements ActionListener
-	{
-		@Override
-		public void actionPerformed(final ActionEvent event) {
-			// Validate argument //
-			if (event == null) {
-				throw new NullPointerException();
-			}
-			
-			// Get cell coordinates //
-			// TODO: Assert event values?
-			// TODO: Implement `clone`.
-			Cell       cell        = (Cell) event.getSource();
-			Coordinate tmp         = cell.getPosition();
-			Coordinate clickedCell = new Coordinate(tmp.getX(), tmp.getY());
-			
-			// Activate cell if appropriate //
-			if (activeCell == null) {
-				setActiveCell(clickedCell);
-				return;
-			}
-			
-			// Deactivate and swap cells //
-			Coordinate from = activeCell;
-			setActiveCell(null);
-			moveCell(from, clickedCell);
-		}
-	}
-	
-	/**
 	 * Constructor for `MatchThreeController`.
 	 *
 	 * @param model Model to use.
@@ -88,11 +54,42 @@ public class MatchThreeController
 		}
 		
 		// Register event listeners //
-		gridView.addBoardListener(new BoardListener());
+		gridView.addBoardListener(event -> {
+			// Handle click //
+			handleAction(event);
+		});
 		
 		this.gridView        = gridView;
 		this.matchThreeModel = model;
 		this.matchThreeUI    = view;
+	}
+	
+	/**
+	 * Handle board cell action (click).
+	 */
+	public void handleAction(final ActionEvent event) {
+		// Validate argument //
+		if (event == null) {
+			throw new NullPointerException();
+		}
+		
+		// Get cell coordinates //
+		// TODO: Assert event values?
+		// TODO: Implement `clone`.
+		Cell       cell        = (Cell) event.getSource();
+		Coordinate tmp         = cell.getPosition();
+		Coordinate clickedCell = new Coordinate(tmp.getX(), tmp.getY());
+		
+		// Activate cell if appropriate //
+		if (activeCell == null) {
+			setActiveCell(clickedCell);
+			return;
+		}
+		
+		// Deactivate and swap cells //
+		Coordinate from = activeCell;
+		setActiveCell(null);
+		moveCell(from, clickedCell);
 	}
 	
 	/**

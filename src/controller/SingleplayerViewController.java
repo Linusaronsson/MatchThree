@@ -1,8 +1,6 @@
 package controller;
 
 import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import model.MatchThreeModel;
 import view.SingleplayerView;
 
@@ -32,7 +30,8 @@ public class SingleplayerViewController
 			= new SingleplayerView(matchThreeModel);
 		
 		// Add event listeners //
-		singlePlayerView.addBackListener(e -> {
+		singlePlayerView.addBackListener(event -> {
+			// Go to main menu //
 			uiController.changeView(UIController.View.MAIN_MENU);
 		});
 		
