@@ -22,8 +22,8 @@ public class ErrorDialog
 		// Display error dialog //
 		JOptionPane.showMessageDialog(
 			null,
-			title,
 			message,
+			title,
 			JOptionPane.ERROR_MESSAGE
 		);
 	}

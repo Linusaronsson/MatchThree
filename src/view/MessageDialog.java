@@ -22,8 +22,8 @@ public class MessageDialog
 		// Display message dialog //
 		JOptionPane.showMessageDialog(
 			null,
-			title,
 			message,
+			title,
 			JOptionPane.INFORMATION_MESSAGE
 		);
 	}
