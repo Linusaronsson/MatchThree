@@ -44,9 +44,11 @@ public class Server
 	}
 	
 	/**
-	 * 
-	 * @param window
-	 * @param port
+	 * ...
+	 *
+	 * @param window ...
+	 * @param ui     ...
+	 * @param port   ...
 	 */
 	public Server(final Window window, final UIController ui, final int port) {
 		this.ui     = ui;
@@ -67,7 +69,8 @@ public class Server
 	
 
 	/**
-	 * 
+	 * ...
+	 *
 	 * @param m
 	 * @param socket
 	 * @param ip
@@ -97,9 +100,10 @@ public class Server
 	}
 	
 	/**
-	 * 
-	 * @return
-	 * @throws IllegalStateException
+	 * ...
+	 *
+	 * @return ...
+	 * @throws IllegalStateException ...
 	 */
 	public static OpponentInfo getOpponentInfo()
 	throws IllegalStateException {
@@ -113,7 +117,8 @@ public class Server
 	}
 	
 	/**
-	 * 
+	 * ...
+	 *
 	 * @param b
 	 */
 	public static void setInGame(final boolean b) {

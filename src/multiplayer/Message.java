@@ -32,7 +32,8 @@ public class Message
 	/**
 	 * ...
 	 *
-	 * @param type
+	 * @param type ...
+	 * @return     ...
 	 */
 	public String asString(final MessageType type) {
 		switch (type) {
@@ -46,15 +47,18 @@ public class Message
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * ...
+	 *
+	 * @return ...
 	 */
 	public MessageType getType() {
 		return type;
 	}
 	
 	/**
-	 * 
+	 * ...
+	 *
+	 * @return ...
 	 */
 	@Override
 	public String toString() {
