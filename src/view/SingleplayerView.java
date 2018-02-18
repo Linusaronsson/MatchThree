@@ -69,19 +69,39 @@ public class SingleplayerView
 		
 	}
 	
+	/**
+	 * Add event listener for back button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addBackListener(final MouseListener listener) {
 		buttonPanel.addBackListener(listener);
 	}
 	
+	/**
+	 * Add event listener for back button. (clicks)
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addBackClickListener(final ActionListener actionListener) {
 		// TODO Auto-generated method stub
 		buttonPanel.addBackClickListener(actionListener);
 	}
 	
+	/**
+	 * Add event listener for version 1 button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addButtonV1Listener(final MouseListener listener) {
 		buttonPanel.addButtonV1Listener(listener);
 	}
 	
+	/**
+	 * Add event listener for version 2 button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addButtonV2Listener(final MouseListener listener) {
 		buttonPanel.addButtonV2Listener(listener);
 	}
@@ -125,23 +145,48 @@ public class SingleplayerView
 		matchThreeController.setWindow(window);
 	}
 	
-	
-	
+	/**
+	 * 
+	 * 
+	 * @param i
+	 */
 	public void changeSprites(int i) {
 		gridView.changeSprites(i);
 	}
-
+	
+	/**
+	 * 
+	 * 
+	 * @param audio
+	 */
 	public void playAudio(Audio audio) {
 		// TODO Auto-generated method stub
 		gridView.playAudio(audio);
-		
 	}
+	
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
 	public Button getBackButton() {
 		return buttonPanel.getBackButton();
 	}
+	
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
 	public Button getV1Button() {
 		return buttonPanel.getV1Button();
 	}
+	
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
 	public Button getV2Button() {
 		return buttonPanel.getV2Button();
 	}

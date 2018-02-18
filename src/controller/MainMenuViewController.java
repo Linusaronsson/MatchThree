@@ -1,14 +1,22 @@
 package controller;
 
 import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import view.MainMenuView;
 
+/**
+ * Controller for main menu view.
+ */
 public class MainMenuViewController
 {
+	/** Reference to UI controller. */
 	private UIController uiController = null;
 	
+	/**
+	 * Create `MainMenuViewController`.
+	 *
+	 * @param uiController Reference to UI controller for navigation.
+	 * @param parent       Parent container view to use.
+	 */
 	public MainMenuViewController(
 		final UIController uiController,
 		final Container    parent
@@ -27,17 +35,13 @@ public class MainMenuViewController
 		MainMenuView mainMenuView = new MainMenuView();
 		
 		// Add event listeners //
-		mainMenuView.addMultiplayerListener(new ActionListener() {
-			@Override
-			public void actionPerformed(final ActionEvent event) {
-				uiController.changeView(UIController.View.MULTIPLAYER_MENU);
-			}
+		mainMenuView.addMultiplayerListener(event -> {
+			// Go to multiplayer menu //
+			uiController.changeView(UIController.View.MULTIPLAYER_MENU);
 		});
-		mainMenuView.addSingleplayerListener(new ActionListener() {
-			@Override
-			public void actionPerformed(final ActionEvent event) {
-				uiController.changeView(UIController.View.SINGLEPLAYER_GAME);
-			}
+		mainMenuView.addSingleplayerListener(event -> {
+			// Go to singleplayer menu //
+			uiController.changeView(UIController.View.SINGLEPLAYER_GAME);
 		});
 		
 		// Add view to parent //

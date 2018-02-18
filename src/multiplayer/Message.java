@@ -13,10 +13,11 @@ public class Message
 	
 	public enum MessageType
 	{
-		REQUESTED_GAME, //game request: (empty payload)
 		ACCEPTED_GAME, //game accepted: notifies that game was accepted, and sends initial generated board.
+		CELL_UPDATE,
 		END_GAME,
-		CELL_UPDATE
+		REQUESTED_GAME, //game request: (empty payload)
+		SCORE_UPDATE
 	}
 	
 	/**
@@ -31,7 +32,8 @@ public class Message
 	/**
 	 * ...
 	 *
-	 * @param type
+	 * @param type ...
+	 * @return     ...
 	 */
 	public String asString(final MessageType type) {
 		switch (type) {
@@ -39,20 +41,21 @@ public class Message
 			case CELL_UPDATE:    return "CELL_UPDATE";
 			case END_GAME:       return "END_GAME";
 			case REQUESTED_GAME: return "REQUESTED_GAME";
+			case SCORE_UPDATE:   return "SCORE_UPDATE";
 			default: throw new IllegalStateException();
 		}
 	}
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
 	public MessageType getType() {
 		return type;
 	}
 	
-	/**
-	 * ...
-	 */
+	@Override
 	public String toString() {
 		return "Message type: " + asString(type) + "\n";
 	}

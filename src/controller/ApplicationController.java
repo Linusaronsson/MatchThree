@@ -3,18 +3,20 @@ package controller;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+/**
+ * Application controller.
+ */
 public class ApplicationController
 {
+	/**
+	 * Create `ApplicationController`.
+	 */
 	public ApplicationController() {
 		// Set application-wide properties //
 		setProperties();
 		
 		// Create main window //
-		MainWindowController window = new MainWindowController();
-		
-		// Setup server listener //
-		//Server server = new Server(swapView, PORT_NUMBER);
-		//server.start();
+		new MainWindowController();
 	}
 	
 	/**

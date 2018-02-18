@@ -6,23 +6,23 @@ import model.Jewel;
  * Message sent between users over a DatagramSocket. (The entire board).
  */
 @SuppressWarnings("serial")
-public class UpdateBoard
+public class UpdateScore
 	extends Message
 {
-	Jewel[] board;
+	int score;
 	
 	/**
 	 * ...
 	 */
-	public UpdateBoard(final Jewel[] board) {
-		super(MessageType.ACCEPTED_GAME);
-		this.board = board;
+	public UpdateScore(final int score) {
+		super(MessageType.SCORE_UPDATE);
+		this.score = score;
 	}
 	
 	/**
 	 * ...
 	 */
-	public Jewel[] getBoard() {
-		return board;
+	public int getScore() {
+		return score;
 	}
 }

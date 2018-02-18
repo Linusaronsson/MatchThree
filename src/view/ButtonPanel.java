@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 
 import util.AssetManager;
 
+/**
+ * Game button panel.
+ */
 @SuppressWarnings("serial")
 public class ButtonPanel
 	extends JPanel
@@ -39,8 +42,13 @@ public class ButtonPanel
 	private static final BufferedImage IMAGE_V2 =
 		AssetManager.loadImage("V2.png");
 	
-	private Button back     = null;
+	/** ... */
+	private Button back = null;
+	
+	/** ... */
 	private Button buttonV1 = null;
+	
+	/** ... */
 	private Button buttonV2 = null;
 	
 	/**
@@ -58,6 +66,9 @@ public class ButtonPanel
 		V2
 	}
 	
+	/**
+	 * Create `ButtonPanel`.
+	 */
 	public ButtonPanel() {
 		// Set layout //
 		BorderLayout layout = new BorderLayout(
@@ -102,18 +113,38 @@ public class ButtonPanel
 		return panel;
 	}
 	
+	/**
+	 * Add listener for back button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addBackListener(final MouseListener listener) {
 		back.addMouseListener(listener);
 	}
 	
+	/**
+	 * Add listener for back button. (clicks)
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addBackClickListener(final ActionListener listener) {
 		back.addActionListener(listener);
 	}
 	
+	/**
+	 * Add listener for version 1 button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addButtonV1Listener(final MouseListener listener) {
 		buttonV1.addMouseListener(listener);
 	}
 	
+	/**
+	 * Add listener for version 2 button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addButtonV2Listener(final MouseListener listener) {
 		buttonV2.addMouseListener(listener);
 	}

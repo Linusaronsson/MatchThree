@@ -5,10 +5,10 @@ package model;
  */
 public class Coordinate
 {
-	/** ... */
+	/** X-coordinate. */
 	private int x = 0;
 	
-	/** ... */
+	/** Y-coordinate. */
 	private int y = 0;
 	
 	/**
@@ -27,27 +27,27 @@ public class Coordinate
 	}
 	
 	/**
-	 * ...
+	 * Get X-coordinate.
 	 *
-	 * @return ...
+	 * @return The X-coordinate.
 	 */
 	public int getX() {
 		return x;
 	}
 	
 	/**
-	 * ...
+	 * Get Y-coordinate.
 	 *
-	 * @return ...
+	 * @return The Y-coordinate.
 	 */
 	public int getY() {
 		return y;
 	}
 	
 	/**
-	 * ...
+	 * Set X-coordinate.
 	 *
-	 * @param x ...
+	 * @param x New X-coordinate.
 	 */
 	public void setX(final int x) {
 		if (x < 0) {
@@ -58,9 +58,9 @@ public class Coordinate
 	}
 	
 	/**
-	 * ...
+	 * Set Y-coordinate.
 	 *
-	 * @param y ...
+	 * @param y New Y-coordinate.
 	 */
 	public void setY(final int y) {
 		if (y < 0) {

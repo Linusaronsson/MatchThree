@@ -6,7 +6,10 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+
+import controller.UIController;
 import model.MatchThreeModel;
+import view.ErrorDialog;
 
 /**
  * ...
@@ -14,17 +17,23 @@ import model.MatchThreeModel;
 public class OpponentController
 	extends Thread
 {
-	MatchThreeModel model = null;
+	private OpponentModel model = null;
+	private UIController uiController = null;
 	private DatagramSocket opponent;
-	private DatagramPacket  in;
-	byte[] inBuffer;
+	private DatagramPacket in;
+	private byte[] inBuffer;
 	private int port;
-
+	
 	/**
 	 * ...
 	 */
-	public OpponentController(final int port, final MatchThreeModel model) {
+	public OpponentController(
+			final int port,
+			final OpponentModel model, 
+			final UIController uiController
+		) {
 		this.model = model;
+		this.uiController = uiController;
 		this.port = port;
 		try {
 			//Listen on port (2000)
@@ -37,7 +46,7 @@ public class OpponentController
 			System.exit(1);
 		}
 	}
-
+	
 	/**
 	 * ...
 	 */
@@ -45,10 +54,7 @@ public class OpponentController
 		this.interrupt();
 		opponent.close();
 	}
-
-	/**
-	 * ...
-	 */
+	
 	@Override
 	public void run() {
 		try {
@@ -58,8 +64,28 @@ public class OpponentController
 					new ByteArrayInputStream(inBuffer);
 				ObjectInputStream inStream =
 					new ObjectInputStream(byteInStream);
-				UpdateCell m = (UpdateCell) inStream.readObject();
-				model.set(m.getX(), m.getY(), m.getJewelType());
+				Message m = (Message) inStream.readObject();
+				switch (m.getType()) {
+					case CELL_UPDATE:
+						UpdateCell c = (UpdateCell) m;
+						model.set(c.getX(), c.getY(), c.getJewelType());
+						break;
+					case SCORE_UPDATE:
+						UpdateScore s = (UpdateScore) m;
+						model.setScore(s.getScore());
+						break;
+					case END_GAME:
+						uiController.changeView(UIController.View.MAIN_MENU);
+						new ErrorDialog(
+								"Opponent ended the game",
+								"End of game"
+							);
+						Server.setInGame(false);
+						close();
+						break;
+					default:
+						throw new IllegalStateException();
+				}
 				System.out.println(
 					"OpponentController Recieved: \n" + m.toString()
 				);
@@ -68,10 +94,8 @@ public class OpponentController
 		} catch (SocketException e) {
 			return;
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

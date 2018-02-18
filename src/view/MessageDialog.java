@@ -2,13 +2,16 @@ package view;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Floating message dialog.
+ */
 public class MessageDialog
 {
 	/**
-	 * ...
+	 * Create `MessageDialog`.
 	 *
 	 * @param title   Title of the dialog.
-	 * @param message Message of the dialog.
+	 * @param message Body of the dialog.
 	 */
 	public MessageDialog(final String title, final String message) {
 		// Validate arguments //
@@ -22,8 +25,8 @@ public class MessageDialog
 		// Display message dialog //
 		JOptionPane.showMessageDialog(
 			null,
-			title,
 			message,
+			title,
 			JOptionPane.INFORMATION_MESSAGE
 		);
 	}

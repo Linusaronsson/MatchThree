@@ -11,6 +11,9 @@ import java.awt.image.BufferedImage;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+/**
+ * Button.
+ */
 @SuppressWarnings("serial")
 public class Button
 	extends JButton
@@ -27,6 +30,9 @@ public class Button
 	/** ... */
 	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
 	
+	/**
+	 * Create button.
+	 */
 	public Button() {
 		// Set colors //
 		setForeground(COLOR_FOREGROUND);
@@ -45,22 +51,8 @@ public class Button
 		setContentAreaFilled(false);
 	}
 	
+	/** ... */
 	private Color color = new Color(0, 0, 0, 0f);
-	
-	///**
-		// * @param alpha Alpha value to be set.
-		// */
-		//protected void setAlpha(float alpha) {
-		//	alpha = 1 - alpha;
-		//	if (alpha >= 0f && alpha <= 1f) {
-		//		Color alphaColor = new Color(0, 0, 0, alpha);
-		//		firePropertyChange("alpha", color, alphaColor);
-		//		color = alphaColor;
-		//		repaint();
-		//	} else {
-		//		throw new IllegalArgumentException("alpha is required to be a value between 0f and 1f.");
-		//	}
-		//}
 	
 	/**
 	 * @param color RGB color to be set, not alpha.
@@ -135,5 +127,4 @@ public class Button
 		g.drawImage(image, 0, 0, this);
 		g.drawImage(mask, 0, 0, this);
 	}
-	
 }

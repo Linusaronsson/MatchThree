@@ -14,13 +14,15 @@ import javax.swing.JPanel;
 public class Window
 	extends JFrame
 {
-	/** ... */
+	/** Window content pane. */
 	private JPanel content = null;
 	
 	/**
-	 * ...
+	 * Create `Window`.
 	 *
-	 * @param content ...
+	 * @param title   Window title.
+	 * @param menuBar Window menu bar, if any.
+	 * @param content Window content pane.
 	 */
 	public Window(
 		final String   title,

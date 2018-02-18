@@ -24,9 +24,9 @@ public class MatchThreeUI
 	/**
 	 * Constructor for `MatchThreeUI`.
 	 *
-	 * @param model Model to use
+	 * @param matchThreeModel MatchThree model to use.
+	 * @param gridView        Grid view to use.
 	 */
-	// TODO: Break into multiple methods?
 	// TODO: Call parent constructor?
 	public MatchThreeUI(
 		final MatchThreeModel matchThreeModel,

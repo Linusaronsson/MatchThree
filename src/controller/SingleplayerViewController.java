@@ -5,18 +5,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import model.MatchThreeModel;
 import view.Button;
 import view.GridView.Audio;
 import view.SingleplayerView;
 
+/**
+ * Controller for singleplayer game screen.
+ */
 public class SingleplayerViewController
 {
+	/** Default game size. */
 	private static final int GAME_SIZE = 6;
 	
+	/** Reference to UI controller. */
 	private UIController uiController = null;
 	
+	/**
+	 * Create `SingleplayerViewController`.
+	 *
+	 * @param uiController UI controller to use for navigation.
+	 * @param parent       Parent container view to use.
+	 */
 	public SingleplayerViewController(
 		final UIController uiController,
 		final Container    parent,
@@ -99,11 +109,9 @@ public class SingleplayerViewController
 	}
 		
 		// Add event listeners //
-		singlePlayerView.addBackClickListener(new ActionListener() {
-			@Override
-			public void actionPerformed(final ActionEvent event) {
-				uiController.changeView(UIController.View.MAIN_MENU);
-			}
+		singlePlayerView.addBackClickListener(event -> {
+			// Go to main menu //
+			uiController.changeView(UIController.View.MAIN_MENU);
 		});
 		singlePlayerView.addBackListener(
 				new ButtonHoverListener(singlePlayerView.getBackButton()));

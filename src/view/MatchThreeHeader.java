@@ -2,12 +2,12 @@ package view;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
-import java.awt.Font;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.MatchThreeModel;
 
+/**
+ * MatchThree game header.
+ */
 @SuppressWarnings("serial")
 public class MatchThreeHeader
 	extends JPanel
@@ -18,6 +18,11 @@ public class MatchThreeHeader
 	/** ... */
 	private static final Color COLOR_PANEL = COLOR_BACKGROUND.brighter().brighter();
 	
+	/**
+	 * Create `MatchThreeHeader`.
+	 *
+	 * @param matchThreeModel MatchThree model to use.
+	 */
 	public MatchThreeHeader(final MatchThreeModel matchThreeModel) {
 		// Validate argument //
 		if (matchThreeModel == null) {

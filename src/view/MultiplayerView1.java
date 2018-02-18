@@ -1,14 +1,17 @@
 package view;
 
 import controller.MatchThreeController;
+import controller.UIController;
+import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.InetAddress;
 import javax.swing.JPanel;
 import model.Jewel;
-import model.MatchThreeModel;
-import multiplayer.MultiplayerModel;
 import multiplayer.OpponentController;
+import multiplayer.OpponentModel;
+import multiplayer.PlayerModel;
 
 /**
  * ...
@@ -17,37 +20,55 @@ import multiplayer.OpponentController;
 public class MultiplayerView1
 	extends JPanel
 {
-	// Player
-	private GridView playerGrid = null;
-	private MultiplayerModel playerModel = null;
-	private MatchThreeUI playerView = null;
+	/** ... */
+	private ButtonPanel buttonPanel = new ButtonPanel();
+	
+	/** ... */
+	private OpponentController opponentController = null;
+	
+	/** ... */
+	private GridView opponentGrid = null;
+	
+	/** ... */
+	private OpponentModel opponentModel = null;
+	
+	/** ... */
+	private MatchThreeUI opponentView = null;
+	
+	/** ... */
 	private MatchThreeController playerController = null;
 	
-	// Opponent
-	private GridView opponentGrid = null;
-	private MatchThreeModel opponentModel = null;
-	private MatchThreeUI opponentView = null;
-	private OpponentController opponentController = null;
+	/** ... */
+	private GridView playerGrid = null;
+	
+	/** ... */
+	private PlayerModel playerModel = null;
+	
+	/** ... */
+	private MatchThreeUI playerView = null;
 	
 	/**
 	 * ...
 	 *
-	 * @param address  ...
-	 * @param port     ...
-	 * @param gameSize ...
+	 * @param host         ...
+	 * @param port         ...
+	 * @param board        ...
+	 * @param gameSize     ...
+	 * @param uiController ...
 	 * @throws IOException On file system access errors.
 	 */
 	public MultiplayerView1(
-		final InetAddress ip,
-		final int         port,
-		final boolean     isHost, // TODO: Could probably be removed.
-		final Jewel[]     board,
-		final int         gameSize
+		final InetAddress  host,
+		final int          port,
+		final Jewel[]      board,
+		final int          gameSize,
+		final UIController uiController,
+		final int          jewelVersion
 	) throws IOException {
 		// Create MVC context for the player //
 		if (board == null) {
-			playerModel = new MultiplayerModel(gameSize, ip, port);
-			opponentModel = new MatchThreeModel(
+			playerModel = new PlayerModel(gameSize, host, port);
+			opponentModel = new OpponentModel(
 				playerModel.getBoard(),
 				gameSize
 			);
@@ -55,13 +76,13 @@ public class MultiplayerView1
 			// Host sends the board to opponent //
 			playerModel.sendBoard(3333);
 		} else {
-			playerModel = new MultiplayerModel(board, gameSize, ip, port);
-			opponentModel = new MatchThreeModel(board, gameSize);
+			playerModel = new PlayerModel(board, gameSize, host, port);
+			opponentModel = new OpponentModel(board, gameSize);
 		}
 		
 		playerModel.setGameStarted(true);
 		
-		playerGrid = new GridView(playerModel);
+		playerGrid = new GridView(playerModel, jewelVersion);
 		playerView  = new MatchThreeUI(playerModel, playerGrid);
 		playerController = new MatchThreeController(
 			playerModel,
@@ -69,15 +90,31 @@ public class MultiplayerView1
 			playerGrid
 		);
 		
-		opponentGrid = new GridView(opponentModel);
+		opponentGrid = new GridView(opponentModel, jewelVersion);
 		opponentView = new MatchThreeUI(opponentModel, opponentGrid);
-		opponentController = new OpponentController(port, opponentModel);
+		opponentController = new OpponentController(
+				port,
+				opponentModel,
+				uiController
+			);
 		opponentController.start();
 		
 		// TODO: Use constants for these numbers.
-		setLayout(new GridLayout(1, 2, 1000, 150));
-		add(playerView);
-		add(opponentView);
+		setLayout(new BorderLayout());
+		JPanel j = new JPanel(new GridLayout(1, 2, 100, 150));
+		j.add(playerView);
+		j.add(opponentView);
+		add(j, BorderLayout.CENTER);
+		add(buttonPanel, BorderLayout.EAST);
+	}
+
+	/**
+	 * Add listener for back button.
+	 *
+	 * @param listener Event listener to use.
+	 */
+	public void addBackClickListener(final ActionListener listener) {
+		buttonPanel.addBackClickListener(listener);
 	}
 	
 	/**

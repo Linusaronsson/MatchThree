@@ -26,59 +26,27 @@ import view.GridView.Audio;
  */
 public class MatchThreeController
 {
-	/** ... */
+	/** Currently active cell. */
 	private Coordinate activeCell = null;
 	
-	/** ... */
+	/** Grid view. */
 	private GridView gridView = null;
 	
-	/** ... */
+	/** MatchThree model. */
 	private MatchThreeModel matchThreeModel = null;
 	
-	/** ... */
+	/** Game view. */
 	private MatchThreeUI matchThreeUI = null;
 	
-	/** ... */
+	/** Window view. */
 	private Window window = null;
-	
-	/**
-	 * Listens for board cell actions (clicks).
-	 */
-	class BoardListener
-		implements ActionListener
-	{
-		@Override
-		public void actionPerformed(final ActionEvent event) {
-			// Validate argument //
-			if (event == null) {
-				throw new NullPointerException();
-			}
-			
-			// Get cell coordinates //
-			// TODO: Assert event values?
-			// TODO: Implement `clone`.
-			Cell       cell        = (Cell) event.getSource();
-			Coordinate tmp         = cell.getPosition();
-			Coordinate clickedCell = new Coordinate(tmp.getX(), tmp.getY());
-			
-			// Activate cell if appropriate //
-			if (activeCell == null) {
-				setActiveCell(clickedCell);
-				return;
-			}
-			
-			// Deactivate and swap cells //
-			Coordinate from = activeCell;
-			setActiveCell(null);
-			moveCell(from, clickedCell);
-		}
-	}
 	
 	/**
 	 * Constructor for `MatchThreeController`.
 	 *
-	 * @param model Model to use.
-	 * @param view  View to use.
+	 * @param model    Model to use.
+	 * @param view     View to use.
+	 * @param gridView Grid view to use.
 	 */
 	public MatchThreeController(
 		final MatchThreeModel model,
@@ -91,11 +59,44 @@ public class MatchThreeController
 		}
 		
 		// Register event listeners //
-		gridView.addBoardListener(new BoardListener());
+		gridView.addBoardListener(event -> {
+			// Handle click //
+			handleAction(event);
+		});
 		
 		this.gridView        = gridView;
 		this.matchThreeModel = model;
 		this.matchThreeUI    = view;
+	}
+	
+	/**
+	 * Handle board cell action (click).
+	 *
+	 * @param event Event object.
+	 */
+	public void handleAction(final ActionEvent event) {
+		// Validate argument //
+		if (event == null) {
+			throw new NullPointerException();
+		}
+		
+		// Get cell coordinates //
+		// TODO: Assert event values?
+		// TODO: Implement `clone`.
+		Cell       cell        = (Cell) event.getSource();
+		Coordinate tmp         = cell.getPosition();
+		Coordinate clickedCell = new Coordinate(tmp.getX(), tmp.getY());
+		
+		// Activate cell if appropriate //
+		if (activeCell == null) {
+			setActiveCell(clickedCell);
+			return;
+		}
+		
+		// Deactivate and swap cells //
+		Coordinate from = activeCell;
+		setActiveCell(null);
+		moveCell(from, clickedCell);
 	}
 	
 	/**

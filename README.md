@@ -18,17 +18,18 @@ this form, the arguments will run in sequence, and abort on failure.
 
 ## Directory structure ##
 
-| Directory         | Purpose                |
-| :---------------- | :--------------------- |
-| `resource/`       | Run-time assets        |
-| `src/`            | Source code            |
-| `src/Controller/` | Controllers            |
-| `src/GameModes/`  | Game modes             |
-| `src/Model/`      | Models                 |
-| `src/View/`       | Views                  |
-| `target/`         | Built artifacts        |
-| `target/doc`      | Compiled documentation |
-| `target/main`     | Compiled program       |
+| Directory          | Purpose                   |
+| :----------------- | :------------------------ |
+| `resource/`        | Run-time assets           |
+| `src/`             | Source code               |
+| `src/controller/`  | Controllers               |
+| `src/model/`       | Models                    |
+| `src/multiplayer/` | Multiplayer (provisional) |
+| `src/view/`        | Views                     |
+| `src/util/`        | Utilities (provisional)   |
+| `target/`          | Built artifacts           |
+| `target/doc`       | Compiled documentation    |
+| `target/main`      | Compiled program          |
 
 ## Authors ##
 

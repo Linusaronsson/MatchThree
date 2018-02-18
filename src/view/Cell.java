@@ -45,10 +45,14 @@ public class Cell
 		position = new Coordinate(x, y);
 	}
 	
+	/**
+	 * Create `Cell`.
+	 *
+	 * @param i ...
+	 */
 	public Cell(final int i) {
-		if (i == 0) {
-			return;
-		} else {
+		// Validate argument //
+		if (i != 0) {
 			throw new IllegalArgumentException();
 		}
 	}
@@ -80,12 +84,23 @@ public class Cell
 		return position.getY();
 	}
 	
+	/** ... */
 	private boolean state = false;
 	
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
 	public boolean isActive() {
 		return state;
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @param state
+	 */
 	public void setState(boolean state) {
 		this.state = state;
 	}

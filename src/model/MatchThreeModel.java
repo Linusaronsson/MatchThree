@@ -13,30 +13,30 @@ import java.util.Random;
 public class MatchThreeModel
 	extends Observable
 {
-	/** ... */
+	/** Minimum chain length. */
 	private static final int MINIMUM_LENGTH = 3;
 	
-	/** ... */
+	/** Grid. */
 	protected Jewel[] board = null;
 	
-	/** ... */
+	/** Score counter. */
 	protected int score = 0;
 	
-	/** ... */
+	/** Width of grid. */
 	protected int width = 0;
 	
 	/**
-	 * Move type enum.
+	 * Move type.
 	 */
 	public enum MoveType
 	{
-		/** ... */
+		/** Illegal move. */
 		BAD,
 		
-		/** ... */
+		/** Canceled move. */
 		CANCEL,
 		
-		/** ... */
+		/** Successful move. */
 		OK;
 	}
 	
@@ -52,7 +52,8 @@ public class MatchThreeModel
 		private Coordinate position;
 		
 		/**
-		 * ...
+		 * Create `CellEvent`.
+		 *
 		 * @param position ...
 		 * @param cellType ...
 		 */
@@ -81,7 +82,34 @@ public class MatchThreeModel
 	}
 	
 	/**
-	 * Constructor for `MatchThreeModel`.
+	 * ...
+	 */
+	public class ScoreEvent
+	{
+		/** ... */
+		private int score;
+		
+		/**
+		 * Create `ScoreEvent`.
+		 *
+		 * @param score ...
+		 */
+		public ScoreEvent(final int score) {
+			this.score = score;
+		}
+		
+		/**
+		 * ...
+		 *
+		 * @return ...
+		 */
+		public int getScore() {
+			return score;
+		}
+	}
+	
+	/**
+	 * Create `MatchThreeModel`.
 	 *
 	 * @param width Size of the board on one axis in number of cells.
 	 */
@@ -91,29 +119,35 @@ public class MatchThreeModel
 			throw new IllegalArgumentException();
 		}
 		
-		this.width = width;
-		
 		// Construct board //
 		board = new Jewel[width * width];
+		
+		this.width = width;
+		this.board = board;
 		
 		// Set initial state //
 		init();
 	}
 	
 	/**
-	 * ...
+	 * Create `MatchThreeModel`.
 	 *
-	 * @param board ...
-	 * @param width ...
+	 * @param board Board to use.
+	 * @param width Size of the board on one axis in number of cells.
 	 */
+	// TODO: Remove `width` parameter.
 	public MatchThreeModel(final Jewel[] board, final int width) {
 		// Validate argument //
+		// TODO: Check width.
 		if (board == null) {
 			throw new NullPointerException();
 		}
 		
 		this.width = width;
 		this.board = board;
+		
+		// Set initial state //
+		init();
 	}
 	
 	/**
@@ -531,7 +565,7 @@ public class MatchThreeModel
 	/**
 	 * Progress board into a consistent state.
 	 *
-	 * @param positions ...
+	 * @param positions Positions to update.
 	 */
 	private void update(final Coordinate[] positions) {
 		// Validate argument //
@@ -546,6 +580,10 @@ public class MatchThreeModel
 		// Clear matches and adjust score //
 		int points = clearChains(chains);
 		score += points;
+		
+		// Notify observers //
+		setChanged();
+		notifyObservers(new ScoreEvent(score));
 		
 		// Drop cells //
 		dropCells();

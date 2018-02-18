@@ -5,6 +5,7 @@ import model.Jewel;
 /**
  * Message sent between users over a DatagramSocket (Specific jewel).
  */
+@SuppressWarnings("serial")
 public class UpdateCell
 	extends Message
 {
