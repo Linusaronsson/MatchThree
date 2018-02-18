@@ -79,16 +79,6 @@ public class SingleplayerView
 	}
 	
 	/**
-	 * Add event listener for back button. (clicks)
-	 *
-	 * @param listener Event listener to use.
-	 */
-	public void addBackClickListener(final ActionListener actionListener) {
-		// TODO Auto-generated method stub
-		buttonPanel.addBackClickListener(actionListener);
-	}
-	
-	/**
 	 * Add event listener for version 1 button.
 	 *
 	 * @param listener Event listener to use.

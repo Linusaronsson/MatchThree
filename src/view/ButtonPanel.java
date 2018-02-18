@@ -123,11 +123,11 @@ public class ButtonPanel
 	}
 	
 	/**
-	 * Add listener for back button. (clicks)
+	 * Add listener for back button.
 	 *
 	 * @param listener Event listener to use.
 	 */
-	public void addBackClickListener(final ActionListener listener) {
+	public void addBackListener(final ActionListener listener) {
 		back.addActionListener(listener);
 	}
 	

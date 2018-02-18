@@ -73,12 +73,13 @@ public class SingleplayerViewController
 			switch(target.getMnemonic()) {
 			case 0:
 				singlePlayerView.playAudio(Audio.SELECT);
+				// Go back to main menu //
 				uiController.changeView(UIController.View.MAIN_MENU);
 				break;
 			case 1:
 				singlePlayerView.playAudio(Audio.SELECT);
 				singlePlayerView.changeSprites(1);
-				uiController.setVersion(2);
+				uiController.setVersion(1);
 				break;
 			case 2:
 				singlePlayerView.playAudio(Audio.SELECT);
@@ -109,10 +110,6 @@ public class SingleplayerViewController
 	}
 		
 		// Add event listeners //
-		singlePlayerView.addBackClickListener(event -> {
-			// Go to main menu //
-			uiController.changeView(UIController.View.MAIN_MENU);
-		});
 		singlePlayerView.addBackListener(
 				new ButtonHoverListener(singlePlayerView.getBackButton()));
 		singlePlayerView.addButtonV1Listener(

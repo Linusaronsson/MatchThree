@@ -4,6 +4,7 @@ import controller.MatchThreeController;
 import controller.UIController;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.GridLayout;
 import java.io.IOException;
 import java.net.InetAddress;
@@ -113,8 +114,17 @@ public class MultiplayerView1
 	 *
 	 * @param listener Event listener to use.
 	 */
-	public void addBackClickListener(final ActionListener listener) {
-		buttonPanel.addBackClickListener(listener);
+	public void addBackListener(final MouseListener listener) {
+		buttonPanel.addBackListener(listener);
+	}
+	
+	/**
+	 * Add listener for back button.
+	 *
+	 * @param listener Event listener to use.
+	 */
+	public void addBackListener(final ActionListener listener) {
+		buttonPanel.addBackListener(listener);
 	}
 	
 	/**

@@ -69,7 +69,7 @@ public class MultiplayerViewController
 		final int port = info.port;
 		
 		// Add event listeners //
-		multiplayerView.addBackClickListener(event -> {
+		multiplayerView.addBackListener(event -> {
 			// Go to main menu //
 			goToMainMenu(ip, port);
 		});
