@@ -1,7 +1,7 @@
 package controller;
 
-public class MainMenuController
+public class MultiplayerSetupController
 {
-	public MainMenuController() {
+	public MultiplayerSetupController() {
 	}
 }

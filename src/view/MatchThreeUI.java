@@ -13,7 +13,7 @@ public class MatchThreeUI
 	extends JPanel
 {
 	/** ... */
-	private static final Color COLOR_BACKGROUND = new Color(0x11, 0x11, 0x11);
+	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker();
 	
 	/** ... */
 	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
@@ -39,7 +39,7 @@ public class MatchThreeUI
 		
 		// Set properties //
 		// TODO: Stopgap hack.
-		setBackground(new Color(0x11, 0x11, 0x11));
+		setBackground(COLOR_BACKGROUND);
 		
 		// Set layout //
 		setLayout(new BorderLayout());

@@ -14,6 +14,8 @@ public class UIController
 	
 	private MainWindowController windowController = null;
 	
+	private int jewelVersion = 1;
+	
 	/**
 	 * ...
 	 */
@@ -79,7 +81,7 @@ public class UIController
 				);
 				break;
 			case SINGLEPLAYER_GAME:
-				new SingleplayerViewController(this, view);
+				new SingleplayerViewController(this, view, jewelVersion);
 				break;
 			default:
 				throw new IllegalStateException();
@@ -89,6 +91,7 @@ public class UIController
 		//view.revalidate();
 		//view.repaint();
 		windowController.pack();
+		windowController.centerWindow();
 		
 		//If a state change was issued during a multiplayer game,
 		//then let the other user know that game ended.
@@ -107,5 +110,9 @@ public class UIController
 		//			port
 		//		);
 		//}
+	}
+	
+	public void setVersion(final int jewelVersion) {
+		this.jewelVersion = jewelVersion;
 	}
 }

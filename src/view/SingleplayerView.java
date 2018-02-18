@@ -3,10 +3,13 @@ package view;
 import controller.MatchThreeController;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.LayoutManager;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+
 import model.MatchThreeModel;
+import view.GridView.Audio;
 
 /**
  * ...
@@ -38,10 +41,13 @@ public class SingleplayerView
 	 *
 	 * @param matchThreeModel ...
 	 */
-	public SingleplayerView(final MatchThreeModel matchThreeModel) {
+	public SingleplayerView(
+			final MatchThreeModel matchThreeModel,
+			final int jewelVersion
+			) {
 		// Create game //
 		// TODO: Move this logic elsewhere.
-		gridView = new GridView(matchThreeModel);
+		gridView = new GridView(matchThreeModel, jewelVersion);
 		matchThreeUI = new MatchThreeUI(matchThreeModel, gridView);
 		matchThreeController = new MatchThreeController(
 			matchThreeModel,
@@ -58,19 +64,25 @@ public class SingleplayerView
 		setLayout(layout);
 		
 		// Assemble view //
-		add(matchThreeUI);
 		add(buttonPanel);
+		add(matchThreeUI);
+		
 	}
 	
-	public void addBackListener(final ActionListener listener) {
+	public void addBackListener(final MouseListener listener) {
 		buttonPanel.addBackListener(listener);
 	}
 	
-	public void addButtonV1Listener(final ActionListener listener) {
+	public void addBackClickListener(final ActionListener actionListener) {
+		// TODO Auto-generated method stub
+		buttonPanel.addBackClickListener(actionListener);
+	}
+	
+	public void addButtonV1Listener(final MouseListener listener) {
 		buttonPanel.addButtonV1Listener(listener);
 	}
 	
-	public void addButtonV2Listener(final ActionListener listener) {
+	public void addButtonV2Listener(final MouseListener listener) {
 		buttonPanel.addButtonV2Listener(listener);
 	}
 	
@@ -111,5 +123,26 @@ public class SingleplayerView
 	 */
 	public void setWindow(final Window window) {
 		matchThreeController.setWindow(window);
+	}
+	
+	
+	
+	public void changeSprites(int i) {
+		gridView.changeSprites(i);
+	}
+
+	public void playAudio(Audio audio) {
+		// TODO Auto-generated method stub
+		gridView.playAudio(audio);
+		
+	}
+	public Button getBackButton() {
+		return buttonPanel.getBackButton();
+	}
+	public Button getV1Button() {
+		return buttonPanel.getV1Button();
+	}
+	public Button getV2Button() {
+		return buttonPanel.getV2Button();
 	}
 }

@@ -1,12 +1,5 @@
 package view;
 
-import java.awt.AlphaComposite;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.Graphics;
-import java.awt.Transparency;
-import java.awt.image.BufferedImage;
-import javax.swing.JButton;
 import model.Coordinate;
 
 /**
@@ -14,7 +7,7 @@ import model.Coordinate;
  */
 @SuppressWarnings("serial")
 public class Cell
-	extends JButton
+	extends Button
 {
 	/** ... */
 	private Coordinate position = null;
@@ -87,44 +80,13 @@ public class Cell
 		return position.getY();
 	}
 	
+	private boolean state = false;
 	
-	private Color color = new Color(0, 0, 0, 0f);
+	public boolean isActive() {
+		return state;
+	}
 	
-	/**
-	 * Paints the cell graphical image
-	 */
-	@Override
-	protected void paintComponent(final Graphics g) {
-		BufferedImage image =
-				getGraphicsConfiguration().
-				createCompatibleImage(
-						getWidth(),
-						getHeight(),
-						Transparency.TRANSLUCENT
-						);
-		image.coerceData(true);
-		
-		Graphics2D imageGraphics = image.createGraphics();
-		super.paintComponent(imageGraphics);
-		imageGraphics.dispose();
-		
-		BufferedImage mask =
-				getGraphicsConfiguration().
-				createCompatibleImage(
-						image.getWidth(),
-						image.getHeight(),
-						Transparency.TRANSLUCENT
-						);
-		mask.coerceData(true);
-		
-		Graphics2D maskGraphics = mask.createGraphics();
-		maskGraphics.drawImage(image, 0, 0, null);
-		maskGraphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, 1f));
-		maskGraphics.setColor(color);
-		maskGraphics.fillRect(0, 0, image.getWidth(), image.getHeight());
-		maskGraphics.dispose();
-		
-		g.drawImage(image, 0, 0, this);
-		g.drawImage(mask, 0, 0, this);
+	public void setState(boolean state) {
+		this.state = state;
 	}
 }

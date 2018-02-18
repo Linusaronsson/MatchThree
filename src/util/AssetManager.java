@@ -34,7 +34,13 @@ public class AssetManager
 		// Skip loading already loaded audio //
 		Clip clip = audio.get(name);
 		if (clip != null) {
-			return clip;
+			/**
+			* Return only when .wav is inactive, 
+			* else do new File() [clone] in order to avoid "buzzy" sound
+			* Buzz sound cause: rewinding [setFramePosition(0)] when 
+			* current .wav file is still active
+			*/
+			if(!audio.get(name).isActive()) return clip;
 		}
 		
 		// Read audio from file //
@@ -109,7 +115,7 @@ public class AssetManager
 		
 		// Store reference to clip //
 		// TODO: Assert element does not already exist.
-		audio.put(name, clip);
+		audio.put(name, clip); // TODO: Element re-assertion if .wav active
 		
 		return clip;
 	}

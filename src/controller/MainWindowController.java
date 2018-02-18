@@ -161,4 +161,8 @@ public class MainWindowController
 	public void pack() {
 		window.pack();
 	}
+	
+	public void centerWindow() {
+		window.centerWindow();
+	}
 }

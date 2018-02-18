@@ -14,7 +14,7 @@ import multiplayer.OpponentController;
  * ...
  */
 @SuppressWarnings("serial")
-public class Multiplayer
+public class MultiplayerView1
 	extends JPanel
 {
 	// Player
@@ -37,7 +37,7 @@ public class Multiplayer
 	 * @param gameSize ...
 	 * @throws IOException On file system access errors.
 	 */
-	public Multiplayer(
+	public MultiplayerView1(
 		final InetAddress ip,
 		final int         port,
 		final boolean     isHost, // TODO: Could probably be removed.

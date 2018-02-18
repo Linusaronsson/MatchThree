@@ -3,6 +3,7 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -12,14 +13,17 @@ import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 import javax.sound.sampled.Clip;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
 import util.AssetManager;
+import view.GridView.Audio;
 
 /**
  * MatchThree grid view.
@@ -28,7 +32,7 @@ import util.AssetManager;
 public class GridView
 	extends JPanel
 	implements Observer
-{
+{	
 	/** ... */
 	private static final String CELL_FONT_NAME = "Helvetica Neue";
 	
@@ -39,7 +43,7 @@ public class GridView
 	private static final int CELL_WIDTH = 80;
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = new Color(0x11, 0x11, 0x11);
+	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker();
 	
 	/** ... */
 	private static final Color COLOR_DIAMOND = new Color(0xB9, 0xF2, 0xFF);
@@ -58,6 +62,13 @@ public class GridView
 	
 	/** ... */
 	private static final Color COLOR_TOPAZ = new Color(0xFF, 0xBF, 0x00);
+	
+	/** ... */
+	private static final Color ACTIVE_CELL_COLOR = Color.RED;
+	
+	/** ... */
+	private static final Color COLOR_OPPONENT_BACKGROUND = 
+			COLOR_BACKGROUND.brighter().brighter().brighter();
 	
 	/** ... */
 	private static final int GAP = 2;
@@ -111,9 +122,6 @@ public class GridView
 	private BufferedImage imageTopazV2 = null;
 	
 	/** ... */
-	private int jewelVersion = 1;
-	
-	/** ... */
 	private MatchThreeModel model = null;
 	
 	/** Audio file specifier. */
@@ -123,13 +131,19 @@ public class GridView
 		INVALID,
 		
 		/** Swap audio. */
-		SWAP
+		SWAP,
+		
+		/** Mouse entered audio. */
+		MOUSEOVER,
+		
+		/** Select audio. */
+		SELECT
 	}
 	
 	/**
-	 * ...
+	 * Listens for board cell actions (mouse hover).
 	 */
-	private final class MouseAction
+	class CellHoverListener
 		implements MouseListener
 	{
 		/** ... */
@@ -140,7 +154,7 @@ public class GridView
 		 *
 		 * @param cell ...
 		 */
-		private MouseAction(final Cell cell) {
+		private CellHoverListener(final Cell cell) {
 			// TODO Auto-generated constructor stub
 			this.cell = cell;
 		}
@@ -163,19 +177,20 @@ public class GridView
 		@Override
 		public void mouseEntered(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			//cell.setAlpha(0.5f);
+			playAudio(Audio.MOUSEOVER);
+			if(!cell.isActive()) cell.setAlpha(0.5f);
 		}
 		
 		@Override
 		public void mouseExited(final MouseEvent e) {
-			//cell.setAlpha(1f);
+			if(!cell.isActive()) cell.setAlpha(1f);
 		}
 	}
 	
 	/**
 	 * Create a new `GridView`.
 	 */
-	public GridView(final MatchThreeModel model) {
+	public GridView(final MatchThreeModel model, final int jewelVersion) {
 		// Validate argument //
 		if (model == null) {
 			throw new NullPointerException();
@@ -188,6 +203,10 @@ public class GridView
 		
 		// Load external resources //
 		initGraphics(jewelVersion);
+		
+		// Set layout //
+		setLayout(new BorderLayout());
+		setBorder(BorderFactory.createLineBorder(Color.WHITE));
 		
 		// Construct grid //
 		JPanel grid = createGrid();
@@ -211,6 +230,22 @@ public class GridView
 	}
 	
 	/**
+	 * Add listener for board cell actions (mouse hovering).
+	 *
+	 * @param listener Event handler.
+	 */
+	public void addCellHoverListener(final MouseListener listener) {
+		// Validate argument //
+		if (listener == null) {
+			throw new NullPointerException();
+		}
+		
+		for (Cell cell : board) {
+			cell.addMouseListener(listener);
+		}
+	}
+	
+	/**
 	 * Change images on buttons.
 	 *
 	 * @param i Jewel version.
@@ -223,7 +258,6 @@ public class GridView
 				currentRuby     = imageRuby;
 				currentSapphire = imageSapphire;
 				currentTopaz    = imageTopaz;
-				jewelVersion = i;
 				break;
 			case 2:
 				currentDiamond  = imageDiamondV2;
@@ -231,7 +265,6 @@ public class GridView
 				currentRuby     = imageRubyV2;
 				currentSapphire = imageSapphireV2;
 				currentTopaz    = imageTopazV2;
-				jewelVersion = i;
 				break;
 			default: break;
 		}
@@ -277,10 +310,15 @@ public class GridView
 			board[i] = button;
 			
 			// Set button properties //
-			initButtonDefaultValue(button);
-			button.addMouseListener(new MouseAction(button));
+			button.addMouseListener(new CellHoverListener(button));
 			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
 			button.setFont(font);
+			
+			// Set layout //
+			grid.setBorder(BorderFactory.createLineBorder(COLOR_BACKGROUND, 10));
+			
+			// Set background //
+			grid.setBackground(COLOR_BACKGROUND);
 			
 			// Update button state from view //
 			updateCell(x, y, model.get(x, y));
@@ -295,8 +333,10 @@ public class GridView
 	private String getAudioName(final Audio audio) {
 		String name = null;
 		switch (audio) {
-			case INVALID: name = "InvalidMove.wav"; break;
-			case SWAP:    name = "Swap.wav";        break;
+			case INVALID:   name = "InvalidMove.wav"; break;
+			case SWAP:      name = "Swap.wav";        break;
+			case MOUSEOVER: name = "MouseOver.wav";   break;
+			case SELECT:    name = "Select.wav";      break;
 			default: throw new IllegalStateException();
 		}
 		return name;
@@ -351,24 +391,6 @@ public class GridView
 			case TOPAZ:    return "Topaz";
 			default: throw new IllegalStateException();
 		}
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @param button ...
-	 */
-	protected static final void initButtonDefaultValue(final Cell button) {
-		button.setOpaque(true);
-		button.setBorderPainted(false);
-		button.setEnabled(true);
-		button.setContentAreaFilled(false);
-		button.setFocusPainted(false);
-		button.setHorizontalAlignment(SwingConstants.CENTER);
-		button.setVerticalAlignment(SwingConstants.CENTER);
-		button.setForeground(COLOR_FOREGROUND);
-		button.setBackground(Color.BLACK);
-		button.setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
 	}
 	
 	/**
@@ -437,6 +459,8 @@ public class GridView
 		// TODO: Run automatically for all values of `Audio`.
 		AssetManager.loadAudio(getAudioName(Audio.INVALID));
 		AssetManager.loadAudio(getAudioName(Audio.SWAP));
+		AssetManager.loadAudio(getAudioName(Audio.MOUSEOVER));
+		AssetManager.loadAudio(getAudioName(Audio.SELECT));
 	}
 	
 	/**
@@ -465,12 +489,15 @@ public class GridView
 		Cell cell = board[i];
 		
 		// Set state //
+		cell.setState(activated);
 		if (activated) {
-			cell.setBackground(COLOR_FOREGROUND);
-			cell.setForeground(COLOR_BACKGROUND);
+			cell.setColor(ACTIVE_CELL_COLOR, 0.3f);
+			cell.setBackground(COLOR_BACKGROUND);
+			cell.setForeground(COLOR_FOREGROUND);
 			cell.setContentAreaFilled(true);
 		} else {
-			cell.setBackground(Color.BLACK);
+			cell.setColor(Color.BLACK, 0f);
+			cell.setBackground(COLOR_BACKGROUND);
 			cell.setForeground(COLOR_FOREGROUND);
 			cell.setContentAreaFilled(false);
 		}

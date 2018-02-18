@@ -9,7 +9,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import javax.swing.JOptionPane;
-import view.SwapView;
 
 /**
  * ...
