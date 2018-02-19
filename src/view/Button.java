@@ -151,18 +151,21 @@ public class Button
 	 * @param alpha
 	 */
 	public void setAlpha(final float alpha) {
-		alpha = 1-alpha;
+		// TODO: Avoid this.
+		float alphaOut = 1 - alpha;
+		
 		// Validate argument //
-		if(alpha < 0f || alpha > 1f) {
+		if (alphaOut < 0f || alphaOut > 1f) {
 			throw new IllegalArgumentException();
 		}
 		
 		Color alphaColor = new Color(
-			(float)color.getRed() / 255f, 
-			(float)color.getGreen() / 255f, 
-			(float)color.getBlue() / 255f, 
-			alpha
+			(float) color.getRed()   / 255f,
+			(float) color.getGreen() / 255f,
+			(float) color.getBlue()  / 255f,
+			alphaOut
 		);
+		
 		firePropertyChange("alpha", color, alphaColor);
 		color = alphaColor;
 		
