@@ -22,7 +22,7 @@ public class Window
 	private JPanel content = null;
 
 	/** ... */
-	private static final ImageIcon icon =
+	private static final ImageIcon ICON =
 		new ImageIcon(AssetManager.loadImage("M3.png"));
 	
 	/**
@@ -55,7 +55,7 @@ public class Window
 		setResizable(true);
 		
 		// Set icon //
-		setIconImage(icon.getImage());
+		setIconImage(ICON.getImage());
 		
 		// Set menu bar //
 		setJMenuBar(menuBar);
