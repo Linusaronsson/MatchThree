@@ -16,12 +16,12 @@ import util.AssetManager;
 public class Window
 	extends JFrame
 {
-	/** Window content pane. */
-	private JPanel content = null;
-
 	/** ... */
 	private static final ImageIcon ICON =
 		new ImageIcon(AssetManager.loadImage("M3.png"));
+	
+	/** Window content pane. */
+	private JPanel content = null;
 	
 	/**
 	 * Create `Window`.

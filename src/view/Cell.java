@@ -9,11 +9,14 @@ import model.Coordinate;
 public class Cell
 	extends Button
 {
+	/** Cell width. */
+	private static final int CELL_WIDTH = 80;
+	
 	/** ... */
 	private Coordinate position = null;
 	
-	/** Cell width. */
-	private static final int CELL_WIDTH = 80;
+	/** ... */
+	private boolean state = false;
 	
 	/**
 	 * Constructor for `Cell`.
@@ -74,9 +77,6 @@ public class Cell
 	public int getPositionY() {
 		return position.getY();
 	}
-	
-	/** ... */
-	private boolean state = false;
 	
 	/**
 	 * ...

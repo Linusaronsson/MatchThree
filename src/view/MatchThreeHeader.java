@@ -13,9 +13,6 @@ import util.Properties;
 public class MatchThreeHeader
 	extends JPanel
 {
-	/** Score container. */
-	private Container scoreView = new JPanel();
-	
 	/** ... */
 	private static final Color COLOR_BACKGROUND =
 		Properties.getColorBackground();
@@ -23,6 +20,9 @@ public class MatchThreeHeader
 	/** ... */
 	private static final Color COLOR_PANEL =
 		COLOR_BACKGROUND.brighter().brighter();
+	
+	/** Score container. */
+	private Container scoreView = new JPanel();
 	
 	/**
 	 * Create `MatchThreeHeader`.

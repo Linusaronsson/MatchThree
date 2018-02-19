@@ -35,6 +35,9 @@ public class Button
 	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
 	
 	/** ... */
+	private Color color = new Color(0, 0, 0, 0f);
+	
+	/** ... */
 	private JLabel label = new JLabel();
 	
 	/**
@@ -125,10 +128,6 @@ public class Button
 		
 		label.setForeground(newColor);
 	}
-	
-	/** ... */
-	// TODO: Move this.
-	private Color color = new Color(0, 0, 0, 0f);
 	
 	/**
 	 * @param color

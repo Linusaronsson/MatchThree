@@ -16,9 +16,6 @@ import view.MainMenuView;
  */
 public class MainMenuViewController
 {
-	/** Reference to UI controller. */
-	private UIController uiController = null;
-	
 	/** ... */
 	private static final String BUTTON_FONT_NAME =
 		Properties.getButtonFontName();
@@ -33,6 +30,9 @@ public class MainMenuViewController
 	/** ... */
 	private static final Font FONT =
 		new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE);
+	
+	/** Reference to UI controller. */
+	private UIController uiController = null;
 	
 	/**
 	 * ...
