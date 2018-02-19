@@ -8,8 +8,11 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import util.AssetManager;
 import util.Properties;
 
 /**
@@ -41,7 +44,7 @@ public class MainMenuView
 	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
 	
 	/** ... */
-	//private static final JLabel LOGO = new JLabel(new ImageIcon(AssetManager.loadImage("logo.png")));
+	private static final JLabel LOGO = new JLabel(new ImageIcon(AssetManager.loadImage("M3.png")));
 	
 	/** ... */
 	private Button singleplayer = new Button("SINGLEPLAYER");
@@ -101,8 +104,8 @@ public class MainMenuView
 		buttonPanel = assembleButtons(buttons);
 		
 		// Assemble view //
-		//add(LOGO);
-		add(buttonPanel, BorderLayout.WEST);
+		add(LOGO);
+		add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
 	/**
