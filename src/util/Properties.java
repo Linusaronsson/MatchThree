@@ -21,17 +21,17 @@ public final class Properties
 	}
 	
 	/** ... */
-	public static final Color getColorBackground() {
+	public static Color getColorBackground() {
 		return COLOR_BACKGROUND;
 	}
 	
 	/** ... */
-	public static final String getButtonFontName() {
+	public static String getButtonFontName() {
 		return BUTTON_FONT_NAME;
 	}
 	
 	/** ... */
-	public static final int getButtonFontSize() {
+	public static int getButtonFontSize() {
 		return BUTTON_FONT_SIZE;
 	}
 }

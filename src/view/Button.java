@@ -126,7 +126,7 @@ public class Button
 	/**
 	 * @param color
 	 */
-	public void setColor(Color color, float alpha) {
+	public void setColor(final Color color, final float alpha) {
 		// Validate arguments //
 		if(color == null) {
 			throw new IllegalArgumentException();
@@ -150,7 +150,7 @@ public class Button
 	/**
 	 * @param alpha
 	 */
-	public void setAlpha(float alpha) {
+	public void setAlpha(final float alpha) {
 		alpha = 1-alpha;
 		// Validate argument //
 		if(alpha < 0f || alpha > 1f) {

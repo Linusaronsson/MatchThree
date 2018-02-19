@@ -126,7 +126,7 @@ public class MainMenuView
 	 * 
 	 * @param buttons
 	 */
-	private void setProperties(Button[] buttons) {
+	private void setProperties(final Button[] buttons) {
 		for(Button button : buttons) {
 			button.setPreferredSize(PREFERRED_DIMENSION);
 			button.setBorder(BorderFactory.createCompoundBorder(
@@ -146,7 +146,7 @@ public class MainMenuView
 	 * 
 	 * @return
 	 */
-	private JPanel assembleButtons(Button[] buttons) {
+	private JPanel assembleButtons(final Button[] buttons) {
 		for(Button button : buttons) {
 			buttonPanel.add(button);
 		}

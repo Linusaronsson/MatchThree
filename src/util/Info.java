@@ -16,12 +16,12 @@ public final class Info
 	}
 	
 	/** ... */
-	public static final int getGameSize() {
+	public static int getGameSize() {
 		return GAME_SIZE;
 	}
 	
 	/** ... */
-	public static final int getPortNumber() {
+	public static int getPortNumber() {
 		return PORT_NUMBER;
 	}
 }

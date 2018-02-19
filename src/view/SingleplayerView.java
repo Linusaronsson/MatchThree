@@ -60,7 +60,7 @@ public class SingleplayerView
 	 *
 	 * @param i ...
 	 */
-	public void changeSprites(int i) {
+	public void changeSprites(final int i) {
 		//gridView.changeSprites(i);
 	}
 	
@@ -69,7 +69,7 @@ public class SingleplayerView
 	 *
 	 * @param audio ...
 	 */
-	public void playAudio(Audio audio) {
+	public void playAudio(final Audio audio) {
 		// TODO Auto-generated method stub
 		//gridView.playAudio(audio);
 	}

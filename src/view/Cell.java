@@ -92,7 +92,7 @@ public class Cell
 	 * 
 	 * @param state
 	 */
-	public void setState(boolean state) {
+	public void setState(final boolean state) {
 		this.state = state;
 	}
 }

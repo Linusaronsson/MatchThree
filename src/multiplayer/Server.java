@@ -34,7 +34,11 @@ public class Server
 		public InetAddress ip;
 		public int port;
 		
-		public OpponentInfo(InetAddress ip, int port, Jewel[] board) {
+		public OpponentInfo(
+			final InetAddress ip,
+			final int port,
+			final Jewel[] board
+		) {
 			this.board = board;
 			this.ip    = ip;
 			this.port  = port;

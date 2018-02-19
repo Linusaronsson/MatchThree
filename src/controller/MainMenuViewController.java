@@ -44,7 +44,7 @@ public class MainMenuViewController
 		 * 
 		 * @param panel
 		 */
-		public ButtonPanelHoverListener(final JPanel panel) {
+		private ButtonPanelHoverListener(final JPanel panel) {
 			this.panel = panel;
 		}
 
@@ -73,7 +73,7 @@ public class MainMenuViewController
 		 * 
 		 * @param button
 		 */
-		public HoverButtonListener(final Button button) {
+		private HoverButtonListener(final Button button) {
 			this.button = button;
 		}
 
