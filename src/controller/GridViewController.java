@@ -44,9 +44,11 @@ public class GridViewController
 	
 	
 	/**
-	 * Constructor for `GridViewController`.
+	 * Constructor.
 	 *
 	 * @param parent          Parent view to use.
+	 * @param uiController    ...
+	 * @param settings        ...
 	 * @param matchThreeModel Model to use, if any.
 	 */
 	public GridViewController(

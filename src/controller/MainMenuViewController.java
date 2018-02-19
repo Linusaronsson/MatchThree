@@ -46,7 +46,7 @@ public class MainMenuViewController
 		/**
 		 * ...
 		 *
-		 * @param panel
+		 * @param panel ...
 		 */
 		private ButtonPanelHoverListener(final JPanel panel) {
 			this.panel = panel;
@@ -79,7 +79,7 @@ public class MainMenuViewController
 		/**
 		 * ...
 		 *
-		 * @param button
+		 * @param button ...
 		 */
 		private HoverButtonListener(final Button button) {
 			this.button = button;
@@ -108,8 +108,9 @@ public class MainMenuViewController
 	/**
 	 * Create `MainMenuViewController`.
 	 *
-	 * @param uiController Reference to UI controller for navigation.
 	 * @param parent       Parent container view to use.
+	 * @param uiController Reference to UI controller for navigation.
+	 * @param settings     ...
 	 */
 	public MainMenuViewController(
 		final Container    parent,

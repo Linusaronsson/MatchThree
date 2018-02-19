@@ -17,10 +17,11 @@ public class SingleplayerViewController
 	private UIController uiController = null;
 	
 	/**
-	 * Create `SingleplayerViewController`.
+	 * Constructor.
 	 *
-	 * @param uiController UI controller to use for navigation.
 	 * @param parent       Parent container view to use.
+	 * @param uiController UI controller to use for navigation.
+	 * @param settings     ...
 	 */
 	public SingleplayerViewController(
 		final Container    parent,

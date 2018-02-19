@@ -11,7 +11,9 @@ public class UpdateScore
 	int score;
 	
 	/**
-	 * ...
+	 * Constructor.
+	 *
+	 * @param score ...
 	 */
 	public UpdateScore(final int score) {
 		super(MessageType.SCORE_UPDATE);

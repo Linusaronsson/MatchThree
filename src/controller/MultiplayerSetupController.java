@@ -26,10 +26,11 @@ public class MultiplayerSetupController
 	private UIController uiController = null;
 	
 	/**
-	 * Create `MultiplayerSetupController`.
+	 * Constructor.
 	 *
-	 * @param uiController ...
 	 * @param parent       ...
+	 * @param uiController ...
+	 * @param settings     ...
 	 */
 	public MultiplayerSetupController(
 		final Container    parent,
@@ -65,8 +66,6 @@ public class MultiplayerSetupController
 	
 	/**
 	 * Handle connect event.
-	 *
-	 * @param event Event object.
 	 */
 	private void connect() {
 		// Get value from fields //

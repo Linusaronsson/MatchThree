@@ -14,6 +14,8 @@ public class UpdateBoard
 	
 	/**
 	 * ...
+	 *
+	 * @param board ...
 	 */
 	public UpdateBoard(final Jewel[] board) {
 		super(MessageType.ACCEPTED_GAME);

@@ -41,7 +41,7 @@ public class Message
 	/**
 	 * ...
 	 *
-	 * @param type
+	 * @param type ...
 	 */
 	public Message(final MessageType type) {
 		this.type = type;

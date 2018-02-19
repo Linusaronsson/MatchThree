@@ -173,7 +173,8 @@ public class GridView
 	/**
 	 * Create `GridView`.
 	 *
-	 * @param model MatchThree model to use.
+	 * @param model      MatchThree model to use.
+	 * @param jewelStyle ...
 	 */
 	public GridView(final MatchThreeModel model, final int jewelStyle) {
 		// Validate argument //

@@ -57,19 +57,19 @@ public class Button
 	/**
 	 * ...
 	 *
-	 * @param label
+	 * @param label ...
 	 */
-	public Button(final String text) {
-		label.setText(text);
-		label.setForeground(Color.WHITE);
-		add(label);
+	public Button(final String label) {
+		this.label.setText(label);
+		this.label.setForeground(Color.WHITE);
+		add(this.label);
 		setProperties();
 	}
 	
 	/**
 	 * ...
 	 *
-	 * @param icon
+	 * @param icon ...
 	 */
 	public Button(final ImageIcon icon) {
 		setProperties();
@@ -100,7 +100,7 @@ public class Button
 	/**
 	 * ...
 	 *
-	 * @param size Cell width
+	 * @param size Cell width.
 	 */
 	private void setProperties(final int size) {
 		setProperties();
@@ -109,6 +109,9 @@ public class Button
 	
 	/**
 	 * ...
+	 *
+	 * @param color ...
+	 * @param alpha ...
 	 */
 	public void setLabelForeground(final Color color, final float alpha) {
 		// Validate arguments //
@@ -130,7 +133,10 @@ public class Button
 	}
 	
 	/**
-	 * @param color
+	 * ...
+	 *
+	 * @param color ...
+	 * @param alpha ...
 	 */
 	public void setColor(final Color color, final float alpha) {
 		// Validate arguments //
@@ -154,7 +160,9 @@ public class Button
 	}
 	
 	/**
-	 * @param alpha
+	 * ...
+	 *
+	 * @param alpha ...
 	 */
 	public void setAlpha(final float alpha) {
 		// TODO: Avoid this.

@@ -34,17 +34,18 @@ public class PlayerModel
 	/**
 	 * ...
 	 *
-	 * @param width
-	 * @param ip
-	 * @param port
+	 * @param width ...
+	 * @param host  ...
+	 * @param port  ...
 	 */
 	public PlayerModel(
-		final int width,
-		final InetAddress ip,
-		final int port
+		final int         width,
+		final InetAddress host,
+		final int         port
 	) {
 		super(width);
-		this.ip = ip;
+		
+		this.ip   = host;
 		this.port = port;
 		
 		try {
@@ -59,31 +60,34 @@ public class PlayerModel
 	/**
 	 * ...
 	 *
-	 * @param board
-	 * @param width
-	 * @param ip
-	 * @param port
+	 * @param board ...
+	 * @param width ...
+	 * @param host  ...
+	 * @param port  ...
 	 */
 	public PlayerModel(
-		final Jewel[] board,
-		final int width,
-		final InetAddress ip,
-		final int port
+		final Jewel[]     board,
+		final int         width,
+		final InetAddress host,
+		final int         port
 	) {
 		super(board, width);
-		this.ip = ip;
+		
+		this.ip   = host;
 		this.port = port;
 		
 		try {
 			client = new DatagramSocket();
-		} catch (SocketException e) {
+		} catch (SocketException exception) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 	
 	/**
 	 * ...
+	 *
+	 * @param b ...
 	 */
 	public void setGameStarted(final boolean b) {
 		gameStarted = b;
@@ -125,6 +129,8 @@ public class PlayerModel
 	
 	/**
 	 * ...
+	 *
+	 * @param port ...
 	 */
 	public void sendBoard(final int port) {
 		Server.sendDatagram(new UpdateBoard(board), client, ip, port);
@@ -132,8 +138,10 @@ public class PlayerModel
 	
 	/**
 	 * ...
+	 *
+	 * @param message ...
 	 */
-	private void notifyOpponent(final Message m) {
-		Server.sendDatagram(m, client, ip, port);
+	private void notifyOpponent(final Message message) {
+		Server.sendDatagram(message, client, ip, port);
 	}
 }

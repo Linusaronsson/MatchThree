@@ -56,9 +56,12 @@ public class MultiplayerViewController
 	/**
 	 * Create `MultiplayerViewController`.
 	 *
-	 * @param uiController UI controller to use.
 	 * @param parent       Parent view to use.
-	 * @param jewelVersion ...
+	 * @param uiController UI controller to use.
+	 * @param settings     ...
+	 * @param board        ...
+	 * @param host         ...
+	 * @param port         ...
 	 */
 	public MultiplayerViewController(
 		final Container    parent,
@@ -146,17 +149,17 @@ public class MultiplayerViewController
 	/**
 	 * Navigate to main menu.
 	 *
-	 * @param ip   ...
+	 * @param host ...
 	 * @param port ...
 	 */
-	private void goToMainMenu(final InetAddress ip, final int port) {
+	private void goToMainMenu(final InetAddress host, final int port) {
 		uiController.changeView(UIController.View.MAIN_MENU);
 		closeGame();
 		Server.setInGame(false);
 		try {
 			Message message = new Message(Message.MessageType.END_GAME);
 			DatagramSocket socket = new DatagramSocket();
-			Server.sendDatagram(message, socket, ip, port);
+			Server.sendDatagram(message, socket, host, port);
 		} catch (SocketException exception) {
 			exception.printStackTrace();
 		}

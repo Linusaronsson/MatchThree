@@ -33,13 +33,7 @@ public class MultiplayerView
 	private Container player2View = new JPanel();
 	
 	/**
-	 * Create `MultiplayerView`.
-	 *
-	 * @param host         ...
-	 * @param port         ...
-	 * @param board        ...
-	 * @param gameSize     ...
-	 * @throws IOException On file system access errors.
+	 * Constructor.
 	 */
 	public MultiplayerView() {
 		// Create split view //

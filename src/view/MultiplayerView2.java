@@ -36,10 +36,11 @@ public class MultiplayerView2
 	 * ...
 	 *
 	 * @param matchThreeModel ...
+	 * @param jewelVersion    ...
 	 */
 	public MultiplayerView2(
 			final MatchThreeModel matchThreeModel,
-			final int jewelVersion
+			final int             jewelVersion
 	) {
 		// Set layout //
 		setLayout(new FlowLayout());

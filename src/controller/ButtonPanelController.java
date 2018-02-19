@@ -155,6 +155,10 @@ public class ButtonPanelController
 	
 	/**
 	 * Constructor.
+	 *
+	 * @param parent       ...
+	 * @param uiController ...
+	 * @param settings     ...
 	 */
 	public ButtonPanelController(
 		final Container    parent,

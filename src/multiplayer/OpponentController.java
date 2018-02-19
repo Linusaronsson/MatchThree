@@ -39,6 +39,11 @@ public class OpponentController
 	
 	/**
 	 * ...
+	 *
+	 * @param uiController ...
+	 * @param settings     ...
+	 * @param model        ...
+	 * @param port         ...
 	 */
 	public OpponentController(
 		final UIController  uiController,
@@ -46,9 +51,10 @@ public class OpponentController
 		final OpponentModel model,
 		final int           port
 	) {
-		this.model = model;
+		this.model        = model;
+		this.port         = port;
 		this.uiController = uiController;
-		this.port = port;
+		
 		try {
 			//Listen on port (2000)
 			opponent = new DatagramSocket(port);

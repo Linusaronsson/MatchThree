@@ -155,7 +155,8 @@ public class MainMenuView
 	/**
 	 * Assemble buttons and create button panel.
 	 *
-	 * @return ...
+	 * @param buttons ...
+	 * @return        ...
 	 */
 	private JPanel assembleButtons(final Button[] buttons) {
 		for (Button button : buttons) {

@@ -64,11 +64,15 @@ public class Server
 		
 		/**
 		 * ...
+		 *
+		 * @param ip    ...
+		 * @param port  ...
+		 * @param board ...
 		 */
 		public OpponentInfo(
 			final InetAddress ip,
-			final int port,
-			final Jewel[] board
+			final int         port,
+			final Jewel[]     board
 		) {
 			this.board = board;
 			this.ip    = ip;
@@ -147,7 +151,7 @@ public class Server
 	/**
 	 * ...
 	 *
-	 * @param b
+	 * @param b ...
 	 */
 	public static void setInGame(final boolean b) {
 		inGame = b;

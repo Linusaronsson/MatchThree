@@ -11,10 +11,10 @@ public class OpponentModel
 	extends MatchThreeModel
 {
 	/**
-	 * ...
+	 * Constructor.
 	 *
-	 * @param board
-	 * @param width
+	 * @param board ...
+	 * @param width ...
 	 */
 	public OpponentModel(final Jewel[] board, final int width) {
 		super(board, width);
@@ -23,7 +23,7 @@ public class OpponentModel
 	/**
 	 * ...
 	 *
-	 * @param score
+	 * @param score ...
 	 */
 	public void setScore(final int score) {
 		setChanged();

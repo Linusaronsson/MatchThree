@@ -25,9 +25,7 @@ public class MatchThreeHeader
 	private Container scoreView = new JPanel();
 	
 	/**
-	 * Create `MatchThreeHeader`.
-	 *
-	 * @param matchThreeModel MatchThree model to use.
+	 * Constructor.
 	 */
 	public MatchThreeHeader() {
 		// Set properties //

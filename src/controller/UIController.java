@@ -103,6 +103,8 @@ public class UIController
 	
 	/**
 	 * ...
+	 *
+	 * @param style ...
 	 */
 	public void setVersion(final int style) {
 		this.settings.jewelStyle = style;
@@ -110,6 +112,10 @@ public class UIController
 	
 	/**
 	 * Start a multiplayer game session.
+	 *
+	 * @param board ...
+	 * @param host  ...
+	 * @param port  ...
 	 */
 	// HACK: This function exists to transfer connection state from setup view
 	//       to game view.
