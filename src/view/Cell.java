@@ -46,18 +46,6 @@ public class Cell
 	}
 	
 	/**
-	 * Create `Cell`.
-	 *
-	 * @param i ...
-	 */
-	public Cell(final int i) {
-		// Validate argument //
-		if (i != 0) {
-			throw new IllegalArgumentException();
-		}
-	}
-	
-	/**
 	 * Get the coordinates of the cell.
 	 *
 	 * @return The coordinates.

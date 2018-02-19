@@ -70,6 +70,22 @@ public class SingleplayerViewController
 		
 		@Override
 		public void mouseClicked(final MouseEvent e) {
+			
+		}
+		
+		@Override
+		public void mouseEntered(final MouseEvent e) {
+			singlePlayerView.playAudio(Audio.MOUSEOVER);
+			target.setAlpha(0.5f);
+		}
+		
+		@Override
+		public void mouseExited(final MouseEvent e) {
+			target.setAlpha(1.0f);
+		}
+		
+		@Override
+		public void mousePressed(final MouseEvent e) {
 			switch(target.getMnemonic()) {
 			case 0:
 				singlePlayerView.playAudio(Audio.SELECT);
@@ -88,22 +104,8 @@ public class SingleplayerViewController
 				break;
 			default:
 				break;
+			}
 		}
-		}
-		
-		@Override
-		public void mouseEntered(final MouseEvent e) {
-			singlePlayerView.playAudio(Audio.MOUSEOVER);
-			target.setAlpha(0.5f);
-		}
-		
-		@Override
-		public void mouseExited(final MouseEvent e) {
-			target.setAlpha(1.0f);
-		}
-		
-		@Override
-		public void mousePressed(final MouseEvent e) { }
 		
 		@Override
 		public void mouseReleased(final MouseEvent e) { }

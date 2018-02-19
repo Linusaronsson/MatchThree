@@ -2,8 +2,6 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -17,13 +15,11 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
 import util.AssetManager;
-import view.GridView.Audio;
 
 /**
  * MatchThree grid view.
