@@ -4,9 +4,9 @@ import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import info.Info;
 import model.MatchThreeModel;
 import util.AssetManager;
+import util.Info;
 import view.Button;
 import view.SingleplayerView;
 

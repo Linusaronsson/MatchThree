@@ -1,8 +1,8 @@
-package info;
+package util;
 
 public final class Info
 {
-	/** ... */
+	/** Default game size */
 	private static final int GAME_SIZE = 6;
 	
 	/** Port number for network play. */

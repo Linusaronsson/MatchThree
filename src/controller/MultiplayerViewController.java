@@ -6,10 +6,10 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 
-import info.Info;
 import multiplayer.Message;
 import multiplayer.Server;
 import multiplayer.Server.OpponentInfo;
+import util.Info;
 import view.MultiplayerView1;
 
 /**
