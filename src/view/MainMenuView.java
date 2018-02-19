@@ -72,7 +72,7 @@ public class MainMenuView
 	
 	/** ... */
 	private Button[] buttons = new Button[] {
-		singleplayer, multiplayer, load, highscore, settings, credits, quit
+		singleplayer, multiplayer, load, highscore, settings, credits, quit,
 	};
 	
 	/** ... */
