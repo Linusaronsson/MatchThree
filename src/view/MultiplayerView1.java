@@ -137,15 +137,6 @@ public class MultiplayerView1
 	}
 	
 	/**
-	 * ...
-	 *
-	 * @return The view in use.
-	 */
-	public MatchThreeUI getView() {
-		return playerView;
-	}
-	
-	/**
 	 * Close an ongoing multiplayer game. (Will close active sockets etc)
 	 */
 	public void closeGame() {

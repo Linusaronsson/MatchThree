@@ -83,36 +83,6 @@ public class MultiplayerView2
 	}
 	
 	/**
-	 * ...
-	 *
-	 * @return ...
-	 */
-	// TODO: Remove this method.
-	public GridView getGridView() {
-		return gridView;
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @return ...
-	 */
-	// TODO: Try to remove this method.
-	public MatchThreeController getMatchThreeController() {
-		return matchThreeController;
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @return ...
-	 */
-	// TODO: Remove this method.
-	public MatchThreeUI getView() {
-		return matchThreeUI;
-	}
-	
-	/**
 	 * Set reference to parent window.
 	 *
 	 * @param window The parent window.
