@@ -113,7 +113,7 @@ public class MainMenuView
 	}
 	
 	/**
-	 * 
+	 * Increase width of main menu.
 	 * 
 	 * @return
 	 */
