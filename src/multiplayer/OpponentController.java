@@ -52,8 +52,8 @@ public class OpponentController
 			//Setup receiving packet
 			inBuffer = new byte[2048];
 			in = new DatagramPacket(inBuffer, inBuffer.length);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SocketException exception) {
+			exception.printStackTrace();
 			System.exit(1);
 		}
 	}

@@ -10,8 +10,8 @@ import java.io.ObjectOutputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketException;
 import javax.swing.JOptionPane;
-
 import model.Jewel;
 import view.ErrorDialog;
 
@@ -87,8 +87,8 @@ public class Server
 			// Setup receiving packet //
 			inBuffer = new byte[2048];
 			in = new DatagramPacket(inBuffer, inBuffer.length);
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (SocketException exception) {
+			exception.printStackTrace();
 			System.exit(1);
 		}
 	}
@@ -208,8 +208,11 @@ public class Server
 					inStream.close();
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (ClassNotFoundException exception) {
+			exception.printStackTrace();
+			System.exit(1);
+		} catch (IOException exception) {
+			exception.printStackTrace();
 			System.exit(1);
 		}
 	}
