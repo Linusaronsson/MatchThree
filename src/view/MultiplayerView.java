@@ -5,13 +5,7 @@ import java.awt.Container;
 import java.awt.event.ActionListener;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
-import java.io.IOException;
-import java.net.InetAddress;
 import javax.swing.JPanel;
-import model.Jewel;
-import multiplayer.OpponentController;
-import multiplayer.OpponentModel;
-import multiplayer.PlayerModel;
 
 /**
  * Multiplayer game screen.

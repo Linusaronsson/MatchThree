@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.Container;
-import java.awt.event.ActionEvent;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
@@ -9,7 +8,6 @@ import java.net.UnknownHostException;
 import model.Settings;
 import multiplayer.Message;
 import multiplayer.Server;
-import util.Info;
 import view.ErrorDialog;
 import view.MultiplayerMenuView;
 

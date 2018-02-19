@@ -1,7 +1,9 @@
 package multiplayer;
 
-import java.net.*;
-
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
 import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;

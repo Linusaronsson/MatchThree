@@ -1,15 +1,9 @@
 package controller;
 
-import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.event.ActionListener;
-import java.awt.GridLayout;
-import java.awt.LayoutManager;
-import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import javax.swing.JPanel;
 import model.Jewel;
 import model.Settings;
 import multiplayer.Message;
@@ -20,7 +14,6 @@ import multiplayer.Server;
 import multiplayer.Server.OpponentInfo;
 import util.Info;
 import view.MultiplayerView;
-import view.MultiplayerView1;
 
 /**
  * Controller for `MultiplayerView`.

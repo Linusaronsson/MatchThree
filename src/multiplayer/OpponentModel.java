@@ -1,10 +1,7 @@
 package multiplayer;
 
-import java.net.*;
-import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
-import model.MatchThreeModel.MoveType;
 
 /**
  * Extension of MatchThreeModel used for the player view to send datagrams to

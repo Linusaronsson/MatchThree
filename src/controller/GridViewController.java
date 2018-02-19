@@ -12,15 +12,12 @@ import model.MatchThreeModel;
 import model.Serialize;
 import model.Settings;
 import util.AssetManager;
-import util.AssetManager.Audio;
-import view.Button;
 import view.Cell;
 import view.ErrorDialog;
 import view.GridView;
 import view.MatchThreeUI;
 import view.MessageDialog;
 import view.SaveDialog;
-import view.Window;
 
 /**
  * MatchThree game controller.

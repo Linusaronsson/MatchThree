@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import javax.swing.JPanel;
-import model.MatchThreeModel;
 import util.Properties;
 
 /**

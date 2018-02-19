@@ -1,14 +1,8 @@
 package controller;
 
-import java.awt.Component;
 import java.awt.Container;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import model.MatchThreeModel;
 import model.Settings;
-import util.AssetManager;
 import util.Info;
-import view.Button;
 import view.SingleplayerView;
 
 /**

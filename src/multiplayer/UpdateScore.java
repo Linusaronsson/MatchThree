@@ -1,7 +1,5 @@
 package multiplayer;
 
-import model.Jewel;
-
 /**
  * Message sent between users over a DatagramSocket. (The entire board).
  */

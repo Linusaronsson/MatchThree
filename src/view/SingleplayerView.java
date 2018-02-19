@@ -2,13 +2,9 @@ package view;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.awt.LayoutManager;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import model.MatchThreeModel;
-import util.AssetManager;
 import util.AssetManager.Audio;
 
 /**
