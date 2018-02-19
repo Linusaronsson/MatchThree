@@ -21,6 +21,12 @@ import view.ErrorDialog;
 public class Server
 	extends Thread
 {
+	/** Default packet size. */
+	private static final int PACKET_SIZE = 2048;
+	
+	/** Default opponent port number. */
+	private static final int PORT_NUMBER_OPPONENT = 2000;
+	
 	/** ... */
 	private static boolean inGame = false;
 	
@@ -85,7 +91,7 @@ public class Server
 			server = new DatagramSocket(port);
 			
 			// Setup receiving packet //
-			inBuffer = new byte[2048];
+			inBuffer = new byte[PACKET_SIZE];
 			in = new DatagramPacket(inBuffer, inBuffer.length);
 		} catch (SocketException exception) {
 			exception.printStackTrace();
@@ -174,7 +180,7 @@ public class Server
 									in.getAddress(),
 									// TODO: Change to in.getPort() (problems
 									//       for localhost).
-									2000,
+									PORT_NUMBER_OPPONENT,
 									null
 								);
 								ui.changeView(View.MULTIPLAYER_GAME);
@@ -192,7 +198,8 @@ public class Server
 							inGame = true;
 							opponentInfo = new OpponentInfo(
 								in.getAddress(),
-								2000, // TODO: Change to in.getPort().
+								// TODO: Change to in.getPort().
+								PORT_NUMBER_OPPONENT,
 								((UpdateBoard) m).getBoard()
 							);
 							ui.changeView(View.MULTIPLAYER_GAME);

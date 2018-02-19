@@ -22,6 +22,9 @@ import multiplayer.PlayerModel;
 public class MultiplayerView1
 	extends JPanel
 {
+	/** Default port number. */
+	private static final int PORT_NUMBER = 3333;
+	
 	/** ... */
 	private ButtonPanel buttonPanel = new ButtonPanel();
 	
@@ -76,7 +79,7 @@ public class MultiplayerView1
 			);
 			
 			// Host sends the board to opponent //
-			playerModel.sendBoard(3333);
+			playerModel.sendBoard(PORT_NUMBER);
 		} else {
 			playerModel   = new PlayerModel(board, gameSize, host, port);
 			opponentModel = new OpponentModel(board, gameSize);

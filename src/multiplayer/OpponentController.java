@@ -16,6 +16,9 @@ import view.ErrorDialog;
 public class OpponentController
 	extends Thread
 {
+	/** Default packet size. */
+	private static final int PACKET_SIZE = 2048;
+	
 	/** ... */
 	private OpponentModel model = null;
 	
@@ -50,7 +53,7 @@ public class OpponentController
 			//Listen on port (2000)
 			opponent = new DatagramSocket(port);
 			//Setup receiving packet
-			inBuffer = new byte[2048];
+			inBuffer = new byte[PACKET_SIZE];
 			in = new DatagramPacket(inBuffer, inBuffer.length);
 		} catch (SocketException exception) {
 			exception.printStackTrace();
