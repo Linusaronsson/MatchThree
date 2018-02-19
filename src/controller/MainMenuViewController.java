@@ -37,7 +37,7 @@ public class MainMenuViewController
 	/**
 	 * ...
 	 */
-	private class ButtonPanelHoverListener
+	private final class ButtonPanelHoverListener
 		implements MouseListener
 	{
 		/** ... */
@@ -52,17 +52,17 @@ public class MainMenuViewController
 			this.panel = panel;
 		}
 		
-		@Override public final void mouseClicked(final MouseEvent e) { }
+		@Override public void mouseClicked(final MouseEvent e) { }
 		
-		@Override public final void mousePressed(final MouseEvent e) { }
+		@Override public void mousePressed(final MouseEvent e) { }
 		
-		@Override public final void mouseReleased(final MouseEvent e) { }
+		@Override public void mouseReleased(final MouseEvent e) { }
 		
-		@Override public final void mouseEntered(final MouseEvent e) {
+		@Override public void mouseEntered(final MouseEvent e) {
 			panel.setBackground(Properties.getColorBackground().brighter());
 		}
 		
-		@Override public final void mouseExited(final MouseEvent e) {
+		@Override public void mouseExited(final MouseEvent e) {
 			panel.setBackground(Properties.getColorBackground());
 		}
 	}
@@ -70,7 +70,7 @@ public class MainMenuViewController
 	/**
 	 * ...
 	 */
-	private class HoverButtonListener
+	private final class HoverButtonListener
 		implements MouseListener
 	{
 		/** ... */
@@ -85,20 +85,20 @@ public class MainMenuViewController
 			this.button = button;
 		}
 		
-		@Override public final void mouseClicked(final MouseEvent e) { }
+		@Override public void mouseClicked(final MouseEvent e) { }
 		
-		@Override public final void mousePressed(final MouseEvent e) { }
+		@Override public void mousePressed(final MouseEvent e) { }
 		
-		@Override public final void mouseReleased(final MouseEvent e) { }
+		@Override public void mouseReleased(final MouseEvent e) { }
 		
-		@Override public final void mouseEntered(final MouseEvent e) {
+		@Override public void mouseEntered(final MouseEvent e) {
 			//button.setLabelForeground(Color.GREEN, 1f);
 			AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
 			button.setBorderPainted(true);
 			button.setFont(HOVERFONT);
 		}
 		
-		@Override public final void mouseExited(final MouseEvent e) {
+		@Override public void mouseExited(final MouseEvent e) {
 			//button.setLabelForeground(Color.WHITE, 1f);
 			button.setBorderPainted(false);
 			button.setFont(FONT);

@@ -123,7 +123,7 @@ public class GridView
 	/**
 	 * Listens for board cell actions (mouse hover).
 	 */
-	class CellHoverListener
+	final class CellHoverListener
 		implements MouseListener
 	{
 		/** ... */
