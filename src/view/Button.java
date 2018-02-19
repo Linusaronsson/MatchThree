@@ -35,11 +35,19 @@ public class Button
 		setProperties();
 	}
 	
+	/**
+	 * 
+	 * @param text
+	 */
 	public Button(String text) {
+		super(text);
 		setProperties();
-		setText(text);
 	}
 	
+	/**
+	 * 
+	 * @param icon
+	 */
 	public Button(ImageIcon icon) {
 		setProperties();
 		setIcon(icon);

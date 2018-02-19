@@ -39,9 +39,6 @@ public class MainMenuView
 	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker();
 	
 	/** ... */
-	private static final Color COLOR_BORDER = Color.WHITE;
-	
-	/** ... */
 	//private static final JLabel LOGO = new JLabel(new ImageIcon(AssetManager.loadImage("logo.png")));
 	
 	/** ... */
@@ -69,6 +66,9 @@ public class MainMenuView
 	private Button[] buttons = new Button[] 
 			{singleplayer, multiplayer, load, highscore, settings, credits, quit};
 	
+	/** ... */
+	private JPanel buttonPanel = new JPanel();
+	
 	
 	
 	/**
@@ -83,15 +83,24 @@ public class MainMenuView
 		//LOGO.setBackground(Color.WHITE);
 		
 		// Set button properties //
-		setProperties(singleplayer, multiplayer, load, highscore, settings, credits, quit);
+		setProperties(buttons);
 		
-		// Create and assemble button panel //
-		JPanel buttonPanel = assembleButtons();
+		// Set button panel properties // 
+		buttonPanel.setLayout(new GridLayout(7, 1, GAP, GAP));
+		buttonPanel.setBackground(COLOR_BACKGROUND);
+		buttonPanel.setBorder(
+			BorderFactory.createCompoundBorder(
+				BorderFactory.createLineBorder(Color.GREEN, 1),
+				BorderFactory.createLineBorder(COLOR_BACKGROUND, 10)
+			)
+		);
+		
+		// Assemble button panel //
+		buttonPanel = assembleButtons(buttons);
 		
 		// Assemble view //
 		//add(LOGO);
 		add(buttonPanel, BorderLayout.WEST);
-		
 	}
 	
 	/**
@@ -99,7 +108,7 @@ public class MainMenuView
 	 * 
 	 * @param buttons
 	 */
-	private void setProperties(Button ... buttons) {
+	private void setProperties(Button[] buttons) {
 		for(Button button : buttons) {
 			button.setPreferredSize(PREFERRED_DIMENSION);
 			button.setBorder(BorderFactory.createCompoundBorder(
@@ -119,22 +128,10 @@ public class MainMenuView
 	 * 
 	 * @return
 	 */
-	private JPanel assembleButtons() {
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new GridLayout(7, 1, GAP, GAP));
-		buttonPanel.setBackground(COLOR_BACKGROUND);
-		buttonPanel.setBorder(
-			BorderFactory.createCompoundBorder(
-				BorderFactory.createLineBorder(Color.GREEN, 1),
-				BorderFactory.createLineBorder(COLOR_BACKGROUND, 10)
-			));
-		buttonPanel.add(singleplayer);
-		buttonPanel.add(multiplayer);
-		buttonPanel.add(load);
-		buttonPanel.add(highscore);
-		buttonPanel.add(settings);
-		buttonPanel.add(credits);
-		buttonPanel.add(quit);
+	private JPanel assembleButtons(Button[] buttons) {
+		for(Button button : buttons) {
+			buttonPanel.add(button);
+		}
 		return buttonPanel;
 	}
 	
