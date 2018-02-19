@@ -92,7 +92,7 @@ public class MainMenuView
 		buttonPanel.setBackground(COLOR_BACKGROUND);
 		buttonPanel.setBorder(
 			BorderFactory.createCompoundBorder(
-				BorderFactory.createLineBorder(Color.GREEN, 1),
+				BorderFactory.createLineBorder(Color.WHITE, 2),
 				BorderFactory.createLineBorder(COLOR_BACKGROUND, 10)
 			)
 		);
