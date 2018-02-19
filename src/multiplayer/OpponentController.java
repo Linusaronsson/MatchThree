@@ -16,11 +16,22 @@ import view.ErrorDialog;
 public class OpponentController
 	extends Thread
 {
+	/** ... */
 	private OpponentModel model = null;
+	
+	/** ... */
 	private UIController uiController = null;
+	
+	/** ... */
 	private DatagramSocket opponent;
+	
+	/** ... */
 	private DatagramPacket in;
+	
+	/** ... */
 	private byte[] inBuffer;
+	
+	/** ... */
 	private int port;
 	
 	/**

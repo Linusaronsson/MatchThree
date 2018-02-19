@@ -21,20 +21,44 @@ import view.ErrorDialog;
 public class Server
 	extends Thread
 {
+	/** ... */
 	private static boolean inGame = false;
+	
+	/** ... */
 	private static OpponentInfo opponentInfo = null;
+	
+	/** ... */
 	private DatagramPacket in;
+	
+	/** ... */
 	private byte[] inBuffer;
+	
+	/** ... */
 	private int port;
+	
+	/** ... */
 	private DatagramSocket server;
+	
+	/** ... */
 	private UIController ui;
 	
+	/**
+	 * ...
+	 */
 	public class OpponentInfo
 	{
+		/** ... */
 		public Jewel[] board;
+		
+		/** ... */
 		public InetAddress ip;
+		
+		/** ... */
 		public int port;
 		
+		/**
+		 * ...
+		 */
 		public OpponentInfo(
 			final InetAddress ip,
 			final int port,

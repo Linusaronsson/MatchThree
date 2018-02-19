@@ -9,8 +9,13 @@ import model.Jewel;
 public class UpdateCell
 	extends Message
 {
+	/** ... */
 	private int x;
+	
+	/** ... */
 	private int y;
+	
+	/** ... */
 	private Jewel jewelType;
 	
 	/**
@@ -25,6 +30,8 @@ public class UpdateCell
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
 	public int getY() {
 		return y;
@@ -32,6 +39,8 @@ public class UpdateCell
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
 	public int getX() {
 		return x;
@@ -39,6 +48,8 @@ public class UpdateCell
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
 	public Jewel getJewelType() {
 		return jewelType;

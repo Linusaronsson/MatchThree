@@ -108,6 +108,11 @@ public class ButtonPanel
 		add(panel);
 	}
 	
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
 	public JPanel createVersionButtonsPanel(final Button... buttons) {
 		JPanel panel = new JPanel();
 		for (Button button : buttons) {
@@ -190,16 +195,31 @@ public class ButtonPanel
 		return name;
 	}
 	
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
 	public Button getBackButton() {
 		// TODO Auto-generated method stub
 		return back;
 	}
 	
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
 	public Button getV1Button() {
 		// TODO Auto-generated method stub
 		return buttonV1;
 	}
 	
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
 	public Button getV2Button() {
 		// TODO Auto-generated method stub
 		return buttonV2;

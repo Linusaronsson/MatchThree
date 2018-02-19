@@ -81,7 +81,7 @@ public class Cell
 	/**
 	 * ...
 	 *
-	 * @return
+	 * @return ...
 	 */
 	public boolean isActive() {
 		return state;
@@ -90,7 +90,7 @@ public class Cell
 	/**
 	 * ...
 	 *
-	 * @param state
+	 * @param state ...
 	 */
 	public void setState(final boolean state) {
 		this.state = state;

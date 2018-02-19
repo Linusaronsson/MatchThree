@@ -5,8 +5,14 @@ import model.MatchThreeModel;
 import model.Settings;
 import view.Score;
 
+/**
+ * ...
+ */
 public class MatchThreeHeaderController
 {
+	/**
+	 * ...
+	 */
 	public MatchThreeHeaderController(
 		final Container       parent,
 		final UIController    uiController,

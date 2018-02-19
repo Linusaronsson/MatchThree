@@ -123,6 +123,9 @@ public class MainWindowController
 		window.pack();
 	}
 	
+	/**
+	 * ...
+	 */
 	public void centerWindow() {
 		window.centerWindow();
 	}

@@ -7,6 +7,7 @@ package multiplayer;
 public class UpdateScore
 	extends Message
 {
+	/** ... */
 	int score;
 	
 	/**
@@ -19,6 +20,8 @@ public class UpdateScore
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
 	public int getScore() {
 		return score;

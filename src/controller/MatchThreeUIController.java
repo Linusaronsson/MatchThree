@@ -5,11 +5,17 @@ import model.MatchThreeModel;
 import model.Settings;
 import view.MatchThreeUI;
 
+/**
+ * ...
+ */
 public class MatchThreeUIController
 {
 	/** Default game size. */
 	private static final int GAME_SIZE = 6;
 	
+	/**
+	 * ...
+	 */
 	public MatchThreeUIController(
 		final Container       parent,
 		final UIController    uiController,

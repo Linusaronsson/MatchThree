@@ -1,5 +1,8 @@
 package util;
 
+/**
+ * ...
+ */
 public final class Info
 {
 	/** Default game size. */
@@ -15,12 +18,20 @@ public final class Info
 		throw new IllegalStateException();
 	}
 	
-	/** ... */
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
 	public static int getGameSize() {
 		return GAME_SIZE;
 	}
 	
-	/** ... */
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
 	public static int getPortNumber() {
 		return PORT_NUMBER;
 	}

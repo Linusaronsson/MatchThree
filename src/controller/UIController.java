@@ -101,6 +101,9 @@ public class UIController
 		windowController.centerWindow();
 	}
 	
+	/**
+	 * ...
+	 */
 	public void setVersion(final int style) {
 		this.settings.jewelStyle = style;
 	}

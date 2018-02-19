@@ -10,6 +10,9 @@ import util.AssetManager.Audio;
 import view.Button;
 import view.ButtonPanel;
 
+/**
+ * ...
+ */
 public class ButtonPanelController
 {
 	/** Button panel view. */

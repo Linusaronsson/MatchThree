@@ -8,18 +8,33 @@ import java.io.Serializable;
 public class Message
 	implements Serializable
 {
+	/** ... */
 	private static final long serialVersionUID = 123456789L;
+	
+	/** ... */
 	private MessageType type;
 	
+	/**
+	 * ...
+	 */
 	public enum MessageType
 	{
 		// Game accepted: notifies that game was accepted, and sends initial
 		// generated board.
+		/** ... */
 		ACCEPTED_GAME,
+		
+		/** ... */
 		CELL_UPDATE,
+		
+		/** ... */
 		END_GAME,
+		
 		// Game request: (empty payload).
+		/** ... */
 		REQUESTED_GAME,
+		
+		/** ... */
 		SCORE_UPDATE
 	}
 	

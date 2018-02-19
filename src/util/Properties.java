@@ -2,6 +2,9 @@ package util;
 
 import java.awt.Color;
 
+/**
+ * ...
+ */
 public final class Properties
 {
 	/** ... */
@@ -20,17 +23,29 @@ public final class Properties
 		throw new IllegalStateException();
 	}
 	
-	/** ... */
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
 	public static Color getColorBackground() {
 		return COLOR_BACKGROUND;
 	}
 	
-	/** ... */
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
 	public static String getButtonFontName() {
 		return BUTTON_FONT_NAME;
 	}
 	
-	/** ... */
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
 	public static int getButtonFontSize() {
 		return BUTTON_FONT_SIZE;
 	}

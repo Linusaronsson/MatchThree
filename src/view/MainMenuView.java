@@ -120,7 +120,7 @@ public class MainMenuView
 	/**
 	 * Increase width of main menu.
 	 *
-	 * @return
+	 * @return ...
 	 */
 	private String emptySpaces() {
 		String spaces = "";
@@ -133,7 +133,7 @@ public class MainMenuView
 	/**
 	 * Set buttons properties.
 	 *
-	 * @param buttons
+	 * @param buttons ...
 	 */
 	private void setProperties(final Button[] buttons) {
 		for (Button button : buttons) {
@@ -157,7 +157,7 @@ public class MainMenuView
 	/**
 	 * Assemble buttons and create button panel.
 	 *
-	 * @return
+	 * @return ...
 	 */
 	private JPanel assembleButtons(final Button[] buttons) {
 		for (Button button : buttons) {
@@ -169,7 +169,7 @@ public class MainMenuView
 	/**
 	 * ...
 	 *
-	 * @return
+	 * @return ...
 	 */
 	public JPanel getButtonPanel() {
 		return buttonPanel;
@@ -205,7 +205,7 @@ public class MainMenuView
 	/**
 	 * ...
 	 *
-	 * @return
+	 * @return ...
 	 */
 	public Button[] getButtons() {
 		return buttons;

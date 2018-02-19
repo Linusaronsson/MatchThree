@@ -35,11 +35,22 @@ public class MultiplayerViewController
 	/** Reference to UI controller. */
 	private UIController uiController = null;
 	
+	/** ... */
 	private PlayerModel playerModel = null;
+	
+	/** ... */
 	private OpponentModel opponentModel = null;
+	
+	/** ... */
 	private GridViewController playerController = null;
+	
+	/** ... */
 	private OpponentController opponentController = null;
+	
+	/** ... */
 	private int port = 0;
+	
+	/** ... */
 	private InetAddress host = null;
 	
 	/**

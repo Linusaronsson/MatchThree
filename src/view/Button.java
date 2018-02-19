@@ -104,6 +104,9 @@ public class Button
 		setPreferredSize(new Dimension(size, size));
 	}
 	
+	/**
+	 * ...
+	 */
 	public void setLabelForeground(final Color color, final float alpha) {
 		// Validate arguments //
 		if (color == null) {
@@ -124,6 +127,7 @@ public class Button
 	}
 	
 	/** ... */
+	// TODO: Move this.
 	private Color color = new Color(0, 0, 0, 0f);
 	
 	/**

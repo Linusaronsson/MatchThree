@@ -16,10 +16,19 @@ import model.MatchThreeModel.MoveType;
 public class PlayerModel
 	extends MatchThreeModel
 {
+	/** ... */
 	private DatagramSocket client = null;
+	
+	/** ... */
 	private DatagramPacket out = null;
+	
+	/** ... */
 	private InetAddress ip = null;
+	
+	/** ... */
 	private int port;
+	
+	/** ... */
 	private boolean gameStarted = false;
 	
 	/**

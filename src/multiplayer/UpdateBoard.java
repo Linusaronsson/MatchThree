@@ -9,6 +9,7 @@ import model.Jewel;
 public class UpdateBoard
 	extends Message
 {
+	/** ... */
 	Jewel[] board;
 	
 	/**
@@ -21,6 +22,8 @@ public class UpdateBoard
 	
 	/**
 	 * ...
+	 *
+	 * @return ...
 	 */
 	public Jewel[] getBoard() {
 		return board;

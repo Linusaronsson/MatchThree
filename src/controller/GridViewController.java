@@ -79,6 +79,11 @@ public class GridViewController
 		parent.add(gridView);
 	}
 	
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
 	public MatchThreeModel getModel() {
 		return matchThreeModel;
 	}
