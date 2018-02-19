@@ -47,7 +47,7 @@ public class MultiplayerViewController
 	 *
 	 * @param uiController UI controller to use.
 	 * @param parent       Parent view to use.
-	 * @param jewelVersion 
+	 * @param jewelVersion ...
 	 */
 	public MultiplayerViewController(
 		final Container    parent,

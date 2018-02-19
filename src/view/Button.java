@@ -20,7 +20,7 @@ import util.Properties;
 @SuppressWarnings("serial")
 public class Button
 	extends JButton
-{	
+{
 	/** ... */
 	private static final int DEFAULT_WIDTH = 80;
 	
@@ -52,7 +52,8 @@ public class Button
 	}
 	
 	/**
-	 * 
+	 * ...
+	 *
 	 * @param label
 	 */
 	public Button(final String text) {
@@ -63,7 +64,8 @@ public class Button
 	}
 	
 	/**
-	 * 
+	 * ...
+	 *
 	 * @param icon
 	 */
 	public Button(final ImageIcon icon) {
@@ -93,7 +95,8 @@ public class Button
 	}
 	
 	/**
-	 * 
+	 * ...
+	 *
 	 * @param size Cell width
 	 */
 	private void setProperties(final int size) {
@@ -103,17 +106,17 @@ public class Button
 	
 	public void setLabelForeground(final Color color, final float alpha) {
 		// Validate arguments //
-		if(color == null) {
+		if (color == null) {
 			throw new IllegalArgumentException();
 		}
-		if(alpha < 0f || alpha > 1f) {
+		if (alpha < 0f || alpha > 1f) {
 			throw new IllegalArgumentException();
 		}
-				
+		
 		Color newColor = new Color(
-			(float)color.getRed() / 255f,
-			(float)color.getGreen() / 255f,
-			(float)color.getBlue() / 255f,
+			(float) color.getRed()   / 255f,
+			(float) color.getGreen() / 255f,
+			(float) color.getBlue()  / 255f,
 			alpha
 		);
 		
@@ -128,17 +131,17 @@ public class Button
 	 */
 	public void setColor(final Color color, final float alpha) {
 		// Validate arguments //
-		if(color == null) {
+		if (color == null) {
 			throw new IllegalArgumentException();
 		}
-		if(alpha < 0f || alpha > 1f) {
+		if (alpha < 0f || alpha > 1f) {
 			throw new IllegalArgumentException();
 		}
 		
 		Color newColor = new Color(
-			(float)color.getRed() / 255f,
-			(float)color.getGreen() / 255f,
-			(float)color.getBlue() / 255f,
+			(float) color.getRed()   / 255f,
+			(float) color.getGreen() / 255f,
+			(float) color.getBlue()  / 255f,
 			alpha
 		);
 		firePropertyChange("color", this.color, newColor);
@@ -174,8 +177,9 @@ public class Button
 	
 	@Override
 	public void setFont(final Font font) {
-		if(font != null && label != null)
-		label.setFont(font);
+		if (font != null && label != null) {
+			label.setFont(font);
+		}
 	}
 	
 	/**

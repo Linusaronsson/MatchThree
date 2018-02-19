@@ -108,9 +108,9 @@ public class ButtonPanel
 		add(panel);
 	}
 	
-	public JPanel createVersionButtonsPanel(final Button ... buttons) {
+	public JPanel createVersionButtonsPanel(final Button... buttons) {
 		JPanel panel = new JPanel();
-		for(Button button : buttons) {
+		for (Button button : buttons) {
 			panel.add(button);
 		}
 		panel.setBackground(COLOR_PANEL);

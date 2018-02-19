@@ -9,5 +9,5 @@ public class Settings
 	// TODO: Use enum instead.
 	public int jewelStyle = 1;
 	
-	public Settings() {}
+	public Settings() { }
 }

@@ -96,7 +96,7 @@ public class MainMenuView
 		// Set button properties //
 		setProperties(buttons);
 		
-		// Set button panel properties // 
+		// Set button panel properties //
 		buttonPanel.setLayout(new GridLayout(7, 1, GAP, GAP));
 		buttonPanel.setBackground(COLOR_BACKGROUND);
 		buttonPanel.setBorder(
@@ -119,7 +119,7 @@ public class MainMenuView
 	
 	/**
 	 * Increase width of main menu.
-	 * 
+	 *
 	 * @return
 	 */
 	private String emptySpaces() {
@@ -132,11 +132,11 @@ public class MainMenuView
 	
 	/**
 	 * Set buttons properties
-	 * 
+	 *
 	 * @param buttons
 	 */
 	private void setProperties(final Button[] buttons) {
-		for(Button button : buttons) {
+		for (Button button : buttons) {
 			button.setPreferredSize(PREFERRED_DIMENSION);
 			button.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createCompoundBorder(
@@ -156,18 +156,19 @@ public class MainMenuView
 	
 	/**
 	 * Assemble buttons and create button panel
-	 * 
+	 *
 	 * @return
 	 */
 	private JPanel assembleButtons(final Button[] buttons) {
-		for(Button button : buttons) {
+		for (Button button : buttons) {
 			buttonPanel.add(button);
 		}
 		return buttonPanel;
 	}
 	
 	/**
-	 * 
+	 * ...
+	 *
 	 * @return
 	 */
 	public JPanel getButtonPanel() {
@@ -202,8 +203,8 @@ public class MainMenuView
 	}
 	
 	/**
-	 * 
-	 * 
+	 * ...
+	 *
 	 * @return
 	 */
 	public Button[] getButtons() {

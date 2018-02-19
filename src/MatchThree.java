@@ -5,7 +5,7 @@ import java.io.IOException;
  * MatchThree game.
  */
 public final class MatchThree
-{	
+{
 	/**
 	 * Forbidden constructor.
 	 */

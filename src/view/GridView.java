@@ -157,12 +157,16 @@ public class GridView
 		@Override
 		public void mouseEntered(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			if(!cell.isActive()) cell.setAlpha(0.5f);
+			if (!cell.isActive()) {
+				cell.setAlpha(0.5f);
+			}
 		}
 		
 		@Override
 		public void mouseExited(final MouseEvent e) {
-			if(!cell.isActive()) cell.setAlpha(1f);
+			if (!cell.isActive()) {
+				cell.setAlpha(1f);
+			}
 		}
 	}
 	

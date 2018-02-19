@@ -13,7 +13,7 @@ import util.AssetManager.Audio;
 @SuppressWarnings("serial")
 public class SingleplayerView
 	extends JPanel
-{	
+{
 	/** ... */
 	private Container buttonPanel = new JPanel();
 	

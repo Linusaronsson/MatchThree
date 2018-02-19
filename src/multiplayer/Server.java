@@ -29,7 +29,8 @@ public class Server
 	private DatagramSocket server;
 	private UIController ui;
 	
-	public class OpponentInfo {
+	public class OpponentInfo
+	{
 		public Jewel[] board;
 		public InetAddress ip;
 		public int port;
@@ -167,7 +168,7 @@ public class Server
 							inGame = true;
 							opponentInfo = new OpponentInfo(
 								in.getAddress(),
-								2000, //TODO: change to in.getPort() 
+								2000, // TODO: Change to in.getPort().
 								((UpdateBoard) m).getBoard()
 							);
 							ui.changeView(View.MULTIPLAYER_GAME);

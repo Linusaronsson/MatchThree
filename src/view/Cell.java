@@ -79,8 +79,8 @@ public class Cell
 	private boolean state = false;
 	
 	/**
-	 * 
-	 * 
+	 * ...
+	 *
 	 * @return
 	 */
 	public boolean isActive() {
@@ -88,8 +88,8 @@ public class Cell
 	}
 	
 	/**
-	 * 
-	 * 
+	 * ...
+	 *
 	 * @param state
 	 */
 	public void setState(final boolean state) {
