@@ -3,9 +3,13 @@ package view;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.Toolkit;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+
+import util.AssetManager;
 
 /**
  * Application main window.
@@ -16,6 +20,9 @@ public class Window
 {
 	/** Window content pane. */
 	private JPanel content = null;
+
+	/** ... */
+	private static final ImageIcon icon = new ImageIcon(AssetManager.loadImage("M3.png"));
 	
 	/**
 	 * Create `Window`.
@@ -45,6 +52,9 @@ public class Window
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationByPlatform(true);
 		setResizable(true);
+		
+		// Set icon //
+		setIconImage(icon.getImage());
 		
 		// Set menu bar //
 		setJMenuBar(menuBar);
