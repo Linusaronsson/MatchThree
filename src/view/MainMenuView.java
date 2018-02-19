@@ -131,7 +131,7 @@ public class MainMenuView
 	}
 	
 	/**
-	 * Set buttons properties
+	 * Set buttons properties.
 	 *
 	 * @param buttons
 	 */
@@ -155,7 +155,7 @@ public class MainMenuView
 	}
 	
 	/**
-	 * Assemble buttons and create button panel
+	 * Assemble buttons and create button panel.
 	 *
 	 * @return
 	 */

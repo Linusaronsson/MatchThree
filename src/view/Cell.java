@@ -12,7 +12,7 @@ public class Cell
 	/** ... */
 	private Coordinate position = null;
 	
-	/** Cell width */
+	/** Cell width. */
 	private static final int CELL_WIDTH = 80;
 	
 	/**

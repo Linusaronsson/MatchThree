@@ -74,7 +74,7 @@ public class Button
 	}
 	
 	/**
-	 * Set button properties
+	 * Set button properties.
 	 */
 	private void setProperties() {
 		// Set colors //
@@ -183,7 +183,7 @@ public class Button
 	}
 	
 	/**
-	 * Updates graphical image
+	 * Updates graphical image.
 	 */
 	@Override
 	protected void paintComponent(final Graphics g) {
