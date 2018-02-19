@@ -5,13 +5,7 @@ import java.io.IOException;
  * MatchThree game.
  */
 public final class MatchThree
-{
-	/** Default game size. */
-	private static final int GAME_SIZE = 6;
-	
-	/** Port number for network play. */
-	private static final int PORT_NUMBER = 3333;
-	
+{	
 	/**
 	 * Forbidden constructor.
 	 */

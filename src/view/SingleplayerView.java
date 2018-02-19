@@ -108,10 +108,10 @@ public class SingleplayerView
 	/**
 	 * 
 	 * 
-	 * @param i
+	 * @param jewelVersion
 	 */
-	public void changeSprites(int i) {
-		gridView.changeSprites(i);
+	public void changeSprites(int jewelVersion) {
+		gridView.changeSprites(jewelVersion);
 	}
 	
 	/**

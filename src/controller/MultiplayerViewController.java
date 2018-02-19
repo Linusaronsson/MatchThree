@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+
+import info.Info;
 import multiplayer.Message;
 import multiplayer.Server;
 import multiplayer.Server.OpponentInfo;
@@ -16,7 +18,7 @@ import view.MultiplayerView1;
 public class MultiplayerViewController
 {
 	/** Default game size. */
-	private static final int GAME_SIZE = 6;
+	private static final int GAME_SIZE = Info.getGameSize();
 	
 	/** View to control. */
 	private MultiplayerView1 multiplayerView = null;

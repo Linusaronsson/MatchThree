@@ -3,6 +3,8 @@ package controller;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import info.Info;
 import model.MatchThreeModel;
 import util.AssetManager;
 import view.Button;
@@ -14,7 +16,7 @@ import view.SingleplayerView;
 public class SingleplayerViewController
 {
 	/** Default game size. */
-	private static final int GAME_SIZE = 6;
+	private static final int GAME_SIZE = Info.getGameSize();
 	
 	/** Reference to UI controller. */
 	private UIController uiController = null;

@@ -12,15 +12,13 @@ public class UIController
 	/** Default view. */
 	private static final View DEFAULT_VIEW = View.MAIN_MENU;
 	
-	/** Default game size. */
-	private static final int GAME_SIZE = 6;
-	
 	/** Container to control. */
 	private Container view = null;
 	
 	/** Reference to window controller for window updates. */
 	private MainWindowController windowController = null;
 	
+	/** ... */
 	private int jewelVersion = 1;
 	
 	/**

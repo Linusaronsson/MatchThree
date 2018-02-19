@@ -4,6 +4,8 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+
+import info.Info;
 import multiplayer.Message;
 import multiplayer.Server;
 import view.ErrorDialog;
@@ -13,10 +15,7 @@ import view.MultiplayerMenuView;
  * ...
  */
 public class MultiplayerSetupController
-{
-	/** Default game size. */
-	private static final int GAME_SIZE = 6;
-	
+{	
 	/** ... */
 	private MultiplayerMenuView multiplayerMenuView = null;
 	
