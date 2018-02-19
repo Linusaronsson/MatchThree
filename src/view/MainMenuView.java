@@ -104,8 +104,20 @@ public class MainMenuView
 		buttonPanel = assembleButtons(buttons);
 		
 		// Assemble view //
-		add(LOGO);
-		add(buttonPanel, BorderLayout.SOUTH);
+		add(LOGO, BorderLayout.NORTH);
+		add(new JLabel(emptySpaces()), BorderLayout.WEST);
+		add(new JLabel(emptySpaces()), BorderLayout.EAST);
+		add(new JLabel(" "), BorderLayout.SOUTH);
+		add(buttonPanel, BorderLayout.CENTER);
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
+	private String emptySpaces() {
+		return "                                                                                    ";
 	}
 	
 	/**
