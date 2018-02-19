@@ -3,6 +3,7 @@ package view;
 import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Transparency;
@@ -10,6 +11,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 /**
@@ -28,6 +30,9 @@ public class Button
 	/** ... */
 	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
 	
+	/** ... */
+	private JLabel label = new JLabel();
+	
 	/**
 	 * Create button.
 	 */
@@ -37,10 +42,12 @@ public class Button
 	
 	/**
 	 * 
-	 * @param text
+	 * @param label
 	 */
 	public Button(String text) {
-		super(text);
+		label.setText(text);
+		label.setForeground(Color.WHITE);
+		add(label);
 		setProperties();
 	}
 	
@@ -74,11 +81,30 @@ public class Button
 		setContentAreaFilled(false);
 	}
 	
+	public void setLabelForeground(final Color color, final float alpha) {
+		// Validate arguments //
+		if(color == null) {
+			throw new IllegalArgumentException();
+		}
+		if(alpha < 0f || alpha > 1f) {
+			throw new IllegalArgumentException();
+		}
+				
+		Color newColor = new Color(
+			(float)color.getRed() / 255f,
+			(float)color.getGreen() / 255f,
+			(float)color.getBlue() / 255f,
+			alpha
+		);
+		
+		label.setForeground(newColor);
+	}
+	
 	/** ... */
 	private Color color = new Color(0, 0, 0, 0f);
 	
 	/**
-	 * @param color RGB color to be set, not alpha.
+	 * @param color
 	 */
 	public void setColor(Color color, float alpha) {
 		// Validate arguments //
@@ -97,11 +123,12 @@ public class Button
 		);
 		firePropertyChange("color", this.color, newColor);
 		this.color = newColor;
+		
 		repaint();
 	}
 	
 	/**
-	 * @param alpha Alpha value to be set.
+	 * @param alpha
 	 */
 	public void setAlpha(float alpha) {
 		alpha = 1-alpha;
@@ -119,11 +146,18 @@ public class Button
 		);
 		firePropertyChange("alpha", color, alphaColor);
 		color = alphaColor;
+		
 		repaint();
 	}
 	
+	@Override
+	public void setFont(final Font font) {
+		if(font != null && label != null)
+		label.setFont(font);
+	}
+	
 	/**
-	 * Paints the cell graphical image
+	 * Updates graphical image
 	 */
 	@Override
 	protected void paintComponent(final Graphics g) {

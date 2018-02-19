@@ -2,9 +2,11 @@ package controller;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import util.AssetManager;
 import view.Button;
 import view.MainMenuView;
 
@@ -18,6 +20,18 @@ public class MainMenuViewController
 	
 	/** ... */
 	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker();
+	
+	/** ... */
+	private static final String BUTTON_FONT_NAME = "Impact";
+	
+	/** ... */
+	private static final int BUTTON_FONT_SIZE = 30;
+	
+	/** ... */
+	private static final Font HOVERFONT = new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE+5);
+	
+	/** ... */
+	private static final Font FONT = new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE);
 	
 	/**
 	 * Create `MainMenuViewController`.
@@ -87,15 +101,18 @@ public class MainMenuViewController
 			@Override
 			public void mouseEntered(final MouseEvent e) {
 				// TODO Auto-generated method stub
-				button.setColor(Color.GREEN, 1f);
+				//button.setLabelForeground(Color.GREEN, 1f);
+				AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
 				button.setBorderPainted(true);
+				button.setFont(HOVERFONT);
 			}
 
 			@Override
 			public void mouseExited(final MouseEvent e) {
 				// TODO Auto-generated method stub
-				button.setColor(Color.WHITE, 1f);
+				//button.setLabelForeground(Color.WHITE, 1f);
 				button.setBorderPainted(false);
+				button.setFont(FONT);
 			}
 		}
 		

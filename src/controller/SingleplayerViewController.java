@@ -1,13 +1,11 @@
 package controller;
 
 import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import model.MatchThreeModel;
+import util.AssetManager;
 import view.Button;
-import view.GridView.Audio;
 import view.SingleplayerView;
 
 /**
@@ -75,7 +73,7 @@ public class SingleplayerViewController
 		
 		@Override
 		public void mouseEntered(final MouseEvent e) {
-			singlePlayerView.playAudio(Audio.MOUSEOVER);
+			AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
 			target.setAlpha(0.5f);
 		}
 		
@@ -88,17 +86,17 @@ public class SingleplayerViewController
 		public void mousePressed(final MouseEvent e) {
 			switch(target.getMnemonic()) {
 			case 0:
-				singlePlayerView.playAudio(Audio.SELECT);
+				AssetManager.playAudio(AssetManager.Audio.SELECT);
 				// Go back to main menu //
 				uiController.changeView(UIController.View.MAIN_MENU);
 				break;
 			case 1:
-				singlePlayerView.playAudio(Audio.SELECT);
+				AssetManager.playAudio(AssetManager.Audio.SELECT);
 				singlePlayerView.changeSprites(1);
 				uiController.setVersion(1);
 				break;
 			case 2:
-				singlePlayerView.playAudio(Audio.SELECT);
+				AssetManager.playAudio(AssetManager.Audio.SELECT);
 				singlePlayerView.changeSprites(2);
 				uiController.setVersion(2);
 				break;

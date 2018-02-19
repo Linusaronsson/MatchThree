@@ -9,7 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import model.MatchThreeModel;
-import view.GridView.Audio;
+import util.AssetManager;
 
 /**
  * ...
@@ -97,36 +97,6 @@ public class SingleplayerView
 	}
 	
 	/**
-	 * ...
-	 *
-	 * @return ...
-	 */
-	// TODO: Remove this method.
-	public GridView getGridView() {
-		return gridView;
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @return ...
-	 */
-	// TODO: Try to remove this method.
-	public MatchThreeController getMatchThreeController() {
-		return matchThreeController;
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @return ...
-	 */
-	// TODO: Remove this method.
-	public MatchThreeUI getView() {
-		return matchThreeUI;
-	}
-	
-	/**
 	 * Set reference to parent window.
 	 *
 	 * @param window The parent window.
@@ -142,16 +112,6 @@ public class SingleplayerView
 	 */
 	public void changeSprites(int i) {
 		gridView.changeSprites(i);
-	}
-	
-	/**
-	 * 
-	 * 
-	 * @param audio
-	 */
-	public void playAudio(Audio audio) {
-		// TODO Auto-generated method stub
-		gridView.playAudio(audio);
 	}
 	
 	/**

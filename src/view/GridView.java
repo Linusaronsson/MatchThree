@@ -120,21 +120,7 @@ public class GridView
 	/** ... */
 	private MatchThreeModel model = null;
 	
-	/** Audio file specifier. */
-	public enum Audio
-	{
-		/** Invalid move audio. */
-		INVALID,
-		
-		/** Swap audio. */
-		SWAP,
-		
-		/** Mouse entered audio. */
-		MOUSEOVER,
-		
-		/** Select audio. */
-		SELECT
-	}
+	
 	
 	/**
 	 * Listens for board cell actions (mouse hover).
@@ -173,7 +159,6 @@ public class GridView
 		@Override
 		public void mouseEntered(final MouseEvent e) {
 			// TODO Auto-generated method stub
-			playAudio(Audio.MOUSEOVER);
 			if(!cell.isActive()) cell.setAlpha(0.5f);
 		}
 		
@@ -328,23 +313,7 @@ public class GridView
 		return grid;
 	}
 	
-	/**
-	 * Get the filename of an audio asset.
-	 *
-	 * @param audio Audio asset to get filename of.
-	 * @return Filename of audio asset.
-	 */
-	private String getAudioName(final Audio audio) {
-		String name = null;
-		switch (audio) {
-			case INVALID:   name = "InvalidMove.wav"; break;
-			case SWAP:      name = "Swap.wav";        break;
-			case MOUSEOVER: name = "MouseOver.wav";   break;
-			case SELECT:    name = "Select.wav";      break;
-			default: throw new IllegalStateException();
-		}
-		return name;
-	}
+	
 	
 	/**
 	 * Get the color of a jewel.
@@ -434,37 +403,6 @@ public class GridView
 				break;
 			default: break;
 		}
-	}
-	
-	/**
-	 * Play swap audio clip.
-	 *
-	 * @param audio ...
-	 */
-	public void playAudio(final Audio audio) {
-		// Validate argument //
-		if (audio == null) {
-			throw new NullPointerException();
-		}
-		
-		// Get a reference to clip //
-		String name = getAudioName(audio);
-		Clip clip = AssetManager.loadAudio(name);
-		
-		// Rewind and play clip //
-		clip.setFramePosition(0);
-		clip.start();
-	}
-	
-	/**
-	 * Preemptively load all audio resouces.
-	 */
-	private void preloadAudio() {
-		// TODO: Run automatically for all values of `Audio`.
-		AssetManager.loadAudio(getAudioName(Audio.INVALID));
-		AssetManager.loadAudio(getAudioName(Audio.SWAP));
-		AssetManager.loadAudio(getAudioName(Audio.MOUSEOVER));
-		AssetManager.loadAudio(getAudioName(Audio.SELECT));
 	}
 	
 	/**

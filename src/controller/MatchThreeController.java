@@ -9,6 +9,7 @@ import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
 import model.Serialize;
+import util.AssetManager;
 import view.Cell;
 import view.ErrorDialog;
 import view.GridView;
@@ -110,8 +111,8 @@ public class MatchThreeController
 		
 		// Swap cells //
 		switch (matchThreeModel.move(from, to)) {
-			case OK:     gridView.playAudio(GridView.Audio.SWAP);    break;
-			case BAD:    gridView.playAudio(GridView.Audio.INVALID); break;
+			case OK:     AssetManager.playAudio(AssetManager.Audio.SWAP);    break;
+			case BAD:    AssetManager.playAudio(AssetManager.Audio.INVALID); break;
 			case CANCEL: break;
 			default: throw new IllegalStateException();
 		}

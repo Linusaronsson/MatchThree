@@ -18,16 +18,16 @@ public class MainMenuView
 	extends JPanel
 {
 	/** ... */
-	private static final String BUTTON_FONT_NAME = "Helvetica Neue";
+	private static final String BUTTON_FONT_NAME = "Impact";
 	
 	/** ... */
-	private static final int BUTTON_FONT_SIZE = 40;
+	private static final int BUTTON_FONT_SIZE = 30;
 	
 	/** ... */
 	private static final int PREFERRED_WIDTH = 400;
 	
 	/** ... */
-	private static final int PREFERRED_HEIGHT = 40;
+	private static final int PREFERRED_HEIGHT = 50;
 	
 	/** ... */
 	private static final int GAP = 10;
@@ -114,11 +114,11 @@ public class MainMenuView
 			button.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createCompoundBorder(
 					BorderFactory.createLineBorder(Color.GREEN, 1),
-					BorderFactory.createLineBorder(Color.WHITE, 2)
+					BorderFactory.createLineBorder(Color.GREEN.darker(), 1)
 				),
 				BorderFactory.createLineBorder(Color.GREEN, 1)
 			));
-			Font font = new Font(BUTTON_FONT_NAME, Font.BOLD, BUTTON_FONT_SIZE);
+			Font font = new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE);
 			button.setFont(font);
 		}
 	}
@@ -153,6 +153,11 @@ public class MainMenuView
 		singleplayer.addActionListener(listener);
 	}
 	
+	/**
+	 * 
+	 * 
+	 * @return
+	 */
 	public Button[] getButtons() {
 		return buttons;
 	}

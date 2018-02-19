@@ -24,8 +24,25 @@ public final class AssetManager
 	private static Map<String, Clip> audio = new HashMap<String, Clip>();
 	
 	/** Loaded image assets. */
+	@SuppressWarnings("unused")
 	private static Map<String, BufferedImage> images =
 		new HashMap<String, BufferedImage>();
+	
+	/** Audio file specifier. */
+	public enum Audio
+	{
+		/** Invalid move audio. */
+		INVALID,
+		
+		/** Swap audio. */
+		SWAP,
+		
+		/** Mouse entered audio. */
+		MOUSEOVER,
+		
+		/** Select audio. */
+		SELECT
+	}
 	
 	/**
 	 * Forbidden constructor.
@@ -155,6 +172,56 @@ public final class AssetManager
 			);
 		}
 		return image;
+	}
+	
+	/**
+	 * Play swap audio clip.
+	 *
+	 * @param audio ...
+	 */
+	public static void playAudio(final Audio audio) {
+		// Validate argument //
+		if (audio == null) {
+			throw new NullPointerException();
+		}
+		
+		// Get a reference to clip //
+		String name = getAudioName(audio);
+		Clip clip = AssetManager.loadAudio(name);
+		
+		// Rewind and play clip //
+		clip.setFramePosition(0);
+		clip.start();
+	}
+	
+	/**
+	 * Preemptively load all audio resources.
+	 */
+	@SuppressWarnings("unused")
+	private static void preloadAudio() {
+		// TODO: Run automatically for all values of `Audio`.
+		AssetManager.loadAudio(getAudioName(Audio.INVALID));
+		AssetManager.loadAudio(getAudioName(Audio.SWAP));
+		AssetManager.loadAudio(getAudioName(Audio.MOUSEOVER));
+		AssetManager.loadAudio(getAudioName(Audio.SELECT));
+	}
+	
+	/**
+	 * Get the filename of an audio asset.
+	 *
+	 * @param audio Audio asset to get filename of.
+	 * @return Filename of audio asset.
+	 */
+	private static String getAudioName(final Audio audio) {
+		String name = null;
+		switch (audio) {
+			case INVALID:   name = "InvalidMove.wav"; break;
+			case SWAP:      name = "Swap.wav";        break;
+			case MOUSEOVER: name = "MouseOver.wav";   break;
+			case SELECT:    name = "Select.wav";      break;
+			default: throw new IllegalStateException();
+		}
+		return name;
 	}
 	
 	/**
