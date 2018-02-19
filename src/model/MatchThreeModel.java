@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Observable;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * MatchThree game model.
@@ -235,7 +236,7 @@ public class MatchThreeModel
 			Coordinate position = new Coordinate(x, y);
 			
 			// Create list of possible options //
-			HashSet<Jewel> options = new HashSet<Jewel>();
+			Set<Jewel> options = new HashSet<Jewel>();
 			options.add(Jewel.DIAMOND);
 			options.add(Jewel.EMERALD);
 			options.add(Jewel.RUBY);
