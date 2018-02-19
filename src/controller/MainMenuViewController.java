@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.JPanel;
+
 import util.AssetManager;
 import util.Properties;
 import view.Button;
@@ -29,6 +31,70 @@ public class MainMenuViewController
 	
 	/** ... */
 	private static final Font FONT = new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE);
+	
+	/**
+	 * 
+	 */
+	private class ButtonPanelHoverListener
+	implements MouseListener {
+		
+		/** ... */
+		private JPanel panel = null;
+		
+		/**
+		 * 
+		 * @param panel
+		 */
+		public ButtonPanelHoverListener(final JPanel panel) {
+			this.panel = panel;
+		}
+
+		@Override public final void mouseClicked(final MouseEvent e) {}
+		@Override public final void mousePressed(final MouseEvent e) {}
+		@Override public final void mouseReleased(final MouseEvent e) {}
+		
+		@Override public final void mouseEntered(final MouseEvent e) {
+			panel.setBackground(Properties.getColorBackground().brighter());
+		}
+		@Override public final void mouseExited(final MouseEvent e) {
+			panel.setBackground(Properties.getColorBackground());
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	private class HoverButtonListener
+	implements MouseListener {
+		
+		/** ... */
+		private Button button = null;
+		
+		/**
+		 * 
+		 * @param button
+		 */
+		public HoverButtonListener(final Button button) {
+			this.button = button;
+		}
+
+		@Override public final void mouseClicked(final MouseEvent e) {}
+		@Override public final void mousePressed(final MouseEvent e) {}
+		@Override public final void mouseReleased(final MouseEvent e) {}
+		
+		@Override public final void mouseEntered(final MouseEvent e) {
+			//button.setLabelForeground(Color.GREEN, 1f);
+			AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
+			button.setBorderPainted(true);
+			button.setFont(HOVERFONT);
+		}
+
+		@Override public final void mouseExited(final MouseEvent e) {
+			//button.setLabelForeground(Color.WHITE, 1f);
+			button.setBorderPainted(false);
+			button.setFont(FONT);
+		}
+	}
 	
 	/**
 	 * Create `MainMenuViewController`.
@@ -62,56 +128,8 @@ public class MainMenuViewController
 			// Go to singleplayer menu //
 			uiController.changeView(UIController.View.SINGLEPLAYER_GAME);
 		});
-		
-		/**
-		 * 
-		 */
-		class HoverButtonListener
-		implements MouseListener {
-			
-			/** ... */
-			private Button button = null;
-			
-			public HoverButtonListener(final Button button) {
-				// TODO Auto-generated constructor stub
-				this.button = button;
-			}
-
-			@Override
-			public void mouseClicked(final MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(final MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(final MouseEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseEntered(final MouseEvent e) {
-				// TODO Auto-generated method stub
-				//button.setLabelForeground(Color.GREEN, 1f);
-				AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
-				button.setBorderPainted(true);
-				button.setFont(HOVERFONT);
-			}
-
-			@Override
-			public void mouseExited(final MouseEvent e) {
-				// TODO Auto-generated method stub
-				//button.setLabelForeground(Color.WHITE, 1f);
-				button.setBorderPainted(false);
-				button.setFont(FONT);
-			}
-		}
+		mainMenuView.addButtonPanelListener(
+				new ButtonPanelHoverListener(mainMenuView.getButtonPanel()));
 		
 		for(Button button : mainMenuView.getButtons()) {
 			button.addMouseListener(new HoverButtonListener(button));

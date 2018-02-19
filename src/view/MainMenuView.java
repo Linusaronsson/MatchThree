@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -153,6 +154,14 @@ public class MainMenuView
 	}
 	
 	/**
+	 * 
+	 * @return
+	 */
+	public JPanel getButtonPanel() {
+		return buttonPanel;
+	}
+	
+	/**
 	 * ...
 	 *
 	 * @param listener ...
@@ -168,6 +177,15 @@ public class MainMenuView
 	 */
 	public void addSingleplayerListener(final ActionListener listener) {
 		singleplayer.addActionListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @param listener ...
+	 */
+	public void addButtonPanelListener(final MouseListener listener) {
+		buttonPanel.addMouseListener(listener);
 	}
 	
 	/**
