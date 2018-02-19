@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import util.Properties;
+
 /**
  * Button.
  */
@@ -22,10 +24,13 @@ public class Button
 	extends JButton
 {	
 	/** ... */
-	private static final int CELL_WIDTH = 80;
+	private static final int DEFAULT_WIDTH = 80;
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker();
+	private static final int DEFAULT_HEIGHT = 80;
+	
+	/** ... */
+	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
 	
 	/** ... */
 	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
@@ -41,10 +46,17 @@ public class Button
 	}
 	
 	/**
+	 * @param size Cell width
+	 */
+	public Button(final int size) {
+		setProperties(size);
+	}
+	
+	/**
 	 * 
 	 * @param label
 	 */
-	public Button(String text) {
+	public Button(final String text) {
 		label.setText(text);
 		label.setForeground(Color.WHITE);
 		add(label);
@@ -55,7 +67,7 @@ public class Button
 	 * 
 	 * @param icon
 	 */
-	public Button(ImageIcon icon) {
+	public Button(final ImageIcon icon) {
 		setProperties();
 		setIcon(icon);
 	}
@@ -77,8 +89,17 @@ public class Button
 		setEnabled(true);
 		setFocusPainted(false);
 		setOpaque(true);
-		setPreferredSize(new Dimension(CELL_WIDTH, CELL_WIDTH));
 		setContentAreaFilled(false);
+		setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+	}
+	
+	/**
+	 * 
+	 * @param size Cell width
+	 */
+	private void setProperties(final int size) {
+		setProperties();
+		setPreferredSize(new Dimension(size, size));
 	}
 	
 	public void setLabelForeground(final Color color, final float alpha) {

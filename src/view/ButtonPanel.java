@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import util.AssetManager;
+import util.Properties;
 
 /**
  * Game button panel.
@@ -25,7 +26,7 @@ public class ButtonPanel
 	private static final int GAP_VERTICAL = 4;
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker();;
+	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
 	
 	/** ... */
 	private static final Color COLOR_PANEL = COLOR_BACKGROUND.brighter().brighter();

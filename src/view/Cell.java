@@ -12,13 +12,16 @@ public class Cell
 	/** ... */
 	private Coordinate position = null;
 	
+	/** Cell width */
+	private static final int CELL_WIDTH = 80;
+	
 	/**
 	 * Constructor for `Cell`.
 	 *
 	 * @param position Coordinates of the cell.
 	 */
 	public Cell(final Coordinate position) {
-		super();
+		super(CELL_WIDTH);
 		
 		// Validate argument //
 		if (position == null) {
@@ -35,7 +38,7 @@ public class Cell
 	 * @param y Y-coordinate of the cell.
 	 */
 	public Cell(final int x, final int y) {
-		super();
+		super(CELL_WIDTH);
 		
 		// Validate arguments //
 		if (x < 0 || y < 0) {

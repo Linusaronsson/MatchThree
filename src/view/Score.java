@@ -10,7 +10,7 @@ import model.MatchThreeModel;
 /**
  * Score counter.
  */
-@SuppressWarnings({"deprecation", "serial"})
+@SuppressWarnings({"serial"})
 public class Score
 	extends JLabel
 	implements Observer

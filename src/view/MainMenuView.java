@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import util.Properties;
+
 /**
  * Application start view.
  */
@@ -18,10 +20,10 @@ public class MainMenuView
 	extends JPanel
 {
 	/** ... */
-	private static final String BUTTON_FONT_NAME = "Impact";
+	private static final String BUTTON_FONT_NAME = Properties.getButtonFontName();
 	
 	/** ... */
-	private static final int BUTTON_FONT_SIZE = 30;
+	private static final int BUTTON_FONT_SIZE = Properties.getButtonFontSize();
 	
 	/** ... */
 	private static final int PREFERRED_WIDTH = 400;
@@ -36,7 +38,7 @@ public class MainMenuView
 	private static final Dimension PREFERRED_DIMENSION = new Dimension(PREFERRED_WIDTH, PREFERRED_HEIGHT);
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker();
+	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
 	
 	/** ... */
 	//private static final JLabel LOGO = new JLabel(new ImageIcon(AssetManager.loadImage("logo.png")));

@@ -24,12 +24,6 @@ public class MultiplayerView2
 	private static final int GAP_VERTICAL = 10;
 	
 	/** ... */
-	private static final int PREFERRED_HEIGHT = 600;
-	
-	/** ... */
-	private static final int PREFERRED_WIDTH = 1300;
-	
-	/** ... */
 	private GridView gridView = null;
 	
 	/** ... */

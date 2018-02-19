@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JPanel;
 import model.MatchThreeModel;
+import util.Properties;
 
 /**
  * MatchThree game view.
@@ -13,13 +14,7 @@ public class MatchThreeUI
 	extends JPanel
 {
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker();
-	
-	/** ... */
-	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
-	
-	/** ... */
-	private static final String DIR_RESOURCES = "resources";
+	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
 	
 	/**
 	 * Constructor for `MatchThreeUI`.

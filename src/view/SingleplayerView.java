@@ -17,13 +17,7 @@ import util.AssetManager;
 @SuppressWarnings("serial")
 public class SingleplayerView
 	extends JPanel
-{
-	/** ... */
-	private static final int GAP_HORIZONTAL = 10;
-	
-	/** ... */
-	private static final int GAP_VERTICAL = 10;
-	
+{	
 	/** ... */
 	private ButtonPanel buttonPanel = new ButtonPanel();
 	

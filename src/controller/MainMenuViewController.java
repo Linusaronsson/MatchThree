@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import util.AssetManager;
+import util.Properties;
 import view.Button;
 import view.MainMenuView;
 
@@ -19,13 +20,10 @@ public class MainMenuViewController
 	private UIController uiController = null;
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker();
+	private static final String BUTTON_FONT_NAME = Properties.getButtonFontName();
 	
 	/** ... */
-	private static final String BUTTON_FONT_NAME = "Impact";
-	
-	/** ... */
-	private static final int BUTTON_FONT_SIZE = 30;
+	private static final int BUTTON_FONT_SIZE = Properties.getButtonFontSize();
 	
 	/** ... */
 	private static final Font HOVERFONT = new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE+5);

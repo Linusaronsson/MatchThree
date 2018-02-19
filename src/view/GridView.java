@@ -20,11 +20,12 @@ import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
 import util.AssetManager;
+import util.Properties;
 
 /**
  * MatchThree grid view.
  */
-@SuppressWarnings({"deprecation", "serial"})
+@SuppressWarnings({"serial"})
 public class GridView
 	extends JPanel
 	implements Observer
@@ -36,10 +37,7 @@ public class GridView
 	private static final int CELL_FONT_SIZE = 14;
 	
 	/** ... */
-	private static final int CELL_WIDTH = 80;
-	
-	/** ... */
-	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker();
+	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
 	
 	/** ... */
 	private static final Color COLOR_DIAMOND = new Color(0xB9, 0xF2, 0xFF);
