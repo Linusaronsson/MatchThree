@@ -165,9 +165,6 @@ public class ButtonPanelController
 		
 		this.uiController = uiController;
 		
-		// Create view //
-		ButtonPanel buttonPanel = new ButtonPanel();
-		
 		// Register event listeners //
 		Button buttonBack = buttonPanel.getBackButton();
 		Button buttonV1   = buttonPanel.getV1Button();
