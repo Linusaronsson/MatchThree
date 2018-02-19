@@ -1,7 +1,10 @@
 package controller;
 
 import java.awt.Container;
+import java.net.InetAddress;
+import model.Jewel;
 import model.MatchThreeModel;
+import model.Settings;
 import view.ErrorDialog;
 
 /**
@@ -12,14 +15,14 @@ public class UIController
 	/** Default view. */
 	private static final View DEFAULT_VIEW = View.MAIN_MENU;
 	
+	/** Current game settings. */
+	private Settings settings = new Settings();
+	
 	/** Container to control. */
 	private Container view = null;
 	
 	/** Reference to window controller for window updates. */
 	private MainWindowController windowController = null;
-	
-	/** ... */
-	private int jewelVersion = 1;
 	
 	/**
 	 * View selection.
@@ -72,33 +75,55 @@ public class UIController
 		MatchThreeModel matchThreeModel = null;
 		switch (newView) {
 			case MAIN_MENU:
-				new MainMenuViewController(this, view);
+				new MainMenuViewController(view, this, settings);
 				break;
 			case MULTIPLAYER_GAME:
-				new MultiplayerViewController(this, view, jewelVersion);
-				break;
+				// TODO: This binding has temporarily been moved to
+				//       `startMultiplayer`.
+				throw new IllegalStateException("Old binding");
+				//new MultiplayerViewController(view, this);
+				//break;
 			case MULTIPLAYER_MENU:
-				new MultiplayerSetupController(this, view);
+				new MultiplayerSetupController(view, this, settings);
 				break;
 			case SCORE_MENU:
-				new ErrorDialog(
-					"Not Implemented",
-					"This binding is not implemented"
-				);
-				break;
+				throw new IllegalStateException("Not implemented");
+				//break;
 			case SINGLEPLAYER_GAME:
-				new SingleplayerViewController(this, view, jewelVersion);
+				new SingleplayerViewController(view, this, settings);
 				break;
 			default:
-				throw new IllegalStateException();
+				throw new IllegalStateException("Unknown value for `View`");
 		}
 		
-		// Update view //
+		// Update window //
+		// TODO: Avoid recentering window. Is potentially quite frustrating.
 		windowController.pack();
 		windowController.centerWindow();
 	}
 	
-	public void setVersion(final int jewelVersion) {
-		this.jewelVersion = jewelVersion;
+	public void setVersion(final int style) {
+		this.settings.jewelStyle = style;
+	}
+	
+	/**
+	 * Start a multiplayer game session.
+	 */
+	// HACK: This function exists to transfer connection state from setup view
+	//       to game view.
+	public void startMultiplayer(
+		final Jewel[]     board,
+		final InetAddress host,
+		final int         port
+	) {
+		// Remove previous view //
+		view.removeAll();
+		
+		new MultiplayerViewController(view, this, settings, board, host, port);
+		
+		// Update window //
+		// TODO: Avoid recentering window. Is potentially quite frustrating.
+		windowController.pack();
+		windowController.centerWindow();
 	}
 }

@@ -1,12 +1,11 @@
 package controller;
 
 import java.awt.Container;
-import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
+import java.awt.Font;
 import javax.swing.JPanel;
-
+import model.Settings;
 import util.AssetManager;
 import util.Properties;
 import view.Button;
@@ -103,8 +102,9 @@ public class MainMenuViewController
 	 * @param parent       Parent container view to use.
 	 */
 	public MainMenuViewController(
+		final Container    parent,
 		final UIController uiController,
-		final Container    parent
+		final Settings     settings
 	) {
 		// Validate arguments //
 		if (uiController == null) {

@@ -1,5 +1,6 @@
 package controller;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,7 +10,10 @@ import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
 import model.Serialize;
+import model.Settings;
 import util.AssetManager;
+import util.AssetManager.Audio;
+import view.Button;
 import view.Cell;
 import view.ErrorDialog;
 import view.GridView;
@@ -21,8 +25,11 @@ import view.Window;
 /**
  * MatchThree game controller.
  */
-public class MatchThreeController
+public class GridViewController
 {
+	/** Default game size. */
+	private static final int GAME_SIZE = 6;
+	
 	/** Currently active cell. */
 	private Coordinate activeCell = null;
 	
@@ -35,35 +42,48 @@ public class MatchThreeController
 	/** Game view. */
 	private MatchThreeUI matchThreeUI = null;
 	
-	/** Window view. */
-	private Window window = null;
+	/** Reference to UI controller. */
+	private UIController uiController = null;
+	
 	
 	/**
-	 * Constructor for `MatchThreeController`.
+	 * Constructor for `GridViewController`.
 	 *
-	 * @param model    Model to use.
-	 * @param view     View to use.
-	 * @param gridView Grid view to use.
+	 * @param parent          Parent view to use.
+	 * @param matchThreeModel Model to use, if any.
 	 */
-	public MatchThreeController(
-		final MatchThreeModel model,
-		final MatchThreeUI    view,
-		final GridView        gridView
+	public GridViewController(
+		final Container       parent,
+		final UIController    uiController,
+		final Settings        settings,
+		final MatchThreeModel matchThreeModel
 	) {
 		// Validate arguments //
-		if (model == null || view == null) {
+		if (parent == null) {
+			throw new NullPointerException();
+		}
+		if (matchThreeModel == null) {
 			throw new NullPointerException();
 		}
 		
-		// Register event listeners //
+		this.matchThreeModel = matchThreeModel;
+		this.uiController    = uiController;
+		
+		// Create view //
+		gridView = new GridView(matchThreeModel, settings.jewelStyle);
+		
+		// Add event listeners //
 		gridView.addBoardListener(event -> {
 			// Handle click //
 			handleAction(event);
 		});
 		
-		this.gridView        = gridView;
-		this.matchThreeModel = model;
-		this.matchThreeUI    = view;
+		// Add view to parent //
+		parent.add(gridView);
+	}
+	
+	public MatchThreeModel getModel() {
+		return matchThreeModel;
 	}
 	
 	/**
@@ -151,15 +171,6 @@ public class MatchThreeController
 		
 		// Update reference //
 		activeCell = position;
-	}
-	
-	/**
-	 * Set reference to parent window.
-	 *
-	 * @param window The parent window.
-	 */
-	public void setWindow(final Window window) {
-		this.window = window;
 	}
 	
 	/**

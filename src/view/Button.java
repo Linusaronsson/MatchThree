@@ -6,14 +6,12 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Transparency;
 import java.awt.image.BufferedImage;
-
+import java.awt.Transparency;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-
 import util.Properties;
 
 /**
@@ -30,7 +28,8 @@ public class Button
 	private static final int DEFAULT_HEIGHT = 80;
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND =
+		Properties.getColorBackground();
 	
 	/** ... */
 	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
@@ -153,7 +152,6 @@ public class Button
 	 */
 	public void setAlpha(float alpha) {
 		alpha = 1-alpha;
-		
 		// Validate argument //
 		if(alpha < 0f || alpha > 1f) {
 			throw new IllegalArgumentException();

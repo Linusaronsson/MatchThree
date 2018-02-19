@@ -1,15 +1,25 @@
 package controller;
 
+import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.event.ActionListener;
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.io.IOException;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-
+import javax.swing.JPanel;
+import model.Jewel;
+import model.Settings;
 import multiplayer.Message;
+import multiplayer.OpponentController;
+import multiplayer.OpponentModel;
+import multiplayer.PlayerModel;
 import multiplayer.Server;
 import multiplayer.Server.OpponentInfo;
 import util.Info;
+import view.MultiplayerView;
 import view.MultiplayerView1;
 
 /**
@@ -20,11 +30,24 @@ public class MultiplayerViewController
 	/** Default game size. */
 	private static final int GAME_SIZE = Info.getGameSize();
 	
+	/** Exit code - Network error. */
+	private static final int EXIT_NETWORK = 3;
+	
+	/** Default port number. */
+	private static final int PORT_NUMBER = 3333;
+	
 	/** View to control. */
-	private MultiplayerView1 multiplayerView = null;
+	private MultiplayerView multiplayerView = null;
 	
 	/** Reference to UI controller. */
 	private UIController uiController = null;
+	
+	private PlayerModel playerModel = null;
+	private OpponentModel opponentModel = null;
+	private GridViewController playerController = null;
+	private OpponentController opponentController = null;
+	private int port = 0;
+	private InetAddress host = null;
 	
 	/**
 	 * Create `MultiplayerViewController`.
@@ -34,11 +57,15 @@ public class MultiplayerViewController
 	 * @param jewelVersion 
 	 */
 	public MultiplayerViewController(
-		final UIController uiController,
 		final Container    parent,
-		final int          jewelVersion
+		final UIController uiController,
+		final Settings     settings,
+		final Jewel[]      board,
+		final InetAddress  host,
+		final int          port
 	) {
 		// Validate arguments //
+		// TODO: Validate all arguments.
 		if (uiController == null) {
 			throw new NullPointerException();
 		}
@@ -47,37 +74,69 @@ public class MultiplayerViewController
 		}
 		
 		this.uiController = uiController;
-		OpponentInfo info = null;
-		try {
-			info = Server.getOpponentInfo();
-			multiplayerView = new MultiplayerView1(
-				info.ip,
-				info.port,
-				info.board,
-				GAME_SIZE,
-				uiController,
-				jewelVersion
-			);
+		
+		// Create view //
+		multiplayerView = new MultiplayerView();
+		
+		if (board == null) {
+			playerModel = new PlayerModel(GAME_SIZE, host, port);
+			Jewel[] playerBoard = playerModel.getBoard();
+			opponentModel = new OpponentModel(playerBoard, GAME_SIZE);
 			
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.exit(1);
-		} catch (IllegalStateException e) {
-			System.err.println("getOpponentInfo() was called at a bad time");
-			System.exit(1);
+			// Host sends the board to opponent //
+			playerModel.sendBoard(PORT_NUMBER);
+		} else {
+			playerModel   = new PlayerModel(board, GAME_SIZE, host, port);
+			opponentModel = new OpponentModel(board, GAME_SIZE);
 		}
 		
-		final InetAddress ip = info.ip;
-		final int port = info.port;
+		playerModel.setGameStarted(true);
+		
+		playerController = new GridViewController(
+			parent,
+			uiController,
+			settings,
+			playerModel
+		);
+		opponentController = new OpponentController(
+			uiController,
+			settings,
+			opponentModel,
+			port
+		);
+		
+		// Initiate opponent board //
+		opponentController.start();
+		
+		//final InetAddress host,
+		//final int         port,
+		//final Jewel[]     board,
+		//
+		//info.ip,
+		//info.port,
+		//info.board,
+		
+		OpponentInfo info = null;
+		info = Server.getOpponentInfo();
+		
+		//InetAddress host = info.ip;
+		//int         port = info.port;
 		
 		// Add event listeners //
 		multiplayerView.addBackListener(event -> {
 			// Go to main menu //
-			goToMainMenu(ip, port);
+			goToMainMenu(host, port);
 		});
 		
 		// Add view to parent //
 		parent.add(multiplayerView);
+	}
+	
+	/**
+	 * Close an ongoing multiplayer game (will close active sockets etc.).
+	 */
+	public void closeGame() {
+		opponentController.close();
 	}
 	
 	/**
@@ -88,17 +147,14 @@ public class MultiplayerViewController
 	 */
 	private void goToMainMenu(final InetAddress ip, final int port) {
 		uiController.changeView(UIController.View.MAIN_MENU);
-		multiplayerView.closeGame();
+		closeGame();
 		Server.setInGame(false);
 		try {
-			Server.sendDatagram(
-				new Message(Message.MessageType.END_GAME),
-				new DatagramSocket(),
-				ip,
-				port
-			);
-		} catch (SocketException e) {
-			e.printStackTrace();
+			Message message = new Message(Message.MessageType.END_GAME);
+			DatagramSocket socket = new DatagramSocket();
+			Server.sendDatagram(message, socket, ip, port);
+		} catch (SocketException exception) {
+			exception.printStackTrace();
 		}
 	}
 }

@@ -2,9 +2,11 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
@@ -15,21 +17,22 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-
+import javax.swing.SwingConstants;
 import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
+import model.Settings;
 import util.AssetManager;
 import util.Properties;
 
 /**
  * MatchThree grid view.
  */
-@SuppressWarnings({"serial"})
+@SuppressWarnings({"deprecation", "serial"})
 public class GridView
 	extends JPanel
 	implements Observer
-{	
+{
 	/** ... */
 	private static final String CELL_FONT_NAME = "Helvetica Neue";
 	
@@ -61,8 +64,8 @@ public class GridView
 	private static final Color ACTIVE_CELL_COLOR = Color.RED;
 	
 	/** ... */
-	private static final Color COLOR_OPPONENT_BACKGROUND = 
-			COLOR_BACKGROUND.brighter().brighter().brighter();
+	private static final Color COLOR_OPPONENT_BACKGROUND =
+		COLOR_BACKGROUND.brighter().brighter().brighter();
 	
 	/** ... */
 	private static final int GAP = 2;
@@ -171,7 +174,7 @@ public class GridView
 	 *
 	 * @param model MatchThree model to use.
 	 */
-	public GridView(final MatchThreeModel model, final int jewelVersion) {
+	public GridView(final MatchThreeModel model, final int jewelStyle) {
 		// Validate argument //
 		if (model == null) {
 			throw new NullPointerException();
@@ -183,7 +186,7 @@ public class GridView
 		model.addObserver(this);
 		
 		// Load external resources //
-		initGraphics(jewelVersion);
+		initGraphics(jewelStyle);
 		
 		// Set layout //
 		setLayout(new BorderLayout());

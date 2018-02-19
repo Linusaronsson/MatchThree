@@ -1,10 +1,11 @@
 package controller;
 
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import model.MatchThreeModel;
+import model.Settings;
 import util.AssetManager;
 import util.Info;
 import view.Button;
@@ -28,98 +29,36 @@ public class SingleplayerViewController
 	 * @param parent       Parent container view to use.
 	 */
 	public SingleplayerViewController(
-		final UIController uiController,
 		final Container    parent,
-		final int jewelVersion
+		final UIController uiController,
+		final Settings     settings
 	) {
 		// Validate arguments //
-		if (uiController == null) {
+		if (parent == null) {
 			throw new NullPointerException();
 		}
-		if (parent == null) {
+		if (uiController == null) {
 			throw new NullPointerException();
 		}
 		
 		this.uiController = uiController;
 		
 		// Create singleplayer view //
-		MatchThreeModel matchThreeModel = new MatchThreeModel(GAME_SIZE);
-		SingleplayerView singlePlayerView
-			= new SingleplayerView(matchThreeModel, jewelVersion);
+		// TODO: Add separate controller for button panel?
+		SingleplayerView singleplayerView =
+			new SingleplayerView();
 		
-		/**
-		 * 
-		 * Class listener inside constructor because singlePlayerView local variable
-		 * @author Erik
-		 *
-		 */
-		final class ButtonHoverListener
-			implements MouseListener
-		{
-		/** ... */
-		private Button target = null;
+		// Create MatchThree game //
+		Container gameView = singleplayerView.getGame();
+		MatchThreeUIController matchThreeUIController =
+			new MatchThreeUIController(gameView, uiController, settings, null);
 		
-		/**
-		 * ...
-		 *
-		 * @param button ...
-		 */
-		private ButtonHoverListener(final Button target) {
-			this.target = target;
-		}
-		
-		@Override
-		public void mouseClicked(final MouseEvent e) {
-			
-		}
-		
-		@Override
-		public void mouseEntered(final MouseEvent e) {
-			AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
-			target.setAlpha(0.5f);
-		}
-		
-		@Override
-		public void mouseExited(final MouseEvent e) {
-			target.setAlpha(1.0f);
-		}
-		
-		@Override
-		public void mousePressed(final MouseEvent e) {
-			switch(target.getMnemonic()) {
-			case 0:
-				AssetManager.playAudio(AssetManager.Audio.SELECT);
-				// Go back to main menu //
-				uiController.changeView(UIController.View.MAIN_MENU);
-				break;
-			case 1:
-				AssetManager.playAudio(AssetManager.Audio.SELECT);
-				singlePlayerView.changeSprites(1);
-				uiController.setVersion(1);
-				break;
-			case 2:
-				AssetManager.playAudio(AssetManager.Audio.SELECT);
-				singlePlayerView.changeSprites(2);
-				uiController.setVersion(2);
-				break;
-			default:
-				break;
-			}
-		}
-		
-		@Override
-		public void mouseReleased(final MouseEvent e) { }
-	}
-		
-		// Add event listeners //
-		singlePlayerView.addBackListener(
-				new ButtonHoverListener(singlePlayerView.getBackButton()));
-		singlePlayerView.addButtonV1Listener(
-				new ButtonHoverListener(singlePlayerView.getV1Button()));
-		singlePlayerView.addButtonV2Listener(
-				new ButtonHoverListener(singlePlayerView.getV2Button()));
+		// Create button panel //
+		Container buttonPanel = singleplayerView.getButtonPanel();
+		ButtonPanelController buttonPanelController =
+			new ButtonPanelController(buttonPanel, uiController, settings);
 		
 		// Add view to parent //
-		parent.add(singlePlayerView);
+		parent.add(singleplayerView);
 	}
 }

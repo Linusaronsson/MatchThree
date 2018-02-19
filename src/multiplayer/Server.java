@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 
 import model.Jewel;
 import view.ErrorDialog;
-import view.Window;
 
 /**
  * ...
@@ -29,7 +28,6 @@ public class Server
 	private int port;
 	private DatagramSocket server;
 	private UIController ui;
-	private Window window;
 	
 	public class OpponentInfo {
 		public Jewel[] board;
@@ -46,19 +44,18 @@ public class Server
 	/**
 	 * ...
 	 *
-	 * @param window ...
-	 * @param ui     ...
-	 * @param port   ...
+	 * @param ui   ...
+	 * @param port ...
 	 */
-	public Server(final Window window, final UIController ui, final int port) {
-		this.ui     = ui;
-		this.port   = port;
-		this.window = window;
+	public Server(final UIController ui, final int port) {
+		this.ui   = ui;
+		this.port = port;
 		
 		try {
-			//Listen on port
+			// Listen on port //
 			server = new DatagramSocket(port);
-			//Setup receiving packet
+			
+			// Setup receiving packet //
 			inBuffer = new byte[2048];
 			in = new DatagramPacket(inBuffer, inBuffer.length);
 		} catch (Exception e) {
@@ -67,35 +64,34 @@ public class Server
 		}
 	}
 	
-
 	/**
 	 * ...
 	 *
-	 * @param m
-	 * @param socket
-	 * @param ip
-	 * @param port
+	 * @param message ...
+	 * @param socket  ...
+	 * @param host    ...
+	 * @param port    ...
 	 */
 	public static void sendDatagram(
-		final Message        m,
+		final Message        message,
 		final DatagramSocket socket,
-		final InetAddress    ip,
+		final InetAddress    host,
 		final int            port
 	) {
 		try {
 			ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
 			ObjectOutputStream outStream =
 				new ObjectOutputStream(byteOutStream);
-			outStream.writeObject(m);
+			outStream.writeObject(message);
 			outStream.flush();
 			byte[] data = byteOutStream.toByteArray();
-			DatagramPacket out =
-				new DatagramPacket(data, data.length, ip, port);
+			int length = data.length;
+			DatagramPacket out = new DatagramPacket(data, length, host, port);
 			socket.send(out);
 			outStream.close();
-		} catch (IOException e) {
+		} catch (IOException exception) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			exception.printStackTrace();
 		}
 	}
 	
@@ -103,17 +99,14 @@ public class Server
 	 * ...
 	 *
 	 * @return ...
-	 * @throws IllegalStateException ...
 	 */
-	public static OpponentInfo getOpponentInfo()
-	throws IllegalStateException {
+	public static OpponentInfo getOpponentInfo() {
 		OpponentInfo info = opponentInfo;
 		opponentInfo = null;
-		if (info != null) {
-			return info;
-		} else {
+		if (info == null) {
 			throw new IllegalStateException();
 		}
+		return info;
 	}
 	
 	/**
@@ -140,7 +133,7 @@ public class Server
 					switch (m.getType()) {
 						case REQUESTED_GAME:
 							int response = JOptionPane.showConfirmDialog(
-								window,
+								null,
 								"Multiplayer",
 								"User requesting to play...",
 								JOptionPane.INFORMATION_MESSAGE

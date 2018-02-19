@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import javax.swing.JPanel;
 import model.MatchThreeModel;
 import util.Properties;
@@ -16,22 +17,17 @@ public class MatchThreeUI
 	/** ... */
 	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
 	
+	/** Grid container. */
+	private Container gridView = new JPanel();
+	
+	/** Header container. */
+	private Container headerView = new JPanel();
+	
 	/**
 	 * Constructor for `MatchThreeUI`.
-	 *
-	 * @param matchThreeModel MatchThree model to use.
-	 * @param gridView        Grid view to use.
 	 */
 	// TODO: Call parent constructor?
-	public MatchThreeUI(
-		final MatchThreeModel matchThreeModel,
-		final GridView        gridView
-	) {
-		// Validate argument //
-		if (matchThreeModel == null) {
-			throw new NullPointerException();
-		}
-		
+	public MatchThreeUI() {
 		// Set properties //
 		// TODO: Stopgap hack.
 		setBackground(COLOR_BACKGROUND);
@@ -40,8 +36,25 @@ public class MatchThreeUI
 		setLayout(new BorderLayout());
 		
 		// Assemble view //
-		MatchThreeHeader header = new MatchThreeHeader(matchThreeModel);
-		add(header, BorderLayout.PAGE_START);
+		add(headerView, BorderLayout.PAGE_START);
 		add(gridView, BorderLayout.CENTER);
+	}
+	
+	/**
+	 * Get grid container.
+	 *
+	 * @return Grid container.
+	 */
+	public Container getGrid() {
+		return gridView;
+	}
+	
+	/**
+	 * Get header container.
+	 *
+	 * @return Header container.
+	 */
+	public Container getHeader() {
+		return headerView;
 	}
 }

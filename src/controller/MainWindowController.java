@@ -3,7 +3,6 @@ package controller;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JPanel;
-import multiplayer.Server;
 import view.ErrorDialog;
 import view.MainMenuBar;
 import view.Window;
@@ -13,11 +12,14 @@ import view.Window;
  */
 public class MainWindowController
 {
+	/** Exit code - Success. */
+	private static final int EXIT_OK = 0;
+	
 	/** Default window title. */
 	private static final String WINDOW_TITLE = "MatchThree";
 	
 	/** Reference to MatchThree controller. */
-	private MatchThreeController matchThreeController = null;
+	private GridViewController gridViewController = null;
 	
 	/** Window view. */
 	private Window window = null;
@@ -33,9 +35,9 @@ public class MainWindowController
 		
 		@Override
 		public void windowClosed(final WindowEvent event) {
-			// TODO: Avoid directly closing the application.
-			// TODO: Use constant for exit code.
-			System.exit(0);
+			// Close application //
+			// TODO: Try to be more graceful.
+			System.exit(EXIT_OK);
 		}
 		
 		@Override
@@ -72,7 +74,7 @@ public class MainWindowController
 	 */
 	public MainWindowController() {
 		// TODO: Fix this.
-		this.matchThreeController = null;
+		this.gridViewController = null;
 		
 		// Create main window //
 		// TODO: Consider removing this panel.
@@ -89,7 +91,7 @@ public class MainWindowController
 		// Register event listeners //
 		menuBar.addNewListener(event -> {
 			// Restart the game //
-			matchThreeController.restartGame();
+			gridViewController.restartGame();
 		});
 		menuBar.addOpenListener(event -> {
 			// TODO: Not implemented.
@@ -101,20 +103,17 @@ public class MainWindowController
 		});
 		menuBar.addSaveListener(event -> {
 			// Save the game //
-			matchThreeController.saveGame();
+			gridViewController.saveGame();
 		});
 		window.addWindowListener(new WindowListener());
-		
-		// Start server //
-		new Server(window, uiController, 3333).start();
 	}
 	
 	/**
 	 * Close main window.
 	 */
 	private void closeWindow() {
-		WindowEvent e = new WindowEvent(window, WindowEvent.WINDOW_CLOSING);
-		window.dispatchEvent(e);
+		WindowEvent event = new WindowEvent(window, WindowEvent.WINDOW_CLOSING);
+		window.dispatchEvent(event);
 	}
 	
 	/**

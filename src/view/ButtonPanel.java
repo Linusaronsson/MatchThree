@@ -4,12 +4,26 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
+import java.util.Observable;
+import java.util.Observer;
+import javax.sound.sampled.Clip;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-
+import javax.swing.SwingConstants;
+import model.Coordinate;
+import model.Jewel;
+import model.MatchThreeModel;
+import model.Settings;
 import util.AssetManager;
+import util.AssetManager.Audio;
 import util.Properties;
 
 /**
@@ -119,8 +133,8 @@ public class ButtonPanel
 	 *
 	 * @param listener Event listener to use.
 	 */
-	public void addBackListener(final MouseListener listener) {
-		back.addMouseListener(listener);
+	public void addBackListener(final ActionListener listener) {
+		back.addActionListener(listener);
 	}
 	
 	/**
@@ -128,8 +142,17 @@ public class ButtonPanel
 	 *
 	 * @param listener Event listener to use.
 	 */
-	public void addBackListener(final ActionListener listener) {
-		back.addActionListener(listener);
+	public void addBackListener(final MouseListener listener) {
+		back.addMouseListener(listener);
+	}
+	
+	/**
+	 * Add listener for version 1 button.
+	 *
+	 * @param listener Event listener to use.
+	 */
+	public void addButtonV1Listener(final ActionListener listener) {
+		buttonV1.addActionListener(listener);
 	}
 	
 	/**
@@ -146,22 +169,71 @@ public class ButtonPanel
 	 *
 	 * @param listener Event listener to use.
 	 */
+	public void addButtonV2Listener(final ActionListener listener) {
+		buttonV2.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for version 2 button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addButtonV2Listener(final MouseListener listener) {
 		buttonV2.addMouseListener(listener);
 	}
-
+	
+	/**
+	 * Get the filename of an audio asset.
+	 *
+	 * @param audio Audio asset to get filename of.
+	 * @return Filename of audio asset.
+	 */
+	// TODO: Avoid code duplication.
+	private String getAudioName(final Audio audio) {
+		String name = null;
+		switch (audio) {
+			case INVALID:   name = "InvalidMove.wav"; break;
+			case SWAP:      name = "Swap.wav";        break;
+			case MOUSEOVER: name = "MouseOver.wav";   break;
+			case SELECT:    name = "Select.wav";      break;
+			default: throw new IllegalStateException();
+		}
+		return name;
+	}
+	
 	public Button getBackButton() {
 		// TODO Auto-generated method stub
 		return back;
 	}
-
+	
 	public Button getV1Button() {
 		// TODO Auto-generated method stub
 		return buttonV1;
 	}
-
+	
 	public Button getV2Button() {
 		// TODO Auto-generated method stub
 		return buttonV2;
+	}
+	
+	/**
+	 * Play swap audio clip.
+	 *
+	 * @param audio ...
+	 */
+	// TODO: Avoid code duplication.
+	public void playAudio(final Audio audio) {
+		// Validate argument //
+		if (audio == null) {
+			throw new NullPointerException();
+		}
+		
+		// Get a reference to clip //
+		String name = getAudioName(audio);
+		Clip clip = AssetManager.loadAudio(name);
+		
+		// Rewind and play clip //
+		clip.setFramePosition(0);
+		clip.start();
 	}
 }

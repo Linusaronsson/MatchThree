@@ -1,15 +1,15 @@
 package view;
 
-import controller.MatchThreeController;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.LayoutManager;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-
 import model.MatchThreeModel;
 import util.AssetManager;
+import util.AssetManager.Audio;
 
 /**
  * ...
@@ -19,36 +19,15 @@ public class SingleplayerView
 	extends JPanel
 {	
 	/** ... */
-	private ButtonPanel buttonPanel = new ButtonPanel();
+	private Container buttonPanel = new JPanel();
 	
 	/** ... */
-	private GridView gridView = null;
-	
-	/** ... */
-	private MatchThreeController matchThreeController = null;
-	
-	/** ... */
-	private MatchThreeUI matchThreeUI = null;
+	private Container gameView = new JPanel();
 	
 	/**
-	 * ...
-	 *
-	 * @param matchThreeModel ...
+	 * Create `SingleplayerView`.
 	 */
-	public SingleplayerView(
-			final MatchThreeModel matchThreeModel,
-			final int jewelVersion
-			) {
-		// Create game //
-		// TODO: Move this logic elsewhere.
-		gridView = new GridView(matchThreeModel, jewelVersion);
-		matchThreeUI = new MatchThreeUI(matchThreeModel, gridView);
-		matchThreeController = new MatchThreeController(
-			matchThreeModel,
-			matchThreeUI,
-			gridView
-		);
-		
+	public SingleplayerView() {
 		// Set properties //
 		// TODO: Stopgap hack.
 		setBackground(new Color(0x11, 0x11, 0x11));
@@ -58,80 +37,44 @@ public class SingleplayerView
 		setLayout(layout);
 		
 		// Assemble view //
+		add(gameView);
 		add(buttonPanel);
-		add(matchThreeUI);
-		
 	}
 	
 	/**
-	 * Add event listener for back button.
+	 * Get button panel container.
 	 *
-	 * @param listener Event listener to use.
+	 * @return Button panel container.
 	 */
-	public void addBackListener(final MouseListener listener) {
-		buttonPanel.addBackListener(listener);
+	public Container getButtonPanel() {
+		return buttonPanel;
 	}
 	
 	/**
-	 * Add event listener for version 1 button.
+	 * Get game container.
 	 *
-	 * @param listener Event listener to use.
+	 * @return Game container.
 	 */
-	public void addButtonV1Listener(final MouseListener listener) {
-		buttonPanel.addButtonV1Listener(listener);
+	public Container getGame() {
+		return gameView;
 	}
 	
 	/**
-	 * Add event listener for version 2 button.
+	 * ...
 	 *
-	 * @param listener Event listener to use.
+	 * @param i ...
 	 */
-	public void addButtonV2Listener(final MouseListener listener) {
-		buttonPanel.addButtonV2Listener(listener);
+	public void changeSprites(int i) {
+		//gridView.changeSprites(i);
 	}
 	
 	/**
-	 * Set reference to parent window.
+	 * ...
 	 *
-	 * @param window The parent window.
+	 * @param audio ...
 	 */
-	public void setWindow(final Window window) {
-		matchThreeController.setWindow(window);
-	}
-	
-	/**
-	 * 
-	 * 
-	 * @param jewelVersion
-	 */
-	public void changeSprites(int jewelVersion) {
-		gridView.changeSprites(jewelVersion);
-	}
-	
-	/**
-	 * 
-	 * 
-	 * @return
-	 */
-	public Button getBackButton() {
-		return buttonPanel.getBackButton();
-	}
-	
-	/**
-	 * 
-	 * 
-	 * @return
-	 */
-	public Button getV1Button() {
-		return buttonPanel.getV1Button();
-	}
-	
-	/**
-	 * 
-	 * 
-	 * @return
-	 */
-	public Button getV2Button() {
-		return buttonPanel.getV2Button();
+	public void playAudio(Audio audio) {
+		// TODO Auto-generated method stub
+		//gridView.playAudio(audio);
 	}
 }

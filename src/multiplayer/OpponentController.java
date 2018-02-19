@@ -1,14 +1,14 @@
 package multiplayer;
 
+import controller.UIController;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
-
-import controller.UIController;
 import model.MatchThreeModel;
+import model.Settings;
 import view.ErrorDialog;
 
 /**
@@ -28,10 +28,11 @@ public class OpponentController
 	 * ...
 	 */
 	public OpponentController(
-			final int port,
-			final OpponentModel model, 
-			final UIController uiController
-		) {
+		final UIController  uiController,
+		final Settings      settings,
+		final OpponentModel model,
+		final int           port
+	) {
 		this.model = model;
 		this.uiController = uiController;
 		this.port = port;

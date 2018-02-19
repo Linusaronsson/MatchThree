@@ -4,7 +4,9 @@ import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-
+import java.net.SocketException;
+import java.net.UnknownHostException;
+import model.Settings;
 import multiplayer.Message;
 import multiplayer.Server;
 import util.Info;
@@ -15,8 +17,11 @@ import view.MultiplayerMenuView;
  * ...
  */
 public class MultiplayerSetupController
-{	
-	/** ... */
+{
+	/** Default port number. */
+	private static final int PORT_NUMBER = 3333;
+	
+	/** View to control. */
 	private MultiplayerMenuView multiplayerMenuView = null;
 	
 	/** Reference to UI controller. */
@@ -29,8 +34,9 @@ public class MultiplayerSetupController
 	 * @param parent       ...
 	 */
 	public MultiplayerSetupController(
+		final Container    parent,
 		final UIController uiController,
-		final Container    parent
+		final Settings     settings
 	) {
 		// Validate arguments //
 		if (uiController == null) {
@@ -42,16 +48,21 @@ public class MultiplayerSetupController
 		
 		this.uiController = uiController;
 		
+		// Create view //
 		multiplayerMenuView = new MultiplayerMenuView();
 		
 		// Add event listeners //
 		multiplayerMenuView.addConnectListener(event -> {
-			// Handle connection //
-			handleConnect(event);
+			// Initiate connection //
+			connect();
 		});
 		
 		// Add view to parent //
 		parent.add(multiplayerMenuView);
+		
+		// Start server //
+		// TODO: Close server when leaving multiplayer.
+		new Server(uiController, PORT_NUMBER).start();
 	}
 	
 	/**
@@ -59,28 +70,41 @@ public class MultiplayerSetupController
 	 *
 	 * @param event Event object.
 	 */
-	private void handleConnect(final ActionEvent event) {
-		DatagramSocket client = null;
+	private void connect() {
+		// Get value from fields //
+		String hostText = multiplayerMenuView.getIp();
+		String portText = multiplayerMenuView.getPort();
+		
+		// Parse values //
+		InetAddress host = null;
+		int         port = Integer.parseInt(portText);
 		try {
-			InetAddress ip = InetAddress.getByName(multiplayerMenuView.getIp());
-			int port = Integer.parseInt(multiplayerMenuView.getPort());
-			client = new DatagramSocket();
-			Server.sendDatagram(
-				new Message(Message.MessageType.REQUESTED_GAME),
-				client,
-				ip,
-				port
-			);
-		} catch (Exception e1) {
+			host = InetAddress.getByName(hostText);
+		} catch (UnknownHostException exception) {
+			new ErrorDialog("Unknown Host", "Could not resolve host");
+			
+			// Soft return //
+			return;
+		}
+		
+		// Connect //
+		DatagramSocket socket = null;
+		try {
+			Message message = new Message(Message.MessageType.REQUESTED_GAME);
+			socket = new DatagramSocket();
+			Server.sendDatagram(message, socket, host, port);
+		} catch (SocketException exception) {
 			new ErrorDialog(
-				"Error sending game request",
-				"Error"
+				"Network Error",
+				"Socket error while sending game request"
 			);
-			e1.printStackTrace();
+			exception.printStackTrace();
 		} finally {
-			if (client != null) {
-				client.close();
+			if (socket != null) {
+				socket.close();
 			}
 		}
+		
+		uiController.startMultiplayer(null, host, port);
 	}
 }

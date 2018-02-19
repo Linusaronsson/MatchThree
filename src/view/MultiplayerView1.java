@@ -1,6 +1,6 @@
 package view;
 
-import controller.MatchThreeController;
+import controller.GridViewController;
 import controller.UIController;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import javax.swing.JPanel;
 import model.Jewel;
+import model.Settings;
 import multiplayer.OpponentController;
 import multiplayer.OpponentModel;
 import multiplayer.PlayerModel;
@@ -37,7 +38,7 @@ public class MultiplayerView1
 	private MatchThreeUI opponentView = null;
 	
 	/** ... */
-	private MatchThreeController playerController = null;
+	private GridViewController playerController = null;
 	
 	/** ... */
 	private GridView playerGrid = null;
@@ -77,27 +78,29 @@ public class MultiplayerView1
 			// Host sends the board to opponent //
 			playerModel.sendBoard(3333);
 		} else {
-			playerModel = new PlayerModel(board, gameSize, host, port);
+			playerModel   = new PlayerModel(board, gameSize, host, port);
 			opponentModel = new OpponentModel(board, gameSize);
 		}
 		
 		playerModel.setGameStarted(true);
 		
 		playerGrid = new GridView(playerModel, jewelVersion);
-		playerView  = new MatchThreeUI(playerModel, playerGrid);
-		playerController = new MatchThreeController(
-			playerModel,
+		playerView  = new MatchThreeUI();
+		playerController = new GridViewController(
 			playerView,
-			playerGrid
+			uiController,
+			new Settings(),
+			playerModel
 		);
 		
 		opponentGrid = new GridView(opponentModel, jewelVersion);
-		opponentView = new MatchThreeUI(opponentModel, opponentGrid);
+		opponentView = new MatchThreeUI();
 		opponentController = new OpponentController(
-				port,
-				opponentModel,
-				uiController
-			);
+			uiController,
+			new Settings(),
+			opponentModel,
+			port
+		);
 		opponentController.start();
 		
 		// TODO: Use constants for these numbers.
@@ -125,15 +128,6 @@ public class MultiplayerView1
 	 */
 	public void addBackListener(final ActionListener listener) {
 		buttonPanel.addBackListener(listener);
-	}
-	
-	/**
-	 * Set reference to parent window.
-	 *
-	 * @param window The parent window.
-	 */
-	public void setWindow(final Window window) {
-		playerController.setWindow(window);
 	}
 	
 	/**
