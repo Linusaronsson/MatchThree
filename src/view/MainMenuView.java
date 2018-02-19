@@ -24,7 +24,8 @@ public class MainMenuView
 	extends JPanel
 {
 	/** ... */
-	private static final String BUTTON_FONT_NAME = Properties.getButtonFontName();
+	private static final String BUTTON_FONT_NAME =
+		Properties.getButtonFontName();
 	
 	/** ... */
 	private static final int BUTTON_FONT_SIZE = Properties.getButtonFontSize();
@@ -39,13 +40,16 @@ public class MainMenuView
 	private static final int GAP = 10;
 	
 	/** ... */
-	private static final Dimension PREFERRED_DIMENSION = new Dimension(PREFERRED_WIDTH, PREFERRED_HEIGHT);
+	private static final Dimension PREFERRED_DIMENSION =
+		new Dimension(PREFERRED_WIDTH, PREFERRED_HEIGHT);
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND =
+		Properties.getColorBackground();
 	
 	/** ... */
-	private static final JLabel LOGO = new JLabel(new ImageIcon(AssetManager.loadImage("M3.png")));
+	private static final JLabel LOGO =
+		new JLabel(new ImageIcon(AssetManager.loadImage("M3.png")));
 	
 	/** ... */
 	private Button singleplayer = new Button("SINGLEPLAYER");
@@ -68,9 +72,10 @@ public class MainMenuView
 	/** ... */
 	private Button quit = new Button("QUIT");
 	
-	/** Update if more buttons added */
-	private Button[] buttons = new Button[] 
-			{singleplayer, multiplayer, load, highscore, settings, credits, quit};
+	/** ... */
+	private Button[] buttons = new Button[] {
+		singleplayer, multiplayer, load, highscore, settings, credits, quit
+	};
 	
 	/** ... */
 	private JPanel buttonPanel = new JPanel();
@@ -118,7 +123,11 @@ public class MainMenuView
 	 * @return
 	 */
 	private String emptySpaces() {
-		return "                                                                                    ";
+		String spaces = "";
+		spaces += "                                        ";
+		spaces += "                                        ";
+		spaces += "    ";
+		return spaces;
 	}
 	
 	/**
@@ -136,7 +145,11 @@ public class MainMenuView
 				),
 				BorderFactory.createLineBorder(Color.GREEN, 1)
 			));
-			Font font = new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE);
+			Font font = new Font(
+				BUTTON_FONT_NAME,
+				Font.PLAIN,
+				BUTTON_FONT_SIZE
+			);
 			button.setFont(font);
 		}
 	}

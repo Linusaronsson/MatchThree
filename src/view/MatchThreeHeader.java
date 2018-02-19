@@ -17,10 +17,12 @@ public class MatchThreeHeader
 	private Container scoreView = new JPanel();
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND =
+		Properties.getColorBackground();
 	
 	/** ... */
-	private static final Color COLOR_PANEL = COLOR_BACKGROUND.brighter().brighter();
+	private static final Color COLOR_PANEL =
+		COLOR_BACKGROUND.brighter().brighter();
 	
 	/**
 	 * Create `MatchThreeHeader`.

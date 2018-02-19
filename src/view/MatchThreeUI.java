@@ -14,7 +14,8 @@ public class MatchThreeUI
 	extends JPanel
 {
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND =
+		Properties.getColorBackground();
 	
 	/** Grid container. */
 	private Container gridView = new JPanel();

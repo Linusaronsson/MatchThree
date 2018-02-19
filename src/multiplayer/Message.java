@@ -13,10 +13,13 @@ public class Message
 	
 	public enum MessageType
 	{
-		ACCEPTED_GAME, //game accepted: notifies that game was accepted, and sends initial generated board.
+		// Game accepted: notifies that game was accepted, and sends initial
+		// generated board.
+		ACCEPTED_GAME,
 		CELL_UPDATE,
 		END_GAME,
-		REQUESTED_GAME, //game request: (empty payload)
+		// Game request: (empty payload).
+		REQUESTED_GAME,
 		SCORE_UPDATE
 	}
 	

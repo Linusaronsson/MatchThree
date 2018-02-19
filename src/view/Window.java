@@ -22,7 +22,8 @@ public class Window
 	private JPanel content = null;
 
 	/** ... */
-	private static final ImageIcon icon = new ImageIcon(AssetManager.loadImage("M3.png"));
+	private static final ImageIcon icon =
+		new ImageIcon(AssetManager.loadImage("M3.png"));
 	
 	/**
 	 * Create `Window`.

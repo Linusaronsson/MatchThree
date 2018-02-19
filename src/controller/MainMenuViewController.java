@@ -20,16 +20,19 @@ public class MainMenuViewController
 	private UIController uiController = null;
 	
 	/** ... */
-	private static final String BUTTON_FONT_NAME = Properties.getButtonFontName();
+	private static final String BUTTON_FONT_NAME =
+		Properties.getButtonFontName();
 	
 	/** ... */
 	private static final int BUTTON_FONT_SIZE = Properties.getButtonFontSize();
 	
 	/** ... */
-	private static final Font HOVERFONT = new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE+5);
+	private static final Font HOVERFONT =
+		new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE + 5);
 	
 	/** ... */
-	private static final Font FONT = new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE);
+	private static final Font FONT =
+		new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE);
 	
 	/**
 	 * 

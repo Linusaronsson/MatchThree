@@ -27,10 +27,12 @@ public class ButtonPanel
 	private static final int GAP_VERTICAL = 4;
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND =
+		Properties.getColorBackground();
 	
 	/** ... */
-	private static final Color COLOR_PANEL = COLOR_BACKGROUND.brighter().brighter();
+	private static final Color COLOR_PANEL =
+		COLOR_BACKGROUND.brighter().brighter();
 	
 	/** ... */
 	private static final BufferedImage IMAGE_BACK =

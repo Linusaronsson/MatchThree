@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.border.Border;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
@@ -35,7 +36,8 @@ public class GridView
 	private static final int CELL_FONT_SIZE = 14;
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND =
+		Properties.getColorBackground();
 	
 	/** ... */
 	private static final Color COLOR_DIAMOND = new Color(0xB9, 0xF2, 0xFF);
@@ -294,7 +296,11 @@ public class GridView
 			button.setFont(font);
 			
 			// Set layout //
-			grid.setBorder(BorderFactory.createLineBorder(COLOR_BACKGROUND, 10));
+			Border border = BorderFactory.createLineBorder(
+				COLOR_BACKGROUND,
+				10
+			);
+			grid.setBorder(border);
 			
 			// Set background //
 			grid.setBackground(COLOR_BACKGROUND);

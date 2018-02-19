@@ -147,7 +147,9 @@ public class Server
 								inGame = true;
 								opponentInfo = new OpponentInfo(
 									in.getAddress(),
-									2000, // TODO: change to in.getPort() (problems for localhost)
+									// TODO: Change to in.getPort() (problems
+									//       for localhost).
+									2000,
 									null
 								);
 								ui.changeView(View.MULTIPLAYER_GAME);

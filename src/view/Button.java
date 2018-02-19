@@ -204,7 +204,11 @@ public class Button
 		
 		Graphics2D maskGraphics = mask.createGraphics();
 		maskGraphics.drawImage(image, 0, 0, null);
-		maskGraphics.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_IN, 1f));
+		AlphaComposite composite = AlphaComposite.getInstance(
+			AlphaComposite.SRC_IN,
+			1f
+		);
+		maskGraphics.setComposite(composite);
 		maskGraphics.setColor(color);
 		maskGraphics.fillRect(0, 0, image.getWidth(), image.getHeight());
 		maskGraphics.dispose();

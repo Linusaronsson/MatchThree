@@ -128,10 +128,16 @@ public class GridViewController
 		
 		// Swap cells //
 		switch (matchThreeModel.move(from, to)) {
-			case OK:     AssetManager.playAudio(AssetManager.Audio.SWAP);    break;
-			case BAD:    AssetManager.playAudio(AssetManager.Audio.INVALID); break;
-			case CANCEL: break;
-			default: throw new IllegalStateException();
+			case OK:
+				AssetManager.playAudio(AssetManager.Audio.SWAP);
+				break;
+			case BAD:
+				AssetManager.playAudio(AssetManager.Audio.INVALID);
+				break;
+			case CANCEL:
+				break;
+			default:
+				throw new IllegalStateException();
 		}
 		
 		// Update view //
