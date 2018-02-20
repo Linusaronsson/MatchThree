@@ -5,7 +5,8 @@ import java.awt.Container;
 import java.awt.LayoutManager;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import util.AssetManager.Audio;
+
+import util.Properties;
 
 /**
  * ...
@@ -14,6 +15,14 @@ import util.AssetManager.Audio;
 public class SingleplayerView
 	extends JPanel
 {
+	/** ... */
+	private static final Color COLOR_BACKGROUND =
+			Properties.getColorBackground();
+	
+	/** ... */
+	private static final Color COLOR_PANEL =
+			COLOR_BACKGROUND.brighter().brighter();
+	
 	/** ... */
 	private Container buttonPanel = new JPanel();
 	
@@ -26,7 +35,9 @@ public class SingleplayerView
 	public SingleplayerView() {
 		// Set properties //
 		// TODO: Stopgap hack.
-		setBackground(new Color(0x11, 0x11, 0x11));
+		setBackground(COLOR_PANEL);
+		buttonPanel.setBackground(COLOR_PANEL);
+		gameView.setBackground(COLOR_PANEL);
 		
 		// Set layout //
 		LayoutManager layout = new BoxLayout(this, BoxLayout.X_AXIS);

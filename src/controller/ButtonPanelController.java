@@ -151,7 +151,7 @@ public class ButtonPanelController
 			target.setMask(COLOR_BACKGROUND, 0.5f);
 			
 			// Play audio //
-			AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
+			//AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
 		}
 		
 		@Override

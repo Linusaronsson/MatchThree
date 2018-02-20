@@ -1,12 +1,12 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Font;
 import javax.swing.JPanel;
 import model.Settings;
-import util.AssetManager;
 import util.Properties;
 import view.Button;
 import view.MainMenuView;
@@ -24,8 +24,14 @@ public class MainMenuViewController
 	private static final int BUTTON_FONT_SIZE = Properties.getButtonFontSize();
 	
 	/** ... */
+	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	
+	/** ... */
+	private static final int FONT_DIFF_SIZE = 5;
+	
+	/** ... */
 	private static final Font HOVERFONT =
-		new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE + 5);
+		new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE + FONT_DIFF_SIZE);
 	
 	/** ... */
 	private static final Font FONT =
@@ -59,11 +65,11 @@ public class MainMenuViewController
 		@Override public void mouseReleased(final MouseEvent e) { }
 		
 		@Override public void mouseEntered(final MouseEvent e) {
-			panel.setBackground(Properties.getColorBackground().brighter());
+			panel.setBackground(COLOR_BACKGROUND.brighter());
 		}
 		
 		@Override public void mouseExited(final MouseEvent e) {
-			panel.setBackground(Properties.getColorBackground());
+			panel.setBackground(COLOR_BACKGROUND);
 		}
 	}
 	
@@ -93,7 +99,7 @@ public class MainMenuViewController
 		
 		@Override public void mouseEntered(final MouseEvent e) {
 			//button.setLabelForeground(Color.GREEN, 1f);
-			AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
+			//AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
 			button.setBorderPainted(true);
 			button.setFont(HOVERFONT);
 		}

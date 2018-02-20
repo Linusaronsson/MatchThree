@@ -116,7 +116,7 @@ public class Button
 	public void setLabelForeground(final Color color, final float alpha) {
 		// Validate arguments //
 		if (color == null) {
-			throw new IllegalArgumentException();
+			throw new NullPointerException();
 		}
 		if (alpha < 0f || alpha > 1f) {
 			throw new IllegalArgumentException();
@@ -141,7 +141,7 @@ public class Button
 	public void setMask(final Color color, final float alpha) {
 		// Validate arguments //
 		if (color == null) {
-			throw new IllegalArgumentException();
+			throw new NullPointerException();
 		}
 		if (alpha < 0f || alpha > 1f) {
 			throw new IllegalArgumentException();
@@ -158,6 +158,8 @@ public class Button
 		
 		repaint();
 	}
+	
+	//private void 
 	
 	/**
 	 * ...

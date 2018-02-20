@@ -11,7 +11,7 @@ import view.MatchThreeUI;
 public class MatchThreeUIController
 {
 	/** Default game size. */
-	private static final int GAME_SIZE = 6;
+	private static final int GAME_SIZE = Settings.getGameSize();
 	
 	/** GridViewController reference */
 	private GridViewController gridViewController = null;

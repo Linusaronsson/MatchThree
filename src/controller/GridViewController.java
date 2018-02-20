@@ -33,7 +33,7 @@ import view.SaveDialog;
 public class GridViewController
 {
 	/** Default game size. */
-	private static final int GAME_SIZE = 6;
+	private static final int GAME_SIZE = Settings.getGameSize();
 	
 	/** ... */
 	private static final Color COLOR_BACKGROUND =

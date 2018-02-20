@@ -8,7 +8,7 @@ import java.awt.Color;
 public final class Properties
 {
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker();
+	private static final Color COLOR_BACKGROUND = Color.DARK_GRAY.darker().darker();
 	
 	/** ... */
 	private static final String BUTTON_FONT_NAME = "Impact";

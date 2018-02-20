@@ -17,6 +17,10 @@ public class MatchThreeUI
 	private static final Color COLOR_BACKGROUND =
 		Properties.getColorBackground();
 	
+	/** ... */
+	private static final Color COLOR_PANEL =
+		COLOR_BACKGROUND.brighter().brighter();
+	
 	/** Grid container. */
 	private Container gridView = new JPanel();
 	
@@ -31,6 +35,8 @@ public class MatchThreeUI
 		// Set properties //
 		// TODO: Stopgap hack.
 		setBackground(COLOR_BACKGROUND);
+		headerView.setBackground(COLOR_PANEL);
+		gridView.setBackground(COLOR_PANEL);
 		
 		// Set layout //
 		setLayout(new BorderLayout());

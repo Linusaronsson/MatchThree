@@ -136,16 +136,15 @@ public class GridView
 		// Bind to model //
 		model.addObserver(this);
 		
+		// Set layout //
+		setLayout(new GridLayout());
+		
 		// Load external resources //
 		initGraphics(style);
 		
-		// Set layout //
-		setLayout(new BorderLayout());
-		setBorder(BorderFactory.createLineBorder(Color.WHITE));
-		
 		// Construct grid //
 		JPanel grid = createGrid();
-		add(grid, BorderLayout.CENTER);
+		add(grid);
 	}
 	
 	/**
@@ -240,6 +239,22 @@ public class GridView
 		int width = model.getWidth();
 		JPanel grid = new JPanel(new GridLayout(width, width, GAP, GAP));
 		
+		// Set layout //
+		Border border = BorderFactory.createCompoundBorder(
+			BorderFactory.createLineBorder(
+				Color.WHITE,
+				1
+			),
+			BorderFactory.createLineBorder(
+				COLOR_BACKGROUND,
+				10
+			)
+		);
+		grid.setBorder(border);
+					
+		// Set background //
+		grid.setBackground(COLOR_BACKGROUND);
+		
 		// Fill grid //
 		board = new Cell[width * width];
 		for (int i = 0; i < width * width; i++) {
@@ -252,19 +267,8 @@ public class GridView
 			board[i] = button;
 			
 			// Set button properties //
-			//button.addMouseListener(new CellHoverListener(button));
 			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
 			button.setFont(font);
-			
-			// Set layout //
-			Border border = BorderFactory.createLineBorder(
-				COLOR_BACKGROUND,
-				10
-			);
-			grid.setBorder(border);
-			
-			// Set background //
-			grid.setBackground(COLOR_BACKGROUND);
 			
 			// Update button state from view //
 			updateCell(x, y, model.get(x, y));
