@@ -49,9 +49,14 @@ public class SingleplayerViewController
 		
 		// Create button panel //
 		Container buttonPanel = singleplayerView.getButtonPanel();
-		GridViewController gridViewController = matchThreeUIController.getGridViewController();
-		ButtonPanelController buttonPanelController =
-			new ButtonPanelController(buttonPanel, uiController, gridViewController, settings);
+		GridViewController gridViewController =
+			matchThreeUIController.getGridViewController();
+		ButtonPanelController buttonPanelController = new ButtonPanelController(
+			buttonPanel,
+			uiController,
+			gridViewController,
+			settings
+		);
 		
 		// Add view to parent //
 		parent.add(singleplayerView);

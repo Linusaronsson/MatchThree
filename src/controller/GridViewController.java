@@ -9,7 +9,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
@@ -133,10 +132,10 @@ public class GridViewController
 			// Handle click //
 			handleAction(event);
 		});
-		for(Cell cell : gridView.getBoard()) {
+		for (Cell cell : gridView.getBoard()) {
 			// Handle cell hover actions //
 			gridView.addCellHoverListener(new CellHoverListener(cell), cell);
-		}			
+		}
 		
 		// Add view to parent //
 		parent.add(gridView);
@@ -145,7 +144,7 @@ public class GridViewController
 	/**
 	 * Change images on buttons.
 	 *
-	 * @param i Jewel version.
+	 * @param style Visual style.
 	 */
 	public void changeSprites(final Style style) {
 		gridView.changeSprites(style);

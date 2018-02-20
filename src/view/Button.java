@@ -148,6 +148,13 @@ public class Button
 		repaint();
 	}
 	
+	/**
+	 * ...
+	 *
+	 * @param color ...
+	 * @param alpha ...
+	 * @return      ...
+	 */
 	private Color getNewColor(final Color color, final float alpha) {
 		return new Color(
 			(float) color.getRed()   / 255f,

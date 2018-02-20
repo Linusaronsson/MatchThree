@@ -19,7 +19,8 @@ import view.ButtonPanel;
 public class ButtonPanelController
 {
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND =
+		Properties.getColorBackground();
 	
 	/** Button panel view. */
 	private ButtonPanel buttonPanel = new ButtonPanel();
@@ -67,7 +68,7 @@ public class ButtonPanelController
 		}
 		
 		@Override
-		public void mousePressed(final MouseEvent e) { 
+		public void mousePressed(final MouseEvent e) {
 			AssetManager.playAudio(AssetManager.Audio.SELECT);
 		}
 		
@@ -82,7 +83,7 @@ public class ButtonPanelController
 		implements ActionListener
 	{
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(final ActionEvent e) {
 			uiController.changeView(UIController.View.MAIN_MENU);
 		}
 		
@@ -95,7 +96,7 @@ public class ButtonPanelController
 		implements ActionListener
 	{
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(final ActionEvent e) {
 			// Remember chosen graphical style after back //
 			uiController.setStyle(Style.CLASSIC);
 			// Change graphical style //
@@ -111,7 +112,7 @@ public class ButtonPanelController
 		implements ActionListener
 	{
 		@Override
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(final ActionEvent e) {
 			// Remember chosen graphical style after back //
 			uiController.setStyle(Style.STEEL);
 			// Change graphical style //
@@ -122,9 +123,10 @@ public class ButtonPanelController
 	/**
 	 * Constructor.
 	 *
-	 * @param parent       ...
-	 * @param uiController ...
-	 * @param settings     ...
+	 * @param parent             ...
+	 * @param uiController       ...
+	 * @param gridViewController ...
+	 * @param settings           ...
 	 */
 	public ButtonPanelController(
 		final Container          parent,

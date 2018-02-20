@@ -24,14 +24,18 @@ public class MainMenuViewController
 	private static final int BUTTON_FONT_SIZE = Properties.getButtonFontSize();
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND =
+		Properties.getColorBackground();
 	
 	/** ... */
 	private static final int FONT_DIFF_SIZE = 5;
 	
 	/** ... */
-	private static final Font HOVERFONT =
-		new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE + FONT_DIFF_SIZE);
+	private static final Font HOVERFONT = new Font(
+		BUTTON_FONT_NAME,
+		Font.PLAIN,
+		BUTTON_FONT_SIZE + FONT_DIFF_SIZE
+	);
 	
 	/** ... */
 	private static final Font FONT =

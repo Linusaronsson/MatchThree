@@ -13,12 +13,12 @@ public class Settings
 	
 	/** ... */
 	private Style style = Style.CLASSIC;
-	/** Graphical style. */
-	// TODO: Use enum instead.
+	
 	/**
-	 *
+	 * Graphical style.
 	 */
-	public enum Style {
+	public enum Style
+	{
 		/** ... */
 		CLASSIC,
 		
@@ -32,32 +32,36 @@ public class Settings
 	public Settings() { }
 	
 	/**
-	 * 
-	 * @param style
+	 * ...
+	 *
+	 * @param style ...
 	 */
-	public void setStyle(Style style) {
+	public void setStyle(final Style style) {
 		this.style = style;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * ...
+	 *
+	 * @return ...
 	 */
 	public Style getStyle() {
 		return style;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * ...
+	 *
+	 * @return ...
 	 */
 	public static int getGameSize() {
 		return GAME_SIZE;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * ...
+	 *
+	 * @return ...
 	 */
 	public static int getPortNumber() {
 		return PORT_NUMBER;

@@ -5,7 +5,6 @@ import java.awt.Container;
 import java.awt.LayoutManager;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-
 import util.Properties;
 
 /**

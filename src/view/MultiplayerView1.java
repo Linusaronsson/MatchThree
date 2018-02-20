@@ -12,7 +12,6 @@ import java.net.InetAddress;
 import javax.swing.JPanel;
 import model.Jewel;
 import model.Settings;
-import model.Settings.Style;
 import multiplayer.OpponentController;
 import multiplayer.OpponentModel;
 import multiplayer.PlayerModel;
@@ -29,7 +28,8 @@ public class MultiplayerView1
 	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND =
+		Properties.getColorBackground();
 	
 	/** ... */
 	private static final Color COLOR_OPPONENT_BACKGROUND =
@@ -70,7 +70,7 @@ public class MultiplayerView1
 	 * @param board        ...
 	 * @param gameSize     ...
 	 * @param uiController ...
-	 * @param jewelVersion ...
+	 * @param settings     ...
 	 * @throws IOException On file system access errors.
 	 */
 	public MultiplayerView1(

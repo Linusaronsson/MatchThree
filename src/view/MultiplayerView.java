@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import javax.swing.JPanel;
-
 import model.Settings;
 
 /**

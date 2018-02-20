@@ -161,8 +161,12 @@ public class GridView
 	 * Add listener for board cell actions (mouse hovering).
 	 *
 	 * @param listener Event handler.
+	 * @param cell     ...
 	 */
-	public void addCellHoverListener(final MouseListener listener, final Cell cell) {
+	public void addCellHoverListener(
+		final MouseListener listener,
+		final Cell          cell
+	) {
 		// Validate argument //
 		if (listener == null) {
 			throw new NullPointerException();
@@ -173,7 +177,7 @@ public class GridView
 	
 	/**
 	 * ...
-	 * 
+	 *
 	 * @return ...
 	 */
 	public Cell[] getBoard() {
@@ -183,7 +187,7 @@ public class GridView
 	/**
 	 * Change images on buttons.
 	 *
-	 * @param i Jewel version.
+	 * @param style Visual style.
 	 */
 	public void changeSprites(final Style style) {
 		switch (style) {
@@ -328,7 +332,7 @@ public class GridView
 	/**
 	 * Load external image resources.
 	 *
-	 * @param jewelversion ...
+	 * @param style Visual style.
 	 */
 	private void initGraphics(final Style style) {
 		// Load images //
