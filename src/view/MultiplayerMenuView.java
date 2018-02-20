@@ -33,7 +33,8 @@ public class MultiplayerMenuView
 		port.setPreferredSize(new Dimension(200, 24));
 		
 		// Assemble view //
-		add(back);
+		// TODO: Add a back button here somehow
+		//add(back);
 		add(connect);
 		add(new JLabel("IP: "));
 		add(ip);

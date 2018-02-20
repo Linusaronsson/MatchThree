@@ -16,6 +16,7 @@ import model.Settings.Style;
 import multiplayer.OpponentController;
 import multiplayer.OpponentModel;
 import multiplayer.PlayerModel;
+import util.Properties;
 
 /**
  * ...
@@ -26,6 +27,9 @@ public class MultiplayerView1
 {
 	/** Default port number. */
 	private static final int PORT_NUMBER = Settings.getPortNumber();
+	
+	/** ... */
+	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
 	
 	/** ... */
 	private static final Color COLOR_OPPONENT_BACKGROUND =

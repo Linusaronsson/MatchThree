@@ -41,7 +41,7 @@ public class MultiplayerView2
 	 */
 	public MultiplayerView2(
 			final MatchThreeModel matchThreeModel,
-			final int             jewelVersion
+			final Settings        settings
 	) {
 		// Set layout //
 		setLayout(new FlowLayout());
@@ -50,7 +50,7 @@ public class MultiplayerView2
 		setBackground(Color.BLACK);
 		
 		// Create game //
-		gridView = new GridView(matchThreeModel, jewelVersion);
+		gridView = new GridView(matchThreeModel, settings.getStyle());
 		matchThreeUI = new MatchThreeUI(matchThreeModel, gridView);
 		matchThreeController = new MatchThreeController(
 			matchThreeModel,
