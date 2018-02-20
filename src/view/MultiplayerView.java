@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import javax.swing.JPanel;
 
+import model.Settings;
+
 /**
  * Multiplayer game screen.
  */
@@ -21,7 +23,7 @@ public class MultiplayerView
 	private static final int GAP_VERTICAL = 150;
 	
 	/** Default port number. */
-	private static final int PORT_NUMBER = 3333;
+	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
 	/** ... */
 	private ButtonPanel buttonPanel = new ButtonPanel();

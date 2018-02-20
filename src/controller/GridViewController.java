@@ -10,8 +10,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
-
 import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
@@ -32,8 +30,6 @@ import view.SaveDialog;
  */
 public class GridViewController
 {
-	/** Default game size. */
-	private static final int GAME_SIZE = Settings.getGameSize();
 	
 	/** ... */
 	private static final Color COLOR_BACKGROUND =

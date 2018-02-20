@@ -9,7 +9,6 @@ import java.awt.event.MouseListener;
 import model.Settings;
 import model.Settings.Style;
 import util.AssetManager;
-import util.AssetManager.Audio;
 import util.Properties;
 import view.Button;
 import view.ButtonPanel;
@@ -30,99 +29,6 @@ public class ButtonPanelController
 	
 	/** Reference to GridViewController controller. */
 	private GridViewController gridViewController = null;
-	
-	/**
-	 * Handles button actions.
-	 */
-	final class ButtonListener
-		implements ActionListener
-	{
-		/** ... */
-		private Button target = null;
-		
-		/**
-		 * Constructor.
-		 *
-		 * @param target Target to bind to.
-		 */
-		private ButtonListener(final Button target) {
-			this.target = target;
-		}
-		
-		@Override
-		public void actionPerformed(final ActionEvent event) {
-			// TODO: Do not use mnemonic for this!
-			switch (target.getMnemonic()) {
-				case 0:
-					// Go to main menu //
-					uiController.changeView(UIController.View.MAIN_MENU);
-					break;
-				case 1:
-					// Remember chosen graphical style after back //
-					uiController.setStyle(Style.CLASSIC);
-					// Change graphical style //
-					gridViewController.changeSprites(Style.CLASSIC);
-					break;
-				case 2:
-					// Remember chosen graphical style after back //
-					uiController.setStyle(Style.STEEL);
-					// Change graphical style //
-					gridViewController.changeSprites(Style.STEEL);
-					break;
-				default:
-					throw new IllegalStateException(
-						"Unknown value for button mnemonic"
-					);
-			}
-		}
-	}
-	
-	/**
-	 * Plays audio on button press.
-	 */
-	final class ClickListener
-		implements MouseListener
-	{
-		/** ... */
-		private Button target = null;
-		
-		/**
-		 * Constructor.
-		 *
-		 * @param target Target to bind to.
-		 */
-		private ClickListener(final Button target) {
-			this.target = target;
-		}
-		
-		@Override
-		public void mouseClicked(final MouseEvent e) {
-			// TODO: Do not use mnemonic for this!
-			switch (target.getMnemonic()) {
-				case 0:
-				case 1:
-				case 2:
-					AssetManager.playAudio(AssetManager.Audio.SELECT);
-					break;
-				default:
-					throw new IllegalStateException(
-						"Unknown value for button mnemonic"
-					);
-			}
-		}
-		
-		@Override
-		public void mouseEntered(final MouseEvent e) { }
-		
-		@Override
-		public void mouseExited(final MouseEvent e) { }
-		
-		@Override
-		public void mousePressed(final MouseEvent e) { }
-		
-		@Override
-		public void mouseReleased(final MouseEvent e) { }
-	}
 	
 	/**
 	 * Changes button state on hover.
@@ -161,10 +67,56 @@ public class ButtonPanelController
 		}
 		
 		@Override
-		public void mousePressed(final MouseEvent e) { }
+		public void mousePressed(final MouseEvent e) { 
+			AssetManager.playAudio(AssetManager.Audio.SELECT);
+		}
 		
 		@Override
 		public void mouseReleased(final MouseEvent e) { }
+	}
+	
+	/**
+	 * Handles back button actions.
+	 */
+	final class ButtonBackListener
+		implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			uiController.changeView(UIController.View.MAIN_MENU);
+		}
+		
+	}
+	
+	/**
+	 * Handles version 1 button actions.
+	 */
+	final class ButtonV1Listener
+		implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// Remember chosen graphical style after back //
+			uiController.setStyle(Style.CLASSIC);
+			// Change graphical style //
+			gridViewController.changeSprites(Style.CLASSIC);
+		}
+		
+	}
+	
+	/**
+	 * Handles version 2 button actions.
+	 */
+	final class ButtonV2Listener
+		implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// Remember chosen graphical style after back //
+			uiController.setStyle(Style.STEEL);
+			// Change graphical style //
+			gridViewController.changeSprites(Style.STEEL);
+		}
 	}
 	
 	/**
@@ -189,15 +141,12 @@ public class ButtonPanelController
 		Button buttonBack = buttonPanel.getBackButton();
 		Button buttonV1   = buttonPanel.getV1Button();
 		Button buttonV2   = buttonPanel.getV2Button();
-		buttonPanel.addBackListener(new ButtonListener(buttonBack));
-		buttonPanel.addBackListener(new ClickListener(buttonBack));
 		buttonPanel.addBackListener(new HoverListener(buttonBack));
-		buttonPanel.addButtonV1Listener(new ButtonListener(buttonV1));
-		buttonPanel.addButtonV1Listener(new ClickListener(buttonV1));
 		buttonPanel.addButtonV1Listener(new HoverListener(buttonV1));
-		buttonPanel.addButtonV2Listener(new ButtonListener(buttonV2));
-		buttonPanel.addButtonV2Listener(new ClickListener(buttonV2));
 		buttonPanel.addButtonV2Listener(new HoverListener(buttonV2));
+		buttonPanel.addBackListener(new ButtonBackListener());
+		buttonPanel.addButtonV1Listener(new ButtonV1Listener());
+		buttonPanel.addButtonV2Listener(new ButtonV2Listener());
 		
 		// Add view to parent //
 		parent.add(buttonPanel);

@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import model.MatchThreeModel;
+import model.Settings;
 
 /**
  * ...
@@ -15,7 +16,7 @@ public class MultiplayerView2
 	extends JPanel
 {
 	/** ... */
-	private static final int GAME_SIZE = 6;
+	private static final int GAME_SIZE = Settings.getGameSize();
 	
 	/** ... */
 	private static final int GAP_HORIZONTAL = 10;

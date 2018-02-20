@@ -17,7 +17,7 @@ import view.MultiplayerMenuView;
 public class MultiplayerSetupController
 {
 	/** Default port number. */
-	private static final int PORT_NUMBER = 3333;
+	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
 	/** View to control. */
 	private MultiplayerMenuView multiplayerMenuView = null;

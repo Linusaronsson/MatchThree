@@ -6,11 +6,9 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import javax.sound.sampled.Clip;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import util.AssetManager;
-import util.AssetManager.Audio;
 import util.Properties;
 
 /**
@@ -56,21 +54,6 @@ public class ButtonPanel
 	private Button buttonV2 = null;
 	
 	/**
-	 * ...
-	 */
-	public enum ButtonEnum
-	{
-		/** ... */
-		BACK,
-		
-		/** ... */
-		CLASSIC,
-		
-		/** ... */
-		STEEL
-	}
-	
-	/**
 	 * Create `ButtonPanel`.
 	 */
 	public ButtonPanel() {
@@ -88,17 +71,14 @@ public class ButtonPanel
 		back = new Button();
 		back.setIcon(new ImageIcon(IMAGE_BACK));
 		back.setPreferredSize(new Dimension(50, 50));
-		back.setMnemonic(ButtonEnum.BACK.ordinal());
 		
 		// Create version 1 button //
 		buttonV1 = new Button();
 		buttonV1.setIcon(new ImageIcon(IMAGE_V1));
-		buttonV1.setMnemonic(ButtonEnum.CLASSIC.ordinal());
 		
 		// Create version 2 button //
 		buttonV2 = new Button();
 		buttonV2.setIcon(new ImageIcon(IMAGE_V2));
-		buttonV2.setMnemonic(ButtonEnum.STEEL.ordinal());
 		
 		// Create panel for the version buttons //
 		JPanel panel = createVersionButtonsPanel(buttonV1, buttonV2);
@@ -128,26 +108,8 @@ public class ButtonPanel
 	 *
 	 * @param listener Event listener to use.
 	 */
-	public void addBackListener(final ActionListener listener) {
-		back.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for back button.
-	 *
-	 * @param listener Event listener to use.
-	 */
 	public void addBackListener(final MouseListener listener) {
 		back.addMouseListener(listener);
-	}
-	
-	/**
-	 * Add listener for version 1 button.
-	 *
-	 * @param listener Event listener to use.
-	 */
-	public void addButtonV1Listener(final ActionListener listener) {
-		buttonV1.addActionListener(listener);
 	}
 	
 	/**
@@ -164,8 +126,26 @@ public class ButtonPanel
 	 *
 	 * @param listener Event listener to use.
 	 */
-	public void addButtonV2Listener(final ActionListener listener) {
-		buttonV2.addActionListener(listener);
+	public void addButtonV2Listener(final MouseListener listener) {
+		buttonV2.addMouseListener(listener);
+	}
+	
+	/**
+	 * Add listener for back button.
+	 *
+	 * @param listener Event listener to use.
+	 */
+	public void addBackListener(final ActionListener listener) {
+		back.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for version 1 button.
+	 *
+	 * @param listener Event listener to use.
+	 */
+	public void addButtonV1Listener(final ActionListener listener) {
+		buttonV1.addActionListener(listener);
 	}
 	
 	/**
@@ -173,8 +153,8 @@ public class ButtonPanel
 	 *
 	 * @param listener Event listener to use.
 	 */
-	public void addButtonV2Listener(final MouseListener listener) {
-		buttonV2.addMouseListener(listener);
+	public void addButtonV2Listener(final ActionListener listener) {
+		buttonV2.addActionListener(listener);
 	}
 	
 	/**

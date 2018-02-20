@@ -3,6 +3,7 @@ package view;
 import controller.GridViewController;
 import controller.UIController;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.GridLayout;
@@ -24,7 +25,11 @@ public class MultiplayerView1
 	extends JPanel
 {
 	/** Default port number. */
-	private static final int PORT_NUMBER = 3333;
+	private static final int PORT_NUMBER = Settings.getPortNumber();
+	
+	/** ... */
+	private static final Color COLOR_OPPONENT_BACKGROUND =
+		COLOR_BACKGROUND.brighter().brighter().brighter();
 	
 	/** ... */
 	private ButtonPanel buttonPanel = new ButtonPanel();

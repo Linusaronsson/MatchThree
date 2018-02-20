@@ -35,7 +35,7 @@ public class Button
 	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
 	
 	/** ... */
-	private Color color = new Color(0, 0, 0, 0f);
+	private Color color = new Color(0, 0, 0, 0);
 	
 	/** ... */
 	private JLabel label = new JLabel();
@@ -122,13 +122,7 @@ public class Button
 			throw new IllegalArgumentException();
 		}
 		
-		Color newColor = new Color(
-			(float) color.getRed()   / 255f,
-			(float) color.getGreen() / 255f,
-			(float) color.getBlue()  / 255f,
-			alpha
-		);
-		
+		Color newColor = getNewColor(color, alpha);
 		label.setForeground(newColor);
 	}
 	
@@ -147,47 +141,21 @@ public class Button
 			throw new IllegalArgumentException();
 		}
 		
-		Color newColor = new Color(
-			(float) color.getRed()   / 255f,
-			(float) color.getGreen() / 255f,
-			(float) color.getBlue()  / 255f,
-			alpha
-		);
+		Color newColor = getNewColor(color, alpha);
 		firePropertyChange("color", this.color, newColor);
 		this.color = newColor;
 		
 		repaint();
 	}
 	
-	//private void 
-	
-	/**
-	 * ...
-	 *
-	 * @param alpha ...
-	 */
-	/*public void setAlpha(final float alpha) {
-		// TODO: Avoid this.
-		float alphaOut = 1 - alpha;
-		
-		// Validate argument //
-		if (alphaOut < 0f || alphaOut > 1f) {
-			throw new IllegalArgumentException();
-		}
-		
-		Color alphaColor = new Color(
+	private Color getNewColor(final Color color, final float alpha) {
+		return new Color(
 			(float) color.getRed()   / 255f,
 			(float) color.getGreen() / 255f,
 			(float) color.getBlue()  / 255f,
-			alphaOut
+			alpha
 		);
-		
-		firePropertyChange("alpha", color, alphaColor);
-		color = alphaColor;
-		
-		repaint();
 	}
-	*/
 	
 	@Override
 	public void setFont(final Font font) {

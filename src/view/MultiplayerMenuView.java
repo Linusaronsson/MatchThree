@@ -33,6 +33,7 @@ public class MultiplayerMenuView
 		port.setPreferredSize(new Dimension(200, 24));
 		
 		// Assemble view //
+		add(back);
 		add(connect);
 		add(new JLabel("IP: "));
 		add(ip);

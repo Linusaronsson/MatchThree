@@ -26,7 +26,8 @@ public class MainMenuView
 		Properties.getButtonFontName();
 	
 	/** ... */
-	private static final int BUTTON_FONT_SIZE = Properties.getButtonFontSize();
+	private static final int BUTTON_FONT_SIZE =
+			Properties.getButtonFontSize();
 	
 	/** ... */
 	private static final int PREFERRED_WIDTH = 400;
@@ -95,7 +96,7 @@ public class MainMenuView
 		setProperties(buttons);
 		
 		// Set button panel properties //
-		buttonPanel.setLayout(new GridLayout(7, 1, GAP, GAP));
+		buttonPanel.setLayout(new GridLayout(buttons.length, 1, GAP, GAP));
 		buttonPanel.setBackground(COLOR_BACKGROUND);
 		buttonPanel.setBorder(
 			BorderFactory.createCompoundBorder(

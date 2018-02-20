@@ -1,9 +1,7 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -60,10 +58,6 @@ public class GridView
 	
 	/** ... */
 	private static final Color ACTIVE_CELL_COLOR = Color.RED;
-	
-	/** ... */
-	private static final Color COLOR_OPPONENT_BACKGROUND =
-		COLOR_BACKGROUND.brighter().brighter().brighter();
 	
 	/** ... */
 	private static final int GAP = 2;
