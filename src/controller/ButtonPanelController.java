@@ -2,8 +2,6 @@ package controller;
 
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import model.Settings;
@@ -77,50 +75,6 @@ public class ButtonPanelController
 	}
 	
 	/**
-	 * Handles back button actions.
-	 */
-	final class ButtonBackListener
-		implements ActionListener
-	{
-		@Override
-		public void actionPerformed(final ActionEvent e) {
-			uiController.changeView(UIController.View.MAIN_MENU);
-		}
-		
-	}
-	
-	/**
-	 * Handles version 1 button actions.
-	 */
-	final class ButtonV1Listener
-		implements ActionListener
-	{
-		@Override
-		public void actionPerformed(final ActionEvent e) {
-			// Remember chosen graphical style after back //
-			uiController.setStyle(Style.CLASSIC);
-			// Change graphical style //
-			gridViewController.changeSprites(Style.CLASSIC);
-		}
-		
-	}
-	
-	/**
-	 * Handles version 2 button actions.
-	 */
-	final class ButtonV2Listener
-		implements ActionListener
-	{
-		@Override
-		public void actionPerformed(final ActionEvent e) {
-			// Remember chosen graphical style after back //
-			uiController.setStyle(Style.STEEL);
-			// Change graphical style //
-			gridViewController.changeSprites(Style.STEEL);
-		}
-	}
-	
-	/**
 	 * Constructor.
 	 *
 	 * @param parent             ...
@@ -146,11 +100,35 @@ public class ButtonPanelController
 		buttonPanel.addBackListener(new HoverListener(buttonBack));
 		buttonPanel.addButtonV1Listener(new HoverListener(buttonV1));
 		buttonPanel.addButtonV2Listener(new HoverListener(buttonV2));
-		buttonPanel.addBackListener(new ButtonBackListener());
-		buttonPanel.addButtonV1Listener(new ButtonV1Listener());
-		buttonPanel.addButtonV2Listener(new ButtonV2Listener());
+		buttonPanel.addBackListener(event -> {
+			// Go to main menu //
+			uiController.changeView(UIController.View.MAIN_MENU);
+		});
+		buttonPanel.addButtonV1Listener(event -> {
+			// Set visual style //
+			setStyle(Style.CLASSIC);
+		});
+		buttonPanel.addButtonV2Listener(event -> {
+			// Set visual style //
+			setStyle(Style.STEEL);
+		});
 		
 		// Add view to parent //
 		parent.add(buttonPanel);
+	}
+	
+	/**
+	 * Set the graphical style.
+	 *
+	 * @param style Visual style.
+	 */
+	private void setStyle(final Style style) {
+		// Update settings //
+		uiController.setStyle(Style.CLASSIC);
+		
+		// Change graphical style //
+		// TODO: Have this occur automatically when setting is changes, to
+		//       prevent inconsistent states.
+		gridViewController.changeSprites(Style.CLASSIC);
 	}
 }
