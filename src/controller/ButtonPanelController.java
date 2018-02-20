@@ -1,12 +1,16 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import model.Settings;
+import model.Settings.Style;
+import util.AssetManager;
 import util.AssetManager.Audio;
+import util.Properties;
 import view.Button;
 import view.ButtonPanel;
 
@@ -15,11 +19,17 @@ import view.ButtonPanel;
  */
 public class ButtonPanelController
 {
+	/** ... */
+	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	
 	/** Button panel view. */
 	private ButtonPanel buttonPanel = new ButtonPanel();
 	
 	/** Reference to UI controller. */
 	private UIController uiController = null;
+	
+	/** Reference to GridViewController controller. */
+	private GridViewController gridViewController = null;
 	
 	/**
 	 * Handles button actions.
@@ -48,12 +58,16 @@ public class ButtonPanelController
 					uiController.changeView(UIController.View.MAIN_MENU);
 					break;
 				case 1:
+					// Remember chosen graphical style after back //
+					uiController.setStyle(Style.CLASSIC);
 					// Change graphical style //
-					uiController.setVersion(1);
+					gridViewController.changeSprites(Style.CLASSIC);
 					break;
 				case 2:
+					// Remember chosen graphical style after back //
+					uiController.setStyle(Style.STEEL);
 					// Change graphical style //
-					uiController.setVersion(2);
+					gridViewController.changeSprites(Style.STEEL);
 					break;
 				default:
 					throw new IllegalStateException(
@@ -88,7 +102,7 @@ public class ButtonPanelController
 				case 0:
 				case 1:
 				case 2:
-					buttonPanel.playAudio(Audio.SELECT);
+					AssetManager.playAudio(AssetManager.Audio.SELECT);
 					break;
 				default:
 					throw new IllegalStateException(
@@ -133,17 +147,17 @@ public class ButtonPanelController
 		
 		@Override
 		public void mouseEntered(final MouseEvent e) {
-			// Set opacity //
-			target.setAlpha(0.5f);
+			// Set mask //
+			target.setMask(COLOR_BACKGROUND, 0.5f);
 			
 			// Play audio //
-			buttonPanel.playAudio(Audio.MOUSEOVER);
+			AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
 		}
 		
 		@Override
 		public void mouseExited(final MouseEvent e) {
-			// Set opacity //
-			target.setAlpha(1.0f);
+			// Set mask //
+			target.setMask(COLOR_BACKGROUND, 0f);
 		}
 		
 		@Override
@@ -161,13 +175,15 @@ public class ButtonPanelController
 	 * @param settings     ...
 	 */
 	public ButtonPanelController(
-		final Container    parent,
-		final UIController uiController,
-		final Settings     settings
+		final Container          parent,
+		final UIController       uiController,
+		final GridViewController gridViewController,
+		final Settings           settings
 	) {
 		// TODO: Validate arguments.
 		
 		this.uiController = uiController;
+		this.gridViewController = gridViewController;
 		
 		// Register event listeners //
 		Button buttonBack = buttonPanel.getBackButton();

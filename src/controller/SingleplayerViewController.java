@@ -2,7 +2,6 @@ package controller;
 
 import java.awt.Container;
 import model.Settings;
-import util.Info;
 import view.SingleplayerView;
 
 /**
@@ -11,7 +10,7 @@ import view.SingleplayerView;
 public class SingleplayerViewController
 {
 	/** Default game size. */
-	private static final int GAME_SIZE = Info.getGameSize();
+	private static final int GAME_SIZE = Settings.getGameSize();
 	
 	/** Reference to UI controller. */
 	private UIController uiController = null;
@@ -50,8 +49,9 @@ public class SingleplayerViewController
 		
 		// Create button panel //
 		Container buttonPanel = singleplayerView.getButtonPanel();
+		GridViewController gridViewController = matchThreeUIController.getGridViewController();
 		ButtonPanelController buttonPanelController =
-			new ButtonPanelController(buttonPanel, uiController, settings);
+			new ButtonPanelController(buttonPanel, uiController, gridViewController, settings);
 		
 		// Add view to parent //
 		parent.add(singleplayerView);

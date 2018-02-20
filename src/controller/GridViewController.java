@@ -1,17 +1,25 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import javax.swing.ImageIcon;
+
 import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
 import model.Serialize;
 import model.Settings;
+import model.Settings.Style;
 import util.AssetManager;
+import util.Properties;
 import view.Cell;
 import view.ErrorDialog;
 import view.GridView;
@@ -26,6 +34,10 @@ public class GridViewController
 {
 	/** Default game size. */
 	private static final int GAME_SIZE = 6;
+	
+	/** ... */
+	private static final Color COLOR_BACKGROUND =
+		Properties.getColorBackground();
 	
 	/** Currently active cell. */
 	private Coordinate activeCell = null;
@@ -42,6 +54,55 @@ public class GridViewController
 	/** Reference to UI controller. */
 	private UIController uiController = null;
 	
+	/**
+	 * Listens for board cell actions (mouse hover).
+	 */
+	final class CellHoverListener
+		implements MouseListener
+	{
+		/** ... */
+		private Cell cell = null;
+		
+		/**
+		 * ...
+		 *
+		 * @param cell ...
+		 */
+		private CellHoverListener(final Cell cell) {
+			// TODO Auto-generated constructor stub
+			this.cell = cell;
+		}
+		
+		@Override
+		public void mouseClicked(final MouseEvent e) {
+			// TODO Auto-generated method stub
+		}
+		
+		@Override
+		public void mousePressed(final MouseEvent e) {
+			// TODO Auto-generated method stub
+		}
+		
+		@Override
+		public void mouseReleased(final MouseEvent e) {
+			// TODO Auto-generated method stub
+		}
+		
+		@Override
+		public void mouseEntered(final MouseEvent e) {
+			// TODO Auto-generated method stub
+			if (!cell.isActive()) {
+				cell.setMask(COLOR_BACKGROUND, 0.5f);
+			}
+		}
+		
+		@Override
+		public void mouseExited(final MouseEvent e) {
+			if (!cell.isActive()) {
+				cell.setMask(COLOR_BACKGROUND, 0f);
+			}
+		}
+	}
 	
 	/**
 	 * Constructor.
@@ -69,16 +130,29 @@ public class GridViewController
 		this.uiController    = uiController;
 		
 		// Create view //
-		gridView = new GridView(matchThreeModel, settings.jewelStyle);
+		gridView = new GridView(matchThreeModel, settings.getStyle());
 		
 		// Add event listeners //
 		gridView.addBoardListener(event -> {
 			// Handle click //
 			handleAction(event);
 		});
+		for(Cell cell : gridView.getBoard()) {
+			// Handle cell hover actions //
+			gridView.addCellHoverListener(new CellHoverListener(cell), cell);
+		}			
 		
 		// Add view to parent //
 		parent.add(gridView);
+	}
+	
+	/**
+	 * Change images on buttons.
+	 *
+	 * @param i Jewel version.
+	 */
+	public void changeSprites(final Style style) {
+		gridView.changeSprites(style);
 	}
 	
 	/**

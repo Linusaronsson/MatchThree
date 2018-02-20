@@ -64,10 +64,10 @@ public class ButtonPanel
 		BACK,
 		
 		/** ... */
-		V1,
+		CLASSIC,
 		
 		/** ... */
-		V2
+		STEEL
 	}
 	
 	/**
@@ -93,12 +93,12 @@ public class ButtonPanel
 		// Create version 1 button //
 		buttonV1 = new Button();
 		buttonV1.setIcon(new ImageIcon(IMAGE_V1));
-		buttonV1.setMnemonic(ButtonEnum.V1.ordinal());
+		buttonV1.setMnemonic(ButtonEnum.CLASSIC.ordinal());
 		
 		// Create version 2 button //
 		buttonV2 = new Button();
 		buttonV2.setIcon(new ImageIcon(IMAGE_V2));
-		buttonV2.setMnemonic(ButtonEnum.V2.ordinal());
+		buttonV2.setMnemonic(ButtonEnum.STEEL.ordinal());
 		
 		// Create panel for the version buttons //
 		JPanel panel = createVersionButtonsPanel(buttonV1, buttonV2);
@@ -178,25 +178,6 @@ public class ButtonPanel
 	}
 	
 	/**
-	 * Get the filename of an audio asset.
-	 *
-	 * @param audio Audio asset to get filename of.
-	 * @return Filename of audio asset.
-	 */
-	// TODO: Avoid code duplication.
-	private String getAudioName(final Audio audio) {
-		String name = null;
-		switch (audio) {
-			case INVALID:   name = "InvalidMove.wav"; break;
-			case SWAP:      name = "Swap.wav";        break;
-			case MOUSEOVER: name = "MouseOver.wav";   break;
-			case SELECT:    name = "Select.wav";      break;
-			default: throw new IllegalStateException();
-		}
-		return name;
-	}
-	
-	/**
 	 * ...
 	 *
 	 * @return ...
@@ -224,26 +205,5 @@ public class ButtonPanel
 	public Button getV2Button() {
 		// TODO Auto-generated method stub
 		return buttonV2;
-	}
-	
-	/**
-	 * Play swap audio clip.
-	 *
-	 * @param audio ...
-	 */
-	// TODO: Avoid code duplication.
-	public void playAudio(final Audio audio) {
-		// Validate argument //
-		if (audio == null) {
-			throw new NullPointerException();
-		}
-		
-		// Get a reference to clip //
-		String name = getAudioName(audio);
-		Clip clip = AssetManager.loadAudio(name);
-		
-		// Rewind and play clip //
-		clip.setFramePosition(0);
-		clip.start();
 	}
 }

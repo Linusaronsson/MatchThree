@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import model.Jewel;
 import model.MatchThreeModel;
 import model.Settings;
+import model.Settings.Style;
 
 /**
  * UI controller. Manages application navigation between views.
@@ -96,9 +97,7 @@ public class UIController
 		}
 		
 		// Update window //
-		// TODO: Avoid recentering window. Is potentially quite frustrating.
 		windowController.pack();
-		windowController.centerWindow();
 	}
 	
 	/**
@@ -106,8 +105,8 @@ public class UIController
 	 *
 	 * @param style ...
 	 */
-	public void setVersion(final int style) {
-		this.settings.jewelStyle = style;
+	public void setStyle(final Style style) {
+		this.settings.setStyle(style);
 	}
 	
 	/**
@@ -130,8 +129,6 @@ public class UIController
 		new MultiplayerViewController(view, this, settings, board, host, port);
 		
 		// Update window //
-		// TODO: Avoid recentering window. Is potentially quite frustrating.
 		windowController.pack();
-		windowController.centerWindow();
 	}
 }

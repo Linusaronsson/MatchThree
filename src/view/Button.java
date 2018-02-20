@@ -138,7 +138,7 @@ public class Button
 	 * @param color ...
 	 * @param alpha ...
 	 */
-	public void setColor(final Color color, final float alpha) {
+	public void setMask(final Color color, final float alpha) {
 		// Validate arguments //
 		if (color == null) {
 			throw new IllegalArgumentException();
@@ -164,7 +164,7 @@ public class Button
 	 *
 	 * @param alpha ...
 	 */
-	public void setAlpha(final float alpha) {
+	/*public void setAlpha(final float alpha) {
 		// TODO: Avoid this.
 		float alphaOut = 1 - alpha;
 		
@@ -185,6 +185,7 @@ public class Button
 		
 		repaint();
 	}
+	*/
 	
 	@Override
 	public void setFont(final Font font) {

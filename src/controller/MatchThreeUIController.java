@@ -13,6 +13,9 @@ public class MatchThreeUIController
 	/** Default game size. */
 	private static final int GAME_SIZE = 6;
 	
+	/** GridViewController reference */
+	private GridViewController gridViewController = null;
+	
 	/**
 	 * Constructor.
 	 *
@@ -45,7 +48,8 @@ public class MatchThreeUIController
 		
 		// Create grid //
 		Container gridView = matchThreeUI.getGrid();
-		new GridViewController(gridView, uiController, settings, model);
+		GridViewController gridViewController = new GridViewController(gridView, uiController, settings, model);
+		this.gridViewController = gridViewController;
 		
 		// Create header //
 		Container headerView = matchThreeUI.getHeader();
@@ -58,5 +62,14 @@ public class MatchThreeUIController
 		
 		// Add view to parent //
 		parent.add(matchThreeUI);
+	}
+	
+	/**
+	 * ...
+	 * 
+	 * @return gridViewController reference
+	 */
+	public GridViewController getGridViewController() {
+		return gridViewController;
 	}
 }

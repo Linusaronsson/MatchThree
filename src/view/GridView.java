@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import model.Coordinate;
 import model.Jewel;
 import model.MatchThreeModel;
+import model.Settings.Style;
 import util.AssetManager;
 import util.Properties;
 
@@ -118,65 +119,13 @@ public class GridView
 	/** ... */
 	private MatchThreeModel model = null;
 	
-	
-	
-	/**
-	 * Listens for board cell actions (mouse hover).
-	 */
-	final class CellHoverListener
-		implements MouseListener
-	{
-		/** ... */
-		private Cell cell = null;
-		
-		/**
-		 * ...
-		 *
-		 * @param cell ...
-		 */
-		private CellHoverListener(final Cell cell) {
-			// TODO Auto-generated constructor stub
-			this.cell = cell;
-		}
-		
-		@Override
-		public void mouseClicked(final MouseEvent e) {
-			// TODO Auto-generated method stub
-		}
-		
-		@Override
-		public void mousePressed(final MouseEvent e) {
-			// TODO Auto-generated method stub
-		}
-		
-		@Override
-		public void mouseReleased(final MouseEvent e) {
-			// TODO Auto-generated method stub
-		}
-		
-		@Override
-		public void mouseEntered(final MouseEvent e) {
-			// TODO Auto-generated method stub
-			if (!cell.isActive()) {
-				cell.setAlpha(0.5f);
-			}
-		}
-		
-		@Override
-		public void mouseExited(final MouseEvent e) {
-			if (!cell.isActive()) {
-				cell.setAlpha(1f);
-			}
-		}
-	}
-	
 	/**
 	 * Create `GridView`.
 	 *
 	 * @param model      MatchThree model to use.
-	 * @param jewelStyle ...
+	 * @param style ...
 	 */
-	public GridView(final MatchThreeModel model, final int jewelStyle) {
+	public GridView(final MatchThreeModel model, final Style style) {
 		// Validate argument //
 		if (model == null) {
 			throw new NullPointerException();
@@ -188,7 +137,7 @@ public class GridView
 		model.addObserver(this);
 		
 		// Load external resources //
-		initGraphics(jewelStyle);
+		initGraphics(style);
 		
 		// Set layout //
 		setLayout(new BorderLayout());
@@ -220,15 +169,22 @@ public class GridView
 	 *
 	 * @param listener Event handler.
 	 */
-	public void addCellHoverListener(final MouseListener listener) {
+	public void addCellHoverListener(final MouseListener listener, final Cell cell) {
 		// Validate argument //
 		if (listener == null) {
 			throw new NullPointerException();
 		}
 		
-		for (Cell cell : board) {
-			cell.addMouseListener(listener);
-		}
+		cell.addMouseListener(listener);
+	}
+	
+	/**
+	 * ...
+	 * 
+	 * @return ...
+	 */
+	public Cell[] getBoard() {
+		return board;
 	}
 	
 	/**
@@ -236,16 +192,16 @@ public class GridView
 	 *
 	 * @param i Jewel version.
 	 */
-	public void changeSprites(final int i) {
-		switch (i) {
-			case 1:
+	public void changeSprites(final Style style) {
+		switch (style) {
+			case CLASSIC:
 				currentDiamond  = imageDiamond;
 				currentEmerald  = imageEmerald;
 				currentRuby     = imageRuby;
 				currentSapphire = imageSapphire;
 				currentTopaz    = imageTopaz;
 				break;
-			case 2:
+			case STEEL:
 				currentDiamond  = imageDiamondV2;
 				currentEmerald  = imageEmeraldV2;
 				currentRuby     = imageRubyV2;
@@ -296,7 +252,7 @@ public class GridView
 			board[i] = button;
 			
 			// Set button properties //
-			button.addMouseListener(new CellHoverListener(button));
+			//button.addMouseListener(new CellHoverListener(button));
 			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
 			button.setFont(font);
 			
@@ -319,8 +275,6 @@ public class GridView
 		
 		return grid;
 	}
-	
-	
 	
 	/**
 	 * Get the color of a jewel.
@@ -378,7 +332,7 @@ public class GridView
 	 *
 	 * @param jewelversion ...
 	 */
-	private void initGraphics(final int jewelversion) {
+	private void initGraphics(final Style style) {
 		// Load images //
 		// TODO: Load new images as well.
 		imageDiamond    = AssetManager.loadImage("Diamond.png");
@@ -393,15 +347,15 @@ public class GridView
 		imageTopazV2    = AssetManager.loadImage("Topaz_v2.png");
 		// Block images instead of jewels
 		
-		switch (jewelversion) {
-			case 1:
+		switch (style) {
+			case CLASSIC:
 				currentDiamond  = imageDiamond;
 				currentEmerald  = imageEmerald;
 				currentRuby     = imageRuby;
 				currentSapphire = imageSapphire;
 				currentTopaz    = imageTopaz;
 				break;
-			case 2:
+			case STEEL:
 				currentDiamond  = imageDiamondV2;
 				currentEmerald  = imageEmeraldV2;
 				currentRuby     = imageRubyV2;
@@ -440,12 +394,12 @@ public class GridView
 		// Set state //
 		cell.setState(activated);
 		if (activated) {
-			cell.setColor(ACTIVE_CELL_COLOR, 0.3f);
+			cell.setMask(ACTIVE_CELL_COLOR, 0.3f);
 			cell.setBackground(COLOR_BACKGROUND);
 			cell.setForeground(COLOR_FOREGROUND);
 			cell.setContentAreaFilled(true);
 		} else {
-			cell.setColor(Color.BLACK, 0f);
+			cell.setMask(COLOR_BACKGROUND, 0f);
 			cell.setBackground(COLOR_BACKGROUND);
 			cell.setForeground(COLOR_FOREGROUND);
 			cell.setContentAreaFilled(false);

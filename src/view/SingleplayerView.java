@@ -54,23 +54,4 @@ public class SingleplayerView
 	public Container getGame() {
 		return gameView;
 	}
-	
-	/**
-	 * ...
-	 *
-	 * @param i ...
-	 */
-	public void changeSprites(final int i) {
-		//gridView.changeSprites(i);
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @param audio ...
-	 */
-	public void playAudio(final Audio audio) {
-		// TODO Auto-generated method stub
-		//gridView.playAudio(audio);
-	}
 }

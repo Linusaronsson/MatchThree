@@ -11,6 +11,7 @@ import java.net.InetAddress;
 import javax.swing.JPanel;
 import model.Jewel;
 import model.Settings;
+import model.Settings.Style;
 import multiplayer.OpponentController;
 import multiplayer.OpponentModel;
 import multiplayer.PlayerModel;
@@ -69,7 +70,7 @@ public class MultiplayerView1
 		final Jewel[]      board,
 		final int          gameSize,
 		final UIController uiController,
-		final int          jewelVersion
+		final Settings     settings
 	) throws IOException {
 		// Create MVC context for the player //
 		if (board == null) {
@@ -88,7 +89,7 @@ public class MultiplayerView1
 		
 		playerModel.setGameStarted(true);
 		
-		playerGrid = new GridView(playerModel, jewelVersion);
+		playerGrid = new GridView(playerModel, settings.getStyle());
 		playerView  = new MatchThreeUI();
 		playerController = new GridViewController(
 			playerView,
@@ -97,7 +98,7 @@ public class MultiplayerView1
 			playerModel
 		);
 		
-		opponentGrid = new GridView(opponentModel, jewelVersion);
+		opponentGrid = new GridView(opponentModel, settings.getStyle());
 		opponentView = new MatchThreeUI();
 		opponentController = new OpponentController(
 			uiController,

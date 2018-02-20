@@ -12,7 +12,6 @@ import multiplayer.OpponentModel;
 import multiplayer.PlayerModel;
 import multiplayer.Server;
 import multiplayer.Server.OpponentInfo;
-import util.Info;
 import view.MultiplayerView;
 
 /**
@@ -21,13 +20,13 @@ import view.MultiplayerView;
 public class MultiplayerViewController
 {
 	/** Default game size. */
-	private static final int GAME_SIZE = Info.getGameSize();
+	private static final int GAME_SIZE = Settings.getGameSize();
 	
 	/** Exit code - Network error. */
 	private static final int EXIT_NETWORK = 3;
 	
 	/** Default port number. */
-	private static final int PORT_NUMBER = 3333;
+	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
 	/** View to control. */
 	private MultiplayerView multiplayerView = null;
