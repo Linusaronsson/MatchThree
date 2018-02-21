@@ -137,20 +137,6 @@ public class Server
 	/**
 	 * ...
 	 *
-	 * @return ...
-	 */
-	public static OpponentInfo getOpponentInfo() {
-		OpponentInfo info = opponentInfo;
-		opponentInfo = null;
-		if (info == null) {
-			throw new IllegalStateException();
-		}
-		return info;
-	}
-	
-	/**
-	 * ...
-	 *
 	 * @param b ...
 	 */
 	public static void setInGame(final boolean b) {
@@ -180,14 +166,8 @@ public class Server
 							if (response) {
 								//start game as host.
 								inGame = true;
-								opponentInfo = new OpponentInfo(
-									in.getAddress(),
-									// TODO: Change to in.getPort() (problems
-									//       for localhost).
-									PORT_NUMBER_OPPONENT,
-									null
-								);
-								ui.changeView(View.MULTIPLAYER_GAME);
+								InetAddress host = in.getAddress();
+								ui.startMultiplayer(null, host, 2000);
 							} else {
 								sendDatagram(
 									new Message(Message.MessageType.END_GAME),
@@ -198,15 +178,13 @@ public class Server
 							}
 							break;
 						case ACCEPTED_GAME:
+							UpdateBoard message = (UpdateBoard) m;
 							//start game as non host
 							inGame = true;
-							opponentInfo = new OpponentInfo(
-								in.getAddress(),
-								// TODO: Change to in.getPort().
-								PORT_NUMBER_OPPONENT,
-								((UpdateBoard) m).getBoard()
-							);
-							ui.changeView(View.MULTIPLAYER_GAME);
+							Jewel[] board = message.getBoard();
+							InetAddress host = in.getAddress();
+							int port = 2000;
+							ui.startMultiplayer(board, host, port);
 							break;
 						case END_GAME:
 							inGame = false;
