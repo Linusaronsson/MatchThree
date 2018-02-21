@@ -1,13 +1,11 @@
 package controller;
 
 import java.awt.Container;
-import java.awt.event.WindowEvent;
 import java.net.InetAddress;
 import model.Jewel;
 import model.MatchThreeModel;
 import model.Settings;
 import model.Settings.Style;
-import view.CreditsView;
 import view.ScoreMenuView;
 
 /**
