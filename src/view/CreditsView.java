@@ -1,5 +1,9 @@
 package view;
 
+import java.awt.Color;
+import java.awt.Font;
+
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,19 +18,19 @@ public class CreditsView
 	extends JPanel
 {
 	/** ... */
-	private static final String ERIK = "Erik Tran";
+	private static final JLabel ERIK = new JLabel("Erik Tran");
 	
 	/** ... */
-	private static final String FEZTIS = "Feztis";
+	private static final JLabel FEZTIS = new JLabel("Feztis");
 	
 	/** ... */
-	private static final String LINUS = "Linus Aronsson";
+	private static final JLabel LINUS = new JLabel("Linus Aronsson");
 	
 	/** ... */
-	private static final String JESPER = "Jesper";
+	private static final JLabel JESPER = new JLabel("Jesper");
 	
 	/** ... */
-	private static final String DAVID = "David";
+	private static final JLabel DAVID = new JLabel("David");
 	
 	/**
 	 * 
@@ -34,11 +38,27 @@ public class CreditsView
 	 */
 	public CreditsView() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		add(new JLabel(ERIK));
-		add(new JLabel(LINUS));
-		add(new JLabel(FEZTIS));
-		add(new JLabel(JESPER));
-		add(new JLabel(DAVID));
-		setVisible(true);
+		
+		// Set label properties //
+		setLabelProperties(ERIK, FEZTIS, LINUS, JESPER, DAVID);
+		
+		// Assemble view //
+		add(ERIK);
+		add(FEZTIS);
+		add(LINUS);
+		add(JESPER);
+		add(DAVID);
+		
+	}
+	
+	/**
+	 * 
+	 * 
+	 * @param labels
+	 */
+	private void setLabelProperties(JLabel ... labels) {
+		for(JLabel label : labels) {
+			label.setFont(new Font("Impact", Font.PLAIN, 20));
+		}
 	}
 }
