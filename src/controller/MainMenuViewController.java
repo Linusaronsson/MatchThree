@@ -69,11 +69,11 @@ public class MainMenuViewController
 		@Override public void mouseReleased(final MouseEvent e) { }
 		
 		@Override public void mouseEntered(final MouseEvent e) {
-			panel.setBackground(COLOR_BACKGROUND.brighter());
+			//panel.setBackground(COLOR_BACKGROUND.brighter());
 		}
 		
 		@Override public void mouseExited(final MouseEvent e) {
-			panel.setBackground(COLOR_BACKGROUND);
+			//panel.setBackground(COLOR_BACKGROUND);
 		}
 	}
 	
@@ -104,13 +104,13 @@ public class MainMenuViewController
 		@Override public void mouseEntered(final MouseEvent e) {
 			//button.setLabelForeground(Color.GREEN, 1f);
 			//AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
-			button.setBorderPainted(true);
+			//button.setBorderPainted(true);
 			button.setFont(HOVERFONT);
 		}
 		
 		@Override public void mouseExited(final MouseEvent e) {
 			//button.setLabelForeground(Color.WHITE, 1f);
-			button.setBorderPainted(false);
+			//button.setBorderPainted(false);
 			button.setFont(FONT);
 		}
 	}

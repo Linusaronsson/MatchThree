@@ -48,7 +48,7 @@ public class MainMenuView
 	
 	/** ... */
 	private static final JLabel LOGO =
-		new JLabel(new ImageIcon(AssetManager.loadImage("M3.png")));
+		new JLabel(new ImageIcon(AssetManager.loadImage("Logo3.png")));
 	
 	/** ... */
 	private Button singleplayer = new Button("SINGLEPLAYER");
@@ -110,23 +110,10 @@ public class MainMenuView
 		
 		// Assemble view //
 		add(LOGO, BorderLayout.NORTH);
-		add(new JLabel(emptySpaces()), BorderLayout.WEST);
-		add(new JLabel(emptySpaces()), BorderLayout.EAST);
-		add(new JLabel(" "), BorderLayout.SOUTH);
 		add(buttonPanel, BorderLayout.CENTER);
-	}
-	
-	/**
-	 * Increase width of main menu.
-	 *
-	 * @return ...
-	 */
-	private String emptySpaces() {
-		String spaces = "";
-		spaces += "                                        ";
-		spaces += "                                        ";
-		spaces += "    ";
-		return spaces;
+		add(new JLabel("     "), BorderLayout.WEST);
+		add(new JLabel("     "), BorderLayout.EAST);
+		add(new JLabel(" "), BorderLayout.SOUTH);
 	}
 	
 	/**

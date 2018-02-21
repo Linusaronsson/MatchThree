@@ -18,7 +18,7 @@ public class Window
 {
 	/** ... */
 	private static final ImageIcon ICON =
-		new ImageIcon(AssetManager.loadImage("M3.png"));
+		new ImageIcon(AssetManager.loadImage("Logo3.png"));
 	
 	/** Window content pane. */
 	private JPanel content = null;
@@ -50,7 +50,7 @@ public class Window
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationByPlatform(true);
-		setResizable(true);
+		setResizable(false);
 		
 		// Set icon //
 		setIconImage(ICON.getImage());
