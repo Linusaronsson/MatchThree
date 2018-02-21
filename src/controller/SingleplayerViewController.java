@@ -29,10 +29,15 @@ public class SingleplayerViewController
 	) {
 		// Validate arguments //
 		if (parent == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException("`parent` must not be null");
 		}
 		if (uiController == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException(
+				"`uiController` must not be null"
+			);
+		}
+		if (settings == null) {
+			throw new IllegalArgumentException("`settings` must not be null");
 		}
 		
 		this.uiController = uiController;

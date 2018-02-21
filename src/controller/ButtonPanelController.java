@@ -88,7 +88,23 @@ public class ButtonPanelController
 		final GridViewController gridViewController,
 		final Settings           settings
 	) {
-		// TODO: Validate arguments.
+		// Validate arguments //
+		if (parent == null) {
+			throw new IllegalArgumentException("`parent` must not be null");
+		}
+		if (uiController == null) {
+			throw new IllegalArgumentException(
+				"`uiController` must not be null"
+			);
+		}
+		if (gridViewController == null) {
+			throw new IllegalArgumentException(
+				"`gridViewController` must not be null"
+			);
+		}
+		if (settings == null) {
+			throw new IllegalArgumentException("`settings` must not be null");
+		}
 		
 		this.gridViewController = gridViewController;
 		this.uiController       = uiController;

@@ -32,8 +32,17 @@ public class MatchThreeUIController
 	) {
 		// Validate arguments //
 		if (parent == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException("`parent` must not be null");
 		}
+		if (uiController == null) {
+			throw new IllegalArgumentException(
+				"`uiController` must not be null"
+			);
+		}
+		if (settings == null) {
+			throw new IllegalArgumentException("`settings` must not be null");
+		}
+		// NOTE: `matchThreeModel` may be null.
 		
 		// Create or reuse MatchThree game model //
 		MatchThreeModel model = null;

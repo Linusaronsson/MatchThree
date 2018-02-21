@@ -71,12 +71,25 @@ public class MultiplayerViewController
 		final int          port
 	) {
 		// Validate arguments //
-		// TODO: Validate all arguments.
-		if (uiController == null) {
-			throw new NullPointerException();
-		}
 		if (parent == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException("`parent` must not be null");
+		}
+		if (uiController == null) {
+			throw new IllegalArgumentException(
+				"`uiController` must not be null"
+			);
+		}
+		if (settings == null) {
+			throw new IllegalArgumentException("`settings` must not be null");
+		}
+		if (board == null) {
+			throw new IllegalArgumentException("`board` must not be null");
+		}
+		if (host == null) {
+			throw new IllegalArgumentException("`host` must not be null");
+		}
+		if (port < 0) {
+			throw new IllegalArgumentException("`port` must be positive");
 		}
 		
 		this.uiController = uiController;
