@@ -33,38 +33,7 @@ public class MultiplayerMenuView
 	
 	/** ... */
 	private JTextField port = new JTextField();
-	
-	/**
-	 * 
-	 * 
-	 * ...
-	 */
-	private final class HoverListener 
-	implements MouseListener {
 		
-		/** ... */
-		private Button target = null;
-
-		public HoverListener(final Button target) {
-			this.target = target;
-		}
-
-		@Override public void mouseClicked(final MouseEvent e) { }
-
-		@Override public void mousePressed(final MouseEvent e) { }
-
-		@Override public void mouseReleased(final MouseEvent e) { }
-
-		@Override public void mouseEntered(final MouseEvent e) {
-			target.setMask(Color.BLACK, 0.3f);
-		}
-
-		@Override public void mouseExited(final MouseEvent e) {
-			target.setMask(Color.BLACK, 0.0f);
-		}
-		
-	}
-	
 	/**
 	 * ...
 	 */
@@ -89,7 +58,6 @@ public class MultiplayerMenuView
 		JLabel connectLabel = new JLabel("    Connect to player");
 		connectLabel.setFont(new Font("", Font.PLAIN, 15));
 		connect.add(connectLabel);
-		connect.addMouseListener(new HoverListener(connect));
 		
 		add(connect);
 		add(new JLabel("IP: "));
@@ -105,6 +73,24 @@ public class MultiplayerMenuView
 	 */
 	public void addConnectListener(final ActionListener listener) {
 		connect.addActionListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @param listener ...
+	 */
+	public void addHoverListener(final MouseListener listener, final Button target) {
+		target.addMouseListener(listener);
+	}
+	
+	/**
+	 * ...
+	 * 
+	 * @return
+	 */
+	public Button getConnectButton() {
+		return connect;
 	}
 	
 	/**

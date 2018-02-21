@@ -1,6 +1,9 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
@@ -8,6 +11,7 @@ import java.net.UnknownHostException;
 import model.Settings;
 import multiplayer.Message;
 import multiplayer.Server;
+import view.Button;
 import view.ErrorDialog;
 import view.MultiplayerMenuView;
 
@@ -24,6 +28,38 @@ public class MultiplayerSetupController
 	
 	/** Reference to UI controller. */
 	private UIController uiController = null;
+	
+	/**
+	 * 
+	 * 
+	 * ...
+	 */
+	private final class HoverListener 
+	implements MouseListener {
+		
+		/** ... */
+		private Button target = null;
+
+		public HoverListener(final Button target) {
+			this.target = target;
+		}
+
+		@Override public void mouseClicked(final MouseEvent e) { }
+
+		@Override public void mousePressed(final MouseEvent e) { }
+
+		@Override public void mouseReleased(final MouseEvent e) { }
+
+		@Override public void mouseEntered(final MouseEvent e) {
+			target.setMask(Color.BLACK, 0.3f);
+		}
+
+		@Override public void mouseExited(final MouseEvent e) {
+			target.setMask(Color.BLACK, 0.0f);
+		}
+		
+	}
+
 	
 	/**
 	 * Constructor.
@@ -60,6 +96,8 @@ public class MultiplayerSetupController
 			// Initiate connection //
 			connect();
 		});
+		Button connect = multiplayerMenuView.getConnectButton();
+		multiplayerMenuView.addHoverListener(new HoverListener(connect), connect);
 		
 		// Add view to parent //
 		parent.add(multiplayerMenuView);
