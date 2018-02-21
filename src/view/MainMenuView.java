@@ -109,10 +109,11 @@ public class MainMenuView
 		buttonPanel = assembleButtons(buttons);
 		
 		// Assemble view //
-		add(LOGO, BorderLayout.NORTH);
+		add(LOGO, BorderLayout.LINE_START);
 		add(buttonPanel, BorderLayout.CENTER);
 		add(new JLabel("     "), BorderLayout.WEST);
 		add(new JLabel("     "), BorderLayout.EAST);
+		add(new JLabel(" "), BorderLayout.NORTH);
 		add(new JLabel(" "), BorderLayout.SOUTH);
 	}
 	
