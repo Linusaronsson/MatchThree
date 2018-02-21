@@ -118,7 +118,7 @@ public class MainWindowController
 	/**
 	 * Close main window.
 	 */
-	private void closeWindow() {
+	protected void closeWindow() {
 		WindowEvent event = new WindowEvent(window, WindowEvent.WINDOW_CLOSING);
 		window.dispatchEvent(event);
 	}

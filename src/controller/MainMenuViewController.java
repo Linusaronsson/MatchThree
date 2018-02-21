@@ -139,7 +139,7 @@ public class MainMenuViewController
 		});
 		mainMenuView.addQuitListener(event -> {
 			// Quit the program //
-			
+			uiController.changeView(UIController.View.QUIT);
 		});
 		
 		for (Button button : mainMenuView.getButtons()) {

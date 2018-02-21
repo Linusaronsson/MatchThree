@@ -1,6 +1,7 @@
 package controller;
 
 import java.awt.Container;
+import java.awt.event.WindowEvent;
 import java.net.InetAddress;
 import model.Jewel;
 import model.MatchThreeModel;
@@ -43,7 +44,16 @@ public class UIController
 		SCORE_MENU,
 		
 		/** Singleplayer game screen. */
-		SINGLEPLAYER_GAME
+		SINGLEPLAYER_GAME,
+		
+		/** Settings menu. */
+		SETTINGS_MENU,
+		
+		/** Credits menu. */
+		CREDITS_MENU,
+		
+		/** Quit program. */
+		QUIT
 	}
 	
 	/**
@@ -97,11 +107,20 @@ public class UIController
 			case MULTIPLAYER_MENU:
 				new MultiplayerSetupController(view, this, settings);
 				break;
+			case SETTINGS_MENU:
+				//new 
+				break;
+			case CREDITS_MENU:
+				//new 
+				break;
 			case SCORE_MENU:
 				new ScoreMenuView();
 				break;
 			case SINGLEPLAYER_GAME:
 				new SingleplayerViewController(view, this, settings);
+				break;
+			case QUIT:
+				windowController.closeWindow();
 				break;
 			default:
 				throw new IllegalStateException("Unknown value for `View`");
