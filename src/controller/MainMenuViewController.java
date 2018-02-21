@@ -131,11 +131,11 @@ public class MainMenuViewController
 		});
 		mainMenuView.addSettingsListener(event -> {
 			// Open settings menu //
-			uiController.changeView(UIController.View.SETTINGS_MENU);
+			uiController.changeView(UIController.View.SETTINGS);
 		});
 		mainMenuView.addCreditsListener(event -> {
 			// Show credits //
-			uiController.changeView(UIController.View.CREDITS_MENU);
+			uiController.changeView(UIController.View.CREDITS);
 		});
 		mainMenuView.addQuitListener(event -> {
 			// Quit the program //

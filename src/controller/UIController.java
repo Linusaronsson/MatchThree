@@ -50,7 +50,7 @@ public class UIController
 		SETTINGS_MENU,
 		
 		/** Credits menu. */
-		CREDITS_MENU,
+		CREDITS,
 		
 		/** Quit program. */
 		QUIT,
@@ -113,7 +113,7 @@ public class UIController
 			case SETTINGS_MENU:
 				//new 
 				break;
-			case CREDITS_MENU:
+			case CREDITS:
 				//new 
 				break;
 			case SCORE_MENU:
@@ -126,7 +126,7 @@ public class UIController
 				windowController.closeWindow();
 				break;
 			case LOAD:
-				
+				windowController.loadGame();
 				break;
 			default:
 				throw new IllegalStateException("Unknown value for `View`");
