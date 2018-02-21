@@ -127,10 +127,10 @@ public class MainMenuView
 			button.setPreferredSize(PREFERRED_DIMENSION);
 			button.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createCompoundBorder(
-					BorderFactory.createLineBorder(Color.GREEN, 1),
-					BorderFactory.createLineBorder(Color.GREEN.darker(), 1)
+					BorderFactory.createLineBorder(Color.WHITE, 1),
+					BorderFactory.createLineBorder(Color.WHITE.darker(), 1)
 				),
-				BorderFactory.createLineBorder(Color.GREEN, 1)
+				BorderFactory.createLineBorder(Color.WHITE, 1)
 			));
 			Font font = new Font(
 				BUTTON_FONT_NAME,
