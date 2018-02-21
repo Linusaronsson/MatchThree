@@ -23,11 +23,11 @@ public class ButtonPanelController
 	/** Button panel view. */
 	private ButtonPanel buttonPanel = new ButtonPanel();
 	
-	/** Reference to UI controller. */
-	private UIController uiController = null;
-	
 	/** Reference to GridViewController controller. */
 	private GridViewController gridViewController = null;
+	
+	/** Reference to UI controller. */
+	private UIController uiController = null;
 	
 	/**
 	 * Changes button state on hover.

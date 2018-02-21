@@ -52,6 +52,24 @@ public final class AssetManager
 	}
 	
 	/**
+	 * Get the filename of an audio asset.
+	 *
+	 * @param audio Audio asset to get filename of.
+	 * @return Filename of audio asset.
+	 */
+	private static String getAudioName(final Audio audio) {
+		String name = null;
+		switch (audio) {
+			case INVALID:   name = "InvalidMove.wav"; break;
+			case SWAP:      name = "Swap.wav";        break;
+			case MOUSEOVER: name = "MouseOver.wav";   break;
+			case SELECT:    name = "Select.wav";      break;
+			default: throw new IllegalStateException();
+		}
+		return name;
+	}
+	
+	/**
 	 * Load an audio asset.
 	 *
 	 * @param name Filename of asset.
@@ -203,24 +221,6 @@ public final class AssetManager
 		AssetManager.loadAudio(getAudioName(Audio.SWAP));
 		AssetManager.loadAudio(getAudioName(Audio.MOUSEOVER));
 		AssetManager.loadAudio(getAudioName(Audio.SELECT));
-	}
-	
-	/**
-	 * Get the filename of an audio asset.
-	 *
-	 * @param audio Audio asset to get filename of.
-	 * @return Filename of audio asset.
-	 */
-	private static String getAudioName(final Audio audio) {
-		String name = null;
-		switch (audio) {
-			case INVALID:   name = "InvalidMove.wav"; break;
-			case SWAP:      name = "Swap.wav";        break;
-			case MOUSEOVER: name = "MouseOver.wav";   break;
-			case SELECT:    name = "Select.wav";      break;
-			default: throw new IllegalStateException();
-		}
-		return name;
 	}
 	
 	/**

@@ -109,6 +109,13 @@ public class MainWindowController
 	}
 	
 	/**
+	 * ...
+	 */
+	public void centerWindow() {
+		window.centerWindow();
+	}
+	
+	/**
 	 * Close main window.
 	 */
 	private void closeWindow() {
@@ -121,12 +128,5 @@ public class MainWindowController
 	 */
 	public void pack() {
 		window.pack();
-	}
-	
-	/**
-	 * ...
-	 */
-	public void centerWindow() {
-		window.centerWindow();
 	}
 }

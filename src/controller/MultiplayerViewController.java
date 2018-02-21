@@ -19,23 +19,23 @@ import view.MultiplayerView;
  */
 public class MultiplayerViewController
 {
-	/** Default game size. */
-	private static final int GAME_SIZE = Settings.getGameSize();
-	
 	/** Exit code - Network error. */
 	private static final int EXIT_NETWORK = 3;
+	
+	/** Default game size. */
+	private static final int GAME_SIZE = Settings.getGameSize();
 	
 	/** Default port number. */
 	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
+	/** ... */
+	private InetAddress host = null;
+	
 	/** View to control. */
 	private MultiplayerView multiplayerView = null;
 	
-	/** Reference to UI controller. */
-	private UIController uiController = null;
-	
 	/** ... */
-	private PlayerModel playerModel = null;
+	private OpponentController opponentController = null;
 	
 	/** ... */
 	private OpponentModel opponentModel = null;
@@ -44,13 +44,13 @@ public class MultiplayerViewController
 	private GridViewController playerController = null;
 	
 	/** ... */
-	private OpponentController opponentController = null;
+	private PlayerModel playerModel = null;
 	
 	/** ... */
 	private int port = 0;
 	
-	/** ... */
-	private InetAddress host = null;
+	/** Reference to UI controller. */
+	private UIController uiController = null;
 	
 	/**
 	 * Create `MultiplayerViewController`.
