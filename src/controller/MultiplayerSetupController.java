@@ -19,6 +19,7 @@ import view.MultiplayerMenuView;
  * ...
  */
 public class MultiplayerSetupController
+	implements ViewController
 {
 	/** Default port number. */
 	private static final int PORT_NUMBER = Settings.getPortNumber();
@@ -106,6 +107,9 @@ public class MultiplayerSetupController
 		// TODO: Close server when leaving multiplayer.
 		new Server(uiController, PORT_NUMBER).start();
 	}
+	
+	@Override
+	public void closeView() { }
 	
 	/**
 	 * Handle connect event.

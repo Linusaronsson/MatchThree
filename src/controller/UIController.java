@@ -24,6 +24,9 @@ public class UIController
 	/** Container to control. */
 	private Container view = null;
 	
+	/** Active view controller. */
+	private ViewController viewController = null;
+	
 	/** Reference to window controller for window updates. */
 	private MainWindowController windowController = null;
 	
@@ -96,11 +99,17 @@ public class UIController
 		// Remove previous view //
 		view.removeAll();
 		
+		// Close view controller //
+		if (viewController != null) {
+			viewController.closeView();
+		}
+		
 		// Add new view //
 		MatchThreeModel matchThreeModel = null;
 		switch (newView) {
 			case MAIN_MENU:
-				new MainMenuViewController(view, this, settings);
+				viewController =
+					new MainMenuViewController(view, this, settings);
 				break;
 			case MULTIPLAYER_GAME:
 				// TODO: This binding has temporarily been moved to
@@ -109,19 +118,21 @@ public class UIController
 				//new MultiplayerViewController(view, this);
 				//break;
 			case MULTIPLAYER_MENU:
-				new MultiplayerSetupController(view, this, settings);
+				viewController =
+					new MultiplayerSetupController(view, this, settings);
 				break;
 			case SETTINGS:
 				//new 
 				break;
 			case CREDITS:
-				new CreditsViewController(view);
+				viewController = new CreditsViewController(view);
 				break;
 			case SCORE_MENU:
 				new ScoreMenuView();
 				break;
 			case SINGLEPLAYER_GAME:
-				new SingleplayerViewController(view, this, settings);
+				viewController =
+					new SingleplayerViewController(view, this, settings);
 				break;
 			case QUIT:
 				windowController.closeWindow();
@@ -163,7 +174,20 @@ public class UIController
 		// Remove previous view //
 		view.removeAll();
 		
-		new MultiplayerViewController(view, this, settings, board, host, port);
+		// Close view controller //
+		if (viewController != null) {
+			viewController.closeView();
+		}
+		
+		// Create view controller //
+		viewController = new MultiplayerViewController(
+			view,
+			this,
+			settings,
+			board,
+			host,
+			port
+		);
 		
 		// Update window //
 		windowController.pack();

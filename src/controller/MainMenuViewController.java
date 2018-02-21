@@ -15,6 +15,7 @@ import view.MainMenuView;
  * Controller for main menu view.
  */
 public class MainMenuViewController
+	implements ViewController
 {
 	/** ... */
 	private static final String BUTTON_FONT_NAME =
@@ -149,4 +150,7 @@ public class MainMenuViewController
 		// Add view to parent //
 		parent.add(mainMenuView);
 	}
+	
+	@Override
+	public void closeView() { }
 }
