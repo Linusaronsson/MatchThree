@@ -116,6 +116,26 @@ public class MainMenuViewController
 			// Go to singleplayer menu //
 			uiController.changeView(UIController.View.SINGLEPLAYER_GAME);
 		});
+		mainMenuView.addLoadListener(event -> {
+			// Load game //
+			ddd uiController.changeView(UIController.View.SINGLEPLAYER_GAME);
+		});
+		mainMenuView.addHighscoreListener(event -> {
+			// Open highscore menu //
+			uiController.changeView(UIController.View.SINGLEPLAYER_GAME);
+		});
+		mainMenuView.addSettingsListener(event -> {
+			// Open settings menu //
+			uiController.changeView(UIController.View.SINGLEPLAYER_GAME);
+		});
+		mainMenuView.addCreditsListener(event -> {
+			// Show credits //
+			uiController.changeView(UIController.View.SINGLEPLAYER_GAME);
+		});
+		mainMenuView.addQuitListener(event -> {
+			// Quit the program //
+			uiController.changeView(UIController.View.SINGLEPLAYER_GAME);
+		});
 		
 		for (Button button : mainMenuView.getButtons()) {
 			button.addMouseListener(new HoverButtonListener(button));
