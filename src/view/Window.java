@@ -50,7 +50,7 @@ public class Window
 		setTitle(title);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationByPlatform(true);
-		setResizable(false);
+		setResizable(true);
 		
 		// Set icon //
 		setIconImage(ICON.getImage());
