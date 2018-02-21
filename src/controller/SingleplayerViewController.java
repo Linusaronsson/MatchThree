@@ -39,8 +39,7 @@ public class SingleplayerViewController
 		
 		// Create singleplayer view //
 		// TODO: Add separate controller for button panel?
-		SingleplayerView singleplayerView =
-			new SingleplayerView();
+		SingleplayerView singleplayerView = new SingleplayerView();
 		
 		// Create MatchThree game //
 		Container gameView = singleplayerView.getGame();

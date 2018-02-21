@@ -90,8 +90,8 @@ public class ButtonPanelController
 	) {
 		// TODO: Validate arguments.
 		
-		this.uiController = uiController;
 		this.gridViewController = gridViewController;
+		this.uiController       = uiController;
 		
 		// Register event listeners //
 		Button buttonBack = buttonPanel.getBackButton();

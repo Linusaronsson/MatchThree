@@ -78,8 +78,8 @@ public class MainWindowController
 		
 		// Create main window //
 		// TODO: Consider removing this panel.
-		JPanel panel = new JPanel();
 		MainMenuBar menuBar = new MainMenuBar();
+		JPanel      panel   = new JPanel();
 		window = new Window(WINDOW_TITLE, menuBar, panel);
 		
 		// Create UI //

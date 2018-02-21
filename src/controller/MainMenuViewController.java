@@ -150,7 +150,8 @@ public class MainMenuViewController
 			uiController.changeView(UIController.View.SINGLEPLAYER_GAME);
 		});
 		mainMenuView.addButtonPanelListener(
-				new ButtonPanelHoverListener(mainMenuView.getButtonPanel()));
+			new ButtonPanelHoverListener(mainMenuView.getButtonPanel())
+		);
 		
 		for (Button button : mainMenuView.getButtons()) {
 			button.addMouseListener(new HoverButtonListener(button));
