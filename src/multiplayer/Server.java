@@ -11,8 +11,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import javax.swing.JOptionPane;
 import model.Jewel;
+import view.ConfirmDialog;
 import view.ErrorDialog;
 
 /**
@@ -171,13 +171,13 @@ public class Server
 					Message m = (Message) inStream.readObject();
 					switch (m.getType()) {
 						case REQUESTED_GAME:
-							int response = JOptionPane.showConfirmDialog(
-								null,
-								"Multiplayer",
-								"User requesting to play...",
-								JOptionPane.INFORMATION_MESSAGE
+							ConfirmDialog dialog = new ConfirmDialog(
+								"Multiplayer Request",
+								"User <unknown> is requesting to play."
 							);
-							if (response == 0) {
+							boolean response = dialog.getResponse();
+							
+							if (response) {
 								//start game as host.
 								inGame = true;
 								opponentInfo = new OpponentInfo(
