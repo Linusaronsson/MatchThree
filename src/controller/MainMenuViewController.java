@@ -28,6 +28,10 @@ public class MainMenuViewController
 		Properties.getColorBackground();
 	
 	/** ... */
+	private static final Font FONT =
+		new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE);
+	
+	/** ... */
 	private static final int FONT_DIFF_SIZE = 5;
 	
 	/** ... */
@@ -36,10 +40,6 @@ public class MainMenuViewController
 		Font.PLAIN,
 		BUTTON_FONT_SIZE + FONT_DIFF_SIZE
 	);
-	
-	/** ... */
-	private static final Font FONT =
-		new Font(BUTTON_FONT_NAME, Font.PLAIN, BUTTON_FONT_SIZE);
 	
 	/** Reference to UI controller. */
 	private UIController uiController = null;
@@ -64,10 +64,6 @@ public class MainMenuViewController
 		
 		@Override public void mouseClicked(final MouseEvent e) { }
 		
-		@Override public void mousePressed(final MouseEvent e) { }
-		
-		@Override public void mouseReleased(final MouseEvent e) { }
-		
 		@Override public void mouseEntered(final MouseEvent e) {
 			//button.setLabelForeground(Color.GREEN, 1f);
 			//AssetManager.playAudio(AssetManager.Audio.MOUSEOVER);
@@ -80,6 +76,10 @@ public class MainMenuViewController
 			button.setBorderPainted(false);
 			button.setFont(FONT);
 		}
+		
+		@Override public void mousePressed(final MouseEvent e) { }
+		
+		@Override public void mouseReleased(final MouseEvent e) { }
 	}
 	
 	/**
@@ -95,11 +95,16 @@ public class MainMenuViewController
 		final Settings     settings
 	) {
 		// Validate arguments //
-		if (uiController == null) {
-			throw new NullPointerException();
-		}
 		if (parent == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException("`parent` must not be null");
+		}
+		if (uiController == null) {
+			throw new IllegalArgumentException(
+				"`uiController` must not be null"
+			);
+		}
+		if (settings == null) {
+			throw new IllegalArgumentException("`settings` must not be null");
 		}
 		
 		this.uiController = uiController;

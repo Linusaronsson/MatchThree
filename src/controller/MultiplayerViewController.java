@@ -19,23 +19,23 @@ import view.MultiplayerView;
  */
 public class MultiplayerViewController
 {
-	/** Default game size. */
-	private static final int GAME_SIZE = Settings.getGameSize();
-	
 	/** Exit code - Network error. */
 	private static final int EXIT_NETWORK = 3;
+	
+	/** Default game size. */
+	private static final int GAME_SIZE = Settings.getGameSize();
 	
 	/** Default port number. */
 	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
+	/** ... */
+	private InetAddress host = null;
+	
 	/** View to control. */
 	private MultiplayerView multiplayerView = null;
 	
-	/** Reference to UI controller. */
-	private UIController uiController = null;
-	
 	/** ... */
-	private PlayerModel playerModel = null;
+	private OpponentController opponentController = null;
 	
 	/** ... */
 	private OpponentModel opponentModel = null;
@@ -44,13 +44,13 @@ public class MultiplayerViewController
 	private GridViewController playerController = null;
 	
 	/** ... */
-	private OpponentController opponentController = null;
+	private PlayerModel playerModel = null;
 	
 	/** ... */
 	private int port = 0;
 	
-	/** ... */
-	private InetAddress host = null;
+	/** Reference to UI controller. */
+	private UIController uiController = null;
 	
 	/**
 	 * Create `MultiplayerViewController`.
@@ -71,12 +71,25 @@ public class MultiplayerViewController
 		final int          port
 	) {
 		// Validate arguments //
-		// TODO: Validate all arguments.
-		if (uiController == null) {
-			throw new NullPointerException();
-		}
 		if (parent == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException("`parent` must not be null");
+		}
+		if (uiController == null) {
+			throw new IllegalArgumentException(
+				"`uiController` must not be null"
+			);
+		}
+		if (settings == null) {
+			throw new IllegalArgumentException("`settings` must not be null");
+		}
+		if (board == null) {
+			throw new IllegalArgumentException("`board` must not be null");
+		}
+		if (host == null) {
+			throw new IllegalArgumentException("`host` must not be null");
+		}
+		if (port < 0) {
+			throw new IllegalArgumentException("`port` must be positive");
 		}
 		
 		this.uiController = uiController;

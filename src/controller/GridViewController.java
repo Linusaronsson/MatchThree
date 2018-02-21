@@ -74,16 +74,6 @@ public class GridViewController
 		}
 		
 		@Override
-		public void mousePressed(final MouseEvent e) {
-			// TODO Auto-generated method stub
-		}
-		
-		@Override
-		public void mouseReleased(final MouseEvent e) {
-			// TODO Auto-generated method stub
-		}
-		
-		@Override
 		public void mouseEntered(final MouseEvent e) {
 			// TODO Auto-generated method stub
 			if (!cell.isActive()) {
@@ -96,6 +86,16 @@ public class GridViewController
 			if (!cell.isActive()) {
 				cell.setMask(COLOR_BACKGROUND, 0f);
 			}
+		}
+		
+		@Override
+		public void mousePressed(final MouseEvent e) {
+			// TODO Auto-generated method stub
+		}
+		
+		@Override
+		public void mouseReleased(final MouseEvent e) {
+			// TODO Auto-generated method stub
 		}
 	}
 	
@@ -115,10 +115,20 @@ public class GridViewController
 	) {
 		// Validate arguments //
 		if (parent == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException("`parent` must not be null");
+		}
+		if (uiController == null) {
+			throw new IllegalArgumentException(
+				"`uiController` must not be null"
+			);
+		}
+		if (settings == null) {
+			throw new IllegalArgumentException("`settings` must not be null");
 		}
 		if (matchThreeModel == null) {
-			throw new NullPointerException();
+			throw new IllegalArgumentException(
+				"`matchThreeModel` must not be null"
+			);
 		}
 		
 		this.matchThreeModel = matchThreeModel;
@@ -233,26 +243,6 @@ public class GridViewController
 	}
 	
 	/**
-	 * Set or unset the currently active cell.
-	 *
-	 * @param position Coordinates of the cell to make active, or null if none.
-	 */
-	private void setActiveCell(final Coordinate position) {
-		// Deactivate cell if appropriate //
-		if (activeCell != null) {
-			gridView.setCellState(activeCell, false);
-		}
-		
-		// Activate new cell if appropriate //
-		if (position != null) {
-			gridView.setCellState(position, true);
-		}
-		
-		// Update reference //
-		activeCell = position;
-	}
-	
-	/**
 	 * Save the game.
 	 */
 	public void saveGame() {
@@ -322,5 +312,25 @@ public class GridViewController
 		
 		// Display confirmation //
 		new MessageDialog("Game saved", "Game saved successfully");
+	}
+	
+	/**
+	 * Set or unset the currently active cell.
+	 *
+	 * @param position Coordinates of the cell to make active, or null if none.
+	 */
+	private void setActiveCell(final Coordinate position) {
+		// Deactivate cell if appropriate //
+		if (activeCell != null) {
+			gridView.setCellState(activeCell, false);
+		}
+		
+		// Activate new cell if appropriate //
+		if (position != null) {
+			gridView.setCellState(position, true);
+		}
+		
+		// Update reference //
+		activeCell = position;
 	}
 }

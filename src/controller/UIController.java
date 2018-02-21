@@ -55,6 +55,16 @@ public class UIController
 		final Container            view,
 		final MainWindowController windowController
 	) {
+		// Validate arguments //
+		if (view == null) {
+			throw new IllegalArgumentException("`view` must not be null");
+		}
+		if (windowController == null) {
+			throw new IllegalArgumentException(
+				"`windowController` must not be null"
+			);
+		}
+		
 		this.view             = view;
 		this.windowController = windowController;
 		

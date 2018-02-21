@@ -78,8 +78,8 @@ public class MainWindowController
 		
 		// Create main window //
 		// TODO: Consider removing this panel.
-		JPanel panel = new JPanel();
 		MainMenuBar menuBar = new MainMenuBar();
+		JPanel      panel   = new JPanel();
 		window = new Window(WINDOW_TITLE, menuBar, panel);
 		
 		// Create UI //
@@ -109,6 +109,13 @@ public class MainWindowController
 	}
 	
 	/**
+	 * ...
+	 */
+	public void centerWindow() {
+		window.centerWindow();
+	}
+	
+	/**
 	 * Close main window.
 	 */
 	private void closeWindow() {
@@ -121,12 +128,5 @@ public class MainWindowController
 	 */
 	public void pack() {
 		window.pack();
-	}
-	
-	/**
-	 * ...
-	 */
-	public void centerWindow() {
-		window.centerWindow();
 	}
 }

@@ -23,11 +23,11 @@ public class ButtonPanelController
 	/** Button panel view. */
 	private ButtonPanel buttonPanel = new ButtonPanel();
 	
-	/** Reference to UI controller. */
-	private UIController uiController = null;
-	
 	/** Reference to GridViewController controller. */
 	private GridViewController gridViewController = null;
+	
+	/** Reference to UI controller. */
+	private UIController uiController = null;
 	
 	/**
 	 * Changes button state on hover.
@@ -88,10 +88,26 @@ public class ButtonPanelController
 		final GridViewController gridViewController,
 		final Settings           settings
 	) {
-		// TODO: Validate arguments.
+		// Validate arguments //
+		if (parent == null) {
+			throw new IllegalArgumentException("`parent` must not be null");
+		}
+		if (uiController == null) {
+			throw new IllegalArgumentException(
+				"`uiController` must not be null"
+			);
+		}
+		if (gridViewController == null) {
+			throw new IllegalArgumentException(
+				"`gridViewController` must not be null"
+			);
+		}
+		if (settings == null) {
+			throw new IllegalArgumentException("`settings` must not be null");
+		}
 		
-		this.uiController = uiController;
 		this.gridViewController = gridViewController;
+		this.uiController       = uiController;
 		
 		// Register event listeners //
 		Button buttonBack = buttonPanel.getBackButton();
