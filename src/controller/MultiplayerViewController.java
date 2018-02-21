@@ -82,9 +82,7 @@ public class MultiplayerViewController
 		if (settings == null) {
 			throw new IllegalArgumentException("`settings` must not be null");
 		}
-		if (board == null) {
-			throw new IllegalArgumentException("`board` must not be null");
-		}
+		// NOTE: `board` may be null.
 		if (host == null) {
 			throw new IllegalArgumentException("`host` must not be null");
 		}
@@ -112,10 +110,16 @@ public class MultiplayerViewController
 		playerModel.setGameStarted(true);
 		
 		playerController = new GridViewController(
-			parent,
+			multiplayerView.getPlayer1(),
 			uiController,
 			settings,
 			playerModel
+		);
+		new MatchThreeUIController(
+			multiplayerView.getPlayer2(),
+			uiController,
+			settings,
+			opponentModel
 		);
 		opponentController = new OpponentController(
 			uiController,
@@ -126,20 +130,6 @@ public class MultiplayerViewController
 		
 		// Initiate opponent board //
 		opponentController.start();
-		
-		//final InetAddress host,
-		//final int         port,
-		//final Jewel[]     board,
-		//
-		//info.ip,
-		//info.port,
-		//info.board,
-		
-		OpponentInfo info = null;
-		info = Server.getOpponentInfo();
-		
-		//InetAddress host = info.ip;
-		//int         port = info.port;
 		
 		// Add event listeners //
 		multiplayerView.addBackListener(event -> {

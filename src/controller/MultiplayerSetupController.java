@@ -144,7 +144,5 @@ public class MultiplayerSetupController
 				socket.close();
 			}
 		}
-		
-		uiController.startMultiplayer(null, host, port);
 	}
 }
