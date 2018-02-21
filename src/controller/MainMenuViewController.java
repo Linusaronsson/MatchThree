@@ -123,7 +123,7 @@ public class MainMenuViewController
 		});
 		mainMenuView.addLoadListener(event -> {
 			// Load game //
-			
+			uiController.changeView(UIController.View.LOAD);
 		});
 		mainMenuView.addHighscoreListener(event -> {
 			// Open highscore menu //
@@ -131,11 +131,11 @@ public class MainMenuViewController
 		});
 		mainMenuView.addSettingsListener(event -> {
 			// Open settings menu //
-			
+			uiController.changeView(UIController.View.SETTINGS_MENU);
 		});
 		mainMenuView.addCreditsListener(event -> {
 			// Show credits //
-			
+			uiController.changeView(UIController.View.CREDITS_MENU);
 		});
 		mainMenuView.addQuitListener(event -> {
 			// Quit the program //

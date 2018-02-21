@@ -53,7 +53,10 @@ public class UIController
 		CREDITS_MENU,
 		
 		/** Quit program. */
-		QUIT
+		QUIT,
+		
+		/** Load game. */
+		LOAD
 	}
 	
 	/**
@@ -121,6 +124,9 @@ public class UIController
 				break;
 			case QUIT:
 				windowController.closeWindow();
+				break;
+			case LOAD:
+				
 				break;
 			default:
 				throw new IllegalStateException("Unknown value for `View`");
