@@ -130,8 +130,7 @@ public class UIController
 					new MultiplayerSetupController(view, this, settings);
 				break;
 			case SETTINGS:
-				//new 
-				break;
+				throw new IllegalStateException("Not implemented");
 			case CREDITS:
 				viewController = new CreditsViewController(view);
 				break;
