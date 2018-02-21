@@ -89,9 +89,6 @@ public class MainMenuView
 		setLayout(new BorderLayout());
 		setBackground(COLOR_BACKGROUND);
 		
-		// Set logo properties //
-		//LOGO.setBackground(Color.WHITE);
-		
 		// Set button properties //
 		setProperties(buttons);
 		
@@ -157,15 +154,6 @@ public class MainMenuView
 	/**
 	 * ...
 	 *
-	 * @return ...
-	 */
-	public JPanel getButtonPanel() {
-		return buttonPanel;
-	}
-	
-	/**
-	 * ...
-	 *
 	 * @param listener ...
 	 */
 	public void addMultiplayerListener(final ActionListener listener) {
@@ -186,8 +174,44 @@ public class MainMenuView
 	 *
 	 * @param listener ...
 	 */
-	public void addButtonPanelListener(final MouseListener listener) {
-		buttonPanel.addMouseListener(listener);
+	public void addLoadListener(final ActionListener listener) {
+		load.addActionListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @param listener ...
+	 */
+	public void addHighscoreListener(final ActionListener listener) {
+		highscore.addActionListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @param listener ...
+	 */
+	public void addSettingsListener(final ActionListener listener) {
+		settings.addActionListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @param listener ...
+	 */
+	public void addCreditsListener(final ActionListener listener) {
+		credits.addActionListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @param listener ...
+	 */
+	public void addQuitListener(final ActionListener listener) {
+		quit.addActionListener(listener);
 	}
 	
 	/**

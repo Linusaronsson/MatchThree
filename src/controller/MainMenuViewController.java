@@ -47,39 +47,6 @@ public class MainMenuViewController
 	/**
 	 * ...
 	 */
-	private final class ButtonPanelHoverListener
-		implements MouseListener
-	{
-		/** ... */
-		private JPanel panel = null;
-		
-		/**
-		 * ...
-		 *
-		 * @param panel ...
-		 */
-		private ButtonPanelHoverListener(final JPanel panel) {
-			this.panel = panel;
-		}
-		
-		@Override public void mouseClicked(final MouseEvent e) { }
-		
-		@Override public void mousePressed(final MouseEvent e) { }
-		
-		@Override public void mouseReleased(final MouseEvent e) { }
-		
-		@Override public void mouseEntered(final MouseEvent e) {
-			//panel.setBackground(COLOR_BACKGROUND.brighter());
-		}
-		
-		@Override public void mouseExited(final MouseEvent e) {
-			//panel.setBackground(COLOR_BACKGROUND);
-		}
-	}
-	
-	/**
-	 * ...
-	 */
 	private final class HoverButtonListener
 		implements MouseListener
 	{
@@ -149,8 +116,6 @@ public class MainMenuViewController
 			// Go to singleplayer menu //
 			uiController.changeView(UIController.View.SINGLEPLAYER_GAME);
 		});
-		mainMenuView.addButtonPanelListener(
-				new ButtonPanelHoverListener(mainMenuView.getButtonPanel()));
 		
 		for (Button button : mainMenuView.getButtons()) {
 			button.addMouseListener(new HoverButtonListener(button));
