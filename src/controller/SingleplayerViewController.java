@@ -8,6 +8,7 @@ import view.SingleplayerView;
  * Controller for singleplayer game screen.
  */
 public class SingleplayerViewController
+	implements ViewController
 {
 	/** Default game size. */
 	private static final int GAME_SIZE = Settings.getGameSize();
@@ -64,4 +65,7 @@ public class SingleplayerViewController
 		// Add view to parent //
 		parent.add(singleplayerView);
 	}
+	
+	@Override
+	public void closeView() { }
 }

@@ -6,6 +6,11 @@ import model.Jewel;
 import model.MatchThreeModel;
 import model.Settings;
 import model.Settings.Style;
+<<<<<<< HEAD
+=======
+import multiplayer.Server;
+import view.CreditsView;
+>>>>>>> 6025d9705031087b288e0ebe35dbb8eded2d811b
 import view.ScoreMenuView;
 
 /**
@@ -16,11 +21,17 @@ public class UIController
 	/** Default view. */
 	private static final View DEFAULT_VIEW = View.MAIN_MENU;
 	
+	/** Default port number. */
+	private static final int PORT_NUMBER = 3333;
+	
 	/** Current game settings. */
 	private Settings settings = new Settings();
 	
 	/** Container to control. */
 	private Container view = null;
+	
+	/** Active view controller. */
+	private ViewController viewController = null;
 	
 	/** Reference to window controller for window updates. */
 	private MainWindowController windowController = null;
@@ -83,6 +94,10 @@ public class UIController
 		
 		// Set default view //
 		changeView(DEFAULT_VIEW);
+		
+		// Start server //
+		// TODO: Avoid having server be active at all times.
+		new Server(this, PORT_NUMBER).start();
 	}
 	
 	/**
@@ -94,11 +109,17 @@ public class UIController
 		// Remove previous view //
 		view.removeAll();
 		
+		// Close view controller //
+		if (viewController != null) {
+			viewController.closeView();
+		}
+		
 		// Add new view //
 		MatchThreeModel matchThreeModel = null;
 		switch (newView) {
 			case MAIN_MENU:
-				new MainMenuViewController(view, this, settings);
+				viewController =
+					new MainMenuViewController(view, this, settings);
 				break;
 			case MULTIPLAYER_GAME:
 				// TODO: This binding has temporarily been moved to
@@ -107,19 +128,20 @@ public class UIController
 				//new MultiplayerViewController(view, this);
 				//break;
 			case MULTIPLAYER_MENU:
-				new MultiplayerSetupController(view, this, settings);
+				viewController =
+					new MultiplayerSetupController(view, this, settings);
 				break;
 			case SETTINGS:
-				//new 
-				break;
+				throw new IllegalStateException("Not implemented");
 			case CREDITS:
-				new CreditsViewController(view);
+				viewController = new CreditsViewController(view);
 				break;
 			case SCORE_MENU:
 				new ScoreMenuView();
 				break;
 			case SINGLEPLAYER_GAME:
-				new SingleplayerViewController(view, this, settings);
+				viewController =
+					new SingleplayerViewController(view, this, settings);
 				break;
 			case QUIT:
 				windowController.closeWindow();
@@ -161,7 +183,20 @@ public class UIController
 		// Remove previous view //
 		view.removeAll();
 		
-		new MultiplayerViewController(view, this, settings, board, host, port);
+		// Close view controller //
+		if (viewController != null) {
+			viewController.closeView();
+		}
+		
+		// Create view controller //
+		viewController = new MultiplayerViewController(
+			view,
+			this,
+			settings,
+			board,
+			host,
+			port
+		);
 		
 		// Update window //
 		windowController.pack();

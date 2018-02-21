@@ -18,6 +18,7 @@ import view.MultiplayerView;
  * Controller for `MultiplayerView`.
  */
 public class MultiplayerViewController
+	implements ViewController
 {
 	/** Exit code - Network error. */
 	private static final int EXIT_NETWORK = 3;
@@ -91,6 +92,8 @@ public class MultiplayerViewController
 		}
 		
 		this.uiController = uiController;
+		this.host         = host;
+		this.port         = port;
 		
 		// Create view //
 		multiplayerView = new MultiplayerView();
@@ -134,7 +137,7 @@ public class MultiplayerViewController
 		// Add event listeners //
 		multiplayerView.addBackListener(event -> {
 			// Go to main menu //
-			goToMainMenu(host, port);
+			uiController.changeView(UIController.View.MAIN_MENU);
 		});
 		
 		// Add view to parent //
@@ -146,17 +149,6 @@ public class MultiplayerViewController
 	 */
 	public void closeGame() {
 		opponentController.close();
-	}
-	
-	/**
-	 * Navigate to main menu.
-	 *
-	 * @param host ...
-	 * @param port ...
-	 */
-	private void goToMainMenu(final InetAddress host, final int port) {
-		uiController.changeView(UIController.View.MAIN_MENU);
-		closeGame();
 		Server.setInGame(false);
 		try {
 			Message message = new Message(Message.MessageType.END_GAME);
@@ -165,5 +157,11 @@ public class MultiplayerViewController
 		} catch (SocketException exception) {
 			exception.printStackTrace();
 		}
+	}
+	
+	@Override
+	public void closeView() {
+		// Close game session //
+		closeGame();
 	}
 }
