@@ -177,12 +177,12 @@ public class Button
 	@Override
 	protected void paintComponent(final Graphics g) {
 		BufferedImage image =
-				getGraphicsConfiguration().
-				createCompatibleImage(
-						getWidth(),
-						getHeight(),
-						Transparency.TRANSLUCENT
-						);
+			getGraphicsConfiguration().
+			createCompatibleImage(
+				getWidth(),
+				getHeight(),
+				Transparency.TRANSLUCENT
+			);
 		image.coerceData(true);
 		
 		Graphics2D imageGraphics = image.createGraphics();
@@ -190,12 +190,12 @@ public class Button
 		imageGraphics.dispose();
 		
 		BufferedImage mask =
-				getGraphicsConfiguration().
-				createCompatibleImage(
-						image.getWidth(),
-						image.getHeight(),
-						Transparency.TRANSLUCENT
-						);
+			getGraphicsConfiguration().
+			createCompatibleImage(
+				image.getWidth(),
+				image.getHeight(),
+				Transparency.TRANSLUCENT
+			);
 		mask.coerceData(true);
 		
 		Graphics2D maskGraphics = mask.createGraphics();
