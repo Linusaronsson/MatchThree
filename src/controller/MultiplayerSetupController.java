@@ -21,9 +21,6 @@ import view.MultiplayerMenuView;
 public class MultiplayerSetupController
 	implements ViewController
 {
-	/** Default port number. */
-	private static final int PORT_NUMBER = Settings.getPortNumber();
-	
 	/** View to control. */
 	private MultiplayerMenuView multiplayerMenuView = null;
 	
@@ -102,10 +99,6 @@ public class MultiplayerSetupController
 		
 		// Add view to parent //
 		parent.add(multiplayerMenuView);
-		
-		// Start server //
-		// TODO: Close server when leaving multiplayer.
-		new Server(uiController, PORT_NUMBER).start();
 	}
 	
 	@Override

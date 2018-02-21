@@ -7,6 +7,7 @@ import model.Jewel;
 import model.MatchThreeModel;
 import model.Settings;
 import model.Settings.Style;
+import multiplayer.Server;
 import view.CreditsView;
 import view.ScoreMenuView;
 
@@ -17,6 +18,9 @@ public class UIController
 {
 	/** Default view. */
 	private static final View DEFAULT_VIEW = View.MAIN_MENU;
+	
+	/** Default port number. */
+	private static final int PORT_NUMBER = 3333;
 	
 	/** Current game settings. */
 	private Settings settings = new Settings();
@@ -88,6 +92,10 @@ public class UIController
 		
 		// Set default view //
 		changeView(DEFAULT_VIEW);
+		
+		// Start server //
+		// TODO: Avoid having server be active at all times.
+		new Server(this, PORT_NUMBER).start();
 	}
 	
 	/**
