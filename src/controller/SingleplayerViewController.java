@@ -54,7 +54,7 @@ public class SingleplayerViewController
 		Container buttonPanel = singleplayerView.getButtonPanel();
 		GridViewController gridViewController =
 			matchThreeUIController.getGridViewController();
-		ButtonPanelController buttonPanelController = new ButtonPanelController(
+		new ButtonPanelController(
 			buttonPanel,
 			uiController,
 			gridViewController,
