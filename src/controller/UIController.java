@@ -6,6 +6,7 @@ import model.Jewel;
 import model.MatchThreeModel;
 import model.Settings;
 import model.Settings.Style;
+import view.ScoreMenuView;
 
 /**
  * UI controller. Manages application navigation between views.
@@ -97,8 +98,8 @@ public class UIController
 				new MultiplayerSetupController(view, this, settings);
 				break;
 			case SCORE_MENU:
-				throw new IllegalStateException("Not implemented");
-				//break;
+				new ScoreMenuView();
+				break;
 			case SINGLEPLAYER_GAME:
 				new SingleplayerViewController(view, this, settings);
 				break;

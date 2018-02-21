@@ -140,11 +140,11 @@ public class ButtonPanelController
 	 */
 	private void setStyle(final Style style) {
 		// Update settings //
-		uiController.setStyle(Style.CLASSIC);
+		uiController.setStyle(style);
 		
 		// Change graphical style //
 		// TODO: Have this occur automatically when setting is changes, to
 		//       prevent inconsistent states.
-		gridViewController.changeSprites(Style.CLASSIC);
+		gridViewController.changeSprites(style);
 	}
 }

@@ -127,7 +127,7 @@ public class MainMenuViewController
 		});
 		mainMenuView.addHighscoreListener(event -> {
 			// Open highscore menu //
-			
+			uiController.changeView(UIController.View.SCORE_MENU);
 		});
 		mainMenuView.addSettingsListener(event -> {
 			// Open settings menu //
