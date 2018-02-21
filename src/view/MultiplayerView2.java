@@ -1,5 +1,6 @@
 package view;
 
+// TODO: View is not allowed to access controllers.
 import controller.MatchThreeController;
 import java.awt.Color;
 import java.awt.FlowLayout;

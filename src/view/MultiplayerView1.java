@@ -1,5 +1,6 @@
 package view;
 
+// TODO: View is not allowed to access controllers.
 import controller.GridViewController;
 import controller.UIController;
 import java.awt.BorderLayout;
