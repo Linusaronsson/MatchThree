@@ -63,8 +63,6 @@ lint () {
 	fi
 	checkstyle \
 		-c "${script_dir}/${CHECKSTYLE}" \
-		-e "${script_dir}/${SOURCE}/com" \
-		-e "${script_dir}/${SOURCE}/org" \
 		-- "${script_dir}/${SOURCE}"
 }
 
