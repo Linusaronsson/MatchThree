@@ -7,6 +7,7 @@ import model.Jewel;
 import model.MatchThreeModel;
 import model.Settings;
 import model.Settings.Style;
+import view.CreditsView;
 import view.ScoreMenuView;
 
 /**
@@ -47,7 +48,7 @@ public class UIController
 		SINGLEPLAYER_GAME,
 		
 		/** Settings menu. */
-		SETTINGS_MENU,
+		SETTINGS,
 		
 		/** Credits menu. */
 		CREDITS,
@@ -110,11 +111,11 @@ public class UIController
 			case MULTIPLAYER_MENU:
 				new MultiplayerSetupController(view, this, settings);
 				break;
-			case SETTINGS_MENU:
+			case SETTINGS:
 				//new 
 				break;
 			case CREDITS:
-				//new 
+				new CreditsViewController(view);
 				break;
 			case SCORE_MENU:
 				new ScoreMenuView();
