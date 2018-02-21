@@ -43,7 +43,6 @@ public class SingleplayerViewController
 		this.uiController = uiController;
 		
 		// Create singleplayer view //
-		// TODO: Add separate controller for button panel?
 		SingleplayerView singleplayerView = new SingleplayerView();
 		
 		// Create MatchThree game //
