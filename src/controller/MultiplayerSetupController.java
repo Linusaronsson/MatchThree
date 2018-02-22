@@ -28,36 +28,31 @@ public class MultiplayerSetupController
 	private UIController uiController = null;
 	
 	/**
-	 * 
-	 * 
 	 * ...
 	 */
-	private final class HoverListener 
+	private final class HoverListener
 	implements MouseListener {
-		
 		/** ... */
 		private Button target = null;
-
+		
 		public HoverListener(final Button target) {
 			this.target = target;
 		}
-
+		
 		@Override public void mouseClicked(final MouseEvent e) { }
-
+		
 		@Override public void mousePressed(final MouseEvent e) { }
-
+		
 		@Override public void mouseReleased(final MouseEvent e) { }
-
+		
 		@Override public void mouseEntered(final MouseEvent e) {
 			target.setMask(Color.BLACK, 0.3f);
 		}
-
+		
 		@Override public void mouseExited(final MouseEvent e) {
 			target.setMask(Color.BLACK, 0.0f);
 		}
-		
 	}
-
 	
 	/**
 	 * Constructor.

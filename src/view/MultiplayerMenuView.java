@@ -20,7 +20,7 @@ public class MultiplayerMenuView
 	extends JPanel
 {
 	/** ... */
-	private Button connect = new Button(new ImageIcon(AssetManager.loadImage("ConnectButtonBackground.png")));//"Connect to player");
+	private Button connect = new Button(new ImageIcon(AssetManager.loadImage("ConnectButtonBackground.png"))); // "Connect to player";
 	
 	/** ... */
 	private JTextField ip = new JTextField();
@@ -44,10 +44,10 @@ public class MultiplayerMenuView
 		// Set connect button layout //
 		connect.setPreferredSize(new Dimension(160, 80));
 		connect.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createCompoundBorder(
-						BorderFactory.createLineBorder(Color.BLACK, 1), 
-						BorderFactory.createLineBorder(Color.DARK_GRAY, 1)), 
-				BorderFactory.createLineBorder(Color.BLACK, 1)));
+			BorderFactory.createCompoundBorder(
+				BorderFactory.createLineBorder(Color.BLACK, 1),
+				BorderFactory.createLineBorder(Color.DARK_GRAY, 1)),
+			BorderFactory.createLineBorder(Color.BLACK, 1)));
 		connect.setBorderPainted(true);
 		JLabel connectLabel = new JLabel("    Connect to player");
 		connectLabel.setFont(new Font("", Font.PLAIN, 15));
@@ -80,7 +80,7 @@ public class MultiplayerMenuView
 	
 	/**
 	 * ...
-	 * 
+	 *
 	 * @return
 	 */
 	public Button getConnectButton() {

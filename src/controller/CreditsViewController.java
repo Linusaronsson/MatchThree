@@ -3,7 +3,7 @@ package controller;
 import java.awt.Container;
 import view.CreditsView;
 
-public class CreditsViewController 
+public class CreditsViewController
 	implements ViewController
 {
 	public CreditsViewController(final Container parent) {
