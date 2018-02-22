@@ -52,7 +52,7 @@ public class CreditsView
 	 *
 	 * @param labels ...
 	 */
-	private void setLabelProperties(JLabel... labels) {
+	private void setLabelProperties(final JLabel... labels) {
 		for (JLabel label : labels) {
 			label.setFont(new Font("Impact", Font.PLAIN, 20));
 		}

@@ -8,5 +8,5 @@ interface ViewController
 	/**
 	 * Close the view.
 	 */
-	public void closeView();
+	void closeView();
 }
