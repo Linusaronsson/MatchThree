@@ -31,7 +31,8 @@ public class MultiplayerSetupController
 	 * ...
 	 */
 	private final class HoverListener
-	implements MouseListener {
+		implements MouseListener
+	{
 		/** ... */
 		private Button target = null;
 		
@@ -90,7 +91,10 @@ public class MultiplayerSetupController
 			connect();
 		});
 		Button connect = multiplayerMenuView.getConnectButton();
-		multiplayerMenuView.addHoverListener(new HoverListener(connect), connect);
+		multiplayerMenuView.addHoverListener(
+			new HoverListener(connect),
+			connect
+		);
 		
 		// Add view to parent //
 		parent.add(multiplayerMenuView);

@@ -20,7 +20,9 @@ public class MultiplayerMenuView
 	extends JPanel
 {
 	/** ... */
-	private Button connect = new Button(new ImageIcon(AssetManager.loadImage("ConnectButtonBackground.png"))); // "Connect to player";
+	private Button connect = new Button(
+		new ImageIcon(AssetManager.loadImage("ConnectButtonBackground.png"))
+	);
 	
 	/** ... */
 	private JTextField ip = new JTextField();
@@ -74,7 +76,10 @@ public class MultiplayerMenuView
 	 *
 	 * @param listener ...
 	 */
-	public void addHoverListener(final MouseListener listener, final Button target) {
+	public void addHoverListener(
+		final MouseListener listener,
+		final Button        target
+	) {
 		target.addMouseListener(listener);
 	}
 	
