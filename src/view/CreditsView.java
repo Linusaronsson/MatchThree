@@ -50,7 +50,7 @@ public class CreditsView
 	/**
 	 * ...
 	 *
-	 * @param labels
+	 * @param labels ...
 	 */
 	private void setLabelProperties(JLabel... labels) {
 		for (JLabel label : labels) {

@@ -36,6 +36,11 @@ public class MultiplayerSetupController
 		/** ... */
 		private Button target = null;
 		
+		/**
+		 * Constructor.
+		 *
+		 * @param target ...
+		 */
 		public HoverListener(final Button target) {
 			this.target = target;
 		}

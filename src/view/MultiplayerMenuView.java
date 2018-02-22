@@ -75,6 +75,7 @@ public class MultiplayerMenuView
 	 * ...
 	 *
 	 * @param listener ...
+	 * @param target   ...
 	 */
 	public void addHoverListener(
 		final MouseListener listener,
@@ -86,7 +87,7 @@ public class MultiplayerMenuView
 	/**
 	 * ...
 	 *
-	 * @return
+	 * @return ...
 	 */
 	public Button getConnectButton() {
 		return connect;
