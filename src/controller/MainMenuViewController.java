@@ -5,7 +5,6 @@ import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Font;
-import javax.swing.JPanel;
 import model.Settings;
 import util.Properties;
 import view.Button;

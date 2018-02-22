@@ -1,7 +1,6 @@
 package controller;
 
 import java.awt.Container;
-
 import view.CreditsView;
 
 public class CreditsViewController 

@@ -11,7 +11,6 @@ import multiplayer.OpponentController;
 import multiplayer.OpponentModel;
 import multiplayer.PlayerModel;
 import multiplayer.Server;
-import multiplayer.Server.OpponentInfo;
 import view.MultiplayerView;
 
 /**
