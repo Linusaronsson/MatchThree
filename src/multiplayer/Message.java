@@ -38,7 +38,10 @@ public class Message
 		SCORE_UPDATE, 
 		
 		/** .. */
-		MOVES_UPDATE
+		MOVES_UPDATE,
+		
+		/** .. */
+		GAME_FINISHED
 	}
 	
 	/**
@@ -64,6 +67,7 @@ public class Message
 			case REQUESTED_GAME: return "REQUESTED_GAME";
 			case SCORE_UPDATE:   return "SCORE_UPDATE";
 			case MOVES_UPDATE:   return "MOVES_UPDATE";
+			case GAME_FINISHED:  return "GAME_FINISHED";
 			default: throw new IllegalStateException();
 		}
 	}

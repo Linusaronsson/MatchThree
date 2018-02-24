@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.Font;
@@ -424,12 +425,20 @@ public class GridView
 	
 	@Override
 	public void update(final Observable o, final Object arg) {
-		if (o instanceof MatchThreeModel
-		&& arg instanceof MatchThreeModel.CellEvent) {
-			MatchThreeModel.CellEvent event = (MatchThreeModel.CellEvent) arg;
-			Coordinate c = event.getPos();
-			Jewel j = event.getType();
-			updateCell(c, j);
+		if (o instanceof MatchThreeModel) {
+			if(arg instanceof MatchThreeModel.CellEvent) {
+				MatchThreeModel.CellEvent event = (MatchThreeModel.CellEvent) arg;
+				Coordinate c = event.getPos();
+				Jewel j = event.getType();
+				updateCell(c, j);
+			} else if(arg instanceof MatchThreeModel.GameFinishedEvent) {
+				MatchThreeModel.LabelEvent event = (MatchThreeModel.LabelEvent) arg;
+				removeAll();
+				GameFinished f = new GameFinished(event.getValue());
+				add(f);
+				repaint();
+				revalidate();
+			}
 		}
 	}
 	

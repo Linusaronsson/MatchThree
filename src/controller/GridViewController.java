@@ -220,13 +220,6 @@ public class GridViewController
 			case OK:
 				AssetManager.playAudio(AssetManager.Audio.SWAP);
 				matchThreeModel.setMovesLeft();
-				if(matchThreeModel.getMovesLeft() == 0) {
-					Container grid = matchThreeUI.getGrid();
-					grid.removeAll();
-					GameFinished f = new GameFinished(matchThreeModel.getScore());
-					grid.add(f);
-					//TODO: Add the score to highscore here?
-				}
 				break;
 			case BAD:
 				AssetManager.playAudio(AssetManager.Audio.INVALID);

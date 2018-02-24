@@ -1,6 +1,8 @@
 package multiplayer;
 
 import controller.UIController;
+
+import java.awt.Container;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -9,6 +11,7 @@ import java.net.DatagramSocket;
 import java.net.SocketException;
 import model.Settings;
 import view.ErrorDialog;
+import view.GameFinished;
 
 /**
  * ...
@@ -25,6 +28,9 @@ public class OpponentController
 	/** ... */
 	private UIController uiController = null;
 	
+	/** .. */
+	private Container gridView = null;
+	
 	/** ... */
 	private DatagramSocket opponent;
 	
@@ -36,6 +42,9 @@ public class OpponentController
 	
 	/** ... */
 	private int port;
+	
+	/** .. */
+	private int current_score;
 	
 	/**
 	 * ...
@@ -49,11 +58,13 @@ public class OpponentController
 		final UIController  uiController,
 		final Settings      settings,
 		final OpponentModel model,
-		final int           port
+		final int           port,
+		final Container     gridView
 	) {
 		this.model        = model;
 		this.port         = port;
 		this.uiController = uiController;
+		this.gridView     = gridView;
 		
 		try {
 			//Listen on port (2000)
@@ -92,11 +103,19 @@ public class OpponentController
 						break;
 					case SCORE_UPDATE:
 						UpdateScore s = (UpdateScore) m;
-						model.setScore(s.getScore());
+						current_score = s.getScore();
+						model.setScore(current_score);
 						break;
 					case MOVES_UPDATE:
 						UpdateMovesLeft u = (UpdateMovesLeft) m;
-						model.setMovesLeft(u.getMoves());
+						int moves_left = u.getMoves();
+						model.setMovesLeft(moves_left);
+						break;
+					case GAME_FINISHED:
+						gridView.removeAll();
+						gridView.add(new GameFinished(current_score));
+						gridView.repaint();
+						gridView.revalidate();
 						break;
 					case END_GAME:
 						uiController.changeView(UIController.View.MAIN_MENU);

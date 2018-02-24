@@ -118,6 +118,9 @@ public class PlayerModel
 		super.setMovesLeft();
 		if (gameStarted) {
 			notifyOpponent(new UpdateMovesLeft(moves_left));
+			if(moves_left == 0) {
+				notifyOpponent(new UpdateGameFinished());
+			} 
 		}
 	}
 	

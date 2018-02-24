@@ -73,7 +73,8 @@ public class OpponentUIController
 				uiController,
 				settings,
 				opponentModel,
-				port
+				port,
+				gridView
 		);
 		
 		// Start listening for data on UDP port //

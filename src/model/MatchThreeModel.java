@@ -138,13 +138,32 @@ public class MatchThreeModel
 		}
 	}
 	
+	
+	/**
+	 * 
+	 * @author Linus
+	 *
+	 */
+	public class GameFinishedEvent
+		extends LabelEvent {
+		public GameFinishedEvent(final int value) {
+			super(value);
+		}
+	}
+	
 	/**
 	 * 
 	 */
 	public void setMovesLeft() {
 		// Notify observers //
+		if(--moves_left == 0) {
+			setChanged();
+			notifyObservers(new GameFinishedEvent(score));
+		}
+		
 		setChanged();
-		notifyObservers(new MovesLeftEvent(--moves_left));
+		notifyObservers(new MovesLeftEvent(moves_left));
+
 	}
 	
 	public int getMovesLeft() {
