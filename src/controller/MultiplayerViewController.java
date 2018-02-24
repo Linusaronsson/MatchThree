@@ -122,7 +122,7 @@ public class MultiplayerViewController
 		
 		
 		//Create OpponentView
-		new OpponentUIController(
+		opponentController = new OpponentUIController(
 			multiplayerView.getPlayer2(),
 			uiController,
 			settings,

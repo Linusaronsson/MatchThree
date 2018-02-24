@@ -8,6 +8,7 @@ import controller.UIController;
 import model.MatchThreeModel;
 import model.Settings;
 import view.GridView;
+import view.MatchThreeHeader;
 import view.MatchThreeUI;
 
 /**
@@ -59,9 +60,9 @@ public class OpponentUIController
 
 		
 		// Create header //
-		Container headerView = matchThreeUI.getHeader();
+		//Container headerView = matchThreeUI.getHeader();
 		new MatchThreeHeaderController(
-			headerView,
+			matchThreeUI,
 			uiController,
 			settings,
 			opponentModel

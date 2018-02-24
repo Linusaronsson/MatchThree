@@ -3,7 +3,9 @@ package controller;
 import java.awt.Container;
 import model.MatchThreeModel;
 import model.Settings;
+import view.MatchThreeHeader;
 import view.MatchThreeUI;
+import view.Score;
 
 /**
  * ...
@@ -65,9 +67,9 @@ public class MatchThreeUIController
 		);
 		
 		// Create header //
-		Container headerView = matchThreeUI.getHeader();
+		//Container headerView = matchThreeUI.getHeader();
 		new MatchThreeHeaderController(
-			headerView,
+			matchThreeUI,
 			uiController,
 			settings,
 			model

@@ -12,7 +12,7 @@ import model.MatchThreeModel;
  * TODO: rename this since its used for Moves Left label too?
  */
 @SuppressWarnings({"deprecation", "serial"})
-public class Score
+public abstract class LabelObserver
 	extends JLabel
 	implements Observer
 {
@@ -21,21 +21,28 @@ public class Score
 	
 	/** Font size. */
 	private static final int FONT_SIZE = 20;
-		
+	
+	private String title = null;
+	
 	/**
 	 * Create `Score`.
 	 *
 	 * @param matchThreeModel MatchThree model to use.
 	 */
-	public Score(
-			final MatchThreeModel matchThreeModel) {
+	public LabelObserver(
+			final MatchThreeModel matchThreeModel,
+			final String title, 
+			final int start_val
+		) {
 		// Validate argument //
 		if (matchThreeModel == null) {
 			throw new IllegalStateException();
 		}
-				
+		
+		this.title = title;
+		
 		// Update state //
-		update(0);
+		update(start_val);
 		
 		// Add observer //
 		matchThreeModel.addObserver(this);
@@ -51,15 +58,7 @@ public class Score
 	 * @param score New value.
 	 */
 	public void update(final int score) {
-		setText("Score: " + score);
+		setText(title + ": " + score);
 	}
-	
-	@Override
-	public void update(final Observable o, final Object arg) {
-		if (o instanceof MatchThreeModel
-		&& arg instanceof MatchThreeModel.ScoreEvent) {
-			MatchThreeModel.LabelEvent event = (MatchThreeModel.LabelEvent) arg;
-			update(event.getValue());
-		}
-	}
+
 }

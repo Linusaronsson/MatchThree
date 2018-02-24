@@ -111,6 +111,17 @@ public class PlayerModel
 	}
 	
 	/**
+	 * 
+	 */
+	@Override
+	public void setMovesLeft() {
+		super.setMovesLeft();
+		if (gameStarted) {
+			notifyOpponent(new UpdateMovesLeft(moves_left));
+		}
+	}
+	
+	/**
 	 * Move a cell and clear any generated chains. Leaves the board in a
 	 * consistent state. Also sends the new score to opponent.
 	 *

@@ -216,6 +216,13 @@ public class GridViewController
 		switch (matchThreeModel.move(from, to)) {
 			case OK:
 				AssetManager.playAudio(AssetManager.Audio.SWAP);
+				matchThreeModel.setMovesLeft();
+				if(matchThreeModel.getMovesLeft() == 0) {
+					uiController.changeView(UIController.View.MAIN_MENU);
+					int reached_score = matchThreeModel.getScore();
+					new ErrorDialog("Game finished", "Score: " + reached_score);
+					//TODO: Add the score to highscore here?
+				}
 				break;
 			case BAD:
 				AssetManager.playAudio(AssetManager.Audio.INVALID);
