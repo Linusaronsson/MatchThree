@@ -19,6 +19,7 @@ import util.AssetManager;
 import util.Properties;
 import view.Cell;
 import view.ErrorDialog;
+import view.GameFinished;
 import view.GridView;
 import view.MatchThreeUI;
 import view.MessageDialog;
@@ -111,7 +112,8 @@ public class GridViewController
 		final Container       parent,
 		final UIController    uiController,
 		final Settings        settings,
-		final MatchThreeModel matchThreeModel
+		final MatchThreeModel matchThreeModel,
+		final MatchThreeUI	  matchThreeUI
 	) {
 		// Validate arguments //
 		if (parent == null) {
@@ -133,6 +135,7 @@ public class GridViewController
 		
 		this.matchThreeModel = matchThreeModel;
 		this.uiController    = uiController;
+		this.matchThreeUI    = matchThreeUI;
 		
 		// Create view //
 		gridView = new GridView(matchThreeModel, settings.getStyle());
@@ -218,9 +221,10 @@ public class GridViewController
 				AssetManager.playAudio(AssetManager.Audio.SWAP);
 				matchThreeModel.setMovesLeft();
 				if(matchThreeModel.getMovesLeft() == 0) {
-					uiController.changeView(UIController.View.MAIN_MENU);
-					int reached_score = matchThreeModel.getScore();
-					new ErrorDialog("Game finished", "Score: " + reached_score);
+					Container grid = matchThreeUI.getGrid();
+					grid.removeAll();
+					GameFinished f = new GameFinished(matchThreeModel.getScore());
+					grid.add(f);
 					//TODO: Add the score to highscore here?
 				}
 				break;

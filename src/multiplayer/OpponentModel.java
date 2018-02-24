@@ -27,7 +27,7 @@ public class OpponentModel
 	 */
 	public void setScore(final int score) {
 		setChanged();
-		notifyObservers(new LabelEvent(score));
+		notifyObservers(new ScoreEvent(score));
 	}
 	
 	/**

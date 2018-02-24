@@ -63,7 +63,8 @@ public class MatchThreeUIController
 			gridView,
 			uiController,
 			settings,
-			model
+			model,
+			matchThreeUI
 		);
 		
 		// Create header //
