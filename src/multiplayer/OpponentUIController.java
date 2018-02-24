@@ -52,7 +52,7 @@ public class OpponentUIController
 		}
 
 		// Create view //
-		MatchThreeUI matchThreeUI = new MatchThreeUI();
+		MatchThreeUI matchThreeUI = new MatchThreeUI(opponentModel);
 		
 		// Create grid //
 		Container gridView = matchThreeUI.getGrid();

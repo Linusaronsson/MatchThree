@@ -58,10 +58,13 @@ public class ButtonPanel
 	/** ... */
 	private Button buttonV2 = null;
 	
+	/** ... */
+	private JPanel styleButtonsPanel = new JPanel();;
+	
 	/**
 	 * Create `ButtonPanel`.
 	 */
-	public ButtonPanel() {
+	public ButtonPanel(final MatchThreeModel model) {
 		// Set layout //
 		BorderLayout layout = new BorderLayout(
 			GAP_HORIZONTAL,
@@ -86,11 +89,12 @@ public class ButtonPanel
 		buttonV2.setIcon(new ImageIcon(IMAGE_V2));
 		
 		// Create panel for the version buttons //
-		JPanel panel = createVersionButtonsPanel(buttonV1, buttonV2);
+		styleButtonsPanel = createVersionButtonsPanel(buttonV1, buttonV2);
 		
 		// Assemble view //
+		model.addObserver(this);
 		add(back, BorderLayout.PAGE_START);
-		add(panel);
+		add(styleButtonsPanel);
 	}
 	
 	/**
@@ -197,10 +201,13 @@ public class ButtonPanel
 	 */
 	@Override
 	public void update(final Observable o, final Object arg) {
-		if (o instanceof MatchThreeModel && arg instanceof MatchThreeModel.GameFinishedEvent) {
-			removeAll();
-			repaint();
-			revalidate();
+		if (o instanceof MatchThreeModel && arg instanceof String) {
+			String str = (String) arg;
+			if(str.equals("remove")) {
+				styleButtonsPanel.removeAll();
+				repaint();
+				revalidate();
+			}
 		}
 	}
 }

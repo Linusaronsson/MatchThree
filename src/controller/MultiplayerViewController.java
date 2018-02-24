@@ -130,13 +130,6 @@ public class MultiplayerViewController
 			port
 		);
 		
-		
-		// Add event listeners //
-		multiplayerView.addBackListener(event -> {
-			// Go to main menu //
-			uiController.changeView(UIController.View.MAIN_MENU);
-		});
-		
 		// Add view to parent //
 		parent.add(multiplayerView);
 	}

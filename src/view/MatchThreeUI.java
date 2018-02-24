@@ -38,7 +38,7 @@ public class MatchThreeUI
 	 * Constructor for `MatchThreeUI`.
 	 */
 	// TODO: Call parent constructor?
-	public MatchThreeUI() {
+	public MatchThreeUI(final MatchThreeModel model) {
 		// Set properties //
 		// TODO: Stopgap hack.
 		setBackground(COLOR_BACKGROUND);
@@ -49,6 +49,7 @@ public class MatchThreeUI
 		setLayout(new BorderLayout());
 		
 		// Assemble view //
+		model.addObserver(this);
 		add(headerView, BorderLayout.PAGE_START);
 		add(gridView, BorderLayout.CENTER);
 	}
@@ -76,10 +77,13 @@ public class MatchThreeUI
 	 */
 	@Override
 	public void update(final Observable o, final Object arg) {
-		if (o instanceof MatchThreeModel && arg instanceof MatchThreeModel.GameFinishedEvent) {
-			removeAll();
-			repaint();
-			revalidate();
+		if (o instanceof MatchThreeModel && arg instanceof String) {
+			String str = (String) arg;
+			if(str.equals("remove")) {
+				headerView.removeAll();
+				repaint();
+				revalidate();
+			}
 		}
 	}
 }

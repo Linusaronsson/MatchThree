@@ -24,9 +24,6 @@ public class MultiplayerView
 	/** Default port number. */
 	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
-	/** ... */
-	private ButtonPanel buttonPanel = new ButtonPanel();
-	
 	/** Player 1 container. */
 	private Container player1View = new JPanel();
 	
@@ -51,16 +48,6 @@ public class MultiplayerView
 		
 		// Assemble view //
 		add(panel, BorderLayout.CENTER);
-		add(buttonPanel, BorderLayout.EAST);
-	}
-	
-	/**
-	 * Add listener for back button.
-	 *
-	 * @param listener Event listener to use.
-	 */
-	public void addBackListener(final ActionListener listener) {
-		buttonPanel.addBackListener(listener);
 	}
 	
 	/**
