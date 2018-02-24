@@ -1,12 +1,19 @@
 package controller;
 
 import java.awt.Container;
-
 import view.CreditsView;
 
-public class CreditsViewController 
+/**
+ * ...
+ */
+public class CreditsViewController
 	implements ViewController
 {
+	/**
+	 * Constructor.
+	 *
+	 * @param parent ...
+	 */
 	public CreditsViewController(final Container parent) {
 		// Validate arguments //
 		if (parent == null) {

@@ -11,7 +11,7 @@ import multiplayer.OpponentController;
 import multiplayer.OpponentModel;
 import multiplayer.PlayerModel;
 import multiplayer.Server;
-import multiplayer.Server.OpponentInfo;
+import multiplayer.OpponentUIController;
 import view.MultiplayerView;
 
 /**
@@ -36,13 +36,13 @@ public class MultiplayerViewController
 	private MultiplayerView multiplayerView = null;
 	
 	/** ... */
-	private OpponentController opponentController = null;
+	private OpponentUIController opponentController = null;
 	
 	/** ... */
 	private OpponentModel opponentModel = null;
 	
 	/** ... */
-	private GridViewController playerController = null;
+	private MatchThreeUIController playerController = null;
 	
 	/** ... */
 	private PlayerModel playerModel = null;
@@ -112,27 +112,24 @@ public class MultiplayerViewController
 		
 		playerModel.setGameStarted(true);
 		
-		playerController = new GridViewController(
+		//Create PlayerView
+		playerController = new MatchThreeUIController(
 			multiplayerView.getPlayer1(),
 			uiController,
 			settings,
 			playerModel
 		);
-		new MatchThreeUIController(
+		
+		
+		//Create OpponentView
+		opponentController = new OpponentUIController(
 			multiplayerView.getPlayer2(),
-			uiController,
-			settings,
-			opponentModel
-		);
-		opponentController = new OpponentController(
 			uiController,
 			settings,
 			opponentModel,
 			port
 		);
 		
-		// Initiate opponent board //
-		opponentController.start();
 		
 		// Add event listeners //
 		multiplayerView.addBackListener(event -> {

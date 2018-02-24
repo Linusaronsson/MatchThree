@@ -1,7 +1,6 @@
 package multiplayer;
 
 import controller.UIController;
-import controller.UIController.View;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

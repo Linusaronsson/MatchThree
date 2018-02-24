@@ -2,7 +2,6 @@ package view;
 
 // TODO: View is not allowed to access controllers.
 import controller.MatchThreeUIController;
-
 import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
@@ -52,14 +51,14 @@ public class MultiplayerView2
 		setBackground(Color.BLACK);
 		
 		// Create game //
-		gridView = new GridView(matchThreeModel, settings.getStyle());
+		/*gridView = new GridView(matchThreeModel, settings.getStyle());
 		matchThreeUI = new MatchThreeUI();
 		matchThreeUIController = new MatchThreeUIController(
 			matchThreeModel,
 			matchThreeUI,
 			settings,
 			gridView
-		);
+		);*/
 		
 		// Create model //
 		new MatchThreeModel(GAME_SIZE);
@@ -87,6 +86,6 @@ public class MultiplayerView2
 	 * @param window The parent window.
 	 */
 	public void setWindow(final Window window) {
-		matchThreeController.setWindow(window);
+		//matchThreeController.setWindow(window);
 	}
 }

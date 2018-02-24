@@ -1,13 +1,17 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+
 import util.AssetManager;
+import util.Properties;
 
 /**
  * Application main window.
@@ -16,6 +20,10 @@ import util.AssetManager;
 public class Window
 	extends JFrame
 {
+	/** ... */
+	private static final Color COLOR_BACKGROUND =
+		Properties.getColorBackground();
+	
 	/** ... */
 	private static final ImageIcon ICON =
 		new ImageIcon(AssetManager.loadImage("Logo3.png"));
@@ -51,6 +59,9 @@ public class Window
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationByPlatform(true);
 		setResizable(true);
+
+		// Set colors //
+		content.setBackground(COLOR_BACKGROUND);
 		
 		// Set icon //
 		setIconImage(ICON.getImage());

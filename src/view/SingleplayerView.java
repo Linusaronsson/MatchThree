@@ -3,6 +3,8 @@ package view;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.LayoutManager;
+
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 import util.Properties;
@@ -45,6 +47,10 @@ public class SingleplayerView
 		// Assemble view //
 		add(gameView);
 		add(buttonPanel);
+		
+		setBorder(BorderFactory.createCompoundBorder(
+			BorderFactory.createLineBorder(Color.WHITE, 2),
+			BorderFactory.createLineBorder(Color.BLACK, 2)));
 	}
 	
 	/**

@@ -27,6 +27,17 @@ public class OpponentModel
 	 */
 	public void setScore(final int score) {
 		setChanged();
-		notifyObservers(new ScoreEvent(score));
+		notifyObservers(new LabelEvent(score));
 	}
+	
+	/**
+	 * ...
+	 *
+	 * @param score ...
+	 */
+	public void setMovesLeft(final int moves) {
+		setChanged();
+		notifyObservers(new MovesLeftEvent(moves));
+	}
+	
 }

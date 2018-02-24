@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
@@ -24,6 +25,9 @@ public class MatchThreeHeader
 	/** Score container. */
 	private Container scoreView = new JPanel();
 	
+	/** Moves left container. */
+	private Container movesLeftView = new JPanel();
+	
 	/**
 	 * Constructor.
 	 */
@@ -32,10 +36,11 @@ public class MatchThreeHeader
 		setBackground(COLOR_PANEL);
 		
 		// Set layout //
-		setLayout(new FlowLayout());
+		setLayout(new BorderLayout());
 		
 		// Assemble view //
-		add(scoreView);
+		add(scoreView, BorderLayout.WEST);
+		add(movesLeftView, BorderLayout.EAST);
 	}
 	
 	/**
@@ -45,5 +50,14 @@ public class MatchThreeHeader
 	 */
 	public Container getScore() {
 		return scoreView;
+	}
+	
+	/**
+	 * Get MovesLeft container.
+	 *
+	 * @return MovesLeft container.
+	 */
+	public Container getMoves() {
+		return movesLeftView;
 	}
 }

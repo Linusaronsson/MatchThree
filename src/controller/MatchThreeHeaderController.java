@@ -3,6 +3,9 @@ package controller;
 import java.awt.Container;
 import model.MatchThreeModel;
 import model.Settings;
+import view.MatchThreeHeader;
+import view.MatchThreeUI;
+import view.MovesLeft;
 import view.Score;
 
 /**
@@ -19,13 +22,13 @@ public class MatchThreeHeaderController
 	 * @param matchThreeModel ...
 	 */
 	public MatchThreeHeaderController(
-		final Container       parent,
+		final MatchThreeUI    ui,
 		final UIController    uiController,
 		final Settings        settings,
 		final MatchThreeModel matchThreeModel
 	) {
 		// Validate arguments //
-		if (parent == null) {
+		if (ui == null) {
 			throw new IllegalArgumentException("`parent` must not be null");
 		}
 		if (uiController == null) {
@@ -43,10 +46,12 @@ public class MatchThreeHeaderController
 		}
 		
 		// Create view //
-		// TODO: Consider separate controller.
-		Container matchThreeUI = new Score(matchThreeModel);
+		MatchThreeHeader header = new MatchThreeHeader();
+		header.getScore().add(new Score(matchThreeModel));
+		header.getMoves().add(new MovesLeft(matchThreeModel));
+		Container parent = ui.getHeader();
 		
 		// Add view to parent //
-		parent.add(matchThreeUI);
+		parent.add(header);
 	}
 }

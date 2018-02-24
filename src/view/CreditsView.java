@@ -1,20 +1,17 @@
 package view;
 
-import java.awt.Color;
 import java.awt.Font;
-
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * 
- * @author Erik
+ * ...
  *
+ * @author Erik
  */
 @SuppressWarnings("serial")
-public class CreditsView 
+public class CreditsView
 	extends JPanel
 {
 	/** ... */
@@ -33,8 +30,7 @@ public class CreditsView
 	private static final JLabel DAVID = new JLabel("David");
 	
 	/**
-	 * 
-	 * 
+	 * ...
 	 */
 	public CreditsView() {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -52,12 +48,12 @@ public class CreditsView
 	}
 	
 	/**
-	 * 
-	 * 
-	 * @param labels
+	 * ...
+	 *
+	 * @param labels ...
 	 */
-	private void setLabelProperties(JLabel ... labels) {
-		for(JLabel label : labels) {
+	private void setLabelProperties(final JLabel... labels) {
+		for (JLabel label : labels) {
 			label.setFont(new Font("Impact", Font.PLAIN, 20));
 		}
 	}

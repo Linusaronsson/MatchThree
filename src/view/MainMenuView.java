@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
@@ -88,6 +87,11 @@ public class MainMenuView
 		// Set layout //
 		setLayout(new BorderLayout());
 		setBackground(COLOR_BACKGROUND);
+		
+		// Set border //
+		setBorder(BorderFactory.createCompoundBorder(
+			BorderFactory.createLineBorder(Color.WHITE, 2),
+			BorderFactory.createLineBorder(Color.BLACK, 2)));
 		
 		// Set button properties //
 		setProperties(buttons);

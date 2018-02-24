@@ -28,36 +28,37 @@ public class MultiplayerSetupController
 	private UIController uiController = null;
 	
 	/**
-	 * 
-	 * 
 	 * ...
 	 */
-	private final class HoverListener 
-	implements MouseListener {
-		
+	private final class HoverListener
+		implements MouseListener
+	{
 		/** ... */
 		private Button target = null;
-
-		public HoverListener(final Button target) {
+		
+		/**
+		 * Constructor.
+		 *
+		 * @param target ...
+		 */
+		private HoverListener(final Button target) {
 			this.target = target;
 		}
-
+		
 		@Override public void mouseClicked(final MouseEvent e) { }
-
+		
 		@Override public void mousePressed(final MouseEvent e) { }
-
+		
 		@Override public void mouseReleased(final MouseEvent e) { }
-
+		
 		@Override public void mouseEntered(final MouseEvent e) {
 			target.setMask(Color.BLACK, 0.3f);
 		}
-
+		
 		@Override public void mouseExited(final MouseEvent e) {
 			target.setMask(Color.BLACK, 0.0f);
 		}
-		
 	}
-
 	
 	/**
 	 * Constructor.
@@ -95,7 +96,10 @@ public class MultiplayerSetupController
 			connect();
 		});
 		Button connect = multiplayerMenuView.getConnectButton();
-		multiplayerMenuView.addHoverListener(new HoverListener(connect), connect);
+		multiplayerMenuView.addHoverListener(
+			new HoverListener(connect),
+			connect
+		);
 		
 		// Add view to parent //
 		parent.add(multiplayerMenuView);

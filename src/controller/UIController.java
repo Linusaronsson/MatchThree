@@ -6,11 +6,7 @@ import model.Jewel;
 import model.MatchThreeModel;
 import model.Settings;
 import model.Settings.Style;
-<<<<<<< HEAD
-=======
 import multiplayer.Server;
-import view.CreditsView;
->>>>>>> 6025d9705031087b288e0ebe35dbb8eded2d811b
 import view.ScoreMenuView;
 
 /**

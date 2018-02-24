@@ -23,6 +23,9 @@ public class MatchThreeModel
 	/** Score counter. */
 	protected int score = 0;
 	
+	/** Moves left. */
+	protected int moves_left = 20;
+	
 	/** Width of grid. */
 	protected int width = 0;
 	
@@ -42,7 +45,9 @@ public class MatchThreeModel
 	}
 	
 	/**
-	 * Cell event that is sent to the view.
+	 *  Cell event that is sent to the view.
+	 * @author Linus
+	 *
 	 */
 	public class CellEvent
 	{
@@ -83,20 +88,22 @@ public class MatchThreeModel
 	}
 	
 	/**
-	 * ...
+	 * 
+	 * @author Linus
+	 *
 	 */
-	public class ScoreEvent
+	public class LabelEvent
 	{
 		/** ... */
-		private int score;
+		private int value;
 		
 		/**
 		 * Create `ScoreEvent`.
 		 *
 		 * @param score ...
 		 */
-		public ScoreEvent(final int score) {
-			this.score = score;
+		public LabelEvent(final int value) {
+			this.value = value;
 		}
 		
 		/**
@@ -104,9 +111,44 @@ public class MatchThreeModel
 		 *
 		 * @return ...
 		 */
-		public int getScore() {
-			return score;
+		public int getValue() {
+			return value;
 		}
+	}
+	
+	/**
+	 * 
+	 * @author Linus
+	 *
+	 */
+	public class ScoreEvent extends LabelEvent {
+		public ScoreEvent(final int value) {
+			super(value);
+		}
+	}
+	
+	/**
+	 * 
+	 * @author Linus
+	 *
+	 */
+	public class MovesLeftEvent extends LabelEvent {
+		public MovesLeftEvent(final int value) {
+			super(value);
+		}
+	}
+	
+	/**
+	 * 
+	 */
+	public void setMovesLeft() {
+		// Notify observers //
+		setChanged();
+		notifyObservers(new MovesLeftEvent(--moves_left));
+	}
+	
+	public int getMovesLeft() {
+		return moves_left;
 	}
 	
 	/**

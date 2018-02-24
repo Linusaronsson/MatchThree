@@ -94,6 +94,10 @@ public class OpponentController
 						UpdateScore s = (UpdateScore) m;
 						model.setScore(s.getScore());
 						break;
+					case MOVES_UPDATE:
+						UpdateMovesLeft u = (UpdateMovesLeft) m;
+						model.setMovesLeft(u.getMoves());
+						break;
 					case END_GAME:
 						uiController.changeView(UIController.View.MAIN_MENU);
 						new ErrorDialog(
