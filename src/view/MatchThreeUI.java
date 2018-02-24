@@ -3,7 +3,14 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.JPanel;
+
+import model.Coordinate;
+import model.Jewel;
+import model.MatchThreeModel;
 import util.Properties;
 
 /**
@@ -11,7 +18,7 @@ import util.Properties;
  */
 @SuppressWarnings("serial")
 public class MatchThreeUI
-	extends JPanel
+	extends JPanel implements Observer
 {
 	/** ... */
 	private static final Color COLOR_BACKGROUND =
@@ -62,5 +69,17 @@ public class MatchThreeUI
 	 */
 	public Container getHeader() {
 		return headerView;
+	}
+	
+	/**
+	 * Removes matchthreeUI when game finished
+	 */
+	@Override
+	public void update(final Observable o, final Object arg) {
+		if (o instanceof MatchThreeModel && arg instanceof MatchThreeModel.GameFinishedEvent) {
+			removeAll();
+			repaint();
+			revalidate();
+		}
 	}
 }

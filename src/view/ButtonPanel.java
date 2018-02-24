@@ -6,8 +6,13 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
+import java.util.Observable;
+import java.util.Observer;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+import model.MatchThreeModel;
 import util.AssetManager;
 import util.Properties;
 
@@ -16,7 +21,7 @@ import util.Properties;
  */
 @SuppressWarnings("serial")
 public class ButtonPanel
-	extends JPanel
+	extends JPanel implements Observer
 {
 	/** ... */
 	private static final int GAP_HORIZONTAL = 4;
@@ -185,5 +190,17 @@ public class ButtonPanel
 	public Button getV2Button() {
 		// TODO Auto-generated method stub
 		return buttonV2;
+	}
+
+	/**
+	 * Removes buttonPanel when game finished
+	 */
+	@Override
+	public void update(final Observable o, final Object arg) {
+		if (o instanceof MatchThreeModel && arg instanceof MatchThreeModel.GameFinishedEvent) {
+			removeAll();
+			repaint();
+			revalidate();
+		}
 	}
 }
