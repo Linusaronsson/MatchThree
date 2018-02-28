@@ -143,8 +143,7 @@ public class UIController
 				windowController.closeWindow();
 				break;
 			case LOAD:
-				windowController.loadGame();
-				break;
+				throw new IllegalStateException("Not implemented");
 			default:
 				throw new IllegalStateException("Unknown value for `View`");
 		}

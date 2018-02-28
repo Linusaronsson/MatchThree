@@ -53,7 +53,7 @@ public class MultiplayerView
 		setBackground(COLOR_BACKGROUND);
 		player1View.setBackground(COLOR_BACKGROUND);
 		player2View.setBackground(COLOR_BACKGROUND);
-		
+
 		// Assemble view //
 		add(player1View);
 		add(player2View);
