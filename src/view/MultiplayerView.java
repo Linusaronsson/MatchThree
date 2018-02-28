@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import model.Settings;
 import util.Properties;
@@ -54,6 +56,10 @@ public class MultiplayerView
 		
 		// Set layout //
 		setLayout(new BorderLayout());
+		
+		setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createLineBorder(Color.WHITE, 2),
+				BorderFactory.createLineBorder(Color.BLACK, 2)));
 		
 		// Set background //
 		setBackground(COLOR_BACKGROUND);
