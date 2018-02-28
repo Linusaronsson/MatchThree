@@ -36,6 +36,10 @@ public class OpponentModel
 	 * @param score ...
 	 */
 	public void setMovesLeft(final int moves) {
+		if(--moves_left == 0) {
+			setChanged();
+			notifyObservers(new String("remove"));
+		}
 		setChanged();
 		notifyObservers(new MovesLeftEvent(moves));
 	}

@@ -16,7 +16,7 @@ import util.Properties;
 public class MatchThreeHeader
 	extends JPanel
 {
-	/** ... */
+	/** Light green */
 	private static final Color COLOR_BACKGROUND = new Color(0x76,0xff,0x7f);
 	
 	/** ... */
