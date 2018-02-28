@@ -6,6 +6,7 @@ import java.awt.Container;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import model.Coordinate;
