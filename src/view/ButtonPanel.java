@@ -98,6 +98,29 @@ public class ButtonPanel
 	}
 	
 	/**
+	 * Create `ButtonPanel` containing only Back Button.
+	 */
+	public ButtonPanel() {
+		// Set layout //
+		BorderLayout layout = new BorderLayout(
+			GAP_HORIZONTAL,
+			GAP_VERTICAL
+		);
+		setLayout(layout);
+		
+		// Set properties //
+		setBackground(COLOR_PANEL);
+		
+		// Create back button //
+		back = new Button();
+		back.setIcon(new ImageIcon(IMAGE_BACK));
+		back.setPreferredSize(new Dimension(50, 50));
+		
+		// Assemble view //
+		add(back, BorderLayout.PAGE_START);
+	}
+	
+	/**
 	 * ...
 	 *
 	 * @param buttons ...
