@@ -158,6 +158,8 @@ public class MatchThreeModel
 		// Notify observers //
 		if(--moves_left == 0) {
 			setChanged();
+			notifyObservers(new String("remove"));
+			setChanged();
 			notifyObservers(new GameFinishedEvent(score));
 		}
 		

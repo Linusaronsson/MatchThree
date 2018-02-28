@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import model.MatchThreeModel;
 import model.Settings;
 import model.Settings.Style;
 import util.AssetManager;
@@ -19,9 +21,6 @@ public class ButtonPanelController
 	/** ... */
 	private static final Color COLOR_BACKGROUND =
 		Properties.getColorBackground();
-	
-	/** Button panel view. */
-	private ButtonPanel buttonPanel = new ButtonPanel();
 	
 	/** Reference to GridViewController controller. */
 	private GridViewController gridViewController = null;
@@ -86,7 +85,8 @@ public class ButtonPanelController
 		final Container          parent,
 		final UIController       uiController,
 		final GridViewController gridViewController,
-		final Settings           settings
+		final Settings           settings,
+		final MatchThreeModel    model
 	) {
 		// Validate arguments //
 		if (parent == null) {
@@ -109,25 +109,29 @@ public class ButtonPanelController
 		this.gridViewController = gridViewController;
 		this.uiController       = uiController;
 		
+		/** Button panel view. */
+		ButtonPanel buttonPanel = new ButtonPanel(model);
 		// Register event listeners //
 		Button buttonBack = buttonPanel.getBackButton();
-		Button buttonV1   = buttonPanel.getV1Button();
-		Button buttonV2   = buttonPanel.getV2Button();
 		buttonPanel.addBackListener(new HoverListener(buttonBack));
-		buttonPanel.addButtonV1Listener(new HoverListener(buttonV1));
-		buttonPanel.addButtonV2Listener(new HoverListener(buttonV2));
 		buttonPanel.addBackListener(event -> {
 			// Go to main menu //
 			uiController.changeView(UIController.View.MAIN_MENU);
 		});
-		buttonPanel.addButtonV1Listener(event -> {
-			// Set visual style //
-			setStyle(Style.CLASSIC);
-		});
-		buttonPanel.addButtonV2Listener(event -> {
-			// Set visual style //
-			setStyle(Style.STEEL);
-		});
+		if(buttonPanel.getV1Button() != null && buttonPanel.getV2Button() != null) {
+			Button buttonV1   = buttonPanel.getV1Button();
+			Button buttonV2   = buttonPanel.getV2Button();
+			buttonPanel.addButtonV1Listener(new HoverListener(buttonV1));
+			buttonPanel.addButtonV2Listener(new HoverListener(buttonV2));
+			buttonPanel.addButtonV1Listener(event -> {
+				// Set visual style //
+				setStyle(Style.CLASSIC);
+			});
+			buttonPanel.addButtonV2Listener(event -> {
+				// Set visual style //
+				setStyle(Style.STEEL);
+			});
+		}
 		
 		// Add view to parent //
 		parent.add(buttonPanel);

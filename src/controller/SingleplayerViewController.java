@@ -59,7 +59,8 @@ public class SingleplayerViewController
 			buttonPanel,
 			uiController,
 			gridViewController,
-			settings
+			settings,
+			matchThreeUIController.getModel()
 		);
 		
 		// Add view to parent //

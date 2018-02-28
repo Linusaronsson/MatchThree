@@ -1,12 +1,18 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import model.Settings;
+import util.Properties;
 
 /**
  * Multiplayer game screen.
@@ -16,16 +22,19 @@ public class MultiplayerView
 	extends JPanel
 {
 	/** ... */
-	private static final int GAP_HORIZONTAL = 100;
+	private static final int GAP_HORIZONTAL = 30;
 	
 	/** ... */
-	private static final int GAP_VERTICAL = 150;
+	private static final int GAP_VERTICAL = 30;
 	
 	/** Default port number. */
 	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
-	/** ... */
-	private ButtonPanel buttonPanel = new ButtonPanel();
+	/** Background color */
+	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
+	
+	/** Back button container. */
+	private ButtonPanel backPanel = new ButtonPanel();
 	
 	/** Player 1 container. */
 	private Container player1View = new JPanel();
@@ -37,21 +46,23 @@ public class MultiplayerView
 	 * Constructor.
 	 */
 	public MultiplayerView() {
-		// Create split view //
-		LayoutManager layout =
-			new GridLayout(1, 2, GAP_HORIZONTAL, GAP_VERTICAL);
-		JPanel panel = new JPanel(layout);
-		
-		// Assemble split view //
-		panel.add(player1View);
-		panel.add(player2View);
-		
 		// Set layout //
-		setLayout(new BorderLayout());
+		setLayout(new FlowLayout());
+		
+		// Set background //
+		setBackground(COLOR_BACKGROUND);
+		player1View.setBackground(COLOR_BACKGROUND);
+		player2View.setBackground(COLOR_BACKGROUND);
 		
 		// Assemble view //
-		add(panel, BorderLayout.CENTER);
-		add(buttonPanel, BorderLayout.EAST);
+		add(player1View);
+		add(player2View);
+		add(backPanel);
+		
+		// Set border //
+				setBorder(BorderFactory.createCompoundBorder(
+						BorderFactory.createLineBorder(Color.WHITE, 2),
+						BorderFactory.createLineBorder(Color.BLACK, 2)));
 	}
 	
 	/**
@@ -60,7 +71,29 @@ public class MultiplayerView
 	 * @param listener Event listener to use.
 	 */
 	public void addBackListener(final ActionListener listener) {
-		buttonPanel.addBackListener(listener);
+		backPanel.addBackListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @param listener ...
+	 * @param target   ...
+	 */
+	public void addHoverListener(
+		final MouseListener listener,
+		final Button        target
+	) {
+		target.addMouseListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
+	public Button getBackButton() {
+		return backPanel.getBackButton();
 	}
 	
 	/**

@@ -58,10 +58,13 @@ public class ButtonPanel
 	/** ... */
 	private Button buttonV2 = null;
 	
+	/** ... */
+	private JPanel styleButtonsPanel = new JPanel();;
+	
 	/**
 	 * Create `ButtonPanel`.
 	 */
-	public ButtonPanel() {
+	public ButtonPanel(final MatchThreeModel model) {
 		// Set layout //
 		BorderLayout layout = new BorderLayout(
 			GAP_HORIZONTAL,
@@ -70,7 +73,7 @@ public class ButtonPanel
 		setLayout(layout);
 		
 		// Set properties //
-		setBackground(COLOR_PANEL);
+		setBackground(COLOR_BACKGROUND);
 		
 		// Create back button //
 		back = new Button();
@@ -86,11 +89,36 @@ public class ButtonPanel
 		buttonV2.setIcon(new ImageIcon(IMAGE_V2));
 		
 		// Create panel for the version buttons //
-		JPanel panel = createVersionButtonsPanel(buttonV1, buttonV2);
+		styleButtonsPanel = createVersionButtonsPanel(buttonV1, buttonV2);
+		styleButtonsPanel.setBackground(COLOR_BACKGROUND);
+		
+		// Assemble view //
+		model.addObserver(this);
+		add(back, BorderLayout.PAGE_START);
+		add(styleButtonsPanel);
+	}
+	
+	/**
+	 * Create `ButtonPanel` containing only Back Button.
+	 */
+	public ButtonPanel() {
+		// Set layout //
+		BorderLayout layout = new BorderLayout(
+			GAP_HORIZONTAL,
+			GAP_VERTICAL
+		);
+		setLayout(layout);
+		
+		// Set properties //
+		setBackground(COLOR_BACKGROUND);
+		
+		// Create back button //
+		back = new Button();
+		back.setIcon(new ImageIcon(IMAGE_BACK));
+		back.setPreferredSize(new Dimension(50, 50));
 		
 		// Assemble view //
 		add(back, BorderLayout.PAGE_START);
-		add(panel);
 	}
 	
 	/**
@@ -197,10 +225,13 @@ public class ButtonPanel
 	 */
 	@Override
 	public void update(final Observable o, final Object arg) {
-		if (o instanceof MatchThreeModel && arg instanceof MatchThreeModel.GameFinishedEvent) {
-			removeAll();
-			repaint();
-			revalidate();
+		if (o instanceof MatchThreeModel && arg instanceof String) {
+			String str = (String) arg;
+			if(str.equals("remove")) {
+				styleButtonsPanel.removeAll();
+				repaint();
+				revalidate();
+			}
 		}
 	}
 }

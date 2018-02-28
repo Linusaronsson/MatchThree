@@ -17,6 +17,9 @@ public class MatchThreeUIController
 	
 	/** Reference to GridViewController. */
 	private GridViewController gridViewController = null;
+
+	/** Reference to MatchThreeModel. */
+	private MatchThreeModel model = null;
 	
 	/**
 	 * Constructor.
@@ -54,8 +57,10 @@ public class MatchThreeUIController
 			model = matchThreeModel;
 		}
 		
+		this.model = model;
+		
 		// Create view //
-		MatchThreeUI matchThreeUI = new MatchThreeUI();
+		MatchThreeUI matchThreeUI = new MatchThreeUI(model);
 		
 		// Create grid //
 		Container gridView = matchThreeUI.getGrid();
@@ -87,5 +92,10 @@ public class MatchThreeUIController
 	 */
 	public GridViewController getGridViewController() {
 		return gridViewController;
+	}
+
+	public MatchThreeModel getModel() {
+		// TODO Auto-generated method stub
+		return model;
 	}
 }

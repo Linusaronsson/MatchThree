@@ -9,6 +9,9 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
+import java.util.Observable;
+import java.util.Observer;
+
 import model.Settings;
 import view.ErrorDialog;
 import view.GameFinished;

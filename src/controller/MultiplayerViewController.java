@@ -1,9 +1,14 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.Container;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+
+import controller.UIController.View;
 import model.Jewel;
 import model.Settings;
 import multiplayer.Message;
@@ -12,6 +17,7 @@ import multiplayer.OpponentModel;
 import multiplayer.PlayerModel;
 import multiplayer.Server;
 import multiplayer.OpponentUIController;
+import view.Button;
 import view.MultiplayerView;
 
 /**
@@ -52,6 +58,39 @@ public class MultiplayerViewController
 	
 	/** Reference to UI controller. */
 	private UIController uiController = null;
+	
+	/**
+	 * ...
+	 */
+	private final class HoverListener
+		implements MouseListener
+	{
+		/** ... */
+		private Button target = null;
+		
+		/**
+		 * Constructor.
+		 *
+		 * @param target ...
+		 */
+		private HoverListener(final Button target) {
+			this.target = target;
+		}
+		
+		@Override public void mouseClicked(final MouseEvent e) { }
+		
+		@Override public void mousePressed(final MouseEvent e) { }
+		
+		@Override public void mouseReleased(final MouseEvent e) { }
+		
+		@Override public void mouseEntered(final MouseEvent e) {
+			target.setMask(Color.BLACK, 0.3f);
+		}
+		
+		@Override public void mouseExited(final MouseEvent e) {
+			target.setMask(Color.BLACK, 0.0f);
+		}
+	}
 	
 	/**
 	 * Create `MultiplayerViewController`.
@@ -130,15 +169,20 @@ public class MultiplayerViewController
 			port
 		);
 		
-		
-		// Add event listeners //
 		multiplayerView.addBackListener(event -> {
-			// Go to main menu //
-			uiController.changeView(UIController.View.MAIN_MENU);
+			// Initiate connection //
+			back();
 		});
+		
+		Button back = multiplayerView.getBackButton();
+		multiplayerView.addHoverListener(
+			new HoverListener(back),
+			back
+		);
 		
 		// Add view to parent //
 		parent.add(multiplayerView);
+		
 	}
 	
 	/**
@@ -160,5 +204,12 @@ public class MultiplayerViewController
 	public void closeView() {
 		// Close game session //
 		closeGame();
+	}
+	
+	/**
+	 * Handle back event.
+	 */
+	private void back() {
+		uiController.changeView(View.MAIN_MENU);
 	}
 }
