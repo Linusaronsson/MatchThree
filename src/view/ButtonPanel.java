@@ -73,7 +73,7 @@ public class ButtonPanel
 		setLayout(layout);
 		
 		// Set properties //
-		setBackground(COLOR_PANEL);
+		setBackground(COLOR_BACKGROUND);
 		
 		// Create back button //
 		back = new Button();
@@ -90,6 +90,7 @@ public class ButtonPanel
 		
 		// Create panel for the version buttons //
 		styleButtonsPanel = createVersionButtonsPanel(buttonV1, buttonV2);
+		styleButtonsPanel.setBackground(COLOR_BACKGROUND);
 		
 		// Assemble view //
 		model.addObserver(this);
@@ -109,7 +110,7 @@ public class ButtonPanel
 		setLayout(layout);
 		
 		// Set properties //
-		setBackground(COLOR_PANEL);
+		setBackground(COLOR_BACKGROUND);
 		
 		// Create back button //
 		back = new Button();

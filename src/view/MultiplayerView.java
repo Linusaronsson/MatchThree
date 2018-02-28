@@ -28,7 +28,7 @@ public class MultiplayerView
 	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
 	/** Background color */
-	private static final Color COLOR_BACKGROUND = Properties.getColorBackground().brighter().brighter();
+	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
 	
 	/** Back button container. */
 	private ButtonPanel backPanel = new ButtonPanel();

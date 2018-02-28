@@ -42,8 +42,8 @@ public class MatchThreeUI
 		// Set properties //
 		// TODO: Stopgap hack.
 		setBackground(COLOR_BACKGROUND);
-		headerView.setBackground(COLOR_PANEL);
-		gridView.setBackground(COLOR_PANEL);
+		headerView.setBackground(COLOR_BACKGROUND);
+		gridView.setBackground(COLOR_BACKGROUND);
 		
 		// Set layout //
 		setLayout(new BorderLayout());
