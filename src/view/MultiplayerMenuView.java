@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.Font;
@@ -24,6 +25,9 @@ public class MultiplayerMenuView
 {
 	/** ... */
 	private Button connect = new Button();
+	
+	/** ... */
+	private ButtonPanel backPanel = new ButtonPanel();
 	
 	/** ... */
 	private JTextField ip = new JTextField();
@@ -52,7 +56,7 @@ public class MultiplayerMenuView
 		
 		// Set connect button layout //
 		connect.setBackground(Color.BLACK);
-		connect.setPreferredSize(new Dimension(120, 80));
+		connect.setPreferredSize(new Dimension(160, 80));
 		connect.setSize(new Dimension(160, 80));
 		connect.setContentAreaFilled(true);
 		connect.setBorder(BorderFactory.createCompoundBorder(
@@ -64,7 +68,7 @@ public class MultiplayerMenuView
 		
 		Font font = new Font("Impact", Font.PLAIN, 20);
 		
-		JLabel connectLabel = new JLabel("            Connect to player");
+		JLabel connectLabel = new JLabel(" Connect to player");
 		connectLabel.setForeground(Color.BLACK);
 		connectLabel.setFont(font);
 		connect.add(connectLabel);
@@ -74,7 +78,7 @@ public class MultiplayerMenuView
 		ip_label.setForeground(Color.WHITE);
 		port_label.setForeground(Color.WHITE);
 		
-		setLayout(new GridLayout(2, 1));
+		setLayout(new FlowLayout());
 		setBackground(Properties.getColorBackground());
 		ip.setBackground(Properties.getColorBackground());
 		port.setBackground(Properties.getColorBackground());
@@ -100,8 +104,11 @@ public class MultiplayerMenuView
 		bothpanel.add(portpanel);
 		bothpanel.setBackground(Properties.getColorBackground());
 		
+		backPanel.setBackground(Properties.getColorBackground());
+		
 		add(connect);
 		add(bothpanel);
+		add(backPanel);
 	}
 	
 	/**
@@ -117,6 +124,15 @@ public class MultiplayerMenuView
 	 * ...
 	 *
 	 * @param listener ...
+	 */
+	public void addBackListener(final ActionListener listener) {
+		getBackButton().addActionListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @param listener ...
 	 * @param target   ...
 	 */
 	public void addHoverListener(
@@ -124,6 +140,15 @@ public class MultiplayerMenuView
 		final Button        target
 	) {
 		target.addMouseListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
+	public Button getBackButton() {
+		return backPanel.getBackButton();
 	}
 	
 	/**

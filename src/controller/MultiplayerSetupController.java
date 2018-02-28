@@ -8,6 +8,8 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+
+import controller.UIController.View;
 import model.Settings;
 import multiplayer.Message;
 import multiplayer.Server;
@@ -101,6 +103,17 @@ public class MultiplayerSetupController
 			connect
 		);
 		
+		multiplayerMenuView.addBackListener(event -> {
+			// Initiate connection //
+			back();
+		});
+		
+		Button back = multiplayerMenuView.getBackButton();
+		multiplayerMenuView.addHoverListener(
+			new HoverListener(back),
+			back
+		);
+		
 		// Add view to parent //
 		parent.add(multiplayerMenuView);
 	}
@@ -145,5 +158,12 @@ public class MultiplayerSetupController
 				socket.close();
 			}
 		}
+	}
+	
+	/**
+	 * Handle back event.
+	 */
+	private void back() {
+		uiController.changeView(View.MAIN_MENU);
 	}
 }

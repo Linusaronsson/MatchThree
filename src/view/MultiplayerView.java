@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import javax.swing.JPanel;
@@ -72,6 +73,28 @@ public class MultiplayerView
 	 */
 	public void addBackListener(final ActionListener listener) {
 		backPanel.addBackListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @param listener ...
+	 * @param target   ...
+	 */
+	public void addHoverListener(
+		final MouseListener listener,
+		final Button        target
+	) {
+		target.addMouseListener(listener);
+	}
+	
+	/**
+	 * ...
+	 *
+	 * @return ...
+	 */
+	public Button getBackButton() {
+		return backPanel.getBackButton();
 	}
 	
 	/**
