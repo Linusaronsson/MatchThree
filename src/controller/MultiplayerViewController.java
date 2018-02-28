@@ -30,7 +30,7 @@ public class MultiplayerViewController
 	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
 	/** ... */
-	private InetAddress host = null;
+	private InetAddress host = null; 
 	
 	/** View to control. */
 	private MultiplayerView multiplayerView = null;
