@@ -92,6 +92,11 @@ public class OpponentController
 		opponent.close();
 	}
 	
+	/**
+	 * This runs continously and listens to the specified port. It receives 
+	 * datagram packets from the opponent and updates the OpponentModel, which
+	 * in turn updates the OpponentView.
+	 */
 	@Override
 	public void run() {
 		try {
