@@ -182,7 +182,7 @@ public class MultiplayerViewController
 		
 		// Add view to parent //
 		parent.add(multiplayerView);
-		parent.add(back);
+		
 	}
 	
 	/**
