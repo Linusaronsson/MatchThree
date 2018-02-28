@@ -3,27 +3,29 @@ package multiplayer;
 import model.Jewel;
 
 /**
+ * @author Linus 
+ * 
  * Message sent between users over a DatagramSocket (Specific jewel).
  */
 @SuppressWarnings("serial")
 public class UpdateCell
 	extends Message
 {
-	/** ... */
+	/** x coordinate */
 	private int x;
 	
-	/** ... */
+	/** y coordinate */
 	private int y;
 	
-	/** ... */
+	/** The type of jewel. */
 	private Jewel jewelType;
 	
 	/**
-	 * ...
+	 * Constructor
 	 *
-	 * @param x         ...
-	 * @param y         ...
-	 * @param jewelType ...
+	 * @param x         x-coordinate
+	 * @param y         y-coordinate
+	 * @param jewelType Jewel type
 	 */
 	public UpdateCell(final int x, final int y, final Jewel jewelType) {
 		super(MessageType.CELL_UPDATE);
@@ -33,27 +35,27 @@ public class UpdateCell
 	}
 	
 	/**
-	 * ...
+	 * Y getter.
 	 *
-	 * @return ...
+	 * @return y-coordinate
 	 */
 	public int getY() {
 		return y;
 	}
 	
 	/**
-	 * ...
+	 * X getter
 	 *
-	 * @return ...
+	 * @return x-coordinate
 	 */
 	public int getX() {
 		return x;
 	}
 	
 	/**
-	 * ...
+	 * Jewel type getter
 	 *
-	 * @return ...
+	 * @return Jewel type
 	 */
 	public Jewel getJewelType() {
 		return jewelType;

@@ -17,7 +17,11 @@ import view.ErrorDialog;
 import view.GameFinished;
 
 /**
- * ...
+ * @author Linus
+ * 
+ * The opponent controller receives and deals with data sent from the 
+ * opponent and updates the opponent model.
+ * 
  */
 public class OpponentController
 	extends Thread
@@ -25,37 +29,37 @@ public class OpponentController
 	/** Default packet size. */
 	private static final int PACKET_SIZE = 2048;
 	
-	/** ... */
+	/** Opponent model. */
 	private OpponentModel model = null;
 	
-	/** ... */
+	/** UIController */
 	private UIController uiController = null;
 	
-	/** .. */
+	/** The GridView managed by the OpponentModel */
 	private Container gridView = null;
 	
-	/** ... */
+	/** The UDP socket used to receive messages from the opponent */
 	private DatagramSocket opponent;
 	
-	/** ... */
+	/** DatagramPacket containing the data sent from opponent */
 	private DatagramPacket in;
 	
-	/** ... */
+	/** Buffer used by the DatagramPacket 'in' */
 	private byte[] inBuffer;
 	
-	/** ... */
+	/** The port to listen on */
 	private int port;
 	
-	/** .. */
+	/** The current score */
 	private int current_score;
 	
 	/**
-	 * ...
+	 * Constructor
 	 *
-	 * @param uiController ...
-	 * @param settings     ...
-	 * @param model        ...
-	 * @param port         ...
+	 * @param uiController UIController
+	 * @param settings     The settings
+	 * @param model        OpponentModel
+	 * @param port         Listen on port
 	 */
 	public OpponentController(
 		final UIController  uiController,
@@ -82,7 +86,9 @@ public class OpponentController
 	}
 	
 	/**
-	 * ...
+	 * This will interrupt the thread and close the DatagramSocket 'in'.
+	 * This is done when the game has ended. This allows another game to be
+	 * started immediately after.
 	 */
 	public void close() {
 		this.interrupt();

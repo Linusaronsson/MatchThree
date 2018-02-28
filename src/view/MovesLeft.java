@@ -35,7 +35,8 @@ public class MovesLeft
 		}
 				
 		// Update state //
-		update(20);
+		int value = matchThreeModel.getMovesLeft();
+		update(value);
 		
 		// Add observer //
 		matchThreeModel.addObserver(this);
@@ -46,7 +47,7 @@ public class MovesLeft
 	}
 	
 	/**
-	 * Update score label.
+	 * Update score label with value.
 	 *
 	 * @param score New value.
 	 */
