@@ -113,23 +113,25 @@ public class ButtonPanelController
 		ButtonPanel buttonPanel = new ButtonPanel(model);
 		// Register event listeners //
 		Button buttonBack = buttonPanel.getBackButton();
-		Button buttonV1   = buttonPanel.getV1Button();
-		Button buttonV2   = buttonPanel.getV2Button();
 		buttonPanel.addBackListener(new HoverListener(buttonBack));
-		buttonPanel.addButtonV1Listener(new HoverListener(buttonV1));
-		buttonPanel.addButtonV2Listener(new HoverListener(buttonV2));
 		buttonPanel.addBackListener(event -> {
 			// Go to main menu //
 			uiController.changeView(UIController.View.MAIN_MENU);
 		});
-		buttonPanel.addButtonV1Listener(event -> {
-			// Set visual style //
-			setStyle(Style.CLASSIC);
-		});
-		buttonPanel.addButtonV2Listener(event -> {
-			// Set visual style //
-			setStyle(Style.STEEL);
-		});
+		if(buttonPanel.getV1Button() != null && buttonPanel.getV2Button() != null) {
+			Button buttonV1   = buttonPanel.getV1Button();
+			Button buttonV2   = buttonPanel.getV2Button();
+			buttonPanel.addButtonV1Listener(new HoverListener(buttonV1));
+			buttonPanel.addButtonV2Listener(new HoverListener(buttonV2));
+			buttonPanel.addButtonV1Listener(event -> {
+				// Set visual style //
+				setStyle(Style.CLASSIC);
+			});
+			buttonPanel.addButtonV2Listener(event -> {
+				// Set visual style //
+				setStyle(Style.STEEL);
+			});
+		}
 		
 		// Add view to parent //
 		parent.add(buttonPanel);
