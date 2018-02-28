@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.FlowLayout;
+
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import util.Properties;
 
@@ -37,6 +39,13 @@ public class MatchThreeHeader
 		
 		// Set layout //
 		setLayout(new BorderLayout());
+		
+		// Set border //
+		setBorder(BorderFactory.createLineBorder(Color.WHITE, 2));
+		
+		// Set background //
+		scoreView.setBackground(Color.red);
+		movesLeftView.setBackground(Color.red);
 		
 		// Assemble view //
 		add(scoreView, BorderLayout.WEST);

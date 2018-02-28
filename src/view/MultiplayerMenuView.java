@@ -5,12 +5,15 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.Font;
+import java.awt.GridLayout;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import util.AssetManager;
+import util.Properties;
 
 /**
  * Multiplayer setup screen.
@@ -20,15 +23,19 @@ public class MultiplayerMenuView
 	extends JPanel
 {
 	/** ... */
-	private Button connect = new Button(
-		new ImageIcon(AssetManager.loadImage("ConnectButtonBackground.png"))
-	);
+	private Button connect = new Button();
 	
 	/** ... */
 	private JTextField ip = new JTextField();
 	
 	/** ... */
 	private JTextField port = new JTextField();
+	
+	/** ... */
+	private JLabel ip_label = new JLabel("IP: ");
+	
+	/** ... */
+	private JLabel port_label = new JLabel("Port: ");
 		
 	/**
 	 * ...
@@ -44,22 +51,57 @@ public class MultiplayerMenuView
 		//add(back);
 		
 		// Set connect button layout //
-		connect.setPreferredSize(new Dimension(160, 80));
+		connect.setBackground(Color.BLACK);
+		connect.setPreferredSize(new Dimension(120, 80));
+		connect.setSize(new Dimension(160, 80));
+		connect.setContentAreaFilled(true);
 		connect.setBorder(BorderFactory.createCompoundBorder(
 			BorderFactory.createCompoundBorder(
 				BorderFactory.createLineBorder(Color.BLACK, 1),
 				BorderFactory.createLineBorder(Color.DARK_GRAY, 1)),
 			BorderFactory.createLineBorder(Color.BLACK, 1)));
 		connect.setBorderPainted(true);
-		JLabel connectLabel = new JLabel("    Connect to player");
-		connectLabel.setFont(new Font("", Font.PLAIN, 15));
+		
+		Font font = new Font("Impact", Font.PLAIN, 20);
+		
+		JLabel connectLabel = new JLabel("            Connect to player");
+		connectLabel.setForeground(Color.BLACK);
+		connectLabel.setFont(font);
 		connect.add(connectLabel);
 		
+		ip_label.setFont(font);
+		port_label.setFont(font);
+		ip_label.setForeground(Color.WHITE);
+		port_label.setForeground(Color.WHITE);
+		
+		setLayout(new GridLayout(2, 1));
+		setBackground(Properties.getColorBackground());
+		ip.setBackground(Properties.getColorBackground());
+		port.setBackground(Properties.getColorBackground());
+		
+		ip.setForeground(Color.WHITE);
+		port.setForeground(Color.WHITE);
+		ip.setCaretColor(Color.WHITE);
+		port.setCaretColor(Color.WHITE);
+		
+		JPanel ippanel = new JPanel();
+		ippanel.add(ip_label);
+		ippanel.add(ip);
+		ippanel.setBackground(Properties.getColorBackground());
+		
+		JPanel portpanel = new JPanel();
+		portpanel.add(port_label);
+		portpanel.add(port);
+		portpanel.setBackground(Properties.getColorBackground());
+		
+		JPanel bothpanel = new JPanel();
+		bothpanel.setLayout(new GridLayout(2, 1));
+		bothpanel.add(ippanel);
+		bothpanel.add(portpanel);
+		bothpanel.setBackground(Properties.getColorBackground());
+		
 		add(connect);
-		add(new JLabel("IP: "));
-		add(ip);
-		add(new JLabel("Port: "));
-		add(port);
+		add(bothpanel);
 	}
 	
 	/**
