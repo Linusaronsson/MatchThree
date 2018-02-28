@@ -95,7 +95,6 @@ public class MainWindowController
 		});
 		menuBar.addOpenListener(event -> {
 			// TODO: Not implemented.
-			loadGame();
 			new ErrorDialog("Function not implemented", "Open not implemented");
 		});
 		menuBar.addQuitListener(event -> {
@@ -107,14 +106,6 @@ public class MainWindowController
 			gridViewController.saveGame();
 		});
 		window.addWindowListener(new WindowListener());
-	}
-	
-	/**
-	 * ...
-	 */
-	// TODO: This is not the responsibility of the window controller.
-	public void loadGame() {
-		// TODO: load a saved game file
 	}
 	
 	/**
