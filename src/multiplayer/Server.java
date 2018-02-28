@@ -102,7 +102,6 @@ public class Server
 			socket.send(out);
 			outStream.close();
 		} catch (IOException exception) {
-			// TODO Auto-generated catch block
 			exception.printStackTrace();
 		}
 	}
@@ -144,7 +143,7 @@ public class Server
 								//start game as host.
 								inGame = true;
 								InetAddress host = in.getAddress();
-								ui.startMultiplayer(null, host, 2000);
+								ui.startMultiplayer(null, host, PORT_NUMBER_OPPONENT);
 							} else {
 								sendDatagram(
 									new Message(Message.MessageType.END_GAME),
@@ -160,8 +159,7 @@ public class Server
 							inGame = true;
 							Jewel[] board = message.getBoard();
 							InetAddress host = in.getAddress();
-							int port = 2000;
-							ui.startMultiplayer(board, host, port);
+							ui.startMultiplayer(board, host, PORT_NUMBER_OPPONENT);
 							break;
 						case END_GAME:
 							inGame = false;

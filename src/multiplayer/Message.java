@@ -29,28 +29,28 @@ public class Message
 		 */
 		ACCEPTED_GAME,
 		
-		/** The the default type for the subclass Updatecell. */
-		CELL_UPDATE,
-		
 		/** 
 		 * Used for ending a game before it was finished normally.
 		 * (Empty payload)
 		 */
 		END_GAME,
+
+		/** The default type for the subclass UpdateGameFinished 
+		 *  (Empty payload).
+		*/
+		GAME_FINISHED,
 		
 		/** Used for requesting a game. (Empty payload) */
 		REQUESTED_GAME,
+
+		/** The the default type for the subclass Updatecell. */
+		CELL_UPDATE,
 		
 		/** The default type for the subclass UpdateScore. */
 		SCORE_UPDATE,
 		
 		/** The default type for the subclass UpdateMovesLeft. */
-		MOVES_UPDATE,
-		
-		/** The default type for the subclass UpdateGameFinished 
-		 *  (Empty payload)
-		*/
-		GAME_FINISHED
+		MOVES_UPDATE
 	}
 	
 	/**
