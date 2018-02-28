@@ -68,7 +68,6 @@ public class GameFinished
 		));
 		
 		setBackground(COLOR_RESULT_BACKGROUND);
-		setPreferredSize(new Dimension(200, 200));
 		
 		add(panel, BorderLayout.NORTH);
 	}

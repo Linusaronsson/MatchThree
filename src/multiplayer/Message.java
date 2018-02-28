@@ -3,61 +3,70 @@ package multiplayer;
 import java.io.Serializable;
 
 /**
- * Message sent between two users playing.
+ * @author Linus
+ * 
+ * The base class of all messages sent between two players.
  */
 public class Message
 	implements Serializable
 {
-	/** ... */
+	/** Serial ID  */
 	private static final long serialVersionUID = 123456789L;
 	
-	/** ... */
+	/** Identifies the type of message */
 	private MessageType type;
 	
 	/**
-	 * ...
+	 * Enum listing the possible message types
 	 */
 	public enum MessageType
 	{
-		// Game accepted: notifies that game was accepted, and sends initial
-		// generated board.
-		/** ... */
+		/** 
+		 * This is sent when the game was accepted. The UpdateBoard 
+		 * subclass will always have this type since the player that
+		 * accepts the game will create the initial board and send it
+		 * over to the opponent.
+		 */
 		ACCEPTED_GAME,
 		
-		/** ... */
+		/** 
+		 * Used for ending a game before it was finished normally.
+		 * (Empty payload)
+		 */
+		END_GAME,
+
+		/** The default type for the subclass UpdateGameFinished 
+		 *  (Empty payload).
+		*/
+		GAME_FINISHED,
+		
+		/** Used for requesting a game. (Empty payload) */
+		REQUESTED_GAME,
+
+		/** The the default type for the subclass Updatecell. */
 		CELL_UPDATE,
 		
-		/** ... */
-		END_GAME,
+		/** The default type for the subclass UpdateScore. */
+		SCORE_UPDATE,
 		
-		// Game request: (empty payload).
-		/** ... */
-		REQUESTED_GAME,
-		
-		/** ... */
-		SCORE_UPDATE, 
-		
-		/** .. */
-		MOVES_UPDATE,
-		
-		/** .. */
-		GAME_FINISHED
+		/** The default type for the subclass UpdateMovesLeft. */
+		MOVES_UPDATE
 	}
 	
 	/**
-	 * ...
+	 * Constructor
 	 *
-	 * @param type ...
+	 * @param type The type of the message.
 	 */
 	public Message(final MessageType type) {
 		this.type = type;
 	}
 	
 	/**
-	 * ...
+	 * Converts the message enum type to string.
 	 *
-	 * @param type ...
-	 * @return     ...
+	 * @param type The type of message to convert to string.
+	 * @return     The string representation.
 	 */
 	public String asString(final MessageType type) {
 		switch (type) {
@@ -73,14 +82,18 @@ public class Message
 	}
 	
 	/**
-	 * ...
+	 * Getter method for the message type.
 	 *
-	 * @return ...
+	 * @return The message type.
 	 */
 	public MessageType getType() {
 		return type;
 	}
 	
+	/**
+	 * toString() override.
+	 * @return The string representation of the current message object.
+	 */
 	@Override
 	public String toString() {
 		return "Message type: " + asString(type) + "\n";

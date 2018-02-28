@@ -36,9 +36,9 @@ public class SingleplayerView
 	public SingleplayerView() {
 		// Set properties //
 		// TODO: Stopgap hack.
-		setBackground(COLOR_PANEL);
-		buttonPanel.setBackground(COLOR_PANEL);
-		gameView.setBackground(COLOR_PANEL);
+		setBackground(COLOR_BACKGROUND);
+		buttonPanel.setBackground(COLOR_BACKGROUND);
+		gameView.setBackground(COLOR_BACKGROUND);
 		
 		// Set layout //
 		LayoutManager layout = new BoxLayout(this, BoxLayout.X_AXIS);

@@ -109,6 +109,11 @@ public class MultiplayerMenuView
 		add(connect);
 		add(bothpanel);
 		add(backPanel);
+		
+		// Set border //
+		setBorder(BorderFactory.createCompoundBorder(
+				BorderFactory.createLineBorder(Color.WHITE, 2),
+				BorderFactory.createLineBorder(Color.BLACK, 2)));
 	}
 	
 	/**

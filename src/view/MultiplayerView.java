@@ -3,10 +3,13 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
+
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import model.Settings;
 import util.Properties;
@@ -28,7 +31,7 @@ public class MultiplayerView
 	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
 	/** Background color */
-	private static final Color COLOR_BACKGROUND = Properties.getColorBackground().brighter().brighter();
+	private static final Color COLOR_BACKGROUND = Properties.getColorBackground();
 	
 	/** Back button container. */
 	private ButtonPanel backPanel = new ButtonPanel();
@@ -43,27 +46,28 @@ public class MultiplayerView
 	 * Constructor.
 	 */
 	public MultiplayerView() {
-		// Create split view //
-		LayoutManager layout =
-			new GridLayout(1, 2, GAP_HORIZONTAL, GAP_VERTICAL);
-		JPanel panel = new JPanel(layout);
-		
-		// Assemble split view //
-		panel.add(player1View);
-		panel.add(player2View);
-		
 		// Set layout //
-		setLayout(new BorderLayout());
+		setLayout(new FlowLayout());
 		
 		// Set background //
 		setBackground(COLOR_BACKGROUND);
 		player1View.setBackground(COLOR_BACKGROUND);
 		player2View.setBackground(COLOR_BACKGROUND);
-		panel.setBackground(COLOR_BACKGROUND);
+		
+		// Set background //
+		setBackground(COLOR_BACKGROUND);
+		player1View.setBackground(COLOR_BACKGROUND);
+		player2View.setBackground(COLOR_BACKGROUND);
 		
 		// Assemble view //
-		add(panel, BorderLayout.CENTER);
-		add(backPanel, BorderLayout.EAST);
+		add(player1View);
+		add(player2View);
+		add(backPanel);
+		
+		// Set border //
+				setBorder(BorderFactory.createCompoundBorder(
+						BorderFactory.createLineBorder(Color.WHITE, 2),
+						BorderFactory.createLineBorder(Color.BLACK, 2)));
 	}
 	
 	/**

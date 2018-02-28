@@ -6,6 +6,7 @@ import java.awt.Container;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import model.Coordinate;
@@ -42,8 +43,8 @@ public class MatchThreeUI
 		// Set properties //
 		// TODO: Stopgap hack.
 		setBackground(COLOR_BACKGROUND);
-		headerView.setBackground(COLOR_PANEL);
-		gridView.setBackground(COLOR_PANEL);
+		headerView.setBackground(COLOR_BACKGROUND);
+		gridView.setBackground(COLOR_BACKGROUND);
 		
 		// Set layout //
 		setLayout(new BorderLayout());

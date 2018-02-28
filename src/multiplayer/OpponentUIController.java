@@ -12,7 +12,12 @@ import view.MatchThreeHeader;
 import view.MatchThreeUI;
 
 /**
- * ...
+ * @author Linus
+ * 
+ * Opponent UI controller. This is responsible for constructing the opponent
+ * view and initializing the OpponentController that in turn listens for
+ * datagram packets from the opponent.
+ * 
  */
 public class OpponentUIController
 {
@@ -26,10 +31,10 @@ public class OpponentUIController
 	/**
 	 * Constructor.
 	 *
-	 * @param parent          ...
-	 * @param uiController    ...
-	 * @param settings        ...
-	 * @param matchThreeModel ...
+	 * @param parent          The parent that holds the opponent view.
+	 * @param uiController    UIController
+	 * @param settings        Settings
+	 * @param opponentModel   OpponentModel
 	 */
 	public OpponentUIController(
 		final Container       parent,
@@ -58,7 +63,6 @@ public class OpponentUIController
 		Container gridView = matchThreeUI.getGrid();
 		gridView.add(new GridView(opponentModel, settings.getStyle()));
 
-		
 		// Create header //
 		//Container headerView = matchThreeUI.getHeader();
 		new MatchThreeHeaderController(
@@ -84,6 +88,9 @@ public class OpponentUIController
 		parent.add(matchThreeUI);
 	}
 	
+	/**
+	 * Closes the opponent controller thread + datagram socket.
+	 */
 	public void close() {
 		opponentController.close();
 	}

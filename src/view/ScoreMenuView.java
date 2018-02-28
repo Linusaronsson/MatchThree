@@ -1,6 +1,9 @@
 package view;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
