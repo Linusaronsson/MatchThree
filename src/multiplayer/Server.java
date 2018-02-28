@@ -15,7 +15,13 @@ import view.ConfirmDialog;
 import view.ErrorDialog;
 
 /**
- * ...
+ * @author Linus
+ * 
+ * The server class is started as soon as the game is loaded. It is 
+ * responsible for listening for incoming game requests. Once a game 
+ * is requested, the server starts a multiplayer game but leaves
+ * the responsibility to OpponentController for receiving the other
+ * messages for the rest of the game. 
  */
 public class Server
 	extends Thread
@@ -26,64 +32,31 @@ public class Server
 	/** Default opponent port number. */
 	private static final int PORT_NUMBER_OPPONENT = 2000;
 	
-	/** ... */
+	/** If it is in game, deny other game requests. (Not implemented) */
 	private static boolean inGame = false;
-	
-	/** ... */
-	private static OpponentInfo opponentInfo = null;
-	
-	/** ... */
+		
+	/** DatagramPacket for receiving requests. */
 	private DatagramPacket in;
 	
-	/** ... */
+	/** DatagramPacket buffer. */
 	private byte[] inBuffer;
 	
-	/** ... */
+	/** Server port (3333 by default). */
 	private int port;
 	
-	/** ... */
+	/** DatagramSocket for sending/receiving datagram packets from/to
+	 * the server
+	 */
 	private DatagramSocket server;
 	
-	/** ... */
+	/** UIController */
 	private UIController ui;
 	
 	/**
-	 * ...
-	 */
-	public class OpponentInfo
-	{
-		/** ... */
-		public Jewel[] board;
-		
-		/** ... */
-		public InetAddress ip;
-		
-		/** ... */
-		public int port;
-		
-		/**
-		 * ...
-		 *
-		 * @param ip    ...
-		 * @param port  ...
-		 * @param board ...
-		 */
-		public OpponentInfo(
-			final InetAddress ip,
-			final int         port,
-			final Jewel[]     board
-		) {
-			this.board = board;
-			this.ip    = ip;
-			this.port  = port;
-		}
-	}
-	
-	/**
-	 * ...
+	 * Constructs server and initializes the socket/packet.
 	 *
-	 * @param ui   ...
-	 * @param port ...
+	 * @param ui   UIController
+	 * @param port Server port (3333)
 	 */
 	public Server(final UIController ui, final int port) {
 		this.ui   = ui;
@@ -103,12 +76,13 @@ public class Server
 	}
 	
 	/**
-	 * ...
+	 * Sends a datagram to specified ip/port through specific socket.
+	 * Used by many parts of the program.
 	 *
-	 * @param message ...
-	 * @param socket  ...
-	 * @param host    ...
-	 * @param port    ...
+	 * @param message Message to be sent
+	 * @param socket  Socket to send it through
+	 * @param host    IP
+	 * @param port    Port
 	 */
 	public static void sendDatagram(
 		final Message        message,
@@ -134,14 +108,18 @@ public class Server
 	}
 	
 	/**
-	 * ...
+	 * In game setter.
 	 *
-	 * @param b ...
+	 * @param b In game flag.
 	 */
 	public static void setInGame(final boolean b) {
 		inGame = b;
 	}
 	
+	/**
+	 * Listens for game requests and initializes/declines the game
+	 * depending on user input.
+	 */
 	@Override
 	public void run() {
 		try {

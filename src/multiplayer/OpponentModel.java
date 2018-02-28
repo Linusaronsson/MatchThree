@@ -4,8 +4,10 @@ import model.Jewel;
 import model.MatchThreeModel;
 
 /**
- * Extension of MatchThreeModel used for the player view to send datagrams to
- * opponent.
+ * @author Linus
+ * 
+ * Extension of MatchThreeModel used for the player view in multiplayer mode
+ * for sending datagrams to the opponent.
  */
 public class OpponentModel
 	extends MatchThreeModel
@@ -13,17 +15,18 @@ public class OpponentModel
 	/**
 	 * Constructor.
 	 *
-	 * @param board ...
-	 * @param width ...
+	 * @param board The board to paint to the View. If this is null a new Board
+	 * will be generated.
+	 * @param width The size of the board.
 	 */
 	public OpponentModel(final Jewel[] board, final int width) {
 		super(board, width);
 	}
 	
 	/**
-	 * ...
+	 * Sets the score received from the opponent.
 	 *
-	 * @param score ...
+	 * @param score New score of the opponent board.
 	 */
 	public void setScore(final int score) {
 		setChanged();
@@ -31,9 +34,9 @@ public class OpponentModel
 	}
 	
 	/**
-	 * ...
+	 * Sets the moves left for the opponent
 	 *
-	 * @param score ...
+	 * @param moves Moves left
 	 */
 	public void setMovesLeft(final int moves) {
 		setChanged();

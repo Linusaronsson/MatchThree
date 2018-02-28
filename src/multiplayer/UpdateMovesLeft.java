@@ -3,19 +3,21 @@ package multiplayer;
 import multiplayer.Message.MessageType;
 
 /**
- * Message sent between users over a DatagramSocket. (The entire board).
+ * @author Linus
+ * 
+ * Message sent between users over a DatagramSocket. (The moves left).
  */
 @SuppressWarnings("serial")
 public class UpdateMovesLeft
 	extends Message
 {
-	/** ... */
+	/** Moves left */
 	int moves;
 	
 	/**
 	 * Constructor.
 	 *
-	 * @param moves ...
+	 * @param moves Moves left
 	 */
 	public UpdateMovesLeft(final int moves) {
 		super(MessageType.MOVES_UPDATE);
@@ -23,9 +25,9 @@ public class UpdateMovesLeft
 	}
 	
 	/**
-	 * ...
+	 * Moves left getter
 	 *
-	 * @return ...
+	 * @return Moves left
 	 */
 	public int getMoves() {
 		return moves;
