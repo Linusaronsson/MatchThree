@@ -14,7 +14,8 @@ import util.Properties;
  */
 @SuppressWarnings({"deprecation", "serial"})
 public class MatchThreeUI
-	extends JPanel implements Observer
+	extends JPanel
+	implements Observer
 {
 	/** Background color. */
 	private static final Color COLOR_BACKGROUND =

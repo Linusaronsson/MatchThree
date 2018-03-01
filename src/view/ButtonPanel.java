@@ -19,7 +19,8 @@ import util.Properties;
  */
 @SuppressWarnings({"deprecation", "serial"})
 public class ButtonPanel
-	extends JPanel implements Observer
+	extends JPanel
+	implements Observer
 {
 	/** ... */
 	private static final int GAP_HORIZONTAL = 4;

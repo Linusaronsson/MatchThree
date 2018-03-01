@@ -24,10 +24,9 @@ public class ScoreMenuView
 	 * Create `ScoreMenuView`.
 	 */
 	public ScoreMenuView() {
-
-	    // Set layout //
-	    setLayout(new BoxLayout(this, Y_AXIS));
-	    
+		// Set layout //
+		setLayout(new BoxLayout(this, Y_AXIS));
+		
 		add(scoreTable);
 		add(refresh);
 		setVisible(true);
