@@ -21,7 +21,7 @@ this form, the arguments will run in sequence, and abort on failure.
 | Directory          | Purpose                   |
 | :----------------- | :------------------------ |
 | `libraries/`       | Run-time dependencies     |
-| `resource/`        | Run-time assets           |
+| `resources/`       | Run-time assets           |
 | `src/`             | Source code               |
 | `src/controller/`  | Controllers               |
 | `src/model/`       | Models                    |
