@@ -39,7 +39,7 @@ public class OpponentModel
 	 * @param moves Moves left
 	 */
 	public void setMovesLeft(final int moves) {
-		if (--moves_left == 0) {
+		if (--movesLeft == 0) {
 			setChanged();
 			notifyObservers(new String("remove"));
 		}

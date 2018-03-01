@@ -33,10 +33,10 @@ public class MultiplayerMenuView
 	private JTextField port = new JTextField();
 	
 	/** ... */
-	private JLabel ip_label = new JLabel("IP: ");
+	private JLabel ipLabel = new JLabel("IP: ");
 	
 	/** ... */
-	private JLabel port_label = new JLabel("Port: ");
+	private JLabel portLabel = new JLabel("Port: ");
 		
 	/**
 	 * ...
@@ -70,10 +70,10 @@ public class MultiplayerMenuView
 		connectLabel.setFont(font);
 		connect.add(connectLabel);
 		
-		ip_label.setFont(font);
-		port_label.setFont(font);
-		ip_label.setForeground(Color.WHITE);
-		port_label.setForeground(Color.WHITE);
+		ipLabel.setFont(font);
+		portLabel.setFont(font);
+		ipLabel.setForeground(Color.WHITE);
+		portLabel.setForeground(Color.WHITE);
 		
 		setLayout(new FlowLayout());
 		setBackground(Properties.getColorBackground());
@@ -86,12 +86,12 @@ public class MultiplayerMenuView
 		port.setCaretColor(Color.WHITE);
 		
 		JPanel ippanel = new JPanel();
-		ippanel.add(ip_label);
+		ippanel.add(ipLabel);
 		ippanel.add(ip);
 		ippanel.setBackground(Properties.getColorBackground());
 		
 		JPanel portpanel = new JPanel();
-		portpanel.add(port_label);
+		portpanel.add(portLabel);
 		portpanel.add(port);
 		portpanel.setBackground(Properties.getColorBackground());
 		

@@ -24,7 +24,7 @@ public class MatchThreeModel
 	protected int score = 0;
 	
 	/** Moves left. */
-	protected int moves_left = 2;
+	protected int movesLeft = 2;
 	
 	/** Width of grid. */
 	protected int width = 0;
@@ -161,7 +161,7 @@ public class MatchThreeModel
 	 */
 	public void setMovesLeft() {
 		// Notify observers //
-		if (--moves_left == 0) {
+		if (--movesLeft == 0) {
 			setChanged();
 			notifyObservers(new String("remove"));
 			setChanged();
@@ -169,12 +169,11 @@ public class MatchThreeModel
 		}
 		
 		setChanged();
-		notifyObservers(new MovesLeftEvent(moves_left));
-
+		notifyObservers(new MovesLeftEvent(movesLeft));
 	}
 	
 	public int getMovesLeft() {
-		return moves_left;
+		return movesLeft;
 	}
 	
 	/**

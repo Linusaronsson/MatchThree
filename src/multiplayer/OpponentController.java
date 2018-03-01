@@ -47,7 +47,7 @@ public class OpponentController
 	private int port;
 	
 	/** The current score */
-	private int current_score;
+	private int currentScore;
 	
 	/**
 	 * Constructor
@@ -113,17 +113,17 @@ public class OpponentController
 						break;
 					case SCORE_UPDATE:
 						UpdateScore s = (UpdateScore) m;
-						current_score = s.getScore();
-						model.setScore(current_score);
+						currentScore = s.getScore();
+						model.setScore(currentScore);
 						break;
 					case MOVES_UPDATE:
 						UpdateMovesLeft u = (UpdateMovesLeft) m;
-						int moves_left = u.getMoves();
-						model.setMovesLeft(moves_left);
+						int movesLeft = u.getMoves();
+						model.setMovesLeft(movesLeft);
 						break;
 					case GAME_FINISHED:
 						gridView.removeAll();
-						gridView.add(new GameFinished(current_score));
+						gridView.add(new GameFinished(currentScore));
 						gridView.repaint();
 						gridView.revalidate();
 						break;
