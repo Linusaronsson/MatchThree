@@ -73,8 +73,8 @@ public class MatchThreeModel
 		 *
 		 * @return ...
 		 */
-		public Jewel getType() {
-			return cellType;
+		public Coordinate getPos() {
+			return position;
 		}
 		
 		/**
@@ -82,8 +82,21 @@ public class MatchThreeModel
 		 *
 		 * @return ...
 		 */
-		public Coordinate getPos() {
-			return position;
+		public Jewel getType() {
+			return cellType;
+		}
+	}
+	
+	/**
+	 *
+	 * @author Linus
+	 *
+	 */
+	public class GameFinishedEvent
+		extends LabelEvent
+	{
+		public GameFinishedEvent(final int value) {
+			super(value);
 		}
 	}
 	
@@ -121,19 +134,6 @@ public class MatchThreeModel
 	 * @author Linus
 	 *
 	 */
-	public class ScoreEvent
-		extends LabelEvent
-	{
-		public ScoreEvent(final int value) {
-			super(value);
-		}
-	}
-	
-	/**
-	 *
-	 * @author Linus
-	 *
-	 */
 	public class MovesLeftEvent
 		extends LabelEvent
 	{
@@ -142,38 +142,17 @@ public class MatchThreeModel
 		}
 	}
 	
-	
 	/**
 	 *
 	 * @author Linus
 	 *
 	 */
-	public class GameFinishedEvent
+	public class ScoreEvent
 		extends LabelEvent
 	{
-		public GameFinishedEvent(final int value) {
+		public ScoreEvent(final int value) {
 			super(value);
 		}
-	}
-	
-	/**
-	 * ...
-	 */
-	public void setMovesLeft() {
-		// Notify observers //
-		if (--movesLeft == 0) {
-			setChanged();
-			notifyObservers(new String("remove"));
-			setChanged();
-			notifyObservers(new GameFinishedEvent(score));
-		}
-		
-		setChanged();
-		notifyObservers(new MovesLeftEvent(movesLeft));
-	}
-	
-	public int getMovesLeft() {
-		return movesLeft;
 	}
 	
 	/**
@@ -216,15 +195,6 @@ public class MatchThreeModel
 		
 		// Set initial state //
 		init();
-	}
-	
-	/**
-	 * Get a copy of the board contents.
-	 *
-	 * @return A copy of the board.
-	 */
-	public Jewel[] getBoard() {
-		return board.clone();
 	}
 	
 	/**
@@ -480,6 +450,19 @@ public class MatchThreeModel
 	}
 	
 	/**
+	 * Get a copy of the board contents.
+	 *
+	 * @return A copy of the board.
+	 */
+	public Jewel[] getBoard() {
+		return board.clone();
+	}
+	
+	public int getMovesLeft() {
+		return movesLeft;
+	}
+	
+	/**
 	 * Get the current score.
 	 *
 	 * @return The current score.
@@ -609,6 +592,22 @@ public class MatchThreeModel
 		// Notify observers //
 		setChanged();
 		notifyObservers(new CellEvent(new Coordinate(x, y), value));
+	}
+	
+	/**
+	 * ...
+	 */
+	public void setMovesLeft() {
+		// Notify observers //
+		if (--movesLeft == 0) {
+			setChanged();
+			notifyObservers(new String("remove"));
+			setChanged();
+			notifyObservers(new GameFinishedEvent(score));
+		}
+		
+		setChanged();
+		notifyObservers(new MovesLeftEvent(movesLeft));
 	}
 	
 	/**
