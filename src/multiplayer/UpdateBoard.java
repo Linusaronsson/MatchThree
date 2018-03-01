@@ -4,7 +4,7 @@ import model.Jewel;
 
 /**
  * @author Linus
- * 
+ *
  * Message sent between users over a DatagramSocket. (The entire board).
  */
 @SuppressWarnings("serial")

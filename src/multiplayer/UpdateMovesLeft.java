@@ -4,7 +4,7 @@ import multiplayer.Message.MessageType;
 
 /**
  * @author Linus
- * 
+ *
  * Message sent between users over a DatagramSocket. (The moves left).
  */
 @SuppressWarnings("serial")

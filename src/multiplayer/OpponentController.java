@@ -14,10 +14,10 @@ import view.GameFinished;
 
 /**
  * @author Linus
- * 
- * The opponent controller receives and deals with data sent from the 
+ *
+ * The opponent controller receives and deals with data sent from the
  * opponent and updates the opponent model.
- * 
+ *
  */
 public class OpponentController
 	extends Thread
@@ -92,7 +92,7 @@ public class OpponentController
 	}
 	
 	/**
-	 * This runs continously and listens to the specified port. It receives 
+	 * This runs continously and listens to the specified port. It receives
 	 * datagram packets from the opponent and updates the OpponentModel, which
 	 * in turn updates the OpponentView.
 	 */
@@ -130,9 +130,9 @@ public class OpponentController
 					case END_GAME:
 						uiController.changeView(UIController.View.MAIN_MENU);
 						new ErrorDialog(
-								"Opponent ended the game",
-								"End of game"
-							);
+							"Opponent ended the game",
+							"End of game"
+						);
 						Server.setInGame(false);
 						close();
 						break;

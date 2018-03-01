@@ -11,7 +11,7 @@ import model.MatchThreeModel.MoveType;
 
 /**
  * @author Linus
- * 
+ *
  * Extension of MatchThreeModel used for the player view to send datagrams to
  * opponent.
  */
@@ -89,7 +89,7 @@ public class PlayerModel
 	
 	/**
 	 * Sets if the game was started.
-	 * 
+	 *
 	 * @param b Game started flag
 	 */
 	public void setGameStarted(final boolean b) {
@@ -99,7 +99,7 @@ public class PlayerModel
 	/**
 	 * Set the value of a cell. May leave the board in an inconsistent state.
 	 * Also sends the updated cell to the opponent.
-	 * 
+	 *
 	 * This override also notifies the opponent of the change by sending
 	 * a datagram packet.
 	 *
@@ -125,16 +125,16 @@ public class PlayerModel
 		super.setMovesLeft();
 		if (gameStarted) {
 			notifyOpponent(new UpdateMovesLeft(moves_left));
-			if(moves_left == 0) {
+			if (moves_left == 0) {
 				notifyOpponent(new UpdateGameFinished());
-			} 
+			}
 		}
 	}
 	
 	/**
 	 * Move a cell and clear any generated chains. Leaves the board in a
 	 * consistent state. Also sends the new score to opponent.
-	 * 
+	 *
 	 * Also notifies the opponent of the new score.
 	 *
 	 * @param from Source coordinates.

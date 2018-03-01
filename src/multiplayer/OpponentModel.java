@@ -5,7 +5,7 @@ import model.MatchThreeModel;
 
 /**
  * @author Linus
- * 
+ *
  * Extension of MatchThreeModel used for the player view in multiplayer mode
  * for sending datagrams to the opponent.
  */
@@ -39,7 +39,7 @@ public class OpponentModel
 	 * @param moves Moves left
 	 */
 	public void setMovesLeft(final int moves) {
-		if(--moves_left == 0) {
+		if (--moves_left == 0) {
 			setChanged();
 			notifyObservers(new String("remove"));
 		}

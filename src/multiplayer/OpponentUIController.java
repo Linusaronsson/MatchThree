@@ -9,11 +9,10 @@ import view.MatchThreeUI;
 
 /**
  * @author Linus
- * 
+ *
  * Opponent UI controller. This is responsible for constructing the opponent
  * view and initializing the OpponentController that in turn listens for
  * datagram packets from the opponent.
- * 
  */
 public class OpponentUIController
 {

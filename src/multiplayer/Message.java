@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @author Linus
- * 
+ *
  * The base class of all messages sent between two players.
  */
 public class Message
@@ -21,21 +21,21 @@ public class Message
 	 */
 	public enum MessageType
 	{
-		/** 
-		 * This is sent when the game was accepted. The UpdateBoard 
+		/**
+		 * This is sent when the game was accepted. The UpdateBoard
 		 * subclass will always have this type since the player that
 		 * accepts the game will create the initial board and send it
 		 * over to the opponent.
 		 */
 		ACCEPTED_GAME,
 		
-		/** 
+		/**
 		 * Used for ending a game before it was finished normally.
 		 * (Empty payload)
 		 */
 		END_GAME,
 
-		/** The default type for the subclass UpdateGameFinished 
+		/** The default type for the subclass UpdateGameFinished
 		 *  (Empty payload).
 		*/
 		GAME_FINISHED,

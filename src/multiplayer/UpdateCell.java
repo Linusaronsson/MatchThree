@@ -3,8 +3,8 @@ package multiplayer;
 import model.Jewel;
 
 /**
- * @author Linus 
- * 
+ * @author Linus
+ *
  * Message sent between users over a DatagramSocket (Specific jewel).
  */
 @SuppressWarnings("serial")

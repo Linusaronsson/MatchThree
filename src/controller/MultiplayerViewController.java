@@ -157,7 +157,6 @@ public class MultiplayerViewController
 			playerModel
 		);
 		
-		
 		//Create OpponentView
 		opponentController = new OpponentUIController(
 			multiplayerView.getPlayer2(),

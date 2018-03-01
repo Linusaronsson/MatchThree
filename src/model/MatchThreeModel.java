@@ -88,7 +88,7 @@ public class MatchThreeModel
 	}
 	
 	/**
-	 * 
+	 *
 	 * @author Linus
 	 *
 	 */
@@ -117,22 +117,26 @@ public class MatchThreeModel
 	}
 	
 	/**
-	 * 
+	 *
 	 * @author Linus
 	 *
 	 */
-	public class ScoreEvent extends LabelEvent {
+	public class ScoreEvent
+		extends LabelEvent
+	{
 		public ScoreEvent(final int value) {
 			super(value);
 		}
 	}
 	
 	/**
-	 * 
+	 *
 	 * @author Linus
 	 *
 	 */
-	public class MovesLeftEvent extends LabelEvent {
+	public class MovesLeftEvent
+		extends LabelEvent
+	{
 		public MovesLeftEvent(final int value) {
 			super(value);
 		}
@@ -140,23 +144,24 @@ public class MatchThreeModel
 	
 	
 	/**
-	 * 
+	 *
 	 * @author Linus
 	 *
 	 */
 	public class GameFinishedEvent
-		extends LabelEvent {
+		extends LabelEvent
+	{
 		public GameFinishedEvent(final int value) {
 			super(value);
 		}
 	}
 	
 	/**
-	 * 
+	 * ...
 	 */
 	public void setMovesLeft() {
 		// Notify observers //
-		if(--moves_left == 0) {
+		if (--moves_left == 0) {
 			setChanged();
 			notifyObservers(new String("remove"));
 			setChanged();

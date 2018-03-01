@@ -16,12 +16,12 @@ import view.ErrorDialog;
 
 /**
  * @author Linus
- * 
- * The server class is started as soon as the game is loaded. It is 
- * responsible for listening for incoming game requests. Once a game 
+ *
+ * The server class is started as soon as the game is loaded. It is
+ * responsible for listening for incoming game requests. Once a game
  * is requested, the server starts a multiplayer game but leaves
  * the responsibility to OpponentController for receiving the other
- * messages for the rest of the game. 
+ * messages for the rest of the game.
  */
 public class Server
 	extends Thread
@@ -143,7 +143,11 @@ public class Server
 								//start game as host.
 								inGame = true;
 								InetAddress host = in.getAddress();
-								ui.startMultiplayer(null, host, PORT_NUMBER_OPPONENT);
+								ui.startMultiplayer(
+									null,
+									host,
+									PORT_NUMBER_OPPONENT
+								);
 							} else {
 								sendDatagram(
 									new Message(Message.MessageType.END_GAME),
@@ -159,7 +163,11 @@ public class Server
 							inGame = true;
 							Jewel[] board = message.getBoard();
 							InetAddress host = in.getAddress();
-							ui.startMultiplayer(board, host, PORT_NUMBER_OPPONENT);
+							ui.startMultiplayer(
+								board,
+								host,
+								PORT_NUMBER_OPPONENT
+							);
 							break;
 						case END_GAME:
 							inGame = false;

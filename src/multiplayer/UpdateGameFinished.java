@@ -4,7 +4,7 @@ import multiplayer.Message.MessageType;
 
 /**
  * @author Linus
- * 
+ *
  * Message sent between users over a DatagramSocket. (Game finished).
  * This message has an empty payload. Only used for notifying that it
  * finished.

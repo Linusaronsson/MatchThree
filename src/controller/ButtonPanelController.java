@@ -117,7 +117,8 @@ public class ButtonPanelController
 			// Go to main menu //
 			uiController.changeView(UIController.View.MAIN_MENU);
 		});
-		if(buttonPanel.getV1Button() != null && buttonPanel.getV2Button() != null) {
+		if (buttonPanel.getV1Button() != null
+		&& buttonPanel.getV2Button() != null) {
 			Button buttonV1   = buttonPanel.getV1Button();
 			Button buttonV2   = buttonPanel.getV2Button();
 			buttonPanel.addButtonV1Listener(new HoverListener(buttonV1));

@@ -2,7 +2,7 @@ package multiplayer;
 
 /**
  * @author Linus
- * 
+ *
  * Message sent between users over a DatagramSocket. (Current score).
  */
 @SuppressWarnings("serial")
