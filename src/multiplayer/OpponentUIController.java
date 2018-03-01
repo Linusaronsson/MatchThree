@@ -16,12 +16,11 @@ import view.MatchThreeUI;
  */
 public class OpponentUIController
 {
+	/** Default game size. */
+	private static final int GAME_SIZE = Settings.getGameSize();
 	
 	/** Opponent Controller (for receiving data from opponent). */
 	private OpponentController opponentController = null;
-	
-	/** Default game size. */
-	private static final int GAME_SIZE = Settings.getGameSize();
 	
 	/**
 	 * Constructor.
