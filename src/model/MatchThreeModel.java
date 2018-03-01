@@ -560,7 +560,7 @@ public class MatchThreeModel
 	 * @param position Coordinates of the cell.
 	 * @param value    Value to set.
 	 */
-	private void set(final Coordinate position, final Jewel value) {
+	public void set(final Coordinate position, final Jewel value) {
 		// Validate arguments //
 		if (position == null) {
 			throw new NullPointerException();
