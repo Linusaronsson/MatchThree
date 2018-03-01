@@ -30,6 +30,13 @@ public class MainWindowController
 	class WindowListener
 		extends WindowAdapter
 	{
+		/**
+		 * Constructor.
+		 */
+		WindowListener() {
+			super();
+		}
+		
 		@Override
 		public void windowActivated(final WindowEvent event) { }
 		

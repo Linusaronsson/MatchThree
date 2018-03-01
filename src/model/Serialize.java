@@ -19,7 +19,12 @@ public final class Serialize
 	// TODO: Is it in any way ok to have this be a static class?
 	public static class UnsupportedTypeException
 		extends Exception
-	{ }
+	{
+		/**
+		 * Constructor.
+		 */
+		public UnsupportedTypeException() { }
+	}
 	
 	/**
 	 * Serialize an array of jewels.
