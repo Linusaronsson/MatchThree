@@ -13,16 +13,16 @@ import javax.swing.JPanel;
 public class MatchThreeHeader
 	extends JPanel
 {
-	/** Light green */
+	/** Background color. */
 	private static final Color COLOR_BACKGROUND = new Color(0x76, 0xFF, 0x7F);
 	
-	/** ... */
+	/** Border color. */
 	private static final Color COLOR_BORDER = Color.GREEN;
 	
 	/** Score container. */
 	private Container scoreView = new JPanel();
 	
-	/** Moves left container. */
+	/** Moves counter container. */
 	private Container movesLeftView = new JPanel();
 	
 	/**
@@ -57,9 +57,9 @@ public class MatchThreeHeader
 	}
 	
 	/**
-	 * Get MovesLeft container.
+	 * Get move counter container.
 	 *
-	 * @return MovesLeft container.
+	 * @return Move counter container.
 	 */
 	public Container getMoves() {
 		return movesLeftView;

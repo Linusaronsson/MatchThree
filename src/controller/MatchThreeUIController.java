@@ -84,14 +84,19 @@ public class MatchThreeUIController
 	}
 	
 	/**
-	 * ...
+	 * Get grid view.
 	 *
-	 * @return gridViewController reference
+	 * @return The grid view.
 	 */
 	public GridViewController getGridViewController() {
 		return gridViewController;
 	}
 
+	/**
+	 * Get game model.
+	 *
+	 * @return The game model.
+	 */
 	public MatchThreeModel getModel() {
 		// TODO Auto-generated method stub
 		return matchThreeModel;

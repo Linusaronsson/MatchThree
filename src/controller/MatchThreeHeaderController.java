@@ -9,7 +9,7 @@ import view.MovesLeft;
 import view.Score;
 
 /**
- * ...
+ * MatchThree header controller.
  */
 public class MatchThreeHeaderController
 {
@@ -21,6 +21,7 @@ public class MatchThreeHeaderController
 	 * @param settings        ...
 	 * @param matchThreeModel ...
 	 */
+	// TODO: Do not allow this controller to access `MatchThreeUI`.
 	public MatchThreeHeaderController(
 		final MatchThreeUI    ui,
 		final UIController    uiController,

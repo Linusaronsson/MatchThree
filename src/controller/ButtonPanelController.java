@@ -13,11 +13,11 @@ import view.Button;
 import view.ButtonPanel;
 
 /**
- * ...
+ * Button panel controller.
  */
 public class ButtonPanelController
 {
-	/** ... */
+	/** Background color. */
 	private static final Color COLOR_BACKGROUND =
 		Properties.getColorBackground();
 	
@@ -79,7 +79,9 @@ public class ButtonPanelController
 	 * @param uiController       ...
 	 * @param gridViewController ...
 	 * @param settings           ...
+	 * @param model              ...
 	 */
+	// TODO: Should this class have access to `MatchThreeModel`?
 	public ButtonPanelController(
 		final Container          parent,
 		final UIController       uiController,
@@ -138,7 +140,7 @@ public class ButtonPanelController
 	}
 	
 	/**
-	 * Set the graphical style.
+	 * Set the visual style.
 	 *
 	 * @param style Visual style.
 	 */

@@ -8,27 +8,27 @@ import view.GridView;
 import view.MatchThreeUI;
 
 /**
- * @author Linus
+ * Opponent UI controller. Listens for network messages and updates model
+ * accordingly.
  *
- * Opponent UI controller. This is responsible for constructing the opponent
- * view and initializing the OpponentController that in turn listens for
- * datagram packets from the opponent.
+ * @author Linus
  */
 public class OpponentUIController
 {
 	/** Default game size. */
 	private static final int GAME_SIZE = Settings.getGameSize();
 	
-	/** Opponent Controller (for receiving data from opponent). */
+	/** Opponent controller (for receiving data from opponent). */
 	private OpponentController opponentController = null;
 	
 	/**
 	 * Constructor.
 	 *
-	 * @param parent          The parent that holds the opponent view.
-	 * @param uiController    UIController
-	 * @param settings        Settings
-	 * @param opponentModel   OpponentModel
+	 * @param parent        Parent view to use.
+	 * @param uiController  UI controller to use.
+	 * @param settings      Application settings.
+	 * @param opponentModel Model to use.
+	 * @param port          Port number to listen on.
 	 */
 	public OpponentUIController(
 		final Container       parent,
@@ -83,7 +83,7 @@ public class OpponentUIController
 	}
 	
 	/**
-	 * Closes the opponent controller thread + datagram socket.
+	 * Close socket and listening thread.
 	 */
 	public void close() {
 		opponentController.close();

@@ -106,7 +106,9 @@ public class GridViewController
 	 * @param uiController    ...
 	 * @param settings        ...
 	 * @param matchThreeModel Model to use, if any.
+	 * @param matchThreeUI    ...
 	 */
+	// TODO: Is this controller allowed to access `MatchThreeUI`?
 	public GridViewController(
 		final Container       parent,
 		final UIController    uiController,

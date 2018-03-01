@@ -27,40 +27,42 @@ public class ButtonPanel
 	/** ... */
 	private static final int GAP_VERTICAL = 4;
 	
-	/** ... */
+	/** Background color. */
 	private static final Color COLOR_BACKGROUND =
 		Properties.getColorBackground();
 	
-	/** ... */
+	/** Panel color. */
 	private static final Color COLOR_PANEL =
 		COLOR_BACKGROUND.brighter().brighter();
 	
-	/** ... */
+	/** Back button image. */
 	private static final BufferedImage IMAGE_BACK =
 		AssetManager.loadImage("Back.png");
 	
-	/** ... */
+	/** Visual style 1 image. */
 	private static final BufferedImage IMAGE_V1 =
 		AssetManager.loadImage("V1.png");
 	
-	/** ... */
+	/** Visual style 2 image. */
 	private static final BufferedImage IMAGE_V2 =
 		AssetManager.loadImage("V2.png");
 	
-	/** ... */
+	/** Back button. */
 	private Button back = null;
 	
-	/** ... */
+	/** Visual style 1 button. */
 	private Button buttonV1 = null;
 	
-	/** ... */
+	/** Visual style 2 button. */
 	private Button buttonV2 = null;
 	
-	/** ... */
+	/** Visual style button container. */
 	private JPanel styleButtonsPanel = new JPanel();
 	
 	/**
-	 * Create `ButtonPanel`.
+	 * Constructor.
+	 *
+	 * @param model MatchThree game model to use.
 	 */
 	public ButtonPanel(final MatchThreeModel model) {
 		// Set layout //
@@ -97,7 +99,7 @@ public class ButtonPanel
 	}
 	
 	/**
-	 * Create `ButtonPanel` containing only Back Button.
+	 * Constructor for panel without style buttons.
 	 */
 	public ButtonPanel() {
 		// Set layout //
@@ -218,9 +220,6 @@ public class ButtonPanel
 		return buttonV2;
 	}
 
-	/**
-	 * Removes buttonPanel when game finished
-	 */
 	@Override
 	public void update(final Observable o, final Object arg) {
 		if (o instanceof MatchThreeModel && arg instanceof String) {

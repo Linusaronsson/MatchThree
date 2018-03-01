@@ -13,11 +13,10 @@ import view.ErrorDialog;
 import view.GameFinished;
 
 /**
+ * Opponent controller. Listens for network messages and updates model
+ * accordingly.
+ *
  * @author Linus
- *
- * The opponent controller receives and deals with data sent from the
- * opponent and updates the opponent model.
- *
  */
 public class OpponentController
 	extends Thread
@@ -28,34 +27,35 @@ public class OpponentController
 	/** Opponent model. */
 	private OpponentModel model = null;
 	
-	/** UIController */
+	/** Reference to UI controller. */
 	private UIController uiController = null;
 	
-	/** The GridView managed by the OpponentModel */
+	/** Opponent grid view. */
 	private Container gridView = null;
 	
-	/** The UDP socket used to receive messages from the opponent */
+	/** Socket for receiving messages. */
 	private DatagramSocket opponent;
 	
-	/** DatagramPacket containing the data sent from opponent */
+	/** `DatagramPacket` containing received data. */
 	private DatagramPacket in;
 	
-	/** Buffer used by the DatagramPacket 'in' */
+	/** Receiving buffer. */
 	private byte[] inBuffer;
 	
-	/** The port to listen on */
+	/** Listening port number. */
 	private int port;
 	
-	/** The current score */
+	/** Current score. */
 	private int currentScore;
 	
 	/**
-	 * Constructor
+	 * Constructor.
 	 *
-	 * @param uiController UIController
-	 * @param settings     The settings
-	 * @param model        OpponentModel
-	 * @param port         Listen on port
+	 * @param uiController UI controller to use.
+	 * @param settings     Application settings.
+	 * @param model        Model to use.
+	 * @param port         Port number to listen on.
+	 * @param gridView     View to use.
 	 */
 	public OpponentController(
 		final UIController  uiController,
@@ -82,19 +82,17 @@ public class OpponentController
 	}
 	
 	/**
-	 * This will interrupt the thread and close the DatagramSocket 'in'.
-	 * This is done when the game has ended. This allows another game to be
-	 * started immediately after.
+	 * Close socket. Allows a new game to be started.
 	 */
 	public void close() {
 		this.interrupt();
 		opponent.close();
 	}
 	
+	// TODO: The use of the word "thereafter" is archaic. Is it better to simply
+	//       use "accordingly"?
 	/**
-	 * This runs continously and listens to the specified port. It receives
-	 * datagram packets from the opponent and updates the OpponentModel, which
-	 * in turn updates the OpponentView.
+	 * Listen for messages and update model thereafter.
 	 */
 	@Override
 	public void run() {

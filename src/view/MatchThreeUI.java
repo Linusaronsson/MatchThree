@@ -16,11 +16,11 @@ import util.Properties;
 public class MatchThreeUI
 	extends JPanel implements Observer
 {
-	/** ... */
+	/** Background color. */
 	private static final Color COLOR_BACKGROUND =
 		Properties.getColorBackground();
 	
-	/** ... */
+	/** Panel color. */
 	private static final Color COLOR_PANEL =
 		COLOR_BACKGROUND.brighter().brighter();
 	
@@ -31,7 +31,9 @@ public class MatchThreeUI
 	private Container headerView = new JPanel();
 	
 	/**
-	 * Constructor for `MatchThreeUI`.
+	 * Constructor.
+	 *
+	 * @param model MatchThree game model to use.
 	 */
 	// TODO: Call parent constructor?
 	public MatchThreeUI(final MatchThreeModel model) {
@@ -68,9 +70,6 @@ public class MatchThreeUI
 		return headerView;
 	}
 	
-	/**
-	 * Removes matchthreeUI when game finished
-	 */
 	@Override
 	public void update(final Observable o, final Object arg) {
 		if (o instanceof MatchThreeModel && arg instanceof String) {

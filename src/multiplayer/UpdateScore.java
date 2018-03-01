@@ -1,21 +1,21 @@
 package multiplayer;
 
 /**
- * @author Linus
+ * Score update message.
  *
- * Message sent between users over a DatagramSocket. (Current score).
+ * @author Linus
  */
 @SuppressWarnings("serial")
 public class UpdateScore
 	extends Message
 {
-	/** Current score */
+	/** Score. */
 	int score;
 	
 	/**
 	 * Constructor.
 	 *
-	 * @param score Score
+	 * @param score Score to embed.
 	 */
 	public UpdateScore(final int score) {
 		super(MessageType.SCORE_UPDATE);
@@ -23,9 +23,9 @@ public class UpdateScore
 	}
 	
 	/**
-	 * Score getter
+	 * Get score.
 	 *
-	 * @return Score
+	 * @return The score.
 	 */
 	public int getScore() {
 		return score;

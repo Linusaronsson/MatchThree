@@ -3,18 +3,16 @@ package multiplayer;
 import multiplayer.Message.MessageType;
 
 /**
- * @author Linus
+ * Game closure message.
  *
- * Message sent between users over a DatagramSocket. (Game finished).
- * This message has an empty payload. Only used for notifying that it
- * finished.
+ * @author Linus
  */
 @SuppressWarnings("serial")
 public class UpdateGameFinished
 	extends Message
 {
 	/**
-	 * Constructor
+	 * Constructor.
 	 */
 	public UpdateGameFinished() {
 		super(MessageType.GAME_FINISHED);

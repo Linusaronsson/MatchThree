@@ -26,7 +26,7 @@ public class MultiplayerView
 	/** Default port number. */
 	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
-	/** Background color */
+	/** Background color. */
 	private static final Color COLOR_BACKGROUND =
 		Properties.getColorBackground();
 	

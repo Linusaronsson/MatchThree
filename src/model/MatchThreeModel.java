@@ -45,23 +45,23 @@ public class MatchThreeModel
 	}
 	
 	/**
-	 *  Cell event that is sent to the view.
-	 * @author Linus
+	 * Cell update event.
 	 *
+	 * @author Linus
 	 */
 	public class CellEvent
 	{
-		/** ... */
+		/** Cell type. */
 		private Jewel cellType;
 		
-		/** ... */
+		/** Cell position. */
 		private Coordinate position;
 		
 		/**
-		 * Create `CellEvent`.
+		 * Constructor.
 		 *
-		 * @param position ...
-		 * @param cellType ...
+		 * @param position Cell position to embed.
+		 * @param cellType Cell type to embed.
 		 */
 		public CellEvent(final Coordinate position, final Jewel cellType) {
 			this.cellType = cellType;
@@ -69,18 +69,18 @@ public class MatchThreeModel
 		}
 		
 		/**
-		 * ...
+		 * Get cell position.
 		 *
-		 * @return ...
+		 * @return The cell position.
 		 */
 		public Coordinate getPos() {
 			return position;
 		}
 		
 		/**
-		 * ...
+		 * Get cell type.
 		 *
-		 * @return ...
+		 * @return The cell type.
 		 */
 		public Jewel getType() {
 			return cellType;
@@ -88,22 +88,27 @@ public class MatchThreeModel
 	}
 	
 	/**
+	 * Game completed event.
 	 *
 	 * @author Linus
-	 *
 	 */
 	public class GameFinishedEvent
 		extends LabelEvent
 	{
+		/**
+		 * Constructor.
+		 *
+		 * @param value ...
+		 */
 		public GameFinishedEvent(final int value) {
 			super(value);
 		}
 	}
 	
 	/**
+	 * ...
 	 *
 	 * @author Linus
-	 *
 	 */
 	public class LabelEvent
 	{
@@ -111,18 +116,18 @@ public class MatchThreeModel
 		private int value;
 		
 		/**
-		 * Create `ScoreEvent`.
+		 * Constructor.
 		 *
-		 * @param score ...
+		 * @param value ...
 		 */
 		public LabelEvent(final int value) {
 			this.value = value;
 		}
 		
 		/**
-		 * ...
+		 * Get value.
 		 *
-		 * @return ...
+		 * @return The value.
 		 */
 		public int getValue() {
 			return value;
@@ -130,26 +135,36 @@ public class MatchThreeModel
 	}
 	
 	/**
+	 * Move counter update event.
 	 *
 	 * @author Linus
-	 *
 	 */
 	public class MovesLeftEvent
 		extends LabelEvent
 	{
+		/**
+		 * Constructor.
+		 *
+		 * @param value Move counter to embed.
+		 */
 		public MovesLeftEvent(final int value) {
 			super(value);
 		}
 	}
 	
 	/**
+	 * Score update event.
 	 *
 	 * @author Linus
-	 *
 	 */
 	public class ScoreEvent
 		extends LabelEvent
 	{
+		/**
+		 * Constructor.
+		 *
+		 * @param value Score to embed.
+		 */
 		public ScoreEvent(final int value) {
 			super(value);
 		}
@@ -458,6 +473,11 @@ public class MatchThreeModel
 		return board.clone();
 	}
 	
+	/**
+	 * Get the number of moves left.
+	 *
+	 * @return Number of moves left.
+	 */
 	public int getMovesLeft() {
 		return movesLeft;
 	}
