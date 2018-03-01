@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 
 import util.Properties;
 
+@SuppressWarnings("serial")
 public class GameFinished
 	extends JPanel {
 	private static final Color COLOR_RESULT_BACKGROUND = Color.WHITE;//new Color(0xbb, 0xf0, 0x49);

@@ -19,7 +19,7 @@ import util.Properties;
 /**
  * Game button panel.
  */
-@SuppressWarnings("serial")
+@SuppressWarnings({"deprecation", "serial"})
 public class ButtonPanel
 	extends JPanel implements Observer
 {
