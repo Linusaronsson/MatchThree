@@ -3,7 +3,6 @@ package view;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.LayoutManager;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;

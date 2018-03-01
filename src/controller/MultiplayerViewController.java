@@ -1,5 +1,6 @@
 package controller;
 
+import controller.UIController.View;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
@@ -7,16 +8,13 @@ import java.awt.event.MouseListener;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-
-import controller.UIController.View;
 import model.Jewel;
 import model.Settings;
 import multiplayer.Message;
-import multiplayer.OpponentController;
 import multiplayer.OpponentModel;
+import multiplayer.OpponentUIController;
 import multiplayer.PlayerModel;
 import multiplayer.Server;
-import multiplayer.OpponentUIController;
 import view.Button;
 import view.MultiplayerView;
 

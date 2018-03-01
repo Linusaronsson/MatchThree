@@ -1,7 +1,6 @@
 package multiplayer;
 
 import controller.UIController;
-
 import java.awt.Container;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -9,9 +8,6 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
-import java.util.Observable;
-import java.util.Observer;
-
 import model.Settings;
 import view.ErrorDialog;
 import view.GameFinished;

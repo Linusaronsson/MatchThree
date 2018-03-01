@@ -3,11 +3,8 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.FlowLayout;
-
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import util.Properties;
 
 /**
  * MatchThree game header.

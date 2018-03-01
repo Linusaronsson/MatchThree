@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
 import model.MatchThreeModel;
 import model.Settings;
 import model.Settings.Style;

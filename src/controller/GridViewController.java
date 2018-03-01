@@ -19,7 +19,6 @@ import util.AssetManager;
 import util.Properties;
 import view.Cell;
 import view.ErrorDialog;
-import view.GameFinished;
 import view.GridView;
 import view.MatchThreeUI;
 import view.MessageDialog;

@@ -8,10 +8,8 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
-
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-
 import model.MatchThreeModel;
 import util.AssetManager;
 import util.Properties;

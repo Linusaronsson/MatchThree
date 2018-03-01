@@ -1,14 +1,10 @@
 package multiplayer;
 
-import java.awt.Container;
-
-import controller.GridViewController;
 import controller.MatchThreeHeaderController;
 import controller.UIController;
-import model.MatchThreeModel;
+import java.awt.Container;
 import model.Settings;
 import view.GridView;
-import view.MatchThreeHeader;
 import view.MatchThreeUI;
 
 /**

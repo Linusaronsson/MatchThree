@@ -1,5 +1,6 @@
 package controller;
 
+import controller.UIController.View;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
@@ -8,8 +9,6 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-
-import controller.UIController.View;
 import model.Settings;
 import multiplayer.Message;
 import multiplayer.Server;

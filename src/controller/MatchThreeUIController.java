@@ -3,9 +3,7 @@ package controller;
 import java.awt.Container;
 import model.MatchThreeModel;
 import model.Settings;
-import view.MatchThreeHeader;
 import view.MatchThreeUI;
-import view.Score;
 
 /**
  * ...
