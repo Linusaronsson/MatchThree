@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.BoxLayout;
+import java.awt.BorderLayout;
 
 import matchthree.model.HighScore;
 
@@ -15,10 +15,11 @@ import matchthree.model.HighScore;
 public class ScoreMenuView
     extends JPanel
 {
-	/** Refresh button. */
-	final JButton refresh = new JButton("Refresh");
-	
-	/** Score list. */
+    /** Buttons. */
+    final JButton refresh = new JButton("Refresh");
+    final JButton mainMenu = new JButton("Main Menu");
+    
+    /** Score list. */
     final String[] test = {"test 123", "est 23"};
     final JList<String> scoreTable = new JList<String>(test);
 	
@@ -28,19 +29,25 @@ public class ScoreMenuView
 	public ScoreMenuView() {
 
 	    // Set layout //
-	    setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-	    
-		add(scoreTable);
-		add(refresh); //currently not functional
-		setVisible(true);
+	    setLayout(new BorderLayout());
+
+	    // Fill the score table //
+	    refresh();
+
+	    // Add the objects //
+	    add(scoreTable, BorderLayout.CENTER);
+	    add(refresh, BorderLayout.SOUTH); 
+
+	    System.out.println("testet");
+	    setVisible(true);
 	}
 	
 	/**
 	 * Refresh score list.
 	 */
 	public void refresh() {
+	    System.out.println("Test2");
 		scoreTable.setListData(new HighScore().getScoreTable());
-		System.out.println("" + new HighScore().getScoreTable());
 	}
 	
 	/**
@@ -51,4 +58,8 @@ public class ScoreMenuView
 	public void addRefreshListener(final ActionListener listener) {
 		refresh.addActionListener(listener);
 	}
+
+    public void addMainMenuListener(final ActionListener listener) {
+	mainMenu.addActionListener(listener);
+    }
 }
