@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import model.HighScore;
+import util.Properties;
 
 /**
  * Score menu.
@@ -23,6 +24,10 @@ public class ScoreMenuView
 	 * Create `ScoreMenuView`.
 	 */
 	public ScoreMenuView() {
+
+	    // Set layout //
+	    setLayout(new BoxLayout(this, Y_AXIS));
+	    
 		add(scoreTable);
 		add(refresh);
 		setVisible(true);
