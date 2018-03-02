@@ -24,6 +24,7 @@ this form, the arguments will run in sequence, and abort on failure.
 | `resources/`       | Run-time assets           |
 | `src/`             | Source code               |
 | `src/controller/`  | Controllers               |
+| `src/message/`     | Event messages            |
 | `src/model/`       | Models                    |
 | `src/multiplayer/` | Multiplayer (provisional) |
 | `src/view/`        | Views                     |

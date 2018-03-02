@@ -10,6 +10,8 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import message.Message;
+import message.UpdateBoard;
 import model.Jewel;
 import view.ConfirmDialog;
 import view.ErrorDialog;

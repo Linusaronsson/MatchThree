@@ -1,6 +1,4 @@
-package multiplayer;
-
-import multiplayer.Message.MessageType;
+package message;
 
 /**
  * Game closure message.

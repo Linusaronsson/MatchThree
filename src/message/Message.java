@@ -1,4 +1,4 @@
-package multiplayer;
+package message;
 
 import java.io.Serializable;
 

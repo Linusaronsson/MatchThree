@@ -1,4 +1,4 @@
-package multiplayer;
+package message;
 
 import model.Jewel;
 
