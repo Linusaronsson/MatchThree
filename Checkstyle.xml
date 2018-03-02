@@ -97,6 +97,10 @@
 		<module name="IllegalToken"/>
 		<module name="IllegalTokenText"/>
 		<module name="IllegalType"/>
+		<module name="ImportControl">
+			<property name="file" value="import-policy.xml"/>
+			<property name="path" value="^.*[/\\]?src[/\\].*$"/>
+		</module>
 		<module name="ImportOrder">
 			<property name="caseSensitive" value="false"/>
 			<property name="groups" value=""/>
