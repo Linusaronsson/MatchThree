@@ -7,7 +7,6 @@ import matchthree.model.MatchThreeModel;
 import matchthree.model.Settings;
 import matchthree.model.Settings.Style;
 import matchthree.multiplayer.Server;
-import matchthree.view.ScoreMenuView;
 
 /**
  * UI controller. Manages application navigation between views.
