@@ -4,7 +4,6 @@ import java.awt.Container;
 import matchthree.model.MatchThreeModel;
 import matchthree.model.Settings;
 import matchthree.view.MatchThreeHeader;
-import matchthree.view.MatchThreeUI;
 import matchthree.view.MovesLeft;
 import matchthree.view.Score;
 
@@ -23,13 +22,13 @@ public class MatchThreeHeaderController
 	 */
 	// TODO: Do not allow this controller to access `MatchThreeUI`.
 	public MatchThreeHeaderController(
-		final MatchThreeUI    ui,
+		final Container       parent,
 		final UIController    uiController,
 		final Settings        settings,
 		final MatchThreeModel matchThreeModel
 	) {
 		// Validate arguments //
-		if (ui == null) {
+		if (parent == null) {
 			throw new IllegalArgumentException("`parent` must not be null");
 		}
 		if (uiController == null) {
@@ -50,7 +49,6 @@ public class MatchThreeHeaderController
 		MatchThreeHeader header = new MatchThreeHeader();
 		header.getScore().add(new Score(matchThreeModel));
 		header.getMoves().add(new MovesLeft(matchThreeModel));
-		Container parent = ui.getHeader();
 		
 		// Add view to parent //
 		parent.add(header);

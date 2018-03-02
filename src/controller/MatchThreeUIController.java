@@ -73,7 +73,7 @@ public class MatchThreeUIController
 		// Create header //
 		//Container headerView = matchThreeUI.getHeader();
 		new MatchThreeHeaderController(
-			matchThreeUI,
+			matchThreeUI.getHeader(),
 			uiController,
 			settings,
 			model
