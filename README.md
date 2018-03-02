@@ -30,8 +30,8 @@ this form, the arguments will run in sequence, and abort on failure.
 | `src/view/`        | Views                     |
 | `src/util/`        | Utilities (provisional)   |
 | `target/`          | Built artifacts           |
-| `target/doc`       | Compiled documentation    |
-| `target/main`      | Compiled program          |
+| `target/doc/`      | Compiled documentation    |
+| `target/main/`     | Compiled program          |
 
 ## Authors ##
 
