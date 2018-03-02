@@ -36,7 +36,9 @@ public class ScoreMenuView
 
 	    // Add the objects //
 	    add(scoreTable, BorderLayout.CENTER);
-	    add(refresh, BorderLayout.SOUTH); 
+	    add(refresh, BorderLayout.NORTH);
+	    add(mainMenu, BorderLayout.SOUTH);
+	    
 
 	    System.out.println("testet");
 	    setVisible(true);
