@@ -65,6 +65,11 @@
 		<module name="AvoidStarImport"/>
 		<module name="AvoidStaticImport"/>
 		<module name="ConstantName"/>
+		<module name="CyclomaticComplexity">
+			<!-- TODO: Reduce this value. -->
+			<property name="max" value="12"/>
+			<property name="switchBlockAsSingleDecisionPoint" value="false"/>
+		</module>
 		<module name="DeclarationOrder"/>
 		<module name="DefaultComesLast"/>
 		<!-- <module name="DesignForExtension"/> -->
