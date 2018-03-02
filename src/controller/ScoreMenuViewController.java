@@ -12,7 +12,7 @@ public class ScoreMenuViewController
 	/**
 	 * Constructor.
 	 *
-	 * @param parent
+	 * @param parent Parent view to use.
 	 */
 	public ScoreMenuViewController(final Container parent) {
 		// Validate arguments //
