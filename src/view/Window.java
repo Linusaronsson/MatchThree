@@ -1,4 +1,4 @@
-package view;
+package matchthree.view;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -8,8 +8,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-import util.AssetManager;
-import util.Properties;
+import matchthree.util.AssetManager;
+import matchthree.util.Properties;
 
 /**
  * Application main window.

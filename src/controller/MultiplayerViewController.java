@@ -1,6 +1,5 @@
-package controller;
+package matchthree.controller;
 
-import controller.UIController.View;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
@@ -8,15 +7,16 @@ import java.awt.event.MouseListener;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import message.Message;
-import model.Jewel;
-import model.Settings;
-import multiplayer.OpponentModel;
-import multiplayer.OpponentUIController;
-import multiplayer.PlayerModel;
-import multiplayer.Server;
-import view.Button;
-import view.MultiplayerView;
+import matchthree.controller.UIController.View;
+import matchthree.message.Message;
+import matchthree.model.Jewel;
+import matchthree.model.Settings;
+import matchthree.multiplayer.OpponentModel;
+import matchthree.multiplayer.OpponentUIController;
+import matchthree.multiplayer.PlayerModel;
+import matchthree.multiplayer.Server;
+import matchthree.view.Button;
+import matchthree.view.MultiplayerView;
 
 /**
  * Controller for `MultiplayerView`.

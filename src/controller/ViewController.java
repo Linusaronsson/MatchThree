@@ -1,4 +1,4 @@
-package controller;
+package matchthree.controller;
 
 /**
  * Common features of view controllers.

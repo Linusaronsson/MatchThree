@@ -1,19 +1,19 @@
-package multiplayer;
+package matchthree.multiplayer;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import message.Message;
-import message.UpdateBoard;
-import message.UpdateCell;
-import message.UpdateGameFinished;
-import message.UpdateMovesLeft;
-import message.UpdateScore;
-import model.Coordinate;
-import model.Jewel;
-import model.MatchThreeModel;
-import model.MatchThreeModel.MoveType;
+import matchthree.message.Message;
+import matchthree.message.UpdateBoard;
+import matchthree.message.UpdateCell;
+import matchthree.message.UpdateGameFinished;
+import matchthree.message.UpdateMovesLeft;
+import matchthree.message.UpdateScore;
+import matchthree.model.Coordinate;
+import matchthree.model.Jewel;
+import matchthree.model.MatchThreeModel;
+import matchthree.model.MatchThreeModel.MoveType;
 
 /**
  * @author Linus

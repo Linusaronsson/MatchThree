@@ -1,4 +1,4 @@
-package view;
+package matchthree.view;
 
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -13,12 +13,12 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
-import model.Coordinate;
-import model.Jewel;
-import model.MatchThreeModel;
-import model.Settings.Style;
-import util.AssetManager;
-import util.Properties;
+import matchthree.model.Coordinate;
+import matchthree.model.Jewel;
+import matchthree.model.MatchThreeModel;
+import matchthree.model.Settings.Style;
+import matchthree.util.AssetManager;
+import matchthree.util.Properties;
 
 /**
  * MatchThree grid view.

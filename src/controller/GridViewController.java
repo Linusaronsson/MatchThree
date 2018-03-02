@@ -1,4 +1,4 @@
-package controller;
+package matchthree.controller;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -9,20 +9,20 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import model.Coordinate;
-import model.Jewel;
-import model.MatchThreeModel;
-import model.Serialize;
-import model.Settings;
-import model.Settings.Style;
-import util.AssetManager;
-import util.Properties;
-import view.Cell;
-import view.ErrorDialog;
-import view.GridView;
-import view.MatchThreeUI;
-import view.MessageDialog;
-import view.SaveDialog;
+import matchthree.model.Coordinate;
+import matchthree.model.Jewel;
+import matchthree.model.MatchThreeModel;
+import matchthree.model.Serialize;
+import matchthree.model.Settings;
+import matchthree.model.Settings.Style;
+import matchthree.util.AssetManager;
+import matchthree.util.Properties;
+import matchthree.view.Cell;
+import matchthree.view.ErrorDialog;
+import matchthree.view.GridView;
+import matchthree.view.MatchThreeUI;
+import matchthree.view.MessageDialog;
+import matchthree.view.SaveDialog;
 
 /**
  * MatchThree game controller.

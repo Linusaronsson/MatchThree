@@ -1,11 +1,11 @@
-package multiplayer;
+package matchthree.multiplayer;
 
-import controller.MatchThreeHeaderController;
-import controller.UIController;
 import java.awt.Container;
-import model.Settings;
-import view.GridView;
-import view.MatchThreeUI;
+import matchthree.controller.MatchThreeHeaderController;
+import matchthree.controller.UIController;
+import matchthree.model.Settings;
+import matchthree.view.GridView;
+import matchthree.view.MatchThreeUI;
 
 /**
  * Opponent UI controller. Listens for network messages and updates model

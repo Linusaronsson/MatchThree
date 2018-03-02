@@ -1,9 +1,9 @@
-package controller;
+package matchthree.controller;
 
 import java.awt.Container;
-import model.MatchThreeModel;
-import model.Settings;
-import view.MatchThreeUI;
+import matchthree.model.MatchThreeModel;
+import matchthree.model.Settings;
+import matchthree.view.MatchThreeUI;
 
 /**
  * ...

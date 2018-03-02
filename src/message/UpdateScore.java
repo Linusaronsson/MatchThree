@@ -1,4 +1,4 @@
-package message;
+package matchthree.message;
 
 /**
  * Score update message.

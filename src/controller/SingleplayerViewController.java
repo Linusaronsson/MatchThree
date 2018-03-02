@@ -1,8 +1,8 @@
-package controller;
+package matchthree.controller;
 
 import java.awt.Container;
-import model.Settings;
-import view.SingleplayerView;
+import matchthree.model.Settings;
+import matchthree.view.SingleplayerView;
 
 /**
  * Controller for singleplayer game screen.

@@ -1,4 +1,4 @@
-package view;
+package matchthree.view;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;
@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import util.Properties;
+import matchthree.util.Properties;
 
 /**
  * Button.

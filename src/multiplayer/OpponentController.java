@@ -1,6 +1,5 @@
-package multiplayer;
+package matchthree.multiplayer;
 
-import controller.UIController;
 import java.awt.Container;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -8,13 +7,14 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
-import message.Message;
-import message.UpdateCell;
-import message.UpdateMovesLeft;
-import message.UpdateScore;
-import model.Settings;
-import view.ErrorDialog;
-import view.GameFinished;
+import matchthree.controller.UIController;
+import matchthree.message.Message;
+import matchthree.message.UpdateCell;
+import matchthree.message.UpdateMovesLeft;
+import matchthree.message.UpdateScore;
+import matchthree.model.Settings;
+import matchthree.view.ErrorDialog;
+import matchthree.view.GameFinished;
 
 /**
  * Opponent controller. Listens for network messages and updates model

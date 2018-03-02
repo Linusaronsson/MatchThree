@@ -1,6 +1,5 @@
-package multiplayer;
+package matchthree.multiplayer;
 
-import controller.UIController;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -10,11 +9,12 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import message.Message;
-import message.UpdateBoard;
-import model.Jewel;
-import view.ConfirmDialog;
-import view.ErrorDialog;
+import matchthree.controller.UIController;
+import matchthree.message.Message;
+import matchthree.message.UpdateBoard;
+import matchthree.model.Jewel;
+import matchthree.view.ConfirmDialog;
+import matchthree.view.ErrorDialog;
 
 /**
  * Listens for and responds to game requests over the network.

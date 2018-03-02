@@ -1,4 +1,4 @@
-package controller;
+package matchthree.controller;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;

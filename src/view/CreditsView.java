@@ -1,4 +1,4 @@
-package view;
+package matchthree.view;
 
 import java.awt.Font;
 import javax.swing.BoxLayout;

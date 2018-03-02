@@ -1,13 +1,13 @@
-package controller;
+package matchthree.controller;
 
 import java.awt.Container;
 import java.net.InetAddress;
-import model.Jewel;
-import model.MatchThreeModel;
-import model.Settings;
-import model.Settings.Style;
-import multiplayer.Server;
-import view.ScoreMenuView;
+import matchthree.model.Jewel;
+import matchthree.model.MatchThreeModel;
+import matchthree.model.Settings;
+import matchthree.model.Settings.Style;
+import matchthree.multiplayer.Server;
+import matchthree.view.ScoreMenuView;
 
 /**
  * UI controller. Manages application navigation between views.

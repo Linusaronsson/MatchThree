@@ -1,16 +1,16 @@
-package controller;
+package matchthree.controller;
 
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import model.MatchThreeModel;
-import model.Settings;
-import model.Settings.Style;
-import util.AssetManager;
-import util.Properties;
-import view.Button;
-import view.ButtonPanel;
+import matchthree.model.MatchThreeModel;
+import matchthree.model.Settings;
+import matchthree.model.Settings.Style;
+import matchthree.util.AssetManager;
+import matchthree.util.Properties;
+import matchthree.view.Button;
+import matchthree.view.ButtonPanel;
 
 /**
  * Button panel controller.

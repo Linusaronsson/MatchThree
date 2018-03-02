@@ -1,4 +1,4 @@
-package view;
+package matchthree.view;
 
 import java.awt.Color;
 import java.awt.Container;
@@ -7,8 +7,8 @@ import java.awt.event.MouseListener;
 import java.awt.FlowLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import model.Settings;
-import util.Properties;
+import matchthree.model.Settings;
+import matchthree.util.Properties;
 
 /**
  * Multiplayer game screen.

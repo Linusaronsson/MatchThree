@@ -1,7 +1,7 @@
-package controller;
+package matchthree.controller;
 
 import java.awt.Container;
-import view.CreditsView;
+import matchthree.view.CreditsView;
 
 /**
  * ...

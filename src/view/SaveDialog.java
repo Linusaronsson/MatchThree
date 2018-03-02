@@ -1,4 +1,4 @@
-package view;
+package matchthree.view;
 
 import java.io.File;
 import javax.swing.filechooser.FileNameExtensionFilter;

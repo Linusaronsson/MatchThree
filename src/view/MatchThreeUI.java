@@ -1,4 +1,4 @@
-package view;
+package matchthree.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,8 +6,8 @@ import java.awt.Container;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
-import model.MatchThreeModel;
-import util.Properties;
+import matchthree.model.MatchThreeModel;
+import matchthree.util.Properties;
 
 /**
  * MatchThree game view.

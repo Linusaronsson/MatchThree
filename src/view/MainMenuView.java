@@ -1,4 +1,4 @@
-package view;
+package matchthree.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -10,8 +10,8 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import util.AssetManager;
-import util.Properties;
+import matchthree.util.AssetManager;
+import matchthree.util.Properties;
 
 /**
  * Application start view.

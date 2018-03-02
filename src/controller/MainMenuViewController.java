@@ -1,14 +1,14 @@
-package controller;
+package matchthree.controller;
 
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.Font;
-import model.Settings;
-import util.Properties;
-import view.Button;
-import view.MainMenuView;
+import matchthree.model.Settings;
+import matchthree.util.Properties;
+import matchthree.view.Button;
+import matchthree.view.MainMenuView;
 
 /**
  * Controller for main menu view.

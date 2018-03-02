@@ -1,4 +1,4 @@
-package view;
+package matchthree.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -10,9 +10,9 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import model.MatchThreeModel;
-import util.AssetManager;
-import util.Properties;
+import matchthree.model.MatchThreeModel;
+import matchthree.util.AssetManager;
+import matchthree.util.Properties;
 
 /**
  * Game button panel.

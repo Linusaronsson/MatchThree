@@ -1,6 +1,6 @@
-package view;
+package matchthree.view;
 
-import model.Coordinate;
+import matchthree.model.Coordinate;
 
 /**
  * Board cell.

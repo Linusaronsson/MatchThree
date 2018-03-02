@@ -1,11 +1,11 @@
-package controller;
+package matchthree.controller;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JPanel;
-import view.ErrorDialog;
-import view.MainMenuBar;
-import view.Window;
+import matchthree.view.ErrorDialog;
+import matchthree.view.MainMenuBar;
+import matchthree.view.Window;
 
 /**
  * Main window controller.

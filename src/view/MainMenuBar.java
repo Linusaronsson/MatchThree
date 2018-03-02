@@ -1,4 +1,4 @@
-package view;
+package matchthree.view;
 
 import java.awt.event.ActionListener;
 import javax.swing.JMenu;

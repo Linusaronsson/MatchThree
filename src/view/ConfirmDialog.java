@@ -1,4 +1,4 @@
-package view;
+package matchthree.view;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;

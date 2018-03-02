@@ -1,5 +1,7 @@
-import controller.ApplicationController;
+package matchthree;
+
 import java.io.IOException;
+import matchthree.controller.ApplicationController;
 
 /**
  * MatchThree game.

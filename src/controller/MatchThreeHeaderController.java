@@ -1,12 +1,12 @@
-package controller;
+package matchthree.controller;
 
 import java.awt.Container;
-import model.MatchThreeModel;
-import model.Settings;
-import view.MatchThreeHeader;
-import view.MatchThreeUI;
-import view.MovesLeft;
-import view.Score;
+import matchthree.model.MatchThreeModel;
+import matchthree.model.Settings;
+import matchthree.view.MatchThreeHeader;
+import matchthree.view.MatchThreeUI;
+import matchthree.view.MovesLeft;
+import matchthree.view.Score;
 
 /**
  * MatchThree header controller.

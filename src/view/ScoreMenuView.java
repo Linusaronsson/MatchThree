@@ -1,10 +1,10 @@
-package view;
+package matchthree.view;
 
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import model.HighScore;
+import matchthree.model.HighScore;
 
 /**
  * Score menu.

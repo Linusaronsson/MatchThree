@@ -1,6 +1,5 @@
-package controller;
+package matchthree.controller;
 
-import controller.UIController.View;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.MouseEvent;
@@ -9,12 +8,13 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import message.Message;
-import model.Settings;
-import multiplayer.Server;
-import view.Button;
-import view.ErrorDialog;
-import view.MultiplayerMenuView;
+import matchthree.controller.UIController.View;
+import matchthree.message.Message;
+import matchthree.model.Settings;
+import matchthree.multiplayer.Server;
+import matchthree.view.Button;
+import matchthree.view.ErrorDialog;
+import matchthree.view.MultiplayerMenuView;
 
 /**
  * ...

@@ -1,4 +1,4 @@
-package model;
+package matchthree.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;

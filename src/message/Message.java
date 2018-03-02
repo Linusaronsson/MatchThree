@@ -1,4 +1,4 @@
-package message;
+package matchthree.message;
 
 import java.io.Serializable;
 

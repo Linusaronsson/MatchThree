@@ -1,6 +1,6 @@
-package message;
+package matchthree.message;
 
-import model.Jewel;
+import matchthree.model.Jewel;
 
 /**
  * Board update message.

@@ -1,11 +1,11 @@
-package view;
+package matchthree.view;
 
 import java.awt.Color;
 import java.awt.Font;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JLabel;
-import model.MatchThreeModel;
+import matchthree.model.MatchThreeModel;
 
 /**
  * Score counter.

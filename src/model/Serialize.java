@@ -1,4 +1,4 @@
-package model;
+package matchthree.model;
 
 /**
  * Serialize board content for storage.

@@ -1,7 +1,7 @@
-package multiplayer;
+package matchthree.multiplayer;
 
-import model.Jewel;
-import model.MatchThreeModel;
+import matchthree.model.Jewel;
+import matchthree.model.MatchThreeModel;
 
 /**
  * Extension of MatchThreeModel used for the player view in multiplayer mode

@@ -1,4 +1,4 @@
-package util;
+package matchthree.util;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
