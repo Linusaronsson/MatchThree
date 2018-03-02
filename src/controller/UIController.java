@@ -132,7 +132,7 @@ public class UIController
 				viewController = new CreditsViewController(view);
 				break;
 			case SCORE_MENU:
-				viewController = new ScoreMenuViewController(view);
+			    viewController = new ScoreMenuViewController(view, this, settings);
 				break;
 			case SINGLEPLAYER_GAME:
 				viewController =
