@@ -20,8 +20,7 @@ public class ScoreMenuView
     final JButton mainMenu = new JButton("Main Menu");
     
     /** Score list. */
-    final String[] test = {"test 123", "est 23"};
-    final JList<String> scoreTable = new JList<String>(test);
+    final JList<String> scoreTable = new JList<String>();
 	
 	/**
 	 * Create `ScoreMenuView`.
@@ -38,18 +37,13 @@ public class ScoreMenuView
 	    add(scoreTable, BorderLayout.CENTER);
 	    add(refresh, BorderLayout.NORTH);
 	    add(mainMenu, BorderLayout.SOUTH);
-	    
-
-	    System.out.println("testet");
-	    setVisible(true);
 	}
 	
 	/**
 	 * Refresh score list.
 	 */
 	public void refresh() {
-	    System.out.println("Test2");
-		scoreTable.setListData(new HighScore().getScoreTable());
+	    scoreTable.setListData(new HighScore().getScoreTable());
 	}
 	
 	/**
