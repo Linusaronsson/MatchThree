@@ -14,8 +14,10 @@ import matchthree.model.HighScore;
 public class ScoreMenuView
     extends JPanel
 {
+	/** Main menu button. */
 	final JButton mainMenu = new JButton("Main Menu");
 	
+	/** Refresh button. */
 	final JButton refresh = new JButton("Refresh");
 	
 	/** Score list. */
@@ -53,6 +55,11 @@ public class ScoreMenuView
 		refresh.addActionListener(listener);
 	}
 	
+	/**
+	 * Add event listener for main menu button.
+	 *
+	 * @param listener Event listener to use.
+	 */
 	public void addMainMenuListener(final ActionListener listener) {
 		mainMenu.addActionListener(listener);
 	}

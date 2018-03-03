@@ -10,12 +10,15 @@ import matchthree.view.ScoreMenuView;
 public class ScoreMenuViewController
     implements ViewController
 {
+	/** Reference to UI controller. */
 	private UIController uiController = null;
 	
 	/**
 	 * Constructor.
 	 *
-	 * @param parent Parent view to use.
+	 * @param parent       Parent view to use.
+	 * @param uiController UI controller to use.
+	 * @param settings     Application settings.
 	 */
 	public ScoreMenuViewController(
 		final Container    parent,
