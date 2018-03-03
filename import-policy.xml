@@ -18,18 +18,11 @@
 	</subpackage>
 	<subpackage name="message" strategyOnMismatch="disallowed">
 		<allow pkg="java.io"/>
-		<allow pkg="matchthree.controller"/>
-		<allow pkg="matchthree.message"/>
 		<allow pkg="matchthree.model"/>
-		<allow pkg="matchthree.multiplayer"/>
-		<allow pkg="matchthree.util"/>
-		<allow pkg="matchthree.view"/>
 	</subpackage>
 	<subpackage name="model" strategyOnMismatch="disallowed">
 		<allow pkg="java.sql"/>
 		<allow pkg="java.util"/>
-		<allow pkg="matchthree.model"/>
-		<allow pkg="matchthree.util"/>
 	</subpackage>
 	<subpackage name="multiplayer" strategyOnMismatch="disallowed">
 		<allow pkg="java.awt"/>
@@ -38,8 +31,6 @@
 		<allow pkg="matchthree.controller"/>
 		<allow pkg="matchthree.message"/>
 		<allow pkg="matchthree.model"/>
-		<allow pkg="matchthree.multiplayer"/>
-		<allow pkg="matchthree.util"/>
 		<allow pkg="matchthree.view"/>
 	</subpackage>
 	<subpackage name="util" strategyOnMismatch="disallowed">
@@ -48,16 +39,13 @@
 		<allow pkg="java.util"/>
 		<allow pkg="javax.imageio"/>
 		<allow pkg="javax.sound"/>
-		<allow pkg="matchthree.util"/>
 	</subpackage>
 	<subpackage name="view" strategyOnMismatch="disallowed">
 		<allow pkg="java.awt"/>
 		<allow pkg="java.io"/>
 		<allow pkg="java.util"/>
 		<allow pkg="javax.swing"/>
-		<allow pkg="matchthree.message"/>
 		<allow pkg="matchthree.model"/>
 		<allow pkg="matchthree.util"/>
-		<allow pkg="matchthree.view"/>
 	</subpackage>
 </import-control>
