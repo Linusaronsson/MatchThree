@@ -16,9 +16,7 @@
 		<property name="max" value="1000"/>
 	</module>
 	
-	<!--
-	<module name="FileTabCharacter"/>
-	-->
+	<!-- <module name="FileTabCharacter"/> -->
 	
 	<!--
 	<module name="Header">
@@ -59,7 +57,6 @@
 		<module name="ArrayTypeStyle"/>
 		<module name="AtclauseOrder"/>
 		<module name="AvoidEscapedUnicodeCharacters"/>
-		<!-- <module name="AvoidInlineConditionals"/> -->
 		<module name="AvoidInlineConditionals"/>
 		<module name="AvoidNestedBlocks"/>
 		<module name="AvoidStarImport"/>
