@@ -33,6 +33,9 @@ public class UIController
 	
 	/**
 	 * View selection.
+	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 */
 	public enum View
 	{
@@ -67,6 +70,7 @@ public class UIController
 	/**
 	 * Create `UIController`.
 	 *
+	 * @author Erik Selstam
 	 * @param view             Container view to control.
 	 * @param windowController Window controller to use for updating window.
 	 */
@@ -98,6 +102,8 @@ public class UIController
 	/**
 	 * Change the active view.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param newView View to navigate to.
 	 */
 	public void changeView(final View newView) {
@@ -155,6 +161,7 @@ public class UIController
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param style ...
 	 */
 	public void setStyle(final Style style) {
@@ -164,6 +171,7 @@ public class UIController
 	/**
 	 * Start a multiplayer game session.
 	 *
+	 * @author Erik Selstam
 	 * @param board ...
 	 * @param host  ...
 	 * @param port  ...

@@ -7,6 +7,8 @@ import javax.swing.JMenuItem;
 
 /**
  * Main menu bar.
+ *
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class MainMenuBar
@@ -26,6 +28,8 @@ public class MainMenuBar
 	
 	/**
 	 * Create `MenuBar`.
+	 *
+	 * @author Erik Selstam
 	 */
 	public MainMenuBar() {
 		// Create "File" menu //
@@ -43,6 +47,7 @@ public class MainMenuBar
 	/**
 	 * Add listener for "New" menu item.
 	 *
+	 * @author Erik Selstam
 	 * @param listener Event handler.
 	 */
 	public void addNewListener(final ActionListener listener) {
@@ -56,6 +61,7 @@ public class MainMenuBar
 	/**
 	 * Add listener for "Open" menu item.
 	 *
+	 * @author Erik Selstam
 	 * @param listener Event handler.
 	 */
 	public void addOpenListener(final ActionListener listener) {
@@ -69,6 +75,7 @@ public class MainMenuBar
 	/**
 	 * Add listener for "Quit" menu item.
 	 *
+	 * @author Erik Selstam
 	 * @param listener Event handler.
 	 */
 	public void addQuitListener(final ActionListener listener) {
@@ -82,6 +89,7 @@ public class MainMenuBar
 	/**
 	 * Add listener for "Save" menu item.
 	 *
+	 * @author Erik Selstam
 	 * @param listener Event handler.
 	 */
 	public void addSaveListener(final ActionListener listener) {

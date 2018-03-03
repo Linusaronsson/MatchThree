@@ -7,7 +7,8 @@ import matchthree.model.MatchThreeModel;
  * Extension of MatchThreeModel used for the player view in multiplayer mode
  * for sending datagrams to the opponent.
  *
- * @author Linus
+ * @author Linus Aronsson
+ * @author Erik Selstam
  */
 public class OpponentModel
 	extends MatchThreeModel
@@ -15,6 +16,7 @@ public class OpponentModel
 	/**
 	 * Constructor.
 	 *
+	 * @author Linus Aronsson
 	 * @param board Board to use. If not provided a new one will be generated.
 	 * @param width The width of the board in number of cells.
 	 */
@@ -25,6 +27,7 @@ public class OpponentModel
 	/**
 	 * Set score.
 	 *
+	 * @author Linus Aronsson
 	 * @param score New score.
 	 */
 	public void setScore(final int score) {
@@ -35,6 +38,7 @@ public class OpponentModel
 	/**
 	 * Set the move counter.
 	 *
+	 * @author Linus Aronsson
 	 * @param moves Number of moves left.
 	 */
 	public void setMovesLeft(final int moves) {

@@ -9,6 +9,9 @@ import java.util.Set;
 
 /**
  * MatchThree game model.
+ *
+ * @author Erik Selstam
+ * @author Linus Aronsson
  */
 @SuppressWarnings("deprecation")
 public class MatchThreeModel
@@ -31,6 +34,8 @@ public class MatchThreeModel
 	
 	/**
 	 * Move type.
+	 *
+	 * @author Erik Selstam
 	 */
 	public enum MoveType
 	{
@@ -47,7 +52,7 @@ public class MatchThreeModel
 	/**
 	 * Cell update event.
 	 *
-	 * @author Linus
+	 * @author Linus Aronsson
 	 */
 	public class CellEvent
 	{
@@ -60,6 +65,7 @@ public class MatchThreeModel
 		/**
 		 * Constructor.
 		 *
+		 * @author Linus Aronsson
 		 * @param position Cell position to embed.
 		 * @param cellType Cell type to embed.
 		 */
@@ -71,6 +77,7 @@ public class MatchThreeModel
 		/**
 		 * Get cell position.
 		 *
+		 * @author Linus Aronsson
 		 * @return The cell position.
 		 */
 		public Coordinate getPos() {
@@ -80,6 +87,7 @@ public class MatchThreeModel
 		/**
 		 * Get cell type.
 		 *
+		 * @author Linus Aronsson
 		 * @return The cell type.
 		 */
 		public Jewel getType() {
@@ -90,7 +98,7 @@ public class MatchThreeModel
 	/**
 	 * Game completed event.
 	 *
-	 * @author Linus
+	 * @author Linus Aronsson
 	 */
 	public class GameFinishedEvent
 		extends LabelEvent
@@ -98,6 +106,7 @@ public class MatchThreeModel
 		/**
 		 * Constructor.
 		 *
+		 * @author Linus Aronsson
 		 * @param value ...
 		 */
 		public GameFinishedEvent(final int value) {
@@ -108,7 +117,7 @@ public class MatchThreeModel
 	/**
 	 * ...
 	 *
-	 * @author Linus
+	 * @author Linus Aronsson
 	 */
 	public class LabelEvent
 	{
@@ -118,6 +127,7 @@ public class MatchThreeModel
 		/**
 		 * Constructor.
 		 *
+		 * @author Linus Aronsson
 		 * @param value ...
 		 */
 		public LabelEvent(final int value) {
@@ -127,6 +137,7 @@ public class MatchThreeModel
 		/**
 		 * Get value.
 		 *
+		 * @author Linus Aronsson
 		 * @return The value.
 		 */
 		public int getValue() {
@@ -137,7 +148,7 @@ public class MatchThreeModel
 	/**
 	 * Move counter update event.
 	 *
-	 * @author Linus
+	 * @author Linus Aronsson
 	 */
 	public class MovesLeftEvent
 		extends LabelEvent
@@ -145,6 +156,7 @@ public class MatchThreeModel
 		/**
 		 * Constructor.
 		 *
+		 * @author Linus Aronsson
 		 * @param value Move counter to embed.
 		 */
 		public MovesLeftEvent(final int value) {
@@ -155,7 +167,7 @@ public class MatchThreeModel
 	/**
 	 * Score update event.
 	 *
-	 * @author Linus
+	 * @author Linus Aronsson
 	 */
 	public class ScoreEvent
 		extends LabelEvent
@@ -163,6 +175,7 @@ public class MatchThreeModel
 		/**
 		 * Constructor.
 		 *
+		 * @author Linus Aronsson
 		 * @param value Score to embed.
 		 */
 		public ScoreEvent(final int value) {
@@ -173,6 +186,7 @@ public class MatchThreeModel
 	/**
 	 * Create `MatchThreeModel`.
 	 *
+	 * @author Erik Selstam
 	 * @param width Size of the board on one axis in number of cells.
 	 */
 	public MatchThreeModel(final int width) {
@@ -194,6 +208,8 @@ public class MatchThreeModel
 	/**
 	 * Create `MatchThreeModel`.
 	 *
+	 * @author Erik Selstam
+	 * @author Linus Aronsson
 	 * @param board Board to use.
 	 * @param width Size of the board on one axis in number of cells.
 	 */
@@ -216,6 +232,7 @@ public class MatchThreeModel
 	 * Clear jewels from the board. May leave the board in an inconsistent
 	 * state.
 	 *
+	 * @author Erik Selstam
 	 * @param chains Array of chains with aligned cells to clear.
 	 * @return       Gained score.
 	 */
@@ -246,6 +263,8 @@ public class MatchThreeModel
 	/**
 	 * Move cells downwards to fill any gaps. May leave the board in an
 	 * inconsistent state.
+	 *
+	 * @author Erik Selstam
 	 */
 	private void dropCells() {
 		// Iterate over columns //
@@ -269,6 +288,8 @@ public class MatchThreeModel
 	 * Fill empty spaces in the board. Avoids creating matches. Since the
 	 * algorithm is not proven to work in all instances, it may potentially
 	 * leave the board in an inconsistent state.
+	 *
+	 * @author Erik Selstam
 	 */
 	private void fill() {
 		// Create RNG //
@@ -336,6 +357,7 @@ public class MatchThreeModel
 	/**
 	 * Identify chains involving a single cell.
 	 *
+	 * @author Erik Selstam
 	 * @param position Coordinate of cell to check.
 	 * @return         Array of chains found.
 	 */
@@ -352,6 +374,7 @@ public class MatchThreeModel
 	/**
 	 * Identify chains involving a list of cells.
 	 *
+	 * @author Erik Selstam
 	 * @param positions Coordinates of cells to check.
 	 * @return          Array of chains found.
 	 */
@@ -432,6 +455,7 @@ public class MatchThreeModel
 	/**
 	 * Get the value of a cell.
 	 *
+	 * @author Erik Selstam
 	 * @param position Coordinates of the cell.
 	 * @return         The cell value.
 	 */
@@ -447,6 +471,7 @@ public class MatchThreeModel
 	/**
 	 * Get the value of a cell.
 	 *
+	 * @author Erik Selstam
 	 * @param x X-coordinate of the cell.
 	 * @param y Y-coordinate of the cell.
 	 * @return  The cell value.
@@ -467,6 +492,7 @@ public class MatchThreeModel
 	/**
 	 * Get a copy of the board contents.
 	 *
+	 * @author Erik Selstam
 	 * @return A copy of the board.
 	 */
 	public Jewel[] getBoard() {
@@ -476,6 +502,7 @@ public class MatchThreeModel
 	/**
 	 * Get the number of moves left.
 	 *
+	 * @author Linus Aronsson
 	 * @return Number of moves left.
 	 */
 	public int getMovesLeft() {
@@ -485,6 +512,7 @@ public class MatchThreeModel
 	/**
 	 * Get the current score.
 	 *
+	 * @author Erik Selstam
 	 * @return The current score.
 	 */
 	public int getScore() {
@@ -494,6 +522,7 @@ public class MatchThreeModel
 	/**
 	 * Get the size the board.
 	 *
+	 * @author Erik Selstam
 	 * @return The number of cells per axis.
 	 */
 	public int getWidth() {
@@ -502,6 +531,8 @@ public class MatchThreeModel
 	
 	/**
 	 * Initialize a new game.
+	 *
+	 * @author Erik Selstam
 	 */
 	public void init() {
 		// Reset board //
@@ -519,6 +550,7 @@ public class MatchThreeModel
 	 * Move a cell and clear any generated chains. Leaves the board in a
 	 * consistent state.
 	 *
+	 * @author Erik Selstam
 	 * @param from Source coordinates.
 	 * @param to   Destination coordinates.
 	 * @return     Whether the move was successful, invalid or canceled.
@@ -577,6 +609,7 @@ public class MatchThreeModel
 	/**
 	 * Set the value of a cell. May leave the board in an inconsistent state.
 	 *
+	 * @author Erik Selstam
 	 * @param position Coordinates of the cell.
 	 * @param value    Value to set.
 	 */
@@ -592,6 +625,8 @@ public class MatchThreeModel
 	/**
 	 * Set the value of a cell. May leave the board in an inconsistent state.
 	 *
+	 * @author Erik Selstam
+	 * @author Linus Aronsson
 	 * @param x     X-coordinate of the cell.
 	 * @param y     Y-coordinate of the cell.
 	 * @param value Value to set.
@@ -616,6 +651,8 @@ public class MatchThreeModel
 	
 	/**
 	 * ...
+	 *
+	 * @author Linus Aronsson
 	 */
 	public void setMovesLeft() {
 		// Notify observers //
@@ -634,6 +671,7 @@ public class MatchThreeModel
 	 * Convenience method for swapping two cells. May leave the board in an
 	 * inconsistent state.
 	 *
+	 * @author Erik Selstam
 	 * @param first  Coordinates of first cell.
 	 * @param second Coordinates of second cell.
 	 */
@@ -652,6 +690,8 @@ public class MatchThreeModel
 	/**
 	 * Progress board into a consistent state.
 	 *
+	 * @author Erik Selstam
+	 * @author Linus Aronsson
 	 * @param positions Positions to update.
 	 */
 	private void update(final Coordinate[] positions) {

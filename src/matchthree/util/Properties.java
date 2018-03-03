@@ -4,6 +4,8 @@ import java.awt.Color;
 
 /**
  * ...
+ *
+ * @author Erik Tran
  */
 public final class Properties
 {
@@ -19,6 +21,8 @@ public final class Properties
 	
 	/**
 	 * Forbidden constructor.
+	 *
+	 * @author Erik Tran
 	 */
 	private Properties() {
 		throw new IllegalStateException();
@@ -27,6 +31,7 @@ public final class Properties
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public static String getButtonFontName() {
@@ -36,6 +41,7 @@ public final class Properties
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public static int getButtonFontSize() {
@@ -45,6 +51,7 @@ public final class Properties
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public static Color getColorBackground() {

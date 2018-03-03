@@ -14,6 +14,8 @@ import matchthree.view.ButtonPanel;
 
 /**
  * Button panel controller.
+ *
+ * @author Erik Selstam
  */
 public class ButtonPanelController
 {
@@ -29,6 +31,9 @@ public class ButtonPanelController
 	
 	/**
 	 * Changes button state on hover.
+	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 */
 	final class HoverListener
 		implements MouseListener
@@ -39,6 +44,7 @@ public class ButtonPanelController
 		/**
 		 * Constructor.
 		 *
+		 * @author Erik Selstam
 		 * @param target Target to bind to.
 		 */
 		private HoverListener(final Button target) {
@@ -75,6 +81,7 @@ public class ButtonPanelController
 	/**
 	 * Constructor.
 	 *
+	 * @author Erik Selstam
 	 * @param parent             ...
 	 * @param uiController       ...
 	 * @param gridViewController ...
@@ -142,6 +149,8 @@ public class ButtonPanelController
 	/**
 	 * Set the visual style.
 	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 * @param style Visual style.
 	 */
 	private void setStyle(final Style style) {

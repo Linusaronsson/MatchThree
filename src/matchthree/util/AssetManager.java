@@ -14,6 +14,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 /**
  * Loads and caches external resources.
+ *
+ * @author Erik Selstam
+ * @author Erik Tran
  */
 public final class AssetManager
 {
@@ -28,7 +31,12 @@ public final class AssetManager
 	private static Map<String, BufferedImage> images =
 		new HashMap<String, BufferedImage>();
 	
-	/** Audio file specifier. */
+	/**
+	 * Audio file specifier.
+	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
+	 */
 	public enum Audio
 	{
 		/** Invalid move audio. */
@@ -46,6 +54,8 @@ public final class AssetManager
 	
 	/**
 	 * Forbidden constructor.
+	 *
+	 * @author Erik Selstam
 	 */
 	private AssetManager() {
 		throw new IllegalStateException();
@@ -54,6 +64,8 @@ public final class AssetManager
 	/**
 	 * Get the filename of an audio asset.
 	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 * @param audio Audio asset to get filename of.
 	 * @return Filename of audio asset.
 	 */
@@ -72,6 +84,8 @@ public final class AssetManager
 	/**
 	 * Load an audio asset.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param name Filename of asset.
 	 * @return     Loaded audio clip.
 	 */
@@ -167,6 +181,8 @@ public final class AssetManager
 	/**
 	 * Load an image asset.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param name Filename of asset.
 	 * @return     Loaded image buffer.
 	 */
@@ -194,6 +210,7 @@ public final class AssetManager
 	/**
 	 * Play swap audio clip.
 	 *
+	 * @author Erik Selstam
 	 * @param audio ...
 	 */
 	public static void playAudio(final Audio audio) {
@@ -215,6 +232,9 @@ public final class AssetManager
 	
 	/**
 	 * Preemptively load all audio resources.
+	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 */
 	@SuppressWarnings("unused")
 	private static void preloadAudio() {
@@ -228,6 +248,7 @@ public final class AssetManager
 	/**
 	 * Unload audio asset from memory.
 	 *
+	 * @author Erik Selstam
 	 * @param name Filename of the asset.
 	 */
 	public static void unloadAudio(final String name) {
@@ -238,6 +259,7 @@ public final class AssetManager
 	/**
 	 * Unload image asset from memory.
 	 *
+	 * @author Erik Selstam
 	 * @param name Filename of the asset.
 	 */
 	public static void unloadImage(final String name) {

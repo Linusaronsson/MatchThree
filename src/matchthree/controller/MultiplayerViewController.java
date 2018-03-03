@@ -20,6 +20,10 @@ import matchthree.view.MultiplayerView;
 
 /**
  * Controller for `MultiplayerView`.
+ *
+ * @author Linus Aronsson
+ * @author Erik Selstam
+ * @author Erik Tran
  */
 public class MultiplayerViewController
 	implements ViewController
@@ -59,6 +63,9 @@ public class MultiplayerViewController
 	
 	/**
 	 * ...
+	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 */
 	private final class HoverListener
 		implements MouseListener
@@ -69,6 +76,7 @@ public class MultiplayerViewController
 		/**
 		 * Constructor.
 		 *
+		 * @author Erik Tran
 		 * @param target ...
 		 */
 		private HoverListener(final Button target) {
@@ -93,6 +101,9 @@ public class MultiplayerViewController
 	/**
 	 * Create `MultiplayerViewController`.
 	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param parent       Parent view to use.
 	 * @param uiController UI controller to use.
 	 * @param settings     ...
@@ -184,6 +195,9 @@ public class MultiplayerViewController
 	
 	/**
 	 * Close an ongoing multiplayer game (will close active sockets etc.).
+	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 */
 	public void closeGame() {
 		opponentController.close();
@@ -205,6 +219,8 @@ public class MultiplayerViewController
 	
 	/**
 	 * Handle back event.
+	 *
+	 * @author Erik Tran
 	 */
 	private void back() {
 		uiController.changeView(View.MAIN_MENU);

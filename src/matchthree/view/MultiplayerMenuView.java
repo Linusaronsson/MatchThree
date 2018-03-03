@@ -16,6 +16,10 @@ import matchthree.util.Properties;
 
 /**
  * Multiplayer setup screen.
+ *
+ * @author Linus Aronsson
+ * @author Erik Tran
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class MultiplayerMenuView
@@ -41,6 +45,10 @@ public class MultiplayerMenuView
 		
 	/**
 	 * ...
+	 *
+	 * @author Erik Tran
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 */
 	public MultiplayerMenuView() {
 		// Set properties //
@@ -117,6 +125,7 @@ public class MultiplayerMenuView
 	/**
 	 * ...
 	 *
+	 * @author Linus Aronsson
 	 * @param listener ...
 	 */
 	public void addConnectListener(final ActionListener listener) {
@@ -126,6 +135,7 @@ public class MultiplayerMenuView
 	/**
 	 * ...
 	 *
+	 * @author Linus Aronsson
 	 * @param listener ...
 	 */
 	public void addBackListener(final ActionListener listener) {
@@ -135,6 +145,7 @@ public class MultiplayerMenuView
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param listener ...
 	 * @param target   ...
 	 */
@@ -148,6 +159,7 @@ public class MultiplayerMenuView
 	/**
 	 * ...
 	 *
+	 * @author Linus Aronsson
 	 * @return ...
 	 */
 	public Button getBackButton() {
@@ -157,6 +169,7 @@ public class MultiplayerMenuView
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public Button getConnectButton() {
@@ -166,6 +179,7 @@ public class MultiplayerMenuView
 	/**
 	 * ...
 	 *
+	 * @author Linus Aronsson
 	 * @return ...
 	 */
 	public String getIp() {
@@ -175,6 +189,7 @@ public class MultiplayerMenuView
 	/**
 	 * ...
 	 *
+	 * @author Linus Aronsson
 	 * @return ...
 	 */
 	public String getPort() {

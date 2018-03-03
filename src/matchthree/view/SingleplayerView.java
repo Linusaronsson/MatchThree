@@ -10,6 +10,10 @@ import matchthree.util.Properties;
 
 /**
  * ...
+ *
+ * @author Erik Selstam
+ * @author Linus Aronsson
+ * @author Erik Tran
  */
 @SuppressWarnings("serial")
 public class SingleplayerView
@@ -31,6 +35,10 @@ public class SingleplayerView
 	
 	/**
 	 * Create `SingleplayerView`.
+	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 */
 	public SingleplayerView() {
 		// Set properties //
@@ -55,6 +63,7 @@ public class SingleplayerView
 	/**
 	 * Get button panel container.
 	 *
+	 * @author Erik Selstam
 	 * @return Button panel container.
 	 */
 	public Container getButtonPanel() {
@@ -64,6 +73,7 @@ public class SingleplayerView
 	/**
 	 * Get game container.
 	 *
+	 * @author Erik Selstam
 	 * @return Game container.
 	 */
 	public Container getGame() {

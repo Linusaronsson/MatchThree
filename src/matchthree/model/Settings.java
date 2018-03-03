@@ -2,6 +2,9 @@ package matchthree.model;
 
 /**
  * Settings storage.
+ *
+ * @author Erik Selstam
+ * @author Erik Tran
  */
 public class Settings
 {
@@ -16,6 +19,8 @@ public class Settings
 	
 	/**
 	 * Graphical style.
+	 *
+	 * @author Erik Tran
 	 */
 	public enum Style
 	{
@@ -28,12 +33,15 @@ public class Settings
 	
 	/**
 	 * ...
+	 *
+	 * @author Erik Selstam
 	 */
 	public Settings() { }
 	
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param style ...
 	 */
 	public void setStyle(final Style style) {
@@ -43,6 +51,7 @@ public class Settings
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public Style getStyle() {
@@ -52,6 +61,7 @@ public class Settings
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public static int getGameSize() {
@@ -61,6 +71,7 @@ public class Settings
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public static int getPortNumber() {

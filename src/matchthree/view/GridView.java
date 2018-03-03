@@ -23,6 +23,10 @@ import matchthree.util.Properties;
 
 /**
  * MatchThree grid view.
+ *
+ * @author Erik Selstam
+ * @author Erik Tran
+ * @author Linus Aronsson
  */
 @SuppressWarnings({"deprecation", "serial"})
 public class GridView
@@ -117,6 +121,8 @@ public class GridView
 	/**
 	 * Create `GridView`.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param model MatchThree model to use.
 	 * @param style ...
 	 */
@@ -145,6 +151,7 @@ public class GridView
 	/**
 	 * Add listener for board cell actions (clicks).
 	 *
+	 * @author Erik Selstam
 	 * @param listener Event handler.
 	 */
 	public void addBoardListener(final ActionListener listener) {
@@ -161,6 +168,7 @@ public class GridView
 	/**
 	 * Add listener for board cell actions (mouse hovering).
 	 *
+	 * @author Erik Tran
 	 * @param listener Event handler.
 	 * @param cell     ...
 	 */
@@ -179,6 +187,7 @@ public class GridView
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public Cell[] getBoard() {
@@ -188,6 +197,8 @@ public class GridView
 	/**
 	 * Change images on buttons.
 	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 * @param style Visual style.
 	 */
 	public void changeSprites(final Style style) {
@@ -231,6 +242,8 @@ public class GridView
 	/**
 	 * Create game grid.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	private Container createGrid() {
@@ -282,6 +295,7 @@ public class GridView
 	/**
 	 * Get the color of a jewel.
 	 *
+	 * @author Erik Selstam
 	 * @param jewel Jewel to get the color of.
 	 * @return      The color of the jewel.
 	 */
@@ -299,6 +313,7 @@ public class GridView
 	/**
 	 * Get the image of a jewel.
 	 *
+	 * @author Erik Selstam
 	 * @param jewel Jewel to get the image of.
 	 * @return      The image of the jewel.
 	 */
@@ -316,6 +331,7 @@ public class GridView
 	/**
 	 * Get the name of a jewel.
 	 *
+	 * @author Erik Selstam
 	 * @param jewel Jewel to get the name of.
 	 * @return      The name of the jewel.
 	 */
@@ -333,6 +349,8 @@ public class GridView
 	/**
 	 * Load external image resources.
 	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 * @param style Visual style.
 	 */
 	private void initGraphics(final Style style) {
@@ -371,6 +389,8 @@ public class GridView
 	/**
 	 * Set cell activation state.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param position  Coordinates of the cell.
 	 * @param activated Whether cell is active.
 	 */
@@ -410,6 +430,8 @@ public class GridView
 	
 	/**
 	 * Update all cells.
+	 *
+	 * @author Erik Selstam
 	 */
 	public void update() {
 		throw new IllegalStateException();
@@ -446,6 +468,7 @@ public class GridView
 	/**
 	 * Update a cell.
 	 *
+	 * @author Erik Selstam
 	 * @param position Coordinates of the cell.
 	 * @param jewel    ...
 	 */
@@ -461,6 +484,7 @@ public class GridView
 	/**
 	 * Update a cell.
 	 *
+	 * @author Erik Selstam
 	 * @param x     X-coordinate of the cell.
 	 * @param y     Y-coordinate of the cell.
 	 * @param jewel ...

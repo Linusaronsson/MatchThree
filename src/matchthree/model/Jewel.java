@@ -7,6 +7,8 @@ import java.util.Random;
 
 /**
  * Jewel type.
+ *
+ * @author Erik Selstam
  */
 public enum Jewel
 {
@@ -39,6 +41,7 @@ public enum Jewel
 	/**
 	 * Return a random jewel.
 	 *
+	 * @author Erik Selstam
 	 * @return A random jewel type.
 	 */
 	// TODO: Support returning a limited subset of jewels?

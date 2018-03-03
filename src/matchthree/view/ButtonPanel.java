@@ -17,6 +17,10 @@ import matchthree.util.Properties;
 
 /**
  * Game button panel.
+ *
+ * @author Erik Selstam
+ * @author Erik Tran
+ * @author Linus Aronsson
  */
 @SuppressWarnings({"deprecation", "serial"})
 public class ButtonPanel
@@ -60,6 +64,9 @@ public class ButtonPanel
 	/**
 	 * Constructor.
 	 *
+	 * @author Erik Selstam
+	 * @author Linus Aronsson
+	 * @author Erik Tran
 	 * @param model MatchThree game model to use.
 	 */
 	public ButtonPanel(final MatchThreeModel model) {
@@ -93,6 +100,9 @@ public class ButtonPanel
 	
 	/**
 	 * Constructor for panel without style buttons.
+	 *
+	 * @author Linus Aronsson
+	 * @author Erik Tran
 	 */
 	public ButtonPanel() {
 		// Set layout //
@@ -112,6 +122,7 @@ public class ButtonPanel
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param buttons ...
 	 * @return        ...
 	 */
@@ -127,6 +138,7 @@ public class ButtonPanel
 	/**
 	 * Add listener for back button.
 	 *
+	 * @author Erik Tran
 	 * @param listener Event listener to use.
 	 */
 	public void addBackListener(final MouseListener listener) {
@@ -136,6 +148,7 @@ public class ButtonPanel
 	/**
 	 * Add listener for version 1 button.
 	 *
+	 * @author Erik Tran
 	 * @param listener Event listener to use.
 	 */
 	public void addButtonV1Listener(final MouseListener listener) {
@@ -145,6 +158,7 @@ public class ButtonPanel
 	/**
 	 * Add listener for version 2 button.
 	 *
+	 * @author Erik Tran
 	 * @param listener Event listener to use.
 	 */
 	public void addButtonV2Listener(final MouseListener listener) {
@@ -154,6 +168,8 @@ public class ButtonPanel
 	/**
 	 * Add listener for back button.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param listener Event listener to use.
 	 */
 	public void addBackListener(final ActionListener listener) {
@@ -163,6 +179,8 @@ public class ButtonPanel
 	/**
 	 * Add listener for version 1 button.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param listener Event listener to use.
 	 */
 	public void addButtonV1Listener(final ActionListener listener) {
@@ -172,6 +190,8 @@ public class ButtonPanel
 	/**
 	 * Add listener for version 2 button.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param listener Event listener to use.
 	 */
 	public void addButtonV2Listener(final ActionListener listener) {
@@ -181,6 +201,7 @@ public class ButtonPanel
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public Button getBackButton() {
@@ -191,6 +212,7 @@ public class ButtonPanel
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public Button getV1Button() {
@@ -201,6 +223,7 @@ public class ButtonPanel
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public Button getV2Button() {

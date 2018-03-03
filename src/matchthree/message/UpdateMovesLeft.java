@@ -3,7 +3,8 @@ package matchthree.message;
 /**
  * Move counter message.
  *
- * @author Linus
+ * @author Linus Aronsson
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class UpdateMovesLeft
@@ -15,6 +16,7 @@ public class UpdateMovesLeft
 	/**
 	 * Constructor.
 	 *
+	 * @author Linus Aronsson
 	 * @param moves Moves counter to embed.
 	 */
 	public UpdateMovesLeft(final int moves) {
@@ -25,6 +27,7 @@ public class UpdateMovesLeft
 	/**
 	 * Get move counter.
 	 *
+	 * @author Linus Aronsson
 	 * @return Moves counter.
 	 */
 	public int getMoves() {

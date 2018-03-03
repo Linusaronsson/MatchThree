@@ -6,6 +6,10 @@ import matchthree.view.SingleplayerView;
 
 /**
  * Controller for singleplayer game screen.
+ *
+ * @author Erik Selstam
+ * @author Erik Tran
+ * @author Linus Aronsson
  */
 public class SingleplayerViewController
 	implements ViewController
@@ -19,6 +23,9 @@ public class SingleplayerViewController
 	/**
 	 * Constructor.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
+	 * @author Linus Aronsson
 	 * @param parent       Parent container view to use.
 	 * @param uiController UI controller to use for navigation.
 	 * @param settings     ...

@@ -4,6 +4,10 @@ import matchthree.model.Coordinate;
 
 /**
  * Board cell.
+ *
+ * @author Erik Selstam
+ * @author Erik Tran
+ * @author Linus Aronsson
  */
 @SuppressWarnings("serial")
 public class Cell
@@ -21,6 +25,8 @@ public class Cell
 	/**
 	 * Constructor for `Cell`.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param position Coordinates of the cell.
 	 */
 	public Cell(final Coordinate position) {
@@ -37,6 +43,8 @@ public class Cell
 	/**
 	 * Constructor for `Cell`.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param x X-coordinate of the cell.
 	 * @param y Y-coordinate of the cell.
 	 */
@@ -54,6 +62,7 @@ public class Cell
 	/**
 	 * Get the coordinates of the cell.
 	 *
+	 * @author Erik Selstam
 	 * @return The coordinates.
 	 */
 	public Coordinate getPosition() {
@@ -63,6 +72,7 @@ public class Cell
 	/**
 	 * Get the X-coordinate of the cell.
 	 *
+	 * @author Erik Selstam
 	 * @return The X-coordinate.
 	 */
 	public int getPositionX() {
@@ -72,6 +82,7 @@ public class Cell
 	/**
 	 * Get the Y-coordinate of the cell.
 	 *
+	 * @author Erik Selstam
 	 * @return The Y-coordinate.
 	 */
 	public int getPositionY() {
@@ -81,6 +92,7 @@ public class Cell
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public boolean isActive() {
@@ -90,6 +102,7 @@ public class Cell
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param state ...
 	 */
 	public void setState(final boolean state) {

@@ -11,7 +11,8 @@ import matchthree.view.MatchThreeUI;
  * Opponent UI controller. Listens for network messages and updates model
  * accordingly.
  *
- * @author Linus
+ * @author Linus Aronsson
+ * @author Erik Selstam
  */
 public class OpponentUIController
 {
@@ -24,6 +25,7 @@ public class OpponentUIController
 	/**
 	 * Constructor.
 	 *
+	 * @author Linus Aronsson
 	 * @param parent        Parent view to use.
 	 * @param uiController  UI controller to use.
 	 * @param settings      Application settings.
@@ -84,6 +86,8 @@ public class OpponentUIController
 	
 	/**
 	 * Close socket and listening thread.
+	 *
+	 * @author Linus Aronsson
 	 */
 	public void close() {
 		opponentController.close();

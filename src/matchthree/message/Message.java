@@ -5,7 +5,8 @@ import java.io.Serializable;
 /**
  * Message base class.
  *
- * @author Linus
+ * @author Linus Aronsson
+ * @author Erik Selstam
  */
 public class Message
 	implements Serializable
@@ -18,6 +19,8 @@ public class Message
 	
 	/**
 	 * Possible message types.
+	 *
+	 * @author Linus Aronsson
 	 */
 	public enum MessageType
 	{
@@ -46,6 +49,7 @@ public class Message
 	/**
 	 * Constructor.
 	 *
+	 * @author Linus Aronsson
 	 * @param type Message type.
 	 */
 	public Message(final MessageType type) {
@@ -55,6 +59,8 @@ public class Message
 	/**
 	 * Get the string representation of a message type.
 	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 * @param type Message type.
 	 * @return     The string representation.
 	 */
@@ -74,6 +80,8 @@ public class Message
 	/**
 	 * Get the type of the message.
 	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 * @return The message type.
 	 */
 	public MessageType getType() {

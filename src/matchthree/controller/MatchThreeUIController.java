@@ -7,6 +7,10 @@ import matchthree.view.MatchThreeUI;
 
 /**
  * ...
+ *
+ * @author Erik Selstam
+ * @author Erik Tran
+ * @author Linus Aronsson
  */
 public class MatchThreeUIController
 {
@@ -22,6 +26,8 @@ public class MatchThreeUIController
 	/**
 	 * Constructor.
 	 *
+	 * @author Erik Selstam
+	 * @author Linus Aronsson
 	 * @param parent          ...
 	 * @param uiController    ...
 	 * @param settings        ...
@@ -86,6 +92,7 @@ public class MatchThreeUIController
 	/**
 	 * Get grid view.
 	 *
+	 * @author Erik Tran
 	 * @return The grid view.
 	 */
 	public GridViewController getGridViewController() {
@@ -95,6 +102,7 @@ public class MatchThreeUIController
 	/**
 	 * Get game model.
 	 *
+	 * @author Linus Aronsson
 	 * @return The game model.
 	 */
 	public MatchThreeModel getModel() {

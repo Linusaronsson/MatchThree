@@ -5,11 +5,15 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  * Application controller.
+ *
+ * @author Erik Selstam
  */
 public class ApplicationController
 {
 	/**
 	 * Create `ApplicationController`.
+	 *
+	 * @author Erik Selstam
 	 */
 	public ApplicationController() {
 		// Set application-wide properties //
@@ -21,6 +25,8 @@ public class ApplicationController
 	
 	/**
 	 * Set application properties.
+	 *
+	 * @author Erik Selstam
 	 */
 	private static void setProperties() {
 		// Use native menu bar on macOS/OS X //

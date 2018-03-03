@@ -16,6 +16,9 @@ import matchthree.util.Properties;
 
 /**
  * Button.
+ *
+ * @author Erik Tran
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class Button
@@ -42,12 +45,17 @@ public class Button
 	
 	/**
 	 * Create button.
+	 *
+	 * @author Erik Tran
 	 */
 	public Button() {
 		setProperties();
 	}
 	
 	/**
+	 * ...
+	 *
+	 * @author Erik Tran
 	 * @param size Cell width
 	 */
 	public Button(final int size) {
@@ -57,6 +65,7 @@ public class Button
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param label ...
 	 */
 	public Button(final String label) {
@@ -69,6 +78,7 @@ public class Button
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param icon ...
 	 */
 	public Button(final ImageIcon icon) {
@@ -78,6 +88,9 @@ public class Button
 	
 	/**
 	 * Set button properties.
+	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 */
 	private void setProperties() {
 		// Set colors //
@@ -100,6 +113,7 @@ public class Button
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param size Cell width.
 	 */
 	private void setProperties(final int size) {
@@ -110,6 +124,7 @@ public class Button
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param color ...
 	 * @param alpha ...
 	 */
@@ -129,6 +144,7 @@ public class Button
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param color ...
 	 * @param alpha ...
 	 */
@@ -151,6 +167,7 @@ public class Button
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param color ...
 	 * @param alpha ...
 	 * @return      ...
@@ -173,6 +190,8 @@ public class Button
 	
 	/**
 	 * Updates graphical image.
+	 *
+	 * @author Erik Tran
 	 */
 	@Override
 	protected void paintComponent(final Graphics g) {

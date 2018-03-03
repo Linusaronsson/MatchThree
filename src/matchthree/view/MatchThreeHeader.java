@@ -8,6 +8,9 @@ import javax.swing.JPanel;
 
 /**
  * MatchThree game header.
+ *
+ * @author Erik Selstam
+ * @author Linus Aronsson
  */
 @SuppressWarnings("serial")
 public class MatchThreeHeader
@@ -27,6 +30,9 @@ public class MatchThreeHeader
 	
 	/**
 	 * Constructor.
+	 *
+	 * @author Erik Selstam
+	 * @author Linus Aronsson
 	 */
 	public MatchThreeHeader() {
 		// Set properties /
@@ -50,6 +56,7 @@ public class MatchThreeHeader
 	/**
 	 * Get score container.
 	 *
+	 * @author Erik Selstam
 	 * @return Score container.
 	 */
 	public Container getScore() {
@@ -59,6 +66,7 @@ public class MatchThreeHeader
 	/**
 	 * Get move counter container.
 	 *
+	 * @author Linus Aronsson
 	 * @return Move counter container.
 	 */
 	public Container getMoves() {

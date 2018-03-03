@@ -2,11 +2,15 @@ package matchthree.model;
 
 /**
  * Serialize board content for storage.
+ *
+ * @author Erik Selstam
  */
 public final class Serialize
 {
 	/**
 	 * Forbidden constructor.
+	 *
+	 * @author Erik Selstam
 	 */
 	private Serialize() {
 		throw new UnsupportedOperationException();
@@ -14,6 +18,8 @@ public final class Serialize
 	
 	/**
 	 * Exception for unrecognized data.
+	 *
+	 * @author Erik Selstam
 	 */
 	@SuppressWarnings("serial")
 	// TODO: Is it in any way ok to have this be a static class?
@@ -22,6 +28,8 @@ public final class Serialize
 	{
 		/**
 		 * Constructor.
+		 *
+		 * @author Erik Selstam
 		 */
 		public UnsupportedTypeException() { }
 	}
@@ -29,6 +37,7 @@ public final class Serialize
 	/**
 	 * Serialize an array of jewels.
 	 *
+	 * @author Erik Selstam
 	 * @param jewels Array of jewels to serialize.
 	 * @return       Serialized string.
 	 * @throws UnsupportedTypeException On receiving unknown data.

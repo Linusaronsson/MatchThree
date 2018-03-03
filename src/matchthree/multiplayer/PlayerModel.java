@@ -16,10 +16,11 @@ import matchthree.model.MatchThreeModel;
 import matchthree.model.MatchThreeModel.MoveType;
 
 /**
- * @author Linus
- *
  * Extension of MatchThreeModel used for the player view to send datagrams to
  * opponent.
+ *
+ * @author Linus Aronsson
+ * @author Erik Selstam
  */
 public class PlayerModel
 	extends MatchThreeModel
@@ -45,6 +46,7 @@ public class PlayerModel
 	 * Initializes the object and creates a new DatagramSocket
 	 * for sending datagram packets.
 	 *
+	 * @author Linus Aronsson
 	 * @param width Size of the board.
 	 * @param host  IP of opponent.
 	 * @param port  Port of opponent.
@@ -71,6 +73,7 @@ public class PlayerModel
 	 * Overloaded constructor for also initializing the model
 	 * with a board.
 	 *
+	 * @author Linus Aronsson
 	 * @param board Initial board.
 	 * @param width Size of the board.
 	 * @param host  IP of opponent.
@@ -96,6 +99,7 @@ public class PlayerModel
 	/**
 	 * Sets if the game was started.
 	 *
+	 * @author Erik Selstam
 	 * @param b Game started flag
 	 */
 	public void setGameStarted(final boolean b) {
@@ -109,6 +113,7 @@ public class PlayerModel
 	 * This override also notifies the opponent of the change by sending
 	 * a datagram packet.
 	 *
+	 * @author Linus Aronsson
 	 * @param x     X-coordinate of the cell.
 	 * @param y     Y-coordinate of the cell.
 	 * @param value Value to set.
@@ -125,6 +130,8 @@ public class PlayerModel
 	/**
 	 * Sets the moves left. Also notifies the opponent the the moves left
 	 * value has changed.
+	 *
+	 * @author Linus Aronsson
 	 */
 	@Override
 	public void setMovesLeft() {
@@ -143,6 +150,7 @@ public class PlayerModel
 	 *
 	 * Also notifies the opponent of the new score.
 	 *
+	 * @author Linus Aronsson
 	 * @param from Source coordinates.
 	 * @param to   Destination coordinates.
 	 * @return     Whether the move was successful, invalid or canceled.
@@ -159,6 +167,7 @@ public class PlayerModel
 	/**
 	 * Sends the entire board over. This is only done once at the start.
 	 *
+	 * @author Linus Aronsson
 	 * @param port Port of opponent.
 	 */
 	public void sendBoard(final int port) {
@@ -169,6 +178,7 @@ public class PlayerModel
 	 * General method for notifying the opponent with a specified
 	 * message.
 	 *
+	 * @author Linus Aronsson
 	 * @param message The message to be sent in a datagram packet.
 	 */
 	private void notifyOpponent(final Message message) {

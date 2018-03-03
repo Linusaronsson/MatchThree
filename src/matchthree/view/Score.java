@@ -9,6 +9,9 @@ import matchthree.model.MatchThreeModel;
 
 /**
  * Score counter.
+ *
+ * @author Linus Aronsson
+ * @author Erik Selstam
  * TODO: rename this since its used for Moves Left label too?
  */
 @SuppressWarnings({"deprecation", "serial"})
@@ -25,6 +28,8 @@ public class Score
 	/**
 	 * Create `Score`.
 	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 * @param matchThreeModel MatchThree model to use.
 	 */
 	public Score(
@@ -48,6 +53,8 @@ public class Score
 	/**
 	 * Update score label.
 	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 * @param score New value.
 	 */
 	public void update(final int score) {

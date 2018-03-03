@@ -26,6 +26,10 @@ import matchthree.view.SaveDialog;
 
 /**
  * MatchThree game controller.
+ *
+ * @author Erik Selstam
+ * @author Erik Tran
+ * @author Linus Aronsson
  */
 public class GridViewController
 {
@@ -51,6 +55,9 @@ public class GridViewController
 	
 	/**
 	 * Listens for board cell actions (mouse hover).
+	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 */
 	final class CellHoverListener
 		implements MouseListener
@@ -61,6 +68,7 @@ public class GridViewController
 		/**
 		 * ...
 		 *
+		 * @author Erik Tran
 		 * @param cell ...
 		 */
 		private CellHoverListener(final Cell cell) {
@@ -102,6 +110,9 @@ public class GridViewController
 	/**
 	 * Constructor.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
+	 * @author Linus Aronsson
 	 * @param parent          Parent view to use.
 	 * @param uiController    ...
 	 * @param settings        ...
@@ -158,6 +169,7 @@ public class GridViewController
 	/**
 	 * Change images on buttons.
 	 *
+	 * @author Erik Tran
 	 * @param style Visual style.
 	 */
 	public void changeSprites(final Style style) {
@@ -167,6 +179,7 @@ public class GridViewController
 	/**
 	 * ...
 	 *
+	 * @author Erik Selstam
 	 * @return ...
 	 */
 	public MatchThreeModel getModel() {
@@ -176,6 +189,7 @@ public class GridViewController
 	/**
 	 * Handle board cell action (click).
 	 *
+	 * @author Erik Selstam
 	 * @param event Event object.
 	 */
 	public void handleAction(final ActionEvent event) {
@@ -206,6 +220,9 @@ public class GridViewController
 	/**
 	 * Swap two cells.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
+	 * @author Linus Aronsson
 	 * @param from Coordinates of first cell.
 	 * @param to   Coordinates of second cell.
 	 */
@@ -237,6 +254,9 @@ public class GridViewController
 	
 	/**
 	 * Resets model to its initial state.
+	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 */
 	protected void restartGame() {
 		// Reset active cell //
@@ -249,6 +269,8 @@ public class GridViewController
 	
 	/**
 	 * Save the game.
+	 *
+	 * @author Erik Selstam
 	 */
 	public void saveGame() {
 		// Serialize board content //
@@ -322,6 +344,8 @@ public class GridViewController
 	/**
 	 * Set or unset the currently active cell.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param position Coordinates of the cell to make active, or null if none.
 	 */
 	private void setActiveCell(final Coordinate position) {

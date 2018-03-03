@@ -4,12 +4,15 @@ import javax.swing.JOptionPane;
 
 /**
  * Floating error dialog.
+ *
+ * @author Erik Selstam
  */
 public class ErrorDialog
 {
 	/**
 	 * Create `ErrorDialog`.
 	 *
+	 * @author Erik Selstam
 	 * @param title   Title of the dialog.
 	 * @param message Message of the dialog.
 	 */

@@ -12,6 +12,9 @@ import matchthree.view.MainMenuView;
 
 /**
  * Controller for main menu view.
+ *
+ * @author Erik Tran
+ * @author Erik Selstam
  */
 public class MainMenuViewController
 	implements ViewController
@@ -46,6 +49,9 @@ public class MainMenuViewController
 	
 	/**
 	 * ...
+	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 */
 	private final class HoverButtonListener
 		implements MouseListener
@@ -56,6 +62,7 @@ public class MainMenuViewController
 		/**
 		 * ...
 		 *
+		 * @author Erik Tran
 		 * @param button ...
 		 */
 		private HoverButtonListener(final Button button) {
@@ -85,6 +92,8 @@ public class MainMenuViewController
 	/**
 	 * Create `MainMenuViewController`.
 	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 * @param parent       Parent container view to use.
 	 * @param uiController Reference to UI controller for navigation.
 	 * @param settings     ...

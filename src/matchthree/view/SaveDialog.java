@@ -6,6 +6,8 @@ import javax.swing.JFileChooser;
 
 /**
  * Floating save dialog.
+ *
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class SaveDialog
@@ -16,6 +18,8 @@ public class SaveDialog
 	
 	/**
 	 * Create `SaveDialog`.
+	 *
+	 * @author Erik Selstam
 	 */
 	public SaveDialog() {
 		// TODO: Use `FileDialog` instead?
@@ -36,6 +40,7 @@ public class SaveDialog
 	/**
 	 * Get chosen file.
 	 *
+	 * @author Erik Selstam
 	 * @return The chosen file.
 	 */
 	public File getResult() {

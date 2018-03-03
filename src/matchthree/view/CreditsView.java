@@ -28,6 +28,9 @@ public class CreditsView
 	
 	/**
 	 * Constructor.
+	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 */
 	public CreditsView() {
 		// Create labels //

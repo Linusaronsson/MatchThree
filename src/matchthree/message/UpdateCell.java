@@ -5,7 +5,8 @@ import matchthree.model.Jewel;
 /**
  * Cell update message.
  *
- * @author Linus
+ * @author Linus Aronsson
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class UpdateCell
@@ -23,6 +24,7 @@ public class UpdateCell
 	/**
 	 * Constructor.
 	 *
+	 * @author Linus Aronsson
 	 * @param x         X-coordinate to embed.
 	 * @param y         Y-coordinate to embed.
 	 * @param jewelType Jewel type to embed.
@@ -37,6 +39,7 @@ public class UpdateCell
 	/**
 	 * Get the Y-coordinate.
 	 *
+	 * @author Linus Aronsson
 	 * @return Y-coordinate.
 	 */
 	public int getY() {
@@ -46,6 +49,7 @@ public class UpdateCell
 	/**
 	 * Get the X-coordinate.
 	 *
+	 * @author Linus Aronsson
 	 * @return X-coordinate.
 	 */
 	public int getX() {
@@ -55,6 +59,7 @@ public class UpdateCell
 	/**
 	 * Get the jewel type.
 	 *
+	 * @author Linus Aronsson
 	 * @return Jewel type.
 	 */
 	public Jewel getJewelType() {

@@ -5,6 +5,9 @@ import matchthree.view.CreditsView;
 
 /**
  * ...
+ *
+ * @author Erik Tran
+ * @author Erik Selstam
  */
 public class CreditsViewController
 	implements ViewController
@@ -12,6 +15,7 @@ public class CreditsViewController
 	/**
 	 * Constructor.
 	 *
+	 * @author Erik Tran
 	 * @param parent ...
 	 */
 	public CreditsViewController(final Container parent) {

@@ -9,12 +9,17 @@ import matchthree.view.Score;
 
 /**
  * MatchThree header controller.
+ *
+ * @author Erik Selstam
+ * @author Linus Aronsson
  */
 public class MatchThreeHeaderController
 {
 	/**
 	 * Constructor.
 	 *
+	 * @author Erik Selstam
+	 * @author Linux Aronsson
 	 * @param parent          ...
 	 * @param uiController    ...
 	 * @param settings        ...

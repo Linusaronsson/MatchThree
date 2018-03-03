@@ -41,6 +41,9 @@ public class MultiplayerView
 	
 	/**
 	 * Constructor.
+	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 */
 	public MultiplayerView() {
 		// Set layout //
@@ -65,6 +68,7 @@ public class MultiplayerView
 	/**
 	 * Add listener for back button.
 	 *
+	 * @author Linus Aronsson
 	 * @param listener Event listener to use.
 	 */
 	public void addBackListener(final ActionListener listener) {
@@ -74,6 +78,7 @@ public class MultiplayerView
 	/**
 	 * ...
 	 *
+	 * @author Linus Aronsson
 	 * @param listener ...
 	 * @param target   ...
 	 */
@@ -87,6 +92,7 @@ public class MultiplayerView
 	/**
 	 * ...
 	 *
+	 * @author Linus Aronsson
 	 * @return ...
 	 */
 	public Button getBackButton() {
@@ -96,6 +102,7 @@ public class MultiplayerView
 	/**
 	 * Get player 1 container.
 	 *
+	 * @author Erik Selstam
 	 * @return Player 1 container.
 	 */
 	public Container getPlayer1() {
@@ -105,6 +112,7 @@ public class MultiplayerView
 	/**
 	 * Get player 2 container.
 	 *
+	 * @author Erik Selstam
 	 * @return Player 2 container.
 	 */
 	public Container getPlayer2() {

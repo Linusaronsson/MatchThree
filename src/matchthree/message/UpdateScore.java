@@ -3,7 +3,8 @@ package matchthree.message;
 /**
  * Score update message.
  *
- * @author Linus
+ * @author Linus Aronsson
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class UpdateScore
@@ -15,6 +16,7 @@ public class UpdateScore
 	/**
 	 * Constructor.
 	 *
+	 * @author Linus Aronsson
 	 * @param score Score to embed.
 	 */
 	public UpdateScore(final int score) {
@@ -25,6 +27,7 @@ public class UpdateScore
 	/**
 	 * Get score.
 	 *
+	 * @author Linus Aronsson
 	 * @return The score.
 	 */
 	public int getScore() {

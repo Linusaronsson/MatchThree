@@ -10,6 +10,9 @@ import matchthree.view.Window;
 
 /**
  * Main window controller.
+ *
+ * @author Erik Selstam
+ * @author Erik Tran
  */
 public class MainWindowController
 {
@@ -27,6 +30,8 @@ public class MainWindowController
 	
 	/**
 	 * Listens for window events.
+	 *
+	 * @author Erik Selstam
 	 */
 	class WindowListener
 		extends WindowAdapter
@@ -79,6 +84,8 @@ public class MainWindowController
 	
 	/**
 	 * Create `MainWindowController`.
+	 *
+	 * @author Erik Selstam
 	 */
 	public MainWindowController() {
 		// TODO: Fix this.
@@ -118,6 +125,8 @@ public class MainWindowController
 	
 	/**
 	 * ...
+	 *
+	 * @author Erik Tran
 	 */
 	public void centerWindow() {
 		window.centerWindow();
@@ -125,6 +134,8 @@ public class MainWindowController
 	
 	/**
 	 * Close main window.
+	 *
+	 * @author Erik Selstam
 	 */
 	protected void closeWindow() {
 		WindowEvent event = new WindowEvent(window, WindowEvent.WINDOW_CLOSING);
@@ -133,6 +144,8 @@ public class MainWindowController
 	
 	/**
 	 * Update window with content.
+	 *
+	 * @author Erik Selstam
 	 */
 	public void pack() {
 		window.pack();

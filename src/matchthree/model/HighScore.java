@@ -8,7 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-/** ... */
+/**
+ * ...
+ *
+ * @author David Olofsson
+ * @author Erik Selstam
+ */
 public class HighScore
 {
 	/** ... */
@@ -41,6 +46,8 @@ public class HighScore
 	
 	/**
 	 * ...
+	 *
+	 * @author David Olofsson
 	 */
 	public HighScore() {
 		currentScore = 0;
@@ -61,6 +68,8 @@ public class HighScore
 	// Called when game is over.
 	/**
 	 * ...
+	 *
+	 * @author David Olofsson
 	 */
 	public void syncScore() {
 		Statement statement;
@@ -106,6 +115,7 @@ public class HighScore
 	/**
 	 * Get current list of high scores.
 	 *
+	 * @author David Olofsson
 	 * @return ...
 	 */
 	public String[] getScoreTable() {
@@ -160,6 +170,8 @@ public class HighScore
 	// Reset score before next game.
 	/**
 	 * ...
+	 *
+	 * @author David Olofsson
 	 */
 	public void reset() {
 		currentScore = 0;
@@ -169,6 +181,7 @@ public class HighScore
 	/**
 	 * ...
 	 *
+	 * @author David Olofsson
 	 * @param points ...
 	 */
 	public void addToScore(final int points) {
@@ -179,6 +192,7 @@ public class HighScore
 	/**
 	 * ...
 	 *
+	 * @author David Olofsson
 	 * @return ...
 	 */
 	public int getCurrentScore() {
@@ -189,6 +203,7 @@ public class HighScore
 	/**
 	 * ...
 	 *
+	 * @author David Olofsson
 	 * @param newName ...
 	 */
 	public void setName(final String newName) {
@@ -199,6 +214,7 @@ public class HighScore
 	/**
 	 * ...
 	 *
+	 * @author David Olofsson
 	 * @return ...
 	 */
 	public String getName() {

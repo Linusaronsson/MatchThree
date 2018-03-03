@@ -9,6 +9,9 @@ import matchthree.model.HighScore;
 
 /**
  * Score menu.
+ *
+ * @author David Olofsson
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class ScoreMenuView
@@ -25,6 +28,8 @@ public class ScoreMenuView
 	
 	/**
 	 * Create `ScoreMenuView`.
+	 *
+	 * @author David Olofsson
 	 */
 	public ScoreMenuView() {
 		// Set layout //
@@ -41,6 +46,8 @@ public class ScoreMenuView
 	
 	/**
 	 * Refresh score list.
+	 *
+	 * @author David Olofsson
 	 */
 	public void refresh() {
 		scoreTable.setListData(new HighScore().getScoreTable());
@@ -49,6 +56,7 @@ public class ScoreMenuView
 	/**
 	 * Add event listener for refresh button.
 	 *
+	 * @author David Olofsson
 	 * @param listener Event listener to use.
 	 */
 	public void addRefreshListener(final ActionListener listener) {
@@ -58,6 +66,7 @@ public class ScoreMenuView
 	/**
 	 * Add event listener for main menu button.
 	 *
+	 * @author David Olofsson
 	 * @param listener Event listener to use.
 	 */
 	public void addMainMenuListener(final ActionListener listener) {

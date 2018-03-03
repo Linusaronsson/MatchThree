@@ -20,7 +20,8 @@ import matchthree.view.GameFinished;
  * Opponent controller. Listens for network messages and updates model
  * accordingly.
  *
- * @author Linus
+ * @author Linus Aronsson
+ * @author Erik Selstam
  */
 public class OpponentController
 	extends Thread
@@ -55,6 +56,8 @@ public class OpponentController
 	/**
 	 * Constructor.
 	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 * @param uiController UI controller to use.
 	 * @param settings     Application settings.
 	 * @param model        Model to use.
@@ -87,6 +90,8 @@ public class OpponentController
 	
 	/**
 	 * Close socket. Allows a new game to be started.
+	 *
+	 * @author Linus Aronsson
 	 */
 	public void close() {
 		this.interrupt();
@@ -97,6 +102,9 @@ public class OpponentController
 	//       use "accordingly"?
 	/**
 	 * Listen for messages and update model thereafter.
+	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 */
 	@Override
 	public void run() {

@@ -16,6 +16,9 @@ import matchthree.util.Properties;
 
 /**
  * Application start view.
+ *
+ * @author Erik Tran
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class MainMenuView
@@ -81,6 +84,9 @@ public class MainMenuView
 	
 	/**
 	 * ...
+	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 */
 	public MainMenuView() {
 		// Set layout //
@@ -122,6 +128,8 @@ public class MainMenuView
 	/**
 	 * Set buttons properties.
 	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 * @param buttons ...
 	 */
 	private void setProperties(final Button[] buttons) {
@@ -146,6 +154,7 @@ public class MainMenuView
 	/**
 	 * Assemble buttons and create button panel.
 	 *
+	 * @author Erik Tran
 	 * @param buttons ...
 	 */
 	private void assembleButtons(final Button[] buttons) {
@@ -157,6 +166,7 @@ public class MainMenuView
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param listener ...
 	 */
 	public void addMultiplayerListener(final ActionListener listener) {
@@ -166,6 +176,7 @@ public class MainMenuView
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param listener ...
 	 */
 	public void addSingleplayerListener(final ActionListener listener) {
@@ -175,6 +186,7 @@ public class MainMenuView
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param listener ...
 	 */
 	public void addLoadListener(final ActionListener listener) {
@@ -184,6 +196,7 @@ public class MainMenuView
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param listener ...
 	 */
 	public void addHighscoreListener(final ActionListener listener) {
@@ -193,6 +206,7 @@ public class MainMenuView
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param listener ...
 	 */
 	public void addSettingsListener(final ActionListener listener) {
@@ -202,6 +216,7 @@ public class MainMenuView
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param listener ...
 	 */
 	public void addCreditsListener(final ActionListener listener) {
@@ -211,6 +226,7 @@ public class MainMenuView
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @param listener ...
 	 */
 	public void addQuitListener(final ActionListener listener) {
@@ -220,6 +236,7 @@ public class MainMenuView
 	/**
 	 * ...
 	 *
+	 * @author Erik Tran
 	 * @return ...
 	 */
 	public Button[] getButtons() {

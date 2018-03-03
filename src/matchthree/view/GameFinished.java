@@ -11,6 +11,9 @@ import javax.swing.JPanel;
 
 /**
  * ...
+ *
+ * @author Erik Tran
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class GameFinished
@@ -44,6 +47,8 @@ public class GameFinished
 	/**
 	 * Constructor.
 	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 * @param score ...
 	 */
 	public GameFinished(final int score) {

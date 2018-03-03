@@ -13,6 +13,10 @@ import matchthree.util.Properties;
 
 /**
  * Application main window.
+ *
+ * @author Erik Selstam
+ * @author Linus Aronsson
+ * @author Erik Tran
  */
 @SuppressWarnings("serial")
 public class Window
@@ -32,6 +36,9 @@ public class Window
 	/**
 	 * Create `Window`.
 	 *
+	 * @author Erik Selstam
+	 * @author Linus Aronsson
+	 * @author Erik Tran
 	 * @param title   Window title.
 	 * @param menuBar Window menu bar, if any.
 	 * @param content Window content pane.
@@ -83,6 +90,7 @@ public class Window
 	/**
 	 * Add listener for board cell actions (clicks).
 	 *
+	 * @author Erik Selstam
 	 * @param listener Event handler.
 	 */
 	public void addWindowListener(final ActionListener listener) {
@@ -96,6 +104,9 @@ public class Window
 	
 	/**
 	 * Center the frame.
+	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 */
 	public void centerWindow() {
 		// Get screen dimensions //

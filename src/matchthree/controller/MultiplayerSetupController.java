@@ -18,6 +18,10 @@ import matchthree.view.MultiplayerMenuView;
 
 /**
  * ...
+ *
+ * @author Linus Aronsson
+ * @author Erik Selstam
+ * @author Erik Tran
  */
 public class MultiplayerSetupController
 	implements ViewController
@@ -30,6 +34,9 @@ public class MultiplayerSetupController
 	
 	/**
 	 * ...
+	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
 	 */
 	private final class HoverListener
 		implements MouseListener
@@ -40,6 +47,7 @@ public class MultiplayerSetupController
 		/**
 		 * Constructor.
 		 *
+		 * @author Erik Tran
 		 * @param target ...
 		 */
 		private HoverListener(final Button target) {
@@ -64,6 +72,8 @@ public class MultiplayerSetupController
 	/**
 	 * Constructor.
 	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 * @param parent       ...
 	 * @param uiController ...
 	 * @param settings     ...
@@ -122,6 +132,8 @@ public class MultiplayerSetupController
 	
 	/**
 	 * Handle connect event.
+	 *
+	 * @author Erik Selstam
 	 */
 	private void connect() {
 		// Get value from fields //
@@ -161,6 +173,8 @@ public class MultiplayerSetupController
 	
 	/**
 	 * Handle back event.
+	 *
+	 * @author Linus Aronsson
 	 */
 	private void back() {
 		uiController.changeView(View.MAIN_MENU);

@@ -4,12 +4,15 @@ import javax.swing.JOptionPane;
 
 /**
  * Floating message dialog.
+ *
+ * @author Erik Selstam
  */
 public class MessageDialog
 {
 	/**
 	 * Create `MessageDialog`.
 	 *
+	 * @author Erik Selstam
 	 * @param title   Title of the dialog.
 	 * @param message Body of the dialog.
 	 */

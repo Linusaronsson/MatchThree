@@ -19,7 +19,8 @@ import matchthree.view.ErrorDialog;
 /**
  * Listens for and responds to game requests over the network.
  *
- * @author Linus
+ * @author Linus Aronsson
+ * @author Erik Selstam
  */
 public class Server
 	extends Thread
@@ -53,6 +54,8 @@ public class Server
 	/**
 	 * Constructs server and initializes the socket/packet.
 	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 * @param ui   UI controller to use.
 	 * @param port Server port (coerced to 3333).
 	 */
@@ -76,6 +79,8 @@ public class Server
 	/**
 	 * Send a datagram to specified host/port through provided socket.
 	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 * @param message Message to send.
 	 * @param socket  Socket to use.
 	 * @param host    Target address.
@@ -107,6 +112,7 @@ public class Server
 	 * Set in-game state. When set to `true`, further game requests will be
 	 * blocked until set to `false` again.
 	 *
+	 * @author Erik Selstam
 	 * @param b In-game state.
 	 */
 	public static void setInGame(final boolean b) {
@@ -115,6 +121,9 @@ public class Server
 	
 	/**
 	 * Start listening for and reacting to game requests.
+	 *
+	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 */
 	@Override
 	public void run() {

@@ -2,6 +2,8 @@ package matchthree.model;
 
 /**
  * Stores a two-dimensional coordinate, limited to the first quadrant.
+ *
+ * @author Erik Selstam
  */
 public class Coordinate
 {
@@ -14,6 +16,7 @@ public class Coordinate
 	/**
 	 * Constructor for `Coordinate`.
 	 *
+	 * @author Erik Selstam
 	 * @param x X-coordinate. Must be positive.
 	 * @param y Y-coordinate. Must be positive.
 	 */
@@ -29,6 +32,7 @@ public class Coordinate
 	/**
 	 * Get X-coordinate.
 	 *
+	 * @author Erik Selstam
 	 * @return The X-coordinate.
 	 */
 	public int getX() {
@@ -38,6 +42,7 @@ public class Coordinate
 	/**
 	 * Get Y-coordinate.
 	 *
+	 * @author Erik Selstam
 	 * @return The Y-coordinate.
 	 */
 	public int getY() {
@@ -47,6 +52,7 @@ public class Coordinate
 	/**
 	 * Set X-coordinate.
 	 *
+	 * @author Erik Selstam
 	 * @param x New X-coordinate.
 	 */
 	public void setX(final int x) {
@@ -60,6 +66,7 @@ public class Coordinate
 	/**
 	 * Set Y-coordinate.
 	 *
+	 * @author Erik Selstam
 	 * @param y New Y-coordinate.
 	 */
 	public void setY(final int y) {

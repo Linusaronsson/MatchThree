@@ -11,6 +11,10 @@ import matchthree.util.Properties;
 
 /**
  * MatchThree game view.
+ *
+ * @author Erik Selstam
+ * @author Linus Aronsson
+ * @author Erik Tran
  */
 @SuppressWarnings({"deprecation", "serial"})
 public class MatchThreeUI
@@ -34,6 +38,9 @@ public class MatchThreeUI
 	/**
 	 * Constructor.
 	 *
+	 * @author Erik Selstam
+	 * @author Linus Aronsson
+	 * @author Erik Tran
 	 * @param model MatchThree game model to use.
 	 */
 	// TODO: Call parent constructor?
@@ -56,6 +63,7 @@ public class MatchThreeUI
 	/**
 	 * Get grid container.
 	 *
+	 * @author Erik Selstam
 	 * @return Grid container.
 	 */
 	public Container getGrid() {
@@ -65,6 +73,7 @@ public class MatchThreeUI
 	/**
 	 * Get header container.
 	 *
+	 * @author Erik Selstam
 	 * @return Header container.
 	 */
 	public Container getHeader() {

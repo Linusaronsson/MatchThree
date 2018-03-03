@@ -5,6 +5,8 @@ import javax.swing.JOptionPane;
 
 /**
  * Floating save dialog.
+ *
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class ConfirmDialog
@@ -15,6 +17,8 @@ public class ConfirmDialog
 	
 	/**
 	 * Response type.
+	 *
+	 * @author Erik Selstam
 	 */
 	// TODO: Remove?
 	public enum Response
@@ -29,6 +33,7 @@ public class ConfirmDialog
 	/**
 	 * Constructor.
 	 *
+	 * @author Erik Selstam
 	 * @param title Dialog title.
 	 * @param body  Dialog body.
 	 */
@@ -58,6 +63,7 @@ public class ConfirmDialog
 	/**
 	 * Get response.
 	 *
+	 * @author Erik Selstam
 	 * @return The response from the dialog.
 	 */
 	public boolean getResponse() {
