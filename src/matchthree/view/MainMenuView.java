@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -78,8 +79,6 @@ public class MainMenuView
 	/** ... */
 	private JPanel buttonPanel = new JPanel();
 	
-	
-	
 	/**
 	 * ...
 	 */
@@ -91,13 +90,15 @@ public class MainMenuView
 		// Set border //
 		setBorder(BorderFactory.createCompoundBorder(
 			BorderFactory.createLineBorder(Color.WHITE, 2),
-			BorderFactory.createLineBorder(Color.BLACK, 2)));
+			BorderFactory.createLineBorder(Color.BLACK, 2))
+		);
 		
 		// Set button properties //
 		setProperties(buttons);
 		
 		// Set button panel properties //
-		buttonPanel.setLayout(new GridLayout(buttons.length, 1, GAP, GAP));
+		LayoutManager layout = new GridLayout(buttons.length, 1, GAP, GAP);
+		buttonPanel.setLayout(layout);
 		buttonPanel.setBackground(COLOR_BACKGROUND);
 		buttonPanel.setBorder(
 			BorderFactory.createCompoundBorder(

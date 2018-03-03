@@ -117,7 +117,7 @@ public class GridView
 	/**
 	 * Create `GridView`.
 	 *
-	 * @param model      MatchThree model to use.
+	 * @param model MatchThree model to use.
 	 * @param style ...
 	 */
 	public GridView(final MatchThreeModel model, final Style style) {
@@ -250,7 +250,7 @@ public class GridView
 			)
 		);
 		grid.setBorder(border);
-					
+		
 		// Set background //
 		grid.setBackground(COLOR_BACKGROUND);
 		
@@ -348,7 +348,6 @@ public class GridView
 		imageSapphireV2 = AssetManager.loadImage("Sapphire_v2.png");
 		imageTopaz      = AssetManager.loadImage("Topaz.png");
 		imageTopazV2    = AssetManager.loadImage("Topaz_v2.png");
-		// Block images instead of jewels
 		
 		switch (style) {
 			case CLASSIC:

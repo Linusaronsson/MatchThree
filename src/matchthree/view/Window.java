@@ -57,7 +57,7 @@ public class Window
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationByPlatform(true);
 		setResizable(true);
-
+		
 		// Set colors //
 		content.setBackground(COLOR_BACKGROUND);
 		
