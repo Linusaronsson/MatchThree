@@ -20,11 +20,11 @@ public class CreditsView
 {
 	/** Credit names. */
 	private static final String[] NAMES = new String[] {
-		"Erik Tran",
-		"Feztis",
 		"Linus Aronsson",
-		"Jesper",
-		"David",
+		"David Olofsson",
+		"Erik Selstam",
+		"Jesper Skoglund",
+		"Erik Tran",
 	};
 	
 	/**
