@@ -1,60 +1,57 @@
 package matchthree.view;
 
 import java.awt.Font;
+import java.awt.LayoutManager;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
- * ...
+ * Credits view.
  *
- * @author Erik
+ * @author Erik Tran
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class CreditsView
 	extends JPanel
 {
-	/** ... */
-	private static final JLabel ERIK = new JLabel("Erik Tran");
-	
-	/** ... */
-	private static final JLabel FEZTIS = new JLabel("Feztis");
-	
-	/** ... */
-	private static final JLabel LINUS = new JLabel("Linus Aronsson");
-	
-	/** ... */
-	private static final JLabel JESPER = new JLabel("Jesper");
-	
-	/** ... */
-	private static final JLabel DAVID = new JLabel("David");
+	/** Credit names. */
+	private static final String[] NAMES = new String[] {
+		"Erik Tran",
+		"Feztis",
+		"Linus Aronsson",
+		"Jesper",
+		"David",
+	};
 	
 	/**
-	 * ...
+	 * Constructor.
 	 */
 	public CreditsView() {
-		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		// Create labels //
+		// TODO: Create new view-type class for credit labels.
+		List<JLabel> labels = new ArrayList<JLabel>();
+		for (String name : NAMES) {
+			JLabel label = new JLabel(name);
+			labels.add(label);
+		}
 		
 		// Set label properties //
-		setLabelProperties(ERIK, FEZTIS, LINUS, JESPER, DAVID);
+		for (JLabel label : labels) {
+			Font font = new Font("Impact", Font.PLAIN, 20);
+			label.setFont(font);
+		}
+		
+		// Set layout //
+		LayoutManager layout = new BoxLayout(this, BoxLayout.Y_AXIS);
+		setLayout(layout);
 		
 		// Assemble view //
-		add(ERIK);
-		add(FEZTIS);
-		add(LINUS);
-		add(JESPER);
-		add(DAVID);
-		
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @param labels ...
-	 */
-	private void setLabelProperties(final JLabel... labels) {
 		for (JLabel label : labels) {
-			label.setFont(new Font("Impact", Font.PLAIN, 20));
+			add(label);
 		}
 	}
 }
