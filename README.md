@@ -20,6 +20,7 @@ this form, the arguments will run in sequence, and abort on failure.
 
 | Directory          | Purpose                   |
 | :----------------- | :------------------------ |
+| `doc/`             | Various documentation     |
 | `libraries/`       | Run-time dependencies     |
 | `resources/`       | Run-time assets           |
 | `src/`             | Source code               |
