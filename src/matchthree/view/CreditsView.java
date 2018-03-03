@@ -1,11 +1,10 @@
 package matchthree.view;
 
-import java.awt.Font;
+import java.awt.Component;
 import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -32,17 +31,10 @@ public class CreditsView
 	 */
 	public CreditsView() {
 		// Create labels //
-		// TODO: Create new view-type class for credit labels.
-		List<JLabel> labels = new ArrayList<JLabel>();
+		List<Component> labels = new ArrayList<Component>();
 		for (String name : NAMES) {
-			JLabel label = new JLabel(name);
+			Component label = new CreditsLabel(name);
 			labels.add(label);
-		}
-		
-		// Set label properties //
-		for (JLabel label : labels) {
-			Font font = new Font("Impact", Font.PLAIN, 20);
-			label.setFont(font);
 		}
 		
 		// Set layout //
@@ -50,7 +42,7 @@ public class CreditsView
 		setLayout(layout);
 		
 		// Assemble view //
-		for (JLabel label : labels) {
+		for (Component label : labels) {
 			add(label);
 		}
 	}
