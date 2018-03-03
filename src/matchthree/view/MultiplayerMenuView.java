@@ -1,6 +1,7 @@
 package matchthree.view;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -85,17 +86,17 @@ public class MultiplayerMenuView
 		ip.setCaretColor(Color.WHITE);
 		port.setCaretColor(Color.WHITE);
 		
-		JPanel ippanel = new JPanel();
+		Container ippanel = new JPanel();
 		ippanel.add(ipLabel);
 		ippanel.add(ip);
 		ippanel.setBackground(Properties.getColorBackground());
 		
-		JPanel portpanel = new JPanel();
+		Container portpanel = new JPanel();
 		portpanel.add(portLabel);
 		portpanel.add(port);
 		portpanel.setBackground(Properties.getColorBackground());
 		
-		JPanel bothpanel = new JPanel();
+		Container bothpanel = new JPanel();
 		bothpanel.setLayout(new GridLayout(2, 1));
 		bothpanel.add(ippanel);
 		bothpanel.add(portpanel);

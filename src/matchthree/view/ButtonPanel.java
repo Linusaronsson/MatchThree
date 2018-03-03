@@ -2,6 +2,7 @@ package matchthree.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -58,7 +59,7 @@ public class ButtonPanel
 	private Button buttonV2 = null;
 	
 	/** Visual style button container. */
-	private JPanel styleButtonsPanel = new JPanel();
+	private Container styleButtonsPanel = new JPanel();
 	
 	/**
 	 * Constructor.
@@ -128,8 +129,8 @@ public class ButtonPanel
 	 * @param buttons ...
 	 * @return        ...
 	 */
-	public JPanel createVersionButtonsPanel(final Button... buttons) {
-		JPanel panel = new JPanel();
+	public Container createVersionButtonsPanel(final Button... buttons) {
+		Container panel = new JPanel();
 		for (Button button : buttons) {
 			panel.add(button);
 		}

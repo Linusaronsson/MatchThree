@@ -1,5 +1,6 @@
 package matchthree.controller;
 
+import java.awt.Container;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JPanel;
@@ -86,7 +87,7 @@ public class MainWindowController
 		// Create main window //
 		// TODO: Consider removing this panel.
 		MainMenuBar menuBar = new MainMenuBar();
-		JPanel      panel   = new JPanel();
+		Container   panel   = new JPanel();
 		window = new Window(WINDOW_TITLE, menuBar, panel);
 		
 		// Create UI //

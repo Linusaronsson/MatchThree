@@ -1,6 +1,7 @@
 package matchthree.view;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.Font;
@@ -137,7 +138,7 @@ public class GridView
 		initGraphics(style);
 		
 		// Construct grid //
-		JPanel grid = createGrid();
+		Container grid = createGrid();
 		add(grid);
 	}
 	
@@ -232,7 +233,7 @@ public class GridView
 	 *
 	 * @return ...
 	 */
-	private JPanel createGrid() {
+	private Container createGrid() {
 		// Create grid //
 		int width = model.getWidth();
 		JPanel grid = new JPanel(new GridLayout(width, width, GAP, GAP));

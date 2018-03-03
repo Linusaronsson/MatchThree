@@ -107,7 +107,7 @@ public class MainMenuView
 		);
 		
 		// Assemble button panel //
-		buttonPanel = assembleButtons(buttons);
+		assembleButtons(buttons);
 		
 		// Assemble view //
 		add(LOGO, BorderLayout.LINE_START);
@@ -146,13 +146,11 @@ public class MainMenuView
 	 * Assemble buttons and create button panel.
 	 *
 	 * @param buttons ...
-	 * @return        ...
 	 */
-	private JPanel assembleButtons(final Button[] buttons) {
+	private void assembleButtons(final Button[] buttons) {
 		for (Button button : buttons) {
 			buttonPanel.add(button);
 		}
-		return buttonPanel;
 	}
 	
 	/**

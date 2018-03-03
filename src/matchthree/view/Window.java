@@ -1,13 +1,13 @@
 package matchthree.view;
 
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
-import javax.swing.JPanel;
 import matchthree.util.AssetManager;
 import matchthree.util.Properties;
 
@@ -27,7 +27,7 @@ public class Window
 		new ImageIcon(AssetManager.loadImage("Logo3.png"));
 	
 	/** Window content pane. */
-	private JPanel content = null;
+	private Container content = null;
 	
 	/**
 	 * Create `Window`.
@@ -37,9 +37,9 @@ public class Window
 	 * @param content Window content pane.
 	 */
 	public Window(
-		final String   title,
-		final JMenuBar menuBar,
-		final JPanel   content
+		final String    title,
+		final JMenuBar  menuBar,
+		final Container content
 	) {
 		// Validate arguments //
 		// TODO: Verify that `menuBar` may be null.

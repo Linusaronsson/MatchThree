@@ -2,6 +2,7 @@ package matchthree.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
@@ -56,7 +57,7 @@ public class GameFinished
 		title.setForeground(COLOR_LABEL);
 		message.setForeground(COLOR_LABEL);
 		
-		JPanel panel = new JPanel(new GridLayout(2, 1));
+		Container panel = new JPanel(new GridLayout(2, 1));
 		panel.add(title);
 		panel.add(message);
 		panel.setBackground(COLOR_RESULT_BACKGROUND);
