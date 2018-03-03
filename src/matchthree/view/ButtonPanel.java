@@ -37,10 +37,6 @@ public class ButtonPanel
 	private static final Color COLOR_PANEL =
 		COLOR_BACKGROUND.brighter().brighter();
 	
-	/** Back button image. */
-	private static final BufferedImage IMAGE_BACK =
-		AssetManager.loadImage("Back.png");
-	
 	/** Visual style 1 image. */
 	private static final BufferedImage IMAGE_V1 =
 		AssetManager.loadImage("V1.png");
@@ -50,7 +46,7 @@ public class ButtonPanel
 		AssetManager.loadImage("V2.png");
 	
 	/** Back button. */
-	private Button back = null;
+	private BackButton back = new BackButton();
 	
 	/** Visual style 1 button. */
 	private Button buttonV1 = null;
@@ -76,11 +72,6 @@ public class ButtonPanel
 		
 		// Set properties //
 		setBackground(COLOR_BACKGROUND);
-		
-		// Create back button //
-		back = new Button();
-		back.setIcon(new ImageIcon(IMAGE_BACK));
-		back.setPreferredSize(new Dimension(50, 50));
 		
 		// Create version 1 button //
 		buttonV1 = new Button();
@@ -113,11 +104,6 @@ public class ButtonPanel
 		
 		// Set properties //
 		setBackground(COLOR_BACKGROUND);
-		
-		// Create back button //
-		back = new Button();
-		back.setIcon(new ImageIcon(IMAGE_BACK));
-		back.setPreferredSize(new Dimension(50, 50));
 		
 		// Assemble view //
 		add(back, BorderLayout.PAGE_START);
