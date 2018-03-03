@@ -2,6 +2,11 @@
 
 Programming assignment for course DAT055, Chalmers University of Technology.
 
+*MatchThree* is a puzzle game about reordering tiles in a grid in order to
+create chains. Score is rewarded upon successful chain creation. The game is
+over when the move counter reaches zero, and any score accumulates is recorded
+on the high score table.
+
 ## Building ##
 
 To build the project, run `$ ./make.sh build`. The compiled program will be put
