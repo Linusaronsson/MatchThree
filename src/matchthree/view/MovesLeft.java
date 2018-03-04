@@ -11,8 +11,8 @@ import matchthree.model.MatchThreeModel;
  * Score counter.
  *
  * @author Linus Aronsson
- * TODO: rename this since its used for Moves Left label too?
  */
+// TODO: Rename this since it is used for Moves Left label too?
 @SuppressWarnings({"deprecation", "serial"})
 public class MovesLeft
 	extends JLabel

@@ -124,6 +124,7 @@
 		<module name="InterfaceIsType"/>
 		<module name="JavadocMethod"/>
 		<module name="JavadocStyle"/>
+		<module name="JavadocTagContinuationIndentation"/>
 		<module name="JavadocType">
 			<property name="authorFormat" value="\S"/>
 			<!-- <property name="versionFormat" value="\$Revision.*\$"/> -->
