@@ -196,8 +196,7 @@ public class Button
 	@Override
 	protected void paintComponent(final Graphics g) {
 		BufferedImage image =
-			getGraphicsConfiguration().
-			createCompatibleImage(
+			getGraphicsConfiguration().createCompatibleImage(
 				getWidth(),
 				getHeight(),
 				Transparency.TRANSLUCENT
@@ -209,8 +208,7 @@ public class Button
 		imageGraphics.dispose();
 		
 		BufferedImage mask =
-			getGraphicsConfiguration().
-			createCompatibleImage(
+			getGraphicsConfiguration().createCompatibleImage(
 				image.getWidth(),
 				image.getHeight(),
 				Transparency.TRANSLUCENT
