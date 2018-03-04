@@ -278,7 +278,7 @@ public class GridViewController
 		String serial = null;
 		try {
 			serial = Serialize.serialize(board);
-		} catch (Serialize.UnsupportedTypeException e) {
+		} catch (Serialize.UnsupportedTypeException exception) {
 			new ErrorDialog(
 				"Serialization failed",
 				"Could not serialize model contents"

@@ -68,6 +68,9 @@
 		<module name="AvoidNestedBlocks"/>
 		<module name="AvoidStarImport"/>
 		<module name="AvoidStaticImport"/>
+		<module name="CatchParameterName">
+			<property name="format" value="^exception$"/>
+		</module>
 		<module name="ConstantName"/>
 		<!--
 		<module name="CyclomaticComplexity">

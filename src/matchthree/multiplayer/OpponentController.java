@@ -154,12 +154,12 @@ public class OpponentController
 				);
 				inStream.close();
 			}
-		} catch (SocketException e) {
+		} catch (SocketException exception) {
 			return;
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+		} catch (IOException exception) {
+			exception.printStackTrace();
+		} catch (ClassNotFoundException exception) {
+			exception.printStackTrace();
 		}
 	}
 }

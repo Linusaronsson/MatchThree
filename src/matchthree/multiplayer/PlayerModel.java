@@ -63,8 +63,8 @@ public class PlayerModel
 		
 		try {
 			client = new DatagramSocket();
-		} catch (SocketException e) {
-			e.printStackTrace();
+		} catch (SocketException exception) {
+			exception.printStackTrace();
 		}
 		
 	}

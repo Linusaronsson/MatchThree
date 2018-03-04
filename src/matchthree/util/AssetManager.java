@@ -192,7 +192,7 @@ public final class AssetManager
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(file);
-		} catch (IOException e) {
+		} catch (IOException exception) {
 			System.err.printf(
 				"Failed to read \"%s\":%s",
 				file,
@@ -200,7 +200,7 @@ public final class AssetManager
 			);
 			System.err.printf(
 				"\t%s%s",
-				e,
+				exception,
 				System.lineSeparator()
 			);
 		}
