@@ -120,6 +120,7 @@
 			<property name="sortStaticImportsAlphabetically" value="true"/>
 			<property name="useContainerOrderingForStatic" value="false"/>
 		</module>
+		<!-- <module name="Indentation"/> -->
 		<module name="InnerAssignment"/>
 		<module name="InterfaceIsType"/>
 		<module name="JavadocMethod"/>
