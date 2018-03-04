@@ -81,7 +81,9 @@
 		<module name="DeclarationOrder"/>
 		<module name="DefaultComesLast"/>
 		<!-- <module name="DesignForExtension"/> -->
-		<module name="EmptyBlock"/>
+		<module name="EmptyBlock">
+			<property name="tokens" value="LITERAL_WHILE, LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_DO, LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, INSTANCE_INIT, STATIC_INIT, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_CASE, LITERAL_DEFAULT, ARRAY_INIT"/>
+		</module>
 		<module name="EmptyCatchBlock"/>
 		<module name="EmptyForIteratorPad"/>
 		<module name="EmptyLineSeparator">
