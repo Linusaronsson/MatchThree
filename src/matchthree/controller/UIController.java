@@ -10,6 +10,9 @@ import matchthree.multiplayer.Server;
 
 /**
  * UI controller. Manages application navigation between views.
+ *
+ * @author Erik Selstam
+ * @author Erik Tran
  */
 public class UIController
 {

@@ -124,7 +124,9 @@
 		<module name="InterfaceIsType"/>
 		<module name="JavadocMethod"/>
 		<module name="JavadocStyle"/>
-		<module name="JavadocType"/>
+		<module name="JavadocType">
+			<property name="authorFormat" value="\S"/>
+		</module>
 		<module name="JavadocVariable"/>
 		<module name="LeftCurly">
 			<property name="option" value="nl"/>

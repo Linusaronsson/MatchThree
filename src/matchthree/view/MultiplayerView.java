@@ -12,6 +12,9 @@ import matchthree.util.Properties;
 
 /**
  * Multiplayer game screen.
+ *
+ * @author Linus Aronsson
+ * @author Erik Selstam
  */
 @SuppressWarnings("serial")
 public class MultiplayerView
