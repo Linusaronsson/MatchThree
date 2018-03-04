@@ -273,7 +273,11 @@
 			<property name="ignorePrivateMethods" value="false"/>
 			<property name="max" value="3"/>
 		</module>
-		<!-- <module name="TodoComment"/> -->
+		<!--
+		<module name="TodoComment">
+			<property name="format" value="(FIXME)|(HACK)|(TODO):"/>
+		</module>
+		-->
 		<module name="TrailingComment"/>
 		<module name="TypecastParenPad"/>
 		<module name="TypeName"/>
