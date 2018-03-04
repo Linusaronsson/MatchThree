@@ -64,7 +64,20 @@ public class HighScore
 			);
 		}
 	}
-	
+
+        // Called when game is over.
+        /**
+	 * ...
+	 *
+	 * @author David Olofsson
+	 */
+    public void syncScore(String name, int score)
+    {
+	currentScore = score;
+	this.name = name;
+	syncScore();
+    }
+    
 	// Called when game is over.
 	/**
 	 * ...
