@@ -208,6 +208,9 @@
 		</module>
 		<module name="SimplifyBooleanExpression"/>
 		<module name="SimplifyBooleanReturn"/>
+		<module name="SingleLineJavadoc">
+			<property name="violateExecutionOnNonTightHtml" value="true"/>
+		</module>
 		<!-- <module name="SingleSpaceSeparator"> -->
 		<module name="StaticVariableName"/>
 		<module name="StringLiteralEquality"/>
