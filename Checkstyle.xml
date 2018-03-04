@@ -207,6 +207,11 @@
 			<property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)"/>
 			<property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)"/>
 		</module>
+		<!--
+		<module name="SuppressWarningsHolder">
+			<property name="aliasList" value=""/>
+		</module>
+		-->
 		<!-- <module name="TodoComment"/> -->
 		<module name="TypecastParenPad"/>
 		<module name="TypeName"/>
