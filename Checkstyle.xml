@@ -62,7 +62,9 @@
 		<module name="AnonInnerLength"/>
 		<module name="ArrayTrailingComma"/>
 		<module name="ArrayTypeStyle"/>
-		<module name="AtclauseOrder"/>
+		<module name="AtclauseOrder">
+			<property name="violateExecutionOnNonTightHtml" value="true"/>
+		</module>
 		<module name="AvoidEscapedUnicodeCharacters"/>
 		<!-- <module name="AvoidInlineConditionals"/> -->
 		<module name="AvoidNestedBlocks"/>
@@ -93,7 +95,9 @@
 		<module name="EmptyStatement"/>
 		<module name="EqualsAvoidNull"/>
 		<module name="EqualsHashCode"/>
-		<module name="FallThrough"/>
+		<module name="FallThrough">
+			<property name="checkLastCaseGroup" value="true"/>
+		</module>
 		<module name="FinalClass"/>
 		<!--
 		<module name="FinalLocalVariable">
@@ -192,7 +196,9 @@
 			<!-- Disabled: ARRAY_INIT, TYPECAST -->
 			<property name="tokens" value="AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, DOT, ARRAY_DECLARATOR, INDEX_OP, LITERAL_SYNCHRONIZED, METHOD_REF"/>
 		</module>
-		<module name="NoWhitespaceBefore"/>
+		<module name="NoWhitespaceBefore">
+			<property name="tokens" value="COMMA, SEMI, POST_INC, POST_DEC, DOT, GENERIC_START, GENERIC_END, ELLIPSIS, METHOD_REF"/>
+		</module>
 		<!-- <module name="OneStatementPerLine"/> -->
 		<module name="OneTopLevelClass"/>
 		<module name="OperatorWrap"/>
@@ -203,7 +209,9 @@
 		<!-- <module name="PackageDeclaration"/> -->
 		<module name="ParameterAssignment"/>
 		<module name="ParameterName"/>
-		<module name="ParameterNumber"/>
+		<module name="ParameterNumber">
+			<property name="max" value="6"/>
+		</module>
 		<module name="ParenPad"/>
 		<module name="RedundantImport"/>
 		<module name="RedundantModifier"/>
