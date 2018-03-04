@@ -11,7 +11,6 @@ import java.net.UnknownHostException;
 import matchthree.controller.UIController.View;
 import matchthree.message.Message;
 import matchthree.model.Settings;
-import matchthree.multiplayer.Server;
 import matchthree.view.Button;
 import matchthree.view.ErrorDialog;
 import matchthree.view.MultiplayerMenuView;

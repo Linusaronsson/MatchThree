@@ -10,11 +10,9 @@ import java.net.SocketException;
 import matchthree.controller.UIController.View;
 import matchthree.message.Message;
 import matchthree.model.Jewel;
+import matchthree.model.OpponentModel;
+import matchthree.model.PlayerModel;
 import matchthree.model.Settings;
-import matchthree.multiplayer.OpponentModel;
-import matchthree.multiplayer.OpponentUIController;
-import matchthree.multiplayer.PlayerModel;
-import matchthree.multiplayer.Server;
 import matchthree.view.Button;
 import matchthree.view.MultiplayerView;
 

@@ -1,4 +1,4 @@
-package matchthree.multiplayer;
+package matchthree.controller;
 
 import java.awt.Container;
 import java.io.ByteArrayInputStream;
@@ -7,11 +7,11 @@ import java.io.ObjectInputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
-import matchthree.controller.UIController;
 import matchthree.message.Message;
 import matchthree.message.UpdateCell;
 import matchthree.message.UpdateMovesLeft;
 import matchthree.message.UpdateScore;
+import matchthree.model.OpponentModel;
 import matchthree.model.Settings;
 import matchthree.view.ErrorDialog;
 import matchthree.view.GameFinished;

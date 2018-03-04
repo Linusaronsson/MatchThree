@@ -23,21 +23,20 @@ this form, the arguments will run in sequence, and abort on failure.
 
 ## Directory structure ##
 
-| Directory          | Purpose                   |
-| :----------------- | :------------------------ |
-| `doc/`             | Various documentation     |
-| `libraries/`       | Run-time dependencies     |
-| `resources/`       | Run-time assets           |
-| `src/`             | Source code               |
-| `src/controller/`  | Controllers               |
-| `src/message/`     | Event messages            |
-| `src/model/`       | Models                    |
-| `src/multiplayer/` | Multiplayer (provisional) |
-| `src/view/`        | Views                     |
-| `src/util/`        | Utilities (provisional)   |
-| `target/`          | Built artifacts           |
-| `target/doc/`      | Compiled documentation    |
-| `target/main/`     | Compiled program          |
+| Directory         | Purpose                 |
+| :---------------- | :---------------------- |
+| `doc/`            | Various documentation   |
+| `libraries/`      | Run-time dependencies   |
+| `resources/`      | Run-time assets         |
+| `src/`            | Source code             |
+| `src/controller/` | Controllers             |
+| `src/message/`    | Event messages          |
+| `src/model/`      | Models                  |
+| `src/view/`       | Views                   |
+| `src/util/`       | Utilities (provisional) |
+| `target/`         | Built artifacts         |
+| `target/doc/`     | Compiled documentation  |
+| `target/main/`    | Compiled program        |
 
 ## Authors ##
 

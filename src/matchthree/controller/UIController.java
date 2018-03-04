@@ -6,7 +6,6 @@ import matchthree.model.Jewel;
 import matchthree.model.MatchThreeModel;
 import matchthree.model.Settings;
 import matchthree.model.Settings.Style;
-import matchthree.multiplayer.Server;
 
 /**
  * UI controller. Manages application navigation between views.

@@ -1,19 +1,16 @@
-package matchthree.multiplayer;
+package matchthree.model;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import matchthree.controller.Server;
 import matchthree.message.Message;
 import matchthree.message.UpdateBoard;
 import matchthree.message.UpdateCell;
 import matchthree.message.UpdateGameFinished;
 import matchthree.message.UpdateMovesLeft;
 import matchthree.message.UpdateScore;
-import matchthree.model.Coordinate;
-import matchthree.model.Jewel;
-import matchthree.model.MatchThreeModel;
-import matchthree.model.MatchThreeModel.MoveType;
 
 /**
  * Extension of MatchThreeModel used for the player view to send datagrams to

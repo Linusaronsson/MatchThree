@@ -21,17 +21,10 @@
 		<allow pkg="matchthree.model"/>
 	</subpackage>
 	<subpackage name="model" strategyOnMismatch="disallowed">
+		<allow pkg="java.net"/>
 		<allow pkg="java.sql"/>
 		<allow pkg="java.util"/>
-	</subpackage>
-	<subpackage name="multiplayer" strategyOnMismatch="disallowed">
-		<allow pkg="java.awt"/>
-		<allow pkg="java.io"/>
-		<allow pkg="java.net"/>
-		<allow pkg="matchthree.controller"/>
 		<allow pkg="matchthree.message"/>
-		<allow pkg="matchthree.model"/>
-		<allow pkg="matchthree.view"/>
 	</subpackage>
 	<subpackage name="util" strategyOnMismatch="disallowed">
 		<allow pkg="java.awt"/>
