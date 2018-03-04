@@ -189,6 +189,7 @@
 		<module name="NoWhitespaceAfter"/>
 		<module name="NoWhitespaceBefore"/>
 		<module name="OperatorWrap"/>
+		<module name="OverloadMethodsDeclarationOrder"/>
 		<module name="PackageAnnotation"/>
 		<!-- <module name="PackageDeclaration"/> -->
 		<module name="ParameterAssignment"/>

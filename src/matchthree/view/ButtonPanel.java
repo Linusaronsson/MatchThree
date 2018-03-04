@@ -137,11 +137,33 @@ public class ButtonPanel
 	/**
 	 * Add listener for back button.
 	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
+	 * @param listener Event listener to use.
+	 */
+	public void addBackListener(final ActionListener listener) {
+		back.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for back button.
+	 *
 	 * @author Erik Tran
 	 * @param listener Event listener to use.
 	 */
 	public void addBackListener(final MouseListener listener) {
 		back.addMouseListener(listener);
+	}
+	
+	/**
+	 * Add listener for version 1 button.
+	 *
+	 * @author Erik Selstam
+	 * @author Erik Tran
+	 * @param listener Event listener to use.
+	 */
+	public void addButtonV1Listener(final ActionListener listener) {
+		buttonV1.addActionListener(listener);
 	}
 	
 	/**
@@ -157,44 +179,22 @@ public class ButtonPanel
 	/**
 	 * Add listener for version 2 button.
 	 *
-	 * @author Erik Tran
-	 * @param listener Event listener to use.
-	 */
-	public void addButtonV2Listener(final MouseListener listener) {
-		buttonV2.addMouseListener(listener);
-	}
-	
-	/**
-	 * Add listener for back button.
-	 *
-	 * @author Erik Selstam
-	 * @author Erik Tran
-	 * @param listener Event listener to use.
-	 */
-	public void addBackListener(final ActionListener listener) {
-		back.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for version 1 button.
-	 *
-	 * @author Erik Selstam
-	 * @author Erik Tran
-	 * @param listener Event listener to use.
-	 */
-	public void addButtonV1Listener(final ActionListener listener) {
-		buttonV1.addActionListener(listener);
-	}
-	
-	/**
-	 * Add listener for version 2 button.
-	 *
 	 * @author Erik Selstam
 	 * @author Erik Tran
 	 * @param listener Event listener to use.
 	 */
 	public void addButtonV2Listener(final ActionListener listener) {
 		buttonV2.addActionListener(listener);
+	}
+	
+	/**
+	 * Add listener for version 2 button.
+	 *
+	 * @author Erik Tran
+	 * @param listener Event listener to use.
+	 */
+	public void addButtonV2Listener(final MouseListener listener) {
+		buttonV2.addMouseListener(listener);
 	}
 	
 	/**
