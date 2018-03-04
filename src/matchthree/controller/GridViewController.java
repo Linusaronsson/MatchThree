@@ -125,7 +125,7 @@ public class GridViewController
 		final UIController    uiController,
 		final Settings        settings,
 		final MatchThreeModel matchThreeModel,
-		final MatchThreeUI	  matchThreeUI
+		final MatchThreeUI    matchThreeUI
 	) {
 		// Validate arguments //
 		if (parent == null) {

@@ -436,12 +436,14 @@ public class GridView
 	public void update() {
 		throw new IllegalStateException();
 		
-		//int width = model.getWidth();
-		//for (int i = 0; i < width * width; i++) {
-		//	int x = i % width;
-		//	int y = i / width;
-		//	updateCell(x, y);
-		//}
+		/*
+		int width = model.getWidth();
+		for (int i = 0; i < width * width; i++) {
+			int x = i % width;
+			int y = i / width;
+			updateCell(x, y);
+		}
+		*/
 	}
 	
 	@Override
