@@ -1,4 +1,4 @@
-package matchthree.multiplayer;
+package matchthree.controller;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -9,7 +9,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
-import matchthree.controller.UIController;
 import matchthree.message.Message;
 import matchthree.message.UpdateBoard;
 import matchthree.model.Jewel;

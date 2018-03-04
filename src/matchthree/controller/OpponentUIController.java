@@ -1,8 +1,7 @@
-package matchthree.multiplayer;
+package matchthree.controller;
 
 import java.awt.Container;
-import matchthree.controller.MatchThreeHeaderController;
-import matchthree.controller.UIController;
+import matchthree.model.OpponentModel;
 import matchthree.model.Settings;
 import matchthree.view.GridView;
 import matchthree.view.MatchThreeUI;
