@@ -234,7 +234,7 @@ public class ButtonPanel
 	public void update(final Observable o, final Object arg) {
 		if (o instanceof MatchThreeModel && arg instanceof String) {
 			String str = (String) arg;
-			if (str.equals("remove")) {
+			if ("remove".equals(str)) {
 				styleButtonsPanel.removeAll();
 				repaint();
 				revalidate();
