@@ -190,19 +190,25 @@ public class MatchThreeModel
 	 * Create `MatchThreeModel`.
 	 *
 	 * @author Erik Selstam
+	 * @author Linus Aronsson
+	 * @param board Board to use.
 	 * @param width Size of the board on one axis in number of cells.
 	 */
-	public MatchThreeModel(final int width) {
+	// TODO: Remove `width` parameter.
+	public MatchThreeModel(final Jewel[] board, final int width) {
 		// Validate argument //
+		// NOTE: `board` may be null.
 		if (width <= 0) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(
+				"`width` must be greater than 0"
+			);
 		}
 		
 		// Construct board //
-		board = new Jewel[width * width];
+		this.board = (board != null) ? board : new Jewel[width * width];
 		
+		// Assign fields //
 		this.width = width;
-		this.board = board;
 		
 		// Set initial state //
 		init();
@@ -212,23 +218,10 @@ public class MatchThreeModel
 	 * Create `MatchThreeModel`.
 	 *
 	 * @author Erik Selstam
-	 * @author Linus Aronsson
-	 * @param board Board to use.
 	 * @param width Size of the board on one axis in number of cells.
 	 */
-	// TODO: Remove `width` parameter.
-	public MatchThreeModel(final Jewel[] board, final int width) {
-		// Validate argument //
-		// TODO: Check width.
-		if (board == null) {
-			throw new NullPointerException();
-		}
-		
-		this.width = width;
-		this.board = board;
-		
-		// Set initial state //
-		init();
+	public MatchThreeModel(final int width) {
+		this(null, width);
 	}
 	
 	/**

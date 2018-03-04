@@ -25,6 +25,7 @@ public class OpponentUIController
 	 * Constructor.
 	 *
 	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 * @param parent        Parent view to use.
 	 * @param uiController  UI controller to use.
 	 * @param settings      Application settings.
@@ -32,11 +33,11 @@ public class OpponentUIController
 	 * @param port          Port number to listen on.
 	 */
 	public OpponentUIController(
-		final Container       parent,
-		final UIController    uiController,
-		final Settings        settings,
+		final Container     parent,
+		final UIController  uiController,
+		final Settings      settings,
 		final OpponentModel opponentModel,
-		final int port)
+		final int           port)
 	{
 		// Validate arguments //
 		if (parent == null) {
@@ -50,30 +51,29 @@ public class OpponentUIController
 		if (settings == null) {
 			throw new IllegalArgumentException("`settings` must not be null");
 		}
-
+		
 		// Create view //
 		MatchThreeUI matchThreeUI = new MatchThreeUI(opponentModel);
 		
-		// Create grid //
-		Container gridView = matchThreeUI.getGrid();
-		gridView.add(new GridView(opponentModel, settings.getStyle()));
-
 		// Create header //
-		//Container headerView = matchThreeUI.getHeader();
 		new MatchThreeHeaderController(
-			matchThreeUI,
+			matchThreeUI.getHeader(),
 			uiController,
 			settings,
 			opponentModel
 		);
 		
+		// Create grid //
+		Container gridView = new GridView(opponentModel, settings.getStyle());
+		matchThreeUI.getGrid().add(gridView);
+		
 		// Start opponent controller (UDP listener) //
 		opponentController = new OpponentController(
-				uiController,
-				settings,
-				opponentModel,
-				port,
-				gridView
+			uiController,
+			settings,
+			opponentModel,
+			port,
+			gridView
 		);
 		
 		// Start listening for data on UDP port //
@@ -91,5 +91,4 @@ public class OpponentUIController
 	public void close() {
 		opponentController.close();
 	}
-	
 }

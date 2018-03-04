@@ -135,7 +135,7 @@ public class ButtonPanel
 	}
 	
 	/**
-	 * Add listener for back button.
+	 * Add action listener for back button.
 	 *
 	 * @author Erik Selstam
 	 * @author Erik Tran
@@ -146,7 +146,7 @@ public class ButtonPanel
 	}
 	
 	/**
-	 * Add listener for back button.
+	 * Add mouse listener for back button.
 	 *
 	 * @author Erik Tran
 	 * @param listener Event listener to use.
@@ -198,13 +198,13 @@ public class ButtonPanel
 	}
 	
 	/**
-	 * ...
+	 * Get reference to back button.
 	 *
 	 * @author Erik Tran
-	 * @return ...
+	 * @author Erik Selstam
+	 * @return Back button reference.
 	 */
-	public Button getBackButton() {
-		// TODO Auto-generated method stub
+	public BackButton getBackButton() {
 		return back;
 	}
 	

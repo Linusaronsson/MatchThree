@@ -13,6 +13,7 @@ import matchthree.model.Jewel;
 import matchthree.model.OpponentModel;
 import matchthree.model.PlayerModel;
 import matchthree.model.Settings;
+import matchthree.view.BackButton;
 import matchthree.view.Button;
 import matchthree.view.MultiplayerView;
 
@@ -137,28 +138,25 @@ public class MultiplayerViewController
 			throw new IllegalArgumentException("`port` must be positive");
 		}
 		
-		this.uiController = uiController;
-		this.host         = host;
-		this.port         = port;
-		
 		// Create view //
 		multiplayerView = new MultiplayerView();
 		
-		if (board == null) {
-			playerModel = new PlayerModel(GAME_SIZE, host, port);
-			Jewel[] playerBoard = playerModel.getBoard();
-			opponentModel = new OpponentModel(playerBoard, GAME_SIZE);
-			
-			// Host sends the board to opponent //
-			playerModel.sendBoard(PORT_NUMBER);
-		} else {
-			playerModel   = new PlayerModel(board, GAME_SIZE, host, port);
-			opponentModel = new OpponentModel(board, GAME_SIZE);
-		}
-		
+		// Create player model //
+		playerModel = new PlayerModel(board, GAME_SIZE, host, port);
 		playerModel.setGameStarted(true);
 		
-		//Create PlayerView
+		// Create opponent model //
+		Jewel[] opponentBoard = (board == null)
+			? playerModel.getBoard()
+			: board;
+		opponentModel = new OpponentModel(opponentBoard, GAME_SIZE);
+		
+		// Send board to opponent if host //
+		if (board == null) {
+			playerModel.sendBoard(PORT_NUMBER);
+		}
+		
+		// Create player view //
 		playerController = new MatchThreeUIController(
 			multiplayerView.getPlayer1(),
 			uiController,
@@ -166,7 +164,7 @@ public class MultiplayerViewController
 			playerModel
 		);
 		
-		//Create OpponentView
+		// Create opponent view //
 		opponentController = new OpponentUIController(
 			multiplayerView.getPlayer2(),
 			uiController,
@@ -175,20 +173,21 @@ public class MultiplayerViewController
 			port
 		);
 		
+		// Add event listeners //
 		multiplayerView.addBackListener(event -> {
 			// Initiate connection //
 			back();
 		});
-		
-		Button back = multiplayerView.getBackButton();
-		multiplayerView.addHoverListener(
-			new HoverListener(back),
-			back
-		);
+		BackButton back = multiplayerView.getBackButton();
+		multiplayerView.addBackListener(new HoverListener(back));
 		
 		// Add view to parent //
 		parent.add(multiplayerView);
-		parent.add(back);
+		
+		// Assign fields //
+		this.host         = host;
+		this.port         = port;
+		this.uiController = uiController;
 	}
 	
 	/**

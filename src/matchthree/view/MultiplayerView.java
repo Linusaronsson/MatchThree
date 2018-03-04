@@ -34,7 +34,7 @@ public class MultiplayerView
 		Properties.getColorBackground();
 	
 	/** Back button container. */
-	private ButtonPanel backPanel = new ButtonPanel();
+	private ButtonPanel buttonPanel = new ButtonPanel();
 	
 	/** Player 1 container. */
 	private Container player1View = new JPanel();
@@ -60,7 +60,7 @@ public class MultiplayerView
 		// Assemble view //
 		add(player1View);
 		add(player2View);
-		add(backPanel);
+		add(buttonPanel);
 		
 		// Set border //
 		setBorder(BorderFactory.createCompoundBorder(
@@ -70,37 +70,35 @@ public class MultiplayerView
 	}
 	
 	/**
-	 * Add listener for back button.
+	 * Add action listener for back button.
 	 *
 	 * @author Linus Aronsson
 	 * @param listener Event listener to use.
 	 */
 	public void addBackListener(final ActionListener listener) {
-		backPanel.addBackListener(listener);
+		buttonPanel.addBackListener(listener);
 	}
 	
 	/**
-	 * ...
+	 * Add mouse listener for back button.
 	 *
 	 * @author Linus Aronsson
-	 * @param listener ...
-	 * @param target   ...
+	 * @author Erik Selstam
+	 * @param listener Event listener to use.
 	 */
-	public void addHoverListener(
-		final MouseListener listener,
-		final Button        target)
-	{
-		target.addMouseListener(listener);
+	public void addBackListener(final MouseListener listener) {
+		buttonPanel.addBackListener(listener);
 	}
 	
 	/**
-	 * ...
+	 * Get reference to back button.
 	 *
 	 * @author Linus Aronsson
-	 * @return ...
+	 * @author Erik Selstam
+	 * @return Back button reference.
 	 */
-	public Button getBackButton() {
-		return backPanel.getBackButton();
+	public BackButton getBackButton() {
+		return buttonPanel.getBackButton();
 	}
 	
 	/**

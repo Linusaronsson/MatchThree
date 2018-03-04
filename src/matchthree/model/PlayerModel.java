@@ -22,49 +22,20 @@ import matchthree.message.UpdateScore;
 public class PlayerModel
 	extends MatchThreeModel
 {
-	/** DatagramSocket that is used for sending datagram packets to
-	 *  the opponent.
-	 */
+	/** Socket for sending data to the opponent. */
 	private DatagramSocket client = null;
 	
-	/** The DatagramPacket to be sent. */
+	/** Packet to be sent over the socket. */
 	private DatagramPacket out = null;
 	
-	/** IP of the opponent. */
+	/** Opponent address. */
 	private InetAddress ip = null;
 	
-	/** Port of opponent. */
+	/** Opponent port number. */
 	private int port;
 	
-	/** Keeps track of wether the game is started or not. */
+	/** Whether currently in-game. */
 	private boolean gameStarted = false;
-	
-	/**
-	 * Initializes the object and creates a new DatagramSocket
-	 * for sending datagram packets.
-	 *
-	 * @author Linus Aronsson
-	 * @param width Size of the board.
-	 * @param host  IP of opponent.
-	 * @param port  Port of opponent.
-	 */
-	public PlayerModel(
-		final int         width,
-		final InetAddress host,
-		final int         port)
-	{
-		super(width);
-		
-		this.ip   = host;
-		this.port = port;
-		
-		try {
-			client = new DatagramSocket();
-		} catch (final SocketException exception) {
-			exception.printStackTrace();
-		}
-		
-	}
 	
 	/**
 	 * Overloaded constructor for also initializing the model
@@ -83,14 +54,34 @@ public class PlayerModel
 		final int         port)
 	{
 		super(board, width);
-		this.ip   = host;
-		this.port = port;
 		
+		// Create socket //
 		try {
 			client = new DatagramSocket();
 		} catch (final SocketException exception) {
 			exception.printStackTrace();
 		}
+		
+		// Assign fields //
+		this.ip   = host;
+		this.port = port;
+	}
+	
+	/**
+	 * Initializes the object and creates a new DatagramSocket
+	 * for sending datagram packets.
+	 *
+	 * @author Linus Aronsson
+	 * @param width Size of the board.
+	 * @param host  IP of opponent.
+	 * @param port  Port of opponent.
+	 */
+	public PlayerModel(
+		final int         width,
+		final InetAddress host,
+		final int         port)
+	{
+		this(null, width, host, port);
 	}
 	
 	/**
