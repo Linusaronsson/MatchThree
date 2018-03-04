@@ -123,6 +123,7 @@
 		<module name="InnerAssignment"/>
 		<module name="InterfaceIsType"/>
 		<module name="JavadocMethod"/>
+		<module name="JavadocParagraph"/>
 		<module name="JavadocStyle">
 			<property name="checkEmptyJavadoc" value="true"/>
 		</module>

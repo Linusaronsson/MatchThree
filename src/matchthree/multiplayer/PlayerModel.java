@@ -110,8 +110,10 @@ public class PlayerModel
 	 * Set the value of a cell. May leave the board in an inconsistent state.
 	 * Also sends the updated cell to the opponent.
 	 *
+	 * <p>
 	 * This override also notifies the opponent of the change by sending
 	 * a datagram packet.
+	 * </p>
 	 *
 	 * @author Linus Aronsson
 	 * @param x     X-coordinate of the cell.
@@ -148,7 +150,9 @@ public class PlayerModel
 	 * Move a cell and clear any generated chains. Leaves the board in a
 	 * consistent state. Also sends the new score to opponent.
 	 *
+	 * <p>
 	 * Also notifies the opponent of the new score.
+	 * </p>
 	 *
 	 * @author Linus Aronsson
 	 * @param from Source coordinates.
