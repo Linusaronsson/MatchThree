@@ -64,7 +64,7 @@
 		<module name="ArrayTypeStyle"/>
 		<module name="AtclauseOrder"/>
 		<module name="AvoidEscapedUnicodeCharacters"/>
-		<module name="AvoidInlineConditionals"/>
+		<!-- <module name="AvoidInlineConditionals"/> -->
 		<module name="AvoidNestedBlocks"/>
 		<module name="AvoidStarImport"/>
 		<module name="AvoidStaticImport"/>
