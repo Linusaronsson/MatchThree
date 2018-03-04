@@ -237,8 +237,8 @@
 		<module name="UpperEll"/>
 		<module name="VariableDeclarationUsageDistance">
 			<property name="allowedDistance" value="3"/>
-			<property name="validateBetweenScopes" value="true"/>
 			<property name="ignoreFinal" value="false"/>
+			<property name="validateBetweenScopes" value="true"/>
 		</module>
 		<!-- <module name="VisibilityModifier"/> -->
 		<module name="WhitespaceAfter"/>
