@@ -32,6 +32,9 @@ public class MatchThreeModel
 	/** Width of grid. */
 	protected int width = 0;
 	
+	/** PRNG context. */
+	private Random random = new Random();
+	
 	/**
 	 * Move type.
 	 *
@@ -292,21 +295,12 @@ public class MatchThreeModel
 	 * @author Erik Selstam
 	 */
 	private void fill() {
-		// Create RNG //
-		// TODO: Store this higher in the hierarchy.
-		Random random = new Random();
-		
 		// Fill all cells //
 		for (int i = 0; i < width * width; i++) {
 			// Skip filled cells //
 			if (board[i] != null) {
 				continue;
 			}
-			
-			// Get coordinates //
-			int x = i % width;
-			int y = i / width;
-			Coordinate position = new Coordinate(x, y);
 			
 			// Create list of possible options //
 			Set<Jewel> options = new HashSet<Jewel>();
@@ -315,6 +309,11 @@ public class MatchThreeModel
 			options.add(Jewel.RUBY);
 			options.add(Jewel.SAPPHIRE);
 			options.add(Jewel.TOPAZ);
+			
+			// Get coordinates //
+			int x = i % width;
+			int y = i / width;
+			Coordinate position = new Coordinate(x, y);
 			
 			// Attempt to fill cell //
 			while (true) {

@@ -214,6 +214,11 @@
 			<property name="processJavadoc" value="false"/>
 		</module>
 		<module name="UpperEll"/>
+		<module name="VariableDeclarationUsageDistance">
+			<property name="allowedDistance" value="3"/>
+			<property name="validateBetweenScopes" value="true"/>
+			<property name="ignoreFinal" value="false"/>
+		</module>
 		<!-- <module name="VisibilityModifier"/> -->
 		<module name="WhitespaceAfter"/>
 		<module name="WhitespaceAround"/>

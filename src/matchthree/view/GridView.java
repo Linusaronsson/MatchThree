@@ -510,19 +510,23 @@ public class GridView
 		// Hide cell if empty //
 		cell.setVisible(cell != null);
 		
+		// Set cell label //
+		String text = (jewel != null) ? getName(jewel) : "";
+		cell.setText(text);
+		
+		// Set cell color //
+		Color color = (jewel != null) ? getColor(jewel) : Color.BLACK;
+		cell.setForeground(color);
+		
+		// Set cell icon //
 		if (jewel != null) {
 			ImageIcon     icon  = null;
 			BufferedImage image = getImage(jewel);
-			String        text  = getName(jewel);
-			Color         color = getColor(jewel);
-			
 			if (image != null) {
 				icon = new ImageIcon(image);
-				text = "";
+				cell.setText("");
 			}
 			cell.setIcon(icon);
-			cell.setText(text);
-			cell.setForeground(color);
 		}
 	}
 }

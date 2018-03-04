@@ -286,12 +286,6 @@ public class GridViewController
 			return;
 		}
 		
-		// Get score //
-		int score = matchThreeModel.getScore();
-		
-		// Get width //
-		int width = matchThreeModel.getWidth();
-		
 		// Get save destination //
 		File file = new SaveDialog().getResult();
 		
@@ -303,15 +297,22 @@ public class GridViewController
 		// Save game //
 		BufferedWriter out = null;
 		try {
+			// Log intent //
 			System.out.printf(
 				"Saving game to \"%s\"...%s",
 				file.toString(),
 				System.lineSeparator()
 			);
 			
+			// Create output buffer //
 			FileWriter writer = new FileWriter(file);
 			out = new BufferedWriter(writer);
 			
+			// Get state //
+			int score = matchThreeModel.getScore();
+			int width = matchThreeModel.getWidth();
+			
+			// Print to file //
 			out.write("MatchThree Save Data Version 1.0\n");
 			out.write("score: ");
 			out.write(String.valueOf(score));
