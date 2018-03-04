@@ -6,6 +6,7 @@ import matchthree.model.Jewel;
 import matchthree.model.MatchThreeModel;
 import matchthree.model.Settings;
 import matchthree.model.Settings.Style;
+import matchthree.view.ErrorDialog;
 
 /**
  * UI controller. Manages application navigation between views.
@@ -135,7 +136,13 @@ public class UIController
 					new MultiplayerSetupController(view, this, settings);
 				break;
 			case SETTINGS:
-				throw new IllegalStateException("Not implemented");
+				// TODO: Not implemented.
+				new ErrorDialog(
+					"Not Implemented",
+					"This feature is not implemented"
+				);
+				changeView(View.MAIN_MENU);
+				return;
 			case CREDITS:
 				viewController = new CreditsViewController(view);
 				break;
@@ -151,7 +158,13 @@ public class UIController
 				windowController.closeWindow();
 				break;
 			case LOAD:
-				throw new IllegalStateException("Not implemented");
+				// TODO: Not implemented.
+				new ErrorDialog(
+					"Not Implemented",
+					"This feature is not implemented"
+				);
+				changeView(View.MAIN_MENU);
+				return;
 			default:
 				throw new IllegalStateException("Unknown value for `View`");
 		}
