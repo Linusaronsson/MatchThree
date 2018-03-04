@@ -95,6 +95,12 @@
 		<module name="EqualsHashCode"/>
 		<module name="FallThrough"/>
 		<module name="FinalClass"/>
+		<!--
+		<module name="FinalLocalVariable">
+			<property name="tokens" value="PARAMETER_DEF, VARIABLE_DEF"/>
+			<property name="validateEnhancedForLoopVariable" value="true"/>
+		</module>
+		-->
 		<module name="FinalParameters"/>
 		<module name="GenericWhitespace"/>
 		<module name="HiddenField">
