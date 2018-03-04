@@ -39,8 +39,8 @@ public class ConfirmDialog
 	 */
 	public ConfirmDialog(
 		final String title,
-		final String body
-	) {
+		final String body)
+	{
 		// Validate arguments //
 		// TODO: Make `body` optional?
 		if (title == null || title.length() <= 0) {

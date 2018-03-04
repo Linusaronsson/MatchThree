@@ -30,8 +30,7 @@ public class MovesLeft
 	 * @author Linus Aronsson
 	 * @param matchThreeModel MatchThree model to use.
 	 */
-	public MovesLeft(
-			final MatchThreeModel matchThreeModel) {
+	public MovesLeft(final MatchThreeModel matchThreeModel) {
 		// Validate argument //
 		if (matchThreeModel == null) {
 			throw new IllegalStateException();
@@ -62,7 +61,8 @@ public class MovesLeft
 	@Override
 	public void update(final Observable o, final Object arg) {
 		if (o instanceof MatchThreeModel
-		&& arg instanceof MatchThreeModel.MovesLeftEvent) {
+			&& arg instanceof MatchThreeModel.MovesLeftEvent)
+		{
 			MatchThreeModel.LabelEvent event = (MatchThreeModel.LabelEvent) arg;
 			update(event.getValue());
 		}

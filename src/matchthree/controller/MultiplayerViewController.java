@@ -117,8 +117,8 @@ public class MultiplayerViewController
 		final Settings     settings,
 		final Jewel[]      board,
 		final InetAddress  host,
-		final int          port
-	) {
+		final int          port)
+	{
 		// Validate arguments //
 		if (parent == null) {
 			throw new IllegalArgumentException("`parent` must not be null");

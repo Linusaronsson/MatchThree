@@ -79,8 +79,8 @@ public class UIController
 	 */
 	public UIController(
 		final Container            view,
-		final MainWindowController windowController
-	) {
+		final MainWindowController windowController)
+	{
 		// Validate arguments //
 		if (view == null) {
 			throw new IllegalArgumentException("`view` must not be null");
@@ -184,8 +184,8 @@ public class UIController
 	public void startMultiplayer(
 		final Jewel[]     board,
 		final InetAddress host,
-		final int         port
-	) {
+		final int         port)
+	{
 		// Remove previous view //
 		view.removeAll();
 		

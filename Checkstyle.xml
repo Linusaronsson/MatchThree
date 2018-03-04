@@ -144,12 +144,8 @@
 			<property name="tokens" value="INTERFACE_DEF, CLASS_DEF, ENUM_DEF, OBJBLOCK"/>
 		</module>
 		<module name="LeftCurly">
-			<property name="option" value="eol"/>
-			<property name="tokens" value="ANNOTATION_DEF, CTOR_DEF, METHOD_DEF, ENUM_CONSTANT_DEF, STATIC_INIT, LAMBDA"/>
-		</module>
-		<module name="LeftCurly">
-			<property name="option" value="eol"/>
-			<property name="tokens" value="LITERAL_WHILE, LITERAL_SYNCHRONIZED, LITERAL_SWITCH, LITERAL_DO, LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY"/>
+			<property name="option" value="nlow"/>
+			<property name="tokens" value="ANNOTATION_DEF, CTOR_DEF, ENUM_CONSTANT_DEF, LAMBDA, LITERAL_CATCH, LITERAL_DO, LITERAL_ELSE, LITERAL_FINALLY, LITERAL_FOR, LITERAL_IF, LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_WHILE, METHOD_DEF, STATIC_INIT"/>
 		</module>
 		<module name="LineLength"/>
 		<module name="LocalFinalVariableName"/>

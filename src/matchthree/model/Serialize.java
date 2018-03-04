@@ -43,7 +43,8 @@ public final class Serialize
 	 * @throws UnsupportedTypeException On receiving unknown data.
 	 */
 	public static String serialize(final Jewel[] jewels)
-	throws UnsupportedTypeException {
+		throws UnsupportedTypeException
+	{
 		String string = "";
 		for (Jewel jewel : jewels) {
 			switch (jewel) {

@@ -27,7 +27,8 @@ public final class MatchThree
 	 * @throws IOException On file-system access errors.
 	 */
 	public static void main(final String[] args)
-	throws IOException {
+		throws IOException
+	{
 		// Create application //
 		new ApplicationController();
 	}

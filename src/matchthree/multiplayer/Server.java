@@ -90,8 +90,8 @@ public class Server
 		final Message        message,
 		final DatagramSocket socket,
 		final InetAddress    host,
-		final int            port
-	) {
+		final int            port)
+	{
 		try {
 			ByteArrayOutputStream byteOutStream = new ByteArrayOutputStream();
 			ObjectOutputStream outStream =

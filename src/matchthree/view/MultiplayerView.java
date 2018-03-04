@@ -88,8 +88,8 @@ public class MultiplayerView
 	 */
 	public void addHoverListener(
 		final MouseListener listener,
-		final Button        target
-	) {
+		final Button        target)
+	{
 		target.addMouseListener(listener);
 	}
 	

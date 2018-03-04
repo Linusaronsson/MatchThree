@@ -94,8 +94,8 @@ public class ButtonPanelController
 		final UIController       uiController,
 		final GridViewController gridViewController,
 		final Settings           settings,
-		final MatchThreeModel    model
-	) {
+		final MatchThreeModel    model)
+	{
 		// Validate arguments //
 		if (parent == null) {
 			throw new IllegalArgumentException("`parent` must not be null");
@@ -127,7 +127,8 @@ public class ButtonPanelController
 			uiController.changeView(UIController.View.MAIN_MENU);
 		});
 		if (buttonPanel.getV1Button() != null
-		&& buttonPanel.getV2Button() != null) {
+			&& buttonPanel.getV2Button() != null)
+		{
 			Button buttonV1   = buttonPanel.getV1Button();
 			Button buttonV2   = buttonPanel.getV2Button();
 			buttonPanel.addButtonV1Listener(new HoverListener(buttonV1));

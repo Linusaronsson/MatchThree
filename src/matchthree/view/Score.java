@@ -32,8 +32,7 @@ public class Score
 	 * @author Erik Selstam
 	 * @param matchThreeModel MatchThree model to use.
 	 */
-	public Score(
-			final MatchThreeModel matchThreeModel) {
+	public Score(final MatchThreeModel matchThreeModel) {
 		// Validate argument //
 		if (matchThreeModel == null) {
 			throw new IllegalStateException();
@@ -64,7 +63,8 @@ public class Score
 	@Override
 	public void update(final Observable o, final Object arg) {
 		if (o instanceof MatchThreeModel
-		&& arg instanceof MatchThreeModel.ScoreEvent) {
+			&& arg instanceof MatchThreeModel.ScoreEvent)
+		{
 			MatchThreeModel.LabelEvent event = (MatchThreeModel.LabelEvent) arg;
 			update(event.getValue());
 		}

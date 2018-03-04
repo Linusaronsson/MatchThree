@@ -33,8 +33,8 @@ public class SingleplayerViewController
 	public SingleplayerViewController(
 		final Container    parent,
 		final UIController uiController,
-		final Settings     settings
-	) {
+		final Settings     settings)
+	{
 		// Validate arguments //
 		if (parent == null) {
 			throw new IllegalArgumentException("`parent` must not be null");

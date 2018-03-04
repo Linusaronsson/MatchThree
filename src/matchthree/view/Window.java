@@ -46,8 +46,8 @@ public class Window
 	public Window(
 		final String    title,
 		final JMenuBar  menuBar,
-		final Container content
-	) {
+		final Container content)
+	{
 		// Validate arguments //
 		// TODO: Verify that `menuBar` may be null.
 		if (title == null) {

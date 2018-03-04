@@ -54,8 +54,8 @@ public class PlayerModel
 	public PlayerModel(
 		final int         width,
 		final InetAddress host,
-		final int         port
-	) {
+		final int         port)
+	{
 		super(width);
 		
 		this.ip   = host;
@@ -83,8 +83,8 @@ public class PlayerModel
 		final Jewel[]     board,
 		final int         width,
 		final InetAddress host,
-		final int         port
-	) {
+		final int         port)
+	{
 		super(board, width);
 		this.ip   = host;
 		this.port = port;

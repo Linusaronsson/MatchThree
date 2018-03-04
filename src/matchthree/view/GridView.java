@@ -174,8 +174,8 @@ public class GridView
 	 */
 	public void addCellHoverListener(
 		final MouseListener listener,
-		final Cell          cell
-	) {
+		final Cell          cell)
+	{
 		// Validate argument //
 		if (listener == null) {
 			throw new NullPointerException();
@@ -396,8 +396,8 @@ public class GridView
 	 */
 	public void setCellState(
 		final Coordinate position,
-		final boolean    activated
-	) {
+		final boolean    activated)
+	{
 		// Validate arguments //
 		if (position == null) {
 			throw new NullPointerException();

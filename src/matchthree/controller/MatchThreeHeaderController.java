@@ -30,8 +30,8 @@ public class MatchThreeHeaderController
 		final Container       parent,
 		final UIController    uiController,
 		final Settings        settings,
-		final MatchThreeModel matchThreeModel
-	) {
+		final MatchThreeModel matchThreeModel)
+	{
 		// Validate arguments //
 		if (parent == null) {
 			throw new IllegalArgumentException("`parent` must not be null");

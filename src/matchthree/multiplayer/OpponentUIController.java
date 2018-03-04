@@ -37,8 +37,8 @@ public class OpponentUIController
 		final UIController    uiController,
 		final Settings        settings,
 		final OpponentModel opponentModel,
-		final int port
-	) {
+		final int port)
+	{
 		// Validate arguments //
 		if (parent == null) {
 			throw new IllegalArgumentException("`parent` must not be null");

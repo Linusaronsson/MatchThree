@@ -69,8 +69,8 @@ public class OpponentController
 		final Settings      settings,
 		final OpponentModel model,
 		final int           port,
-		final Container     gridView
-	) {
+		final Container     gridView)
+	{
 		this.model        = model;
 		this.port         = port;
 		this.uiController = uiController;
