@@ -56,16 +56,17 @@ public class MultiplayerView
 		setBackground(COLOR_BACKGROUND);
 		player1View.setBackground(COLOR_BACKGROUND);
 		player2View.setBackground(COLOR_BACKGROUND);
-
+		
 		// Assemble view //
 		add(player1View);
 		add(player2View);
 		add(backPanel);
 		
 		// Set border //
-				setBorder(BorderFactory.createCompoundBorder(
-						BorderFactory.createLineBorder(Color.WHITE, 2),
-						BorderFactory.createLineBorder(Color.BLACK, 2)));
+		setBorder(BorderFactory.createCompoundBorder(
+			BorderFactory.createLineBorder(Color.WHITE, 2),
+			BorderFactory.createLineBorder(Color.BLACK, 2)
+		));
 	}
 	
 	/**
