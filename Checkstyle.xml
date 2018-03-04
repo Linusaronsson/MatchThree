@@ -126,6 +126,7 @@
 		<module name="JavadocStyle"/>
 		<module name="JavadocType">
 			<property name="authorFormat" value="\S"/>
+			<!-- <property name="versionFormat" value="\$Revision.*\$"/> -->
 		</module>
 		<module name="JavadocVariable"/>
 		<module name="LeftCurly">
