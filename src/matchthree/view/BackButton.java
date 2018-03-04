@@ -3,7 +3,6 @@ package matchthree.view;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import matchthree.util.AssetManager;
 
 /**
