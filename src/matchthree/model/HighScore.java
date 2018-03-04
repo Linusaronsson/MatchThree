@@ -64,21 +64,20 @@ public class HighScore
 			);
 		}
 	}
-
-        // Called when game is over.
-        /**
+	
+	/**
 	 * ...
 	 *
 	 * @author David Olofsson
+	 * @param name  Player name.
+	 * @param score Player score.
 	 */
-    public void syncScore(String name, int score)
-    {
-	currentScore = score;
-	this.name = name;
-	syncScore();
-    }
-    
-	// Called when game is over.
+	public void syncScore(final String name, final int score) {
+		currentScore = score;
+		this.name = name;
+		syncScore();
+	}
+	
 	/**
 	 * ...
 	 *
@@ -87,7 +86,7 @@ public class HighScore
 	public void syncScore() {
 		Statement statement;
 		
-		// connect database
+		// Connect to database //
 		try {
 			connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			System.out.println("Database connected!");
@@ -98,7 +97,7 @@ public class HighScore
 			);
 		}
 		
-		// query database
+		// Query database //
 		try {
 			statement = connection.createStatement();
 			statement.executeUpdate(
@@ -119,7 +118,7 @@ public class HighScore
 			);
 		}
 		
-		// disconnect database
+		// Disconnect from database //
 		if (connection != null) {
 			try {
 				connection.close();
@@ -143,7 +142,7 @@ public class HighScore
 		
 		List<String> scoreTable = new ArrayList<String>();
 		
-		// connect database
+		// Connect to database //
 		try {
 			connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			System.out.println("Database connected!");
@@ -154,7 +153,7 @@ public class HighScore
 			);
 		}
 		
-		// query database
+		// Query database //
 		try {
 			statement = connection.createStatement();
 			selection = statement.executeQuery(GET_SCORES_QUERY);
@@ -182,7 +181,7 @@ public class HighScore
 			);
 		}
 		
-		// disconnect database
+		// Disconnect from database //
 		if (connection != null) {
 			try {
 				connection.close();
@@ -195,7 +194,6 @@ public class HighScore
 		return scoreTable.toArray(new String[scoreTable.size()]);
 	}
 	
-	// Reset score before next game.
 	/**
 	 * ...
 	 *
@@ -205,7 +203,6 @@ public class HighScore
 		currentScore = 0;
 	}
 	
-	// Called after every move or after the game, to set the score.
 	/**
 	 * ...
 	 *
@@ -216,7 +213,6 @@ public class HighScore
 		currentScore = currentScore + points;
 	}
 	
-	// To get current score, if not stored elsewhere.
 	/**
 	 * ...
 	 *
@@ -227,7 +223,6 @@ public class HighScore
 		return currentScore;
 	}
 	
-	// Used to set the name for the score table.
 	/**
 	 * ...
 	 *
@@ -238,7 +233,6 @@ public class HighScore
 		name = newName;
 	}
 	
-	// To get the name, if it is to be shown while playing.
 	/**
 	 * ...
 	 *
