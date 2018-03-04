@@ -659,6 +659,9 @@ public class MatchThreeModel
 			notifyObservers(new String("remove"));
 			setChanged();
 			notifyObservers(new GameFinishedEvent(score));
+			// sync score discretely in background
+			HighScore highScore = new HighScore();
+			highScore.syncScore("player", score);
 		}
 		
 		setChanged();
