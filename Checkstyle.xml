@@ -89,7 +89,6 @@
 		<module name="EmptyLineSeparator">
 			<property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
 			<property name="allowMultipleEmptyLines" value="false"/>
-			<property name="allowNoEmptyLineBetweenFields" value="true"/>
 		</module>
 		<module name="EmptyStatement"/>
 		<module name="EqualsAvoidNull"/>
