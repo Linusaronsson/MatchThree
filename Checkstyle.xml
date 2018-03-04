@@ -70,10 +70,20 @@
 		<module name="AvoidNestedBlocks"/>
 		<module name="AvoidStarImport"/>
 		<module name="AvoidStaticImport"/>
+		<module name="BooleanExpressionComplexity"/>
 		<module name="CatchParameterName">
 			<property name="format" value="^exception$"/>
 		</module>
+		<module name="ClassDataAbstractionCoupling">
+			<property name="max" value="9"/>
+		</module>
+		<module name="ClassFanOutComplexity">
+			<property name="max" value="21"/>
+		</module>
+		<module name="ClassTypeParameterName"/>
+		<module name="CommentsIndentation"/>
 		<module name="ConstantName"/>
+		<module name="CovariantEquals"/>
 		<!--
 		<module name="CyclomaticComplexity">
 			<property name="max" value="12"/>
@@ -97,6 +107,9 @@
 		<module name="EqualsHashCode"/>
 		<module name="FallThrough">
 			<property name="checkLastCaseGroup" value="true"/>
+		</module>
+		<module name="ExecutableStatementCount">
+			<property name="max" value="50"/>
 		</module>
 		<module name="FinalClass"/>
 		<!--
@@ -140,6 +153,7 @@
 		<!-- <module name="Indentation"/> -->
 		<module name="InnerAssignment"/>
 		<module name="InterfaceIsType"/>
+		<module name="InterfaceTypeParameterName"/>
 		<module name="JavadocMethod"/>
 		<module name="JavadocParagraph"/>
 		<module name="JavadocStyle">
@@ -199,6 +213,9 @@
 		<module name="NoWhitespaceBefore">
 			<property name="tokens" value="COMMA, SEMI, POST_INC, POST_DEC, DOT, GENERIC_START, GENERIC_END, ELLIPSIS, METHOD_REF"/>
 		</module>
+		<module name="NPathComplexity">
+			<property name="max" value="2100"/>
+		</module>
 		<!-- <module name="OneStatementPerLine"/> -->
 		<module name="OneTopLevelClass"/>
 		<module name="OperatorWrap"/>
@@ -207,6 +224,7 @@
 		<module name="OverloadMethodsDeclarationOrder"/>
 		<module name="PackageAnnotation"/>
 		<!-- <module name="PackageDeclaration"/> -->
+		<module name="PackageName"/>
 		<module name="ParameterAssignment"/>
 		<module name="ParameterName"/>
 		<module name="ParameterNumber">
@@ -232,6 +250,9 @@
 		<!-- <module name="SingleSpaceSeparator"> -->
 		<module name="StaticVariableName"/>
 		<module name="StringLiteralEquality"/>
+		<module name="SummaryJavadocCheck">
+			<property name="violateExecutionOnNonTightHtml" value="true"/>
+		</module>
 		<module name="SuperClone"/>
 		<module name="SuperFinalize"/>
 		<module name="SuppressionCommentFilter">
