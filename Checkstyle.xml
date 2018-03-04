@@ -123,7 +123,9 @@
 		<module name="InnerAssignment"/>
 		<module name="InterfaceIsType"/>
 		<module name="JavadocMethod"/>
-		<module name="JavadocStyle"/>
+		<module name="JavadocStyle">
+			<property name="checkEmptyJavadoc" value="true"/>
+		</module>
 		<module name="JavadocTagContinuationIndentation"/>
 		<module name="JavadocType">
 			<property name="authorFormat" value="\S"/>
