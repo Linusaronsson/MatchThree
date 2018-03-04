@@ -225,6 +225,10 @@
 			<property name="aliasList" value=""/>
 		</module>
 		-->
+		<module name="ThrowsCount">
+			<property name="ignorePrivateMethods" value="false"/>
+			<property name="max" value="3"/>
+		</module>
 		<!-- <module name="TodoComment"/> -->
 		<module name="TrailingComment"/>
 		<module name="TypecastParenPad"/>
