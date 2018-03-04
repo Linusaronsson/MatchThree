@@ -101,7 +101,9 @@
 			<property name="validateEnhancedForLoopVariable" value="true"/>
 		</module>
 		-->
-		<module name="FinalParameters"/>
+		<module name="FinalParameters">
+			<property name="tokens" value="METHOD_DEF, CTOR_DEF, LITERAL_CATCH, FOR_EACH_CLAUSE"/>
+		</module>
 		<module name="GenericWhitespace"/>
 		<module name="HiddenField">
 			<!-- Disabled: PARAMETER_DEF -->

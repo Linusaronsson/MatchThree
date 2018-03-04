@@ -41,13 +41,13 @@ public class ApplicationController
 		String lookAndFeel = UIManager.getSystemLookAndFeelClassName();
 		try {
 			UIManager.setLookAndFeel(lookAndFeel);
-		} catch (ClassNotFoundException exception) {
+		} catch (final ClassNotFoundException exception) {
 			System.err.println(exception);
-		} catch (InstantiationException exception) {
+		} catch (final InstantiationException exception) {
 			System.err.println(exception);
-		} catch (IllegalAccessException exception) {
+		} catch (final IllegalAccessException exception) {
 			System.err.println(exception);
-		} catch (UnsupportedLookAndFeelException exception) {
+		} catch (final UnsupportedLookAndFeelException exception) {
 			System.err.println(exception);
 		}
 	}

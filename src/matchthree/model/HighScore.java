@@ -57,7 +57,7 @@ public class HighScore
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			System.out.println("Driver loaded!");
-		} catch (ClassNotFoundException exception) {
+		} catch (final ClassNotFoundException exception) {
 			throw new IllegalStateException(
 				"Cannot find the driver in the classpath!",
 				exception
@@ -78,7 +78,7 @@ public class HighScore
 		try {
 			connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			System.out.println("Database connected!");
-		} catch (SQLException exception) {
+		} catch (final SQLException exception) {
 			throw new IllegalStateException(
 				"Cannot connect the database!",
 				exception
@@ -99,7 +99,7 @@ public class HighScore
 				+ SYNC_QUERY_END
 			);
 			System.out.println("Database responded!");
-		} catch (SQLException exception) {
+		} catch (final SQLException exception) {
 			throw new IllegalStateException(
 				"Database unresponsive!",
 				exception
@@ -112,7 +112,7 @@ public class HighScore
 				connection.close();
 				connection = null;
 				System.out.println("Database disconnected!");
-			} catch (SQLException exception) {
+			} catch (final SQLException exception) {
 				exception.printStackTrace();
 			}
 		}
@@ -134,7 +134,7 @@ public class HighScore
 		try {
 			connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			System.out.println("Database connected!");
-		} catch (SQLException exception) {
+		} catch (final SQLException exception) {
 			throw new IllegalStateException(
 				"Cannot connect the database!",
 				exception
@@ -146,7 +146,7 @@ public class HighScore
 			statement = connection.createStatement();
 			selection = statement.executeQuery(GET_SCORES_QUERY);
 			System.out.println("Database responded!");
-		} catch (SQLException exception) {
+		} catch (final SQLException exception) {
 			throw new IllegalStateException(
 				"Database unresponsive!",
 				exception
@@ -162,7 +162,7 @@ public class HighScore
 				);
 				selection.next();
 			}
-		} catch (SQLException exception) {
+		} catch (final SQLException exception) {
 			throw new IllegalStateException(
 				"ResultSet non-functional!",
 				exception
@@ -175,7 +175,7 @@ public class HighScore
 				connection.close();
 				connection = null;
 				System.out.println("Database disconnected!");
-			} catch (SQLException exception) {
+			} catch (final SQLException exception) {
 				exception.printStackTrace();
 			}
 		}

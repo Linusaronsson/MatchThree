@@ -70,7 +70,7 @@ public class Server
 			// Setup receiving packet //
 			inBuffer = new byte[PACKET_SIZE];
 			in = new DatagramPacket(inBuffer, inBuffer.length);
-		} catch (SocketException exception) {
+		} catch (final SocketException exception) {
 			exception.printStackTrace();
 			System.exit(1);
 		}
@@ -103,7 +103,7 @@ public class Server
 			DatagramPacket out = new DatagramPacket(data, length, host, port);
 			socket.send(out);
 			outStream.close();
-		} catch (IOException exception) {
+		} catch (final IOException exception) {
 			exception.printStackTrace();
 		}
 	}
@@ -186,10 +186,10 @@ public class Server
 					inStream.close();
 				}
 			}
-		} catch (ClassNotFoundException exception) {
+		} catch (final ClassNotFoundException exception) {
 			exception.printStackTrace();
 			System.exit(1);
-		} catch (IOException exception) {
+		} catch (final IOException exception) {
 			exception.printStackTrace();
 			System.exit(1);
 		}

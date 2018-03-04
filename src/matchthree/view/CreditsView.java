@@ -35,7 +35,7 @@ public class CreditsView
 	public CreditsView() {
 		// Create labels //
 		List<Component> labels = new ArrayList<Component>();
-		for (String name : NAMES) {
+		for (final String name : NAMES) {
 			Component label = new CreditsLabel(name);
 			labels.add(label);
 		}
@@ -45,7 +45,7 @@ public class CreditsView
 		setLayout(layout);
 		
 		// Assemble view //
-		for (Component label : labels) {
+		for (final Component label : labels) {
 			add(label);
 		}
 	}

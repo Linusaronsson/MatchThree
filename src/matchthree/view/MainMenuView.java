@@ -133,7 +133,7 @@ public class MainMenuView
 	 * @param buttons ...
 	 */
 	private void setProperties(final Button[] buttons) {
-		for (Button button : buttons) {
+		for (final Button button : buttons) {
 			button.setPreferredSize(PREFERRED_DIMENSION);
 			button.setBorder(BorderFactory.createCompoundBorder(
 				BorderFactory.createCompoundBorder(
@@ -158,7 +158,7 @@ public class MainMenuView
 	 * @param buttons ...
 	 */
 	private void assembleButtons(final Button[] buttons) {
-		for (Button button : buttons) {
+		for (final Button button : buttons) {
 			buttonPanel.add(button);
 		}
 	}

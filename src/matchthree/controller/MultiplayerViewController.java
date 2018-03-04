@@ -206,7 +206,7 @@ public class MultiplayerViewController
 			Message message = new Message(Message.MessageType.END_GAME);
 			DatagramSocket socket = new DatagramSocket();
 			Server.sendDatagram(message, socket, host, port);
-		} catch (SocketException exception) {
+		} catch (final SocketException exception) {
 			exception.printStackTrace();
 		}
 	}

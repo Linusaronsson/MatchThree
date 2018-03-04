@@ -106,7 +106,7 @@ public final class AssetManager
 		AudioInputStream audioStream = null;
 		try {
 			audioStream = AudioSystem.getAudioInputStream(audioFile);
-		} catch (IOException exception) {
+		} catch (final IOException exception) {
 			System.err.printf(
 				"Error while reading \"%s\"%s",
 				audioFile,
@@ -120,7 +120,7 @@ public final class AssetManager
 			
 			// Soft return //
 			return null;
-		} catch (UnsupportedAudioFileException exception) {
+		} catch (final UnsupportedAudioFileException exception) {
 			System.err.printf(
 				"File type not supported for \"%s\"%s",
 				audioFile,
@@ -141,7 +141,7 @@ public final class AssetManager
 		try {
 			clip = AudioSystem.getClip();
 			clip.open(audioStream);
-		} catch (IOException exception) {
+		} catch (final IOException exception) {
 			System.err.printf(
 				"IO error while loading \"%s\"%s",
 				audioFile,
@@ -155,7 +155,7 @@ public final class AssetManager
 			
 			// Soft return //
 			return null;
-		} catch (LineUnavailableException exception) {
+		} catch (final LineUnavailableException exception) {
 			System.err.printf(
 				"Error loading audio \"%s\": LineUnavailableException%s",
 				audioFile,
@@ -192,7 +192,7 @@ public final class AssetManager
 		BufferedImage image = null;
 		try {
 			image = ImageIO.read(file);
-		} catch (IOException exception) {
+		} catch (final IOException exception) {
 			System.err.printf(
 				"Failed to read \"%s\":%s",
 				file,

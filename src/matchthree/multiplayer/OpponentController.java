@@ -82,7 +82,7 @@ public class OpponentController
 			//Setup receiving packet
 			inBuffer = new byte[PACKET_SIZE];
 			in = new DatagramPacket(inBuffer, inBuffer.length);
-		} catch (SocketException exception) {
+		} catch (final SocketException exception) {
 			exception.printStackTrace();
 			System.exit(1);
 		}
@@ -154,11 +154,11 @@ public class OpponentController
 				);
 				inStream.close();
 			}
-		} catch (SocketException exception) {
+		} catch (final SocketException exception) {
 			return;
-		} catch (IOException exception) {
+		} catch (final IOException exception) {
 			exception.printStackTrace();
-		} catch (ClassNotFoundException exception) {
+		} catch (final ClassNotFoundException exception) {
 			exception.printStackTrace();
 		}
 	}

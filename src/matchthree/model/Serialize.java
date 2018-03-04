@@ -46,7 +46,7 @@ public final class Serialize
 		throws UnsupportedTypeException
 	{
 		String string = "";
-		for (Jewel jewel : jewels) {
+		for (final Jewel jewel : jewels) {
 			switch (jewel) {
 				case DIAMOND:  string += "d"; break;
 				case EMERALD:  string += "e"; break;

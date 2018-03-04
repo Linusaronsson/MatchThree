@@ -127,7 +127,7 @@ public class ButtonPanel
 	 */
 	public Container createVersionButtonsPanel(final Button... buttons) {
 		Container panel = new JPanel();
-		for (Button button : buttons) {
+		for (final Button button : buttons) {
 			panel.add(button);
 		}
 		panel.setBackground(COLOR_PANEL);

@@ -151,7 +151,7 @@ public class MainMenuViewController
 			uiController.changeView(UIController.View.QUIT);
 		});
 		
-		for (Button button : mainMenuView.getButtons()) {
+		for (final Button button : mainMenuView.getButtons()) {
 			button.addMouseListener(new HoverButtonListener(button));
 		}
 		

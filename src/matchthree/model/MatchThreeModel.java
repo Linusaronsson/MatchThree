@@ -248,9 +248,9 @@ public class MatchThreeModel
 		
 		// Clear chains //
 		int points = 0;
-		for (Coordinate[] chain : chains) {
+		for (final Coordinate[] chain : chains) {
 			// Clear cells //
-			for (Coordinate cell : chain) {
+			for (final Coordinate cell : chain) {
 				set(cell, null);
 			}
 			
@@ -331,7 +331,7 @@ public class MatchThreeModel
 				int   choice  = random.nextInt(options.size());
 				int   current = 0;
 				Jewel jewel   = null;
-				for (Jewel kind : options) {
+				for (final Jewel kind : options) {
 					if (current == choice) {
 						jewel = kind;
 					}
@@ -386,7 +386,7 @@ public class MatchThreeModel
 		
 		// Look for chains //
 		List<Coordinate[]> chains = new ArrayList<Coordinate[]>();
-		for (Coordinate position : positions) {
+		for (final Coordinate position : positions) {
 			// Get jewel type to match //
 			Jewel matchType = get(position);
 			

@@ -157,7 +157,7 @@ public class GridViewController
 			// Handle click //
 			handleAction(event);
 		});
-		for (Cell cell : gridView.getBoard()) {
+		for (final Cell cell : gridView.getBoard()) {
 			// Handle cell hover actions //
 			gridView.addCellHoverListener(new CellHoverListener(cell), cell);
 		}
@@ -278,7 +278,7 @@ public class GridViewController
 		String serial = null;
 		try {
 			serial = Serialize.serialize(board);
-		} catch (Serialize.UnsupportedTypeException exception) {
+		} catch (final Serialize.UnsupportedTypeException exception) {
 			new ErrorDialog(
 				"Serialization failed",
 				"Could not serialize model contents"
@@ -323,7 +323,7 @@ public class GridViewController
 			out.write("board: ");
 			out.write(serial.toString());
 			out.write("\n");
-		} catch (IOException exception) {
+		} catch (final IOException exception) {
 			new ErrorDialog("Save game failed", "Failed to save game");
 			System.err.println(exception);
 			return;
@@ -331,7 +331,7 @@ public class GridViewController
 			if (out != null) {
 				try {
 					out.close();
-				} catch (IOException exception) {
+				} catch (final IOException exception) {
 					System.err.println("Failed to close file");
 					System.err.println(exception);
 				}

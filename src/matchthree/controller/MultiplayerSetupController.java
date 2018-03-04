@@ -145,7 +145,7 @@ public class MultiplayerSetupController
 		int         port = Integer.parseInt(portText);
 		try {
 			host = InetAddress.getByName(hostText);
-		} catch (UnknownHostException exception) {
+		} catch (final UnknownHostException exception) {
 			new ErrorDialog("Unknown Host", "Could not resolve host");
 			
 			// Soft return //
@@ -158,7 +158,7 @@ public class MultiplayerSetupController
 			Message message = new Message(Message.MessageType.REQUESTED_GAME);
 			socket = new DatagramSocket();
 			Server.sendDatagram(message, socket, host, port);
-		} catch (SocketException exception) {
+		} catch (final SocketException exception) {
 			new ErrorDialog(
 				"Network Error",
 				"Socket error while sending game request"

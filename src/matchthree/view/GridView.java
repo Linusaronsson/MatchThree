@@ -160,7 +160,7 @@ public class GridView
 			throw new NullPointerException();
 		}
 		
-		for (Cell cell : board) {
+		for (final Cell cell : board) {
 			cell.addActionListener(listener);
 		}
 	}
@@ -220,7 +220,7 @@ public class GridView
 			default: break;
 		}
 		int index = 0;
-		for (Jewel jewel : model.getBoard()) {
+		for (final Jewel jewel : model.getBoard()) {
 			Cell cell = board[index];
 			switch (jewel) {
 				case DIAMOND:  cell.setIcon(new ImageIcon(currentDiamond));
