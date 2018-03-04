@@ -188,6 +188,7 @@
 		</module>
 		<module name="NoWhitespaceAfter"/>
 		<module name="NoWhitespaceBefore"/>
+		<!-- <module name="OneStatementPerLine"/> -->
 		<module name="OneTopLevelClass"/>
 		<module name="OperatorWrap"/>
 		<module name="OuterTypeFilename"/>
