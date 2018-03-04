@@ -160,7 +160,23 @@
 		<module name="MissingSwitchDefault"/>
 		<module name="ModifierOrder"/>
 		<!-- <module name="MultipleStringLiterals"/> -->
+		<module name="MultipleVariableDeclarations"/>
+		<module name="MutableException"/>
 		<module name="NeedBraces"/>
+		<module name="NestedForDepth">
+			<property name="max" value="2"/>
+		</module>
+		<module name="NestedIfDepth"/>
+		<module name="NestedTryDepth"/>
+		<module name="NoClone"/>
+		<module name="NoFinalizer"/>
+		<module name="NoLineWrap">
+			<!-- Disabled: CLASS_DEF, METHOD_DEF, CTOR_DEF, ENUM_DEF, INTERFACE_DEF -->
+			<property name="tokens" value="IMPORT, STATIC_IMPORT, PACKAGE_DEF"/>
+		</module>
+		<module name="NonEmptyAtclauseDescription">
+			<property name="violateExecutionOnNonTightHtml" value="true"/>
+		</module>
 		<module name="NoWhitespaceAfter"/>
 		<module name="NoWhitespaceBefore"/>
 		<module name="OperatorWrap"/>
