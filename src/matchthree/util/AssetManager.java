@@ -173,7 +173,8 @@ public final class AssetManager
 		
 		// Store reference to clip //
 		// TODO: Assert element does not already exist.
-		audio.put(name, clip); // TODO: Element re-assertion if .wav active
+		// TODO: Element re-assertion if .wav active
+		audio.put(name, clip);
 		
 		return clip;
 	}

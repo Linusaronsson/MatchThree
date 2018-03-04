@@ -226,6 +226,7 @@
 		</module>
 		-->
 		<!-- <module name="TodoComment"/> -->
+		<module name="TrailingComment"/>
 		<module name="TypecastParenPad"/>
 		<module name="TypeName"/>
 		<module name="UncommentedMain">
