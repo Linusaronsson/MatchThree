@@ -188,7 +188,10 @@
 		</module>
 		<module name="NoWhitespaceAfter"/>
 		<module name="NoWhitespaceBefore"/>
+		<module name="OneTopLevelClass"/>
 		<module name="OperatorWrap"/>
+		<module name="OuterTypeFilename"/>
+		<module name="OuterTypeNumber"/>
 		<module name="OverloadMethodsDeclarationOrder"/>
 		<module name="PackageAnnotation"/>
 		<!-- <module name="PackageDeclaration"/> -->
