@@ -8,8 +8,9 @@ EXIT_MISSING_PROGRAM=3             # Exit code - Needed program not found.
 EXIT_MISSING_VERB=2                # Exit code - No verbs provided.
 EXIT_OK=0                          # Exit code - Success.
 EXIT_UNIMPLEMENTED=-1              # Exit code - Feature not implemented.
-RESOURCE='resources'               # Resource directory.
 LIBRARY='libraries'                # External class library directory.
+PACKAGE_NAME='matchthree'          # Main package name.
+RESOURCE='resources'               # Resource directory.
 SOURCE='src'                       # Source code directory.
 TARGET='target'                    # Target directory.
 TARGET_DOC='doc'                   # Documentation artifact directory name.
@@ -46,6 +47,7 @@ doc () {
 		-encoding UTF-8 \
 		-keywords \
 		-docencoding UTF-8 \
+		-subpackages "$PACKAGE_NAME" \
 		-d "${script_dir}/${TARGET}/${TARGET_DOC}" \
 		"${script_dir}/${SOURCE}/"**/*.java
 }
