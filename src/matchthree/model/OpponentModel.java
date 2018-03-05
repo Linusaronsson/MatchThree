@@ -1,5 +1,8 @@
 package matchthree.model;
 
+import matchthree.message.MovesLeftEvent;
+import matchthree.message.ScoreEvent;
+
 /**
  * Extension of MatchThreeModel used for the player view in multiplayer mode
  * for sending datagrams to the opponent.

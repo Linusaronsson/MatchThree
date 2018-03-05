@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JLabel;
+import matchthree.message.LabelEvent;
+import matchthree.message.ScoreEvent;
 import matchthree.model.MatchThreeModel;
 
 /**
@@ -63,9 +65,9 @@ public class Score
 	@Override
 	public void update(final Observable o, final Object arg) {
 		if (o instanceof MatchThreeModel
-			&& arg instanceof MatchThreeModel.ScoreEvent)
+			&& arg instanceof ScoreEvent)
 		{
-			MatchThreeModel.LabelEvent event = (MatchThreeModel.LabelEvent) arg;
+			LabelEvent event = (LabelEvent) arg;
 			update(event.getValue());
 		}
 	}

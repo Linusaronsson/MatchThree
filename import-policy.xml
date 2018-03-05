@@ -38,6 +38,7 @@
 		<allow pkg="java.io"/>
 		<allow pkg="java.util"/>
 		<allow pkg="javax.swing"/>
+		<allow pkg="matchthree.message"/>
 		<allow pkg="matchthree.model"/>
 		<allow pkg="matchthree.util"/>
 	</subpackage>

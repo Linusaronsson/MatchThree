@@ -14,6 +14,9 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import matchthree.message.CellEvent;
+import matchthree.message.GameFinishedEvent;
+import matchthree.message.LabelEvent;
 import matchthree.model.Coordinate;
 import matchthree.model.Jewel;
 import matchthree.model.MatchThreeModel;
@@ -449,15 +452,13 @@ public class GridView
 	@Override
 	public void update(final Observable o, final Object arg) {
 		if (o instanceof MatchThreeModel) {
-			if (arg instanceof MatchThreeModel.CellEvent) {
-				MatchThreeModel.CellEvent event =
-					(MatchThreeModel.CellEvent) arg;
+			if (arg instanceof CellEvent) {
+				CellEvent event = (CellEvent) arg;
 				Coordinate c = event.getPos();
 				Jewel j = event.getType();
 				updateCell(c, j);
-			} else if (arg instanceof MatchThreeModel.GameFinishedEvent) {
-				MatchThreeModel.LabelEvent event =
-					(MatchThreeModel.LabelEvent) arg;
+			} else if (arg instanceof GameFinishedEvent) {
+				LabelEvent event = (LabelEvent) arg;
 				removeAll();
 				GameFinished f = new GameFinished(event.getValue());
 				add(f);

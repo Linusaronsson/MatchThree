@@ -6,6 +6,10 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Random;
 import java.util.Set;
+import matchthree.message.CellEvent;
+import matchthree.message.GameFinishedEvent;
+import matchthree.message.MovesLeftEvent;
+import matchthree.message.ScoreEvent;
 
 /**
  * MatchThree game model.
@@ -50,140 +54,6 @@ public class MatchThreeModel
 		
 		/** Successful move. */
 		OK;
-	}
-	
-	/**
-	 * Cell update event.
-	 *
-	 * @author Linus Aronsson
-	 */
-	public class CellEvent
-	{
-		/** Cell type. */
-		private Jewel cellType;
-		
-		/** Cell position. */
-		private Coordinate position;
-		
-		/**
-		 * Constructor.
-		 *
-		 * @author Linus Aronsson
-		 * @param position Cell position to embed.
-		 * @param cellType Cell type to embed.
-		 */
-		public CellEvent(final Coordinate position, final Jewel cellType) {
-			this.cellType = cellType;
-			this.position = position;
-		}
-		
-		/**
-		 * Get cell position.
-		 *
-		 * @author Linus Aronsson
-		 * @return The cell position.
-		 */
-		public Coordinate getPos() {
-			return position;
-		}
-		
-		/**
-		 * Get cell type.
-		 *
-		 * @author Linus Aronsson
-		 * @return The cell type.
-		 */
-		public Jewel getType() {
-			return cellType;
-		}
-	}
-	
-	/**
-	 * Game completed event.
-	 *
-	 * @author Linus Aronsson
-	 */
-	public class GameFinishedEvent
-		extends LabelEvent
-	{
-		/**
-		 * Constructor.
-		 *
-		 * @author Linus Aronsson
-		 * @param value ...
-		 */
-		public GameFinishedEvent(final int value) {
-			super(value);
-		}
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @author Linus Aronsson
-	 */
-	public class LabelEvent
-	{
-		/** ... */
-		private int value;
-		
-		/**
-		 * Constructor.
-		 *
-		 * @author Linus Aronsson
-		 * @param value ...
-		 */
-		public LabelEvent(final int value) {
-			this.value = value;
-		}
-		
-		/**
-		 * Get value.
-		 *
-		 * @author Linus Aronsson
-		 * @return The value.
-		 */
-		public int getValue() {
-			return value;
-		}
-	}
-	
-	/**
-	 * Move counter update event.
-	 *
-	 * @author Linus Aronsson
-	 */
-	public class MovesLeftEvent
-		extends LabelEvent
-	{
-		/**
-		 * Constructor.
-		 *
-		 * @author Linus Aronsson
-		 * @param value Move counter to embed.
-		 */
-		public MovesLeftEvent(final int value) {
-			super(value);
-		}
-	}
-	
-	/**
-	 * Score update event.
-	 *
-	 * @author Linus Aronsson
-	 */
-	public class ScoreEvent
-		extends LabelEvent
-	{
-		/**
-		 * Constructor.
-		 *
-		 * @author Linus Aronsson
-		 * @param value Score to embed.
-		 */
-		public ScoreEvent(final int value) {
-			super(value);
-		}
 	}
 	
 	/**

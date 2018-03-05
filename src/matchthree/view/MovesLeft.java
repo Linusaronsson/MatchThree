@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JLabel;
+import matchthree.message.LabelEvent;
+import matchthree.message.MovesLeftEvent;
 import matchthree.model.MatchThreeModel;
 
 /**
@@ -61,9 +63,9 @@ public class MovesLeft
 	@Override
 	public void update(final Observable o, final Object arg) {
 		if (o instanceof MatchThreeModel
-			&& arg instanceof MatchThreeModel.MovesLeftEvent)
+			&& arg instanceof MovesLeftEvent)
 		{
-			MatchThreeModel.LabelEvent event = (MatchThreeModel.LabelEvent) arg;
+			LabelEvent event = (LabelEvent) arg;
 			update(event.getValue());
 		}
 	}
