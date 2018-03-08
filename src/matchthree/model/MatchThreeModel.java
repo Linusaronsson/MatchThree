@@ -27,7 +27,7 @@ public class MatchThreeModel
 	protected int score = 0;
 	
 	/** Moves left. */
-	protected int movesLeft = 2;
+	protected int movesLeft = 20;
 	
 	/** Width of grid. */
 	protected int width = 0;
