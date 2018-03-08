@@ -5,7 +5,6 @@ import java.awt.LayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.BoxLayout;
-import javax.swing.JPanel;
 
 /**
  * Credits view.
@@ -15,7 +14,7 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class CreditsView
-	extends JPanel
+	extends Panel
 {
 	/** Credit names. */
 	private static final String[] NAMES = new String[] {

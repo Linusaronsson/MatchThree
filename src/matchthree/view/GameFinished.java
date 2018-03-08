@@ -1,126 +1,80 @@
 package matchthree.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
-import javax.swing.BorderFactory;
+import java.awt.LayoutManager;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  * ...
  *
- * @author Erik Tran
  * @author Erik Selstam
+ * @author Erik Tran
  */
 @SuppressWarnings("serial")
 public class GameFinished
-	extends JPanel
+	extends Panel
 {
-	/** ... */
-	//new Color(0xbb, 0xf0, 0x49);
-	private static final Color COLOR_RESULT_BACKGROUND = Color.WHITE;
+	/** Foreground color. */
+	private static final Color COLOR_FOREGROUND = Color.WHITE;
 	
-	/** Label color. */
-	private static final Color COLOR_LABEL = Color.BLACK;
+	/** Message font size. */
+	private static final Font FONT_HEADER =
+		new Font(Font.SANS_SERIF, Font.BOLD, 32);
 	
-	/** Border width. */
-	private static final int BORDER_SIZE = 1;
+	/** Score font size. */
+	private static final Font FONT_SCORE =
+		new Font(Font.SANS_SERIF, Font.PLAIN, 32);
 	
-	/** Border color. */
-	private static final Color COLOR_BORDER = Color.BLUE;
+	/** Title font size. */
+	private static final Font FONT_TITLE =
+		new Font(Font.SANS_SERIF, Font.BOLD, 48);
 	
-	/** Border dark color. */
-	private static final Color COLOR_BORDER_DARKER = COLOR_BORDER.darker();
+	/** Header content. */
+	private static final String HEADER = "Score";
 	
-	/** Font size. */
-	private static final int FONT_SIZE = 20;
-	
-	/** ... */
-	private JLabel title = null;
-	
-	/** ... */
-	private JLabel message = null;
+	/** Title content. */
+	private static final String TITLE = "Game Over";
 	
 	/**
 	 * Constructor.
 	 *
-	 * @author Erik Tran
 	 * @author Erik Selstam
+	 * @author Erik Tran
 	 * @param score ...
 	 */
 	public GameFinished(final int score) {
-		super(new BorderLayout());
-		title = new JLabel("Game finished");
-		message = new JLabel("Score: " + score);
+		super();
 		
-		title.setFont(new Font("", Font.BOLD, FONT_SIZE));
-		message.setFont(new Font("", Font.BOLD, FONT_SIZE));
+		// Create labels //
+		JLabel headerLabel = new JLabel(HEADER);
+		JLabel scoreLabel  = new JLabel(Integer.toString(score));
+		JLabel titleLabel  = new JLabel(TITLE);
 		
-		title.setForeground(COLOR_LABEL);
-		message.setForeground(COLOR_LABEL);
+		// Set label colors //
+		headerLabel.setForeground(COLOR_FOREGROUND);
+		scoreLabel.setForeground(COLOR_FOREGROUND);
+		titleLabel.setForeground(COLOR_FOREGROUND);
 		
-		Container panel = new JPanel(new GridLayout(2, 1));
-		panel.add(title);
-		panel.add(message);
-		panel.setBackground(COLOR_RESULT_BACKGROUND);
-		setBorder(BorderFactory.createCompoundBorder(
-			BorderFactory.createCompoundBorder(
-				BorderFactory.createLineBorder(Color.BLACK, BORDER_SIZE + 1),
-				BorderFactory.createLineBorder(COLOR_BORDER, BORDER_SIZE)
-			),
-			BorderFactory.createCompoundBorder(
-				BorderFactory.createCompoundBorder(
-					BorderFactory.createLineBorder(
-						COLOR_BORDER_DARKER,
-						BORDER_SIZE
-					),
-					BorderFactory.createLineBorder(
-						COLOR_BORDER,
-						BORDER_SIZE
-					)
-				),
-				BorderFactory.createCompoundBorder(
-					BorderFactory.createCompoundBorder(
-						BorderFactory.createLineBorder(
-							COLOR_BORDER_DARKER,
-							BORDER_SIZE
-						),
-						BorderFactory.createLineBorder(
-							COLOR_BORDER,
-							BORDER_SIZE
-						)
-					),
-					BorderFactory.createCompoundBorder(
-						BorderFactory.createCompoundBorder(
-							BorderFactory.createLineBorder(
-								COLOR_BORDER_DARKER,
-								BORDER_SIZE
-							),
-							BorderFactory.createLineBorder(
-								COLOR_BORDER,
-								BORDER_SIZE
-							)
-						),
-						BorderFactory.createCompoundBorder(
-							BorderFactory.createLineBorder(
-								COLOR_BORDER_DARKER,
-								BORDER_SIZE
-							),
-							BorderFactory.createLineBorder(
-								Color.BLACK,
-								BORDER_SIZE + 1
-							)
-						)
-					)
-				)
-			)
-		));
+		// Set label alignments //
+		headerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		scoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		setBackground(COLOR_RESULT_BACKGROUND);
+		// Set label fonts //
+		headerLabel.setFont(FONT_HEADER);
+		scoreLabel.setFont(FONT_SCORE);
+		titleLabel.setFont(FONT_TITLE);
 		
-		add(panel, BorderLayout.NORTH);
+		// Set layout //
+		LayoutManager layout = new GridLayout(3, 0, 0, 10);
+		setLayout(layout);
+		
+		// Assemble view //
+		add(titleLabel);
+		add(headerLabel);
+		add(scoreLabel);
 	}
 }

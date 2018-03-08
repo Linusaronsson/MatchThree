@@ -8,11 +8,8 @@ import java.awt.event.MouseListener;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
-import javax.swing.BorderFactory;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
-import matchthree.util.Properties;
 
 /**
  * Multiplayer setup screen.
@@ -23,8 +20,14 @@ import matchthree.util.Properties;
  */
 @SuppressWarnings("serial")
 public class MultiplayerMenuView
-	extends JPanel
+	extends Panel
 {
+	/** Background color. */
+	private static final Color COLOR_BACKGROUND = new Color(0x22, 0x22, 0x22);
+	
+	/** Font. */
+	private static final Font FONT = new Font("Impact", Font.PLAIN, 20);
+	
 	/** ... */
 	private Button connect = new Button();
 	
@@ -37,12 +40,6 @@ public class MultiplayerMenuView
 	/** ... */
 	private JTextField port = new JTextField();
 	
-	/** ... */
-	private JLabel ipLabel = new JLabel("IP: ");
-	
-	/** ... */
-	private JLabel portLabel = new JLabel("Port: ");
-		
 	/**
 	 * ...
 	 *
@@ -51,75 +48,69 @@ public class MultiplayerMenuView
 	 * @author Erik Selstam
 	 */
 	public MultiplayerMenuView() {
-		// Set properties //
-		// TODO: Avoid magic numbers.
-		ip.setPreferredSize(new Dimension(200, 24));
-		port.setPreferredSize(new Dimension(200, 24));
-		
-		// Assemble view //
-		// TODO: Add a back button here somehow
-		//add(back);
-		
-		// Set connect button layout //
+		// Set connect button properties //
 		connect.setBackground(Color.BLACK);
+		connect.setContentAreaFilled(true);
+		connect.setForeground(Color.WHITE);
 		connect.setPreferredSize(new Dimension(160, 80));
 		connect.setSize(new Dimension(160, 80));
-		connect.setContentAreaFilled(true);
-		connect.setBorder(BorderFactory.createCompoundBorder(
-			BorderFactory.createCompoundBorder(
-				BorderFactory.createLineBorder(Color.BLACK, 1),
-				BorderFactory.createLineBorder(Color.DARK_GRAY, 1)),
-			BorderFactory.createLineBorder(Color.BLACK, 1)));
-		connect.setBorderPainted(true);
 		
-		Font font = new Font("Impact", Font.PLAIN, 20);
-		
+		// Create connect label //
 		JLabel connectLabel = new JLabel(" Connect to player");
-		connectLabel.setForeground(Color.BLACK);
-		connectLabel.setFont(font);
+		connectLabel.setForeground(Color.WHITE);
+		connectLabel.setFont(FONT);
 		connect.add(connectLabel);
 		
-		ipLabel.setFont(font);
-		portLabel.setFont(font);
+		// Create IP label //
+		JLabel ipLabel = new JLabel("IP: ");
+		ipLabel.setFont(FONT);
 		ipLabel.setForeground(Color.WHITE);
+		
+		// Create port label //
+		JLabel portLabel = new JLabel("Port: ");
+		portLabel.setFont(FONT);
 		portLabel.setForeground(Color.WHITE);
 		
-		setLayout(new FlowLayout());
-		setBackground(Properties.getColorBackground());
-		ip.setBackground(Properties.getColorBackground());
-		port.setBackground(Properties.getColorBackground());
+		// Create IP field //
+		ip.setBackground(Color.WHITE);
+		ip.setCaretColor(Color.BLACK);
+		ip.setForeground(Color.BLACK);
+		ip.setPreferredSize(new Dimension(200, 24));
 		
-		ip.setForeground(Color.WHITE);
-		port.setForeground(Color.WHITE);
-		ip.setCaretColor(Color.WHITE);
-		port.setCaretColor(Color.WHITE);
+		// Create port label //
+		port.setBackground(Color.WHITE);
+		port.setCaretColor(Color.BLACK);
+		port.setForeground(Color.BLACK);
+		port.setPreferredSize(new Dimension(200, 24));
 		
-		Container ippanel = new JPanel();
+		// Create IP container //
+		Container ippanel = new SubPanel();
+		ippanel.setLayout(new FlowLayout());
 		ippanel.add(ipLabel);
 		ippanel.add(ip);
-		ippanel.setBackground(Properties.getColorBackground());
 		
-		Container portpanel = new JPanel();
+		// Create ports container //
+		Container portpanel = new SubPanel();
+		portpanel.setLayout(new FlowLayout());
 		portpanel.add(portLabel);
 		portpanel.add(port);
-		portpanel.setBackground(Properties.getColorBackground());
 		
-		Container bothpanel = new JPanel();
+		// Create fields container //
+		Container bothpanel = new SubPanel();
 		bothpanel.setLayout(new GridLayout(2, 1));
 		bothpanel.add(ippanel);
 		bothpanel.add(portpanel);
-		bothpanel.setBackground(Properties.getColorBackground());
 		
-		backPanel.setBackground(Properties.getColorBackground());
+		// Set properties //
+		setBackground(COLOR_BACKGROUND);
 		
+		// Set layout //
+		setLayout(new FlowLayout());
+		
+		// Assemble view //
 		add(connect);
 		add(bothpanel);
 		add(backPanel);
-		
-		// Set border //
-		setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createLineBorder(Color.WHITE, 2),
-				BorderFactory.createLineBorder(Color.BLACK, 2)));
 	}
 	
 	/**

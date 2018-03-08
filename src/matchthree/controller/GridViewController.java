@@ -16,7 +16,6 @@ import matchthree.model.Serialize;
 import matchthree.model.Settings;
 import matchthree.model.Settings.Style;
 import matchthree.util.AssetManager;
-import matchthree.util.Properties;
 import matchthree.view.Cell;
 import matchthree.view.ErrorDialog;
 import matchthree.view.GridView;
@@ -33,10 +32,8 @@ import matchthree.view.SaveDialog;
  */
 public class GridViewController
 {
-	
 	/** ... */
-	private static final Color COLOR_BACKGROUND =
-		Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND = new Color(0x22, 0x22, 0x22);
 	
 	/** Currently active cell. */
 	private Coordinate activeCell = null;

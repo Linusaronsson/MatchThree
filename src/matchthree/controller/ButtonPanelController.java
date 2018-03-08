@@ -8,7 +8,6 @@ import matchthree.model.MatchThreeModel;
 import matchthree.model.Settings;
 import matchthree.model.Settings.Style;
 import matchthree.util.AssetManager;
-import matchthree.util.Properties;
 import matchthree.view.Button;
 import matchthree.view.ButtonPanel;
 
@@ -20,8 +19,7 @@ import matchthree.view.ButtonPanel;
 public class ButtonPanelController
 {
 	/** Background color. */
-	private static final Color COLOR_BACKGROUND =
-		Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND = new Color(0x22, 0x22, 0x22);
 	
 	/** Reference to GridViewController controller. */
 	private GridViewController gridViewController = null;

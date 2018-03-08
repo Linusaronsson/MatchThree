@@ -21,12 +21,9 @@ public class Score
 	extends JLabel
 	implements Observer
 {
-	/** Font name. */
-	private static final String FONT_NAME = "Helvetica Neue";
+	/** Font. */
+	private static final Font FONT = new Font("Helvetica Neue", Font.PLAIN, 20);
 	
-	/** Font size. */
-	private static final int FONT_SIZE = 20;
-		
 	/**
 	 * Create `Score`.
 	 *
@@ -39,7 +36,7 @@ public class Score
 		if (matchThreeModel == null) {
 			throw new IllegalStateException();
 		}
-				
+		
 		// Update state //
 		update(0);
 		
@@ -47,8 +44,8 @@ public class Score
 		matchThreeModel.addObserver(this);
 		
 		// Set properties //
-		setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
-		setForeground(Color.BLACK);
+		setFont(FONT);
+		setForeground(Color.WHITE);
 	}
 	
 	/**

@@ -1,7 +1,6 @@
 package matchthree.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
@@ -9,10 +8,8 @@ import java.awt.image.BufferedImage;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.ImageIcon;
-import javax.swing.JPanel;
 import matchthree.model.MatchThreeModel;
 import matchthree.util.AssetManager;
-import matchthree.util.Properties;
 
 /**
  * Game button panel.
@@ -23,7 +20,7 @@ import matchthree.util.Properties;
  */
 @SuppressWarnings({"deprecation", "serial"})
 public class ButtonPanel
-	extends JPanel
+	extends Panel
 	implements Observer
 {
 	/** ... */
@@ -31,14 +28,6 @@ public class ButtonPanel
 	
 	/** ... */
 	private static final int GAP_VERTICAL = 4;
-	
-	/** Background color. */
-	private static final Color COLOR_BACKGROUND =
-		Properties.getColorBackground();
-	
-	/** Panel color. */
-	private static final Color COLOR_PANEL =
-		COLOR_BACKGROUND.brighter().brighter();
 	
 	/** Visual style 1 image. */
 	private static final BufferedImage IMAGE_V1 =
@@ -58,7 +47,7 @@ public class ButtonPanel
 	private Button buttonV2 = null;
 	
 	/** Visual style button container. */
-	private Container styleButtonsPanel = new JPanel();
+	private Container styleButtonsPanel = new SubPanel();
 	
 	/**
 	 * Constructor.
@@ -76,9 +65,6 @@ public class ButtonPanel
 		);
 		setLayout(layout);
 		
-		// Set properties //
-		setBackground(COLOR_BACKGROUND);
-		
 		// Create version 1 button //
 		buttonV1 = new Button();
 		buttonV1.setIcon(new ImageIcon(IMAGE_V1));
@@ -89,12 +75,11 @@ public class ButtonPanel
 		
 		// Create panel for the version buttons //
 		styleButtonsPanel = createVersionButtonsPanel(buttonV1, buttonV2);
-		styleButtonsPanel.setBackground(COLOR_BACKGROUND);
 		
 		// Assemble view //
 		model.addObserver(this);
 		add(back, BorderLayout.PAGE_START);
-		add(styleButtonsPanel);
+		//add(styleButtonsPanel);
 	}
 	
 	/**
@@ -111,9 +96,6 @@ public class ButtonPanel
 		);
 		setLayout(layout);
 		
-		// Set properties //
-		setBackground(COLOR_BACKGROUND);
-		
 		// Assemble view //
 		add(back, BorderLayout.PAGE_START);
 	}
@@ -126,11 +108,10 @@ public class ButtonPanel
 	 * @return        ...
 	 */
 	public Container createVersionButtonsPanel(final Button... buttons) {
-		Container panel = new JPanel();
+		Container panel = new SubPanel();
 		for (final Button button : buttons) {
 			panel.add(button);
 		}
-		panel.setBackground(COLOR_PANEL);
 		return panel;
 	}
 	

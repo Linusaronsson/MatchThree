@@ -12,7 +12,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import matchthree.util.Properties;
 
 /**
  * Button.
@@ -31,8 +30,7 @@ public class Button
 	private static final int DEFAULT_HEIGHT = 80;
 	
 	/** ... */
-	private static final Color COLOR_BACKGROUND =
-		Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND = new Color(0x33, 0x33, 0x33);
 	
 	/** ... */
 	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
@@ -93,21 +91,16 @@ public class Button
 	 * @author Erik Tran
 	 */
 	private void setProperties() {
-		// Set colors //
-		setForeground(COLOR_FOREGROUND);
-		setBackground(COLOR_BACKGROUND);
-		
-		// Set alignment //
-		setHorizontalAlignment(SwingConstants.CENTER);
-		setVerticalAlignment(SwingConstants.CENTER);
-		
 		// Set properties //
 		setBorderPainted(false);
+		setContentAreaFilled(false);
 		setEnabled(true);
 		setFocusPainted(false);
-		setOpaque(true);
-		setContentAreaFilled(false);
+		setForeground(COLOR_FOREGROUND);
+		setHorizontalAlignment(SwingConstants.CENTER);
+		setOpaque(false);
 		setPreferredSize(new Dimension(DEFAULT_WIDTH, DEFAULT_HEIGHT));
+		setVerticalAlignment(SwingConstants.CENTER);
 	}
 	
 	/**
@@ -183,6 +176,8 @@ public class Button
 	
 	@Override
 	public void setFont(final Font font) {
+		super.setFont(font);
+		
 		if (font != null && label != null) {
 			label.setFont(font);
 		}
@@ -195,6 +190,8 @@ public class Button
 	 */
 	@Override
 	protected void paintComponent(final Graphics g) {
+		super.paintComponent(g);
+		
 		BufferedImage image =
 			getGraphicsConfiguration().createCompatibleImage(
 				getWidth(),
@@ -204,7 +201,6 @@ public class Button
 		image.coerceData(true);
 		
 		Graphics2D imageGraphics = image.createGraphics();
-		super.paintComponent(imageGraphics);
 		imageGraphics.dispose();
 		
 		BufferedImage mask =

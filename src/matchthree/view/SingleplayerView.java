@@ -1,12 +1,8 @@
 package matchthree.view;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
-import java.awt.LayoutManager;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-import matchthree.util.Properties;
 
 /**
  * ...
@@ -17,21 +13,16 @@ import matchthree.util.Properties;
  */
 @SuppressWarnings("serial")
 public class SingleplayerView
-	extends JPanel
+	extends Panel
 {
-	/** ... */
-	private static final Color COLOR_BACKGROUND =
-			Properties.getColorBackground();
+	/** Background color. */
+	private static final Color COLOR_BACKGROUND = new Color(0x22, 0x22, 0x22);
 	
-	/** ... */
-	private static final Color COLOR_PANEL =
-			COLOR_BACKGROUND.brighter().brighter();
+	/** Button panel. */
+	private SubPanel buttonPanel = new SubPanel();
 	
-	/** ... */
-	private Container buttonPanel = new JPanel();
-	
-	/** ... */
-	private Container gameView = new JPanel();
+	/** Game view. */
+	private SubPanel gameView = new SubPanel();
 	
 	/**
 	 * Create `SingleplayerView`.
@@ -42,22 +33,14 @@ public class SingleplayerView
 	 */
 	public SingleplayerView() {
 		// Set properties //
-		// TODO: Stopgap hack.
 		setBackground(COLOR_BACKGROUND);
-		buttonPanel.setBackground(COLOR_BACKGROUND);
-		gameView.setBackground(COLOR_BACKGROUND);
 		
-		// Set layout //
-		LayoutManager layout = new BoxLayout(this, BoxLayout.X_AXIS);
-		setLayout(layout);
+		// Set sub-panel properties //
+		buttonPanel.setPadding(40);
 		
 		// Assemble view //
-		add(gameView);
-		add(buttonPanel);
-		
-		setBorder(BorderFactory.createCompoundBorder(
-			BorderFactory.createLineBorder(Color.WHITE, 2),
-			BorderFactory.createLineBorder(Color.BLACK, 2)));
+		add(gameView,    BorderLayout.CENTER);
+		add(buttonPanel, BorderLayout.EAST);
 	}
 	
 	/**

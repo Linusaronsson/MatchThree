@@ -1,6 +1,5 @@
 package matchthree.view;
 
-import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -9,7 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import matchthree.util.AssetManager;
-import matchthree.util.Properties;
 
 /**
  * Application main window.
@@ -23,15 +21,8 @@ public class Window
 	extends JFrame
 {
 	/** ... */
-	private static final Color COLOR_BACKGROUND =
-		Properties.getColorBackground();
-	
-	/** ... */
 	private static final ImageIcon ICON =
 		new ImageIcon(AssetManager.loadImage("Logo3.png"));
-	
-	/** Window content pane. */
-	private Container content = null;
 	
 	/**
 	 * Create `Window`.
@@ -57,25 +48,18 @@ public class Window
 			throw new NullPointerException();
 		}
 		
-		this.content = content;
-		
-		// Set window properties //
-		setTitle(title);
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setLocationByPlatform(true);
-		setResizable(true);
-		
-		// Set colors //
-		content.setBackground(COLOR_BACKGROUND);
-		
-		// Set icon //
-		setIconImage(ICON.getImage());
+		// Set content //
+		setContentPane(content);
 		
 		// Set menu bar //
 		setJMenuBar(menuBar);
 		
-		// Add content //
-		setContentPane(content);
+		// Set properties //
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setIconImage(ICON.getImage());
+		setLocationByPlatform(true);
+		setResizable(true);
+		setTitle(title);
 		
 		// Automatically resize window //
 		pack();

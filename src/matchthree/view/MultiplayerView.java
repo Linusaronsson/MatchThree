@@ -5,10 +5,7 @@ import java.awt.Container;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.FlowLayout;
-import javax.swing.BorderFactory;
-import javax.swing.JPanel;
 import matchthree.model.Settings;
-import matchthree.util.Properties;
 
 /**
  * Multiplayer game screen.
@@ -18,7 +15,7 @@ import matchthree.util.Properties;
  */
 @SuppressWarnings("serial")
 public class MultiplayerView
-	extends JPanel
+	extends Panel
 {
 	/** ... */
 	private static final int GAP_HORIZONTAL = 30;
@@ -30,17 +27,16 @@ public class MultiplayerView
 	private static final int PORT_NUMBER = Settings.getPortNumber();
 	
 	/** Background color. */
-	private static final Color COLOR_BACKGROUND =
-		Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND = new Color(0x22, 0x22, 0x22);
 	
 	/** Back button container. */
 	private ButtonPanel buttonPanel = new ButtonPanel();
 	
 	/** Player 1 container. */
-	private Container player1View = new JPanel();
+	private Container player1View = new SubPanel();
 	
 	/** Player 2 container. */
-	private Container player2View = new JPanel();
+	private Container player2View = new SubPanel();
 	
 	/**
 	 * Constructor.
@@ -61,12 +57,6 @@ public class MultiplayerView
 		add(player1View);
 		add(player2View);
 		add(buttonPanel);
-		
-		// Set border //
-		setBorder(BorderFactory.createCompoundBorder(
-			BorderFactory.createLineBorder(Color.WHITE, 2),
-			BorderFactory.createLineBorder(Color.BLACK, 2)
-		));
 	}
 	
 	/**

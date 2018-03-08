@@ -3,9 +3,9 @@ package matchthree.controller;
 import java.awt.Container;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.JPanel;
 import matchthree.view.ErrorDialog;
 import matchthree.view.MainMenuBar;
+import matchthree.view.MainPane;
 import matchthree.view.Window;
 
 /**
@@ -94,7 +94,7 @@ public class MainWindowController
 		// Create main window //
 		// TODO: Consider removing this panel.
 		MainMenuBar menuBar = new MainMenuBar();
-		Container   panel   = new JPanel();
+		Container   panel   = new MainPane();
 		window = new Window(WINDOW_TITLE, menuBar, panel);
 		
 		// Create UI //

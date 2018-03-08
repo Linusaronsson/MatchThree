@@ -5,9 +5,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.JPanel;
 import matchthree.model.MatchThreeModel;
-import matchthree.util.Properties;
 
 /**
  * MatchThree game view.
@@ -18,22 +16,17 @@ import matchthree.util.Properties;
  */
 @SuppressWarnings({"deprecation", "serial"})
 public class MatchThreeUI
-	extends JPanel
+	extends Panel
 	implements Observer
 {
 	/** Background color. */
-	private static final Color COLOR_BACKGROUND =
-		Properties.getColorBackground();
-	
-	/** Panel color. */
-	private static final Color COLOR_PANEL =
-		COLOR_BACKGROUND.brighter().brighter();
+	private static final Color COLOR_BACKGROUND = new Color(0x11, 0x11, 0x11);
 	
 	/** Grid container. */
-	private Container gridView = new JPanel();
+	private SubPanel gridView = new SubPanel();
 	
 	/** Header container. */
-	private Container headerView = new JPanel();
+	private SubPanel headerView = new SubPanel();
 	
 	/**
 	 * Constructor.
@@ -45,19 +38,19 @@ public class MatchThreeUI
 	 */
 	// TODO: Call parent constructor?
 	public MatchThreeUI(final MatchThreeModel model) {
-		// Set properties //
-		// TODO: Stopgap hack.
-		setBackground(COLOR_BACKGROUND);
-		headerView.setBackground(COLOR_BACKGROUND);
-		gridView.setBackground(COLOR_BACKGROUND);
+		// Register observer //
+		model.addObserver(this);
 		
-		// Set layout //
-		setLayout(new BorderLayout());
+		// Set properties //
+		setBackground(COLOR_BACKGROUND);
+		
+		// Set sub-panel properties //
+		headerView.setPadding(40, 40, 40, 10);
+		gridView.setPadding(10, 40, 40, 40);
 		
 		// Assemble view //
-		model.addObserver(this);
-		add(headerView, BorderLayout.PAGE_START);
-		add(gridView, BorderLayout.CENTER);
+		add(headerView, BorderLayout.NORTH);
+		add(gridView,   BorderLayout.CENTER);
 	}
 	
 	/**

@@ -1,18 +1,15 @@
 package matchthree.view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import matchthree.util.AssetManager;
-import matchthree.util.Properties;
 
 /**
  * Application start view.
@@ -22,15 +19,10 @@ import matchthree.util.Properties;
  */
 @SuppressWarnings("serial")
 public class MainMenuView
-	extends JPanel
+	extends Panel
 {
-	/** ... */
-	private static final String BUTTON_FONT_NAME =
-		Properties.getButtonFontName();
-	
-	/** ... */
-	private static final int BUTTON_FONT_SIZE =
-			Properties.getButtonFontSize();
+	/** Button font. */
+	private static final Font FONT_BUTTON = new Font("Impact", Font.PLAIN, 30);
 	
 	/** ... */
 	private static final int PREFERRED_WIDTH = 400;
@@ -44,10 +36,6 @@ public class MainMenuView
 	/** ... */
 	private static final Dimension PREFERRED_DIMENSION =
 		new Dimension(PREFERRED_WIDTH, PREFERRED_HEIGHT);
-	
-	/** ... */
-	private static final Color COLOR_BACKGROUND =
-		Properties.getColorBackground();
 	
 	/** ... */
 	private static final JLabel LOGO =
@@ -80,7 +68,7 @@ public class MainMenuView
 	};
 	
 	/** ... */
-	private JPanel buttonPanel = new JPanel();
+	private Container buttonPanel = new SubPanel();
 	
 	/**
 	 * ...
@@ -89,78 +77,33 @@ public class MainMenuView
 	 * @author Erik Selstam
 	 */
 	public MainMenuView() {
-		// Set layout //
-		setLayout(new BorderLayout());
-		setBackground(COLOR_BACKGROUND);
-		
-		// Set border //
-		setBorder(BorderFactory.createCompoundBorder(
-			BorderFactory.createLineBorder(Color.WHITE, 2),
-			BorderFactory.createLineBorder(Color.BLACK, 2))
-		);
-		
 		// Set button properties //
-		setProperties(buttons);
+		for (final Button button : buttons) {
+			button.setBackground(null);
+			button.setFont(FONT_BUTTON);
+			button.setOpaque(false);
+			button.setPreferredSize(PREFERRED_DIMENSION);
+		}
 		
-		// Set button panel properties //
+		// Set button panel layout //
 		LayoutManager layout = new GridLayout(buttons.length, 1, GAP, GAP);
 		buttonPanel.setLayout(layout);
-		buttonPanel.setBackground(COLOR_BACKGROUND);
-		buttonPanel.setBorder(
-			BorderFactory.createCompoundBorder(
-				BorderFactory.createLineBorder(Color.WHITE, 2),
-				BorderFactory.createLineBorder(COLOR_BACKGROUND, 10)
-			)
-		);
 		
 		// Assemble button panel //
-		assembleButtons(buttons);
-		
-		// Assemble view //
-		add(LOGO, BorderLayout.LINE_START);
-		add(buttonPanel, BorderLayout.CENTER);
-		add(new JLabel("     "), BorderLayout.WEST);
-		add(new JLabel("     "), BorderLayout.EAST);
-		add(new JLabel(" "), BorderLayout.NORTH);
-		add(new JLabel(" "), BorderLayout.SOUTH);
-	}
-	
-	/**
-	 * Set buttons properties.
-	 *
-	 * @author Erik Tran
-	 * @author Erik Selstam
-	 * @param buttons ...
-	 */
-	private void setProperties(final Button[] buttons) {
-		for (final Button button : buttons) {
-			button.setPreferredSize(PREFERRED_DIMENSION);
-			button.setBorder(BorderFactory.createCompoundBorder(
-				BorderFactory.createCompoundBorder(
-					BorderFactory.createLineBorder(Color.WHITE, 1),
-					BorderFactory.createLineBorder(Color.WHITE.darker(), 1)
-				),
-				BorderFactory.createLineBorder(Color.WHITE, 1)
-			));
-			Font font = new Font(
-				BUTTON_FONT_NAME,
-				Font.PLAIN,
-				BUTTON_FONT_SIZE
-			);
-			button.setFont(font);
-		}
-	}
-	
-	/**
-	 * Assemble buttons and create button panel.
-	 *
-	 * @author Erik Tran
-	 * @param buttons ...
-	 */
-	private void assembleButtons(final Button[] buttons) {
 		for (final Button button : buttons) {
 			buttonPanel.add(button);
 		}
+		
+		// Set layout //
+		setLayout(new BorderLayout());
+		
+		// Assemble view //
+		add(LOGO,        BorderLayout.LINE_START);
+		add(buttonPanel, BorderLayout.CENTER);
+		add(new JLabel("     "), BorderLayout.WEST);
+		add(new JLabel("     "), BorderLayout.EAST);
+		add(new JLabel(" "),     BorderLayout.NORTH);
+		add(new JLabel(" "),     BorderLayout.SOUTH);
 	}
 	
 	/**

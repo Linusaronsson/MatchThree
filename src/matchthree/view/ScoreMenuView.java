@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JList;
-import javax.swing.JPanel;
 import matchthree.model.HighScore;
 
 /**
@@ -15,7 +14,7 @@ import matchthree.model.HighScore;
  */
 @SuppressWarnings("serial")
 public class ScoreMenuView
-    extends JPanel
+    extends Panel
 {
 	/** Main menu button. */
 	final JButton mainMenu = new JButton("Main Menu");

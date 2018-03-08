@@ -6,14 +6,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.awt.LayoutManager;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.border.Border;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLayeredPane;
-import javax.swing.JPanel;
 import matchthree.message.CellEvent;
 import matchthree.message.GameFinishedEvent;
 import matchthree.message.LabelEvent;
@@ -22,7 +21,6 @@ import matchthree.model.Jewel;
 import matchthree.model.MatchThreeModel;
 import matchthree.model.Settings.Style;
 import matchthree.util.AssetManager;
-import matchthree.util.Properties;
 
 /**
  * MatchThree grid view.
@@ -33,18 +31,15 @@ import matchthree.util.Properties;
  */
 @SuppressWarnings({"deprecation", "serial"})
 public class GridView
-	extends JPanel
+	extends Panel
 	implements Observer
 {
-	/** ... */
-	private static final String CELL_FONT_NAME = "Helvetica Neue";
+	/** Cell font. */
+	private static final Font FONT_CELL =
+		new Font("Helvetica Neue", Font.PLAIN, 14);
 	
 	/** ... */
-	private static final int CELL_FONT_SIZE = 14;
-	
-	/** ... */
-	private static final Color COLOR_BACKGROUND =
-		Properties.getColorBackground();
+	private static final Color COLOR_BACKGROUND = new Color(0x33, 0x33, 0x33);
 	
 	/** ... */
 	private static final Color COLOR_DIAMOND = new Color(0xB9, 0xF2, 0xFF);
@@ -63,6 +58,9 @@ public class GridView
 	
 	/** ... */
 	private static final Color COLOR_TOPAZ = new Color(0xFF, 0xBF, 0x00);
+	
+	/** Icon width. */
+	private static final int ICON_SIZE = 80;
 	
 	/** ... */
 	private static final Color ACTIVE_CELL_COLOR = Color.RED;
@@ -251,24 +249,12 @@ public class GridView
 	 */
 	private Container createGrid() {
 		// Create grid //
+		Container grid = new SubPanel();
+		
+		// Set grid layout //
 		int width = model.getWidth();
-		JPanel grid = new JPanel(new GridLayout(width, width, GAP, GAP));
-		
-		// Set layout //
-		Border border = BorderFactory.createCompoundBorder(
-			BorderFactory.createLineBorder(
-				Color.WHITE,
-				1
-			),
-			BorderFactory.createLineBorder(
-				COLOR_BACKGROUND,
-				10
-			)
-		);
-		grid.setBorder(border);
-		
-		// Set background //
-		grid.setBackground(COLOR_BACKGROUND);
+		LayoutManager layout = new GridLayout(width, width, GAP, GAP);
+		grid.setLayout(layout);
 		
 		// Fill grid //
 		board = new Cell[width * width];
@@ -282,8 +268,7 @@ public class GridView
 			board[i] = button;
 			
 			// Set button properties //
-			Font font = new Font(CELL_FONT_NAME, Font.PLAIN, CELL_FONT_SIZE);
-			button.setFont(font);
+			button.setFont(FONT_CELL);
 			
 			// Update button state from view //
 			updateCell(x, y, model.get(x, y));
@@ -359,16 +344,11 @@ public class GridView
 	private void initGraphics(final Style style) {
 		// Load images //
 		// TODO: Load new images as well.
-		imageDiamond    = AssetManager.loadImage("Diamond.png");
-		imageDiamondV2  = AssetManager.loadImage("Diamond_v2.png");
-		imageEmerald    = AssetManager.loadImage("Emerald.png");
-		imageEmeraldV2  = AssetManager.loadImage("Emerald_v2.png");
-		imageRuby       = AssetManager.loadImage("Ruby.png");
-		imageRubyV2     = AssetManager.loadImage("Ruby_v2.png");
-		imageSapphire   = AssetManager.loadImage("Sapphire.png");
-		imageSapphireV2 = AssetManager.loadImage("Sapphire_v2.png");
-		imageTopaz      = AssetManager.loadImage("Topaz.png");
-		imageTopazV2    = AssetManager.loadImage("Topaz_v2.png");
+		imageDiamond  = AssetManager.loadImage("Diamond.png");
+		imageEmerald  = AssetManager.loadImage("Emerald.png");
+		imageRuby     = AssetManager.loadImage("Ruby.png");
+		imageSapphire = AssetManager.loadImage("Sapphire.png");
+		imageTopaz    = AssetManager.loadImage("Topaz.png");
 		
 		switch (style) {
 			case CLASSIC:
@@ -420,12 +400,10 @@ public class GridView
 		cell.setState(activated);
 		if (activated) {
 			cell.setMask(ACTIVE_CELL_COLOR, 0.3f);
-			cell.setBackground(COLOR_BACKGROUND);
 			cell.setForeground(COLOR_FOREGROUND);
 			cell.setContentAreaFilled(true);
 		} else {
 			cell.setMask(COLOR_BACKGROUND, 0f);
-			cell.setBackground(COLOR_BACKGROUND);
 			cell.setForeground(COLOR_FOREGROUND);
 			cell.setContentAreaFilled(false);
 		}
@@ -524,7 +502,12 @@ public class GridView
 			ImageIcon     icon  = null;
 			BufferedImage image = getImage(jewel);
 			if (image != null) {
-				icon = new ImageIcon(image);
+				Image scaledImage = image.getScaledInstance(
+					ICON_SIZE,
+					-1,
+					java.awt.Image.SCALE_SMOOTH
+				);
+				icon = new ImageIcon(scaledImage);
 				cell.setText("");
 			}
 			cell.setIcon(icon);

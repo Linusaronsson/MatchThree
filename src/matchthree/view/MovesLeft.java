@@ -13,6 +13,7 @@ import matchthree.model.MatchThreeModel;
  * Score counter.
  *
  * @author Linus Aronsson
+ * @author Erik Selstam
  */
 // TODO: Rename this since it is used for Moves Left label too?
 @SuppressWarnings({"deprecation", "serial"})
@@ -20,16 +21,14 @@ public class MovesLeft
 	extends JLabel
 	implements Observer
 {
-	/** Font name. */
-	private static final String FONT_NAME = "Helvetica Neue";
-	
-	/** Font size. */
-	private static final int FONT_SIZE = 20;
+	/** Font. */
+	private static final Font FONT = new Font("Helvetica Neue", Font.BOLD, 20);
 	
 	/**
 	 * Create `Score`.
 	 *
 	 * @author Linus Aronsson
+	 * @author Erik Selstam
 	 * @param matchThreeModel MatchThree model to use.
 	 */
 	public MovesLeft(final MatchThreeModel matchThreeModel) {
@@ -37,7 +36,7 @@ public class MovesLeft
 		if (matchThreeModel == null) {
 			throw new IllegalStateException();
 		}
-				
+		
 		// Update state //
 		int value = matchThreeModel.getMovesLeft();
 		update(value);
@@ -46,8 +45,8 @@ public class MovesLeft
 		matchThreeModel.addObserver(this);
 		
 		// Set properties //
-		setFont(new Font(FONT_NAME, Font.BOLD, FONT_SIZE));
-		setForeground(Color.BLACK);
+		setFont(FONT);
+		setForeground(Color.WHITE);
 	}
 	
 	/**

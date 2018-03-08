@@ -1,5 +1,6 @@
 package matchthree.view;
 
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JLabel;
 
@@ -12,14 +13,11 @@ import javax.swing.JLabel;
 public class CreditsLabel
 	extends JLabel
 {
-	/** Font size. */
-	private static final String FONT_NAME = "Impact";
+	/** Foreground color. */
+	private static final Color COLOR_FOREGROUND = Color.WHITE;
 	
-	/** Font size. */
-	private static final int FONT_SIZE = 20;
-	
-	/** Font style. */
-	private static final int FONT_STYLE = Font.PLAIN;
+	/** Font. */
+	private static final Font FONT = new Font("Impact", Font.PLAIN, 20);
 	
 	/**
 	 * Constructor.
@@ -36,7 +34,7 @@ public class CreditsLabel
 		}
 		
 		// Set properties //
-		Font font = new Font(FONT_NAME, FONT_STYLE, FONT_SIZE);
-		setFont(font);
+		setFont(FONT);
+		setForeground(COLOR_FOREGROUND);
 	}
 }
