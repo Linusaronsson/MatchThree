@@ -7,6 +7,8 @@ create chains. Score is rewarded upon successful chain creation. The game is
 over when the move counter reaches zero, and any score accumulated is recorded
 on the high score table.
 
+![MatchThree on OS X 10.9](screenshots/Singleplayer.png "MatchThree on OS X 10.9")
+
 ## Building ##
 
 To build the project, run `$ ./make.sh build`. The compiled program will be put
@@ -28,6 +30,7 @@ this form, the arguments will run in sequence, and abort on failure.
 | `doc/`            | Various documentation   |
 | `libraries/`      | Run-time dependencies   |
 | `resources/`      | Run-time assets         |
+| `screenshots/`    | Application screenshots |
 | `src/`            | Source code             |
 | `src/controller/` | Controllers             |
 | `src/message/`    | Event messages          |
