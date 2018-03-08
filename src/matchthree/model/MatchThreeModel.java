@@ -460,6 +460,33 @@ public class MatchThreeModel
 		}
 		positions.add(to);
 		
+		// Revert move if no chains were made //
+		// TODO: Performs an extra check.
+		// TODO: Avoid changing and revering board state.
+		// TODO: Severe code duplication.
+		Coordinate[] positionsArray = new Coordinate[] {};
+		Coordinate[][] chains = findChains(positions.toArray(positionsArray));
+		if (chains.length <= 0) {
+			int dx2 = -dx;
+			int dy2 = -dy;
+			
+			for (Coordinate position = new Coordinate(to.getX(), to.getY());
+				position.getX() != from.getX()
+					|| position.getY() != from.getY();
+				position.setX(position.getX() + dx2),
+				position.setY(position.getY() + dy2))
+			{
+				// Swap cell with neighbor //
+				Coordinate next = new Coordinate(
+					position.getX() + dx2,
+					position.getY() + dy2
+				);
+				swap(position, next);
+			}
+			
+			return MoveType.BAD;
+		}
+		
 		// Clear cells //
 		Coordinate[] out = new Coordinate[positions.size()];
 		update(positions.toArray(out));
