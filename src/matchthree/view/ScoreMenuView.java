@@ -1,9 +1,12 @@
 package matchthree.view;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 import matchthree.model.HighScore;
 
 /**
@@ -26,30 +29,37 @@ public class ScoreMenuView
 	final JList<String> scoreTable = new JList<String>();
 	
 	/**
-	 * Create `ScoreMenuView`.
+	 * Constructor.
 	 *
 	 * @author David Olofsson
+	 * @author Erik Selstam
 	 */
 	public ScoreMenuView() {
-		// Set layout //
-		setLayout(new BorderLayout());
-		
 		// Fill the score table //
 		refresh();
 		
-		// Add the objects //
-		add(scoreTable, BorderLayout.CENTER);
-		add(refresh, BorderLayout.NORTH);
-		add(mainMenu, BorderLayout.SOUTH);
+		// Create scroll pane //
+		Container scrollPane = new JScrollPane(scoreTable);
+		
+		// Set properties //
+		Dimension size = new Dimension(200, 400);
+		setPreferredSize(size);
+		
+		// Assemble view //
+		add(refresh,    BorderLayout.NORTH);
+		add(scrollPane, BorderLayout.CENTER);
+		add(mainMenu,   BorderLayout.SOUTH);
 	}
 	
 	/**
 	 * Refresh score list.
 	 *
 	 * @author David Olofsson
+	 * @author Erik Selstam
 	 */
 	public void refresh() {
-		scoreTable.setListData(new HighScore().getScoreTable());
+		String[] data = new HighScore().getScoreTable();
+		scoreTable.setListData(data);
 	}
 	
 	/**
