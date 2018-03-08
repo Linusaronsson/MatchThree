@@ -565,23 +565,44 @@ public class MatchThreeModel
 			throw new NullPointerException();
 		}
 		
-		// Find matches //
-		Coordinate[][] chains = findChains(positions);
+		// Prepare cells to update //
+		Coordinate[] affected = positions;
 		
-		// Clear matches and adjust score //
-		int points = clearChains(chains);
-		score += points;
-		
-		// Notify observers //
-		setChanged();
-		notifyObservers(new ScoreEvent(score));
-		
-		// Drop cells //
-		dropCells();
-		
-		// Refill board //
-		fill();
-		
-		// TODO: Clear board again.
+		// Keep clearing chains //
+		// TODO: Increase combo-counter.
+		while (true) {
+			// Find matches //
+			Coordinate[][] chains = findChains(affected);
+			
+			// Bail out if there are no chains //
+			if (chains.length <= 0) {
+				break;
+			}
+			
+			// Clear matches and adjust score //
+			int points = clearChains(chains);
+			score += points;
+			
+			// Notify observers //
+			setChanged();
+			notifyObservers(new ScoreEvent(score));
+			
+			// Drop cells //
+			dropCells();
+			
+			// Refill board //
+			fill();
+			
+			// Generate new cells to update //
+			// TODO: Currently selects all cells.
+			List<Coordinate> newList = new ArrayList<Coordinate>();
+			for (int x = 0; x < width; x++) {
+				for (int y = 0; y < width; y++) {
+					newList.add(new Coordinate(x, y));
+				}
+			}
+			Coordinate[] newArray = new Coordinate[] {};
+			affected = newList.toArray(newArray);
+		}
 	}
 }
