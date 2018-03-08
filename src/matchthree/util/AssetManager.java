@@ -215,7 +215,6 @@ public final class AssetManager
 	 * @param audio ...
 	 */
 	public static void playAudio(final Audio audio) {
-		/*
 		// Validate argument //
 		if (audio == null) {
 			throw new NullPointerException();
@@ -228,7 +227,6 @@ public final class AssetManager
 		// Rewind and play clip //
 		clip.setFramePosition(0);
 		clip.start();
-		*/
 	}
 	
 	/**
