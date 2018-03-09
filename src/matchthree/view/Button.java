@@ -24,74 +24,31 @@ import javax.swing.SwingConstants;
 public class Button
 	extends JButton
 {
-	/** ... */
-	private static final int DEFAULT_WIDTH = 80;
-	
-	/** ... */
-	private static final int DEFAULT_HEIGHT = 80;
-	
-	/** ... */
+	/** Background color. */
 	private static final Color COLOR_BACKGROUND = new Color(0x33, 0x33, 0x33);
 	
-	/** ... */
+	/** Foreground color. */
 	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
 	
-	/** ... */
-	private Color color = new Color(0, 0, 0, 0);
+	/** Default height. */
+	private static final int DEFAULT_HEIGHT = 80;
 	
-	/** ... */
+	/** Default width. */
+	private static final int DEFAULT_WIDTH = 80;
+	
+	/** Button color. */
+	private Color color = new Color(0x00, 0x00, 0x00);
+	
+	/** Button label. */
 	private JLabel label = new JLabel();
 	
 	/**
-	 * Create button.
+	 * Constructor.
 	 *
 	 * @author Erik Tran
+	 * @author Erik Selstam
 	 */
 	public Button() {
-		setProperties();
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @author Erik Tran
-	 * @param size Cell width
-	 */
-	public Button(final int size) {
-		setProperties(size);
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @author Erik Tran
-	 * @param label ...
-	 */
-	public Button(final String label) {
-		this.label.setText(label);
-		this.label.setForeground(Color.WHITE);
-		add(this.label);
-		setProperties();
-	}
-	
-	/**
-	 * ...
-	 *
-	 * @author Erik Tran
-	 * @param icon ...
-	 */
-	public Button(final ImageIcon icon) {
-		setProperties();
-		setIcon(icon);
-	}
-	
-	/**
-	 * Set button properties.
-	 *
-	 * @author Erik Selstam
-	 * @author Erik Tran
-	 */
-	private void setProperties() {
 		// Set properties //
 		setBorderPainted(false);
 		setContentAreaFilled(false);
@@ -105,14 +62,50 @@ public class Button
 	}
 	
 	/**
-	 * ...
+	 * Constructor.
 	 *
 	 * @author Erik Tran
-	 * @param size Cell width.
+	 * @author Erik Selstam
+	 * @param size Cell width in logical pixels.
 	 */
-	private void setProperties(final int size) {
-		setProperties();
-		setPreferredSize(new Dimension(size, size));
+	public Button(final int size) {
+		this();
+		
+		// Set properties //
+		Dimension square = new Dimension(size, size);
+		setPreferredSize(square);
+	}
+	
+	/**
+	 * Constructor.
+	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
+	 * @param label ...
+	 */
+	public Button(final String label) {
+		this();
+		
+		// Set properties //
+		this.label.setText(label);
+		this.label.setForeground(Color.WHITE);
+		
+		// Assemble view //
+		add(this.label);
+	}
+	
+	/**
+	 * Constructor.
+	 *
+	 * @author Erik Tran
+	 * @author Erik Selstam
+	 * @param icon ...
+	 */
+	public Button(final ImageIcon icon) {
+		this();
+		
+		// Set icon //
+		setIcon(icon);
 	}
 	
 	/**
@@ -164,7 +157,7 @@ public class Button
 	 * @author Erik Tran
 	 * @param color ...
 	 * @param alpha ...
-	 * @return      ...
+	 * @return ...
 	 */
 	private Color getNewColor(final Color color, final float alpha) {
 		return new Color(
@@ -185,7 +178,7 @@ public class Button
 	}
 	
 	/**
-	 * Updates graphical image.
+	 * Update graphical image.
 	 *
 	 * @author Erik Tran
 	 */

@@ -145,7 +145,7 @@ public class PlayerModel
 	 * @author Linus Aronsson
 	 * @param from Source coordinates.
 	 * @param to   Destination coordinates.
-	 * @return     Whether the move was successful, invalid or canceled.
+	 * @return Whether the move was successful, invalid or canceled.
 	 */
 	@Override
 	public MoveType move(final Coordinate from, final Coordinate to) {

@@ -34,9 +34,8 @@ public class GridView
 	extends Panel
 	implements Observer
 {
-	/** Cell font. */
-	private static final Font FONT_CELL =
-		new Font("Helvetica Neue", Font.PLAIN, 14);
+	/** Active cell color. */
+	private static final Color COLOR_ACTIVE_CELL = Color.RED;
 	
 	/** Background color. */
 	private static final Color COLOR_BACKGROUND = new Color(0x33, 0x33, 0x33);
@@ -59,73 +58,44 @@ public class GridView
 	/** Topaz color. */
 	private static final Color COLOR_TOPAZ = new Color(0xFF, 0xBF, 0x00);
 	
+	/** Cell font. */
+	private static final Font FONT_CELL =
+		new Font("Helvetica Neue", Font.PLAIN, 14);
+	
+	/** Grid cell gap in logical pixels. */
+	private static final int GRID_GAP = 2;
+	
 	/** Icon width. */
 	private static final int ICON_SIZE = 80;
 	
-	/** Active cell color. */
-	private static final Color ACTIVE_CELL_COLOR = Color.RED;
-	
-	/** ... */
-	private static final int GAP = 2;
-	
-	/** ... */
+	/** Cell grid. */
 	private Cell[] board = null;
 	
-	/** ... */
-	private BufferedImage currentDiamond = null;
+	/** Diamond icon. */
+	private ImageIcon iconDiamond = null;
 	
-	/** ... */
-	private BufferedImage currentEmerald = null;
+	/** Emerald icon. */
+	private ImageIcon iconEmerald = null;
 	
-	/** ... */
-	private BufferedImage currentRuby = null;
+	/** Ruby icon. */
+	private ImageIcon iconRuby = null;
 	
-	/** ... */
-	private BufferedImage currentSapphire = null;
+	/** Sapphire icon. */
+	private ImageIcon iconSapphire = null;
 	
-	/** ... */
-	private BufferedImage currentTopaz = null;
+	/** Topaz icon. */
+	private ImageIcon iconTopaz = null;
 	
-	/** ... */
-	private BufferedImage imageDiamond = null;
-	
-	/** ... */
-	private BufferedImage imageDiamondV2 = null;
-	
-	/** ... */
-	private BufferedImage imageEmerald = null;
-	
-	/** ... */
-	private BufferedImage imageEmeraldV2 = null;
-	
-	/** ... */
-	private BufferedImage imageRuby = null;
-	
-	/** ... */
-	private BufferedImage imageRubyV2 = null;
-	
-	/** ... */
-	private BufferedImage imageSapphire = null;
-	
-	/** ... */
-	private BufferedImage imageSapphireV2 = null;
-	
-	/** ... */
-	private BufferedImage imageTopaz = null;
-	
-	/** ... */
-	private BufferedImage imageTopazV2 = null;
-	
-	/** ... */
+	/** Game model. */
 	private MatchThreeModel model = null;
 	
 	/**
-	 * Create `GridView`.
+	 * Constructor.
 	 *
 	 * @author Erik Selstam
 	 * @author Erik Tran
 	 * @param model MatchThree model to use.
-	 * @param style ...
+	 * @param style Visual style to use.
 	 */
 	public GridView(final MatchThreeModel model, final Style style) {
 		// Validate argument //
@@ -133,19 +103,23 @@ public class GridView
 			throw new NullPointerException();
 		}
 		
+		// Assign fields //
 		this.model = model;
 		
 		// Bind to model //
 		model.addObserver(this);
 		
+		// Construct grid //
+		int width = model.getWidth();
+		Container grid = createGrid(width);
+		
+		// Load external resources //
+		setStyle(style);
+		
 		// Set layout //
 		setLayout(new GridLayout());
 		
-		// Load external resources //
-		initGraphics(style);
-		
-		// Construct grid //
-		Container grid = createGrid();
+		// Assemble view //
 		add(grid);
 	}
 	
@@ -161,6 +135,7 @@ public class GridView
 			throw new NullPointerException();
 		}
 		
+		// Add event listeners //
 		for (final Cell cell : board) {
 			cell.addActionListener(listener);
 		}
@@ -182,6 +157,7 @@ public class GridView
 			throw new NullPointerException();
 		}
 		
+		// Add event listener //
 		cell.addMouseListener(listener);
 	}
 	
@@ -196,64 +172,19 @@ public class GridView
 	}
 	
 	/**
-	 * Change images on buttons.
-	 *
-	 * @author Erik Tran
-	 * @author Erik Selstam
-	 * @param style Visual style.
-	 */
-	public void changeSprites(final Style style) {
-		switch (style) {
-			case CLASSIC:
-				currentDiamond  = imageDiamond;
-				currentEmerald  = imageEmerald;
-				currentRuby     = imageRuby;
-				currentSapphire = imageSapphire;
-				currentTopaz    = imageTopaz;
-				break;
-			case STEEL:
-				currentDiamond  = imageDiamondV2;
-				currentEmerald  = imageEmeraldV2;
-				currentRuby     = imageRubyV2;
-				currentSapphire = imageSapphireV2;
-				currentTopaz    = imageTopazV2;
-				break;
-			default: break;
-		}
-		int index = 0;
-		for (final Jewel jewel : model.getBoard()) {
-			Cell cell = board[index];
-			switch (jewel) {
-				case DIAMOND:  cell.setIcon(new ImageIcon(currentDiamond));
-				               break;
-				case EMERALD:  cell.setIcon(new ImageIcon(currentEmerald));
-				               break;
-				case RUBY:     cell.setIcon(new ImageIcon(currentRuby));
-				               break;
-				case SAPPHIRE: cell.setIcon(new ImageIcon(currentSapphire));
-				               break;
-				case TOPAZ:    cell.setIcon(new ImageIcon(currentTopaz));
-				               break;
-				default:       break;
-			}
-			index++;
-		}
-	}
-	
-	/**
 	 * Create game grid.
 	 *
 	 * @author Erik Selstam
 	 * @author Erik Tran
-	 * @return ...
+	 * @param width Width of the grid.
+	 * @return Game grid container.
 	 */
-	private Container createGrid() {
+	private Container createGrid(final int width) {
 		// Create grid //
 		Container grid = new SubPanel();
 		
 		// Set grid layout //
-		int width = model.getWidth();
-		LayoutManager layout = new GridLayout(width, width, GAP, GAP);
+		LayoutManager layout = new GridLayout(width, width, GRID_GAP, GRID_GAP);
 		grid.setLayout(layout);
 		
 		// Fill grid //
@@ -271,7 +202,7 @@ public class GridView
 			button.setFont(FONT_CELL);
 			
 			// Update button state from view //
-			updateCell(x, y, model.get(x, y));
+			update(x, y, model.get(x, y));
 			
 			// Add button to grid //
 			grid.add(button, JLayeredPane.DEFAULT_LAYER);
@@ -285,7 +216,7 @@ public class GridView
 	 *
 	 * @author Erik Selstam
 	 * @param jewel Jewel to get the color of.
-	 * @return      The color of the jewel.
+	 * @return The color of the jewel.
 	 */
 	private Color getColor(final Jewel jewel) {
 		switch (jewel) {
@@ -294,79 +225,113 @@ public class GridView
 			case RUBY:     return COLOR_RUBY;
 			case SAPPHIRE: return COLOR_SAPPHIRE;
 			case TOPAZ:    return COLOR_TOPAZ;
-			default: throw new IllegalStateException();
+			default:
+				throw new IllegalStateException(
+					"Unknown value for `Jewel`"
+				);
 		}
 	}
 	
 	/**
-	 * Get the image of a jewel.
+	 * Get the icon of a jewel.
 	 *
 	 * @author Erik Selstam
-	 * @param jewel Jewel to get the image of.
-	 * @return      The image of the jewel.
+	 * @param jewel Jewel to get the icon of.
+	 * @return The icon of the jewel.
 	 */
-	private BufferedImage getImage(final Jewel jewel) {
+	private ImageIcon getIcon(final Jewel jewel) {
 		switch (jewel) {
-			case DIAMOND:  return currentDiamond;
-			case EMERALD:  return currentEmerald;
-			case RUBY:     return currentRuby;
-			case SAPPHIRE: return currentSapphire;
-			case TOPAZ:    return currentTopaz;
-			default: throw new IllegalStateException();
+			case DIAMOND:  return iconDiamond;
+			case EMERALD:  return iconEmerald;
+			case RUBY:     return iconRuby;
+			case SAPPHIRE: return iconSapphire;
+			case TOPAZ:    return iconTopaz;
+			default:
+				throw new IllegalStateException(
+					"Unknown value for `Jewel`"
+				);
 		}
 	}
 	
 	/**
-	 * Get the name of a jewel.
+	 * Set theme and update accordingly.
 	 *
 	 * @author Erik Selstam
-	 * @param jewel Jewel to get the name of.
-	 * @return      The name of the jewel.
-	 */
-	private String getName(final Jewel jewel) {
-		switch (jewel) {
-			case DIAMOND:  return "Diamond";
-			case EMERALD:  return "Emerald";
-			case RUBY:     return "Ruby";
-			case SAPPHIRE: return "Sapphire";
-			case TOPAZ:    return "Topaz";
-			default: throw new IllegalStateException();
-		}
-	}
-	
-	/**
-	 * Load external image resources.
-	 *
 	 * @author Erik Tran
-	 * @author Erik Selstam
 	 * @param style Visual style.
 	 */
-	private void initGraphics(final Style style) {
-		// Load images //
-		// TODO: Load new images as well.
-		imageDiamond  = AssetManager.loadImage("Diamond.png");
-		imageEmerald  = AssetManager.loadImage("Emerald.png");
-		imageRuby     = AssetManager.loadImage("Ruby.png");
-		imageSapphire = AssetManager.loadImage("Sapphire.png");
-		imageTopaz    = AssetManager.loadImage("Topaz.png");
+	public void setStyle(final Style style) {
+		// Validate argument //
+		if (style == null) {
+			throw new IllegalArgumentException("`style` must not be null");
+		}
 		
+		// Get file paths //
+		// TODO: Use type suitable for paths instead.
+		// TODO: Find a more elegant solution to this (wrap in a class?).
+		String pathDiamond;
+		String pathEmerald;
+		String pathRuby;
+		String pathSapphire;
+		String pathTopaz;
 		switch (style) {
 			case CLASSIC:
-				currentDiamond  = imageDiamond;
-				currentEmerald  = imageEmerald;
-				currentRuby     = imageRuby;
-				currentSapphire = imageSapphire;
-				currentTopaz    = imageTopaz;
+				pathDiamond  = "Version 1/Diamond.png";
+				pathEmerald  = "Version 1/Emerald.png";
+				pathRuby     = "Version 1/Ruby.png";
+				pathSapphire = "Version 1/Sapphire.png";
+				pathTopaz    = "Version 1/Topaz.png";
+				break;
+			case GEMSTONES:
+				pathDiamond  = "Version 3/Diamond.png";
+				pathEmerald  = "Version 3/Emerald.png";
+				pathRuby     = "Version 3/Ruby.png";
+				pathSapphire = "Version 3/Sapphire.png";
+				pathTopaz    = "Version 3/Topaz.png";
+				break;
+			case NONE:
+				pathDiamond  = null;
+				pathEmerald  = null;
+				pathRuby     = null;
+				pathSapphire = null;
+				pathTopaz    = null;
 				break;
 			case STEEL:
-				currentDiamond  = imageDiamondV2;
-				currentEmerald  = imageEmeraldV2;
-				currentRuby     = imageRubyV2;
-				currentSapphire = imageSapphireV2;
-				currentTopaz    = imageTopazV2;
+				pathDiamond  = "Version 2/Diamond.png";
+				pathEmerald  = "Version 2/Emerald.png";
+				pathRuby     = "Version 2/Ruby.png";
+				pathSapphire = "Version 2/Sapphire.png";
+				pathTopaz    = "Version 2/Topaz.png";
 				break;
-			default: break;
+			default:
+				throw new IllegalStateException("Unknown value for `Style`");
 		}
+		
+		// Load images //
+		BufferedImage imageDiamond  = AssetManager.loadImage(pathDiamond);
+		BufferedImage imageEmerald  = AssetManager.loadImage(pathEmerald);
+		BufferedImage imageRuby     = AssetManager.loadImage(pathRuby);
+		BufferedImage imageSapphire = AssetManager.loadImage(pathSapphire);
+		BufferedImage imageTopaz    = AssetManager.loadImage(pathTopaz);
+		
+		// Scale images //
+		int scale = java.awt.Image.SCALE_SMOOTH;
+		int size  = ICON_SIZE;
+		Image scaledDiamond  = imageDiamond.getScaledInstance(size, -1, scale);
+		Image scaledEmerald  = imageEmerald.getScaledInstance(size, -1, scale);
+		Image scaledRuby     = imageRuby.getScaledInstance(size, -1, scale);
+		Image scaledSapphire = imageSapphire.getScaledInstance(size, -1, scale);
+		Image scaledTopaz    = imageTopaz.getScaledInstance(size, -1, scale);
+		
+		// Update icon storage //
+		iconDiamond  = new ImageIcon(scaledDiamond);
+		iconEmerald  = new ImageIcon(scaledEmerald);
+		iconRuby     = new ImageIcon(scaledRuby);
+		iconSapphire = new ImageIcon(scaledSapphire);
+		iconTopaz    = new ImageIcon(scaledTopaz);
+		
+		// Update view //
+		update();
 	}
 	
 	/**
@@ -399,7 +364,7 @@ public class GridView
 		// Set state //
 		cell.setState(activated);
 		if (activated) {
-			cell.setMask(ACTIVE_CELL_COLOR, 0.3f);
+			cell.setMask(COLOR_ACTIVE_CELL, 0.3f);
 			cell.setForeground(COLOR_FOREGROUND);
 			cell.setContentAreaFilled(true);
 		} else {
@@ -415,16 +380,12 @@ public class GridView
 	 * @author Erik Selstam
 	 */
 	public void update() {
-		throw new IllegalStateException();
-		
-		/*
 		int width = model.getWidth();
 		for (int i = 0; i < width * width; i++) {
 			int x = i % width;
 			int y = i / width;
-			updateCell(x, y);
+			update(x, y);
 		}
-		*/
 	}
 	
 	@Override
@@ -434,7 +395,7 @@ public class GridView
 				CellEvent event = (CellEvent) arg;
 				Coordinate c = event.getPos();
 				Jewel j = event.getType();
-				updateCell(c, j);
+				update(c, j);
 			} else if (arg instanceof GameFinishedEvent) {
 				LabelEvent event = (LabelEvent) arg;
 				removeAll();
@@ -451,15 +412,54 @@ public class GridView
 	 *
 	 * @author Erik Selstam
 	 * @param position Coordinates of the cell.
+	 */
+	public void update(final Coordinate position) {
+		// Validate argument //
+		if (position == null) {
+			throw new IllegalArgumentException("`position must not be null");
+		}
+		
+		int x = position.getX();
+		int y = position.getY();
+		update(x, y);
+	}
+	
+	/**
+	 * Update a cell.
+	 *
+	 * @author Erik Selstam
+	 * @param x     X-coordinate of the cell.
+	 * @param y     Y-coordinate of the cell.
+	 */
+	public void update(final int x, final int y) {
+		// Validate arguments //
+		if (x < 0) {
+			throw new IllegalArgumentException("`x` must be at least 0");
+		}
+		if (y < 0) {
+			throw new IllegalArgumentException("`y` must be at least 0");
+		}
+		
+		Jewel jewel = model.get(x, y);
+		update(x, y, jewel);
+	}
+	
+	/**
+	 * Update a cell.
+	 *
+	 * @author Erik Selstam
+	 * @param position Coordinates of the cell.
 	 * @param jewel    Value of the cell.
 	 */
-	public void updateCell(final Coordinate position, final Jewel jewel) {
+	public void update(final Coordinate position, final Jewel jewel) {
 		// Validate argument //
 		if (position == null) {
 			throw new NullPointerException();
 		}
 		
-		updateCell(position.getX(), position.getY(), jewel);
+		int x = position.getX();
+		int y = position.getY();
+		update(x, y, jewel);
 	}
 	
 	/**
@@ -471,26 +471,32 @@ public class GridView
 	 * @param jewel ...
 	 */
 	// TODO: Reduce code duplication.
-	public void updateCell(final int x, final int y, final Jewel jewel) {
+	public void update(final int x, final int y, final Jewel jewel) {
 		// Validate arguments //
-		if (x < 0 || y < 0) {
-			throw new IllegalArgumentException();
+		if (x < 0) {
+			throw new IllegalArgumentException("`x` must be at least 0");
+		}
+		if (y < 0) {
+			throw new IllegalArgumentException("`y` must be at least 0");
 		}
 		int width = model.getWidth();
-		if (x >= width || y >= width) {
-			throw new IndexOutOfBoundsException();
+		if (x >= width) {
+			throw new IndexOutOfBoundsException("`x` out-of-bounds");
+		}
+		if (y >= width) {
+			throw new IndexOutOfBoundsException("`y` out-of-bounds");
 		}
 		
 		// Get button from view //
 		// TODO: Add assert for `width` or rely less on model consistency?
-		int  i    = y * width + x;
-		Cell cell = board[i];
+		int  index = y * width + x;
+		Cell cell  = board[index];
 		
 		// Hide cell if empty //
 		cell.setVisible(cell != null);
 		
 		// Set cell label //
-		String text = (jewel != null) ? getName(jewel) : "";
+		String text = (jewel != null) ? jewel.toString() : "";
 		cell.setText(text);
 		
 		// Set cell color //
@@ -499,15 +505,8 @@ public class GridView
 		
 		// Set cell icon //
 		if (jewel != null) {
-			ImageIcon     icon  = null;
-			BufferedImage image = getImage(jewel);
-			if (image != null) {
-				Image scaledImage = image.getScaledInstance(
-					ICON_SIZE,
-					-1,
-					java.awt.Image.SCALE_SMOOTH
-				);
-				icon = new ImageIcon(scaledImage);
+			ImageIcon icon = getIcon(jewel);
+			if (icon != null) {
 				cell.setText("");
 			}
 			cell.setIcon(icon);

@@ -39,7 +39,7 @@ public final class Serialize
 	 *
 	 * @author Erik Selstam
 	 * @param jewels Array of jewels to serialize.
-	 * @return       Serialized string.
+	 * @return Serialized string.
 	 * @throws UnsupportedTypeException On receiving unknown data.
 	 */
 	public static String serialize(final Jewel[] jewels)

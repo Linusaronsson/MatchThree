@@ -63,7 +63,7 @@ public class Message
 	 * @author Linus Aronsson
 	 * @author Erik Selstam
 	 * @param type Message type.
-	 * @return     The string representation.
+	 * @return The string representation.
 	 */
 	public String asString(final MessageType type) {
 		switch (type) {

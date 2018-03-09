@@ -8,31 +8,41 @@ package matchthree.model;
  */
 public class Settings
 {
+	/** Default visual style. */
+	private static final Style DEFAULT_STYLE = Style.GEMSTONES;
+	
 	/** Default game size. */
 	private static final int GAME_SIZE = 6;
 	
 	/** Port number for network play. */
 	private static final int PORT_NUMBER = 3333;
 	
-	/** ... */
-	private Style style = Style.CLASSIC;
+	/** Visual style. */
+	private Style style = DEFAULT_STYLE;
 	
 	/**
 	 * Graphical style.
 	 *
+	 * @author Erik Selstam
 	 * @author Erik Tran
 	 */
 	public enum Style
 	{
-		/** ... */
+		/** Pixelated style. */
 		CLASSIC,
 		
-		/** ... */
+		/** Faceted gems. */
+		GEMSTONES,
+		
+		/** Plain style. */
+		NONE,
+		
+		/** Steel-like finish. */
 		STEEL
 	}
 	
 	/**
-	 * ...
+	 * Constructor.
 	 *
 	 * @author Erik Selstam
 	 */

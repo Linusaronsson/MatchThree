@@ -170,7 +170,7 @@ public class GridViewController
 	 * @param style Visual style.
 	 */
 	public void changeSprites(final Style style) {
-		gridView.changeSprites(style);
+		gridView.setStyle(style);
 	}
 	
 	/**

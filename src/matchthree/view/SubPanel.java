@@ -7,7 +7,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JPanel;
 
 /**
- * Sub-layout panel.
+ * Sub-layout panel. Replaces `Panel` in cases where the latter does not work or
+ * is missing features by extending from `JPanel instead of `Container`.
  *
  * @author Erik Selstam
  */

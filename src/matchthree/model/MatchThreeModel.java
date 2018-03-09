@@ -102,7 +102,7 @@ public class MatchThreeModel
 	 *
 	 * @author Erik Selstam
 	 * @param chains Array of chains with aligned cells to clear.
-	 * @return       Gained score.
+	 * @return Gained score.
 	 */
 	private int clearChains(final Coordinate[][] chains) {
 		// Validate argument //
@@ -223,7 +223,7 @@ public class MatchThreeModel
 	 *
 	 * @author Erik Selstam
 	 * @param position Coordinate of cell to check.
-	 * @return         Array of chains found.
+	 * @return Array of chains found.
 	 */
 	private Coordinate[][] findChains(final Coordinate position) {
 		// Validate argument //
@@ -240,7 +240,7 @@ public class MatchThreeModel
 	 *
 	 * @author Erik Selstam
 	 * @param positions Coordinates of cells to check.
-	 * @return          Array of chains found.
+	 * @return Array of chains found.
 	 */
 	private Coordinate[][] findChains(final Coordinate[] positions) {
 		// Validate argument //
@@ -321,7 +321,7 @@ public class MatchThreeModel
 	 *
 	 * @author Erik Selstam
 	 * @param position Coordinates of the cell.
-	 * @return         The cell value.
+	 * @return The cell value.
 	 */
 	public Jewel get(final Coordinate position) {
 		// Validate argument //
@@ -338,7 +338,7 @@ public class MatchThreeModel
 	 * @author Erik Selstam
 	 * @param x X-coordinate of the cell.
 	 * @param y Y-coordinate of the cell.
-	 * @return  The cell value.
+	 * @return The cell value.
 	 */
 	public Jewel get(final int x, final int y) {
 		// Validate arguments //
@@ -417,7 +417,7 @@ public class MatchThreeModel
 	 * @author Erik Selstam
 	 * @param from Source coordinates.
 	 * @param to   Destination coordinates.
-	 * @return     Whether the move was successful, invalid or canceled.
+	 * @return Whether the move was successful, invalid or canceled.
 	 */
 	public MoveType move(final Coordinate from, final Coordinate to) {
 		// Validate arguments //

@@ -87,7 +87,7 @@ public final class AssetManager
 	 * @author Erik Selstam
 	 * @author Erik Tran
 	 * @param name Filename of asset.
-	 * @return     Loaded audio clip.
+	 * @return Loaded audio clip.
 	 */
 	public static Clip loadAudio(final String name) {
 		// Skip loading already loaded audio //
@@ -185,7 +185,7 @@ public final class AssetManager
 	 * @author Erik Selstam
 	 * @author Erik Tran
 	 * @param name Filename of asset.
-	 * @return     Loaded image buffer.
+	 * @return Loaded image buffer.
 	 */
 	public static BufferedImage loadImage(final String name) {
 		File file = new File(DIR_RESOURCES, name);

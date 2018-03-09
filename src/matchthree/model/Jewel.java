@@ -48,4 +48,21 @@ public enum Jewel
 	public static Jewel random() {
 		return VALUES.get(RANDOM.nextInt(SIZE));
 	}
+	
+	/**
+	 * Get the string representation of the jewel.
+	 *
+	 * @author Erik Selstam
+	 * @return String representation.
+	 */
+	public String toString() {
+		switch (this) {
+			case DIAMOND:  return "Diamond";
+			case EMERALD:  return "Emerald";
+			case RUBY:     return "Ruby";
+			case SAPPHIRE: return "Sapphire";
+			case TOPAZ:    return "Topaz";
+			default: throw new IllegalStateException();
+		}
+	}
 }
