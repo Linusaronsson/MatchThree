@@ -19,7 +19,7 @@ public class MatchThreeHeaderController
 	 * Constructor.
 	 *
 	 * @author Erik Selstam
-	 * @author Linux Aronsson
+	 * @author Linus Aronsson
 	 * @param parent          Parent view to use.
 	 * @param uiController    UI controller to use.
 	 * @param settings        Application settings.
