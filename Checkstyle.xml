@@ -292,7 +292,7 @@
 		</module>
 		<module name="UpperEll"/>
 		<module name="VariableDeclarationUsageDistance">
-			<property name="allowedDistance" value="3"/>
+			<property name="allowedDistance" value="5"/>
 			<property name="ignoreFinal" value="false"/>
 			<property name="validateBetweenScopes" value="true"/>
 		</module>
