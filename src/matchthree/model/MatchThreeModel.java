@@ -81,8 +81,9 @@ public class MatchThreeModel
 		this.width = width;
 		
 		// Set initial state //
-		if(board == null)
+		if (board == null) {
 			init();
+		}
 	}
 	
 	/**
