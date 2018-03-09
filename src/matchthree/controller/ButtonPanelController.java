@@ -12,7 +12,7 @@ import matchthree.view.Button;
 import matchthree.view.ButtonPanel;
 
 /**
- * Button panel controller.
+ * View controller for `ButtonPanel`.
  *
  * @author Erik Selstam
  */
@@ -80,11 +80,11 @@ public class ButtonPanelController
 	 * Constructor.
 	 *
 	 * @author Erik Selstam
-	 * @param parent             ...
-	 * @param uiController       ...
-	 * @param gridViewController ...
-	 * @param settings           ...
-	 * @param model              ...
+	 * @param parent             Parent view to use.
+	 * @param uiController       UI controller to use.
+	 * @param gridViewController `GridViewController`. Used for changing style.
+	 * @param settings           Application settings.
+	 * @param model              Game model to use.
 	 */
 	// TODO: Should this class have access to `MatchThreeModel`?
 	public ButtonPanelController(

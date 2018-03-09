@@ -38,31 +38,31 @@ public class GridView
 	private static final Font FONT_CELL =
 		new Font("Helvetica Neue", Font.PLAIN, 14);
 	
-	/** ... */
+	/** Background color. */
 	private static final Color COLOR_BACKGROUND = new Color(0x33, 0x33, 0x33);
 	
-	/** ... */
+	/** Diamond color. */
 	private static final Color COLOR_DIAMOND = new Color(0xB9, 0xF2, 0xFF);
 	
-	/** ... */
+	/** Emerald color. */
 	private static final Color COLOR_EMERALD = new Color(0x50, 0xC8, 0x78);
 	
-	/** ... */
+	/** Foreground color. */
 	private static final Color COLOR_FOREGROUND = new Color(0xEE, 0xEE, 0xEE);
 	
-	/** ... */
+	/** Ruby color. */
 	private static final Color COLOR_RUBY = new Color(0xE0, 0x11, 0x5F);
 	
-	/** ... */
+	/** Sapphire color. */
 	private static final Color COLOR_SAPPHIRE = new Color(0x0F, 0x52, 0xBA);
 	
-	/** ... */
+	/** Topaz color. */
 	private static final Color COLOR_TOPAZ = new Color(0xFF, 0xBF, 0x00);
 	
 	/** Icon width. */
 	private static final int ICON_SIZE = 80;
 	
-	/** ... */
+	/** Active cell color. */
 	private static final Color ACTIVE_CELL_COLOR = Color.RED;
 	
 	/** ... */
@@ -451,7 +451,7 @@ public class GridView
 	 *
 	 * @author Erik Selstam
 	 * @param position Coordinates of the cell.
-	 * @param jewel    ...
+	 * @param jewel    Value of the cell.
 	 */
 	public void updateCell(final Coordinate position, final Jewel jewel) {
 		// Validate argument //

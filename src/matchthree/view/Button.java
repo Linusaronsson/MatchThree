@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
  * @author Erik Tran
  * @author Erik Selstam
  */
+// TODO: This class has unclear purpose and is widely misused.
 @SuppressWarnings("serial")
 public class Button
 	extends JButton

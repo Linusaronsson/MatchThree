@@ -9,7 +9,7 @@ import matchthree.view.Button;
 import matchthree.view.MainMenuView;
 
 /**
- * Controller for main menu view.
+ * View controller for `MainMenuView`.
  *
  * @author Erik Tran
  * @author Erik Selstam
@@ -17,10 +17,10 @@ import matchthree.view.MainMenuView;
 public class MainMenuViewController
 	implements ViewController
 {
-	/** ... */
+	/** Button font. */
 	private static final Font BUTTON_FONT = new Font("Impact", Font.PLAIN, 30);
 	
-	/** ... */
+	/** Button font on hover. */
 	private static final Font BUTTON_FONT_HOVER =
 		new Font("Impact", Font.PLAIN, 36);
 	
@@ -40,7 +40,7 @@ public class MainMenuViewController
 		private Button button = null;
 		
 		/**
-		 * ...
+		 * Constructor.
 		 *
 		 * @author Erik Tran
 		 * @param button ...
@@ -66,13 +66,13 @@ public class MainMenuViewController
 	}
 	
 	/**
-	 * Create `MainMenuViewController`.
+	 * Constructor.
 	 *
 	 * @author Erik Tran
 	 * @author Erik Selstam
-	 * @param parent       Parent container view to use.
-	 * @param uiController Reference to UI controller for navigation.
-	 * @param settings     ...
+	 * @param parent       Parent view to use.
+	 * @param uiController UI controller for navigation.
+	 * @param settings     Application settings.
 	 */
 	public MainMenuViewController(
 		final Container    parent,

@@ -8,7 +8,7 @@ import matchthree.view.MovesLeft;
 import matchthree.view.Score;
 
 /**
- * MatchThree header controller.
+ * View controller for `MatchThreeHeader`.
  *
  * @author Erik Selstam
  * @author Linus Aronsson
@@ -20,10 +20,10 @@ public class MatchThreeHeaderController
 	 *
 	 * @author Erik Selstam
 	 * @author Linux Aronsson
-	 * @param parent          ...
-	 * @param uiController    ...
-	 * @param settings        ...
-	 * @param matchThreeModel ...
+	 * @param parent          Parent view to use.
+	 * @param uiController    UI controller to use.
+	 * @param settings        Application settings.
+	 * @param matchThreeModel Game model.
 	 */
 	// TODO: Do not allow this controller to access `MatchThreeUI`.
 	public MatchThreeHeaderController(

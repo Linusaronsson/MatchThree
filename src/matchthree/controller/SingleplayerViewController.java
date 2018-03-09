@@ -5,7 +5,7 @@ import matchthree.model.Settings;
 import matchthree.view.SingleplayerView;
 
 /**
- * Controller for singleplayer game screen.
+ * View controller for `SingleplayerView`.
  *
  * @author Erik Selstam
  * @author Erik Tran
@@ -26,9 +26,9 @@ public class SingleplayerViewController
 	 * @author Erik Selstam
 	 * @author Erik Tran
 	 * @author Linus Aronsson
-	 * @param parent       Parent container view to use.
+	 * @param parent       Parent view to use.
 	 * @param uiController UI controller to use for navigation.
-	 * @param settings     ...
+	 * @param settings     Application settings.
 	 */
 	public SingleplayerViewController(
 		final Container    parent,

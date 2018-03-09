@@ -24,7 +24,7 @@ import matchthree.view.MessageDialog;
 import matchthree.view.SaveDialog;
 
 /**
- * MatchThree game controller.
+ * MatchThree game controller and view controller for `GridView`.
  *
  * @author Erik Selstam
  * @author Erik Tran
@@ -32,7 +32,7 @@ import matchthree.view.SaveDialog;
  */
 public class GridViewController
 {
-	/** ... */
+	/** Background color. */
 	private static final Color COLOR_BACKGROUND = new Color(0x22, 0x22, 0x22);
 	
 	/** Currently active cell. */
@@ -111,8 +111,8 @@ public class GridViewController
 	 * @author Erik Tran
 	 * @author Linus Aronsson
 	 * @param parent          Parent view to use.
-	 * @param uiController    ...
-	 * @param settings        ...
+	 * @param uiController    UI controller to use.
+	 * @param settings        Application settings.
 	 * @param matchThreeModel Model to use, if any.
 	 * @param matchThreeUI    ...
 	 */
@@ -174,10 +174,10 @@ public class GridViewController
 	}
 	
 	/**
-	 * ...
+	 * Get a reference to the game model.
 	 *
 	 * @author Erik Selstam
-	 * @return ...
+	 * @return The game model.
 	 */
 	public MatchThreeModel getModel() {
 		return matchThreeModel;

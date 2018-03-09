@@ -6,7 +6,7 @@ import matchthree.model.Settings;
 import matchthree.view.MatchThreeUI;
 
 /**
- * ...
+ * View controller for `MatchThreeUI`.
  *
  * @author Erik Selstam
  * @author Erik Tran
@@ -28,9 +28,9 @@ public class MatchThreeUIController
 	 *
 	 * @author Erik Selstam
 	 * @author Linus Aronsson
-	 * @param parent          ...
-	 * @param uiController    ...
-	 * @param settings        ...
+	 * @param parent          Parent view to use.
+	 * @param uiController    UI controller to use.
+	 * @param settings        Application settings.
 	 * @param matchThreeModel ...
 	 */
 	public MatchThreeUIController(

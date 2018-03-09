@@ -124,7 +124,7 @@ public class MainWindowController
 	}
 	
 	/**
-	 * ...
+	 * Center window on screen.
 	 *
 	 * @author Erik Tran
 	 */

@@ -18,7 +18,7 @@ import matchthree.view.Button;
 import matchthree.view.MultiplayerView;
 
 /**
- * Controller for `MultiplayerView`.
+ * View controller for `MultiplayerView`.
  *
  * @author Linus Aronsson
  * @author Erik Selstam
@@ -105,7 +105,7 @@ public class MultiplayerViewController
 	 * @author Erik Tran
 	 * @param parent       Parent view to use.
 	 * @param uiController UI controller to use.
-	 * @param settings     ...
+	 * @param settings     Application settings.
 	 * @param board        ...
 	 * @param host         ...
 	 * @param port         ...

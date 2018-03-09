@@ -4,7 +4,7 @@ import java.awt.Container;
 import matchthree.view.CreditsView;
 
 /**
- * ...
+ * View controller for `CreditsView`.
  *
  * @author Erik Tran
  * @author Erik Selstam
@@ -16,7 +16,7 @@ public class CreditsViewController
 	 * Constructor.
 	 *
 	 * @author Erik Tran
-	 * @param parent ...
+	 * @param parent Parent view to use.
 	 */
 	public CreditsViewController(final Container parent) {
 		// Validate arguments //

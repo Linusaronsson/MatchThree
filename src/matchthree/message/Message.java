@@ -8,6 +8,7 @@ import java.io.Serializable;
  * @author Linus Aronsson
  * @author Erik Selstam
  */
+// TODO: Make abstract?
 public class Message
 	implements Serializable
 {
@@ -29,13 +30,13 @@ public class Message
 		
 		/** Close game. */
 		END_GAME,
-
+		
 		/** Game completed. */
 		GAME_FINISHED,
 		
 		/** Game request. */
 		REQUESTED_GAME,
-
+		
 		/** Cell update. */
 		CELL_UPDATE,
 		

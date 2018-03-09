@@ -187,9 +187,9 @@ public class UIController
 	 * Start a multiplayer game session.
 	 *
 	 * @author Erik Selstam
-	 * @param board ...
-	 * @param host  ...
-	 * @param port  ...
+	 * @param board Game board to use, if any.
+	 * @param host  Address of opponent.
+	 * @param port  Port number of opponent.
 	 */
 	// HACK: This function exists to transfer connection state from setup view
 	//       to game view.

@@ -5,9 +5,10 @@ import matchthree.model.Settings;
 import matchthree.view.ScoreMenuView;
 
 /**
- * ...
+ * View controller for `ScoreMenuView`.
  *
  * @author David Olofsson
+ * @author Erik Selstam
  */
 public class ScoreMenuViewController
     implements ViewController
@@ -32,20 +33,18 @@ public class ScoreMenuViewController
 		if (parent == null) {
 			throw new IllegalArgumentException("`parent` must not be null");
 		}
-		
 		if (uiController == null) {
 			throw new IllegalArgumentException(
 				"`uiController` must not be null"
 			);
 		}
-		
 		if (settings == null) {
 			throw new IllegalArgumentException("`settings` must not be null");
 		}
 		
 		this.uiController = uiController;
 		
-		// Create Score view //
+		// Create view //
 		ScoreMenuView scoreMenuView = new ScoreMenuView();
 		
 		// Add event listeners //
@@ -53,7 +52,6 @@ public class ScoreMenuViewController
 			// Refresh scores //
 			scoreMenuView.refresh();
 		});
-		
 		scoreMenuView.addMainMenuListener(event -> {
 			// Return to main menu //
 			uiController.changeView(UIController.View.MAIN_MENU);

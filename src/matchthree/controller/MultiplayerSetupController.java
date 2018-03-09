@@ -16,12 +16,14 @@ import matchthree.view.ErrorDialog;
 import matchthree.view.MultiplayerMenuView;
 
 /**
- * ...
+ * View controller for `MultiplayerMenuView`.
  *
  * @author Linus Aronsson
  * @author Erik Selstam
  * @author Erik Tran
  */
+// TODO: Rename this `MultiplayerMenuViewController` to reflect it is a view
+//       controller?
 public class MultiplayerSetupController
 	implements ViewController
 {
@@ -73,9 +75,9 @@ public class MultiplayerSetupController
 	 *
 	 * @author Linus Aronsson
 	 * @author Erik Selstam
-	 * @param parent       ...
-	 * @param uiController ...
-	 * @param settings     ...
+	 * @param parent       Parent view to use.
+	 * @param uiController UI controller to use.
+	 * @param settings     Application settings.
 	 */
 	public MultiplayerSetupController(
 		final Container    parent,
