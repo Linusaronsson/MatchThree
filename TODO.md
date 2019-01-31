@@ -1,5 +1,4 @@
 # Todo #
-
 ## Bugs ##
 + Leaving a multiplayer game may leave the main menu in a broken state.
 
